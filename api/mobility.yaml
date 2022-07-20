@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Beckn Mobility Protocol
   description: Mobility Adaptation of Beckn Protocol
-  version: draft
+  version: 0.10.0-release
 
 security:
   - SubscriberAuth: []
