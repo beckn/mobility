@@ -1,0 +1,1361 @@
+openapi: 3.0.0
+info:
+  title: Beckn Mobility Protocol
+  description: Mobility Adaptation of Beckn Protocol
+  version: 0.10.0
+
+security:
+  - SubscriberAuth: []
+  - GatewaySubscriberAuthNew: []
+paths:
+  /search:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+        - Beckn Gateway (BG)
+      description: Search for mobility services by intent
+      requestBody:
+        description: BAP searches for services
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    intent:
+                      $ref: "#/components/schemas/MobilityIntent"
+              required:
+                - context
+                - message
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /select:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Select items from the catalog and build your order
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    order:
+                      $ref: "#/components/schemas/Booking"
+                  required:
+                    - order
+              required:
+                - context
+                - message
+
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /init:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Initialize an booking by providing billing and/or shipping details
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    order:
+                      $ref: "#/components/schemas/Booking"
+                  required:
+                    - order
+              required:
+                - context
+                - message
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /confirm:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Confirm the booking
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    order:
+                      $ref: "#/components/schemas/Booking"
+                  required:
+                    - order
+              required:
+                - context
+                - message
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /status:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Fetch the latest order object
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    order:
+                      $ref: "#/components/schemas/Booking"
+                  required:
+                    - order
+              required:
+                - context
+                - message
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /track:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Track an active order
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    order_id:
+                      $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Order/properties/id"
+                    tracking_url:
+                      type: string
+                      format: uri
+                  required:
+                    - order_id
+              required:
+                - context
+                - message
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /cancel:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Cancel an order
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    order:
+                      $ref: "#/components/schemas/Booking"
+                  required:
+                    - order_id
+              required:
+                - context
+                - message
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /update:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Remove object
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    order:
+                      $ref: "#/components/schemas/Booking"
+                  required:
+                    - order
+              required:
+                - context
+                - message
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /rating:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Provide feedback on a service
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Rating"
+              required:
+                - context
+                - message
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+
+  /support:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Contact support
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    ref_id:
+                      type: string
+                      description: ID of the element for which support is needed
+              required:
+                - context
+                - message
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+
+  /on_search:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+        - Beckn Gateway (BG)
+      description: Send catalog
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    catalog:
+                      $ref: "#/components/schemas/MobilityCatalog"
+                  required:
+                    - catalog
+                error:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+              required:
+                - context
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - context
+  /on_select:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Send draft order object with quoted price for selected items
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    order:
+                      $ref: "#/components/schemas/Booking"
+                error:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+              required:
+                - context
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /on_init:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Send order object with payment details updated
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    order:
+                      $ref: "#/components/schemas/Booking"
+                  required:
+                    - order
+                error:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+              required:
+                - context
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /on_confirm:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Send active order object
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    order:
+                      $ref: "#/components/schemas/Booking"
+                  required:
+                    - order
+                error:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+              required:
+                - context
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /on_track:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Send tracking details of an active order
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    tracking:
+                      $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Tracking"
+                  required:
+                    - tracking
+                error:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+              required:
+                - context
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /on_cancel:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Send cancellation request_id with reasons list in case of cancellation request. Else send cancelled order object
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    order:
+                      $ref: "#/components/schemas/Booking"
+                  required:
+                    - order
+                error:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+              required:
+                - context
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /on_update:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Returns updated service with updated runtime object
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    order:
+                      $ref: "#/components/schemas/Booking"
+                  required:
+                    - order
+                error:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+              required:
+                - context
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /on_status:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Fetch the status of a Service
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    order:
+                      $ref: "#/components/schemas/Booking"
+                  required:
+                    - order
+                error:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+              required:
+                - context
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /on_rating:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Provide feedback on a service
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/RatingAck"
+                error:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+              required:
+                - context
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+  /on_support:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Contact Support
+      requestBody:
+        description: TODO
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    phone:
+                      type: string
+                      format: phone
+                    email:
+                      type: string
+                      format: email
+                    uri:
+                      type: string
+                      format: uri
+                error:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+              required:
+                - context
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+
+  /get_cancellation_reasons:
+    post:
+      tags:
+        - BPP Meta APIs
+      description: Get cancellation reasons from the BPP
+      requestBody:
+        description: Context header is sent as the request
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+
+  /cancellation_reasons:
+    post:
+      tags:
+        - BAP Meta APIs
+      description: Get cancellation reasons from the BPP
+      requestBody:
+        description: List of cancellation reasons
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    cancellation_reasons:
+                      type: array
+                      items:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Option"
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+
+  /get_return_reasons:
+    post:
+      tags:
+        - BPP Meta APIs
+      description: Get return reasons from the BPP
+      requestBody:
+        description: Context header is sent as the request
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+
+  /return_reasons:
+    post:
+      tags:
+        - BAP Meta APIs
+      description: Get return reasons from the BPP
+      requestBody:
+        description: List of return reasons
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                return_reasons:
+                  type: array
+                  items:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Option"
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+
+  /get_rating_categories:
+    post:
+      tags:
+        - BPP Meta APIs
+      description: Get a list of categories that can be rated by the BAP
+      requestBody:
+        description: Context header is sent as the request
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+
+  /rating_categories:
+    post:
+      tags:
+        - BAP Meta APIs
+      description: Get a list of categories that can be rated by the BAP
+      requestBody:
+        description: Array of categories which can be rated
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                rating_categories:
+                  type: array
+                  items:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Rating/properties/rating_category"
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+
+  /get_feedback_categories:
+    post:
+      tags:
+        - BPP Meta APIs
+      description: Get a list of categories for which feedback can be given by the BAP
+      requestBody:
+        description: Context header is sent as the request
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+
+  /feedback_categories:
+    post:
+      tags:
+        - BAP Meta APIs
+      description: Get a list of categories for which feedback can be given by the BAP
+      requestBody:
+        description: Array of categories for which feedback can be given by the BAP
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                feedback_categories:
+                  type: array
+                  items:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Rating/properties/rating_category"
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+
+  /get_feedback_form:
+    post:
+      tags:
+        - BPP Meta APIs
+      description: Request a feedback form from the BPP
+      requestBody:
+        description: The rating value and category is sent by the BAP
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  type: object
+                  properties:
+                    rating_value:
+                      $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Rating/properties/value"
+                    rating_category:
+                      $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Rating/properties/rating_category"
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+
+  /feedback_form:
+    post:
+      tags:
+        - BAP Meta APIs
+      description: Get a feedback form from the BPP
+      requestBody:
+        description: Feedback form sent by the BPP
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Context"
+                message:
+                  $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Feedback"
+
+      responses:
+        "200":
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Ack"
+                    required:
+                      - ack
+                  error:
+                    $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
+                required:
+                  - message
+
+components:
+  securitySchemes:
+    SubscriberAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Signature of message body using BAP or BPP subscriber''s signing public key. <br/><br/>Format:<br/><br/><code>Authorization : Signature keyId="{subscriber_id}|{unique_key_id}|{algorithm}",algorithm="ed25519",created="1606970629",expires="1607030629",headers="(created) (expires) digest",signature="Base64(BLAKE-512(signing string))"</code>'
+    GatewaySubscriberAuthNew:
+      type: apiKey
+      in: header
+      name: X-Gateway-Authorization
+      description: 'Signature of message body + BAP/BPP''s Authorization header using BG''s signing public key. Format:<br/><br/><code>X-Gateway-Authorization : Signature keyId="{subscriber_id}|{unique_key_id}|{algorithm}",algorithm="ed25519",created="1606970629",expires="1607030629",headers="(created) (expires) digest",signature="Base64(BLAKE-512(signing string))"</code>'
+  schemas:
+    Driver:
+      description: The driver of a vehicle
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Agent"
+
+    Booking:
+      description: A booking of a mobility service
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Order"
+
+    ParkingSlot:
+      description: Describes a parking slot that is available to the consumer to book
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Fulfillment"
+
+    MobilityIntent:
+      description: Describes a mobility consumer's intent to avail mobility services
+      type: object
+      properties:
+        descriptor:
+          $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Descriptor"
+        provider:
+          $ref: "#/components/schemas/MobilityServiceProvider"
+        fulfillment:
+          $ref: "#/components/schemas/Trip"
+        payment:
+          $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Payment"
+        category:
+          $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Category"
+        offer:
+          $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Offer"
+        item:
+          $ref: "#/components/schemas/FareProduct"
+        tags:
+          $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Tags"
+
+    MobilityCatalog:
+      description: Describes a Mobility Provider Platform's catalog
+      type: object
+      properties:
+        bpp/descriptor:
+          $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Descriptor"
+        bpp/categories:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Category"
+        bpp/fulfillments:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Fulfillment"
+        bpp/payments:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Payment"
+        bpp/offers:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Offer"
+        bpp/providers:
+          type: array
+          items:
+            $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Provider"
+        exp:
+          type: string
+          description: Time after which catalog has to be refreshed
+          format: date-time
+
+    FareProduct:
+      description: Describes a fare product that is available to the end-consumer to purchase
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Item"
+
+    FareMedia:
+      description: Describes the physical form of the Fare Product
+      type: string
+
+    MobilityServiceProvider:
+      description: Describes a mobility service provider
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Provider"
+
+    Route:
+      type: array
+      items:
+        $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Location"
+
+    Trip:
+      description: Describes the movement of a traveller between two geographical locations via a specific mode of travel
+      allOf:
+        - $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Fulfillment"
+        - type: object
+          properties:
+            agent:
+              $ref: "#/components/schemas/Driver"
+
+    Stop:
+      description: Describes a specific stoppage point along the route of a trip that is selected by the provider or the customer
+      oneOf:
+        - $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Fulfillment/start"
+        - $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Fulfillment/end"
