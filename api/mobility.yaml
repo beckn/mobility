@@ -31,6 +31,115 @@ paths:
               required:
                 - context
                 - message
+            examples:
+              Broadcast search by pickup and drop location in the city of New Delhi:
+                value:
+                  context:
+                    domain: "mobility:*"
+                    country: IND
+                    city: std:080
+                    bap_id: example-bap.com
+                    bap_uri: https://api.example-bap.com/path/tp/api
+                    action: search
+                    core_version: 0.9.3
+                    transaction_id: 0abd728a-66eb-42a2-bdb8-b609321568fe
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    intent:
+                      fulfillment:
+                        start:
+                          location:
+                            gps: 22.374343, 77.340384
+                        end:
+                          location:
+                            gps: 22.347688, 77.928323
+
+              Broadcast Search for services around a pickup location in the city of New Delhi:
+                value:
+                  context:
+                    domain: "mobility:*"
+                    country: IND
+                    city: std:080
+                    bap_id: example-bap.com
+                    bap_uri: https://api.example-bap.com/path/tp/api
+                    action: search
+                    core_version: 0.9.3
+                    transaction_id: 0abd728a-66eb-42a2-bdb8-b609321568fe
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    intent:
+                      fulfillment:
+                        start:
+                          location:
+                            gps: 22.374343, 77.340384                 
+
+              Broadcast search for services between a pickup and drop location offering wheelchair assistance:
+                value:
+                  context:
+                    domain: "mobility:*"
+                    country: IND
+                    city: std:080
+                    bap_id: example-bap.com
+                    bap_uri: https://api.example-bap.com/path/tp/api
+                    action: search
+                    core_version: 0.9.3
+                    transaction_id: 0abd728a-66eb-42a2-bdb8-b609321568fe
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    intent:
+                      item:
+                        tags:
+                          Wheelchair+Assistance: true    
+                      fulfillment:
+                        start:
+                          location:
+                            gps: 22.374343, 77.340384
+                        end:
+                          location:
+                            gps: 22.347688, 77.928323
+
+              Browse fare products offered by a specific mobility service provider on a BPP:
+                value:
+                  context:
+                    domain: "mobility:*"
+                    country: IND
+                    city: std:080
+                    bap_id: example-bap.com
+                    bap_uri: https://api.example-bap.com/path/tp/api
+                    bpp_id: example-bpp.com
+                    bpp_uri: https://api.example-bpp.com/path/tp/api
+                    action: search
+                    core_version: 0.9.3
+                    transaction_id: 0abd728a-66eb-42a2-bdb8-b609321568fe
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    intent:
+                      provider:
+                        id: "<provider id>"
+
+              Search for details of a specific fare product on a BPP:
+                value:
+                  context:
+                    domain: "mobility:*"
+                    country: IND
+                    city: std:080
+                    bap_id: example-bap.com
+                    bap_uri: https://api.example-bap.com/path/tp/api
+                    bpp_id: example-bpp.com
+                    bpp_uri: https://api.example-bpp.com/path/tp/api
+                    action: search
+                    core_version: 0.9.3
+                    transaction_id: 0abd728a-66eb-42a2-bdb8-b609321568fe
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    intent:
+                      item:
+                        id: "<item id>"
       responses:
         "200":
           description: Acknowledgement of message received
@@ -50,6 +159,7 @@ paths:
                     $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
                 required:
                   - message
+
   /select:
     post:
       tags:
@@ -74,6 +184,33 @@ paths:
               required:
                 - context
                 - message
+            examples:
+              Get dynamic fare for a specific fare product (id = xyz) based on pickup and drop location:
+                value:
+                  context:
+                    domain: "mobility:*"
+                    country: IND
+                    city: std:080
+                    bap_id: example-bap.com
+                    bap_uri: https://api.example-bap.com/path/tp/api
+                    bpp_id: example-bpp.com
+                    bpp_uri: https://api.example-bpp.com/path/tp/api
+                    action: search
+                    core_version: 0.9.3
+                    transaction_id: 0abd728a-66eb-42a2-bdb8-b609321568fe
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      items:
+                        - id: xyz
+                      fulfillment:
+                        start:
+                          location:
+                            gps: 22.374343, 77.340384
+                        end:
+                          location:
+                            gps: 22.347688, 77.928323
 
       responses:
         "200":
@@ -118,6 +255,36 @@ paths:
               required:
                 - context
                 - message
+            examples:
+              Finalize order for a cab service by providing billing details:
+                value:
+                  context:
+                    domain: "mobility:*"
+                    country: IND
+                    city: std:080
+                    bap_id: example-bap.com
+                    bap_uri: https://api.example-bap.com/path/tp/api
+                    bpp_id: example-bpp.com
+                    bpp_uri: https://api.example-bpp.com/path/tp/api
+                    action: search
+                    core_version: 0.9.3
+                    transaction_id: 0abd728a-66eb-42a2-bdb8-b609321568fe
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      items:
+                        - id: xyz
+                      billing:
+                        name: John Doe
+                        email: joh.doe@example.com
+                      fulfillment:
+                        start:
+                          location:
+                            gps: 22.374343, 77.340384
+                        end:
+                          location:
+                            gps: 22.347688, 77.928323              
       responses:
         "200":
           description: Acknowledgement of message received
@@ -161,6 +328,41 @@ paths:
               required:
                 - context
                 - message
+            examples:
+              Confirm order for a (post-paid) cab service by providing customer contact info:
+                value:
+                  context:
+                    domain: "mobility:*"
+                    country: IND
+                    city: std:080
+                    bap_id: example-bap.com
+                    bap_uri: https://api.example-bap.com/path/tp/api
+                    bpp_id: example-bpp.com
+                    bpp_uri: https://api.example-bpp.com/path/tp/api
+                    action: search
+                    core_version: 0.9.3
+                    transaction_id: 0abd728a-66eb-42a2-bdb8-b609321568fe
+                    message_id: 85a422c4-2867-4d72-b5f5-d31588e2f7c5
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      items:
+                        - id: xyz
+                      billing:
+                        name: John Doe
+                        email: joh.doe@example.com
+                      fulfillment:
+                        start:
+                          location:
+                            gps: 22.374343, 77.340384
+                        end:
+                          location:
+                            gps: 22.347688, 77.928323
+                        customer:
+                          person:
+                            name: John
+                          contact:
+                            phone: +91-9999999999
       responses:
         "200":
           description: Acknowledgement of message received
@@ -463,6 +665,37 @@ paths:
                   $ref: "https://raw.githubusercontent.com/beckn/protocol-specifications/ecosystem-fixes/core/v0/api/core.yaml#/components/schemas/Error"
               required:
                 - context
+            examples:
+              Return a :
+                value:
+                  context:
+                    domain: "<category-code-cabs>"
+                    country: IND
+                    city: std:080
+                    action: on_search
+                    core_version: 0.9.3
+                    bap_id: example-bap.com
+                    bap_uri: https://api.example-bap.com/path/to/api
+                    bpp_id: example-bpp.com
+                    bpp_uri: https://api.example-bpp.com/path/to/api
+                    message_id: 7f9a0258-8049-4122-884d-8e9e0491b36c
+                    timestamp: '2022-06-15T09:55:41.161Z'
+                  message:
+                    catalog:
+                      descriptor:
+                        name: Example Aggregator BPP
+                      providers:
+                      - id: '1'
+                        descriptor:
+                          name: Online Taxi Drivers Union
+                      - id: '2'
+                        descriptor:
+                          name: Yellow Cabs
+                      - id: '3'
+                        descriptor:
+                          name: Airport Taxi services
+                      
+
       responses:
         "200":
           description: Acknowledgement of message received
