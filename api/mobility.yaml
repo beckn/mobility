@@ -4,6 +4,7 @@ info:
   description: Mobility Adaptation of Beckn Protocol
   version: 0.9.3
 
+
 security:
   - SubscriberAuth: []
   - GatewaySubscriberAuthNew: []
