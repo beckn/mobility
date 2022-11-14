@@ -6,13 +6,11 @@ Recommendations for beckn protocol-enabled mobiity application developers
 
 0.7.0
 
-### Domain Version
+### Domain Code
 
-```"domain": "mobility:0.7.0"```
+```"domain": "mobility:*"```
 
 This version currently maps to beckn protocol core : Version 0.9.3
-
-Current implementers of beckn protocol can use 
 
 ## Earlier Versions
 
