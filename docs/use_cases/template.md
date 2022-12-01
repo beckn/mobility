@@ -35,3 +35,7 @@ Describe the interactions between the actors after the fulfillment of the servic
 ## References
 
 *Add links to references wherever possible*
+
+## Tags
+
+*Add tags relevant to the use case wherever possible*
