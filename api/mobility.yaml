@@ -85,8 +85,7 @@ paths:
                               groups/1/display: false
                               groups/1/list/1/descriptor/code: lang
                               groups/1/list/1/descriptor/name: Language
-                              groups/1/list/1/value: en
-                  
+                              groups/1/list/1/value: en     
       responses:
         '200':
           description: Acknowledgement of message received
@@ -106,6 +105,7 @@ paths:
                     $ref: '#/components/schemas/Error'
                 required:
                   - message
+
   /select:
     post:
       tags:
@@ -391,8 +391,7 @@ paths:
                             groups/1/display: false
                             groups/1/list/1/descriptor/code: lang
                             groups/1/list/1/descriptor/name: Language
-                            groups/1/list/1/value: en
-                  
+                            groups/1/list/1/value: en                
       responses:
         '200':
           description: Acknowledgement of message received
@@ -580,7 +579,6 @@ paths:
                           amount: '81'
                           currency: INR
                           transaction_status: NOT-PAID
-                  
       responses:
         '200':
           description: Acknowledgement of message received
@@ -1167,7 +1165,6 @@ paths:
                             groups/1/list/3/descriptor/name: Rides Completed
                             groups/1/list/3/descriptor/code: rides_completed
                             groups/1/list/3/value: '0'
-                  
       responses:
         '200':
           description: Acknowledgement of message received

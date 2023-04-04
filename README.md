@@ -1,4 +1,3 @@
-
 # Beckn Protocol Mobility Specification
 Recommendations for beckn protocol-enabled mobiity application developers
 
@@ -8,7 +7,22 @@ Recommendations for beckn protocol-enabled mobiity application developers
 
 This version is an adaptation of beckn protocol [core version 0.9.4 LTS](https://github.com/beckn/protocol-specifications/tree/core-0.9.4)
 
-## Release History
+# Beckn Protocol Mobility Specification
+Recommendations for beckn protocol-enabled mobiity application developers
+
+## Latest Version
+
+0.7.0
+
+### Domain Code
+
+```"domain": "mobility:*"```
+
+This version currently maps to beckn protocol core : Version 0.9.3
+
+## Earlier Versions
+
+The earlier versions of beckn protocol for mobility was in-sync with core. Hence, the version number for mobility was equal to the version number of core, To visit these versions, visit the core protocol specification repository.  
 
 | Version | Release Date       | Core Version | Author       | Comments                                                                               |
 |---------|--------------------|--------------|--------------|----------------------------------------------------------------------------------------|
@@ -48,5 +62,6 @@ To connect with members of the mobility working group and other members of the B
 ## Contributing to the Specification
 
 Anyone can contribute to the specification. Contributors must follow the contribution guidelines as mentioned in the CONTRiBUTION document in this repository.
+
 
 Each contribution will be peer-reviewed by the Mobility Working Group members. If approved, this contribution will be merged with the applicable versions of the mobility specification. 
