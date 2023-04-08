@@ -1,0 +1,10 @@
+type: object
+description: Describes a circular area on the map
+properties:
+  gps:
+    $ref: ./Gps.yaml
+  radius:
+    $ref: ./Scalar.yaml
+required:
+  - gps
+  - radius

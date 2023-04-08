@@ -1,0 +1,19 @@
+summary: Return support information related to an order
+value:
+  context:
+    country: IND
+    bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+    domain: nic2004:60221
+    timestamp: '2023-03-23T05:41:09Z'
+    bap_id: example-bap.com
+    bpp_id: example-bpp.com
+    message_id: ec3dea8c-c64c-4f06-b2a0-ec1f9584d7ba
+    city: std:080
+    core_version: 0.9.4
+    action: on_support
+    bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
+  message:
+    phone: '+918068870525'
+    email: support@nammayatri.in
+    url: https://support.nammayatri.com/gethelp
+  

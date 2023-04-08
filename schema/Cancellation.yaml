@@ -1,0 +1,28 @@
+type: object
+description: Describes the ACK response
+properties:
+  additional_description:
+    $ref: ./Descriptor.yaml
+  cancelled_by:
+    type: string
+  policies:
+    items:
+      $ref: ./Policy.yaml
+    type: array
+  reasons:
+    $ref: ./Option.yaml
+  ref_id:
+    type: string
+  selected_reason:
+    properties:
+      id:
+        $ref: ./Option.yaml#/properties/id
+    type: object
+  time:
+    format: date-time
+    type: string
+  type:
+    enum:
+      - full
+      - partial
+    type: string

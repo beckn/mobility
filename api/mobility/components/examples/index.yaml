@@ -1,0 +1,54 @@
+search_example_0:
+  $ref: ./search/example_0.yaml
+search_example_1:
+  $ref: ./search/example_1.yaml
+select_example_0:
+  $ref: ./select/example_0.yaml
+select_example_1:
+  $ref: ./select/example_1.yaml
+select_example_2:
+  $ref: ./select/example_2.yaml
+init_example_0:
+  $ref: ./init/example_0.yaml
+confirm_example_0:
+  $ref: ./confirm/example_0.yaml
+status_example_0:
+  $ref: ./search/example_0.yaml
+track_example_0:
+  $ref: ./track/example_0.yaml
+cancel_example_0:
+  $ref: ./cancel/example_0.yaml
+cancel_example_1:
+  $ref: ./cancel/example_1.yaml
+support_example_0:
+  $ref: ./support/example_0.yaml
+on_search_example_0:
+  $ref: ./on_search/example_0.yaml
+on_select_example_0:
+  $ref: ./on_select/example_0.yaml
+on_init_example_0:
+  $ref: ./on_init/example_0.yaml
+on_confirm_example_0:
+  $ref: ./on_confirm/example_0.yaml
+on_track_example_0:
+  $ref: ./on_track/example_0.yaml
+on_cancel_example_0:
+  $ref: ./on_cancel/example_0.yaml
+on_cancel_example_1:
+  $ref: ./on_cancel/example_1.yaml
+on_update_example_0:
+  $ref: ./on_update/example_0.yaml
+on_update_example_1:
+  $ref: ./on_update/example_1.yaml
+on_status_example_0:
+  $ref: ./on_status/example_0.yaml
+on_status_example_1:
+  $ref: ./on_status/example_1.yaml
+on_status_example_2:
+  $ref: ./on_status/example_2.yaml
+on_status_example_3:
+  $ref: ./on_status/example_3.yaml
+on_rating_example_0:
+  $ref: ./on_rating/example_0.yaml
+on_support_example_0:
+  $ref: ./on_support/example_0.yaml

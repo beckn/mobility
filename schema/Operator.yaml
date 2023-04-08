@@ -1,0 +1,13 @@
+description: Describes the agent of a service
+allOf:
+  - $ref: ./Person.yaml
+  - properties:
+      experience:
+        properties:
+          label:
+            type: string
+          unit:
+            type: string
+          value:
+            type: string
+        type: object

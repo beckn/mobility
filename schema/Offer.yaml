@@ -1,0 +1,21 @@
+type: object
+description: Describes an offer
+properties:
+  category_ids:
+    items:
+      $ref: ./Category.yaml#/properties/id
+    type: array
+  descriptor:
+    $ref: ./Descriptor.yaml
+  id:
+    type: string
+  item_ids:
+    items:
+      $ref: ./Item.yaml#/properties/id
+    type: array
+  location_ids:
+    items:
+      $ref: ./Location.yaml#/properties/id
+    type: array
+  time:
+    $ref: ./Time.yaml

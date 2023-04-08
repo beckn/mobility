@@ -1,0 +1,15 @@
+type: object
+description: Describes a schedule
+properties:
+  frequency:
+    $ref: ./Duration.yaml
+  holidays:
+    items:
+      format: date-time
+      type: string
+    type: array
+  times:
+    items:
+      format: date-time
+      type: string
+    type: array

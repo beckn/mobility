@@ -1,0 +1,10 @@
+type: object
+description: Describes an add-on
+properties:
+  descriptor:
+    $ref: ./Descriptor.yaml
+  id:
+    description: 'ID of the add-on. This follows the syntax {item.id}/add-on/{add-on unique id} for item specific add-on OR '
+    type: string
+  price:
+    $ref: ./Price.yaml

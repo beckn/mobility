@@ -1,0 +1,19 @@
+type: object
+description: Intent of a user. Used for searching for services
+properties:
+  category:
+    $ref: ./Category.yaml
+  descriptor:
+    $ref: ./Descriptor.yaml
+  fulfillment:
+    $ref: ./Fulfillment.yaml
+  item:
+    $ref: ./Item.yaml
+  offer:
+    $ref: ./Offer.yaml
+  payment:
+    $ref: ./Payment.yaml
+  provider:
+    $ref: ./Provider.yaml
+  tags:
+    $ref: ./Tags.yaml

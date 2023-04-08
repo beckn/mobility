@@ -1,0 +1,16 @@
+type: object
+description: Describes a quote
+properties:
+  breakup:
+    items:
+      properties:
+        price:
+          $ref: ./Price.yaml
+        title:
+          type: string
+      type: object
+    type: array
+  price:
+    $ref: ./Price.yaml
+  ttl:
+    $ref: ./Duration.yaml

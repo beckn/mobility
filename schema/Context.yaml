@@ -1,0 +1,79 @@
+type: object
+description: Describes a beckn message context
+properties:
+  action:
+    description: Defines the Beckn API call. Any actions other than the enumerated actions are not supported by Beckn Protocol
+    enum:
+      - search
+      - select
+      - init
+      - confirm
+      - update
+      - status
+      - track
+      - cancel
+      - rating
+      - support
+      - on_search
+      - on_select
+      - on_init
+      - on_confirm
+      - on_update
+      - on_status
+      - on_track
+      - on_cancel
+      - on_rating
+      - on_support
+    type: string
+  bap_id:
+    description: Unique id of the BAP. By default it is the fully qualified domain name of the BAP
+    format: uri
+    type: string
+  bap_uri:
+    description: URI of the BAP for accepting callbacks. Must have the same domain name as the bap_id
+    format: uri
+    type: string
+  bpp_id:
+    description: Unique id of the BPP. By default it is the fully qualified domain name of the BPP
+    format: uri
+    type: string
+  bpp_uri:
+    description: URI of the BPP. Must have the same domain name as the bap_id
+    format: uri
+    type: string
+  city:
+    $ref: ./City.yaml#/properties/code
+  core_version:
+    description: Version of Beckn core API specification being used
+    type: string
+  country:
+    $ref: ./Country.yaml#/properties/code
+  domain:
+    $ref: ./Domain.yaml
+  key:
+    description: The encryption public key of the sender
+    type: string
+  message_id:
+    description: This is a unique value which persists during a request / callback cycle
+    type: string
+  timestamp:
+    description: Time of request generation in RFC3339 format
+    format: date-time
+    type: string
+  transaction_id:
+    description: This is a unique value which persists across all API calls from search through confirm
+    type: string
+  ttl:
+    description: The duration in ISO8601 format after timestamp for which this message holds valid
+    type: string
+required:
+  - domain
+  - action
+  - country
+  - city
+  - core_version
+  - transaction_id
+  - message_id
+  - bap_id
+  - bap_uri
+  - timestamp

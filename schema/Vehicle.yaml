@@ -1,0 +1,21 @@
+type: object
+description: Describes the properties of a vehicle used in a mobility service
+properties:
+  capacity:
+    type: integer
+  category:
+    type: string
+  color:
+    type: string
+  energy_type:
+    type: string
+  make:
+    type: string
+  model:
+    type: string
+  registration:
+    type: string
+  size:
+    type: string
+  variant:
+    type: string

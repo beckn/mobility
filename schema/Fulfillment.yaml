@@ -1,0 +1,70 @@
+type: object
+description: Describes how a single product/service will be rendered/fulfilled to the end customer
+properties:
+  agent:
+    $ref: ./Agent.yaml
+  contact:
+    $ref: ./Contact.yaml
+  customer:
+    properties:
+      contact:
+        $ref: ./Contact.yaml
+      person:
+        $ref: ./Person.yaml
+    type: object
+  end:
+    description: Details on the end of fulfillment
+    properties:
+      authorization:
+        $ref: ./Authorization.yaml
+      contact:
+        $ref: ./Contact.yaml
+      instructions:
+        $ref: ./Descriptor.yaml
+      location:
+        $ref: ./Location.yaml
+      person:
+        $ref: ./Person.yaml
+      time:
+        $ref: ./Time.yaml
+    type: object
+  id:
+    description: Unique reference ID to the fulfillment of an order
+    type: string
+  person:
+    $ref: ./Person.yaml
+  provider_id:
+    $ref: ./Provider.yaml#/properties/id
+  rateable:
+    $ref: ./Rateable.yaml
+  rating:
+    $ref: ./Rating.yaml#/properties/value
+  start:
+    description: Details on the start of fulfillment
+    properties:
+      authorization:
+        $ref: ./Authorization.yaml
+      contact:
+        $ref: ./Contact.yaml
+      instructions:
+        $ref: ./Descriptor.yaml
+      location:
+        $ref: ./Location.yaml
+      person:
+        $ref: ./Person.yaml
+      time:
+        $ref: ./Time.yaml
+    type: object
+  state:
+    $ref: ./State.yaml
+  tags:
+    $ref: ./Tags.yaml
+  tracking:
+    default: false
+    description: Indicates whether the fulfillment allows tracking
+    type: boolean
+  type:
+    description: This describes the type of fulfillment
+    type: string
+  vehicle:
+    $ref: ./Vehicle.yaml

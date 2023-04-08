@@ -1,0 +1,20 @@
+type: object
+description: An element in the feedback form. It can be question or an answer to the question.
+properties:
+  answer:
+    description: Specifies an answer option to which the question will be in the FeedbackFormElement specified in parent_id
+    type: string
+  answer_type:
+    description: Specifies how the answer option should be rendered.
+    enum:
+      - radio
+      - checkbox
+      - text
+    type: string
+  id:
+    type: string
+  parent_id:
+    $ref: ./FeedbackFormElement.yaml#/properties/id
+  question:
+    description: Specifies the question to which the answer options will be contained in the child FeedbackFormElements
+    type: string

@@ -1,0 +1,8 @@
+type: object
+properties:
+  feedback_ack:
+    description: If feedback has been recorded or not
+    type: boolean
+  rating_ack:
+    description: If rating has been recorded or not
+    type: boolean

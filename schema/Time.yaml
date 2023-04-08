@@ -1,0 +1,24 @@
+type: object
+description: Describes time in its various forms. It can be a single point in time; duration; or a structured timetable of operations
+properties:
+  days:
+    description: comma separated values representing days of the week
+    type: string
+  duration:
+    $ref: ./Duration.yaml
+  label:
+    type: string
+  range:
+    properties:
+      end:
+        format: date-time
+        type: string
+      start:
+        format: date-time
+        type: string
+    type: object
+  schedule:
+    $ref: ./Schedule.yaml
+  timestamp:
+    format: date-time
+    type: string

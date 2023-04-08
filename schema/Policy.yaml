@@ -1,0 +1,11 @@
+type: object
+description: Describes a policy. Allows for domain extension.
+properties:
+  descriptor:
+    $ref: ./Descriptor.yaml
+  id:
+    type: string
+  parent_policy_id:
+    $ref: ./Policy.yaml#/properties/id
+  time:
+    $ref: ./Time.yaml

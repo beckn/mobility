@@ -1,0 +1,23 @@
+type: object
+description: Describes the description of a real-world object.
+properties:
+  3d_render:
+    format: uri
+    type: string
+  audio:
+    format: uri
+    type: string
+  code:
+    type: string
+  images:
+    items:
+      $ref: ./Image.yaml
+    type: array
+  long_desc:
+    type: string
+  name:
+    type: string
+  short_desc:
+    type: string
+  symbol:
+    type: string

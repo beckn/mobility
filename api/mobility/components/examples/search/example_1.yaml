@@ -1,0 +1,31 @@
+summary: Search by pickup and drop location with localization info
+value:
+  context:
+    country: IND
+    domain: nic2004:60221
+    timestamp: '2023-03-23T04:41:16Z'
+    bap_id: example-bap.com
+    transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
+    message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
+    city: std:080
+    core_version: 0.9.4
+    action: search
+    bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
+  message:
+    intent:
+      fulfillment:
+        start:
+          location:
+            gps: 12.923608703179461, 77.61462964117527
+        end:
+          location:
+            gps: 12.9346302, 77.61533969999999
+        customer:
+          person:
+            tags:
+              groups/1/descriptor/name: Localization
+              groups/1/descriptor/code: localization
+              groups/1/display: false
+              groups/1/list/1/descriptor/code: lang
+              groups/1/list/1/descriptor/name: Language
+              groups/1/list/1/value: en

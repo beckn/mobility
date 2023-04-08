@@ -1,0 +1,14 @@
+type: object
+description: Describes a category
+properties:
+  descriptor:
+    $ref: ./Descriptor.yaml
+  id:
+    description: Unique id of the category
+    type: string
+  parent_category_id:
+    $ref: ./Category.yaml#/properties/id
+  tags:
+    $ref: ./Tags.yaml
+  time:
+    $ref: ./Time.yaml

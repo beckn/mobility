@@ -1,0 +1,7 @@
+type: object
+description: Describes a selectable option
+properties:
+  descriptor:
+    $ref: ./Descriptor.yaml
+  id:
+    type: string

@@ -1,0 +1,26 @@
+type: object
+description: An object representing a scalar quantity.
+properties:
+  computed_value:
+    type: number
+  estimated_value:
+    type: number
+  range:
+    properties:
+      max:
+        type: number
+      min:
+        type: number
+    type: object
+  type:
+    enum:
+      - CONSTANT
+      - VARIABLE
+    type: string
+  unit:
+    type: string
+  value:
+    type: number
+required:
+  - value
+  - unit

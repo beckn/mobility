@@ -1,0 +1,4 @@
+type: array
+description: Describes a feedback form that a BPP can send to get feedback from the BAP
+items:
+  $ref: ./FeedbackFormElement.yaml

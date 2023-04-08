@@ -1,0 +1,7 @@
+type: object
+description: Describes a page in a search result
+properties:
+  id:
+    type: string
+  next_id:
+    type: string

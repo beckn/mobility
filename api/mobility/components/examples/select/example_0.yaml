@@ -1,0 +1,28 @@
+summary: Get quote for a specific product from a mobility catalog
+value:
+  context:
+    country: IND
+    bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+    domain: nic2004:60221
+    timestamp: '2023-03-23T04:46:45Z'
+    bap_id: example-bap.com
+    transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
+    bpp_id: example-bpp.com
+    message_id: 432fdfd6-0457-47b6-9fac-80cbe5c0a75b
+    city: std:080
+    core_version: 0.9.4
+    action: select
+    bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
+    max_callbacks: 3
+    ttl: P120S
+  message:
+    order:
+      items:
+        - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
+      fulfillment:
+        start:
+          location:
+            gps: 12.910458, 77.543089
+        end:
+          location:
+            gps: 12.9535139, 77.5710434

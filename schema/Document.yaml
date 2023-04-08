@@ -1,0 +1,8 @@
+type: object
+description: Describes a document which can be sent as a url
+properties:
+  label:
+    type: string
+  url:
+    format: uri
+    type: string

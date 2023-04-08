@@ -1,0 +1,19 @@
+type: object
+properties:
+  context:
+    allOf:
+      - $ref: "../../../../schema/Context.yaml"
+      - properties:
+          action:
+            enum:
+              - on_rating
+        required:
+          - action
+  message:
+    type: object
+    $ref: '../../../../schema/RatingAck.yaml'
+  error:
+    $ref: "../../../../schema/Error.yaml"
+required:
+  - context
+  - message

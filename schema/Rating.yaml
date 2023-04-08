@@ -1,0 +1,17 @@
+type: object
+description: Describes the rating of a person or an object.
+properties:
+  feedback_form:
+    $ref: ./FeedbackForm.yaml
+  feedback_id:
+    $ref: ./FeedbackUrl.yaml#/properties/params/properties/feedback_id
+  id:
+    description: Id of the object being rated
+    type: string
+  rating_category:
+    description: Category of the object being rated
+    type: string
+  value:
+    description: Rating value given to the object
+    minimum: 0
+    type: number
