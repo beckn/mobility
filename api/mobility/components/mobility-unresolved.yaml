@@ -21,9 +21,9 @@ paths:
               $ref : "./io/Search.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/search_example_0'
+                $ref: './examples/search/example_0.yaml'
               example1:
-                $ref: '#/components/examples/search_example_0'
+                $ref: './examples/search/example_1.yaml'
 
       responses:
         default:
@@ -41,11 +41,11 @@ paths:
               $ref: "./io/Select.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/select_example_0'
+                $ref: './examples/select/example_0.yaml'
               example1:
-                $ref: '#/components/examples/select_example_1'
+                $ref: './examples/select/example_1.yaml'
               example2:
-                $ref: '#/components/examples/select_example_2'
+                $ref: './examples/select/example_2.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -62,7 +62,7 @@ paths:
               $ref: "./io/Init.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/init_example_0'
+                $ref: './examples/init/example_0.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -79,7 +79,7 @@ paths:
               $ref: "./io/Confirm.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/confirm_example_0'
+                $ref: './examples/confirm/example_0.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -96,7 +96,7 @@ paths:
               $ref: "./io/Status.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/status_example_0'
+                $ref: './examples/status/example_0.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -113,7 +113,7 @@ paths:
               $ref: "./io/Track.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/track_example_0'
+                $ref: './examples/track/example_0.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -130,9 +130,9 @@ paths:
               $ref: "./io/Cancel.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/cancel_example_0'
+                $ref: './examples/cancel/example_0.yaml'
               example1:
-                $ref: '#/components/examples/cancel_example_1'
+                $ref: './examples/cancel/example_1.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -177,7 +177,7 @@ paths:
               $ref : "./io/Support.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/support_example_0'
+                $ref: './examples/support/example_0.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -195,7 +195,7 @@ paths:
               $ref: "./io/OnSearch.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/on_search_example_0'
+                $ref: './examples/on_search/example_0.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -203,7 +203,7 @@ paths:
   /on_select:
     post:
       tags:
-        - Beckn App Platform (BAP)(BAP)
+        - Beckn App Platform (BAP)
       description: Send draft order object with quoted price for selected items
       requestBody:
         content:
@@ -212,7 +212,7 @@ paths:
               $ref : "./io/OnSelect.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/on_select_example_0'
+                $ref: './examples/on_select/example_0.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -229,7 +229,7 @@ paths:
               $ref : "./io/OnInit.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/on_init_example_0'
+                $ref: './examples/on_init/example_0.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -246,7 +246,7 @@ paths:
               $ref : "./io/OnConfirm.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/on_confirm_example_0'
+                $ref: './examples/on_confirm/example_0.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -263,7 +263,7 @@ paths:
               $ref : "./io/OnTrack.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/on_track_example_0'
+                $ref: './examples/on_track/example_0.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -280,9 +280,9 @@ paths:
               $ref: "./io/OnCancel.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/on_cancel_example_0'
+                $ref: './examples/on_cancel/example_0.yaml'
               example1:
-                $ref: '#/components/examples/on_cancel_example_1'
+                $ref: './examples/on_cancel/example_1.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -299,9 +299,9 @@ paths:
               $ref: "./io/OnUpdate.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/on_update_example_0'
+                $ref: './examples/on_update/example_0.yaml'
               example1:
-                $ref: '#/components/examples/on_update_example_1'
+                $ref: './examples/on_update/example_1.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -317,13 +317,13 @@ paths:
               $ref: "./io/OnStatus.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/on_status_example_0'
+                $ref: './examples/on_status/example_0.yaml'
               example1:
-                $ref: '#/components/examples/on_status_example_1'
+                $ref: './examples/on_status/example_1.yaml'
               example2:
-                $ref: '#/components/examples/on_status_example_2'
+                $ref: './examples/on_status/example_2.yaml'
               example3:
-                $ref: '#/components/examples/on_status_example_3'
+                $ref: './examples/on_status/example_3.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -339,7 +339,7 @@ paths:
               $ref: "./io/OnRating.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/on_rating_example_0'
+                $ref: './examples/on_rating/example_0.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
@@ -356,507 +356,11 @@ paths:
               $ref: "./io/OnSupport.yaml"
             examples:
               example0:
-                $ref: '#/components/examples/on_support_example_0'
+                $ref: './examples/on_support/example_0.yaml'
       responses:
         default:
           $ref: "./io/Response.yaml"
-  /get_cancellation_reasons:
-    post:
-      tags:
-        - BPP Meta APIs
-      description: Get cancellation reasons from the BPP
-      requestBody:
-        description: Context header is sent as the request
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                context:
-                  $ref: '#/components/schemas/Context'
-            examples:
-              Request for cancellation reasons list:
-                value:
-                  context:
-                    country: IND
-                    domain: nic2004:60221
-                    timestamp: '2023-03-23T04:41:16Z'
-                    bap_id: example-bap.com
-                    bap_uri: https://example-bap.com/pilot/bap/cab/v1
-                    bpp_id: example-bpp.com
-                    bpp_uri: https://example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
-                    transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    city: std:080
-                    core_version: 0.9.4
-                    action: get_cancellation_reasons
-                  
-      responses:
-        '200':
-          description: Acknowledgement of message received
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: object
-                    properties:
-                      ack:
-                        $ref: '#/components/schemas/Ack'
-                    required:
-                      - ack
-                  error:
-                    $ref: '#/components/schemas/Error'
-                required:
-                  - message
-  /cancellation_reasons:
-    post:
-      tags:
-        - BAP Meta APIs
-      description: Get cancellation reasons from the BPP
-      requestBody:
-        description: List of cancellation reasons
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                context:
-                  $ref: '#/components/schemas/Context'
-                message:
-                  type: object
-                  properties:
-                    cancellation_reasons:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Option'
-            examples:
-              Send a list of cancellation reasons:
-                value:
-                  context:
-                    country: IND
-                    domain: nic2004:60221
-                    timestamp: '2023-03-23T04:41:16Z'
-                    bap_id: example-bap.com
-                    bap_uri: https://example-bap.com/pilot/bap/cab/v1
-                    bpp_id: example-bpp.com
-                    bpp_uri: https://example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
-                    transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    city: std:080
-                    core_version: 0.9.4
-                    action: cancellation_reasons
-                  message:
-                    cancellation_reasons:
-                      - id: '1'
-                        descriptor:
-                          name: Got a ride elsewhere
-                      - id: '2'
-                        descriptor:
-                          name: Fare was high
-                      - id: '3'
-                        descriptor:
-                          name: Wait time too long
-                      - id: '4'
-                        descriptor:
-                          name: Driver wasn't reachable
-                      - id: '5'
-                        descriptor:
-                          name: Driver was rude
-                      - id: '6'
-                        descriptor:
-                          name: Driver requested me to cancel
-                      - id: '7'
-                        descriptor:
-                          name: Some other reason
-      responses:
-        '200':
-          description: Acknowledgement of message received
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: object
-                    properties:
-                      ack:
-                        $ref: '#/components/schemas/Ack'
-                    required:
-                      - ack
-                  error:
-                    $ref: '#/components/schemas/Error'
-                required:
-                  - message
-                  
-  /get_return_reasons:
-    post:
-      tags:
-        - BPP Meta APIs
-      description: Get return reasons from the BPP
-      requestBody:
-        description: Context header is sent as the request
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                context:
-                  $ref: '#/components/schemas/Context'
-      responses:
-        '200':
-          description: Acknowledgement of message received
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: object
-                    properties:
-                      ack:
-                        $ref: '#/components/schemas/Ack'
-                    required:
-                      - ack
-                  error:
-                    $ref: '#/components/schemas/Error'
-                required:
-                  - message
-                
-  /return_reasons:
-    post:
-      tags:
-        - BAP Meta APIs
-      description: Get return reasons from the BPP
-      requestBody:
-        description: List of return reasons
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                context:
-                  $ref: '#/components/schemas/Context'
-                return_reasons:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Option'
-      responses:
-        '200':
-          description: Acknowledgement of message received
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: object
-                    properties:
-                      ack:
-                        $ref: '#/components/schemas/Ack'
-                    required:
-                      - ack
-                  error:
-                    $ref: '#/components/schemas/Error'
-                required:
-                  - message
-  /get_rating_categories:
-    post:
-      tags:
-        - BPP Meta APIs
-      description: Get a list of categories that can be rated by the BAP
-      requestBody:
-        description: Context header is sent as the request
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                context:
-                  $ref: '#/components/schemas/Context'
-            examples:
-              Request rateable entities from the BPP:
-                value:
-                  context:
-                    action: get_rating_categories
-                    country: IND
-                    domain: nic2004:60221
-                    timestamp: '2023-03-23T04:41:16Z'
-                    bap_id: example-bap.com
-                    bap_uri: https://example-bap.com/pilot/bap/cab/v1
-                    bpp_id: example-bpp.com
-                    bpp_uri: https://example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
-                    transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    city: std:080
-                    core_version: 0.9.4
-                  
-      responses:
-        '200':
-          description: Acknowledgement of message received
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: object
-                    properties:
-                      ack:
-                        $ref: '#/components/schemas/Ack'
-                    required:
-                      - ack
-                  error:
-                    $ref: '#/components/schemas/Error'
-                required:
-                  - message
-  /rating_categories:
-    post:
-      tags:
-        - BAP Meta APIs
-      description: Get a list of categories that can be rated by the BAP
-      requestBody:
-        description: Array of categories which can be rated
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                context:
-                  $ref: '#/components/schemas/Context'
-                rating_categories:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Rating/properties/rating_category'
-            examples:
-              Send a list of rateable entities in a BPP:
-                value:
-                  context:
-                    action: get_rating_categories
-                    country: IND
-                    domain: nic2004:60221
-                    timestamp: '2023-03-23T04:41:16Z'
-                    bap_id: example-bap.com
-                    bap_uri: https://example-bap.com/pilot/bap/cab/v1
-                    bpp_id: example-bpp.com
-                    bpp_uri: https://example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
-                    transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    city: std:080
-                    core_version: 0.9.4
-                  message:
-                    rating_categories:
-                      - RIDE
-                      - DRIVER
-                      - VEHICLE
-                  
-      responses:
-        '200':
-          description: Acknowledgement of message received
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: object
-                    properties:
-                      ack:
-                        $ref: '#/components/schemas/Ack'
-                    required:
-                      - ack
-                  error:
-                    $ref: '#/components/schemas/Error'
-                required:
-                  - message
-  /get_feedback_categories:
-    post:
-      tags:
-        - BPP Meta APIs
-      description: Get a list of categories for which feedback can be given by the BAP
-      requestBody:
-        description: Context header is sent as the request
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                context:
-                  $ref: '#/components/schemas/Context'
-      responses:
-        '200':
-          description: Acknowledgement of message received
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: object
-                    properties:
-                      ack:
-                        $ref: '#/components/schemas/Ack'
-                    required:
-                      - ack
-                  error:
-                    $ref: '#/components/schemas/Error'
-                required:
-                  - message
-  /feedback_categories:
-    post:
-      tags:
-        - BAP Meta APIs
-      description: Get a list of categories for which feedback can be given by the BAP
-      requestBody:
-        description: Array of categories for which feedback can be given by the BAP
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                context:
-                  $ref: '#/components/schemas/Context'
-                feedback_categories:
-                  type: array
-                  items:
-                    $ref: '#/components/schemas/Rating/properties/rating_category'
-      responses:
-        '200':
-          description: Acknowledgement of message received
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: object
-                    properties:
-                      ack:
-                        $ref: '#/components/schemas/Ack'
-                    required:
-                      - ack
-                  error:
-                    $ref: '#/components/schemas/Error'
-                required:
-                  - message
-  /get_feedback_form:
-    post:
-      tags:
-        - BPP Meta APIs
-      description: Request a feedback form from the BPP
-      requestBody:
-        description: The rating value and category is sent by the BAP
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                context:
-                  $ref: '#/components/schemas/Context'
-                message:
-                  type: object
-                  properties:
-                    rating_value:
-                      $ref: '#/components/schemas/Rating/properties/value'
-                    rating_category:
-                      $ref: '#/components/schemas/Rating/properties/rating_category'
-            examples:
-              Request feedback form for a specific rating and rating category:
-                value:
-                  context:
-                    action: get_feedback_form
-                    country: IND
-                    domain: nic2004:60221
-                    timestamp: '2023-03-23T04:41:16Z'
-                    bap_id: example-bap.com
-                    bap_uri: https://example-bap.com/pilot/bap/cab/v1
-                    bpp_id: example-bpp.com
-                    bpp_uri: https://example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
-                    transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    city: std:080
-                    core_version: 0.9.4
-                  message:
-                    rating_value: '4'
-                    rating_category: RIDE
-                  
-      responses:
-        '200':
-          description: Acknowledgement of message received
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: object
-                    properties:
-                      ack:
-                        $ref: '#/components/schemas/Ack'
-                    required:
-                      - ack
-                  error:
-                    $ref: '#/components/schemas/Error'
-                required:
-                  - message
-  /feedback_form:
-    post:
-      tags:
-        - BAP Meta APIs
-      description: Get a feedback form from the BPP
-      requestBody:
-        description: Feedback form sent by the BPP
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                context:
-                  $ref: '#/components/schemas/Context'
-                message:
-                  $ref: '#/components/schemas/Feedback'
-            example:
-              Send feedback form:
-                value:
-                  context:
-                    action: feedback_form
-                    country: IND
-                    domain: nic2004:60221
-                    timestamp: '2023-03-23T04:41:16Z'
-                    bap_id: example-bap.com
-                    bap_uri: https://example-bap.com/pilot/bap/cab/v1
-                    bpp_id: example-bpp.com
-                    bpp_uri: https://example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
-                    transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    city: std:080
-                    core_version: 0.9.4
-                  message:
-                    feedback_form:
-                      - id: 1
-                        question: Tell us your feedback
-                        answer_type: text
-                  
-      responses:
-        '200':
-          description: Acknowledgement of message received
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: object
-                    properties:
-                      ack:
-                        $ref: '#/components/schemas/Ack'
-                    required:
-                      - ack
-                  error:
-                    $ref: '#/components/schemas/Error'
-                required:
-                  - message
+          
 components:
   securitySchemes:
     SubscriberAuth:
@@ -876,5 +380,4 @@ components:
       description: 'Signature of message body + BAP/BPP''s Authorization header using BG''s signing public key. Format:<br/><br/><code>X-Gateway-Authorization : Signature keyId="{subscriber_id}|{unique_key_id}|{algorithm}",algorithm="ed25519",created="1606970629",expires="1607030629",headers="(created) (expires) digest",signature="Base64(BLAKE-512(signing string))"</code>'
   schemas:
     $ref: ./schema/index.yaml
-  examples:
-    $ref: ./examples/index.yaml
+  

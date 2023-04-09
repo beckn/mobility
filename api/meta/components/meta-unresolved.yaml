@@ -1,0 +1,177 @@
+openapi: 3.0.0
+info:
+  title: Beckn Protocol Meta API
+  description: This document contains all the meta API endpoints that are implemented by the network participants. The information returned from these endpoints typically contain cacheable information. 
+  version: 0.8.1
+security:
+  - SubscriberAuth: []
+paths:
+  /get_cancellation_reasons:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: BAP fetches the list of cancellation reasons from BPP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/GetCancellationReasons.yaml"
+            examples:
+              example0:
+                $ref: './examples/get_cancellation_reasons/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+  /cancellation_reasons:
+    post:
+      tags:
+        - Beckn Application Platform (BPP)
+      description: BPP sends cancellation reasons to BAP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/CancellationReasons.yaml"
+            examples:
+              example0:
+                $ref: './examples/cancellation_reasons/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+  /get_return_reasons:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: BAP requests BPP to provide the list of return reasons
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/GetReturnReasons.yaml"
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+  /return_reasons:
+    post:
+      tags:
+        - Beckn Application Platform (BPP)
+      description: BPP provides the list of return reasons to the BAP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/ReturnReasons.yaml"
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+  /get_rating_categories:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: BAP requests BPP to provide the list of entities that can be rated on its system
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/GetRatingCategories.yaml"
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+  /rating_categories:
+    post:
+      tags:
+        - Beckn Application Platform (BPP)
+      description: BPP provides the list of entities that can be rated in its system to the BAP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/RatingCategories.yaml"
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /get_feedback_categories:
+    post:
+      tags:
+        - BPP Meta APIs
+      description: Get a list of categories for which feedback can be given by the BAP
+      requestBody:
+        description: Context header is sent as the request
+        content:
+          application/json:
+            schema:
+              $ref: ./io/GetFeedbackCategories.yaml
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /feedback_categories:
+    post:
+      tags:
+        - BAP Meta APIs
+      description: Get a list of categories for which feedback can be given by the BAP
+      requestBody:
+        description: Array of categories for which feedback can be given by the BAP
+        content:
+          application/json:
+            schema:
+              $ref: ./io/FeedbackCategories.yaml
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+  /get_feedback_form:
+    post:
+      tags:
+        - BPP Meta APIs
+      description: Request a feedback form from the BPP
+      requestBody:
+        description: The rating value and category is sent by the BAP
+        content:
+          application/json:
+            schema:
+              $ref: ./io/GetFeedbackForm.yaml
+            examples:
+              example0:
+                $ref: ./examples/get_feedback_form/example_0.yaml    
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /feedback_form:
+    post:
+      tags:
+        - BAP Meta APIs
+      description: Get a feedback form from the BPP
+      requestBody:
+        description: Feedback form sent by the BPP
+        content:
+          application/json:
+            schema:
+              $ref: ./io/FeedbackForm.yaml
+            example:
+              example0:
+                $ref: ./examples/feedback_form/example_0.yaml
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+components:
+  securitySchemes:
+    SubscriberAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Signature of message body using BAP or BPP subscriber''s signing public key. <br/><br/>Format:<br/><br/><code>Authorization : Signature keyId="{subscriber_id}|{unique_key_id}|{algorithm}",algorithm="ed25519",created="1606970629",expires="1607030629",headers="(created) (expires) digest",signature="Base64(BLAKE-512(signing string))"</code>'
+    GatewaySubscriberAuth:
+      type: apiKey
+      in: header
+      name: Proxy-Authorization
+      description: 'Signature of message body + BAP/BPP''s Authorization header using BG''s signing public key. Format:<br/><br/><code>Proxy-Authorization : Signature keyId="{subscriber_id}|{unique_key_id}|{algorithm}",algorithm="ed25519",created="1606970629",expires="1607030629",headers="(created) (expires) digest",signature="Base64(BLAKE-512(signing string))"</code><p><b>Note:</b>This header will be deprecated soon and will no longer be supported in future releases. New implementors are requested to use the X-Gateway-Authorization header. Existing implementations are requested to migrate their header to the new header. The deprecation date will be set after discussion as per the standard specification governance process.</p>'
+    GatewaySubscriberAuthNew:
+      type: apiKey
+      in: header
+      name: X-Gateway-Authorization
+      description: 'Signature of message body + BAP/BPP''s Authorization header using BG''s signing public key. Format:<br/><br/><code>X-Gateway-Authorization : Signature keyId="{subscriber_id}|{unique_key_id}|{algorithm}",algorithm="ed25519",created="1606970629",expires="1607030629",headers="(created) (expires) digest",signature="Base64(BLAKE-512(signing string))"</code>'
+  schemas:
+    $ref: ./schema/index.yaml

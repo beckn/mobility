@@ -1,0 +1,671 @@
+openapi: 3.0.0
+info:
+  title: Beckn Protocol Meta API
+  description: This document contains all the meta API endpoints that are implemented by the network participants. The information returned from these endpoints typically contain cacheable information.
+  version: 0.8.1
+security:
+  - SubscriberAuth: []
+paths:
+  /get_cancellation_reasons:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: BAP fetches the list of cancellation reasons from BPP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - get_cancellation_reasons
+                      required:
+                        - action
+              required:
+                - context
+            examples:
+              example0:
+                summary: Request for cancellation reasons list
+                value:
+                  context:
+                    country: IND
+                    domain: 'nic2004:60221'
+                    timestamp: '2023-03-23T04:41:16Z'
+                    bap_id: example-bap.com
+                    bap_uri: 'https://example-bap.com/pilot/bap/cab/v1'
+                    bpp_id: example-bpp.com
+                    bpp_uri: 'https://example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f'
+                    transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
+                    message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
+                    city: 'std:080'
+                    core_version: 0.9.4
+                    action: get_cancellation_reasons
+      responses:
+        default:
+          $ref: '#/paths/~1feedback_form/post/responses/default'
+  /cancellation_reasons:
+    post:
+      tags:
+        - Beckn Application Platform (BPP)
+      description: BPP sends cancellation reasons to BAP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - cancellation_reasons
+                      required:
+                        - action
+                message:
+                  type: object
+                  properties:
+                    cancellation_reasons:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Option'
+                  required:
+                    - cancellation_reasons
+              required:
+                - context
+                - message
+            examples:
+              example0:
+                summary: Send a list of cancellation reasons
+                value:
+                  context:
+                    country: IND
+                    domain: 'nic2004:60221'
+                    timestamp: '2023-03-23T04:41:16Z'
+                    bap_id: example-bap.com
+                    bap_uri: 'https://example-bap.com/pilot/bap/cab/v1'
+                    bpp_id: example-bpp.com
+                    bpp_uri: 'https://example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f'
+                    transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
+                    message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
+                    city: 'std:080'
+                    core_version: 0.9.4
+                    action: cancellation_reasons
+                  message:
+                    cancellation_reasons:
+                      - id: '1'
+                        descriptor:
+                          name: Got a ride elsewhere
+                      - id: '2'
+                        descriptor:
+                          name: Fare was high
+                      - id: '3'
+                        descriptor:
+                          name: Wait time too long
+                      - id: '4'
+                        descriptor:
+                          name: Driver wasn't reachable
+                      - id: '5'
+                        descriptor:
+                          name: Driver was rude
+                      - id: '6'
+                        descriptor:
+                          name: Driver requested me to cancel
+                      - id: '7'
+                        descriptor:
+                          name: Some other reason
+      responses:
+        default:
+          $ref: '#/paths/~1feedback_form/post/responses/default'
+  /get_return_reasons:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: BAP requests BPP to provide the list of return reasons
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - get_return_reasons
+                      required:
+                        - action
+              required:
+                - context
+      responses:
+        default:
+          $ref: '#/paths/~1feedback_form/post/responses/default'
+  /return_reasons:
+    post:
+      tags:
+        - Beckn Application Platform (BPP)
+      description: BPP provides the list of return reasons to the BAP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - return_reasons
+                      required:
+                        - action
+                message:
+                  type: object
+                  properties:
+                    return_reasons:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Option'
+                  required:
+                    - return_reasons
+              required:
+                - context
+                - message
+      responses:
+        default:
+          $ref: '#/paths/~1feedback_form/post/responses/default'
+  /get_rating_categories:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: BAP requests BPP to provide the list of entities that can be rated on its system
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - get_rating_categories
+                      required:
+                        - action
+              required:
+                - context
+      responses:
+        default:
+          $ref: '#/paths/~1feedback_form/post/responses/default'
+  /rating_categories:
+    post:
+      tags:
+        - Beckn Application Platform (BPP)
+      description: BPP provides the list of entities that can be rated in its system to the BAP
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - rating_categories
+                      required:
+                        - action
+                message:
+                  type: object
+                  properties:
+                    rating_categories:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Rating/properties/rating_category'
+                  required:
+                    - rating_categories
+              required:
+                - context
+                - message
+      responses:
+        default:
+          $ref: '#/paths/~1feedback_form/post/responses/default'
+  /get_feedback_categories:
+    post:
+      tags:
+        - BPP Meta APIs
+      description: Get a list of categories for which feedback can be given by the BAP
+      requestBody:
+        description: Context header is sent as the request
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - get_feedback_categories
+                      required:
+                        - action
+              required:
+                - context
+      responses:
+        default:
+          $ref: '#/paths/~1feedback_form/post/responses/default'
+  /feedback_categories:
+    post:
+      tags:
+        - BAP Meta APIs
+      description: Get a list of categories for which feedback can be given by the BAP
+      requestBody:
+        description: Array of categories for which feedback can be given by the BAP
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - feedback_categories
+                      required:
+                        - action
+                message:
+                  type: object
+                  properties:
+                    feedback_categories:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Rating/properties/rating_category'
+                  required:
+                    - feedback_categories
+              required:
+                - context
+                - message
+      responses:
+        default:
+          $ref: '#/paths/~1feedback_form/post/responses/default'
+  /get_feedback_form:
+    post:
+      tags:
+        - BPP Meta APIs
+      description: Request a feedback form from the BPP
+      requestBody:
+        description: The rating value and category is sent by the BAP
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - get_feedback_form
+                      required:
+                        - action
+                message:
+                  type: object
+                  properties:
+                    rating_value:
+                      $ref: '#/components/schemas/Rating/properties/value'
+                    rating_category:
+                      $ref: '#/components/schemas/Rating/properties/rating_category'
+              required:
+                - context
+                - message
+            examples:
+              example0:
+                summary: Request feedback form for a specific rating and rating category
+                value:
+                  context:
+                    action: get_feedback_form
+                    country: IND
+                    domain: 'nic2004:60221'
+                    timestamp: '2023-03-23T04:41:16Z'
+                    bap_id: example-bap.com
+                    bap_uri: 'https://example-bap.com/pilot/bap/cab/v1'
+                    bpp_id: example-bpp.com
+                    bpp_uri: 'https://example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f'
+                    transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
+                    message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
+                    city: 'std:080'
+                    core_version: 0.9.4
+                  message:
+                    rating_value: '4'
+                    rating_category: RIDE
+      responses:
+        default:
+          $ref: '#/paths/~1feedback_form/post/responses/default'
+  /feedback_form:
+    post:
+      tags:
+        - BAP Meta APIs
+      description: Get a feedback form from the BPP
+      requestBody:
+        description: Feedback form sent by the BPP
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                context:
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - feedback_form
+                      required:
+                        - action
+                message:
+                  properties:
+                    feedback_form:
+                      $ref: '#/components/schemas/Feedback'
+                  required:
+                    - feedback_form
+              required:
+                - context
+                - message
+            example:
+              example0:
+                summary: Send feedback form
+                value:
+                  context:
+                    action: feedback_form
+                    country: IND
+                    domain: 'nic2004:60221'
+                    timestamp: '2023-03-23T04:41:16Z'
+                    bap_id: example-bap.com
+                    bap_uri: 'https://example-bap.com/pilot/bap/cab/v1'
+                    bpp_id: example-bpp.com
+                    bpp_uri: 'https://example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f'
+                    transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
+                    message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
+                    city: 'std:080'
+                    core_version: 0.9.4
+                  message:
+                    feedback_form:
+                      - id: 1
+                        question: Tell us your feedback
+                        answer_type: text
+      responses:
+        default:
+          description: Acknowledgement of message received after successful validation of schema and signature
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        allOf:
+                          - type: object
+                            description: Describes the ACK response
+                            properties:
+                              status:
+                                description: 'Describe the status of the ACK response. If schema validation passes, status is ACK else it is NACK'
+                                enum:
+                                  - ACK
+                                  - NACK
+                                type: string
+                            required:
+                              - status
+                          - properties:
+                              status:
+                                enum:
+                                  - ACK
+                                  - NACK
+                    required:
+                      - ack
+                  error:
+                    type: object
+                    description: Describes an error object
+                    properties:
+                      code:
+                        description: 'Beckn specific error code. For full list of error codes, refer to error_codes.md in the root folder of this repo'
+                        type: string
+                      message:
+                        description: Human readable message describing the error
+                        type: string
+                      path:
+                        description: Path to json schema generating the error. Used only during json schema validation errors
+                        type: string
+                      type:
+                        enum:
+                          - CONTEXT-ERROR
+                          - CORE-ERROR
+                          - DOMAIN-ERROR
+                          - POLICY-ERROR
+                          - JSON-SCHEMA-ERROR
+                        type: string
+                    required:
+                      - type
+                      - code
+                required:
+                  - message
+components:
+  securitySchemes:
+    SubscriberAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Signature of message body using BAP or BPP subscriber''s signing public key. <br/><br/>Format:<br/><br/><code>Authorization : Signature keyId="{subscriber_id}|{unique_key_id}|{algorithm}",algorithm="ed25519",created="1606970629",expires="1607030629",headers="(created) (expires) digest",signature="Base64(BLAKE-512(signing string))"</code>'
+    GatewaySubscriberAuth:
+      type: apiKey
+      in: header
+      name: Proxy-Authorization
+      description: 'Signature of message body + BAP/BPP''s Authorization header using BG''s signing public key. Format:<br/><br/><code>Proxy-Authorization : Signature keyId="{subscriber_id}|{unique_key_id}|{algorithm}",algorithm="ed25519",created="1606970629",expires="1607030629",headers="(created) (expires) digest",signature="Base64(BLAKE-512(signing string))"</code><p><b>Note:</b>This header will be deprecated soon and will no longer be supported in future releases. New implementors are requested to use the X-Gateway-Authorization header. Existing implementations are requested to migrate their header to the new header. The deprecation date will be set after discussion as per the standard specification governance process.</p>'
+    GatewaySubscriberAuthNew:
+      type: apiKey
+      in: header
+      name: X-Gateway-Authorization
+      description: 'Signature of message body + BAP/BPP''s Authorization header using BG''s signing public key. Format:<br/><br/><code>X-Gateway-Authorization : Signature keyId="{subscriber_id}|{unique_key_id}|{algorithm}",algorithm="ed25519",created="1606970629",expires="1607030629",headers="(created) (expires) digest",signature="Base64(BLAKE-512(signing string))"</code>'
+  schemas:
+    Context:
+      type: object
+      description: Describes a beckn message context
+      properties:
+        action:
+          description: Defines the Beckn API call. Any actions other than the enumerated actions are not supported by Beckn Protocol
+          enum:
+            - search
+            - select
+            - init
+            - confirm
+            - update
+            - status
+            - track
+            - cancel
+            - rating
+            - support
+            - on_search
+            - on_select
+            - on_init
+            - on_confirm
+            - on_update
+            - on_status
+            - on_track
+            - on_cancel
+            - on_rating
+            - on_support
+          type: string
+        bap_id:
+          description: Unique id of the BAP. By default it is the fully qualified domain name of the BAP
+          format: uri
+          type: string
+        bap_uri:
+          description: URI of the BAP for accepting callbacks. Must have the same domain name as the bap_id
+          format: uri
+          type: string
+        bpp_id:
+          description: Unique id of the BPP. By default it is the fully qualified domain name of the BPP
+          format: uri
+          type: string
+        bpp_uri:
+          description: URI of the BPP. Must have the same domain name as the bap_id
+          format: uri
+          type: string
+        city:
+          description: City code
+          type: string
+        core_version:
+          description: Version of Beckn core API specification being used
+          type: string
+        country:
+          description: Country code as per ISO 3166-1 and ISO 3166-2 format
+          type: string
+        domain:
+          type: string
+          description: Describes the domain of an object
+        key:
+          description: The encryption public key of the sender
+          type: string
+        message_id:
+          description: This is a unique value which persists during a request / callback cycle
+          type: string
+        timestamp:
+          description: Time of request generation in RFC3339 format
+          format: date-time
+          type: string
+        transaction_id:
+          description: This is a unique value which persists across all API calls from search through confirm
+          type: string
+        ttl:
+          description: The duration in ISO8601 format after timestamp for which this message holds valid
+          type: string
+      required:
+        - domain
+        - action
+        - country
+        - city
+        - core_version
+        - transaction_id
+        - message_id
+        - bap_id
+        - bap_uri
+        - timestamp
+    Option:
+      type: object
+      description: Describes a selectable option
+      properties:
+        descriptor:
+          type: object
+          description: Describes the description of a real-world object.
+          properties:
+            3d_render:
+              format: uri
+              type: string
+            audio:
+              format: uri
+              type: string
+            code:
+              type: string
+            images:
+              items:
+                type: string
+                description: 'Image of an object. <br/><br/> A url based image will look like <br/><br/>```uri:http://path/to/image``` <br/><br/> An image can also be sent as a data string. For example : <br/><br/> ```data:js87y34ilhriuho84r3i4```'
+              type: array
+            long_desc:
+              type: string
+            name:
+              type: string
+            short_desc:
+              type: string
+            symbol:
+              type: string
+        id:
+          type: string
+    Rating:
+      type: object
+      description: Describes the rating of a person or an object.
+      properties:
+        feedback_form:
+          type: array
+          description: Describes a feedback form that a BPP can send to get feedback from the BAP
+          items:
+            type: object
+            description: An element in the feedback form. It can be question or an answer to the question.
+            properties:
+              answer:
+                description: Specifies an answer option to which the question will be in the FeedbackFormElement specified in parent_id
+                type: string
+              answer_type:
+                description: Specifies how the answer option should be rendered.
+                enum:
+                  - radio
+                  - checkbox
+                  - text
+                type: string
+              id:
+                type: string
+              parent_id:
+                $ref: '#/components/schemas/Rating/properties/feedback_form/items/properties/id'
+              question:
+                description: Specifies the question to which the answer options will be contained in the child FeedbackFormElements
+                type: string
+        feedback_id:
+          $ref: '#/components/schemas/Feedback/properties/feedback_url/properties/params/properties/feedback_id'
+        id:
+          description: Id of the object being rated
+          type: string
+        rating_category:
+          description: Category of the object being rated
+          type: string
+        value:
+          description: Rating value given to the object
+          minimum: 0
+          type: number
+    Feedback:
+      type: object
+      description: Feedback for a service
+      properties:
+        feedback_form:
+          $ref: '#/components/schemas/Rating/properties/feedback_form'
+        feedback_url:
+          type: object
+          description: Describes how a feedback URL will be sent by the BPP
+          properties:
+            params:
+              additionalProperties:
+                type: string
+              properties:
+                feedback_id:
+                  description: This value will be placed in the the $feedback_id url param in case of http/get and in the requestBody http/post requests
+                  type: string
+              required:
+                - feedback_id
+              type: object
+            tl_method:
+              enum:
+                - http/get
+                - http/post
+              type: string
+            url:
+              description: feedback URL sent by the BPP
+              format: uri
+              type: string
