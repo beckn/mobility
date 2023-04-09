@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Beckn Mobility API Specification
   description: Adaptation of beckn protocol for the mobility sector. Compatible with core version 0.9.4 LTS. 
-  version: 0.8.0
+  version: 0.8.1
 security:
   - SubscriberAuth: []
   - GatewaySubscriberAuth: []
