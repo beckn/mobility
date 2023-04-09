@@ -1,0 +1,32 @@
+type: object
+description: Describes an item. Allows for domain extension.
+properties:
+  category_id:
+    $ref: ./Category.yaml#/properties/id
+  descriptor:
+    $ref: ./Descriptor.yaml
+  fulfillment_id:
+    $ref: ./Fulfillment.yaml#/properties/id
+  id:
+    description: This is the most unique identifier of a service item. An example of an Item ID could be the SKU of a product.
+    type: string
+  location_id:
+    $ref: ./Location.yaml#/properties/id
+  matched:
+    type: boolean
+  parent_item_id:
+    $ref: ./Item.yaml#/properties/id
+  price:
+    $ref: ./Price.yaml
+  rateable:
+    $ref: ./Rateable.yaml
+  rating:
+    $ref: ./Rating.yaml#/properties/value
+  recommended:
+    type: boolean
+  related:
+    type: boolean
+  tags:
+    $ref: ./Tags.yaml
+  time:
+    $ref: ./Time.yaml

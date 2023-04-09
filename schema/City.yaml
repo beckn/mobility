@@ -1,0 +1,9 @@
+type: object
+description: Describes a city
+properties:
+  code:
+    description: City code
+    type: string
+  name:
+    description: Name of the city
+    type: string

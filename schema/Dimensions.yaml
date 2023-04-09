@@ -1,0 +1,9 @@
+type: object
+description: Describes the dimensions of a real-world object
+properties:
+  breadth:
+    $ref: ./Scalar.yaml
+  height:
+    $ref: ./Scalar.yaml
+  length:
+    $ref: ./Scalar.yaml

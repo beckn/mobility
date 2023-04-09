@@ -1,0 +1,70 @@
+type: object
+description: Describes the details of an order
+properties:
+  add_ons:
+    items:
+      properties:
+        id:
+          $ref: ./AddOn.yaml#/properties/id
+      required:
+        - id
+      type: object
+    type: array
+  billing:
+    $ref: ./Billing.yaml
+  created_at:
+    format: date-time
+    type: string
+  documents:
+    items:
+      $ref: ./Document.yaml
+    type: array
+  fulfillment:
+    $ref: ./Fulfillment.yaml
+  id:
+    description: Hash of order object without id
+    type: string
+  items:
+    items:
+      allOf:
+        - $ref: ./Item.yaml
+        - properties:
+            quantity:
+              $ref: ./ItemQuantity.yaml#/properties/selected
+      required:
+        - id
+      type: object
+    type: array
+  offers:
+    items:
+      properties:
+        id:
+          $ref: ./Offer.yaml#/properties/id
+      required:
+        - id
+      type: object
+    type: array
+  payment:
+    $ref: ./Payment.yaml
+  provider:
+    properties:
+      id:
+        $ref: ./Provider.yaml#/properties/id
+      locations:
+        items:
+          properties:
+            id:
+              $ref: ./Location.yaml#/properties/id
+          required:
+            - id
+          type: object
+        maxItems: 1
+        type: array
+    type: object
+  quote:
+    $ref: ./Quotation.yaml
+  state:
+    type: string
+  updated_at:
+    format: date-time
+    type: string

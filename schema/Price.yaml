@@ -1,0 +1,19 @@
+type: object
+description: Describes the price of an item. Allows for domain extension.
+properties:
+  computed_value:
+    $ref: ./DecimalValue.yaml
+  currency:
+    type: string
+  estimated_value:
+    $ref: ./DecimalValue.yaml
+  listed_value:
+    $ref: ./DecimalValue.yaml
+  maximum_value:
+    $ref: ./DecimalValue.yaml
+  minimum_value:
+    $ref: ./DecimalValue.yaml
+  offered_value:
+    $ref: ./DecimalValue.yaml
+  value:
+    $ref: ./DecimalValue.yaml

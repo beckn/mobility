@@ -1,0 +1,3 @@
+type: string
+description: Describes a decimal value
+pattern: "[+-]?([0-9]*[.])?[0-9]+"

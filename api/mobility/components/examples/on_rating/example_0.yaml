@@ -1,0 +1,17 @@
+summary: Return acknowledgement of rating and feedback
+value:
+  context:
+    country: IND
+    bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+    domain: nic2004:60221
+    timestamp: '2023-03-23T05:41:15Z'
+    bap_id: api.beckn.juspay.in/pilot/bap/cab/v1
+    bpp_id: api.beckn.juspay.in/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+    message_id: 2a17e268-1dc4-4d1a-98a2-17554a50c7d2
+    city: Bangalore
+    core_version: 0.9.4
+    action: on_rating
+    bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
+  message:
+    feedback_ack: true
+    rating_ack: true

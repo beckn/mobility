@@ -1,0 +1,21 @@
+type: object
+properties:
+  context:
+    allOf:
+      - $ref: "../../../../schema/Context.yaml"
+      - properties:
+          action:
+            enum:
+              - get_feedback_form
+        required:
+          - action
+  message:
+    type: object
+    properties:
+      rating_value:
+        $ref: ../../../../schema/Rating.yaml#/properties/value
+      rating_category:
+        $ref: '../../../../schema/Rating.yaml#/properties/rating_category'
+required:
+  - context
+  - message

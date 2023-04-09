@@ -1,0 +1,43 @@
+type: object
+description: Describes count or amount of an item
+properties:
+  allocated:
+    properties:
+      count:
+        minimum: 0
+        type: integer
+      measure:
+        $ref: ./Scalar.yaml
+    type: object
+  available:
+    properties:
+      count:
+        minimum: 0
+        type: integer
+      measure:
+        $ref: ./Scalar.yaml
+    type: object
+  maximum:
+    properties:
+      count:
+        minimum: 1
+        type: integer
+      measure:
+        $ref: ./Scalar.yaml
+    type: object
+  minimum:
+    properties:
+      count:
+        minimum: 0
+        type: integer
+      measure:
+        $ref: ./Scalar.yaml
+    type: object
+  selected:
+    properties:
+      count:
+        minimum: 0
+        type: integer
+      measure:
+        $ref: ./Scalar.yaml
+    type: object

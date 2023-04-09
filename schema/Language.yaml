@@ -1,0 +1,5 @@
+type: object
+description: indicates language code. Beckn supports country codes as per ISO 639.2 standard
+properties:
+  code:
+    type: string

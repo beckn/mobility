@@ -1,0 +1,52 @@
+type: object
+description: Describes a service provider. This can be a restaurant, a hospital, a Store etc
+properties:
+  categories:
+    items:
+      $ref: ./Category.yaml
+    type: array
+  category_id:
+    description: Category Id of the provider
+    type: string
+  descriptor:
+    $ref: ./Descriptor.yaml
+  exp:
+    description: Time after which catalog has to be refreshed
+    format: date-time
+    type: string
+  fulfillments:
+    items:
+      $ref: ./Fulfillment.yaml
+    type: array
+  id:
+    description: Id of the provider
+    type: string
+  items:
+    items:
+      $ref: ./Item.yaml
+    type: array
+  locations:
+    items:
+      allOf:
+        - $ref: ./Location.yaml
+        - properties:
+            rateable:
+              $ref: ./Rateable.yaml
+          type: object
+    type: array
+  offers:
+    items:
+      $ref: ./Offer.yaml
+    type: array
+  payments:
+    items:
+      $ref: ./Payment.yaml
+    type: array
+  rateable:
+    $ref: ./Rateable.yaml
+  rating:
+    $ref: ./Rating.yaml#/properties/value
+  tags:
+    $ref: ./Tags.yaml
+  time:
+    $ref: ./Time.yaml

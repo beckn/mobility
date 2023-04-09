@@ -1,0 +1,2 @@
+description: Describes tracking data object during live tracking of an order
+$ref: ./Location.yaml#/properties/gps

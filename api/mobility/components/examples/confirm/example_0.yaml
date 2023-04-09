@@ -1,0 +1,142 @@
+summary: Confirm ride booking
+value:
+  context:
+    action: confirm
+    bap_id: example-bap.com
+    bap_uri: 'https://api.example-bap.com/pilot/bap/cab/v1'
+    bpp_id: example-bpp.com
+    bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+    city: 'std:080'
+    core_version: 0.9.4
+    country: IND
+    domain: 'nic2004:60221'
+    message_id: 8926b747-0362-4fcc-b795-0994a6287700
+    timestamp: '2023-03-23T04:48:53Z'
+    transaction_id: b580c989-f84d-4abe-af28-2c818aafce3b
+  message:
+    order:
+      fulfillment:
+        agent:
+          name: RAGHAVENDRA J
+          rateable: true
+          rating: '5'
+        customer:
+          person:
+            name: John Doe
+            phone: +91-9897867564
+            tags:
+              groups/1/descriptor/code: localization
+              groups/1/descriptor/name: Localization
+              groups/1/display: false
+              groups/1/list/1/descriptor/code: lang
+              groups/1/list/1/descriptor/name: Language
+              groups/1/list/1/value: en
+        end:
+          location:
+            address:
+              area_code: ''
+              building: Rangadore Memorial Hospital
+              city: Bengaluru
+              country: India
+              door: null
+              locality: Basavanagudi
+              state: Karnataka
+              street: Chikkanna Garden
+              ward: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
+            gps: '12.9711869, 77.5868122'
+        id: fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
+        start:
+          location:
+            address:
+              area_code: '560061'
+              building: 6th Main Rd
+              city: Bengaluru
+              country: India
+              door: '98A, Sarovarm 2nd cross'
+              locality: Uttarahalli Hobli
+              state: Karnataka 560061
+              street: Ramanjaneyanagar
+              ward: 'Uttarahalli Hobli, Ramanjaneyanagar'
+            gps: '13.008935, 77.6444085'
+        vehicle:
+          category: AUTO_RICKSHAW
+      id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
+      items:
+        - descriptor:
+            code: RIDE
+            name: Auto Ride
+          fulfillment_id: fb5c84d4-1b59-4b9d-96b5-9d79107432c5
+          id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
+          payment_id: '1'
+          tags:
+            groups/1/descriptor/code: fare_policy
+            groups/1/descriptor/name: Daytime Charges
+            groups/1/display: true
+            groups/1/list/1/descriptor/name: Min Fare upto 2 km
+            groups/1/list/1/value: ₹ 30 upto 2 km
+            groups/1/list/2/descriptor/code: extra_fare
+            groups/1/list/2/descriptor/name: Rate above Min. Fare
+            groups/1/list/2/value: ₹15 / km
+            groups/1/list/3/descriptor/code: pickup_charges
+            groups/1/list/3/descriptor/name: Driver Pickup Charges
+            groups/1/list/3/value: ₹ 10
+            groups/1/list/4/descriptor/code: nominal_fare
+            groups/1/list/4/descriptor/name: Nominal Fare
+            groups/1/list/4/descriptor/short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
+            groups/1/list/4/value: ₹ 10
+            groups/1/list/5/descriptor/code: waiting_charges
+            groups/1/list/5/descriptor/name: Nominal Fare
+            groups/1/list/5/descriptor/short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
+            groups/1/list/5/value: ₹ 0 / min
+            groups/2/descriptor/code: fare_policy
+            groups/2/descriptor/name: Waiting Charges
+            groups/2/display: true
+            groups/2/list/1/descriptor/code: night_charges
+            groups/2/list/1/descriptor/name: Night Charges
+            groups/2/list/1/value: 1.5x of daytime charges applicable at night from 10 PM to 5 PM
+            groups/2/list/2/descriptor/code: night_shift_start_time
+            groups/2/list/2/descriptor/name: Night Shift Start
+            groups/2/list/2/value: '22:00:00'
+            groups/2/list/3/descriptor/code: night_shift_end_time
+            groups/2/list/3/descriptor/name: Night Shift End
+            groups/2/list/3/value: '05:00:00'
+            groups/3/descriptor/code: info
+            groups/3/descriptor/name: General Information
+            groups/3/display: true
+            groups/3/list/1/descriptor/code: distance_to_nearest_driver
+            groups/3/list/1/descriptor/name: Distance to nearest driver
+            groups/3/list/1/value: 661 m
+            groups/3/list/2/descriptor/code: waiting_time_estimated_threshold
+            groups/3/list/2/descriptor/name: Wait time upto
+            groups/3/list/2/value: 3 min
+      payment:
+        id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+        params:
+          amount: '81'
+          currency: INR
+          transaction_status: NOT-PAID
+        type: ON-FULFILLMENT
+      provider:
+        descriptor:
+          name: Raghavendra J
+        id: e8542642-0f4a-454c-9a9f-f46110c367a3
+      quote:
+        breakup:
+          - price:
+              currency: INR
+              value: '30'
+            title: Base Fare
+          - price:
+              currency: INR
+              value: '56'
+            title: Per km fare
+          - price:
+              currency: INR
+              value: '2.5'
+            title: CGST @ 5%
+          - price:
+              currency: INR
+              value: '2.5'
+            title: SGST @ 5%
+        currency: INR
+        value: '81'

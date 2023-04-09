@@ -1,0 +1,28 @@
+type: object
+description: Describes a billing event
+properties:
+  address:
+    $ref: ./Address.yaml
+  created_at:
+    format: date-time
+    type: string
+  email:
+    format: email
+    type: string
+  name:
+    description: Personal details of the customer needed for billing.
+    type: string
+  organization:
+    $ref: ./Organization.yaml
+  phone:
+    type: string
+  tax_number:
+    type: string
+  time:
+    $ref: ./Time.yaml
+  updated_at:
+    format: date-time
+    type: string
+required:
+  - name
+  - phone

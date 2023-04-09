@@ -1,0 +1,84 @@
+summary: Initialize draft order and request for terms of service
+value:
+  context:
+    action: init
+    bap_id: example-bap.com
+    bap_uri: 'https://api.example-bap.com/pilot/bap/cab/v1'
+    bpp_id: example-bpp.com
+    bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+    city: 'std:080'
+    core_version: 0.9.4
+    country: IND
+    domain: 'nic2004:60221'
+    message_id: 8926b747-0362-4fcc-b795-0994a6287700
+    timestamp: '2023-03-23T04:48:53Z'
+    transaction_id: b580c989-f84d-4abe-af28-2c818aafce3b
+  message:
+    order:
+      customer:
+        person:
+          name: John Doe
+          phone: +91-9897867564
+          tags:
+            groups/1/descriptor/code: localization
+            groups/1/descriptor/name: Localization
+            groups/1/display: false
+            groups/1/list/1/descriptor/code: lang
+            groups/1/list/1/descriptor/name: Language
+            groups/1/list/1/value: en
+      fulfillment:
+        agent:
+          name: RAGHAVENDRA J
+          rateable: true
+          rating: '5'
+        end:
+          location:
+            address:
+              area_code: ''
+              building: Rangadore Memorial Hospital
+              city: Bengaluru
+              country: India
+              door: null
+              locality: Basavanagudi
+              state: Karnataka
+              street: Chikkanna Garden
+              ward: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
+            gps: '12.9711869, 77.5868122'
+        id: fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
+        start:
+          location:
+            address:
+              area_code: '560061'
+              building: 6th Main Rd
+              city: Bengaluru
+              country: India
+              door: '98A, Sarovarm 2nd cross'
+              locality: Uttarahalli Hobli
+              state: Karnataka 560061
+              street: Ramanjaneyanagar
+              ward: 'Uttarahalli Hobli, Ramanjaneyanagar'
+            gps: '13.008935, 77.6444085'
+        vehicle:
+          category: AUTO_RICKSHAW
+      items:
+        - fulfillment_id: fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
+          id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
+          payment_id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+      payment:
+        collected_by: BPP
+        id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+        type: ON-FULFILLMENT
+      provider:
+        id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+      quote:
+        breakup:
+          - price:
+              currency: INR
+              value: '30'
+            title: Base Fare
+          - price:
+              currency: INR
+              value: '56'
+            title: Per km fare
+        currency: INR
+        value: '76'

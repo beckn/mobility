@@ -1,0 +1,383 @@
+openapi: 3.0.0
+info:
+  title: Beckn Mobility API Specification
+  description: Adaptation of beckn protocol for the mobility sector. Compatible with core version 0.9.4 LTS. 
+  version: 0.8.1
+security:
+  - SubscriberAuth: []
+  - GatewaySubscriberAuth: []
+  - GatewaySubscriberAuthNew: []
+paths:
+  /search:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+        - Beckn Gateway (BG)
+      description: BAP declares the customer's intent to buy/avail products or services
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref : "./io/Search.yaml"
+            examples:
+              example0:
+                $ref: './examples/search/example_0.yaml'
+              example1:
+                $ref: './examples/search/example_1.yaml'
+
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /select:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: BAP declares the customer's cart (or equivalent) created by selecting objects from the catalog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/Select.yaml"
+            examples:
+              example0:
+                $ref: './examples/select/example_0.yaml'
+              example1:
+                $ref: './examples/select/example_1.yaml'
+              example2:
+                $ref: './examples/select/example_2.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /init:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Initialize an order by providing billing and/or shipping details
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/Init.yaml"
+            examples:
+              example0:
+                $ref: './examples/init/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /confirm:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Initialize an order by providing billing and/or shipping details
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/Confirm.yaml"
+            examples:
+              example0:
+                $ref: './examples/confirm/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /status:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Fetch the latest order object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/Status.yaml"
+            examples:
+              example0:
+                $ref: './examples/status/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /track:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Track an active order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/Track.yaml"
+            examples:
+              example0:
+                $ref: './examples/track/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /cancel:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Cancel an order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/Cancel.yaml"
+            examples:
+              example0:
+                $ref: './examples/cancel/example_0.yaml'
+              example1:
+                $ref: './examples/cancel/example_1.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /update:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Remove object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/Update.yaml"
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /rating:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Provide feedback on a service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/Rating.yaml"
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /support:
+    post:
+      tags:
+        - Beckn Provider Platform (BPP)
+      description: Contact support
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref : "./io/Support.yaml"
+            examples:
+              example0:
+                $ref: './examples/support/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /on_search:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+        - Beckn Gateway (BG)
+      description: BPP sends its catalog in response to a search request. 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/OnSearch.yaml"
+            examples:
+              example0:
+                $ref: './examples/on_search/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /on_select:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Send draft order object with quoted price for selected items
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref : "./io/OnSelect.yaml"
+            examples:
+              example0:
+                $ref: './examples/on_select/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /on_init:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Send order object with payment details updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref : "./io/OnInit.yaml"
+            examples:
+              example0:
+                $ref: './examples/on_init/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /on_confirm:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Send active order object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref : "./io/OnConfirm.yaml"
+            examples:
+              example0:
+                $ref: './examples/on_confirm/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /on_track:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Send tracking details of an active order
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref : "./io/OnTrack.yaml"
+            examples:
+              example0:
+                $ref: './examples/on_track/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /on_cancel:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Send cancellation request_id with reasons list in case of cancellation request. Else send cancelled order object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/OnCancel.yaml"
+            examples:
+              example0:
+                $ref: './examples/on_cancel/example_0.yaml'
+              example1:
+                $ref: './examples/on_cancel/example_1.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /on_update:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Returns updated service with updated runtime object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/OnUpdate.yaml"
+            examples:
+              example0:
+                $ref: './examples/on_update/example_0.yaml'
+              example1:
+                $ref: './examples/on_update/example_1.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+  /on_status:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Fetch the status of a Service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/OnStatus.yaml"
+            examples:
+              example0:
+                $ref: './examples/on_status/example_0.yaml'
+              example1:
+                $ref: './examples/on_status/example_1.yaml'
+              example2:
+                $ref: './examples/on_status/example_2.yaml'
+              example3:
+                $ref: './examples/on_status/example_3.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+  /on_rating:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Provide feedback on a service
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/OnRating.yaml"
+            examples:
+              example0:
+                $ref: './examples/on_rating/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+
+  /on_support:
+    post:
+      tags:
+        - Beckn App Platform (BAP)
+      description: Contact Support
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "./io/OnSupport.yaml"
+            examples:
+              example0:
+                $ref: './examples/on_support/example_0.yaml'
+      responses:
+        default:
+          $ref: "./io/Response.yaml"
+          
+components:
+  securitySchemes:
+    SubscriberAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'Signature of message body using BAP or BPP subscriber''s signing public key. <br/><br/>Format:<br/><br/><code>Authorization : Signature keyId="{subscriber_id}|{unique_key_id}|{algorithm}",algorithm="ed25519",created="1606970629",expires="1607030629",headers="(created) (expires) digest",signature="Base64(BLAKE-512(signing string))"</code>'
+    GatewaySubscriberAuth:
+      type: apiKey
+      in: header
+      name: Proxy-Authorization
+      description: 'Signature of message body + BAP/BPP''s Authorization header using BG''s signing public key. Format:<br/><br/><code>Proxy-Authorization : Signature keyId="{subscriber_id}|{unique_key_id}|{algorithm}",algorithm="ed25519",created="1606970629",expires="1607030629",headers="(created) (expires) digest",signature="Base64(BLAKE-512(signing string))"</code><p><b>Note:</b>This header will be deprecated soon and will no longer be supported in future releases. New implementors are requested to use the X-Gateway-Authorization header. Existing implementations are requested to migrate their header to the new header. The deprecation date will be set after discussion as per the standard specification governance process.</p>'
+    GatewaySubscriberAuthNew:
+      type: apiKey
+      in: header
+      name: X-Gateway-Authorization
+      description: 'Signature of message body + BAP/BPP''s Authorization header using BG''s signing public key. Format:<br/><br/><code>X-Gateway-Authorization : Signature keyId="{subscriber_id}|{unique_key_id}|{algorithm}",algorithm="ed25519",created="1606970629",expires="1607030629",headers="(created) (expires) digest",signature="Base64(BLAKE-512(signing string))"</code>'
+  schemas:
+    $ref: ./schema/index.yaml
+  

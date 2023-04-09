@@ -1,0 +1,7 @@
+type: object
+description: Describes an organization
+properties:
+  cred:
+    type: string
+  name:
+    type: string

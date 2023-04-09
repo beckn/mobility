@@ -1,0 +1,22 @@
+type: object
+description: Describes how a feedback URL will be sent by the BPP
+properties:
+  params:
+    additionalProperties:
+      type: string
+    properties:
+      feedback_id:
+        description: This value will be placed in the the $feedback_id url param in case of http/get and in the requestBody http/post requests
+        type: string
+    required:
+      - feedback_id
+    type: object
+  tl_method:
+    enum:
+      - http/get
+      - http/post
+    type: string
+  url:
+    description: feedback URL sent by the BPP
+    format: uri
+    type: string

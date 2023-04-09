@@ -1,0 +1,20 @@
+type: object
+description: Describes an authorization mechanism
+properties:
+  status:
+    description: Status of the token
+    type: string
+  token:
+    description: Token used for authorization
+    type: string
+  type:
+    description: Type of authorization mechanism used
+    type: string
+  valid_from:
+    description: Timestamp in RFC3339 format from which token is valid
+    format: date-time
+    type: string
+  valid_to:
+    description: Timestamp in RFC3339 format until which token is valid
+    format: date-time
+    type: string

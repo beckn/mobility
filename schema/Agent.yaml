@@ -1,0 +1,8 @@
+description: Describes an order executor
+allOf:
+  - $ref: ./Person.yaml
+  - $ref: ./Contact.yaml
+  - properties:
+      rateable:
+        $ref: ./Rateable.yaml
+    type: object

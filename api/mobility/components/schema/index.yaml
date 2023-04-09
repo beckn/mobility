@@ -1,0 +1,118 @@
+Ack:
+    $ref: ../../../../schema/Ack.yaml
+AddOn:
+    $ref: ../../../../schema/AddOn.yaml
+Address:
+    $ref: ../../../../schema/Address.yaml
+Agent:
+    $ref: ../../../../schema/Agent.yaml
+Authorization:
+    $ref: ../../../../schema/Authorization.yaml
+Billing:
+    $ref: ../../../../schema/Billing.yaml
+Cancellation:
+    $ref: ../../../../schema/Cancellation.yaml
+Catalog:
+    $ref: ../../../../schema/Catalog.yaml
+Category:
+    $ref: ../../../../schema/Category.yaml
+Circle:
+    $ref: ../../../../schema/Circle.yaml
+City:
+    $ref: ../../../../schema/City.yaml
+Contact:
+    $ref: ../../../../schema/Contact.yaml
+Context:
+    $ref: ../../../../schema/Context.yaml
+Country:
+    $ref: ../../../../schema/Country.yaml
+DecimalValue:
+    $ref: ../../../../schema/DecimalValue.yaml
+Descriptor:
+    $ref: ../../../../schema/Descriptor.yaml
+Dimensions:
+    $ref: ../../../../schema/Dimensions.yaml
+Document:
+    $ref: ../../../../schema/Document.yaml
+Domain:
+    $ref: ../../../../schema/Domain.yaml
+Duration:
+    $ref: ../../../../schema/Duration.yaml
+Error:
+    $ref: ../../../../schema/Error.yaml
+Feedback:
+    $ref: ../../../../schema/Feedback.yaml
+FeedbackForm:
+    $ref: ../../../../schema/FeedbackForm.yaml
+FeedbackFormElement:
+    $ref: ../../../../schema/FeedbackFormElement.yaml
+FeedbackUrl:
+    $ref: ../../../../schema/FeedbackUrl.yaml
+Fulfillment:
+    $ref: ../../../../schema/Fulfillment.yaml
+Gps:
+    $ref: ../../../../schema/Gps.yaml
+Image:
+    $ref: ../../../../schema/Image.yaml
+Intent:
+    $ref: ../../../../schema/Intent.yaml
+Item:
+    $ref: ../../../../schema/Item.yaml
+ItemQuantity:
+    $ref: ../../../../schema/ItemQuantity.yaml
+Language:
+    $ref: ../../../../schema/Language.yaml
+Location:
+    $ref: ../../../../schema/Location.yaml
+Name:
+    $ref: ../../../../schema/Name.yaml
+Offer:
+    $ref: ../../../../schema/Offer.yaml
+Operator:
+    $ref: ../../../../schema/Operator.yaml
+Option:
+    $ref: ../../../../schema/Option.yaml
+Order:
+    $ref: ../../../../schema/Order.yaml
+Organization:
+    $ref: ../../../../schema/Organization.yaml
+Page:
+    $ref: ../../../../schema/Page.yaml
+Payment:
+    $ref: ../../../../schema/Payment.yaml
+Person:
+    $ref: ../../../../schema/Person.yaml
+Policy:
+    $ref: ../../../../schema/Policy.yaml
+Price:
+    $ref: ../../../../schema/Price.yaml
+Provider:
+    $ref: ../../../../schema/Provider.yaml
+Quotation:
+    $ref: ../../../../schema/Quotation.yaml
+Rateable:
+    $ref: ../../../../schema/Rateable.yaml
+Rating:
+    $ref: ../../../../schema/Rating.yaml
+RatingAck:
+    $ref: ../../../../schema/RatingAck.yaml
+Scalar:
+    $ref: ../../../../schema/Scalar.yaml
+Schedule:
+    $ref: ../../../../schema/Schedule.yaml
+State:
+    $ref: ../../../../schema/State.yaml
+Subscriber:
+    $ref: ../../../../schema/Subscriber.yaml
+Support:
+    $ref: ../../../../schema/Support.yaml
+Tags:
+    $ref: ../../../../schema/Tags.yaml
+Time:
+    $ref: ../../../../schema/Time.yaml
+Tracking:
+    $ref: ../../../../schema/Tracking.yaml
+TrackingData:
+    $ref: ../../../../schema/TrackingData.yaml
+Vehicle:
+    $ref: ../../../../schema/Vehicle.yaml

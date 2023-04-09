@@ -1,0 +1,11 @@
+type: object
+description: Describes the tracking info of an object
+properties:
+  status:
+    enum:
+      - active
+      - inactive
+    type: string
+  url:
+    format: uri
+    type: string

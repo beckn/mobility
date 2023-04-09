@@ -1,0 +1,15 @@
+summary: Request for cancellation reasons list
+value:
+  context:
+    country: IND
+    domain: nic2004:60221
+    timestamp: '2023-03-23T04:41:16Z'
+    bap_id: example-bap.com
+    bap_uri: https://example-bap.com/pilot/bap/cab/v1
+    bpp_id: example-bpp.com
+    bpp_uri: https://example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+    transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
+    message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
+    city: std:080
+    core_version: 0.9.4
+    action: get_cancellation_reasons

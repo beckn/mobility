@@ -1,0 +1,33 @@
+type: object
+description: Describes an address
+properties:
+  area_code:
+    description: Area code. This can be Pincode, ZIP code or any equivalent
+    type: string
+  building:
+    description: Name of the building or block
+    type: string
+  city:
+    description: City name
+    type: string
+  country:
+    description: Country name
+    type: string
+  door:
+    description: Door / Shop number of the address
+    type: string
+  locality:
+    description: Name of the locality, apartments
+    type: string
+  name:
+    description: Name of address if applicable. Example, shop name
+    type: string
+  state:
+    description: State name
+    type: string
+  street:
+    description: Street name or number
+    type: string
+  ward:
+    description: Name or number of the ward if applicable
+    type: string

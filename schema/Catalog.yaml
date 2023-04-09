@@ -1,0 +1,29 @@
+type: object
+description: Describes a BPP catalog
+properties:
+  bpp/categories:
+    items:
+      $ref: ./Category.yaml
+    type: array
+  bpp/descriptor:
+    $ref: ./Descriptor.yaml
+  bpp/fulfillments:
+    items:
+      $ref: ./Fulfillment.yaml
+    type: array
+  bpp/offers:
+    items:
+      $ref: ./Offer.yaml
+    type: array
+  bpp/payments:
+    items:
+      $ref: ./Payment.yaml
+    type: array
+  bpp/providers:
+    items:
+      $ref: ./Provider.yaml
+    type: array
+  exp:
+    description: Time after which catalog has to be refreshed
+    format: date-time
+    type: string

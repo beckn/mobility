@@ -1,0 +1,13 @@
+type: object
+description: Customer support
+properties:
+  channels:
+    $ref: ./Tags.yaml
+  ref_id:
+    type: string
+  type:
+    enum:
+      - order
+      - billing
+      - fulfillment
+    type: string

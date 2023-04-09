@@ -1,0 +1,23 @@
+type: object
+description: Describes an error object
+properties:
+  code:
+    description: Beckn specific error code. For full list of error codes, refer to error_codes.md in the root folder of this repo
+    type: string
+  message:
+    description: Human readable message describing the error
+    type: string
+  path:
+    description: Path to json schema generating the error. Used only during json schema validation errors
+    type: string
+  type:
+    enum:
+      - CONTEXT-ERROR
+      - CORE-ERROR
+      - DOMAIN-ERROR
+      - POLICY-ERROR
+      - JSON-SCHEMA-ERROR
+    type: string
+required:
+  - type
+  - code

@@ -1,0 +1,7 @@
+type: object
+description: Feedback for a service
+properties:
+  feedback_form:
+    $ref: ./FeedbackForm.yaml
+  feedback_url:
+    $ref: ./FeedbackUrl.yaml

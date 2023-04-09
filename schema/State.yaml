@@ -1,0 +1,11 @@
+type: object
+description: Describes a state
+properties:
+  descriptor:
+    $ref: ./Descriptor.yaml
+  updated_at:
+    format: date-time
+    type: string
+  updated_by:
+    description: ID of entity which changed the state
+    type: string

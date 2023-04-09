@@ -1,0 +1,9 @@
+type: object
+description: Describes a country.
+properties:
+  code:
+    description: Country code as per ISO 3166-1 and ISO 3166-2 format
+    type: string
+  name:
+    description: Name of the country
+    type: string

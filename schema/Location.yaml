@@ -1,0 +1,25 @@
+type: object
+description: Describes the location of a runtime object.
+properties:
+  3dspace:
+    type: string
+  address:
+    $ref: ./Address.yaml
+  circle:
+    $ref: ./Circle.yaml
+  city:
+    $ref: ./City.yaml
+  country:
+    $ref: ./Country.yaml
+  descriptor:
+    $ref: ./Descriptor.yaml
+  gps:
+    $ref: ./Gps.yaml
+  id:
+    type: string
+  polygon:
+    type: string
+  station_code:
+    type: string
+  time:
+    $ref: ./Time.yaml
