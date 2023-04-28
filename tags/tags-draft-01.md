@@ -1,4 +1,95 @@
-# Supported Tags
+# Tags
+
+Tags are used to transmit product-specific attributes. Mobility service providers can send these values to describe attributes related to fare policies, product features, commercials etc. Tags can be used by BAPs to create filters, to allow sorting, comparison etc. Tags can also be used by BPPs for catalog indexing.  
+## Examples
+
+### Item Tags with simple name-value pairs
+
+```
+[
+    {
+        "id": "5777a0bf-9a08-49aa-a97d-1e5561a9622e",
+        "descriptor": {
+            "name": "Economy Plus",
+        },
+        "price": {
+            "value": "175",
+            "currency": "INR"
+        },
+        "tags": {
+            "groups/1/descriptor/name": "Daytime Charges",
+            "groups/1/display": true,
+            "groups/1/list/1/descriptor/name": "Min Fare upto 2 km",
+            "groups/1/list/1/value": "₹ 30 upto 2 km",
+            "groups/1/list/2/descriptor/name": "Rate above Min. Fare",
+            "groups/1/list/2/value": "₹15 / km",
+            "groups/1/list/3/descriptor/name": "Driver Pickup Charges",
+            "groups/1/list/3/value": "₹ 10",
+            "groups/1/list/4/descriptor/name": "Nominal Fare",
+            "groups/1/list/4/descriptor/short_desc": "Driver may quote extra to cover for traffic, chance of return trip, etc.",
+            "groups/1/list/4/value": "₹ 10",
+            "groups/1/list/5/descriptor/name": "Waiting Charges",
+            "groups/1/list/5/descriptor/short_desc": "Driver may quote extra to cover for traffic, chance of return trip, etc.",
+            "groups/1/list/5/value": "₹ 0 / min"
+        }
+    }
+]
+```
+
+### Item Tags with standardized (codified) name-value pairs
+
+```
+[
+    {
+        "id": "5777a0bf-9a08-49aa-a97d-1e5561a9622e",
+        "descriptor": {
+            "name": "Economy",
+            "code": "RIDE"
+        },
+        "price": {
+            "value": "175",
+            "currency": "INR"
+        },
+        "tags": {
+            "groups/1/descriptor/name": "Daytime Charges",
+            "groups/1/descriptor/code": "fare_policy",
+            "groups/1/display": true,
+            "groups/1/list/1/descriptor/name": "Min Fare upto 2 km",
+            "groups/1/list/1/value": "₹ 30 upto 2 km",
+            "groups/1/list/2/descriptor/name": "Rate above Min. Fare",
+            "groups/1/list/2/descriptor/code": "extra_fare",
+            "groups/1/list/2/value": "₹15 / km",
+            "groups/1/list/3/descriptor/name": "Driver Pickup Charges",
+            "groups/1/list/3/descriptor/code": "pickup_charges",
+            "groups/1/list/3/value": "₹ 10",
+            "groups/1/list/4/descriptor/name": "Nominal Fare",
+            "groups/1/list/4/descriptor/short_desc": "Driver may quote extra to cover for traffic, chance of return trip, etc.",
+            "groups/1/list/4/descriptor/code": "nominal_fare",
+            "groups/1/list/4/value": "₹ 10",
+            "groups/1/list/5/descriptor/name": "Waiting Charges",
+            "groups/1/list/5/descriptor/short_desc": "Driver may quote extra to cover for traffic, chance of return trip, etc.",
+            "groups/1/list/5/descriptor/code": "waiting_charges",
+            "groups/1/list/5/value": "₹ 0 / min"
+        }
+    }
+]
+```
+
+**Note:** The above tag list is NOT a recommended or required standard. This list will be standardized on the basis of adoption by implementers across multiple networks. 
+
+
+## Contributing to Tags
+Tags are standardized by the Mobility Working Group on the basis of community adoption. At the current moment, there are no standard tags recommended by the working group. Eventually a tag list will be created that looks like the table below. Implementers are free to submit tags for consideration via a PR with a row added to the table below along with an attached report on adoption of that tag across the implementer community. It is recommended for contributors to do extensive research on adoption before submitting the PR. 
+
+
+## Tag List
+
+| Name                  | Code                   | Description                                                                    | Type   | Format                                                                                                      | Examples                                                                                                                                              |
+|-----------------------|------------------------|--------------------------------------------------------------------------------|--------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| (name)              | (code)                   | (description)                                          | (type) | (format)                                                                                    | (examples)                                                                                                                                              |
+
+
+### An example Tag List with standardizations (NOT A RECOMMENDATION)
 
 | Name                  | Code                   | Description                                                                    | Type   | Format                                                                                                      | Examples                                                                                                                                              |
 |-----------------------|------------------------|--------------------------------------------------------------------------------|--------|-------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------|
