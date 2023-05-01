@@ -4099,6 +4099,10 @@ components:
         key:
           type: string
           description: The encryption public key of the sender
+        max_callbacks:
+          description: Number of callbacks expected. If this value is -1, then there is no limit. If it is 0, then no callbacks are expected. 
+          type: integer
+          minimum: -1
         ttl:
           type: string
           description: The duration in ISO8601 format after timestamp for which this message holds valid
