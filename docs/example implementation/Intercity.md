@@ -1,14 +1,14 @@
-## Parking Use Cases
+## Intercity Use Cases
 
 ### Introduction
 
-Parking is a service that offers individuals a designated area to safely and temporarily store their vehicles when they are not in use. It is an essential component of urban infrastructure, accommodating the transportation needs of people in densely populated areas. Parking facilities can vary widely in terms of size, location, features, and services offered.
+Intercity travel refers to the movement of individuals or groups between cities, typically over longer distances. It involves journeying from one urban center to another, often across regions or states. Intercity travel serves various purposes, such as business trips, vacations, family visits, or any other travel needs that require crossing city or regional boundaries. Here's a comprehensive description of intercity travel:
 
-Parking facilities can be found in various locations, including commercial areas, residential neighborhoods, entertainment venues, airports, and public transportation hubs. They play a crucial role in addressing the challenges of limited space and managing traffic congestion in urban environments.
+Intercity travel forms an integral part of modern life, connecting distant places and facilitating mobility across geographical locations. It encompasses various modes of transportation, including buses, trains, airplanes, and private vehicles. This type of travel is characterized by its longer distances compared to intra-city commuting and often requires specialized services to cater to travelers' needs during extended journeys.
 
 ### Use Cases considered
 
-- Parking
+- Intercity Cabs
 
 
 ### Workflow
