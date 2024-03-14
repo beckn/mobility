@@ -2,7 +2,7 @@ openapi: 3.0.0
 info:
   title: Beckn Mobility API Specification
   description: Adaptation of beckn protocol for the mobility sector. Compatible with core version 0.9.4 LTS. 
-  version: 0.8.1
+  version: 0.8.2
 security:
   - SubscriberAuth: []
   - GatewaySubscriberAuth: []
@@ -258,6 +258,28 @@ paths:
                               groups/1/display: false
                               groups/1/list/1/descriptor/name: Language
                               groups/1/list/1/value: en    
+              Get a quote for a fare product selected from a public transit catalog:
+                value:
+                  context:
+                    domain: nic2004:60221
+                    country: IND
+                    city: std:080
+                    action: select
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://mock_bap.com/beckn/
+                    bpp_id: https://kmrl-bpp.com
+                    bpp_uri: https://kmrl-bpp.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      items:
+                        - id: '1'
+                      provider:
+                        id: '1'
+                  
       responses:
         '200':
           description: Acknowledgement of message received
@@ -383,7 +405,33 @@ paths:
                             groups/1/descriptor/name: Localization
                             groups/1/display: false
                             groups/1/list/1/descriptor/name: Language
-                            groups/1/list/1/value: en                
+                            groups/1/list/1/value: en
+                            
+              Initialize the order by providing billing details:
+                value:
+                  context:
+                    domain: nic2004:60221
+                    country: IND
+                    city: std:080
+                    action: init
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://mock_bap.com/beckn/
+                    bpp_id: https://kmrl-bpp.com
+                    bpp_uri: https://kmrl-bpp.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      items:
+                        - id: '1'
+                      provider:
+                        id: '1'
+                      billing:
+                        name: John Doe
+                        email: john.doe@example.com
+                  
       responses:
         '200':
           description: Acknowledgement of message received
@@ -556,6 +604,36 @@ paths:
                           amount: '81'
                           currency: INR
                           transaction_status: NOT-PAID
+              Confirm ticket booking:
+                value:
+                  context:
+                    domain: nic2004:60221
+                    country: IND
+                    city: std:080
+                    action: confirm
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://mock_bap.com/beckn/
+                    bpp_id: https://kmrl-bpp.com
+                    bpp_uri: https://kmrl-bpp.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      items:
+                        - id: '1'
+                      provider:
+                        id: '1'
+                      billing:
+                        name: John Doe
+                        email: john.doe@example.com
+                      payment:
+                        params:
+                          amount: '55'
+                          currency: INR
+                          transaction_id: '24566345563'
+                  
       responses:
         '200':
           description: Acknowledgement of message received
@@ -617,6 +695,23 @@ paths:
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
                     order_id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
+              Get latest status of a transit ticket booking:
+                value:
+                  context:
+                    domain: nic2008:49213
+                    country: IND
+                    city: std:011
+                    action: status
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://api.example-bap.com/beckn/
+                    bpp_id: https://transit-solutions.com
+                    bpp_uri: https://api.transit-solutions.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order_id: '123413'
       responses:
         '200':
           description: Acknowledgement of message received
@@ -765,6 +860,26 @@ paths:
                     cancellation_reason_id: '7'
                     descriptor:
                       short_desc: Accidenally booked the ride
+              Cancel a transit ticket booking before the cancellation period:
+                value:
+                  context:
+                    domain: nic2008:49213
+                    country: IND
+                    city: std:011
+                    action: cancel
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://api.example-bap.com/beckn/
+                    bpp_id: https://transit-solutions.com
+                    bpp_uri: https://api.transit-solutions.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      id: '123413'
+                      cancellation_reason_id: '2'
+                  
       responses:
         '200':
           description: Acknowledgement of message received
@@ -1018,7 +1133,8 @@ paths:
                       bpp/descriptor:
                         name: Acme Taxis
                       bpp/providers:
-                        - descriptor:
+                        - id: '1'
+                          descriptor:
                             name: Acme Taxis
                           locations:
                             - id: '1'
@@ -1380,6 +1496,162 @@ paths:
                             - id: '1'
                               type: ON-FULFILLMENT
                               collected_by: BPP
+              Return a public transit catalog of fare products:
+                value:
+                  context:
+                    domain: nic2008:49213
+                    country: IND
+                    city: std:011
+                    action: on_search
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://mock_bap.com/beckn/
+                    bpp_id: https://transit-solutions.com
+                    bpp_uri: https://api.transit-solutions.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    catalog:
+                      bpp/descriptor:
+                        name: Transit Solutions
+                        images:
+                          - https://transitsolutions.in/logos/logo.ico
+                      bpp/providers:
+                        - id: '1'
+                          descriptor:
+                            name: Delhi Metro Rail Limited
+                            images:
+                              - https://delhimetrorail.com/logos/logo.ico
+                          items:
+                            - id: '1'
+                              descriptor:
+                                name: Single Journey Ticket
+                                images:
+                                  - https://delhimetrorail.com/icons/sjt.ico
+                              fulfillment_id: '1'
+                              price:
+                                currency: '35'
+                                value: INR
+                            - id: '2'
+                              descriptor:
+                                name: Single Journey Ticket
+                                images:
+                                  - https://delhimetrorail.com/icons/sjt.ico
+                              fulfillment_id: '2'
+                              price:
+                                currency: '65'
+                                value: INR
+                            - id: '3'
+                              descriptor:
+                                name: Single Journey Ticket
+                                images:
+                                  - https://delhimetrorail.com/icons/sjt.ico
+                              fulfillment_id: '3'
+                              price:
+                                currency: '55'
+                                value: INR
+                            - id: '4'
+                              descriptor:
+                                name: Return Journey Ticket
+                                images:
+                                  - https://delhimetrorail.com/icons/rjt.ico
+                              fulfillment_id: '1'
+                              price:
+                                currency: '60'
+                                value: INR
+                            - id: '5'
+                              descriptor:
+                                name: Return Journey Ticket
+                                images:
+                                  - https://delhimetrorail.com/icons/rjt.ico
+                              fulfillment_id: '2'
+                              price:
+                                currency: '90'
+                                value: INR
+                            - id: '6'
+                              descriptor:
+                                name: Return Journey Ticket
+                                images:
+                                  - https://delhimetrorail.com/icons/rjt.ico
+                              fulfillment_id: '3'
+                              price:
+                                currency: '100'
+                                value: INR
+                            - id: '7'
+                              descriptor:
+                                name: Monthly Pass
+                                images:
+                                  - https://delhimetrorail.com/icons/mp.ico
+                              price:
+                                currency: INR
+                                value: '250'
+                          fulfillments:
+                            - id: '1'
+                              start:
+                                location:
+                                  descriptor:
+                                    name: Dwarka Sector 10 - Blue Line
+                                  gps: 28.5811261,77.0548206
+                              end:
+                                location:
+                                  descriptor:
+                                    name: Patel Chowk - Yellow Line
+                                  gps: 28.6230972,77.2099917
+                              vehicle:
+                                category: METRO
+                              tags:
+                                groups/0/list/0/descriptor/name: Transfers
+                                groups/0/list/0/value: '1'
+                                groups/0/list/1/descriptor/name: Duration
+                                groups/0/list/1/value: 60 min
+                            - id: '2'
+                              start:
+                                location:
+                                  descriptor:
+                                    name: Dwarka Sector 10 - Blue Line
+                                  gps: 28.5811261,77.0548206
+                              end:
+                                location:
+                                  descriptor:
+                                    name: Shivaji Stadium -  Airport Express Line
+                                  gps: 28.6288785,77.2085895
+                              vehicle:
+                                category: METRO
+                              tags:
+                                groups/0/list/0/descriptor/name: Transfers
+                                groups/0/list/0/value: '1'
+                                groups/0/list/1/descriptor/name: Duration
+                                groups/0/list/1/value: 45 min
+                            - id: '3'
+                              start:
+                                location:
+                                  descriptor:
+                                    name: Dwarka Sector 21
+                                  gps: 9.05,12.06
+                                time:
+                                  timestamp: '2021-10-15T00:32:19.000Z'
+                              end:
+                                location:
+                                  descriptor:
+                                    name: Shivaji Stadium
+                                  gps: 9.07,12.07
+                                time:
+                                  timestamp: '2021-10-15T00:43:21.000Z'
+                              vehicle:
+                                category: METRO
+                              tags:
+                                groups/0/list/0/descriptor/name: Transfers
+                                groups/0/list/0/value: '0'
+                                groups/0/list/1/descriptor/name: Duration
+                                groups/0/list/1/value: 30 min
+                          tags:
+                            groups/0/list/0/descriptor/name: Timetable
+                            groups/0/list/0/value: https://delhimetrorail.com/timetable.html
+                            groups/0/list/1/descriptor/name: GTFS Schedule
+                            groups/0/list/1/value: https://delhimetrorail.com/gtfs
+                            groups/0/list/1/display: false
+            
       responses:
         '200':
           description: Acknowledgement of message received
@@ -1425,7 +1697,7 @@ paths:
               required:
                 - context
             examples:
-              Return a quote offered by a provider:
+              Return a quote offered by a ride hailing service provider:
                 value:
                   context:
                     country: IND
@@ -1533,6 +1805,84 @@ paths:
                           rating: '5'
                         vehicle:
                           category: AUTO_RICKSHAW
+              Return a quote offered by a public transit service provider:
+                value:
+                  context:
+                    domain: nic2008:49213
+                    country: IND
+                    city: std:011
+                    action: on_select
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://mock_bap.com/beckn/
+                    bpp_id: https://transit-solutions.com
+                    bpp_uri: https://api.transit-solutions.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      id: '123413'
+                      items:
+                        - id: '3'
+                          descriptor:
+                            name: Single Journey Ticket
+                            images:
+                              - https://delhimetrorail.com/icons/sjt.ico
+                          fulfillment_id: '3'
+                          price:
+                            currency: '55'
+                            value: INR
+                          tags:
+                            groups/0/list/0/descriptor/name: Validity
+                            groups/0/list/0/value: 24 hours from the time of purchase
+                      provider:
+                        id: '1'
+                        descriptor:
+                          name: Delhi Metro Rail Limited
+                          images:
+                            - https://delhimetrorail.com/logos/logo.ico
+                      fulfillment:
+                        id: '3'
+                        start:
+                          location:
+                            descriptor:
+                              name: Dwarka Sector 21
+                            gps: 9.05,12.06
+                          time:
+                            timestamp: '2021-10-15T00:32:19.000Z'
+                        end:
+                          location:
+                            descriptor:
+                              name: Shivaji Stadium
+                            gps: 9.07,12.07
+                          time:
+                            timestamp: '2021-10-15T00:43:21.000Z'
+                        vehicle:
+                          category: METRO
+                        tags:
+                          groups/0/list/0/descriptor/name: Transfers
+                          groups/0/list/0/value: '0'
+                          groups/0/list/1/descriptor/name: Duration
+                          groups/0/list/1/value: 30 min
+                      quote:
+                        price:
+                          value: '60.5'
+                          currency: INR
+                        breakup:
+                          - title: Single Journey Ticket X 1
+                            price:
+                              currency: INR
+                              value: '55'
+                          - title: CGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                          - title: SGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                  
       responses:
         '200':
           description: Acknowledgement of message received
@@ -1578,7 +1928,7 @@ paths:
               required:
                 - context
             examples:
-              Return draft order with payment terms:
+              Return draft ride hailing order with payment after ride completion:
                 value:
                   context:
                     country: IND
@@ -1595,7 +1945,6 @@ paths:
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
                     order:
-                      id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
                       provider:
                         id: e8542642-0f4a-454c-9a9f-f46110c367a3
                         descriptor:
@@ -1706,6 +2055,192 @@ paths:
                           amount: '81'
                           currency: INR
                           transaction_status: NOT-PAID
+              Return draft order for transit ticket with settlement via payment link:
+                value:
+                  context:
+                    domain: nic2008:49213
+                    country: IND
+                    city: std:011
+                    action: on_init
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://api.example-bap.com/beckn/
+                    bpp_id: https://transit-solutions.com
+                    bpp_uri: https://api.transit-solutions.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      items:
+                        - id: '3'
+                          descriptor:
+                            name: Single Journey Ticket
+                            images:
+                              - https://delhimetrorail.com/icons/sjt.ico
+                          fulfillment_id: '3'
+                          price:
+                            currency: '55'
+                            value: INR
+                          tags:
+                            groups/0/list/0/descriptor/name: Validity
+                            groups/0/list/0/value: 24 hours from the time of purchase
+                      provider:
+                        id: '1'
+                        descriptor:
+                          name: Delhi Metro Rail Limited
+                          images:
+                            - https://delhimetrorail.com/logos/logo.ico
+                      fulfillment:
+                        id: '3'
+                        start:
+                          location:
+                            descriptor:
+                              name: Dwarka Sector 21
+                            gps: 9.05,12.06
+                          time:
+                            timestamp: '2021-10-15T00:32:19.000Z'
+                          instructions: Show this ticket at the QR code scanner at the entry gate. If the QR code scanner is not present, show this at the ticket counter to get your token
+                        end:
+                          location:
+                            descriptor:
+                              name: Shivaji Stadium
+                            gps: 9.07,12.07
+                          time:
+                            timestamp: '2021-10-15T00:43:21.000Z'
+                        vehicle:
+                          category: METRO
+                        tags:
+                          groups/0/list/0/descriptor/name: Transfers
+                          groups/0/list/0/value: '0'
+                          groups/0/list/1/descriptor/name: Duration
+                          groups/0/list/1/value: 30 min
+                      documents:
+                        - label: Cancellation Terms
+                          url: https://dmrc.com/fare_products/sjt/cancellation_terms.html
+                      billing:
+                        name: John Doe
+                        email: john.doe@example.com
+                      quote:
+                        price:
+                          currency: '60.5'
+                          value: INR
+                        breakup:
+                          - title: Single Journey Ticket X 1
+                            price:
+                              currency: INR
+                              value: '55'
+                          - title: CGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                          - title: SGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                      payment:
+                        type: ON-ORDER
+                        uri: https://pay.razorpay.com?amt=60.5&cur=INR&ref=24566345563
+                        tl_method: GET
+                        status: NOT-PAID
+                  
+              Return draft order for transit ticket with T+1 settlment via bank transfer:
+                value:
+                  context:
+                    domain: nic2008:49213
+                    country: IND
+                    city: std:011
+                    action: on_init
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://api.example-bap.com/beckn/
+                    bpp_id: https://transit-solutions.com
+                    bpp_uri: https://api.transit-solutions.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      items:
+                        - id: '3'
+                          descriptor:
+                            name: Single Journey Ticket
+                            images:
+                              - https://delhimetrorail.com/icons/sjt.ico
+                          fulfillment_id: '3'
+                          price:
+                            currency: '55'
+                            value: INR
+                          tags:
+                            groups/0/list/0/descriptor/name: Validity
+                            groups/0/list/0/value: 24 hours from the time of purchase
+                      provider:
+                        id: '1'
+                        descriptor:
+                          name: Delhi Metro Rail Limited
+                          images:
+                            - https://delhimetrorail.com/logos/logo.ico
+                      fulfillment:
+                        id: '3'
+                        start:
+                          location:
+                            descriptor:
+                              name: Dwarka Sector 21
+                            gps: 9.05,12.06
+                          time:
+                            timestamp: '2021-10-15T00:32:19.000Z'
+                          instructions: Show this ticket at the QR code scanner at the entry gate. If the QR code scanner is not present, show this at the ticket counter to get your token
+                        end:
+                          location:
+                            descriptor:
+                              name: Shivaji Stadium
+                            gps: 9.07,12.07
+                          time:
+                            timestamp: '2021-10-15T00:43:21.000Z'
+                        vehicle:
+                          category: METRO
+                        tags:
+                          groups/0/list/0/descriptor/name: Transfers
+                          groups/0/list/0/value: '0'
+                          groups/0/list/1/descriptor/name: Duration
+                          groups/0/list/1/value: 30 min
+                      documents:
+                        - label: Cancellation Terms
+                          url: https://dmrc.com/fare_products/sjt/cancellation_terms.html
+                      billing:
+                        name: John Doe
+                        email: john.doe@example.com
+                      quote:
+                        price:
+                          currency: '60.5'
+                          value: INR
+                        breakup:
+                          - title: Single Journey Ticket X 1
+                            price:
+                              currency: INR
+                              value: '55'
+                          - title: CGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                          - title: SGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                      payment:
+                        type: POST-FULFILLMENT
+                        status: NOT-PAID
+                        params:
+                          amount: '60.5'
+                          currency: INR
+                          transaction_id: '24566345563'
+                          bank_account: '32756678999'
+                          bank_code: 'SBIN0000575'
+                        time:
+                          range:
+                            start: '2021-03-23T10:00:40.065Z'
+                            end: '2021-03-24T10:00:40.065Z'
+                  
       responses:
         '200':
           description: Acknowledgement of message received
@@ -1888,6 +2423,198 @@ paths:
                           amount: '81'
                           currency: INR
                           transaction_status: NOT-PAID
+              Return confirmed ticket order with payment confirmation:
+                value:
+                  context:
+                    domain: nic2008:49213
+                    country: IND
+                    city: std:011
+                    action: on_confirm
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://api.example-bap.com/beckn/
+                    bpp_id: https://transit-solutions.com
+                    bpp_uri: https://api.transit-solutions.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      id: '123413'
+                      items:
+                        - id: '3'
+                          descriptor:
+                            name: Single Journey Ticket
+                            images:
+                              - https://delhimetrorail.com/icons/sjt.ico
+                          fulfillment_id: '3'
+                          price:
+                            currency: '55'
+                            value: INR
+                          tags:
+                            groups/0/list/0/descriptor/name: Validity
+                            groups/0/list/0/value: 24 hours from the time of purchase
+                      provider:
+                        id: '1'
+                        descriptor:
+                          name: Delhi Metro Rail Limited
+                          images:
+                            - https://delhimetrorail.com/logos/logo.ico
+                      fulfillment:
+                        id: '3'
+                        start:
+                          location:
+                            descriptor:
+                              name: Dwarka Sector 21
+                            gps: 9.05,12.06
+                          time:
+                            timestamp: '2021-10-15T00:32:19.000Z'
+                          instructions: Show this ticket at the QR code scanner at the entry gate. If the QR code scanner is not present, show this at the ticket counter to get your token
+                        end:
+                          location:
+                            descriptor:
+                              name: Shivaji Stadium
+                            gps: 9.07,12.07
+                          time:
+                            timestamp: '2021-10-15T00:43:21.000Z'
+                        vehicle:
+                          category: METRO
+                        tags:
+                          groups/0/list/0/descriptor/name: Transfers
+                          groups/0/list/0/value: '0'
+                          groups/0/list/1/descriptor/name: Duration
+                          groups/0/list/1/value: 30 min
+                      documents:
+                        - label: Cancellation Terms
+                          url: https://dmrc.com/fare_products/sjt/cancellation_terms.html
+                      billing:
+                        name: John Doe
+                        email: john.doe@example.com
+                      quote:
+                        price:
+                          currency: '60.5'
+                          value: INR
+                        breakup:
+                          - title: Single Journey Ticket X 1
+                            price:
+                              currency: INR
+                              value: '55'
+                          - title: CGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                          - title: SGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                      payment:
+                        type: ON-ORDER
+                        status: PAID
+                        params:
+                          amount: '60.5'
+                          currency: INR
+                          transaction_id: '24566345563'
+              Return confirmed ticket order with T+1 pending settlement:
+                value:
+                  context:
+                    domain: nic2008:49213
+                    country: IND
+                    city: std:011
+                    action: on_confirm
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://api.example-bap.com/beckn/
+                    bpp_id: https://transit-solutions.com
+                    bpp_uri: https://api.transit-solutions.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      id: '123413'
+                      items:
+                        - id: '3'
+                          descriptor:
+                            name: Single Journey Ticket
+                            images:
+                              - https://delhimetrorail.com/icons/sjt.ico
+                          fulfillment_id: '3'
+                          price:
+                            currency: '55'
+                            value: INR
+                          tags:
+                            groups/0/list/0/descriptor/name: Validity
+                            groups/0/list/0/value: 24 hours from the time of purchase
+                      provider:
+                        id: '1'
+                        descriptor:
+                          name: Delhi Metro Rail Limited
+                          images:
+                            - https://delhimetrorail.com/logos/logo.ico
+                      fulfillment:
+                        id: '3'
+                        state:
+                          descriptor:
+                            name: Ticket issued
+                        start:
+                          location:
+                            descriptor:
+                              name: Dwarka Sector 21
+                            gps: 9.05,12.06
+                          time:
+                            timestamp: '2021-10-15T00:32:19.000Z'
+                          instructions: Show this ticket at the QR code scanner at the entry gate. If the QR code scanner is not present, show this at the ticket counter to get your token
+                        end:
+                          location:
+                            descriptor:
+                              name: Shivaji Stadium
+                            gps: 9.07,12.07
+                          time:
+                            timestamp: '2021-10-15T00:43:21.000Z'
+                        vehicle:
+                          category: METRO
+                        tags:
+                          groups/0/list/0/descriptor/name: Transfers
+                          groups/0/list/0/value: '0'
+                          groups/0/list/1/descriptor/name: Duration
+                          groups/0/list/1/value: 30 min
+                      documents:
+                        - label: Cancellation Terms
+                          url: https://dmrc.com/fare_products/sjt/cancellation_terms.html
+                      billing:
+                        name: John Doe
+                        email: john.doe@example.com
+                      quote:
+                        price:
+                          currency: '60.5'
+                          value: INR
+                        breakup:
+                          - title: Single Journey Ticket X 1
+                            price:
+                              currency: INR
+                              value: '55'
+                          - title: CGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                          - title: SGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                      payment:
+                        type: POST-FULFILLMENT
+                        status: NOT-PAID
+                        params:
+                          amount: '60.5'
+                          currency: INR
+                          transaction_id: '24566345563'
+                          bank_account: '32756678999'
+                          bank_code: 'SBIN0000575'
+                        time:
+                          range:
+                            start: '2021-03-23T10:00:40.065Z'
+                            end: '2021-03-24T10:00:40.065Z'
+                  
       responses:
         '200':
           description: Acknowledgement of message received
@@ -2247,6 +2974,103 @@ paths:
                           bank_code: SBIN0000575
                         time:
                           duration: P1D
+              Return cancelled ticket order with cancellation charges:
+                value:
+                  context:
+                    domain: nic2008:49213
+                    country: IND
+                    city: std:011
+                    action: on_cancel
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://api.example-bap.com/beckn/
+                    bpp_id: https://transit-solutions.com
+                    bpp_uri: https://api.transit-solutions.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      id: '123413'
+                      items:
+                        - id: '3'
+                          descriptor:
+                            name: Single Journey Ticket
+                            images:
+                              - https://delhimetrorail.com/icons/sjt.ico
+                          fulfillment_id: '3'
+                          price:
+                            currency: '55'
+                            value: INR
+                          tags:
+                            groups/0/list/0/descriptor/name: Validity
+                            groups/0/list/0/value: 24 hours from the time of purchase
+                      provider:
+                        id: '1'
+                        descriptor:
+                          name: Delhi Metro Rail Limited
+                          images:
+                            - https://delhimetrorail.com/logos/logo.ico
+                      fulfillment:
+                        id: '3'
+                        start:
+                          location:
+                            descriptor:
+                              name: Dwarka Sector 21
+                            gps: 9.05,12.06
+                          time:
+                            timestamp: '2021-10-15T00:32:19.000Z'
+                          instructions: Show this ticket at the QR code scanner at the entry gate. If the QR code scanner is not present, show this at the ticket counter to get your token
+                        end:
+                          location:
+                            descriptor:
+                              name: Shivaji Stadium
+                            gps: 9.07,12.07
+                          time:
+                            timestamp: '2021-10-15T00:43:21.000Z'
+                        vehicle:
+                          category: METRO
+                        tags:
+                          groups/0/list/0/descriptor/name: Transfers
+                          groups/0/list/0/value: '0'
+                          groups/0/list/1/descriptor/name: Duration
+                          groups/0/list/1/value: 30 min
+                      documents:
+                        - label: Cancellation Terms
+                          url: https://dmrc.com/fare_products/sjt/cancellation_terms.html
+                      billing:
+                        name: John Doe
+                        email: john.doe@example.com
+                      quote:
+                        price:
+                          currency: '60.5'
+                          value: INR
+                        breakup:
+                          - title: Single Journey Ticket X 1
+                            price:
+                              currency: INR
+                              value: '55'
+                          - title: CGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                          - title: SGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                      payment:
+                        type: POST-FULFILLMENT
+                        status: NOT-PAID
+                        params:
+                          amount: '10'
+                          currency: INR
+                          bank_account: '32756678999'
+                          bank_code: SBIN0000575
+                        time:
+                          range:
+                            start: '2021-03-23T10:00:40.065Z'
+                            end: '2021-03-24T10:00:40.065Z'
+                  
       responses:
         '200':
           description: Acknowledgement of message received
@@ -3161,6 +3985,269 @@ paths:
                           amount: '81'
                           currency: INR
                           transaction_status: NOT-PAID
+              Return transit ticket order with status - Ticket Issued:
+                value:
+                  context:
+                    domain: nic2004:60221
+                    country: IND
+                    city: std:080
+                    action: on_status
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://mock_bap.com/beckn/
+                    bpp_id: https://kmrl-bpp.com
+                    bpp_uri: https://kmrl-bpp.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      id: '123413'
+                      items:
+                        - id: '3'
+                          descriptor:
+                            name: Single Journey Ticket
+                            images:
+                              - https://delhimetrorail.com/icons/sjt.ico
+                          fulfillment_id: '3'
+                          price:
+                            currency: '55'
+                            value: INR
+                      provider:
+                        id: '1'
+                        descriptor:
+                          name: Delhi Metro Rail Limited
+                          images:
+                            - https://delhimetrorail.com/logos/logo.ico
+                      fulfillment:
+                        id: '3'
+                        state:
+                          descriptor:
+                            name: Ticket Issued
+                        start:
+                          location:
+                            descriptor:
+                              name: Dwarka Sector 21
+                            gps: 9.05,12.06
+                          time:
+                            timestamp: '2021-10-15T00:32:19.000Z'
+                        end:
+                          location:
+                            descriptor:
+                              name: Shivaji Stadium
+                            gps: 9.07,12.07
+                          time:
+                            timestamp: '2021-10-15T00:43:21.000Z'
+                        vehicle:
+                          category: METRO
+                        tags:
+                          groups/0/list/0/descriptor/name: Transfers
+                          groups/0/list/0/value: '0'
+                          groups/0/list/1/descriptor/name: Duration
+                          groups/0/list/1/value: 30 min
+                      billing:
+                        name: John Doe
+                        email: john.doe@example.com
+                      quote:
+                        price:
+                          currency: '60.5'
+                          value: INR
+                        breakup:
+                          - title: Single Journey Ticket X 1
+                            price:
+                              currency: INR
+                              value: '55'
+                          - title: CGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                          - title: SGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                      payment:
+                        uri: https://pay.razorpay.com?amt=60.5&cur=INR&ref=24566345563
+                        params:
+                          amount: '60.5'
+                          currency: INR
+                          transaction_id: '24566345563'
+                        status: PAID
+              Return transit ticket order with status - Entered Paid Area:
+                value:
+                  context:
+                    domain: nic2004:60221
+                    country: IND
+                    city: std:080
+                    action: on_status
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://mock_bap.com/beckn/
+                    bpp_id: https://kmrl-bpp.com
+                    bpp_uri: https://kmrl-bpp.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      id: '123413'
+                      items:
+                        - id: '3'
+                          descriptor:
+                            name: Single Journey Ticket
+                            images:
+                              - https://delhimetrorail.com/icons/sjt.ico
+                          fulfillment_id: '3'
+                          price:
+                            currency: '55'
+                            value: INR
+                      provider:
+                        id: '1'
+                        descriptor:
+                          name: Delhi Metro Rail Limited
+                          images:
+                            - https://delhimetrorail.com/logos/logo.ico
+                      fulfillment:
+                        id: '3'
+                        state:
+                          descriptor:
+                            name: Entered paid area
+                        start:
+                          location:
+                            descriptor:
+                              name: Dwarka Sector 21
+                            gps: 9.05,12.06
+                          time:
+                            timestamp: '2021-10-15T00:32:19.000Z'
+                        end:
+                          location:
+                            descriptor:
+                              name: Shivaji Stadium
+                            gps: 9.07,12.07
+                          time:
+                            timestamp: '2021-10-15T00:43:21.000Z'
+                        vehicle:
+                          category: METRO
+                        tags:
+                          groups/0/list/0/descriptor/name: Transfers
+                          groups/0/list/0/value: '0'
+                          groups/0/list/1/descriptor/name: Duration
+                          groups/0/list/1/value: 30 min
+                      billing:
+                        name: John Doe
+                        email: john.doe@example.com
+                      quote:
+                        price:
+                          currency: '60.5'
+                          value: INR
+                        breakup:
+                          - title: Single Journey Ticket X 1
+                            price:
+                              currency: INR
+                              value: '55'
+                          - title: CGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                          - title: SGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                      payment:
+                        uri: https://pay.razorpay.com?amt=60.5&cur=INR&ref=24566345563
+                        params:
+                          amount: '60.5'
+                          currency: INR
+                          transaction_id: '24566345563'
+                        status: PAID
+              Return transit ticket order with status - Exited paid area:
+                value:
+                  context:
+                    domain: nic2004:60221
+                    country: IND
+                    city: std:080
+                    action: on_status
+                    core_version: 0.9.4
+                    bap_id: https://example-bap.com
+                    bap_uri: https://mock_bap.com/beckn/
+                    bpp_id: https://kmrl-bpp.com
+                    bpp_uri: https://kmrl-bpp.com/beckn/
+                    transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+                    message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+                    timestamp: '2021-03-23T10:00:40.065Z'
+                  message:
+                    order:
+                      id: '123413'
+                      items:
+                        - id: '3'
+                          descriptor:
+                            name: Single Journey Ticket
+                            images:
+                              - https://delhimetrorail.com/icons/sjt.ico
+                          fulfillment_id: '3'
+                          price:
+                            currency: '55'
+                            value: INR
+                      provider:
+                        id: '1'
+                        descriptor:
+                          name: Delhi Metro Rail Limited
+                          images:
+                            - https://delhimetrorail.com/logos/logo.ico
+                      fulfillment:
+                        id: '3'
+                        state:
+                          descriptor:
+                            name: Exited paid area
+                        start:
+                          location:
+                            descriptor:
+                              name: Dwarka Sector 21
+                            gps: 9.05,12.06
+                          time:
+                            timestamp: '2021-10-15T00:32:19.000Z'
+                        end:
+                          location:
+                            descriptor:
+                              name: Shivaji Stadium
+                            gps: 9.07,12.07
+                          time:
+                            timestamp: '2021-10-15T00:43:21.000Z'
+                        vehicle:
+                          category: METRO
+                        tags:
+                          groups/0/list/0/descriptor/name: Transfers
+                          groups/0/list/0/value: '0'
+                          groups/0/list/1/descriptor/name: Duration
+                          groups/0/list/1/value: 30 min
+                      billing:
+                        name: John Doe
+                        email: john.doe@example.com
+                      quote:
+                        price:
+                          currency: '60.5'
+                          value: INR
+                        breakup:
+                          - title: Single Journey Ticket X 1
+                            price:
+                              currency: INR
+                              value: '55'
+                          - title: CGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                          - title: SGST @ 5%
+                            price:
+                              currency: INR
+                              value: '2.75'
+                      payment:
+                        uri: https://pay.razorpay.com?amt=60.5&cur=INR&ref=24566345563
+                        params:
+                          amount: '60.5'
+                          currency: INR
+                          transaction_id: '24566345563'
+                        status: PAID
+              
+                  
       responses:
         '200':
           description: Acknowledgement of message received
@@ -4099,6 +5186,10 @@ components:
         key:
           type: string
           description: The encryption public key of the sender
+        max_callbacks:
+          description: Number of callbacks expected. If this value is -1, then there is no limit. If it is 0, then no callbacks are expected. 
+          type: integer
+          minimum: -1
         ttl:
           type: string
           description: The duration in ISO8601 format after timestamp for which this message holds valid
