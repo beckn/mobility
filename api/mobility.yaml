@@ -1,12 +1,10 @@
 openapi: 3.0.0
 info:
   title: Beckn Mobility API Specification
-  description: Adaptation of beckn protocol for the mobility sector. Compatible with core version 0.9.4 LTS. 
-  version: 0.8.2
+  description: Adaptation of beckn protocol for the mobility sector. Compatible with core version V1.1. 
+  version: 0.8.3
 security:
   - SubscriberAuth: []
-  - GatewaySubscriberAuth: []
-  - GatewaySubscriberAuthNew: []
 paths:
   /search:
     post:
@@ -22,7 +20,12 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - search
                 message:
                   type: object
                   properties:
@@ -35,54 +38,60 @@ paths:
               Search for services in the city of Bengaluru by pickup and drop location:
                 value:
                   context:
-                    country: IND
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
                     domain: nic2004:60221
                     timestamp: '2023-03-23T04:41:16Z'
                     bap_id: example-bap.com
                     transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
                     message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    city: std:080
-                    core_version: 0.9.4
+                    version: 1.1.0
                     action: search
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
                     intent:
                       fulfillment:
-                        start:
-                          location:
-                            gps: 12.923608703179461, 77.61462964117527
-                        end:
-                          location:
-                            gps: 12.9346302, 77.61533969999999
+                        stops :
+                          - type: start
+                            location: 
+                              gps: 12.923608703179461, 77.61462964117527
+                          - type: end
+                            location: 
+                              gps: 12.9346302, 77.61533969999999
               Search by pickup and drop location with localization info:
                 value:
                   context:
-                    country: IND
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
                     domain: nic2004:60221
                     timestamp: '2023-03-23T04:41:16Z'
                     bap_id: example-bap.com
                     transaction_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
                     message_id: 6743e9e2-4fb5-487c-92b7-13ba8018f176
-                    city: std:080
-                    core_version: 0.9.4
+                    version: 1.1.0
                     action: search
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
                     intent:
                       fulfillment:
-                        start:
-                          location:
-                            gps: 12.923608703179461, 77.61462964117527
-                        end:
-                          location:
-                            gps: 12.9346302, 77.61533969999999
+                        stops :
+                          - type: start
+                            location: 
+                              gps: 12.923608703179461, 77.61462964117527
+                          - type: end
+                            location: 
+                              gps: 12.9346302, 77.61533969999999
                         customer:
                           person:
-                            tags:
-                              groups/1/descriptor/name: Localization
-                              groups/1/display: false
-                              groups/1/list/1/descriptor/name: Language
-                              groups/1/list/1/value: en     
+                            languages:
+                              - code: en
+                                name: English
       responses:
         '200':
           description: Acknowledgement of message received
@@ -115,7 +124,14 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                              - select
+                        required:
+                          - action
                 message:
                   type: object
                   properties:
@@ -130,7 +146,11 @@ paths:
               Get quote for a specific product from a mobility catalog:
                 value:
                   context:
-                    country: IND
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
                     bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                     domain: nic2004:60221
                     timestamp: '2023-03-23T04:46:45Z'
@@ -138,8 +158,7 @@ paths:
                     transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
                     bpp_id: example-bpp.com
                     message_id: 432fdfd6-0457-47b6-9fac-80cbe5c0a75b
-                    city: std:080
-                    core_version: 0.9.4
+                    version: 1.1.0
                     action: select
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                     max_callbacks: 3
@@ -148,17 +167,23 @@ paths:
                     order:
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
-                      fulfillment:
-                        start:
-                          location:
-                            gps: 12.910458, 77.543089
-                        end:
-                          location:
-                            gps: 12.9535139, 77.5710434
+                      fulfillments:
+                        - stops :
+                            - type: start
+                              location: 
+                                gps: 12.910458, 77.543089
+                            - type: end
+                              location: 
+                                gps: 12.9535139,  77.5710434
+                    
               Get quote for a specific product from a mobility catalog with gps and address details:
                 value:
                   context:
-                    country: IND
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
                     bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                     domain: nic2004:60221
                     timestamp: '2023-03-23T04:46:45Z'
@@ -166,8 +191,7 @@ paths:
                     transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
                     bpp_id: example-bpp.com
                     message_id: 432fdfd6-0457-47b6-9fac-80cbe5c0a75b
-                    city: std:080
-                    core_version: 0.9.4
+                    version: 1.1.0
                     action: select
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                     max_callbacks: 3
@@ -176,37 +200,40 @@ paths:
                     order:
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
-                      fulfillment:
-                        start:
-                          location:
-                            gps: 12.910458, 77.543089
-                            address:
-                              ward: Uttarahalli Hobli, Ramanjaneyanagar
-                              country: India
-                              building: 6th Main Rd
-                              state: Karnataka 560061
-                              city: Bengaluru
-                              locality: Uttarahalli Hobli
-                              door: 98A, Sarovarm 2nd cross
-                              area_code: '560061'
-                              street: Ramanjaneyanagar
-                        end:
-                          location:
-                            gps: 12.9535139, 77.5710434
-                            address:
-                              ward: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
-                              country: India
-                              building: Rangadore Memorial Hospital
-                              state: Karnataka
-                              city: Bengaluru
-                              locality: Basavanagudi
-                              door: null
-                              area_code: ''
-                              street: Chikkanna Garden
+                      fulfillments:
+                        - stops :
+                            - type: start
+                              location: 
+                                gps: 12.910458, 77.543089
+                                address: 98 A, 6th Main Rd, Uttarahalli Hobli, Ramanjaneyanagar
+                                country: 
+                                  name: India
+                                state: 
+                                  name: Karnataka
+                                city: 
+                                  name: Bengaluru
+                                area_code: 560061
+                                district: Ramanjaneyanagar
+                            - type: end
+                              location: 
+                                gps: 12.9535139,  77.5710434
+                                address: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
+                                country: 
+                                  name: India
+                                state: 
+                                  name: Karnataka
+                                city: 
+                                  name: Bengaluru
+                                area_code: 560061
+                                district: Chikkanna Garden
               Get quote for a specific product from a mobility catalog with localization:
                 value:
                   context:
-                    country: IND
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
                     bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                     domain: nic2004:60221
                     timestamp: '2023-03-23T04:46:45Z'
@@ -214,8 +241,7 @@ paths:
                     transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
                     bpp_id: example-bpp.com
                     message_id: 432fdfd6-0457-47b6-9fac-80cbe5c0a75b
-                    city: std:080
-                    core_version: 0.9.4
+                    version: 1.1.0
                     action: select
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                     max_callbacks: 3
@@ -224,48 +250,48 @@ paths:
                     order:
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
-                      fulfillment:
-                        start:
-                          location:
-                            gps: 12.910458, 77.543089
-                            address:
-                              ward: Uttarahalli Hobli, Ramanjaneyanagar
-                              country: India
-                              building: 6th Main Rd
-                              state: Karnataka 560061
-                              city: Bengaluru
-                              locality: Uttarahalli Hobli
-                              door: 98A, Sarovarm 2nd cross
-                              area_code: '560061'
-                              street: Ramanjaneyanagar
-                        end:
-                          location:
-                            gps: 12.9535139, 77.5710434
-                            address:
-                              ward: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
-                              country: India
-                              building: Rangadore Memorial Hospital
-                              state: Karnataka
-                              city: Bengaluru
-                              locality: Basavanagudi
-                              door: null
-                              area_code: ''
-                              street: Chikkanna Garden
-                        customer:
-                          person:
-                            tags:
-                              groups/1/descriptor/name: Localization
-                              groups/1/display: false
-                              groups/1/list/1/descriptor/name: Language
-                              groups/1/list/1/value: en    
+                      fulfillments:
+                        - stops :
+                            - type: start
+                              location: 
+                                gps: 12.910458, 77.543089
+                                address: 98 A, 6th Main Rd, Uttarahalli Hobli, Ramanjaneyanagar
+                                country: 
+                                  name: India
+                                state: 
+                                  name: Karnataka
+                                city: 
+                                  name: Bengaluru
+                                area_code: 560061
+                                district: Ramanjaneyanagar
+                            - type: end
+                              location: 
+                                gps: 12.9535139,  77.5710434
+                                address: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
+                                country: 
+                                  name: India
+                                state: 
+                                  name: Karnataka
+                                city: 
+                                  name: Bengaluru
+                                area_code: 560061
+                                district: Chikkanna Garden
+                          customer:
+                            person:
+                              languages:
+                                - code: en
+                                  name: English
               Get a quote for a fare product selected from a public transit catalog:
                 value:
                   context:
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
                     domain: nic2004:60221
-                    country: IND
-                    city: std:080
                     action: select
-                    core_version: 0.9.4
+                    version: 1.1.0
                     bap_id: https://example-bap.com
                     bap_uri: https://mock_bap.com/beckn/
                     bpp_id: https://kmrl-bpp.com
@@ -312,7 +338,14 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - init
+                      required:
+                        - action
                 message:
                   type: object
                   properties:
@@ -327,7 +360,11 @@ paths:
               Initialize draft order and request for terms of service:
                 value:
                   context:
-                    country: IND
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
                     bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                     domain: nic2004:60221
                     timestamp: '2023-03-23T04:48:53Z'
@@ -335,8 +372,7 @@ paths:
                     bpp_id: example-bpp.com
                     transaction_id: b580c989-f84d-4abe-af28-2c818aafce3b
                     message_id: 8926b747-0362-4fcc-b795-0994a6287700
-                    city: std:080
-                    core_version: 0.9.4
+                    version: 1.1.0
                     action: init
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
@@ -345,76 +381,68 @@ paths:
                         id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
-                          fulfillment_id: fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
-                          payment_id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
-                      quote:
-                        value: '76'
-                        currency: INR
-                        breakup:
-                          - title: Base Fare
-                            price:
-                              value: '30'
-                              currency: INR
-                          - title: Per km fare
-                            price:
-                              value: '56'
-                              currency: INR
-                      fulfillment:
-                        id: fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
-                        start:
-                          location:
-                            gps: 13.008935, 77.6444085
-                            address:
-                              ward: Uttarahalli Hobli, Ramanjaneyanagar
-                              country: India
-                              building: 6th Main Rd
-                              state: Karnataka 560061
-                              city: Bengaluru
-                              locality: Uttarahalli Hobli
-                              door: 98A, Sarovarm 2nd cross
-                              area_code: '560061'
-                              street: Ramanjaneyanagar
-                        end:
-                          location:
-                            gps: 12.9711869, 77.5868122
-                            address:
-                              ward: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
-                              country: India
-                              building: Rangadore Memorial Hospital
-                              state: Karnataka
-                              city: Bengaluru
-                              locality: Basavanagudi
-                              door: null
-                              area_code: ''
-                              street: Chikkanna Garden
-                        agent:
-                          name: RAGHAVENDRA J
-                          rateable: true
-                          rating: '5'
-                        vehicle:
-                          category: AUTO_RICKSHAW
+                          fulfillment_ids: 
+                            - fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
+                          payment_ids: 
+                            - 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+                      fulfillments:
+                        - id: fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
+                          stops :
+                            - type: start
+                              location: 
+                                gps: 12.910458, 77.543089
+                                address: 98 A, 6th Main Rd, Uttarahalli Hobli, Ramanjaneyanagar
+                                country: 
+                                  name: India
+                                state: 
+                                  name: Karnataka
+                                city: 
+                                  name: Bengaluru
+                                area_code: 560061
+                                district: Ramanjaneyanagar
+                            - type: end
+                              location: 
+                                gps: 12.9535139,  77.5710434
+                                address: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
+                                country: 
+                                  name: India
+                                state: 
+                                  name: Karnataka
+                                city: 
+                                  name: Bengaluru
+                                area_code: 560061
+                                district: Chikkanna Garden
+                          agent:
+                            person:
+                              name: RAGHAVENDRA J
+                            rating: '5'
+                          customer:
+                            person:
+                              name: John Doe
+                              language: 
+                                code: en
+                                name: English
+                            contact:
+                              phone: +91-9897867564
+                          vehicle:
+                            category: AUTO_RICKSHAW
                       payment:
-                        id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
-                        type: ON-FULFILLMENT
-                        collected_by: BPP
-                      customer:
-                        person:
-                          name: John Doe
-                          phone: +91-9897867564
-                          tags:
-                            groups/1/descriptor/name: Localization
-                            groups/1/display: false
-                            groups/1/list/1/descriptor/name: Language
-                            groups/1/list/1/value: en
+                        - id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+                          type: ON-FULFILLMENT
+                          collected_by: BPP
+                      
                             
               Initialize the order by providing billing details:
                 value:
                   context:
                     domain: nic2004:60221
-                    country: IND
-                    city: std:080
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
                     action: init
-                    core_version: 0.9.4
+                    version: 1.1.0
                     bap_id: https://example-bap.com
                     bap_uri: https://mock_bap.com/beckn/
                     bpp_id: https://kmrl-bpp.com
@@ -464,7 +492,14 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - confirm
+                      required:
+                        - action
                 message:
                   type: object
                   properties:
@@ -479,7 +514,12 @@ paths:
               Confirm ride booking:
                 value:
                   context:
-                    country: IND
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
+                    version: 1.1.0
                     bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                     domain: nic2004:60221
                     timestamp: '2023-03-23T04:48:53Z'
@@ -487,8 +527,6 @@ paths:
                     bpp_id: example-bpp.com
                     transaction_id: b580c989-f84d-4abe-af28-2c818aafce3b
                     message_id: 8926b747-0362-4fcc-b795-0994a6287700
-                    city: std:080
-                    core_version: 0.9.4
                     action: confirm
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
@@ -499,119 +537,70 @@ paths:
                         descriptor:
                           name: Raghavendra J
                       items:
-                        - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
-                          descriptor:
-                            name: Auto Ride
-                            code: RIDE
-                          tags:
-                            groups/1/descriptor/name: Daytime Charges
-                            groups/1/display: true
-                            groups/1/list/1/descriptor/name: Min Fare upto 2 km
-                            groups/1/list/1/value: ₹ 30 upto 2 km
-                            groups/1/list/2/descriptor/name: Rate above Min. Fare
-                            groups/1/list/2/value: ₹15 / km
-                            groups/1/list/3/descriptor/name: Driver Pickup Charges
-                            groups/1/list/3/value: ₹ 10
-                            groups/1/list/4/descriptor/name: Nominal Fare
-                            groups/1/list/4/descriptor/short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
-                            groups/1/list/4/value: ₹ 10
-                            groups/1/list/5/descriptor/name: Nominal Fare
-                            groups/1/list/5/descriptor/short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
-                            groups/1/list/5/value: ₹ 0 / min
-                            groups/2/descriptor/name: Waiting Charges
-                            groups/2/display: true
-                            groups/2/list/1/descriptor/name: Night Charges
-                            groups/2/list/1/value: 1.5x of daytime charges applicable at night from 10 PM to 5 PM
-                            groups/2/list/2/descriptor/name: Night Shift Start
-                            groups/2/list/2/value: '22:00:00'
-                            groups/2/list/3/descriptor/name: Night Shift End
-                            groups/2/list/3/value: '05:00:00'
-                            groups/3/descriptor/name: General Information
-                            groups/3/display: true
-                            groups/3/list/1/descriptor/name: Distance to nearest driver
-                            groups/3/list/1/value: 661 m
-                            groups/3/list/2/descriptor/name: Wait time upto
-                            groups/3/list/2/value: 3 min
-                          fulfillment_id: fb5c84d4-1b59-4b9d-96b5-9d79107432c5
-                          payment_id: '1'
-                      quote:
-                        value: '81'
-                        currency: INR
-                        breakup:
-                          - title: Base Fare
-                            price:
-                              value: '30'
-                              currency: INR
-                          - title: Per km fare
-                            price:
-                              value: '56'
-                              currency: INR
-                          - title: CGST @ 5%
-                            price:
-                              value: '2.5'
-                              currency: INR
-                          - title: SGST @ 5%
-                            price:
-                              value: '2.5'
-                              currency: INR
-                      fulfillment:
-                        id: fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
-                        start:
-                          location:
-                            gps: 13.008935, 77.6444085
-                            address:
-                              ward: Uttarahalli Hobli, Ramanjaneyanagar
-                              country: India
-                              building: 6th Main Rd
-                              state: Karnataka 560061
-                              city: Bengaluru
-                              locality: Uttarahalli Hobli
-                              door: 98A, Sarovarm 2nd cross
-                              area_code: '560061'
-                              street: Ramanjaneyanagar
-                        end:
-                          location:
-                            gps: 12.9711869, 77.5868122
-                            address:
-                              ward: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
-                              country: India
-                              building: Rangadore Memorial Hospital
-                              state: Karnataka
-                              city: Bengaluru
-                              locality: Basavanagudi
-                              door: null
-                              area_code: ''
-                              street: Chikkanna Garden
-                        agent:
-                          name: RAGHAVENDRA J
-                          rateable: true
-                          rating: '5'
-                        vehicle:
-                          category: AUTO_RICKSHAW
-                        customer:
-                          person:
-                            name: John Doe
-                            phone: +91-9897867564
-                            tags:
-                              groups/1/descriptor/name: Localization
-                              groups/1/display: false
-                              groups/1/list/1/descriptor/name: Language
-                              groups/1/list/1/value: en
-                      payment:
-                        id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
-                        type: ON-FULFILLMENT
-                        params:
-                          amount: '81'
-                          currency: INR
-                          transaction_status: NOT-PAID
+                        - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e  
+                          fulfillment_ids: 
+                            - fb5c84d4-1b59-4b9d-96b5-9d79107432c5
+                          payment_ids: 
+                            - '1'
+                      fulfillments:
+                        - id: fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
+                          stops :
+                            - type: start
+                              location: 
+                                gps: 12.910458, 77.543089
+                                address: 98 A, 6th Main Rd, Uttarahalli Hobli, Ramanjaneyanagar
+                                country: 
+                                  name: India
+                                state: 
+                                  name: Karnataka
+                                city: 
+                                  name: Bengaluru
+                                area_code: 560061
+                                district: Ramanjaneyanagar
+                            - type: end
+                              location: 
+                                gps: 12.9535139,  77.5710434
+                                address: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
+                                country: 
+                                  name: India
+                                state: 
+                                  name: Karnataka
+                                city: 
+                                  name: Bengaluru
+                                area_code: 560061
+                                district: Chikkanna Garden
+                          agent:
+                            person:
+                              name: RAGHAVENDRA J
+                            rating: '5'
+                          customer:
+                            person:
+                              name: John Doe
+                              language: 
+                                code: en
+                                name: English
+                            contact:
+                              phone: +91-9897867564
+                          vehicle:
+                            category: AUTO_RICKSHAW  
+                      payments:
+                        - id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+                          type: ON-FULFILLMENT
+                          statu: NOT-PAID
+                          params:
+                            amount: '81'
+                            currency: INR
               Confirm ticket booking:
                 value:
                   context:
                     domain: nic2004:60221
-                    country: IND
-                    city: std:080
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
+                    version: 1.1.0
                     action: confirm
-                    core_version: 0.9.4
                     bap_id: https://example-bap.com
                     bap_uri: https://mock_bap.com/beckn/
                     bpp_id: https://kmrl-bpp.com
@@ -666,7 +655,14 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - status
+                      required:
+                        - action
                 message:
                   type: object
                   properties:
@@ -681,7 +677,12 @@ paths:
               Get latest fulfillment status of a booking:
                 value:
                   context:
-                    country: IND
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
+                    version: 1.1.0
                     bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                     domain: nic2004:60221
                     timestamp: '2023-03-23T04:48:53Z'
@@ -689,8 +690,6 @@ paths:
                     bpp_id: example-bpp.com
                     transaction_id: b580c989-f84d-4abe-af28-2c818aafce3b
                     message_id: 8926b747-0362-4fcc-b795-0994a6287700
-                    city: std:080
-                    core_version: 0.9.4
                     action: status
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
@@ -699,10 +698,13 @@ paths:
                 value:
                   context:
                     domain: nic2008:49213
-                    country: IND
-                    city: std:011
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
+                    version: 1.1.0
                     action: status
-                    core_version: 0.9.4
                     bap_id: https://example-bap.com
                     bap_uri: https://api.example-bap.com/beckn/
                     bpp_id: https://transit-solutions.com
@@ -744,7 +746,14 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - track
+                      required:
+                        - action
                 message:
                   type: object
                   properties:
@@ -762,7 +771,12 @@ paths:
               Track an active ride:
                 value:
                   context:
-                    country: IND
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
+                    version: 1.1.0
                     bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                     domain: nic2004:60221
                     timestamp: '2023-03-23T04:48:53Z'
@@ -770,8 +784,6 @@ paths:
                     bpp_id: example-bpp.com
                     message_id: 8926b747-0362-4fcc-b795-0994a6287700
                     transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
-                    city: std:080
-                    core_version: 0.9.4
                     action: track
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
@@ -808,7 +820,14 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - cancel
+                      required:
+                        - action
                 message:
                   type: object
                   properties:
@@ -827,15 +846,18 @@ paths:
               Cancel a ride with selected reason:
                 value:
                   context:
-                    country: IND
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
+                    version: 1.1.0
                     bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                     domain: nic2004:60221
                     timestamp: '2023-03-23T05:15:08Z'
                     bap_id: api.beckn.juspay.in/pilot/bap/cab/v1
                     bpp_id: api.beckn.juspay.in/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                     message_id: be6a495a-e941-4fbf-9d59-f1e6166cccc8
-                    city: Bangalore
-                    core_version: 0.9.4
                     action: cancel
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
@@ -844,15 +866,18 @@ paths:
               Cancel a ride with user provided information:
                 value:
                   context:
-                    country: IND
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
+                    version: 1.1.0
                     bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                     domain: nic2004:60221
                     timestamp: '2023-03-23T05:15:08Z'
                     bap_id: api.beckn.juspay.in/pilot/bap/cab/v1
                     bpp_id: api.beckn.juspay.in/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                     message_id: be6a495a-e941-4fbf-9d59-f1e6166cccc8
-                    city: Bangalore
-                    core_version: 0.9.4
                     action: cancel
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
@@ -864,10 +889,13 @@ paths:
                 value:
                   context:
                     domain: nic2008:49213
-                    country: IND
-                    city: std:011
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
+                    version: 1.1.0
                     action: cancel
-                    core_version: 0.9.4
                     bap_id: https://example-bap.com
                     bap_uri: https://api.example-bap.com/beckn/
                     bpp_id: https://transit-solutions.com
@@ -912,7 +940,14 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - update
+                      required:
+                        - action
                 message:
                   type: object
                   properties:
@@ -920,7 +955,9 @@ paths:
                       description: 'Comma separated values of order objects being updated. For example: ```"update_target":"item,billing,fulfillment"```'
                       type: string
                     order:
-                      $ref: '#/components/schemas/Order'
+                      description: Updated order object
+                      allOf:
+                        - $ref: '#/components/schemas/Order'
                   required:
                     - update_target
                     - order
@@ -959,9 +996,21 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - rating
+                      required:
+                        - action
                 message:
-                  $ref: '#/components/schemas/Rating'
+                  type: object
+                  properties:
+                    ratings:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/Rating'
               required:
                 - context
                 - message
@@ -988,7 +1037,12 @@ paths:
                 Provide a rating:
                   value:
                     context:
-                      country: IND
+                      location: 
+                        country: 
+                          code: IND 
+                        city: 
+                          code: std:080
+                      version: 1.1.0
                       bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                       domain: nic2004:60221
                       timestamp: '2023-03-23T04:46:45Z'
@@ -996,36 +1050,14 @@ paths:
                       transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
                       bpp_id: example-bpp.com
                       message_id: 432fdfd6-0457-47b6-9fac-80cbe5c0a75b
-                      city: std:080
-                      core_version: 0.9.4
                       action: rating
                       bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                     message:
-                      id: b0462745-f6c9-4100-bbe7-4fa3648b6b40
-                      rating_category: DRIVER
-                      value: 4
-                Provide a rating with feedback form data:
-                  value:
-                    context:
-                      country: IND
-                      bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
-                      domain: nic2004:60221
-                      timestamp: '2023-03-23T04:46:45Z'
-                      bap_id: example-bap.com
-                      transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
-                      bpp_id: example-bpp.com
-                      message_id: 432fdfd6-0457-47b6-9fac-80cbe5c0a75b
-                      city: std:080
-                      core_version: 0.9.4
-                      action: rating
-                      bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
-                    message:
-                      id: b0462745-f6c9-4100-bbe7-4fa3648b6b40
-                      rating_category: DRIVER
-                      value: 4
-                      feedback_form:
-                        - id: '1'
-                          answer: Driver took me on a route not shown by Google Maps and we reached 10 minutes before time
+                      rating: 
+                        - id: b0462745-f6c9-4100-bbe7-4fa3648b6b40
+                          rating_category: DRIVER
+                          value: 4
+                
   /support:
     post:
       tags:
@@ -1039,13 +1071,19 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - support
+                      required:
+                        - action
                 message:
                   type: object
                   properties:
-                    ref_id:
-                      type: string
-                      description: ID of the element for which support is needed
+                    support:
+                      $ref: '#/components/schemas/Support'
               required:
                 - context
                 - message
@@ -1053,7 +1091,12 @@ paths:
               Fetch support information related to a particular order:
                 value:
                   context:
-                    country: IND
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
+                    version: 1.1.0
                     bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                     domain: nic2004:60221
                     timestamp: '2023-03-23T04:48:53Z'
@@ -1061,12 +1104,13 @@ paths:
                     bpp_id: example-bpp.com
                     message_id: 8926b747-0362-4fcc-b795-0994a6287700
                     transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
-                    city: std:080
-                    core_version: 0.9.4
                     action: support
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
-                    ref_id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
+                    support: 
+                      ref_id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
+                      phone: "91-876787656"
+                      email: "johndoe@gmail.com"
       responses:
         '200':
           description: Acknowledgement of message received
@@ -1100,7 +1144,14 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - on_search
+                      required:
+                        - action
                 message:
                   type: object
                   properties:
@@ -1117,7 +1168,12 @@ paths:
                 value:
                   message:
                     context:
-                      country: IND
+                      location: 
+                        country: 
+                          code: IND 
+                        city: 
+                          code: std:080
+                      version: 1.1.0
                       bpp_uri: https://api.example-bpp.in/path/to/url
                       domain: nic2004:60221
                       timestamp: '2023-03-23T04:43:02Z'
@@ -1125,14 +1181,12 @@ paths:
                       transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
                       bpp_id: example-bpp.in
                       message_id: 21e54d3c-9c3b-47c1-aa3b-b0e7b20818ee
-                      city: std:080
-                      core_version: 0.9.4
                       action: on_search
                       bap_uri: https://api.example-bpp.in/path/to/url
                     catalog:
-                      bpp/descriptor:
+                      descriptor:
                         name: Acme Taxis
-                      bpp/providers:
+                      providers:
                         - id: '1'
                           descriptor:
                             name: Acme Taxis
@@ -1154,51 +1208,63 @@ paths:
                                 value: '175'
                                 currency: INR
                               tags:
-                                groups/1/descriptor/name: Daytime Charges
-                                groups/1/display: true
-                                groups/1/list/1/descriptor/name: Min Fare upto 2 km
-                                groups/1/list/1/value: ₹ 30 upto 2 km
-                                groups/1/list/2/descriptor/name: Rate above Min. Fare
-                                groups/1/list/2/value: ₹15 / km
-                                groups/1/list/3/descriptor/name: Driver Pickup Charges
-                                groups/1/list/3/value: ₹ 10
-                                groups/1/list/4/descriptor/name: Nominal Fare
-                                groups/1/list/4/descriptor/short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
-                                groups/1/list/4/value: ₹ 10
-                                groups/1/list/5/descriptor/name: Waiting Charges
-                                groups/1/list/5/descriptor/short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
-                                groups/1/list/5/value: ₹ 0 / min
-                              fulfillment_id: fb5c84d4-1b59-4b9d-96b5-9d79107432c5
-                              payment_id: '1'
+                                - descriptor: 
+                                    name : Daytime Charges
+                                  list: 
+                                    - descriptor: 
+                                        name: Min Fare upto 2 km
+                                      value: ₹ 30 upto 2 km
+                                      display: true
+                                    - descriptor: 
+                                        name: Rate above Min. Fare
+                                      value: ₹15 / km
+                                      display: true
+                                    - descriptor: 
+                                        name:  Driver Pickup Charges
+                                      value: ₹ 10
+                                      display: true
+                                    - descriptor: 
+                                        name:  Nominal Fare
+                                        short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
+                                      value: ₹ 10
+                                      display: true
+                                    - descriptor: 
+                                        name:  Waiting Charges
+                                        short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
+                                      value: ₹ 0 / min
+                                      display: true
+                              fulfillment_ids: 
+                                - fb5c84d4-1b59-4b9d-96b5-9d79107432c5
+                              payment_ids: 
+                                - '1'
                           fulfillments:
                             - id: fb5c84d4-1b59-4b9d-96b5-9d79107432c5
-                              start:
-                                location:
-                                  gps: 12.9099828, 77.6118226
-                                  address:
-                                    ward: Uttarahalli Hobli, Ramanjaneyanagar
-                                    country: India
-                                    building: 6th Main Rd
-                                    state: Karnataka 560061
-                                    city: Bengaluru
-                                    locality: Uttarahalli Hobli
-                                    door: 98A, Sarovarm 2nd cross
-                                    area_code: '560061'
-                                    street: Ramanjaneyanagar
-                              end:
-                                location:
-                                  gps: 12.9351856, 77.62459969999999
-                                  address:
-                                    ward: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
-                                    country: India
-                                    building: Rangadore Memorial Hospital
-                                    state: Karnataka
-                                    city: Bengaluru
-                                    locality: Basavanagudi
-                                    door: null
-                                    area_code: ''
-                                    street: Chikkanna Garden
-                              vehicle:
+                              stops :
+                                - type: start
+                                  location: 
+                                    gps: 12.910458, 77.543089
+                                    address: 98 A, 6th Main Rd, Uttarahalli Hobli, Ramanjaneyanagar
+                                    country: 
+                                      name: India
+                                    state: 
+                                      name: Karnataka
+                                    city: 
+                                      name: Bengaluru
+                                    area_code: 560061
+                                    district: Ramanjaneyanagar
+                                - type: end
+                                  location: 
+                                    gps: 12.9535139,  77.5710434
+                                    address: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
+                                    country: 
+                                      name: India
+                                    state: 
+                                      name: Karnataka
+                                    city: 
+                                      name: Bengaluru
+                                    area_code: 560061
+                                    district: Chikkanna Garden
+                              vehicle: 
                                 category: TAXI
                           payments:
                             - id: '1'
@@ -1208,7 +1274,12 @@ paths:
                 value:
                   message:
                     context:
-                      country: IND
+                      location: 
+                        country: 
+                          code: IND 
+                        city: 
+                          code: std:080
+                      version: 1.1.0
                       bpp_uri: https://api.example-bpp.in/path/to/url
                       domain: nic2004:60221
                       timestamp: '2023-03-23T04:43:02Z'
@@ -1216,16 +1287,14 @@ paths:
                       transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
                       bpp_id: example-bpp.in
                       message_id: 21e54d3c-9c3b-47c1-aa3b-b0e7b20818ee
-                      city: std:080
-                      core_version: 0.9.4
                       action: on_search
                       bap_uri: https://api.example-bpp.in/path/to/url
                     catalog:
-                      bpp/descriptor:
+                      descriptor:
                         name: Open Mobility Solutions
                         images:
                           - https://example-bpp.com/images/logos/oms.ico
-                      bpp/providers:
+                      providers:
                         - id: '1'
                           descriptor:
                             name: Acme Cabs
@@ -1238,39 +1307,47 @@ paths:
                               price:
                                 value: '175'
                                 currency: INR
-                              fulfillment_id: '1'
-                              payment_id: '1'
+                              fulfillment_ids: 
+                                - '1'
+                              payment_ids: 
+                                - '1'
                             - id: '2'
                               descriptor:
                                 name: Premium
                               price:
                                 value: '250'
                                 currency: INR
-                              fulfillment_id: '1'
-                              payment_id: '1'
+                              fulfillment_ids: 
+                                - '1'
+                              payment_ids: 
+                                - '1'
                             - id: '3'
                               descriptor:
                                 name: Luxury
                               price:
                                 value: '500'
                                 currency: INR
-                              fulfillment_id: '1'
-                              payment_id: '1'
+                              fulfillment_ids: 
+                                - '1'
+                              payment_ids: 
+                                - '1'
                           fulfillments:
-                            - id: '1'
-                              start:
-                                location:
-                                  gps: 12.9099828, 77.6118226
-                              end:
-                                location:
-                                  gps: 12.9351856, 77.6245996
-                              vehicle:
+                            - id: fb5c84d4-1b59-4b9d-96b5-9d79107432c5
+                              stops :
+                                - type: start
+                                  location: 
+                                    gps: 12.9099828, 77.6118226
+                                - type: end
+                                  location: 
+                                    gps: 12.9351856, 77.6245996  
+                              vehicle: 
                                 category: TAXI
                           payments:
                             - id: '1'
                               type: ON-FULFILLMENT
                               collected_by: BPP
-                        - descriptor:
+                        - id: '2'
+                          descriptor:
                             name: Beta Taxis
                             images:
                               - https://example-bpp.com/images/logos/betataxis.ico
@@ -1282,8 +1359,10 @@ paths:
                               price:
                                 value: '200'
                                 currency: INR
-                              fulfillment_id: fb5c84d4-1b59-4b9d-96b5-9d79107432c5
-                              payment_id: '1'
+                              fulfillment_ids: 
+                                - fb5c84d4-1b59-4b9d-96b5-9d79107432c5
+                              payment_ids: 
+                                - '1'
                             - id: '2'
                               descriptor:
                                 name: Beta Max
@@ -1291,27 +1370,31 @@ paths:
                               price:
                                 value: '1500'
                                 currency: INR
-                              fulfillment_id: fb5c84d4-1b59-4b9d-96b5-9d79107432c5
-                              payment_id: '1'
+                              fulfillment_ids: 
+                                - fb5c84d4-1b59-4b9d-96b5-9d79107432c5
+                              payment_ids: 
+                                - '1'
                           fulfillments:
-                            - id: '1'
-                              start:
-                                location:
-                                  gps: 12.9099828, 77.6118226
-                              end:
-                                location:
-                                  gps: 12.9351856, 77.62459969999999
-                              vehicle:
+                            - id: 1
+                              stops :
+                                - type: start
+                                  location: 
+                                    gps: 12.9099828, 77.6118226
+                                - type: end
+                                  location: 
+                                    gps: 12.9351856, 77.62459969999999
+                              vehicle: 
                                 category: TAXI
-                            - id: '2'
-                              start:
-                                location:
-                                  gps: 12.9099828, 77.6118226
-                              end:
-                                location:
-                                  gps: 12.9351856, 77.62459969999999
-                              vehicle:
-                                category: TEMPO-TRAVELLER
+                            - id: 1
+                              stops :
+                                - type: start
+                                  location: 
+                                    gps: 12.9099828, 77.6118226
+                                - type: end
+                                  location: 
+                                    gps: 12.9351856, 77.62459969999999
+                              vehicle: 
+                                category: TEMPO-TRAVELLER                            
                           payments:
                             - id: '1'
                               type: ON-FULFILLMENT
@@ -1320,7 +1403,12 @@ paths:
                 value:
                   message:
                     context:
-                      country: IND
+                      location: 
+                        country: 
+                          code: IND 
+                        city: 
+                          code: std:080
+                      version: 1.1.0
                       bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                       domain: nic2004:60221
                       timestamp: '2023-03-23T04:43:02Z'
@@ -1328,14 +1416,12 @@ paths:
                       transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
                       bpp_id: example-bpp.com
                       message_id: 21e54d3c-9c3b-47c1-aa3b-b0e7b20818ee
-                      city: std:080
-                      core_version: 0.9.4
                       action: on_search
                       bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                     catalog:
-                      bpp/descriptor:
+                      descriptor:
                         name: InstaAuto
-                      bpp/providers:
+                      providers:
                         - id: 1
                           locations:
                             - id: '1'
@@ -1356,37 +1442,38 @@ paths:
                                 currency: INR
                                 minimum_value: '176'
                                 value: 156 - 176 INR
-                              fulfillment_id: fb5c84d4-1b59-4b9d-96b5-9d79107432c5
-                              payment_id: '1'
+                              fulfillment_ids: 
+                                - fb5c84d4-1b59-4b9d-96b5-9d79107432c5
+                              payment_ids: 
+                                - '1'
                           fulfillments:
                             - id: fb5c84d4-1b59-4b9d-96b5-9d79107432c5
-                              start:
-                                location:
-                                  gps: 12.9099828, 77.6118226
-                                  address:
-                                    ward: Uttarahalli Hobli, Ramanjaneyanagar
-                                    country: India
-                                    building: 6th Main Rd
-                                    state: Karnataka 560061
-                                    city: Bengaluru
-                                    locality: Uttarahalli Hobli
-                                    door: 98A, Sarovarm 2nd cross
-                                    area_code: '560061'
-                                    street: Ramanjaneyanagar
-                              end:
-                                location:
-                                  gps: 12.9351856, 77.62459969999999
-                                  address:
-                                    ward: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
-                                    country: India
-                                    building: Rangadore Memorial Hospital
-                                    state: Karnataka
-                                    city: Bengaluru
-                                    locality: Basavanagudi
-                                    door: null
-                                    area_code: ''
-                                    street: Chikkanna Garden
-                              vehicle:
+                              stops :
+                                - type: start
+                                  location: 
+                                    gps: 12.910458, 77.543089
+                                    address: 98 A, 6th Main Rd, Uttarahalli Hobli, Ramanjaneyanagar
+                                    country: 
+                                      name: India
+                                    state: 
+                                      name: Karnataka
+                                    city: 
+                                      name: Bengaluru
+                                    area_code: 560061
+                                    district: Ramanjaneyanagar
+                                - type: end
+                                  location: 
+                                    gps: 12.9535139,  77.5710434
+                                    address: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
+                                    country: 
+                                      name: India
+                                    state: 
+                                      name: Karnataka
+                                    city: 
+                                      name: Bengaluru
+                                    area_code: 560061
+                                    district: Chikkanna Garden
+                              vehicle: 
                                 category: AUTO_RICKSHAW
                           payments:
                             - id: '1'
@@ -1396,7 +1483,12 @@ paths:
                 value:
                   message:
                     context:
-                      country: IND
+                      location: 
+                        country: 
+                          code: IND 
+                        city: 
+                          code: std:080
+                      version: 1.1.0
                       bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                       domain: nic2004:60221
                       timestamp: '2023-03-23T04:43:02Z'
@@ -1404,14 +1496,12 @@ paths:
                       transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
                       bpp_id: example-bpp.com
                       message_id: 21e54d3c-9c3b-47c1-aa3b-b0e7b20818ee
-                      city: std:080
-                      core_version: 0.9.4
                       action: on_search
                       bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                     catalog:
-                      bpp/descriptor:
+                      descriptor:
                         name: InstaAuto
-                      bpp/providers:
+                      providers:
                         - locations:
                             - id: '1'
                               gps: 12.9164682,77.6089985
@@ -1432,65 +1522,89 @@ paths:
                                 minimum_value: '176'
                                 value: 156 - 176 INR
                               tags:
-                                groups/1/descriptor/name: Daytime Charges
-                                groups/1/display: true
-                                groups/1/list/1/descriptor/name: Min Fare upto 2 km
-                                groups/1/list/1/value: ₹ 30 upto 2 km
-                                groups/1/list/2/descriptor/name: Rate above Min. Fare
-                                groups/1/list/2/value: ₹15 / km
-                                groups/1/list/3/descriptor/name: Driver Pickup Charges
-                                groups/1/list/3/value: ₹ 10
-                                groups/1/list/4/descriptor/name: Nominal Fare
-                                groups/1/list/4/descriptor/short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
-                                groups/1/list/4/value: ₹ 10
-                                groups/1/list/5/descriptor/name: Waiting Charges
-                                groups/1/list/5/descriptor/short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
-                                groups/1/list/5/value: ₹ 0 / min
-                                groups/2/descriptor/name: Night Charges
-                                groups/2/display: true
-                                groups/2/list/1/descriptor/name: Night Charges
-                                groups/2/list/1/value: 1.5x of daytime charges applicable at night from 10 PM to 5 PM
-                                groups/2/list/2/descriptor/name: Night Shift Start
-                                groups/2/list/2/value: '22:00:00'
-                                groups/2/list/3/descriptor/name: Night Shift End
-                                groups/2/list/3/value: '05:00:00'
-                                groups/3/descriptor/name: General Information
-                                groups/3/display: true
-                                groups/3/list/1/descriptor/name: Distance to nearest driver
-                                groups/3/list/1/value: 661 m
-                                groups/3/list/2/descriptor/name: Wait time upto
-                                groups/3/list/2/value: 3 min
-                              fulfillment_id: fb5c84d4-1b59-4b9d-96b5-9d79107432c5
-                              payment_id: '1'
+                                - descriptor: 
+                                    name : Daytime Charges
+                                  list: 
+                                    - descriptor: 
+                                        name: Min Fare upto 2 km
+                                      value: ₹ 30 upto 2 km
+                                      display: true
+                                    - descriptor: 
+                                        name: Rate above Min. Fare
+                                      value: ₹15 / km
+                                      display: true
+                                    - descriptor: 
+                                        name:  Driver Pickup Charges
+                                      value: ₹ 10
+                                      display: true
+                                    - descriptor: 
+                                        name:  Nominal Fare
+                                        short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
+                                      value: ₹ 10
+                                      display: true
+                                    - descriptor: 
+                                        name:  Waiting Charges
+                                        short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
+                                      value: ₹ 0 / min
+                                      display: true
+                                - descriptor: 
+                                    name : Night Charges
+                                  list: 
+                                    - descriptor: 
+                                        name: Night Charges
+                                      value: 1.5x of daytime charges applicable at night from 10 PM to 5 AM
+                                      display: true
+                                    - descriptor: 
+                                        name: Night Shift Start
+                                      value: '22:00:00'
+                                      display: true
+                                    - descriptor: 
+                                        name: Night Shift End
+                                      value: '05:00:00'
+                                      display: true
+                                - descriptor: 
+                                    name : General Information
+                                  list: 
+                                    - descriptor: 
+                                        name: Distance to nearest driver
+                                      value: 661 m
+                                      display: true
+                                    - descriptor: 
+                                        name: Wait time upto
+                                      value: 3 min
+                                      display: true
+                              fulfillment_ids: 
+                                - fb5c84d4-1b59-4b9d-96b5-9d79107432c5
+                              payment_ids: 
+                                - '1'
                           fulfillments:
                             - id: fb5c84d4-1b59-4b9d-96b5-9d79107432c5
-                              start:
-                                location:
-                                  gps: 12.9099828, 77.6118226
-                                  address:
-                                    ward: Uttarahalli Hobli, Ramanjaneyanagar
-                                    country: India
-                                    building: 6th Main Rd
-                                    state: Karnataka 560061
-                                    city: Bengaluru
-                                    locality: Uttarahalli Hobli
-                                    door: 98A, Sarovarm 2nd cross
-                                    area_code: '560061'
-                                    street: Ramanjaneyanagar
-                              end:
-                                location:
-                                  gps: 12.9351856, 77.62459969999999
-                                  address:
-                                    ward: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
-                                    country: India
-                                    building: Rangadore Memorial Hospital
-                                    state: Karnataka
-                                    city: Bengaluru
-                                    locality: Basavanagudi
-                                    door: null
-                                    area_code: ''
-                                    street: Chikkanna Garden
-                              vehicle:
+                              stops :
+                                - type: start
+                                  location: 
+                                    gps: 12.910458, 77.543089
+                                    address: 98 A, 6th Main Rd, Uttarahalli Hobli, Ramanjaneyanagar
+                                    country: 
+                                      name: India
+                                    state: 
+                                      name: Karnataka
+                                    city: 
+                                      name: Bengaluru
+                                    area_code: 560061
+                                    district: Ramanjaneyanagar
+                                - type: end
+                                  location: 
+                                    gps: 12.9535139,  77.5710434
+                                    address: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
+                                    country: 
+                                      name: India
+                                    state: 
+                                      name: Karnataka
+                                    city: 
+                                      name: Bengaluru
+                                    area_code: 560061
+                                    district: Chikkanna Garden
+                              vehicle: 
                                 category: AUTO_RICKSHAW
                           payments:
                             - id: '1'
@@ -1500,10 +1614,13 @@ paths:
                 value:
                   context:
                     domain: nic2008:49213
-                    country: IND
-                    city: std:011
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
+                    version: 1.1.0
                     action: on_search
-                    core_version: 0.9.4
                     bap_id: https://example-bap.com
                     bap_uri: https://mock_bap.com/beckn/
                     bpp_id: https://transit-solutions.com
@@ -1513,11 +1630,11 @@ paths:
                     timestamp: '2021-03-23T10:00:40.065Z'
                   message:
                     catalog:
-                      bpp/descriptor:
+                      descriptor:
                         name: Transit Solutions
                         images:
                           - https://transitsolutions.in/logos/logo.ico
-                      bpp/providers:
+                      providers:
                         - id: '1'
                           descriptor:
                             name: Delhi Metro Rail Limited
@@ -1529,7 +1646,8 @@ paths:
                                 name: Single Journey Ticket
                                 images:
                                   - https://delhimetrorail.com/icons/sjt.ico
-                              fulfillment_id: '1'
+                              fulfillment_ids: 
+                                - '1'
                               price:
                                 currency: '35'
                                 value: INR
@@ -1538,7 +1656,8 @@ paths:
                                 name: Single Journey Ticket
                                 images:
                                   - https://delhimetrorail.com/icons/sjt.ico
-                              fulfillment_id: '2'
+                              fulfillment_ids: 
+                                - '2'
                               price:
                                 currency: '65'
                                 value: INR
@@ -1547,7 +1666,8 @@ paths:
                                 name: Single Journey Ticket
                                 images:
                                   - https://delhimetrorail.com/icons/sjt.ico
-                              fulfillment_id: '3'
+                              fulfillment_ids: 
+                                - '3'
                               price:
                                 currency: '55'
                                 value: INR
@@ -1556,7 +1676,8 @@ paths:
                                 name: Return Journey Ticket
                                 images:
                                   - https://delhimetrorail.com/icons/rjt.ico
-                              fulfillment_id: '1'
+                              fulfillment_ids: 
+                                - '1'
                               price:
                                 currency: '60'
                                 value: INR
@@ -1565,7 +1686,8 @@ paths:
                                 name: Return Journey Ticket
                                 images:
                                   - https://delhimetrorail.com/icons/rjt.ico
-                              fulfillment_id: '2'
+                              fulfillment_ids: 
+                                - '2'
                               price:
                                 currency: '90'
                                 value: INR
@@ -1574,7 +1696,8 @@ paths:
                                 name: Return Journey Ticket
                                 images:
                                   - https://delhimetrorail.com/icons/rjt.ico
-                              fulfillment_id: '3'
+                              fulfillment_ids: 
+                                - '3'
                               price:
                                 currency: '100'
                                 value: INR
@@ -1587,70 +1710,102 @@ paths:
                                 currency: INR
                                 value: '250'
                           fulfillments:
-                            - id: '1'
-                              start:
-                                location:
-                                  descriptor:
-                                    name: Dwarka Sector 10 - Blue Line
-                                  gps: 28.5811261,77.0548206
-                              end:
-                                location:
+                            - id: 1
+                              stops :
+                                - type: start
+                                  location: 
+                                    descriptor:
+                                      name: Dwarka Sector 10 - Blue Line
+                                    gps: 28.5811261,77.0548206
+                                - type: end
+                                  location:
                                   descriptor:
                                     name: Patel Chowk - Yellow Line
                                   gps: 28.6230972,77.2099917
-                              vehicle:
+                              vehicle: 
                                 category: METRO
                               tags:
-                                groups/0/list/0/descriptor/name: Transfers
-                                groups/0/list/0/value: '1'
-                                groups/0/list/1/descriptor/name: Duration
-                                groups/0/list/1/value: 60 min
+                                - descriptor: 
+                                    name : Other Information
+                                  list: 
+                                    - descriptor: 
+                                        name: Transfers
+                                      value: '1'
+                                      display: true
+                                    - descriptor: 
+                                        name: Duration
+                                      value: 60 min
+                                      display: true
+                      
                             - id: '2'
-                              start:
-                                location:
-                                  descriptor:
-                                    name: Dwarka Sector 10 - Blue Line
-                                  gps: 28.5811261,77.0548206
-                              end:
-                                location:
-                                  descriptor:
-                                    name: Shivaji Stadium -  Airport Express Line
-                                  gps: 28.6288785,77.2085895
+                              stops :
+                                - type: start
+                                  location: 
+                                    descriptor:
+                                      name: Dwarka Sector 10 - Blue Line
+                                    gps: 28.5811261,77.0548206
+                                - type: end
+                                  location:
+                                    descriptor:
+                                      name: Shivaji Stadium -  Airport Express Line
+                                    gps: 28.6288785,77.2085895    
                               vehicle:
                                 category: METRO
                               tags:
-                                groups/0/list/0/descriptor/name: Transfers
-                                groups/0/list/0/value: '1'
-                                groups/0/list/1/descriptor/name: Duration
-                                groups/0/list/1/value: 45 min
+                                - descriptor: 
+                                    name : Other Information
+                                  list: 
+                                    - descriptor: 
+                                        name: Transfers
+                                      value: '1'
+                                      display: true
+                                    - descriptor: 
+                                        name: Duration
+                                      value: 45 min
+                                      display: true
+                
                             - id: '3'
-                              start:
-                                location:
-                                  descriptor:
-                                    name: Dwarka Sector 21
-                                  gps: 9.05,12.06
-                                time:
-                                  timestamp: '2021-10-15T00:32:19.000Z'
-                              end:
-                                location:
-                                  descriptor:
-                                    name: Shivaji Stadium
-                                  gps: 9.07,12.07
-                                time:
-                                  timestamp: '2021-10-15T00:43:21.000Z'
+                              stops :
+                                - type: start
+                                  location: 
+                                    descriptor:
+                                      name: Dwarka Sector 21
+                                    gps: 9.05,12.06
+                                  time:
+                                    timestamp: '2021-10-15T00:32:19.000Z'
+                                - type: end
+                                  location:
+                                    descriptor:
+                                      name: Shivaji Stadium
+                                    gps: 9.07,12.07
+                                  time:
+                                      timestamp: '2021-10-15T00:43:21.000Z'
                               vehicle:
                                 category: METRO
                               tags:
-                                groups/0/list/0/descriptor/name: Transfers
-                                groups/0/list/0/value: '0'
-                                groups/0/list/1/descriptor/name: Duration
-                                groups/0/list/1/value: 30 min
+                                - descriptor: 
+                                    name : Other Information
+                                  list: 
+                                    - descriptor: 
+                                        name: Transfers
+                                      value: '1'
+                                      display: true
+                                    - descriptor: 
+                                        name: Duration
+                                      value: 30 min
+                                      display: true
                           tags:
-                            groups/0/list/0/descriptor/name: Timetable
-                            groups/0/list/0/value: https://delhimetrorail.com/timetable.html
-                            groups/0/list/1/descriptor/name: GTFS Schedule
-                            groups/0/list/1/value: https://delhimetrorail.com/gtfs
-                            groups/0/list/1/display: false
+                            - descriptor: 
+                                name : Other Information
+                              list: 
+                                - descriptor: 
+                                    name: Timetable
+                                  value: https://delhimetrorail.com/timetable.html
+                                  display: true
+                                - descriptor: 
+                                    name: GTFS Schedule
+                                  value: https://delhimetrorail.com/gtfs
+                                  display: true
             
       responses:
         '200':
@@ -1684,7 +1839,14 @@ paths:
               type: object
               properties:
                 context:
-                  $ref: '#/components/schemas/Context'
+                  allOf:
+                    - $ref: '#/components/schemas/Context'
+                    - properties:
+                        action:
+                          enum:
+                            - on_select
+                      required:
+                        - action
                 message:
                   type: object
                   properties:
@@ -1700,7 +1862,12 @@ paths:
               Return a quote offered by a ride hailing service provider:
                 value:
                   context:
-                    country: IND
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
+                    version: 1.1.0
                     bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                     domain: nic2004:60221
                     timestamp: '2023-03-23T04:48:53Z'
@@ -1708,8 +1875,6 @@ paths:
                     bpp_id: example-bpp.com
                     message_id: 8926b747-0362-4fcc-b795-0994a6287700
                     transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
-                    city: std:080
-                    core_version: 0.9.4
                     action: on_select
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
@@ -1724,39 +1889,65 @@ paths:
                             name: Auto Ride
                             code: RIDE
                           tags:
-                            groups/1/descriptor/name: Daytime Charges
-                            groups/1/display: true
-                            groups/1/list/1/descriptor/name: Min Fare upto 2 km
-                            groups/1/list/1/value: ₹ 30 upto 2 km
-                            groups/1/list/2/descriptor/name: Rate above Min. Fare
-                            groups/1/list/2/value: ₹15 / km
-                            groups/1/list/3/descriptor/name: Driver Pickup Charges
-                            groups/1/list/3/value: ₹ 10
-                            groups/1/list/4/descriptor/name: Nominal Fare
-                            groups/1/list/4/descriptor/short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
-                            groups/1/list/4/value: ₹ 10
-                            groups/1/list/5/descriptor/name: Nominal Fare
-                            groups/1/list/5/descriptor/short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
-                            groups/1/list/5/value: ₹ 0 / min
-                            groups/2/descriptor/name: Waiting Charges
-                            groups/2/display: true
-                            groups/2/list/1/descriptor/name: Night Charges
-                            groups/2/list/1/value: 1.5x of daytime charges applicable at night from 10 PM to 5 PM
-                            groups/2/list/2/descriptor/name: Night Shift Start
-                            groups/2/list/2/value: '22:00:00'
-                            groups/2/list/3/descriptor/name: Night Shift End
-                            groups/2/list/3/value: '05:00:00'
-                            groups/3/descriptor/name: General Information
-                            groups/3/display: true
-                            groups/3/list/1/descriptor/name: Distance to nearest driver
-                            groups/3/list/1/value: 661 m
-                            groups/3/list/2/descriptor/name: Wait time upto
-                            groups/3/list/2/value: 3 min
-                          fulfillment_id: fb5c84d4-1b59-4b9d-96b5-9d79107432c5
-                          payment_id: '1'
+                            - descriptor: 
+                                name : Daytime Charges
+                              list: 
+                                - descriptor: 
+                                    name: Min Fare upto 2 km
+                                  value: ₹ 30 upto 2 km
+                                  display: true
+                                - descriptor: 
+                                    name: Rate above Min. Fare
+                                  value: ₹15 / km
+                                  display: true
+                                - descriptor: 
+                                    name:  Driver Pickup Charges
+                                  value: ₹ 10
+                                  display: true
+                                - descriptor: 
+                                    name:  Nominal Fare
+                                    short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
+                                  value: ₹ 10
+                                  display: true
+                                - descriptor: 
+                                    name:  Waiting Charges
+                                    short_desc: Driver may quote extra to cover for traffic, chance of return trip, etc.
+                                  value: ₹ 0 / min
+                                  display: true
+                            - descriptor: 
+                                name : Night Charges
+                              list: 
+                                - descriptor: 
+                                    name: Night Charges
+                                  value: 1.5x of daytime charges applicable at night from 10 PM to 5 AM
+                                  display: true
+                                - descriptor: 
+                                    name: Night Shift Start
+                                  value: '22:00:00'
+                                  display: true
+                                - descriptor: 
+                                    name: Night Shift End
+                                  value: '05:00:00'
+                                  display: true
+                            - descriptor: 
+                                name : General Information
+                              list: 
+                                - descriptor: 
+                                    name: Distance to nearest driver
+                                  value: 661 m
+                                  display: true
+                                - descriptor: 
+                                    name: Wait time upto
+                                  value: 3 min
+                                  display: true
+                          fulfillment_ids: 
+                            - fb5c84d4-1b59-4b9d-96b5-9d79107432c5
+                          payment_ids: 
+                            - '1'
                       quote:
-                        value: '76'
-                        currency: INR
+                        price:
+                          value: '76'
+                          currency: INR
                         breakup:
                           - title: Base Fare
                             price:
@@ -1767,52 +1958,54 @@ paths:
                               value: '56'
                               currency: INR
                         ttl: P200S
-                      fulfillment:
-                        id: fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
-                        state:
-                          descriptor:
-                            name: Found drivers
-                            code: AGENTS_FOUND
-                        start:
-                          location:
-                            gps: 13.008935, 77.6444085
-                            address:
-                              ward: Uttarahalli Hobli, Ramanjaneyanagar
-                              country: India
-                              building: 6th Main Rd
-                              state: Karnataka 560061
-                              city: Bengaluru
-                              locality: Uttarahalli Hobli
-                              door: 98A, Sarovarm 2nd cross
-                              area_code: '560061'
-                              street: Ramanjaneyanagar
-                        end:
-                          location:
-                            gps: 12.9711869, 77.5868122
-                            address:
-                              ward: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
-                              country: India
-                              building: Rangadore Memorial Hospital
-                              state: Karnataka
-                              city: Bengaluru
-                              locality: Basavanagudi
-                              door: null
-                              area_code: ''
-                              street: Chikkanna Garden
-                        agent:
-                          name: RAGHAVENDRA J
-                          rateable: true
-                          rating: '5'
-                        vehicle:
-                          category: AUTO_RICKSHAW
+                      fulfillments:
+                        - id: fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
+                          state:
+                            descriptor:
+                              name: Found drivers
+                              code: AGENTS_FOUND
+                          stops :
+                            - type: start
+                              location: 
+                                gps: 12.910458, 77.543089
+                                address: 98 A, 6th Main Rd, Uttarahalli Hobli, Ramanjaneyanagar
+                                country: 
+                                  name: India
+                                state: 
+                                  name: Karnataka
+                                city: 
+                                  name: Bengaluru
+                                area_code: 560061
+                                district: Ramanjaneyanagar
+                            - type: end
+                              location: 
+                                gps: 12.9535139,  77.5710434
+                                address: Basavanagudi, Chikkanna Garden, Rangadore Memorial Hospital
+                                country: 
+                                  name: India
+                                state: 
+                                  name: Karnataka
+                                city: 
+                                  name: Bengaluru
+                                area_code: 560061
+                                district: Chikkanna Garden   
+                          agent:
+                            person: 
+                              name: RAGHAVENDRA J
+                            rating: '5'
+                          vehicle:
+                            category: AUTO_RICKSHAW
               Return a quote offered by a public transit service provider:
                 value:
                   context:
                     domain: nic2008:49213
-                    country: IND
-                    city: std:011
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
+                    version: 1.1.0
                     action: on_select
-                    core_version: 0.9.4
                     bap_id: https://example-bap.com
                     bap_uri: https://mock_bap.com/beckn/
                     bpp_id: https://transit-solutions.com
@@ -1829,42 +2022,56 @@ paths:
                             name: Single Journey Ticket
                             images:
                               - https://delhimetrorail.com/icons/sjt.ico
-                          fulfillment_id: '3'
+                          fulfillment_ids: 
+                            - '3'
                           price:
                             currency: '55'
                             value: INR
                           tags:
-                            groups/0/list/0/descriptor/name: Validity
-                            groups/0/list/0/value: 24 hours from the time of purchase
+                            - descriptor: 
+                              name : Other Information
+                              list: 
+                                - descriptor: 
+                                    name: Validity
+                                  value: '24 hours from the time of purchase'
+                                  display: true 
                       provider:
                         id: '1'
                         descriptor:
                           name: Delhi Metro Rail Limited
                           images:
                             - https://delhimetrorail.com/logos/logo.ico
-                      fulfillment:
-                        id: '3'
-                        start:
-                          location:
-                            descriptor:
-                              name: Dwarka Sector 21
-                            gps: 9.05,12.06
-                          time:
-                            timestamp: '2021-10-15T00:32:19.000Z'
-                        end:
-                          location:
-                            descriptor:
-                              name: Shivaji Stadium
-                            gps: 9.07,12.07
-                          time:
-                            timestamp: '2021-10-15T00:43:21.000Z'
-                        vehicle:
-                          category: METRO
-                        tags:
-                          groups/0/list/0/descriptor/name: Transfers
-                          groups/0/list/0/value: '0'
-                          groups/0/list/1/descriptor/name: Duration
-                          groups/0/list/1/value: 30 min
+                      fulfillments:
+                        - id: '3'
+                          stops :
+                            - type: start
+                              location: 
+                                descriptor:
+                                  name: Dwarka Sector 21
+                                gps: 9.05,12.06
+                              time:
+                                timestamp: '2021-10-15T00:32:19.000Z'
+                            - type: end
+                              location:
+                                descriptor:
+                                  name: Shivaji Stadium
+                                gps: 9.07,12.07
+                              time:
+                                timestamp: '2021-10-15T00:43:21.000Z'
+                          vehicle:
+                            category: METRO
+                          tags:
+                            - descriptor: 
+                                name : Other Information
+                              list: 
+                                - descriptor: 
+                                    name: Transfers
+                                  value: '1'
+                                  display: true
+                                - descriptor: 
+                                    name: Duration
+                                  value: 30 min
+                                  display: true
                       quote:
                         price:
                           value: '60.5'
