@@ -1,4 +1,0 @@
-[submodule "api/core-0.9.x-lts"]
-	path = api/core-0.9.x-lts
-	url = https://github.com/beckn/protocol-specifications
-	branch = core-0.9.x-lts
