@@ -3,9 +3,9 @@ Recommendations for beckn protocol-enabled mobiity application developers
 
 ## Latest Version
 
-0.8.0
+0.9.0
 
-This version is an adaptation of beckn protocol [core version 0.9.4 LTS](https://github.com/beckn/protocol-specifications/tree/core-0.9.4)
+This version is an adaptation of beckn protocol [core version 1.0.0 LTS](https://github.com/beckn/protocol-specifications/releases/tag/core-v1.1.0)
 
 ## Earlier Versions
 
