@@ -586,7 +586,7 @@ paths:
                       payments:
                         - id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                           type: ON-FULFILLMENT
-                          statu: NOT-PAID
+                          status: NOT-PAID
                           params:
                             amount: '81'
                             currency: INR
@@ -1014,26 +1014,7 @@ paths:
               required:
                 - context
                 - message
-      responses:
-        '200':
-          description: Acknowledgement of message received
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: object
-                    properties:
-                      ack:
-                        $ref: '#/components/schemas/Ack'
-                    required:
-                      - ack
-                  error:
-                    $ref: '#/components/schemas/Error'
-                required:
-                  - message
-              examples:
+            examples:
                 Provide a rating:
                   value:
                     context:
@@ -1057,6 +1038,26 @@ paths:
                         - id: b0462745-f6c9-4100-bbe7-4fa3648b6b40
                           rating_category: DRIVER
                           value: 4
+      responses:
+        '200':
+          description: Acknowledgement of message received
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: object
+                    properties:
+                      ack:
+                        $ref: '#/components/schemas/Ack'
+                    required:
+                      - ack
+                  error:
+                    $ref: '#/components/schemas/Error'
+                required:
+                  - message
+              
                 
   /support:
     post:
