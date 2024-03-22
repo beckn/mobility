@@ -5457,29 +5457,18 @@ components:
       description: Describes duration as per ISO8601 format
       type: string
     Error:
-      description: Describes an error object
+      description: 'Describes an error object that is returned by a BAP, BPP or BG as a response or callback to an action by another network participant. This object is sent when any request received by a network participant is unacceptable. This object can be sent either during Ack or with the callback.'
       type: object
       properties:
-        type:
-          type: string
-          enum:
-            - CONTEXT-ERROR
-            - CORE-ERROR
-            - DOMAIN-ERROR
-            - POLICY-ERROR
-            - JSON-SCHEMA-ERROR
         code:
           type: string
-          description: Beckn specific error code. For full list of error codes, refer to error_codes.md in the root folder of this repo
-        path:
+          description: 'Standard error code. For full list of error codes, refer to docs/protocol-drafts/BECKN-005-ERROR-CODES-DRAFT-01.md of this repo"'
+        paths:
           type: string
           description: Path to json schema generating the error. Used only during json schema validation errors
         message:
           type: string
-          description: Human readable message describing the error
-      required:
-        - type
-        - code
+          description: Human readable message describing the error. Used mainly for logging. Not recommended to be shown to the user.
     Fee:
       description: A fee applied on a particular entity
       type: object
