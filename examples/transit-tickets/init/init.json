@@ -1,0 +1,38 @@
+{
+  "context": {
+    "domain": "nic2004:60221",
+    "location": {
+      "country": {
+        "code": "IND"
+      },
+      "city": {
+        "code": "std:080"
+      }
+    },
+    "action": "init",
+    "version": "1.1.0",
+    "bap_id": "https://example-bap.com",
+    "bap_uri": "https://mock_bap.com/beckn/",
+    "bpp_id": "https://kmrl-bpp.com",
+    "bpp_uri": "https://kmrl-bpp.com/beckn/",
+    "transaction_id": "6f339232-2bc3-44d2-915c-30d2b053ce1d",
+    "message_id": "fde8b8b6-c2e5-49f7-b254-720843d528bd",
+    "timestamp": "2021-03-23T10:00:40.065Z"
+  },
+  "message": {
+    "order": {
+      "items": [
+        {
+          "id": "1"
+        }
+      ],
+      "provider": {
+        "id": "1"
+      },
+      "billing": {
+        "name": "John Doe",
+        "email": "john.doe@example.com"
+      }
+    }
+  }
+}

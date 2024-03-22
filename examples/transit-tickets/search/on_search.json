@@ -1,0 +1,331 @@
+{
+  "context": {
+    "domain": "nic2008:49213",
+    "location": {
+      "country": {
+        "code": "IND"
+      },
+      "city": {
+        "code": "std:080"
+      }
+    },
+    "version": "1.1.0",
+    "action": "on_search",
+    "bap_id": "https://example-bap.com",
+    "bap_uri": "https://mock_bap.com/beckn/",
+    "bpp_id": "https://transit-solutions.com",
+    "bpp_uri": "https://api.transit-solutions.com/beckn/",
+    "transaction_id": "6f339232-2bc3-44d2-915c-30d2b053ce1d",
+    "message_id": "fde8b8b6-c2e5-49f7-b254-720843d528bd",
+    "timestamp": "2021-03-23T10:00:40.065Z"
+  },
+  "message": {
+    "catalog": {
+      "descriptor": {
+        "name": "Transit Solutions",
+        "images": [
+          "https://transitsolutions.in/logos/logo.ico"
+        ]
+      },
+      "providers": [
+        {
+          "id": "1",
+          "descriptor": {
+            "name": "Delhi Metro Rail Limited",
+            "images": [
+              "https://delhimetrorail.com/logos/logo.ico"
+            ]
+          },
+          "items": [
+            {
+              "id": "1",
+              "descriptor": {
+                "name": "Single Journey Ticket",
+                "images": [
+                  "https://delhimetrorail.com/icons/sjt.ico"
+                ]
+              },
+              "fulfillment_ids": [
+                "1"
+              ],
+              "price": {
+                "currency": "35",
+                "value": "INR"
+              }
+            },
+            {
+              "id": "2",
+              "descriptor": {
+                "name": "Single Journey Ticket",
+                "images": [
+                  "https://delhimetrorail.com/icons/sjt.ico"
+                ]
+              },
+              "fulfillment_ids": [
+                "2"
+              ],
+              "price": {
+                "currency": "65",
+                "value": "INR"
+              }
+            },
+            {
+              "id": "3",
+              "descriptor": {
+                "name": "Single Journey Ticket",
+                "images": [
+                  "https://delhimetrorail.com/icons/sjt.ico"
+                ]
+              },
+              "fulfillment_ids": [
+                "3"
+              ],
+              "price": {
+                "currency": "55",
+                "value": "INR"
+              }
+            },
+            {
+              "id": "4",
+              "descriptor": {
+                "name": "Return Journey Ticket",
+                "images": [
+                  "https://delhimetrorail.com/icons/rjt.ico"
+                ]
+              },
+              "fulfillment_ids": [
+                "1"
+              ],
+              "price": {
+                "currency": "60",
+                "value": "INR"
+              }
+            },
+            {
+              "id": "5",
+              "descriptor": {
+                "name": "Return Journey Ticket",
+                "images": [
+                  "https://delhimetrorail.com/icons/rjt.ico"
+                ]
+              },
+              "fulfillment_ids": [
+                "2"
+              ],
+              "price": {
+                "currency": "90",
+                "value": "INR"
+              }
+            },
+            {
+              "id": "6",
+              "descriptor": {
+                "name": "Return Journey Ticket",
+                "images": [
+                  "https://delhimetrorail.com/icons/rjt.ico"
+                ]
+              },
+              "fulfillment_ids": [
+                "3"
+              ],
+              "price": {
+                "currency": "100",
+                "value": "INR"
+              }
+            },
+            {
+              "id": "7",
+              "descriptor": {
+                "name": "Monthly Pass",
+                "images": [
+                  "https://delhimetrorail.com/icons/mp.ico"
+                ]
+              },
+              "price": {
+                "currency": "INR",
+                "value": "250"
+              }
+            }
+          ],
+          "fulfillments": [
+            {
+              "id": 1,
+              "stops": [
+                {
+                  "type": "start",
+                  "location": {
+                    "descriptor": {
+                      "name": "Dwarka Sector 10 - Blue Line"
+                    },
+                    "gps": "28.5811261,77.0548206"
+                  }
+                },
+                {
+                  "type": "end",
+                  "location": null,
+                  "descriptor": {
+                    "name": "Patel Chowk - Yellow Line"
+                  },
+                  "gps": "28.6230972,77.2099917"
+                }
+              ],
+              "vehicle": {
+                "category": "METRO"
+              },
+              "tags": [
+                {
+                  "descriptor": {
+                    "name": "Other Information"
+                  },
+                  "list": [
+                    {
+                      "descriptor": {
+                        "name": "Transfers"
+                      },
+                      "value": "1",
+                      "display": true
+                    },
+                    {
+                      "descriptor": {
+                        "name": "Duration"
+                      },
+                      "value": "60 min",
+                      "display": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "2",
+              "stops": [
+                {
+                  "type": "start",
+                  "location": {
+                    "descriptor": {
+                      "name": "Dwarka Sector 10 - Blue Line"
+                    },
+                    "gps": "28.5811261,77.0548206"
+                  }
+                },
+                {
+                  "type": "end",
+                  "location": {
+                    "descriptor": {
+                      "name": "Shivaji Stadium -  Airport Express Line"
+                    },
+                    "gps": "28.6288785,77.2085895"
+                  }
+                }
+              ],
+              "vehicle": {
+                "category": "METRO"
+              },
+              "tags": [
+                {
+                  "descriptor": {
+                    "name": "Other Information"
+                  },
+                  "list": [
+                    {
+                      "descriptor": {
+                        "name": "Transfers"
+                      },
+                      "value": "1",
+                      "display": true
+                    },
+                    {
+                      "descriptor": {
+                        "name": "Duration"
+                      },
+                      "value": "45 min",
+                      "display": true
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "3",
+              "stops": [
+                {
+                  "type": "start",
+                  "location": {
+                    "descriptor": {
+                      "name": "Dwarka Sector 21"
+                    },
+                    "gps": "9.05,12.06"
+                  },
+                  "time": {
+                    "timestamp": "2021-10-15T00:32:19.000Z"
+                  }
+                },
+                {
+                  "type": "end",
+                  "location": {
+                    "descriptor": {
+                      "name": "Shivaji Stadium"
+                    },
+                    "gps": "9.07,12.07"
+                  },
+                  "time": {
+                    "timestamp": "2021-10-15T00:43:21.000Z"
+                  }
+                }
+              ],
+              "vehicle": {
+                "category": "METRO"
+              },
+              "tags": [
+                {
+                  "descriptor": {
+                    "name": "Other Information"
+                  },
+                  "list": [
+                    {
+                      "descriptor": {
+                        "name": "Transfers"
+                      },
+                      "value": "1",
+                      "display": true
+                    },
+                    {
+                      "descriptor": {
+                        "name": "Duration"
+                      },
+                      "value": "30 min",
+                      "display": true
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "tags": [
+            {
+              "descriptor": {
+                "name": "Other Information"
+              },
+              "list": [
+                {
+                  "descriptor": {
+                    "name": "Timetable"
+                  },
+                  "value": "https://delhimetrorail.com/timetable.html",
+                  "display": true
+                },
+                {
+                  "descriptor": {
+                    "name": "GTFS Schedule"
+                  },
+                  "value": "https://delhimetrorail.com/gtfs",
+                  "display": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

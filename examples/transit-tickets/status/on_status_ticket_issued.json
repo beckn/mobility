@@ -1,0 +1,166 @@
+{
+  "context": {
+    "domain": "nic2004:60221",
+    "location": {
+      "country": {
+        "code": "IND"
+      },
+      "city": {
+        "code": "std:080"
+      }
+    },
+    "version": "1.1.0",
+    "action": "on_status",
+    "bap_id": "https://example-bap.com",
+    "bap_uri": "https://mock_bap.com/beckn/",
+    "bpp_id": "https://kmrl-bpp.com",
+    "bpp_uri": "https://kmrl-bpp.com/beckn/",
+    "transaction_id": "6f339232-2bc3-44d2-915c-30d2b053ce1d",
+    "message_id": "fde8b8b6-c2e5-49f7-b254-720843d528bd",
+    "timestamp": "2021-03-23T10:00:40.065Z"
+  },
+  "message": {
+    "order": {
+      "id": "123413",
+      "items": [
+        {
+          "id": "3",
+          "descriptor": {
+            "name": "Single Journey Ticket",
+            "images": [
+              "https://delhimetrorail.com/icons/sjt.ico"
+            ]
+          },
+          "fulfillment_ids": [
+            "3"
+          ],
+          "price": {
+            "currency": "55",
+            "value": "INR"
+          }
+        }
+      ],
+      "provider": {
+        "id": "1",
+        "descriptor": {
+          "name": "Delhi Metro Rail Limited",
+          "images": [
+            "https://delhimetrorail.com/logos/logo.ico"
+          ]
+        }
+      },
+      "fulfillments": [
+        {
+          "id": "3",
+          "state": {
+            "descriptor": {
+              "name": "Ticket Issued"
+            }
+          },
+          "stops": [
+            {
+              "type": "start",
+              "location": {
+                "descriptor": {
+                  "name": "Dwarka Sector 21"
+                },
+                "gps": "9.05,12.06"
+              },
+              "time": {
+                "timestamp": "2021-10-15T00:32:19.000Z"
+              }
+            },
+            {
+              "type": "end",
+              "location": {
+                "descriptor": {
+                  "name": "Shivaji Stadium"
+                },
+                "gps": "9.07,12.07"
+              },
+              "time": {
+                "timestamp": "2021-10-15T00:43:21.000Z"
+              }
+            }
+          ],
+          "vehicle": {
+            "category": "METRO"
+          },
+          "tags": [
+            {
+              "descriptor": {
+                "name": "Other Information"
+              },
+              "list": [
+                {
+                  "descriptor": {
+                    "name": "Transfers"
+                  },
+                  "value": "0",
+                  "display": true
+                },
+                {
+                  "descriptor": {
+                    "name": "Duration"
+                  },
+                  "value": "30 min",
+                  "display": true
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "billing": {
+        "name": "John Doe",
+        "email": "john.doe@example.com"
+      },
+      "quote": {
+        "price": {
+          "currency": "60.5",
+          "value": "INR"
+        },
+        "breakup": [
+          {
+            "title": "Single Journey Ticket X 1",
+            "price": {
+              "currency": "INR",
+              "value": "55"
+            }
+          },
+          {
+            "title": "CGST @ 5%",
+            "price": {
+              "currency": "INR",
+              "value": "2.75"
+            }
+          },
+          {
+            "title": "SGST @ 5%",
+            "price": {
+              "currency": "INR",
+              "value": "2.75"
+            }
+          }
+        ]
+      },
+      "payments": [
+        {
+          "status": "PAID",
+          "url": "https://pay.razorpay.com?amt=60.5&cur=INR&ref=24566345563",
+          "params": {
+            "amount": "60.5",
+            "currency": "INR",
+            "transaction_id": "24566345563"
+          },
+          "time": {
+            "range": {
+              "start": "2021-03-23T10:00:40.065Z",
+              "end": "2021-03-24T10:00:40.065Z"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

@@ -3,9 +3,9 @@ Recommendations for beckn protocol-enabled mobiity application developers
 
 ## Latest Version
 
-0.8.0
+0.8.3
 
-This version is an adaptation of beckn protocol [core version 0.9.4 LTS](https://github.com/beckn/protocol-specifications/tree/core-0.9.4)
+This version is an adaptation of beckn protocol [core version V1.1.0](https://github.com/beckn/protocol-specifications/tree/core-v1.1.0)
 
 ## Earlier Versions
 
@@ -13,6 +13,7 @@ The earlier versions of beckn protocol for mobility was in-sync with core. Hence
 
 | Version | Release Date       | Core Version | Author       | Comments                                                                               |
 |---------|--------------------|--------------|--------------|----------------------------------------------------------------------------------------|
+| 0.8.3   | March 20th, 2024    | 1.1.0        | Ravi Prakash | Compatible with LTS version of core                                                    |
 | 0.8.0   | April 4th, 2023    | 0.9.4        | Ravi Prakash | Compatible with LTS version of core                                                    |
 | 0.7.0   | November14th, 2022 | 0.9.3        | Ravi Prakash | Re-initialized Mobility Adaptation specification with independent versioning from core |
 
