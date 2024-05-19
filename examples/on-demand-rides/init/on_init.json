@@ -22,9 +22,9 @@
   "message": {
     "order": {
       "provider": {
-        "id": "e8542642-0f4a-454c-9a9f-f46110c367a3",
+        "id": "1",
         "descriptor": {
-          "name": "Raghavendra J"
+          "name": "Acme Taxis"
         }
       },
       "items": [
@@ -176,12 +176,6 @@
       "fulfillments": [
         {
           "id": "fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e",
-          "state": {
-            "descriptor": {
-              "name": "Found drivers",
-              "code": "AGENTS_FOUND"
-            }
-          },
           "stops": [
             {
               "type": "start",
@@ -220,12 +214,6 @@
               }
             }
           ],
-          "agent": {
-            "person": {
-              "name": "RAGHAVENDRA J"
-            },
-            "rating": "5"
-          },
           "vehicle": {
             "category": "AUTO_RICKSHAW"
           },

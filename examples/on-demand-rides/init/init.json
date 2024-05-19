@@ -22,7 +22,7 @@
   "message": {
     "order": {
       "provider": {
-        "id": "7f7896dd-787e-4a0b-8675-e9e6fe93bb8f"
+        "id": "1"
       },
       "items": [
         {
@@ -76,12 +76,6 @@
               }
             }
           ],
-          "agent": {
-            "person": {
-              "name": "RAGHAVENDRA J"
-            },
-            "rating": "5"
-          },
           "customer": {
             "person": {
               "name": "John Doe",
@@ -93,9 +87,6 @@
             "contact": {
               "phone": "+91-9897867564"
             }
-          },
-          "vehicle": {
-            "category": "AUTO_RICKSHAW"
           }
         }
       ],

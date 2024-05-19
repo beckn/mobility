@@ -28,6 +28,9 @@
           "id": "5777a0bf-9a08-49aa-a97d-1e5561a9622e"
         }
       ],
+      "provider": {
+        "id": "1"
+      }, 
       "fulfillments": [
         {
           "stops": [

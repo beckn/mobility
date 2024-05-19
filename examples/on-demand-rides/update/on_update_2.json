@@ -23,9 +23,9 @@
     "order": {
       "id": "ABC1234",
       "provider": {
-        "id": "e8542642-0f4a-454c-9a9f-f46110c367a3",
+        "id": "1",
         "descriptor": {
-          "name": "Raghavendra J"
+          "name": "Acme Taxis"
         }
       },
       "items": [
