@@ -167,6 +167,8 @@ paths:
                     order:
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
+                      provider: 
+                        id: "1"
                       fulfillments:
                         - stops :
                             - type: start
@@ -200,6 +202,8 @@ paths:
                     order:
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
+                      provider: 
+                        id: "1"
                       fulfillments:
                         - stops :
                             - type: start
@@ -250,6 +254,8 @@ paths:
                     order:
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
+                      provider: 
+                        id: "1"
                       fulfillments:
                         - stops :
                             - type: start
@@ -378,7 +384,7 @@ paths:
                   message:
                     order:
                       provider:
-                        id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+                        id: "1"
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
                           fulfillment_ids: 
@@ -412,10 +418,6 @@ paths:
                                   name: Bengaluru
                                 area_code: 560061
                                 district: Chikkanna Garden
-                          agent:
-                            person:
-                              name: RAGHAVENDRA J
-                            rating: '5'
                           customer:
                             person:
                               name: John Doe
@@ -424,14 +426,10 @@ paths:
                                 name: English
                             contact:
                               phone: +91-9897867564
-                          vehicle:
-                            category: AUTO_RICKSHAW
                       payment:
                         - id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                           type: ON-FULFILLMENT
-                          collected_by: BPP
-                      
-                            
+                          collected_by: BPP     
               Initialize the order by providing billing details:
                 value:
                   context:
@@ -531,11 +529,8 @@ paths:
                     bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
                     order:
-                      id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
                       provider:
-                        id: e8542642-0f4a-454c-9a9f-f46110c367a3
-                        descriptor:
-                          name: Raghavendra J
+                        id: "1"
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e  
                           fulfillment_ids: 
@@ -569,10 +564,6 @@ paths:
                                   name: Bengaluru
                                 area_code: 560061
                                 district: Chikkanna Garden
-                          agent:
-                            person:
-                              name: RAGHAVENDRA J
-                            rating: '5'
                           customer:
                             person:
                               name: John Doe
@@ -1034,7 +1025,7 @@ paths:
                       action: rating
                       bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                     message:
-                      rating: 
+                      ratings: 
                         - id: b0462745-f6c9-4100-bbe7-4fa3648b6b40
                           rating_category: DRIVER
                           value: 4
@@ -1167,8 +1158,7 @@ paths:
             examples:
               Return a single provider mobility catalog:
                 value:
-                  message:
-                    context:
+                  context:
                       location: 
                         country: 
                           code: IND 
@@ -1184,6 +1174,7 @@ paths:
                       message_id: 21e54d3c-9c3b-47c1-aa3b-b0e7b20818ee
                       action: on_search
                       bap_uri: https://api.example-bpp.in/path/to/url
+                  message:
                     catalog:
                       descriptor:
                         name: Acme Taxis
@@ -1273,8 +1264,7 @@ paths:
                               collected_by: BPP
               Return a mobility catalog with multiple providers:
                 value:
-                  message:
-                    context:
+                  context:
                       location: 
                         country: 
                           code: IND 
@@ -1290,6 +1280,7 @@ paths:
                       message_id: 21e54d3c-9c3b-47c1-aa3b-b0e7b20818ee
                       action: on_search
                       bap_uri: https://api.example-bpp.in/path/to/url
+                  message:
                     catalog:
                       descriptor:
                         name: Open Mobility Solutions
@@ -1402,13 +1393,12 @@ paths:
                               collected_by: BPP
               Return a mobility catalog with no provider:
                 value:
-                  message:
-                    context:
-                      location: 
-                        country: 
-                          code: IND 
-                        city: 
-                          code: std:080
+                  context:
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
                       version: 1.1.0
                       bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
                       domain: nic2004:60221
@@ -1419,6 +1409,7 @@ paths:
                       message_id: 21e54d3c-9c3b-47c1-aa3b-b0e7b20818ee
                       action: on_search
                       bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
+                  message:
                     catalog:
                       descriptor:
                         name: InstaAuto
@@ -1482,23 +1473,23 @@ paths:
                               collected_by: BPP
               Return a single provider mobility catalog (with some optional tags):
                 value:
+                  context:
+                    location: 
+                      country: 
+                        code: IND 
+                      city: 
+                        code: std:080
+                    version: 1.1.0
+                    bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+                    domain: nic2004:60221
+                    timestamp: '2023-03-23T04:43:02Z'
+                    bap_id: example-bap.com
+                    transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
+                    bpp_id: example-bpp.com
+                    message_id: 21e54d3c-9c3b-47c1-aa3b-b0e7b20818ee
+                    action: on_search
+                    bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                   message:
-                    context:
-                      location: 
-                        country: 
-                          code: IND 
-                        city: 
-                          code: std:080
-                      version: 1.1.0
-                      bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
-                      domain: nic2004:60221
-                      timestamp: '2023-03-23T04:43:02Z'
-                      bap_id: example-bap.com
-                      transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
-                      bpp_id: example-bpp.com
-                      message_id: 21e54d3c-9c3b-47c1-aa3b-b0e7b20818ee
-                      action: on_search
-                      bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
                     catalog:
                       descriptor:
                         name: InstaAuto
@@ -1881,9 +1872,9 @@ paths:
                   message:
                     order:
                       provider:
-                        id: e8542642-0f4a-454c-9a9f-f46110c367a3
+                        id: "1"
                         descriptor:
-                          name: Raghavendra J
+                          name: Acme Taxis
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
                           descriptor:
@@ -1961,10 +1952,6 @@ paths:
                         ttl: P200S
                       fulfillments:
                         - id: fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
-                          state:
-                            descriptor:
-                              name: Found drivers
-                              code: AGENTS_FOUND
                           stops :
                             - type: start
                               location: 
@@ -1990,10 +1977,6 @@ paths:
                                   name: Bengaluru
                                 area_code: 560061
                                 district: Chikkanna Garden   
-                          agent:
-                            person: 
-                              name: RAGHAVENDRA J
-                            rating: '5'
                           vehicle:
                             category: AUTO_RICKSHAW
               Return a quote offered by a public transit service provider:
@@ -2164,9 +2147,9 @@ paths:
                   message:
                     order:
                       provider:
-                        id: e8542642-0f4a-454c-9a9f-f46110c367a3
+                        id: '1'
                         descriptor:
-                          name: Raghavendra J
+                          name: "Acme Taxis"
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
                           descriptor:
@@ -2251,10 +2234,6 @@ paths:
                               currency: INR
                       fulfillments:
                         - id: fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
-                          state:
-                            descriptor:
-                              name: Found drivers
-                              code: AGENTS_FOUND
                           stops :
                             - type: start
                               location: 
@@ -2280,10 +2259,6 @@ paths:
                                   name: Bengaluru
                                 area_code: 560061
                                 district: Chikkanna Garden   
-                          agent:
-                            person: 
-                              name: RAGHAVENDRA J
-                            rating: '5'
                           vehicle:
                             category: AUTO_RICKSHAW
                           customer:
@@ -2597,9 +2572,9 @@ paths:
                     order:
                       id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
                       provider:
-                        id: e8542642-0f4a-454c-9a9f-f46110c367a3
+                        id: "1"
                         descriptor:
-                          name: Raghavendra J
+                          name: Acme Tais
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
                           descriptor:
@@ -3115,9 +3090,9 @@ paths:
                     order:
                       id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
                       provider:
-                        id: e8542642-0f4a-454c-9a9f-f46110c367a3
+                        id: "1"
                         descriptor:
-                          name: Raghavendra J
+                          name: Acme Taxis
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
                           descriptor:
@@ -3264,9 +3239,9 @@ paths:
                     order:
                       id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
                       provider:
-                        id: e8542642-0f4a-454c-9a9f-f46110c367a3
+                        id: "1"
                         descriptor:
-                          name: Raghavendra J
+                          name: Acme Taxis
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
                           descriptor:
@@ -3591,9 +3566,9 @@ paths:
                     order:
                       id: ABC1234
                       provider:
-                        id: e8542642-0f4a-454c-9a9f-f46110c367a3
+                        id: "1"
                         descriptor:
-                          name: Raghavendra J
+                          name: Acme Taxis
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
                           descriptor:
@@ -3756,9 +3731,9 @@ paths:
                     order:
                       id: ABC1234
                       provider:
-                        id: e8542642-0f4a-454c-9a9f-f46110c367a3
+                        id: "1"
                         descriptor:
-                          name: Raghavendra J
+                          name: Acme Taxis
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
                           descriptor:
@@ -3973,9 +3948,9 @@ paths:
                     order:
                       id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
                       provider:
-                        id: e8542642-0f4a-454c-9a9f-f46110c367a3
+                        id: "1"
                         descriptor:
-                          name: Raghavendra J
+                          name: Acme Taxis
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
                           descriptor:
@@ -4138,9 +4113,9 @@ paths:
                     order:
                       id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
                       provider:
-                        id: e8542642-0f4a-454c-9a9f-f46110c367a3
+                        id: "1"
                         descriptor:
-                          name: Raghavendra J
+                          name: Acme Taxis
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
                           descriptor:
@@ -4304,9 +4279,9 @@ paths:
                     order:
                       id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
                       provider:
-                        id: e8542642-0f4a-454c-9a9f-f46110c367a3
+                        id: "1"
                         descriptor:
-                          name: Raghavendra J
+                          name: Acme Taxis
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
                           descriptor:
@@ -4470,9 +4445,9 @@ paths:
                     order:
                       id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
                       provider:
-                        id: e8542642-0f4a-454c-9a9f-f46110c367a3
+                        id: "1"
                         descriptor:
-                          name: Raghavendra J
+                          name: Acme Taxis
                       items:
                         - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
                           descriptor:
