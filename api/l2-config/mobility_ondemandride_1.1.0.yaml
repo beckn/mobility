@@ -5448,10 +5448,10 @@ components:
         name:
           description: Name of the domain
           type: string
-          enum: 
-            - mobility:ondemandride
         code:
           description: 'Standard code representing the domain. The standard is usually published as part of the network policy. Furthermore, the network facilitator should also provide a mechanism to provide the supported domains of a network.'
+          enum: 
+            - mobility:ondemandride
         additional_info:
           description: A url that contains addtional information about that domain.
           allOf:
