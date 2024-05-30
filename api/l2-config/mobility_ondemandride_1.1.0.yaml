@@ -6059,6 +6059,7 @@ components:
           type: string
         collected_by:
           description: 'This field indicates who is the collector of payment. The BAP can set this value to ''bap'' if it wants to collect the payment first and  settle it to the BPP. If the BPP agrees to those terms, the BPP should not send the payment url. Alternatively, the BPP can set this field with the value ''bpp'' if it wants the payment to be made directly.'
+          type: string
           enum : 
             - DRIVER
             - DRIVER_APP
