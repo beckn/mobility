@@ -1,0 +1,40 @@
+{
+    "context": {
+      "location": {
+        "country": {
+          "code": "IND"
+        },
+        "city": {
+          "code": "std:080"
+        }
+      },
+      "domain": "nic2004:60221",
+      "timestamp": "2023-03-23T04:41:16Z",
+      "bap_id": "example-bap.com",
+      "transaction_id": "6743e9e2-4fb5-487c-92b7-13ba8018f176",
+      "message_id": "6743e9e2-4fb5-487c-92b7-13ba8018f176",
+      "version": "1.1.0",
+      "action": "search",
+      "bap_uri": "https://api.example-bap.com/pilot/bap/cab/v1"
+    },
+    "message": {
+      "intent": {
+        "fulfillment": {
+          "stops": [
+            {
+              "type": "start",
+              "location": {
+                "gps": "28.5811261,77.0548206"
+              }
+            },
+            {
+              "type": "end",
+              "location": {
+                "gps": "28.6230972,77.2099917"
+              }
+            }
+          ]
+        }
+      }
+    }
+  }

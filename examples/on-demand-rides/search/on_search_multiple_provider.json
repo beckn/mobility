@@ -1,0 +1,216 @@
+{
+  "context": {
+    "location": {
+      "country": {
+        "code": "IND"
+      },
+      "city": {
+        "code": "std:080"
+      }
+    },
+    "version": "1.1.0",
+    "bpp_uri": "https://api.example-bpp.in/path/to/url",
+    "domain": "nic2004:60221",
+    "timestamp": "2023-03-23T04:43:02Z",
+    "bap_id": "example-bap.in",
+    "transaction_id": "870782be-6757-43f1-945c-8eeaf9536259",
+    "bpp_id": "example-bpp.in",
+    "message_id": "21e54d3c-9c3b-47c1-aa3b-b0e7b20818ee",
+    "action": "on_search",
+    "bap_uri": "https://api.example-bpp.in/path/to/url"
+  },
+  "message": {
+    "catalog": {
+      "descriptor": {
+        "name": "Open Mobility Solutions",
+        "images": [
+          "https://example-bpp.com/images/logos/oms.ico"
+        ]
+      },
+      "providers": [
+        {
+          "id": "1",
+          "descriptor": {
+            "name": "Acme Cabs",
+            "images": [
+              "https://example-bpp.com/images/logos/acme.ico"
+            ]
+          },
+          "items": [
+            {
+              "id": "1",
+              "descriptor": {
+                "name": "Economy"
+              },
+              "price": {
+                "value": "175",
+                "currency": "INR"
+              },
+              "fulfillment_ids": [
+                "1"
+              ],
+              "payment_ids": [
+                "1"
+              ]
+            },
+            {
+              "id": "2",
+              "descriptor": {
+                "name": "Premium"
+              },
+              "price": {
+                "value": "250",
+                "currency": "INR"
+              },
+              "fulfillment_ids": [
+                "1"
+              ],
+              "payment_ids": [
+                "1"
+              ]
+            },
+            {
+              "id": "3",
+              "descriptor": {
+                "name": "Luxury"
+              },
+              "price": {
+                "value": "500",
+                "currency": "INR"
+              },
+              "fulfillment_ids": [
+                "1"
+              ],
+              "payment_ids": [
+                "1"
+              ]
+            }
+          ],
+          "fulfillments": [
+            {
+              "id": "fb5c84d4-1b59-4b9d-96b5-9d79107432c5",
+              "stops": [
+                {
+                  "type": "start",
+                  "location": {
+                    "gps": "12.9099828, 77.6118226"
+                  }
+                },
+                {
+                  "type": "end",
+                  "location": {
+                    "gps": "12.9351856, 77.6245996"
+                  }
+                }
+              ],
+              "vehicle": {
+                "category": "TAXI"
+              }
+            }
+          ],
+          "payments": [
+            {
+              "id": "1",
+              "type": "ON-FULFILLMENT",
+              "collected_by": "BPP"
+            }
+          ]
+        },
+        {
+          "id": "2",
+          "descriptor": {
+            "name": "Beta Taxis",
+            "images": [
+              "https://example-bpp.com/images/logos/betataxis.ico"
+            ]
+          },
+          "items": [
+            {
+              "id": "1",
+              "descriptor": {
+                "name": "Beta Prime",
+                "short_desc": "Affordable sedans, at affordable costs"
+              },
+              "price": {
+                "value": "200",
+                "currency": "INR"
+              },
+              "fulfillment_ids": [
+                "fb5c84d4-1b59-4b9d-96b5-9d79107432c5"
+              ],
+              "payment_ids": [
+                "1"
+              ]
+            },
+            {
+              "id": "2",
+              "descriptor": {
+                "name": "Beta Max",
+                "short_desc": "Spacious vans for large groups"
+              },
+              "price": {
+                "value": "1500",
+                "currency": "INR"
+              },
+              "fulfillment_ids": [
+                "fb5c84d4-1b59-4b9d-96b5-9d79107432c5"
+              ],
+              "payment_ids": [
+                "1"
+              ]
+            }
+          ],
+          "fulfillments": [
+            {
+              "id": 1,
+              "stops": [
+                {
+                  "type": "start",
+                  "location": {
+                    "gps": "12.9099828, 77.6118226"
+                  }
+                },
+                {
+                  "type": "end",
+                  "location": {
+                    "gps": "12.9351856, 77.62459969999999"
+                  }
+                }
+              ],
+              "vehicle": {
+                "category": "TAXI"
+              }
+            },
+            {
+              "id": 2,
+              "stops": [
+                {
+                  "type": "start",
+                  "location": {
+                    "gps": "12.9099828, 77.6118226"
+                  }
+                },
+                {
+                  "type": "end",
+                  "location": {
+                    "gps": "12.9351856, 77.62459969999999"
+                  }
+                }
+              ],
+              "vehicle": {
+                "category": "TEMPO-TRAVELLER"
+              }
+            }
+          ],
+          "payments": [
+            {
+              "id": "1",
+              "type": "ON-FULFILLMENT",
+              "collected_by": "BPP"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
