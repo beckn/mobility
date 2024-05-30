@@ -131,7 +131,8 @@ paths:
                             enum:
                               - select
                         required:
-                          - action
+                          - bpp_id
+                          - bpp_uri
                 message:
                   type: object
                   properties:
@@ -351,7 +352,8 @@ paths:
                           enum:
                             - init
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -497,7 +499,8 @@ paths:
                           enum:
                             - confirm
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -653,7 +656,8 @@ paths:
                           enum:
                             - status
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -744,7 +748,8 @@ paths:
                           enum:
                             - track
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -818,7 +823,8 @@ paths:
                           enum:
                             - cancel
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -938,7 +944,8 @@ paths:
                           enum:
                             - update
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -994,7 +1001,8 @@ paths:
                           enum:
                             - rating
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -1070,7 +1078,8 @@ paths:
                           enum:
                             - support
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -1838,7 +1847,8 @@ paths:
                           enum:
                             - on_select
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -2113,7 +2123,8 @@ paths:
                           enum:
                             - on_init
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -2537,7 +2548,8 @@ paths:
                           enum:
                             - on_confirm
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -2982,7 +2994,8 @@ paths:
                           enum:
                             - on_track
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -3055,7 +3068,8 @@ paths:
                           enum:
                             - on_cancel
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -3531,7 +3545,8 @@ paths:
                           enum:
                             - on_update
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -3913,7 +3928,8 @@ paths:
                           enum:
                             - on_status
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -4934,7 +4950,8 @@ paths:
                           enum:
                             - on_rating
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -5010,7 +5027,8 @@ paths:
                           enum:
                             - on_support
                       required:
-                        - action
+                        - bpp_id
+                        - bpp_uri
                 message:
                   type: object
                   properties:
@@ -5349,6 +5367,14 @@ components:
         ttl:
           description: The duration in ISO8601 format after timestamp for which this message holds valid
           type: string
+      required:
+        - action
+        - domain
+        - version
+        - bap_id
+        - bap_uri
+        - transaction_id
+        - message_id 
     Country:
       description: Describes a country.
       type: object
@@ -5422,6 +5448,8 @@ components:
         name:
           description: Name of the domain
           type: string
+          enum: 
+            - mobility:ondemandride
         code:
           description: 'Standard code representing the domain. The standard is usually published as part of the network policy. Furthermore, the network facilitator should also provide a mechanism to provide the supported domains of a network.'
         additional_info:
@@ -5478,7 +5506,6 @@ components:
         submission_id:
           type: string
           format: uuid
-    
     Fulfillment:
       description: Describes how a an order will be rendered/fulfilled to the end-customer
       type: object
@@ -5533,7 +5560,17 @@ components:
       type: object
       properties:
         descriptor:
-          $ref: '#/components/schemas/Descriptor'
+          allOf: 
+            - $ref: '#/components/schemas/Descriptor'
+            - properties: 
+                code: 
+                  enum: 
+                    - DRIVER_EN_ROUTE_TO_PICKUP
+                    - DRIVER_AT_PICKUP
+                    - RIDE_STARTED
+                    - RIDE_ENDED
+                    - RIDE_CANCELLED
+                    - PAYMENT_COLLECTED
         updated_at:
           type: string
           format: date-time
@@ -6021,6 +6058,10 @@ components:
           type: string
         collected_by:
           description: 'This field indicates who is the collector of payment. The BAP can set this value to ''bap'' if it wants to collect the payment first and  settle it to the BPP. If the BPP agrees to those terms, the BPP should not send the payment url. Alternatively, the BPP can set this field with the value ''bpp'' if it wants the payment to be made directly.'
+          enum : 
+            - DRIVER
+            - DRIVER_APP
+            - RIDER_APP
         url:
           type: string
           description: 'A payment url to be called by the BAP. If empty, then the payment is to be done offline. The details of payment should be present in the params object. If tl_method = http/get, then the payment details will be sent as url params. Two url param values, ```$transaction_id``` and ```$amount``` are mandatory.'
@@ -6217,6 +6258,11 @@ components:
                 $ref: '#/components/schemas/Item'
               title:
                 type: string
+                enum: 
+                  - BASE FARE
+                  - TAX
+                  - DISCOUNT 
+                  - WAITING CHARGE
               price:
                 $ref: '#/components/schemas/Price'
         ttl:
@@ -6229,12 +6275,9 @@ components:
           description: Category of the entity being rated
           type: string
           enum:
-            - Item
-            - Order
-            - Fulfillment
-            - Provider
-            - Agent
-            - Support
+            - RIDE
+            - DRIVER
+            - SERVICE
         id:
           description: Id of the object being rated
           type: string
@@ -6371,6 +6414,9 @@ components:
         type:
           description: The type of stop. Allowed values of this property can be defined by the network policy.
           type: string
+          enum:
+            - START 
+            - END
         time:
           description: Timings applicable at the stop.
           allOf:
@@ -6485,8 +6531,8 @@ components:
           description: 'This value indicates if the tracking is currently active or not. If this value is `active`, then the BAP can begin tracking the order. If this value is `inactive`, the tracking URL is considered to be expired and the BAP should stop tracking the order.'
           type: string
           enum:
-            - active
-            - inactive
+            - ACTIVE
+            - INACTIVE
     Vehicle:
       description: 'Describes a vehicle is a device that is designed or used to transport people or cargo over land, water, air, or through space.<br>This has properties like category, capacity, make, model, size,variant,color,energy_type,registration'
       type: object
