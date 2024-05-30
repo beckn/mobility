@@ -5450,6 +5450,7 @@ components:
           type: string
         code:
           description: 'Standard code representing the domain. The standard is usually published as part of the network policy. Furthermore, the network facilitator should also provide a mechanism to provide the supported domains of a network.'
+          type: string
           enum: 
             - mobility:ondemandride
         additional_info:
