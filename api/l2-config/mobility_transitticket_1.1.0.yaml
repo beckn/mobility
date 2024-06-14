@@ -6341,8 +6341,18 @@ components:
               items:
                 allOf:
                   - $ref: '#/components/schemas/Fulfillment'
+                  - properties:
+                      stops:
+                        type: array
+                        minItems: 2
+                        items:
+                          allOf:
+                            - $ref: '#/components/schemas/Stop'
+                          required:
+                            - location
                 required:
-                  - id
+                  - stops
+
       required:
         - provider
         - items
