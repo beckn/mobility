@@ -1876,8 +1876,6 @@ paths:
                         - quote
                   required:
                     - order
-                  required:
-                    - order
                 error:
                   $ref: '#/components/schemas/Error'
               required:
@@ -5515,8 +5513,8 @@ components:
           allOf:
             - description: 'A globally unique identifier of the platform, Typically it is the fully qualified domain name (FQDN) of the platform.'
               type: string
-            not:
-                format: uri
+            -  not:
+                  format: uri
         bap_uri:
           description: Subscriber URL of the BAP for accepting callbacks from BPPs.
           allOf:
@@ -5738,6 +5736,7 @@ components:
         stops:
           description: The list of logical stops encountered during the fulfillment of an order.
           type: array
+          minItems: 1
           items:
             $ref: '#/components/schemas/Stop'
         path:
@@ -5747,6 +5746,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+      required:
+        - stops
     FulfillmentState:
       description: Describes the state of fulfillment
       type: object
@@ -5839,6 +5840,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TagGroup'
+      required:
+        - fulfillment
     ItemQuantity:
       description: Describes the count or amount of an item
       type: object
