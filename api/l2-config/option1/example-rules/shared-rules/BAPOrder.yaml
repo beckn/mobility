@@ -1,0 +1,23 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          fulfillments:
+            type: array
+            minItems: 1
+            items:
+              type: object
+              required:
+                - id
+          items:
+            type: array
+            minItems: 1
+            items:
+              type: object
+              required:
+                - id
+          provider:
+            type: object
+            required:
+              - id

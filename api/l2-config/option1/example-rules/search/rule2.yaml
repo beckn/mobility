@@ -1,0 +1,23 @@
+properties:
+  message:
+    properties:
+      intent:
+        properties:
+          fulfillment:
+            properties:
+              type:
+                enum: ["DELIVERY", "PICKUP"]
+              stops:
+                type: array
+                items:
+                  properties:
+                    location: 
+                      properties:
+                        gps:
+                          type: string
+                      required:
+                        - gps
+                  required:
+                    - location
+        required:
+            - fulfillment   

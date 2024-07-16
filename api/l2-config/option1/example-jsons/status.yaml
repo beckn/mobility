@@ -1,0 +1,40 @@
+Get latest fulfillment status of a booking:
+  value:
+    context:
+      action: status
+      bap_id: example-bap.com
+      bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
+      bpp_id: example-bpp.com
+      bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+      domain: nic2004:60221
+      location:
+        city:
+          code: std:080
+        country:
+          code: IND
+      message_id: 8926b747-0362-4fcc-b795-0994a6287700
+      timestamp: '2023-03-23T04:48:53Z'
+      transaction_id: b580c989-f84d-4abe-af28-2c818aafce3b
+      version: 1.1.0
+    message:
+      order_id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
+Get latest status of a transit ticket booking:
+  value:
+    context:
+      action: status
+      bap_id: https://example-bap.com
+      bap_uri: https://api.example-bap.com/beckn/
+      bpp_id: https://transit-solutions.com
+      bpp_uri: https://api.transit-solutions.com/beckn/
+      domain: nic2008:49213
+      location:
+        city:
+          code: std:080
+        country:
+          code: IND
+      message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+      timestamp: '2021-03-23T10:00:40.065Z'
+      transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+      version: 1.1.0
+    message:
+      order_id: '123413'

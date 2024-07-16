@@ -1,0 +1,169 @@
+Get a quote for a fare product selected from a public transit catalog:
+  value:
+    context:
+      action: select
+      bap_id: https://example-bap.com
+      bap_uri: https://mock_bap.com/beckn/
+      bpp_id: https://kmrl-bpp.com
+      bpp_uri: https://kmrl-bpp.com/beckn/
+      domain: nic2004:60221
+      location:
+        city:
+          code: std:080
+        country:
+          code: IND
+      message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+      timestamp: '2021-03-23T10:00:40.065Z'
+      transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+      version: 1.1.0
+    message:
+      order:
+        items:
+        - id: '1'
+        provider:
+          id: '1'
+Get quote for a specific product from a mobility catalog:
+  value:
+    context:
+      action: select
+      bap_id: example-bap.com
+      bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
+      bpp_id: example-bpp.com
+      bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+      domain: nic2004:60221
+      location:
+        city:
+          code: std:080
+        country:
+          code: IND
+      max_callbacks: 3
+      message_id: 432fdfd6-0457-47b6-9fac-80cbe5c0a75b
+      timestamp: '2023-03-23T04:46:45Z'
+      transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
+      ttl: P120S
+      version: 1.1.0
+    message:
+      order:
+        fulfillments:
+        - stops:
+          - location:
+              gps: 12.910458, 77.543089
+            type: start
+          - location:
+              gps: 12.9535139,  77.5710434
+            type: end
+        items:
+        - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
+        provider:
+          id: '1'
+Get quote for a specific product from a mobility catalog with gps and address details:
+  value:
+    context:
+      action: select
+      bap_id: example-bap.com
+      bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
+      bpp_id: example-bpp.com
+      bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+      domain: nic2004:60221
+      location:
+        city:
+          code: std:080
+        country:
+          code: IND
+      max_callbacks: 3
+      message_id: 432fdfd6-0457-47b6-9fac-80cbe5c0a75b
+      timestamp: '2023-03-23T04:46:45Z'
+      transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
+      ttl: P120S
+      version: 1.1.0
+    message:
+      order:
+        fulfillments:
+        - stops:
+          - location:
+              address: 98 A, 6th Main Rd, Uttarahalli Hobli, Ramanjaneyanagar
+              area_code: 560061
+              city:
+                name: Bengaluru
+              country:
+                name: India
+              district: Ramanjaneyanagar
+              gps: 12.910458, 77.543089
+              state:
+                name: Karnataka
+            type: start
+          - location:
+              address: Basavanagudi, Chikkanna Garden, Rangadore Memorial
+                Hospital
+              area_code: 560061
+              city:
+                name: Bengaluru
+              country:
+                name: India
+              district: Chikkanna Garden
+              gps: 12.9535139,  77.5710434
+              state:
+                name: Karnataka
+            type: end
+        items:
+        - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
+        provider:
+          id: '1'
+Get quote for a specific product from a mobility catalog with localization:
+  value:
+    context:
+      action: select
+      bap_id: example-bap.com
+      bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
+      bpp_id: example-bpp.com
+      bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+      domain: nic2004:60221
+      location:
+        city:
+          code: std:080
+        country:
+          code: IND
+      max_callbacks: 3
+      message_id: 432fdfd6-0457-47b6-9fac-80cbe5c0a75b
+      timestamp: '2023-03-23T04:46:45Z'
+      transaction_id: 870782be-6757-43f1-945c-8eeaf9536259
+      ttl: P120S
+      version: 1.1.0
+    message:
+      order:
+        fulfillments:
+        - customer:
+            person:
+              languages:
+              - code: en
+                name: English
+          stops:
+          - location:
+              address: 98 A, 6th Main Rd, Uttarahalli Hobli, Ramanjaneyanagar
+              area_code: 560061
+              city:
+                name: Bengaluru
+              country:
+                name: India
+              district: Ramanjaneyanagar
+              gps: 12.910458, 77.543089
+              state:
+                name: Karnataka
+            type: start
+          - location:
+              address: Basavanagudi, Chikkanna Garden, Rangadore Memorial
+                Hospital
+              area_code: 560061
+              city:
+                name: Bengaluru
+              country:
+                name: India
+              district: Chikkanna Garden
+              gps: 12.9535139,  77.5710434
+              state:
+                name: Karnataka
+            type: end
+        items:
+        - id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
+        provider:
+          id: '1'
