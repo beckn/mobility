@@ -44,16 +44,16 @@ paths:
                             intent:
                               properties:
                                 fulfillment:
+                                  type: object
                                   properties:
-                                    type:
-                                      enum:
-                                        - DELIVERY
-                                        - PICKUP
                                     stops:
                                       type: array
+                                      minItems: 2
                                       items:
+                                        type: object
                                         properties:
                                           location:
+                                            type: object
                                             properties:
                                               gps:
                                                 type: string
@@ -61,31 +61,8 @@ paths:
                                               - gps
                                         required:
                                           - location
-                              required:
-                                - fulfillment
-                    - properties:
-                        message:
-                          properties:
-                            intent:
-                              properties:
-                                fulfillment:
-                                  properties:
-                                    type:
-                                      enum:
-                                        - DELIVERY
-                                        - PICKUP
-                                    stops:
-                                      type: array
-                                      items:
-                                        properties:
-                                          location:
-                                            properties:
-                                              gps:
-                                                type: string
-                                            required:
-                                              - gps
-                                        required:
-                                          - location
+                                  required:
+                                    - stops
                               required:
                                 - fulfillment
             examples:
@@ -756,8 +733,6 @@ paths:
                   properties:
                     order_id:
                       $ref: '#/components/schemas/Order/properties/id'
-                  required:
-                    - order_id
                   type: object
               required:
                 - context
@@ -1839,29 +1814,109 @@ paths:
                               id: '1'
                               type: ON-FULFILLMENT
             schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - on_search
-                      required:
-                        - action
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
+              allOf:
+                - type: object
                   properties:
-                    catalog:
-                      $ref: '#/components/schemas/Catalog'
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - on_search
+                          required:
+                            - action
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        catalog:
+                          $ref: '#/components/schemas/Catalog'
+                      required:
+                        - catalog
+                      type: object
                   required:
-                    - catalog
-                  type: object
-              required:
-                - context
-              type: object
-        description: TODO
+                    - context
+                    - message
+                - allOf:
+                    - properties:
+                        message:
+                          properties:
+                            catalog:
+                              type: object
+                              properties:
+                                descriptor:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                    images:
+                                      type: array
+                                      items:
+                                        minItems: 1
+                                  required:
+                                    - name
+                                    - images
+                                providers:
+                                  type: array
+                                  minItems: 1
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                      descriptor:
+                                        type: object
+                                        properties:
+                                          name:
+                                            type: string
+                                          images:
+                                            type: array
+                                            items:
+                                              minItems: 1
+                                        required:
+                                          - name
+                                          - images
+                                      fulfillments:
+                                        type: array
+                                        items:
+                                          minItems: 1
+                                      items:
+                                        type: array
+                                        minItems: 1
+                                        items:
+                                          type: object
+                                          properties:
+                                            descriptor:
+                                              type: object
+                                              properties:
+                                                name:
+                                                  type: string
+                                              required:
+                                                - name
+                                            price:
+                                              type: object
+                                              properties:
+                                                value:
+                                                  type: number
+                                              required:
+                                                - value
+                                      payments:
+                                        type: array
+                                        minItems: 1
+                                        items:
+                                          type: object
+                                          properties:
+                                            type:
+                                              type: string
+                                            collected_by:
+                                              type: string
+                                          required:
+                                            - type
+                                            - collected_by
+                              required:
+                                - descriptor
+                                - providers
       responses:
         '200':
           content:
@@ -2114,35 +2169,144 @@ paths:
                           value: '76'
                         ttl: P200S
             schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - on_select
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
+              allOf:
+                - type: object
                   properties:
-                    order:
+                    context:
                       allOf:
-                        - $ref: '#/components/schemas/Order'
-                        - not:
-                            required:
-                              - id
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - on_select
+                          required:
+                            - bpp_id
+                            - bpp_uri
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                            - $ref: '#/components/schemas/Order'
+                            - not:
+                                required:
+                                  - id
+                          required:
+                            - quote
                       required:
-                        - quote
+                        - order
+                      type: object
                   required:
-                    - order
-                  type: object
-              required:
-                - context
-              type: object
+                    - context
+                    - message
+                - allOf:
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              properties:
+                                provider:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                    descriptor:
+                                      type: object
+                                      properties:
+                                        name:
+                                          type: string
+                                      required:
+                                        - name
+                                  required:
+                                    - id
+                                    - descriptor
+                              required:
+                                - provider
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              properties:
+                                items:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                      price:
+                                        type: number
+                                      descriptor:
+                                        type: object
+                                        properties:
+                                          name:
+                                            type: string
+                                        required:
+                                          - name
+                                    required:
+                                      - id
+                                      - price
+                                      - descriptor
+                              required:
+                                - items
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              properties:
+                                fulfillments:
+                                  type: array
+                                  minItems: 1
+                                  items:
+                                    type: object
+                                    properties:
+                                      stops:
+                                        type: array
+                                        minItems: 2
+                                        items:
+                                          type: object
+                                          properties:
+                                            location:
+                                              type: object
+                                              properties:
+                                                gps:
+                                                  type: string
+                                              required:
+                                                - gps
+                                          required:
+                                            - location
+                                    required:
+                                      - stops
+                              required:
+                                - fulfillments
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              properties:
+                                quote:
+                                  type: object
+                                  properties:
+                                    price:
+                                      type: number
+                                    breakup:
+                                      type: array
+                                      items:
+                                        type: object
+                                        properties:
+                                          price:
+                                            type: number
+                                          title:
+                                            type: string
+                                        required:
+                                          - price
+                                          - title
+                                  required:
+                                    - price
+                                    - breakup
+                              required:
+                                - quote
         description: TODO
       responses:
         '200':
@@ -4630,15 +4794,7 @@ paths:
                 message:
                   properties:
                     support:
-                      allOf:
-                        - $ref: '#/components/schemas/Support'
-                        - anyOf:
-                            - required:
-                                - phone
-                            - required:
-                                - email
-                            - required:
-                                - url
+                      $ref: '#/components/schemas/Support'
                   type: object
               required:
                 - context
@@ -5448,8 +5604,6 @@ components:
                       required:
                         - descriptor
                         - price
-                        - category_ids
-                        - fulfillment_ids
                     type: array
             required:
               - id

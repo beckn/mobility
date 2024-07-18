@@ -38,9 +38,9 @@ paths:
                   required:
                     - context
                     - message
-                - $ref: "./example-rules/search/search.yaml"
+                - $ref: "./example-rules/requests/search/search.yaml"
             examples:
-              $ref: "./example-jsons/search.yaml"
+              $ref: "./example-jsons/requests/search.yaml"
       responses:
         '200':
           content:
@@ -78,9 +78,6 @@ paths:
                       action:
                         enum:
                         - select
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 message:
                   properties:
                     order:
@@ -93,7 +90,7 @@ paths:
                 - context
                 - message
             examples:
-              $ref: "./example-jsons/select.yaml"
+              $ref: "./example-jsons/requests/select.yaml"
       responses:
         '200':
           content:
@@ -120,7 +117,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/init.yaml"
+              $ref: "./example-jsons/requests/init.yaml"
             schema:
               properties:
                 context:
@@ -130,16 +127,11 @@ paths:
                       action:
                         enum:
                         - init
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 message:
                   properties:
                     order:
                       allOf:
                       - $ref: '#/components/schemas/Order'
-                      required:
-                      - billing
                   required:
                   - order
                   type: object
@@ -176,7 +168,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/confirm.yaml"
+              $ref: "./example-jsons/requests/confirm.yaml"
             schema:
               properties:
                 context:
@@ -186,17 +178,11 @@ paths:
                       action:
                         enum:
                         - confirm
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 message:
                   properties:
                     order:
                       allOf:
                       - $ref: '#/components/schemas/Order'
-                      required:
-                      - billing
-                      - payments
                   required:
                   - order
                   type: object
@@ -233,7 +219,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/status.yaml"
+              $ref: "./example-jsons/requests/status.yaml"
             schema:
               properties:
                 context:
@@ -243,15 +229,10 @@ paths:
                       action:
                         enum:
                         - status
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 message:
                   properties:
                     order_id:
                       $ref: '#/components/schemas/Order/properties/id'
-                  required:
-                  - order_id
                   type: object
               required:
               - context
@@ -346,7 +327,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/rating.yaml"
+              $ref: "./example-jsons/requests/rating.yaml"
             schema:
               properties:
                 context:
@@ -356,16 +337,12 @@ paths:
                       action:
                         enum:
                         - rating
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 message:
                   properties:
                     ratings:
+                      type: array
                       items:
                         $ref: '#/components/schemas/Rating'
-                      minItems: 1
-                      type: array
                   type: object
               required:
               - context
@@ -400,7 +377,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/support.yaml"
+              $ref: "./example-jsons/requests/support.yaml"
             schema:
               properties:
                 context:
@@ -410,15 +387,10 @@ paths:
                       action:
                         enum:
                         - support
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 message:
                   properties:
                     support:
                       $ref: '#/components/schemas/Support'
-                  required:
-                  - ref_id
                   type: object
               required:
               - context
@@ -453,7 +425,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/track.yaml"
+              $ref: "./example-jsons/requests/track.yaml"
             schema:
               properties:
                 context:
@@ -463,9 +435,6 @@ paths:
                       action:
                         enum:
                         - track
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 message:
                   additionalProperties: false
                   properties:
@@ -474,8 +443,6 @@ paths:
                       type: string
                     order_id:
                       $ref: '#/components/schemas/Order/properties/id'
-                  required:
-                  - order_id
                   type: object
               required:
               - context
@@ -510,7 +477,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/cancel.yaml"
+              $ref: "./example-jsons/requests/cancel.yaml"
             schema:
               properties:
                 context:
@@ -520,9 +487,6 @@ paths:
                       action:
                         enum:
                         - cancel
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 message:
                   properties:
                     cancellation_reason_id:
@@ -531,8 +495,6 @@ paths:
                       $ref: '#/components/schemas/Descriptor'
                     order_id:
                       $ref: '#/components/schemas/Order/properties/id'
-                  required:
-                  - order_id
                   type: object
               required:
               - context
@@ -567,31 +529,33 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/on_search.yaml"
+              $ref: "./example-jsons/responses/on_search.yaml"
             schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - on_search
-                    required:
-                    - action
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
+              allOf:
+                - type: object
                   properties:
-                    catalog:
-                      $ref: '#/components/schemas/Catalog'
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                              - on_search
+                          required:
+                          - action
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        catalog:
+                          $ref: '#/components/schemas/Catalog'
+                      required:
+                        - catalog
+                      type: object
                   required:
-                  - catalog
-                  type: object
-              required:
-              - context
-              type: object
-        description: TODO
+                    - context
+                    - message
+                - $ref: "./example-rules/responses/on_search/on_search.yaml"
       responses:
         '200':
           content:
@@ -621,37 +585,32 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/on_select.yaml"
+              $ref: "./example-jsons/responses/on_select.yaml"
             schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - on_select
-                    required:
-                    - bpp_id
-                    - bpp_uri
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
+              allOf:
+                - type: object
                   properties:
-                    order:
+                    context:
                       allOf:
-                      - $ref: '#/components/schemas/Order'
-                      - not:
-                          required:
-                          - id
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - on_select
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                          - $ref: '#/components/schemas/Order'
                       required:
-                      - quote
+                      - order
+                      type: object
                   required:
-                  - order
-                  type: object
-              required:
-              - context
-              type: object
+                    - context
+                    - message
+                - $ref: "./example-rules/responses/on_select/on_select.yaml"
         description: TODO
       responses:
         '200':
@@ -681,7 +640,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/on_init.yaml"
+              $ref: "./example-jsons/responses/on_init.yaml"
             schema:
               properties:
                 context:
@@ -691,9 +650,6 @@ paths:
                       action:
                         enum:
                         - on_init
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 error:
                   $ref: '#/components/schemas/Error'
                 message:
@@ -701,13 +657,6 @@ paths:
                     order:
                       allOf:
                       - $ref: '#/components/schemas/Order'
-                      - not:
-                          required:
-                          - id
-                      required:
-                      - quote
-                      - billing
-                      - payments
                   required:
                   - order
                   type: object
@@ -743,7 +692,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/on_confirm.yaml"
+              $ref: "./example-jsons/responses/on_confirm.yaml"
             schema:
               properties:
                 context:
@@ -753,36 +702,12 @@ paths:
                       action:
                         enum:
                         - on_confirm
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 error:
                   $ref: '#/components/schemas/Error'
                 message:
                   properties:
                     order:
-                      allOf:
-                      - $ref: '#/components/schemas/Order'
-                      - properties:
-                          fulfillments:
-                            items:
-                              allOf:
-                              - properties:
-                                  state:
-                                    allOf:
-                                    - properties:
-                                        descriptor:
-                                          required:
-                                          - code
-                              required:
-                              - state
-                              - agent
-                            type: array
-                      required:
-                      - quote
-                      - billing
-                      - payments
-                      - id
+                      $ref: '#/components/schemas/Order'
                   required:
                   - order
                   type: object
@@ -818,7 +743,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/on_status.yaml"
+              $ref: "./example-jsons/responses/on_status.yaml"
             schema:
               properties:
                 context:
@@ -828,37 +753,12 @@ paths:
                       action:
                         enum:
                         - on_status
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 error:
                   $ref: '#/components/schemas/Error'
                 message:
                   properties:
                     order:
-                      allOf:
-                      - $ref: '#/components/schemas/Order'
-                      - properties:
-                          fulfillments:
-                            items:
-                              allOf:
-                              - properties:
-                                  state:
-                                    allOf:
-                                    - properties:
-                                        descriptor:
-                                          required:
-                                          - code
-                                    required:
-                                    - descriptor
-                              required:
-                              - state
-                            type: array
-                      required:
-                      - quote
-                      - billing
-                      - payments
-                      - id
+                      $ref: '#/components/schemas/Order'
                   required:
                   - order
                   type: object
@@ -894,7 +794,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/on_update.yaml"
+              $ref: "./example-jsons/responses/on_update.yaml"
             schema:
               properties:
                 context:
@@ -904,9 +804,6 @@ paths:
                       action:
                         enum:
                         - on_update
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 error:
                   $ref: '#/components/schemas/Error'
                 message:
@@ -914,27 +811,6 @@ paths:
                     order:
                       allOf:
                       - $ref: '#/components/schemas/Order'
-                      - properties:
-                          fulfillments:
-                            items:
-                              allOf:
-                              - properties:
-                                  state:
-                                    allOf:
-                                    - properties:
-                                        descriptor:
-                                          required:
-                                          - code
-                                    required:
-                                    - descriptor
-                              required:
-                              - state
-                            type: array
-                      required:
-                      - quote
-                      - billing
-                      - payments
-                      - id
                   required:
                   - order
                   type: object
@@ -970,7 +846,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/on_rating.yaml"
+              $ref: "./example-jsons/responses/on_rating.yaml"
             schema:
               properties:
                 context:
@@ -980,9 +856,6 @@ paths:
                       action:
                         enum:
                         - on_rating
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 error:
                   $ref: '#/components/schemas/Error'
                 message:
@@ -995,6 +868,7 @@ paths:
                   type: object
               required:
               - context
+              - message
               type: object
         description: TODO
       responses:
@@ -1025,7 +899,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/on_support.yaml"
+              $ref: "./example-jsons/responses/on_support.yaml"
             schema:
               properties:
                 context:
@@ -1035,23 +909,12 @@ paths:
                       action:
                         enum:
                         - on_support
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 error:
                   $ref: '#/components/schemas/Error'
                 message:
                   properties:
                     support:
-                      allOf:
-                      - $ref: '#/components/schemas/Support'
-                      - anyOf:
-                        - required:
-                          - phone
-                        - required:
-                          - email
-                        - required:
-                          - url
+                      $ref: '#/components/schemas/Support'
                   type: object
               required:
               - context
@@ -1085,7 +948,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/on_track.yaml"
+              $ref: "./example-jsons/responses/on_track.yaml"
             schema:
               properties:
                 context:
@@ -1095,9 +958,6 @@ paths:
                       action:
                         enum:
                         - on_track
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 error:
                   $ref: '#/components/schemas/Error'
                 message:
@@ -1140,7 +1000,7 @@ paths:
         content:
           application/json:
             examples:
-              $ref: "./example-jsons/on_cancel.yaml"
+              $ref: "./example-jsons/responses/on_cancel.yaml"
             schema:
               properties:
                 context:
@@ -1150,9 +1010,6 @@ paths:
                       action:
                         enum:
                         - on_cancel
-                    required:
-                    - bpp_id
-                    - bpp_uri
                 error:
                   $ref: '#/components/schemas/Error'
                 message:
@@ -1160,28 +1017,6 @@ paths:
                     order:
                       allOf:
                       - $ref: '#/components/schemas/Order'
-                      - properties:
-                          fulfillments:
-                            items:
-                              allOf:
-                              - properties:
-                                  state:
-                                    allOf:
-                                    - properties:
-                                        descriptor:
-                                          required:
-                                          - code
-                                    required:
-                                    - descriptor
-                              required:
-                              - state
-                            type: array
-                      required:
-                      - quote
-                      - billing
-                      - payments
-                      - id
-                      - cancellation
                   required:
                   - order
                   type: object
@@ -1358,9 +1193,6 @@ components:
           - $ref: '#/components/schemas/Descriptor'
           description: Any additional information regarding the nature of cancellation
         cancelled_by:
-          enum:
-          - CONSUMER
-          - PROVIDER
           type: string
         reason:
           allOf:
@@ -1370,9 +1202,6 @@ components:
           description: Date-time when the order was cancelled by the buyer
           format: date-time
           type: string
-      required:
-      - time
-      - cancelled_by
       type: object
     CancellationTerm:
       additionalProperties: false
@@ -1425,7 +1254,6 @@ components:
             a BPP itself offers fulfillments on behalf of the providers it has onboarded.
           items:
             $ref: '#/components/schemas/Fulfillment'
-          minItems: 1
           type: array
         offers:
           description: Offers at the BPP-level. This is common across all providers
@@ -1441,42 +1269,11 @@ components:
           type: array
         providers:
           items:
-            allOf:
-            - $ref: '#/components/schemas/Provider'
-            - properties:
-                descriptor:
-                  allOf:
-                  - $ref: '#/components/schemas/Descriptor'
-                  required:
-                  - name
-                items:
-                  items:
-                    allOf:
-                    - $ref: '#/components/schemas/Item'
-                    - properties:
-                        descriptor:
-                          allOf:
-                          - $ref: '#/components/schemas/Descriptor'
-                          required:
-                          - name
-                    required:
-                    - descriptor
-                    - price
-                    - category_ids
-                    - fulfillment_ids
-                  type: array
-            required:
-            - id
-            - categories
-            - descriptor
-            - items
-          minItems: 1
+            $ref: '#/components/schemas/Provider'
           type: array
         ttl:
           description: Duration in seconds after which this catalog will expire
           type: string
-      required:
-      - providers
       type: object
     Category:
       additionalProperties: false

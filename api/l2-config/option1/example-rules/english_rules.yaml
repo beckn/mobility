@@ -1,0 +1,107 @@
+# how to interpret this file.
+#
+# for each item at the 3rd level in this schema, there is a directory in the folder,
+# for example there is a direcotry named "example-rules/requests/search"
+# and there is a direcotry named "example-rules/responses/select" etc
+#
+# for each rule_name in this file, create a file with filename as
+# example-rules/requests/search/<rule_name>.yaml if it is not already present.
+# for example, for below
+#
+#       example-rules:
+#         requests:
+#           search:
+#             - rule_name: core_rules
+#               rule_logic: ""
+#
+# you would add a file named "example-rules/requests/search/core_rules.yaml".
+# 
+# in each of those files, add OpenAPI rule derived from the logic defined 
+# in corresponding rule_logic.
+#
+# now create one more file in each such direcotry with filename as 
+# example-rules/requests/<request-type>/<request-type>.yaml
+# for example example-rules/requests/search/search.yaml
+# each of these files should import all the other files in the same direcotry 
+# with allOf keyword.
+#
+# if the rule_logic: "", ignore that rule, dont add in the folder.
+#
+
+example-rules:
+  requests:
+    search:
+      - rule_name: core_rules
+        rule_logic: >
+          Intent requires fulfilment, Fulfilment requires stops, 
+          Stops min len 2, items in stops require location, 
+          location requires gps
+    select:
+      - rule_name: core_rules
+        rule_logic: ""
+    init:
+      - rule_name: core_rules
+        rule_logic: ""
+    confirm:
+      - rule_name: core_rules
+        rule_logic: ""
+    status:
+      - rule_name: core_rules
+        rule_logic: ""
+    track:
+      - rule_name: core_rules
+        rule_logic: ""
+    support:
+      - rule_name: core_rules
+        rule_logic: ""
+    update:
+      - rule_name: core_rules
+        rule_logic: ""
+    rating:
+      - rule_name: core_rules
+        rule_logic: ""
+    cancel:
+      - rule_name: core_rules
+        rule_logic: ""
+  responses:
+    on_search:
+      - rule_name: core_rules
+        rule_logic: >
+          catalog requires descriptor, providers
+          catalog.descriptor requires name, images
+          catalog.descriptor.images is not empty
+          each provider in providers requires id, descriptor, fulfillments, items, payments
+          provider.descriptor requires name, images
+          provider.descriptor.images is not empty
+          each payment in payments requires type, collected_by
+          each item in items requires descriptor, price
+          item.descriptor requires name
+          item.price requires value
+    on_select:
+      - rule_name: core_rules
+        rule_logic: ""
+    on_init:
+      - rule_name: core_rules
+        rule_logic: ""
+    on_confirm:
+      - rule_name: core_rules
+        rule_logic: ""
+    on_status:
+      - rule_name: core_rules
+        rule_logic: ""
+    on_track:
+      - rule_name: core_rules
+        rule_logic: ""
+    on_support:
+      - rule_name: core_rules
+        rule_logic: ""
+    on_update:
+      - rule_name: core_rules
+        rule_logic: ""
+    on_rating:
+      - rule_name: core_rules
+        rule_logic: ""
+    on_cancel:
+      - rule_name: core_rules
+        rule_logic: ""
+      

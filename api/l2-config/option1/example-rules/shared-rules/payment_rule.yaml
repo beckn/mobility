@@ -1,0 +1,36 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          payment:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                  - PRE-ORDER
+                  - PRE-FULFILLMENT
+                  - ON-FULFILLMENT
+                  - POST-FULFILLMENT
+              status:
+                type: string
+                enum:
+                  - PAID
+                  - NOT-PAID
+              params:
+                type: object
+                properties:
+                  amount:
+                    type: number
+                  currency:
+                    type: string
+                required:
+                  - amount
+                  - currency
+            required:
+              - type
+              - status
+              - params
+        required:
+          - payment

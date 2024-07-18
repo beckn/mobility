@@ -4,14 +4,16 @@ properties:
       intent:
         properties:
           fulfillment:
+            type: object
             properties:
-              type:
-                enum: ["DELIVERY", "PICKUP"]
               stops:
                 type: array
+                minItems: 2
                 items:
+                  type: object
                   properties:
                     location: 
+                      type: object
                       properties:
                         gps:
                           type: string
@@ -19,5 +21,7 @@ properties:
                         - gps
                   required:
                     - location
+            required:
+              - stops
         required:
-            - fulfillment   
+          - fulfillment

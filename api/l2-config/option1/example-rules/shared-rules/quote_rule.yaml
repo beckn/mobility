@@ -1,0 +1,27 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          quote:
+            type: object
+            properties:
+              price:
+                type: number
+              breakup:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    price:
+                      type: number
+                    title:
+                      type: string
+                  required:
+                    - price
+                    - title
+            required:
+              - price
+              - breakup
+        required:
+          - quote

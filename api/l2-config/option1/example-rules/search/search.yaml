@@ -1,3 +1,0 @@
-allOf:
-  - $ref: "./rule1.yaml"
-  - $ref: "./rule2.yaml"
