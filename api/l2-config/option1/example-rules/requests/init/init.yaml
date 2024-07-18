@@ -1,4 +1,4 @@
 allOf:
-  - $ref: "../shared-rules/core_rules.yaml"
-  - $ref: "../shared-rules/bap_order.yaml"
-  - $ref: "../shared-rules/fulfillments_rule.yaml"
+  - $ref: "./core_rules.yaml"
+  - $ref: "../../shared-rules/bap_order.yaml"
+  - $ref: "../../shared-rules/fulfillments_rule.yaml"

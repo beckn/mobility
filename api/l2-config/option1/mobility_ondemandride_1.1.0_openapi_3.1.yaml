@@ -69,26 +69,28 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - select
-                message:
+              allOf:
+                - type: object
                   properties:
-                    order:
+                    context:
                       allOf:
-                      - $ref: '#/components/schemas/Order'
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - select
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                          - $ref: '#/components/schemas/Order'
+                      required:
+                      - order
+                      type: object
                   required:
-                  - order
-                  type: object
-              required:
-                - context
-                - message
+                    - context
+                    - message
+                - $ref: "./example-rules/requests/select/select.yaml"
             examples:
               $ref: "./example-jsons/requests/select.yaml"
       responses:
@@ -116,29 +118,30 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - type: object
+                  properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - init
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                          - $ref: '#/components/schemas/Order'
+                      required:
+                        - order
+                  required:
+                    - context
+                    - message
+                - $ref: "./example-rules/requests/init/init.yaml"
             examples:
               $ref: "./example-jsons/requests/init.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - init
-                message:
-                  properties:
-                    order:
-                      allOf:
-                      - $ref: '#/components/schemas/Order'
-                  required:
-                  - order
-                  type: object
-              required:
-              - context
-              - message
-              type: object
         description: TODO
       responses:
         '200':
@@ -167,29 +170,31 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - confirm
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                          - $ref: '#/components/schemas/Order'
+                      required:
+                      - order
+                      type: object
+                  required:
+                  - context
+                  - message
+                  type: object
+                - $ref: "./example-rules/requests/confirm/confirm.yaml"
             examples:
               $ref: "./example-jsons/requests/confirm.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - confirm
-                message:
-                  properties:
-                    order:
-                      allOf:
-                      - $ref: '#/components/schemas/Order'
-                  required:
-                  - order
-                  type: object
-              required:
-              - context
-              - message
-              type: object
         description: TODO
       responses:
         '200':
@@ -218,26 +223,28 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - status
+                    message:
+                      properties:
+                        order_id:
+                          $ref: '#/components/schemas/Order/properties/id'
+                      type: object
+                  required:
+                    - context
+                    - message
+                  type: object
+                - $ref: "./example-rules/requests/status/status.yaml"
             examples:
               $ref: "./example-jsons/requests/status.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - status
-                message:
-                  properties:
-                    order_id:
-                      $ref: '#/components/schemas/Order/properties/id'
-                  type: object
-              required:
-              - context
-              - message
-              type: object
         description: TODO
       responses:
         '200':
@@ -267,37 +274,39 @@ paths:
         content:
           application/json:
             schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - update
-                    required:
-                    - bpp_id
-                    - bpp_uri
-                message:
-                  properties:
-                    order:
+              allOf:
+                - properties:
+                    context:
                       allOf:
-                      - $ref: '#/components/schemas/Order'
-                      description: Updated order object
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - update
+                        required:
+                        - bpp_id
+                        - bpp_uri
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                          - $ref: '#/components/schemas/Order'
+                          description: Updated order object
+                          required:
+                          - id
+                        update_target:
+                          description: 'Comma separated values of order objects being
+                            updated. For example: ```"update_target":"item,billing,fulfillment"```'
+                          type: string
                       required:
-                      - id
-                    update_target:
-                      description: 'Comma separated values of order objects being
-                        updated. For example: ```"update_target":"item,billing,fulfillment"```'
-                      type: string
+                      - update_target
+                      - order
+                      type: object
                   required:
-                  - update_target
-                  - order
+                  - context
+                  - message
                   type: object
-              required:
-              - context
-              - message
-              type: object
+                - $ref: "./example-rules/requests/update/update.yaml"
         description: TODO
       responses:
         '200':
@@ -326,29 +335,30 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - rating
+                    message:
+                      properties:
+                        ratings:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/Rating'
+                      type: object
+                  required:
+                  - context
+                  - message
+                  type: object
+                - $ref: "./example-rules/requests/rating/rating.yaml"
             examples:
               $ref: "./example-jsons/requests/rating.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - rating
-                message:
-                  properties:
-                    ratings:
-                      type: array
-                      items:
-                        $ref: '#/components/schemas/Rating'
-                  type: object
-              required:
-              - context
-              - message
-              type: object
-        description: TODO
       responses:
         '200':
           content:
@@ -376,26 +386,28 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - support
+                    message:
+                      properties:
+                        support:
+                          $ref: '#/components/schemas/Support'
+                      type: object
+                  required:
+                  - context
+                  - message
+                  type: object
+                - $ref: "./example-rules/requests/support/support.yaml"
             examples:
               $ref: "./example-jsons/requests/support.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - support
-                message:
-                  properties:
-                    support:
-                      $ref: '#/components/schemas/Support'
-                  type: object
-              required:
-              - context
-              - message
-              type: object
         description: TODO
       responses:
         '200':
@@ -424,30 +436,32 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - track
+                    message:
+                      additionalProperties: false
+                      properties:
+                        callback_url:
+                          format: uri
+                          type: string
+                        order_id:
+                          $ref: '#/components/schemas/Order/properties/id'
+                      type: object
+                  required:
+                  - context
+                  - message
+                  type: object
+                - $ref: "./example-rules/requests/track/track.yaml"
             examples:
               $ref: "./example-jsons/requests/track.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - track
-                message:
-                  additionalProperties: false
-                  properties:
-                    callback_url:
-                      format: uri
-                      type: string
-                    order_id:
-                      $ref: '#/components/schemas/Order/properties/id'
-                  type: object
-              required:
-              - context
-              - message
-              type: object
         description: TODO
       responses:
         '200':
@@ -476,30 +490,32 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - cancel
+                    message:
+                      properties:
+                        cancellation_reason_id:
+                          $ref: '#/components/schemas/Option/properties/id'
+                        descriptor:
+                          $ref: '#/components/schemas/Descriptor'
+                        order_id:
+                          $ref: '#/components/schemas/Order/properties/id'
+                      type: object
+                  required:
+                  - context
+                  - message
+                  type: object
+                - $ref: "./example-rules/requests/cancel/cancel.yaml"
             examples:
               $ref: "./example-jsons/requests/cancel.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - cancel
-                message:
-                  properties:
-                    cancellation_reason_id:
-                      $ref: '#/components/schemas/Option/properties/id'
-                    descriptor:
-                      $ref: '#/components/schemas/Descriptor'
-                    order_id:
-                      $ref: '#/components/schemas/Order/properties/id'
-                  type: object
-              required:
-              - context
-              - message
-              type: object
         description: TODO
       responses:
         '200':
@@ -528,8 +544,6 @@ paths:
       requestBody:
         content:
           application/json:
-            examples:
-              $ref: "./example-jsons/responses/on_search.yaml"
             schema:
               allOf:
                 - type: object
@@ -556,6 +570,8 @@ paths:
                     - context
                     - message
                 - $ref: "./example-rules/responses/on_search/on_search.yaml"
+            examples:
+              $ref: "./example-jsons/responses/on_search.yaml"
       responses:
         '200':
           content:
@@ -584,8 +600,6 @@ paths:
       requestBody:
         content:
           application/json:
-            examples:
-              $ref: "./example-jsons/responses/on_select.yaml"
             schema:
               allOf:
                 - type: object
@@ -611,6 +625,8 @@ paths:
                     - context
                     - message
                 - $ref: "./example-rules/responses/on_select/on_select.yaml"
+            examples:
+              $ref: "./example-jsons/responses/on_select.yaml"
         description: TODO
       responses:
         '200':
@@ -639,30 +655,32 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - on_init
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                          - $ref: '#/components/schemas/Order'
+                      required:
+                      - order
+                      type: object
+                  required:
+                  - context
+                  type: object
+                - $ref: "./example-rules/responses/on_init/on_init.yaml"
             examples:
               $ref: "./example-jsons/responses/on_init.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - on_init
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    order:
-                      allOf:
-                      - $ref: '#/components/schemas/Order'
-                  required:
-                  - order
-                  type: object
-              required:
-              - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -691,29 +709,32 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - type: object
+                  properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - on_confirm
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        order:
+                          $ref: '#/components/schemas/Order'
+                      required:
+                      - order
+                      type: object
+                  required:
+                    - context
+                    - message
+                - $ref: "example-rules/responses/on_confirm/on_confirm.yaml"
             examples:
               $ref: "./example-jsons/responses/on_confirm.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - on_confirm
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    order:
-                      $ref: '#/components/schemas/Order'
-                  required:
-                  - order
-                  type: object
-              required:
-              - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -742,29 +763,31 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - on_status
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        order:
+                          $ref: '#/components/schemas/Order'
+                      required:
+                      - order
+                      type: object
+                  required:
+                  - context
+                  type: object
+                - $ref: "./example-rules/responses/on_status/on_status.yaml"
             examples:
               $ref: "./example-jsons/responses/on_status.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - on_status
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    order:
-                      $ref: '#/components/schemas/Order'
-                  required:
-                  - order
-                  type: object
-              required:
-              - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -793,30 +816,32 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - on_update
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                          - $ref: '#/components/schemas/Order'
+                      required:
+                      - order
+                      type: object
+                  required:
+                  - context
+                  type: object
+                - $ref: "./example-rules/responses/on_update/on_update.yaml"
             examples:
               $ref: "./example-jsons/responses/on_update.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - on_update
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    order:
-                      allOf:
-                      - $ref: '#/components/schemas/Order'
-                  required:
-                  - order
-                  type: object
-              required:
-              - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -845,31 +870,33 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - on_rating
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        feedback_form:
+                          allOf:
+                          - $ref: '#/components/schemas/XInput'
+                          description: A feedback form to allow the user to provide additional
+                            information on the rating provided
+                      type: object
+                  required:
+                  - context
+                  - message
+                  type: object
+                - $ref: "./example-rules/responses/on_rating/on_rating.yaml"
             examples:
               $ref: "./example-jsons/responses/on_rating.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - on_rating
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    feedback_form:
-                      allOf:
-                      - $ref: '#/components/schemas/XInput'
-                      description: A feedback form to allow the user to provide additional
-                        information on the rating provided
-                  type: object
-              required:
-              - context
-              - message
-              type: object
         description: TODO
       responses:
         '200':
@@ -898,27 +925,29 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - on_support
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        support:
+                          $ref: '#/components/schemas/Support'
+                      type: object
+                  required:
+                  - context
+                  type: object
+                - $ref: "./example-rules/responses/on_support/on_support.yaml"
             examples:
               $ref: "./example-jsons/responses/on_support.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - on_support
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    support:
-                      $ref: '#/components/schemas/Support'
-                  type: object
-              required:
-              - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -947,29 +976,31 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - on_track
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        tracking:
+                          $ref: '#/components/schemas/Tracking'
+                      required:
+                      - tracking
+                      type: object
+                  required:
+                  - context
+                  type: object
+                - $ref: "./example-rules/responses/on_track/on_track.yaml"
             examples:
               $ref: "./example-jsons/responses/on_track.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - on_track
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    tracking:
-                      $ref: '#/components/schemas/Tracking'
-                  required:
-                  - tracking
-                  type: object
-              required:
-              - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -999,30 +1030,32 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                      - $ref: '#/components/schemas/Context'
+                      - properties:
+                          action:
+                            enum:
+                            - on_cancel
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                          - $ref: '#/components/schemas/Order'
+                      required:
+                      - order
+                      type: object
+                  required:
+                  - context
+                  type: object
+                - $ref: "./example-rules/responses/on_cancel/on_cancel.yaml"
             examples:
               $ref: "./example-jsons/responses/on_cancel.yaml"
-            schema:
-              properties:
-                context:
-                  allOf:
-                  - $ref: '#/components/schemas/Context'
-                  - properties:
-                      action:
-                        enum:
-                        - on_cancel
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    order:
-                      allOf:
-                      - $ref: '#/components/schemas/Order'
-                  required:
-                  - order
-                  type: object
-              required:
-              - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -1635,7 +1668,6 @@ components:
             of an order.
           items:
             $ref: '#/components/schemas/Stop'
-          minItems: 2
           type: array
         tags:
           items:
@@ -1655,26 +1687,13 @@ components:
           type: string
         vehicle:
           $ref: '#/components/schemas/Vehicle'
-      required:
-      - stops
       type: object
     FulfillmentState:
       additionalProperties: false
       description: Describes the state of fulfillment
       properties:
         descriptor:
-          allOf:
-          - $ref: '#/components/schemas/Descriptor'
-          - properties:
-              code:
-                enum:
-                - DRIVER_EN_ROUTE_TO_PICKUP
-                - DRIVER_AT_PICKUP
-                - RIDE_STARTED
-                - RIDE_ENDED
-                - RIDE_CANCELLED
-                - PAYMENT_COLLECTED
-                type: string
+          $ref: '#/components/schemas/Descriptor'
         updated_at:
           format: date-time
           type: string
@@ -1783,8 +1802,6 @@ components:
           items:
             $ref: '#/components/schemas/TagGroup'
           type: array
-      required:
-      - fulfillment
       type: object
     Item:
       additionalProperties: false
@@ -2123,7 +2140,6 @@ components:
           description: The fulfillments involved in completing this order
           items:
             $ref: '#/components/schemas/Fulfillment'
-          minItems: 1
           type: array
         id:
           description: Human-readable ID of the order. This is generated at the BPP
@@ -2134,7 +2150,6 @@ components:
           description: The items purchased / availed in this order
           items:
             $ref: '#/components/schemas/Item'
-          minItems: 1
           type: array
         offers:
           description: The offers applied in this order
@@ -2250,10 +2265,6 @@ components:
             it to the BPP. If the BPP agrees to those terms, the BPP should not send
             the payment url. Alternatively, the BPP can set this field with the value
             'bpp' if it wants the payment to be made directly.
-          enum:
-          - DRIVER
-          - DRIVER_APP
-          - RIDER_APP
           type: string
         id:
           description: ID of the payment term that can be referred at an item or an
@@ -2281,14 +2292,8 @@ components:
               type: string
             virtual_payment_address:
               type: string
-          required:
-          - amount
-          - currency
           type: object
         status:
-          enum:
-          - PAID
-          - NOT-PAID
           type: string
         tags:
           items:
@@ -2297,11 +2302,6 @@ components:
         time:
           $ref: '#/components/schemas/Time'
         type:
-          enum:
-          - PRE-ORDER
-          - PRE-FULFILLMENT
-          - ON-FULFILLMENT
-          - POST-FULFILLMENT
           type: string
         url:
           description: A payment url to be called by the BAP. If empty, then the payment
@@ -2311,10 +2311,6 @@ components:
             ```$amount``` are mandatory.
           format: uri
           type: string
-      required:
-      - collected_by
-      - type
-      - status
       type: object
     Person:
       additionalProperties: false
@@ -2403,7 +2399,6 @@ components:
         categories:
           items:
             $ref: '#/components/schemas/Category'
-          minItems: 1
           type: array
         category_id:
           description: Category Id of the provider at the BPP-level catalog
@@ -2424,7 +2419,6 @@ components:
         items:
           items:
             $ref: '#/components/schemas/Item'
-          minItems: 1
           type: array
         locations:
           items:
@@ -2467,22 +2461,10 @@ components:
               item:
                 $ref: '#/components/schemas/Item'
               price:
-                allOf:
-                - $ref: '#/components/schemas/Price'
-                required:
-                - value
+                $ref: '#/components/schemas/Price'
               title:
-                enum:
-                - BASE FARE
-                - TAX
-                - DISCOUNT
-                - WAITING CHARGE
                 type: string
-            required:
-            - title
-            - price
             type: object
-          minItems: 1
           type: array
         id:
           description: ID of the quote.
@@ -2492,15 +2474,8 @@ components:
           allOf:
           - $ref: '#/components/schemas/Price'
           description: The total quoted price
-          required:
-          - currency
-          - value
         ttl:
           $ref: '#/components/schemas/Duration'
-      required:
-      - price
-      - breakup
-      - ttl
       type: object
     Rating:
       additionalProperties: false
@@ -2511,10 +2486,6 @@ components:
           type: string
         rating_category:
           description: Category of the entity being rated
-          enum:
-          - RIDE
-          - DRIVER
-          - SERVICE
           type: string
         value:
           description: Rating value given to the object. This can be a single value
@@ -2522,10 +2493,6 @@ components:
             can also contain an inequality expression containing logical operators
             like && and ||.
           type: string
-      required:
-      - rating_category
-      - id
-      - value
       type: object
     Region:
       additionalProperties: false
@@ -2585,8 +2552,6 @@ components:
           description: Applicable only for buyer managed returns where the buyer has
             to replace the item before a certain date-time, failing which they will
             not be eligible for replacement
-      required:
-      - replace_within
       type: object
     ReturnTerm:
       additionalProperties: false
@@ -2594,9 +2559,6 @@ components:
       properties:
         fulfillment_managed_by:
           description: The entity that will perform the return
-          enum:
-          - CONSUMER
-          - PROVIDER
           type: string
         fulfillment_state:
           allOf:
@@ -2616,8 +2578,6 @@ components:
           description: Applicable only for buyer managed returns where the buyer has
             to return the item to the origin before a certain date-time, failing which
             they will not be eligible for refund.
-      required:
-      - return_time
       type: object
     Scalar:
       additionalProperties: false
@@ -2729,8 +2689,6 @@ components:
         url:
           format: uri
           type: string
-      required:
-      - ref_id
       type: object
     Tag:
       additionalProperties: false

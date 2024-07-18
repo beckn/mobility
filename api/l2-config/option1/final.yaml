@@ -151,29 +151,30 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - select
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                message:
+              allOf:
+                - type: object
                   properties:
-                    order:
+                    context:
                       allOf:
-                        - $ref: '#/components/schemas/Order'
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - select
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                            - $ref: '#/components/schemas/Order'
+                      required:
+                        - order
+                      type: object
                   required:
-                    - order
-                  type: object
-              required:
-                - context
-                - message
+                    - context
+                    - message
+                - allOf:
+                    - $ref: '#/paths/~1init/post/requestBody/content/application~1json/schema/allOf/1/allOf/1'
+                    - $ref: '#/paths/~1init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
             examples:
               Get a quote for a fare product selected from a public transit catalog:
                 value:
@@ -367,6 +368,129 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - type: object
+                  properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - init
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                            - $ref: '#/components/schemas/Order'
+                      required:
+                        - order
+                  required:
+                    - context
+                    - message
+                - allOf:
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              properties:
+                                payment:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      enum:
+                                        - PRE-ORDER
+                                        - PRE-FULFILLMENT
+                                        - ON-FULFILLMENT
+                                        - POST-FULFILLMENT
+                                  required:
+                                    - type
+                              required:
+                                - payment
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              type: object
+                              properties:
+                                provider:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                  required:
+                                    - id
+                                items:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                    required:
+                                      - id
+                              required:
+                                - provider
+                                - items
+                              not:
+                                properties:
+                                  id:
+                                    type: string
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              properties:
+                                fulfillments:
+                                  type: array
+                                  minItems: 1
+                                  items:
+                                    type: object
+                                    properties:
+                                      stops:
+                                        type: array
+                                        minItems: 2
+                                        items:
+                                          type: object
+                                          properties:
+                                            location:
+                                              type: object
+                                              properties:
+                                                gps:
+                                                  type: string
+                                              required:
+                                                - gps
+                                            type:
+                                              type: string
+                                              enum:
+                                                - START
+                                                - END
+                                          required:
+                                            - location
+                                            - type
+                                      state:
+                                        type: object
+                                        properties:
+                                          descriptor:
+                                            type: object
+                                            properties:
+                                              code:
+                                                type: string
+                                                enum:
+                                                  - DRIVER_EN_ROUTE_TO_PICKUP
+                                                  - DRIVER_AT_PICKUP
+                                                  - RIDE_STARTED
+                                                  - RIDE_ENDED
+                                                  - RIDE_CANCELLED
+                                                  - PAYMENT_COLLECTED
+                                            required:
+                                              - code
+                                    required:
+                                      - stops
+                              required:
+                                - fulfillments
             examples:
               Initialize draft order and request for terms of service:
                 value:
@@ -462,32 +586,6 @@ paths:
                         - id: '1'
                       provider:
                         id: '1'
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - init
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                message:
-                  properties:
-                    order:
-                      allOf:
-                        - $ref: '#/components/schemas/Order'
-                      required:
-                        - billing
-                  required:
-                    - order
-                  type: object
-              required:
-                - context
-                - message
-              type: object
         description: TODO
       responses:
         '200':
@@ -516,6 +614,101 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - confirm
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                            - $ref: '#/components/schemas/Order'
+                      required:
+                        - order
+                      type: object
+                  required:
+                    - context
+                    - message
+                  type: object
+                - allOf:
+                    - $ref: '#/paths/~1init/post/requestBody/content/application~1json/schema/allOf/1/allOf/1'
+                    - $ref: '#/paths/~1init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              properties:
+                                payment:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                      enum:
+                                        - PRE-ORDER
+                                        - PRE-FULFILLMENT
+                                        - ON-FULFILLMENT
+                                        - POST-FULFILLMENT
+                                    status:
+                                      type: string
+                                      enum:
+                                        - PAID
+                                        - NOT-PAID
+                                    collected_by:
+                                      type: string
+                                      enum:
+                                        - DRIVER
+                                        - DRIVER_APP
+                                        - RIDER_APP
+                                    params:
+                                      type: object
+                                      properties:
+                                        amount:
+                                          type: number
+                                        currency:
+                                          type: string
+                                      required:
+                                        - amount
+                                        - currency
+                                  required:
+                                    - type
+                                    - status
+                              required:
+                                - payment
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              properties:
+                                payment:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                    params:
+                                      type: object
+                                      properties:
+                                        transaction_id:
+                                          type: string
+                                  required:
+                                    - type
+                                  allOf:
+                                    - if:
+                                        properties:
+                                          type:
+                                            const: PRE-ORDER
+                                      then:
+                                        properties:
+                                          params:
+                                            required:
+                                              - transaction_id
+                              required:
+                                - payment
             examples:
               Confirm ride booking:
                 value:
@@ -621,33 +814,6 @@ paths:
                           transaction_id: '24566345563'
                       provider:
                         id: '1'
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - confirm
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                message:
-                  properties:
-                    order:
-                      allOf:
-                        - $ref: '#/components/schemas/Order'
-                      required:
-                        - billing
-                        - payments
-                  required:
-                    - order
-                  type: object
-              required:
-                - context
-                - message
-              type: object
         description: TODO
       responses:
         '200':
@@ -676,6 +842,33 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - status
+                    message:
+                      properties:
+                        order_id:
+                          $ref: '#/components/schemas/Order/properties/id'
+                      type: object
+                  required:
+                    - context
+                    - message
+                  type: object
+                - allOf:
+                    - properties:
+                        message:
+                          properties:
+                            order_id:
+                              type: string
+                          required:
+                            - order_id
             examples:
               Get latest fulfillment status of a booking:
                 value:
@@ -717,27 +910,6 @@ paths:
                     version: 1.1.0
                   message:
                     order_id: '123413'
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - status
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                message:
-                  properties:
-                    order_id:
-                      $ref: '#/components/schemas/Order/properties/id'
-                  type: object
-              required:
-                - context
-                - message
-              type: object
         description: TODO
       responses:
         '200':
@@ -767,36 +939,55 @@ paths:
         content:
           application/json:
             schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - update
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                message:
-                  properties:
-                    order:
+              allOf:
+                - properties:
+                    context:
                       allOf:
-                        - $ref: '#/components/schemas/Order'
-                      description: Updated order object
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - update
+                          required:
+                            - bpp_id
+                            - bpp_uri
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                            - $ref: '#/components/schemas/Order'
+                          description: Updated order object
+                          required:
+                            - id
+                        update_target:
+                          description: 'Comma separated values of order objects being updated. For example: ```"update_target":"item,billing,fulfillment"```'
+                          type: string
                       required:
-                        - id
-                    update_target:
-                      description: 'Comma separated values of order objects being updated. For example: ```"update_target":"item,billing,fulfillment"```'
-                      type: string
+                        - update_target
+                        - order
+                      type: object
                   required:
-                    - update_target
-                    - order
+                    - context
+                    - message
                   type: object
-              required:
-                - context
-                - message
-              type: object
+                - allOf:
+                    - properties:
+                        message:
+                          type: object
+                          properties:
+                            order:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                              required:
+                                - id
+                            update_target:
+                              type: string
+                              pattern: '^[^,]+(,[^,]+)*$'
+                          required:
+                            - order
+                            - update_target
         description: TODO
       responses:
         '200':
@@ -825,6 +1016,51 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - rating
+                    message:
+                      properties:
+                        ratings:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/Rating'
+                      type: object
+                  required:
+                    - context
+                    - message
+                  type: object
+                - allOf:
+                    - properties:
+                        message:
+                          properties:
+                            ratings:
+                              type: array
+                              minItems: 1
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                  value:
+                                    type: number
+                                  rating_category:
+                                    type: string
+                                    enum:
+                                      - RIDER
+                                      - DRIVER
+                                      - SERVICE
+                                required:
+                                  - id
+                                  - value
+                                  - rating_category
             examples:
               Provide a rating:
                 value:
@@ -849,31 +1085,6 @@ paths:
                       - id: b0462745-f6c9-4100-bbe7-4fa3648b6b40
                         rating_category: DRIVER
                         value: 4
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - rating
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                message:
-                  properties:
-                    ratings:
-                      items:
-                        $ref: '#/components/schemas/Rating'
-                      minItems: 1
-                      type: array
-                  type: object
-              required:
-                - context
-                - message
-              type: object
-        description: TODO
       responses:
         '200':
           content:
@@ -901,6 +1112,35 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - support
+                    message:
+                      properties:
+                        support:
+                          $ref: '#/components/schemas/Support'
+                      type: object
+                  required:
+                    - context
+                    - message
+                  type: object
+                - allOf:
+                    - properties:
+                        message:
+                          properties:
+                            support:
+                              properties:
+                                ref_id:
+                                  type: string
+                              required:
+                                - ref_id
             examples:
               Fetch support information related to a particular order:
                 value:
@@ -925,29 +1165,6 @@ paths:
                       email: johndoe@gmail.com
                       phone: 91-876787656
                       ref_id: 7751bd26-3fdc-47ca-9b64-e998dc5abe68
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - support
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                message:
-                  properties:
-                    support:
-                      $ref: '#/components/schemas/Support'
-                  required:
-                    - ref_id
-                  type: object
-              required:
-                - context
-                - message
-              type: object
         description: TODO
       responses:
         '200':
@@ -976,6 +1193,37 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - track
+                    message:
+                      additionalProperties: false
+                      properties:
+                        callback_url:
+                          format: uri
+                          type: string
+                        order_id:
+                          $ref: '#/components/schemas/Order/properties/id'
+                      type: object
+                  required:
+                    - context
+                    - message
+                  type: object
+                - allOf:
+                    - properties:
+                        message:
+                          properties:
+                            order_id:
+                              type: string
+                          required:
+                            - order_id
             examples:
               Track an active ride:
                 value:
@@ -997,33 +1245,6 @@ paths:
                     version: 1.1.0
                   message:
                     order_id: 22e090fc-b8b1-4437-9126-ff7a71c7845c
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - track
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                message:
-                  additionalProperties: false
-                  properties:
-                    callback_url:
-                      format: uri
-                      type: string
-                    order_id:
-                      $ref: '#/components/schemas/Order/properties/id'
-                  required:
-                    - order_id
-                  type: object
-              required:
-                - context
-                - message
-              type: object
         description: TODO
       responses:
         '200':
@@ -1052,6 +1273,37 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - cancel
+                    message:
+                      properties:
+                        cancellation_reason_id:
+                          $ref: '#/components/schemas/Option/properties/id'
+                        descriptor:
+                          $ref: '#/components/schemas/Descriptor'
+                        order_id:
+                          $ref: '#/components/schemas/Order/properties/id'
+                      type: object
+                  required:
+                    - context
+                    - message
+                  type: object
+                - allOf:
+                    - properties:
+                        message:
+                          properties:
+                            order_id:
+                              type: string
+                          required:
+                            - order_id
             examples:
               Cancel a ride with selected reason:
                 value:
@@ -1117,33 +1369,6 @@ paths:
                     order:
                       cancellation_reason_id: '2'
                       id: '123413'
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - cancel
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                message:
-                  properties:
-                    cancellation_reason_id:
-                      $ref: '#/components/schemas/Option/properties/id'
-                    descriptor:
-                      $ref: '#/components/schemas/Descriptor'
-                    order_id:
-                      $ref: '#/components/schemas/Order/properties/id'
-                  required:
-                    - order_id
-                  type: object
-              required:
-                - context
-                - message
-              type: object
         description: TODO
       responses:
         '200':
@@ -1172,6 +1397,110 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - type: object
+                  properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - on_search
+                          required:
+                            - action
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        catalog:
+                          $ref: '#/components/schemas/Catalog'
+                      required:
+                        - catalog
+                      type: object
+                  required:
+                    - context
+                    - message
+                - allOf:
+                    - properties:
+                        message:
+                          properties:
+                            catalog:
+                              type: object
+                              properties:
+                                descriptor:
+                                  type: object
+                                  properties:
+                                    name:
+                                      type: string
+                                    images:
+                                      type: array
+                                      items:
+                                        minItems: 1
+                                  required:
+                                    - name
+                                    - images
+                                providers:
+                                  type: array
+                                  minItems: 1
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                      descriptor:
+                                        type: object
+                                        properties:
+                                          name:
+                                            type: string
+                                          images:
+                                            type: array
+                                            items:
+                                              minItems: 1
+                                        required:
+                                          - name
+                                          - images
+                                      fulfillments:
+                                        type: array
+                                        items:
+                                          minItems: 1
+                                      items:
+                                        type: array
+                                        minItems: 1
+                                        items:
+                                          type: object
+                                          properties:
+                                            descriptor:
+                                              type: object
+                                              properties:
+                                                name:
+                                                  type: string
+                                              required:
+                                                - name
+                                            price:
+                                              type: object
+                                              properties:
+                                                value:
+                                                  type: number
+                                              required:
+                                                - value
+                                      payments:
+                                        type: array
+                                        minItems: 1
+                                        items:
+                                          type: object
+                                          properties:
+                                            type:
+                                              type: string
+                                            collected_by:
+                                              type: string
+                                          required:
+                                            - type
+                                            - collected_by
+                              required:
+                                - descriptor
+                                - providers
             examples:
               Return a mobility catalog with multiple providers:
                 value:
@@ -1813,110 +2142,6 @@ paths:
                             - collected_by: BPP
                               id: '1'
                               type: ON-FULFILLMENT
-            schema:
-              allOf:
-                - type: object
-                  properties:
-                    context:
-                      allOf:
-                        - $ref: '#/components/schemas/Context'
-                        - properties:
-                            action:
-                              enum:
-                                - on_search
-                          required:
-                            - action
-                    error:
-                      $ref: '#/components/schemas/Error'
-                    message:
-                      properties:
-                        catalog:
-                          $ref: '#/components/schemas/Catalog'
-                      required:
-                        - catalog
-                      type: object
-                  required:
-                    - context
-                    - message
-                - allOf:
-                    - properties:
-                        message:
-                          properties:
-                            catalog:
-                              type: object
-                              properties:
-                                descriptor:
-                                  type: object
-                                  properties:
-                                    name:
-                                      type: string
-                                    images:
-                                      type: array
-                                      items:
-                                        minItems: 1
-                                  required:
-                                    - name
-                                    - images
-                                providers:
-                                  type: array
-                                  minItems: 1
-                                  items:
-                                    type: object
-                                    properties:
-                                      id:
-                                        type: string
-                                      descriptor:
-                                        type: object
-                                        properties:
-                                          name:
-                                            type: string
-                                          images:
-                                            type: array
-                                            items:
-                                              minItems: 1
-                                        required:
-                                          - name
-                                          - images
-                                      fulfillments:
-                                        type: array
-                                        items:
-                                          minItems: 1
-                                      items:
-                                        type: array
-                                        minItems: 1
-                                        items:
-                                          type: object
-                                          properties:
-                                            descriptor:
-                                              type: object
-                                              properties:
-                                                name:
-                                                  type: string
-                                              required:
-                                                - name
-                                            price:
-                                              type: object
-                                              properties:
-                                                value:
-                                                  type: number
-                                              required:
-                                                - value
-                                      payments:
-                                        type: array
-                                        minItems: 1
-                                        items:
-                                          type: object
-                                          properties:
-                                            type:
-                                              type: string
-                                            collected_by:
-                                              type: string
-                                          required:
-                                            - type
-                                            - collected_by
-                              required:
-                                - descriptor
-                                - providers
       responses:
         '200':
           content:
@@ -1945,6 +2170,35 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - type: object
+                  properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - on_select
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                            - $ref: '#/components/schemas/Order'
+                      required:
+                        - order
+                      type: object
+                  required:
+                    - context
+                    - message
+                - allOf:
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/0'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/1'
+                    - $ref: '#/paths/~1init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/3'
             examples:
               Return a quote offered by a public transit service provider:
                 value:
@@ -2168,20 +2422,44 @@ paths:
                           currency: INR
                           value: '76'
                         ttl: P200S
+        description: TODO
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                properties:
+                  error:
+                    $ref: '#/components/schemas/Error'
+                  message:
+                    properties:
+                      ack:
+                        $ref: '#/components/schemas/Ack'
+                    required:
+                      - ack
+                    type: object
+                required:
+                  - message
+                type: object
+          description: Acknowledgement of message received
+      tags:
+        - Beckn App Platform (BAP)
+  /on_init:
+    post:
+      description: Send order object with payment details updated
+      requestBody:
+        content:
+          application/json:
             schema:
               allOf:
-                - type: object
-                  properties:
+                - properties:
                     context:
                       allOf:
                         - $ref: '#/components/schemas/Context'
                         - properties:
                             action:
                               enum:
-                                - on_select
-                          required:
-                            - bpp_id
-                            - bpp_uri
+                                - on_init
                     error:
                       $ref: '#/components/schemas/Error'
                     message:
@@ -2189,17 +2467,12 @@ paths:
                         order:
                           allOf:
                             - $ref: '#/components/schemas/Order'
-                            - not:
-                                required:
-                                  - id
-                          required:
-                            - quote
                       required:
                         - order
                       type: object
                   required:
                     - context
-                    - message
+                  type: object
                 - allOf:
                     - properties:
                         message:
@@ -2250,36 +2523,7 @@ paths:
                                       - descriptor
                               required:
                                 - items
-                    - properties:
-                        message:
-                          properties:
-                            order:
-                              properties:
-                                fulfillments:
-                                  type: array
-                                  minItems: 1
-                                  items:
-                                    type: object
-                                    properties:
-                                      stops:
-                                        type: array
-                                        minItems: 2
-                                        items:
-                                          type: object
-                                          properties:
-                                            location:
-                                              type: object
-                                              properties:
-                                                gps:
-                                                  type: string
-                                              required:
-                                                - gps
-                                          required:
-                                            - location
-                                    required:
-                                      - stops
-                              required:
-                                - fulfillments
+                    - $ref: '#/paths/~1init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
                     - properties:
                         message:
                           properties:
@@ -2289,7 +2533,15 @@ paths:
                                   type: object
                                   properties:
                                     price:
-                                      type: number
+                                      type: object
+                                      properties:
+                                        currency:
+                                          type: string
+                                        value:
+                                          type: number
+                                      required:
+                                        - currency
+                                        - value
                                     breakup:
                                       type: array
                                       items:
@@ -2299,6 +2551,11 @@ paths:
                                             type: number
                                           title:
                                             type: string
+                                            enum:
+                                              - BASE FARE
+                                              - TAX
+                                              - DISCOUNT
+                                              - WAITING CHARGE
                                         required:
                                           - price
                                           - title
@@ -2307,34 +2564,7 @@ paths:
                                     - breakup
                               required:
                                 - quote
-        description: TODO
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                properties:
-                  error:
-                    $ref: '#/components/schemas/Error'
-                  message:
-                    properties:
-                      ack:
-                        $ref: '#/components/schemas/Ack'
-                    required:
-                      - ack
-                    type: object
-                required:
-                  - message
-                type: object
-          description: Acknowledgement of message received
-      tags:
-        - Beckn App Platform (BAP)
-  /on_init:
-    post:
-      description: Send order object with payment details updated
-      requestBody:
-        content:
-          application/json:
+                    - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
             examples:
               Return draft order for transit ticket with T+1 settlment via bank transfer:
                 value:
@@ -2705,38 +2935,6 @@ paths:
                         price:
                           currency: INR
                           value: '81'
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - on_init
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    order:
-                      allOf:
-                        - $ref: '#/components/schemas/Order'
-                        - not:
-                            required:
-                              - id
-                      required:
-                        - quote
-                        - billing
-                        - payments
-                  required:
-                    - order
-                  type: object
-              required:
-                - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -2765,6 +2963,112 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - type: object
+                  properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - on_confirm
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        order:
+                          $ref: '#/components/schemas/Order'
+                      required:
+                        - order
+                      type: object
+                  required:
+                    - context
+                    - message
+                - allOf:
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/0'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/1'
+                    - $ref: '#/paths/~1init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/3'
+                    - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              properties:
+                                fulfillment:
+                                  type: object
+                                  properties:
+                                    agent:
+                                      type: object
+                                      properties:
+                                        contact:
+                                          type: object
+                                        person:
+                                          type: object
+                                      required:
+                                        - contact
+                                        - person
+                                    customer:
+                                      type: object
+                                      properties:
+                                        contact:
+                                          type: object
+                                        person:
+                                          type: object
+                                      required:
+                                        - contact
+                                        - person
+                                    state:
+                                      type: object
+                                      properties:
+                                        descriptor:
+                                          type: object
+                                          properties:
+                                            code:
+                                              type: string
+                                          required:
+                                            - code
+                                      required:
+                                        - descriptor
+                                    vehicle:
+                                      type: object
+                                      properties:
+                                        registration:
+                                          type: string
+                                      required:
+                                        - registration
+                                  required:
+                                    - agent
+                                    - customer
+                                    - state
+                                    - vehicle
+                                payment:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                    params:
+                                      type: object
+                                      properties:
+                                        transaction_id:
+                                          type: string
+                                  required:
+                                    - type
+                                  allOf:
+                                    - if:
+                                        properties:
+                                          type:
+                                            const: PRE-ORDER
+                                      then:
+                                        properties:
+                                          params:
+                                            required:
+                                              - transaction_id
+                              required:
+                                - fulfillment
+                                - payment
             examples:
               Return confirmed order with latest fulfillment details:
                 value:
@@ -3158,51 +3462,6 @@ paths:
                         price:
                           currency: '60.5'
                           value: INR
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - on_confirm
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    order:
-                      allOf:
-                        - $ref: '#/components/schemas/Order'
-                        - properties:
-                            fulfillments:
-                              items:
-                                allOf:
-                                  - properties:
-                                      state:
-                                        allOf:
-                                          - properties:
-                                              descriptor:
-                                                required:
-                                                  - code
-                                required:
-                                  - state
-                                  - agent
-                              type: array
-                      required:
-                        - quote
-                        - billing
-                        - payments
-                        - id
-                  required:
-                    - order
-                  type: object
-              required:
-                - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -3231,6 +3490,111 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - on_status
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        order:
+                          $ref: '#/components/schemas/Order'
+                      required:
+                        - order
+                      type: object
+                  required:
+                    - context
+                  type: object
+                - allOf:
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/0'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/1'
+                    - $ref: '#/paths/~1init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/3'
+                    - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              properties:
+                                fulfillment:
+                                  type: object
+                                  properties:
+                                    agent:
+                                      type: object
+                                      properties:
+                                        contact:
+                                          type: object
+                                        person:
+                                          type: object
+                                      required:
+                                        - contact
+                                        - person
+                                    customer:
+                                      type: object
+                                      properties:
+                                        contact:
+                                          type: object
+                                        person:
+                                          type: object
+                                      required:
+                                        - contact
+                                        - person
+                                    state:
+                                      type: object
+                                      properties:
+                                        descriptor:
+                                          type: object
+                                          properties:
+                                            code:
+                                              type: string
+                                          required:
+                                            - code
+                                      required:
+                                        - descriptor
+                                    vehicle:
+                                      type: object
+                                      properties:
+                                        registration:
+                                          type: string
+                                      required:
+                                        - registration
+                                  required:
+                                    - agent
+                                    - customer
+                                    - state
+                                    - vehicle
+                                payment:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                    params:
+                                      type: object
+                                      properties:
+                                        transaction_id:
+                                          type: string
+                                  required:
+                                    - type
+                                  allOf:
+                                    - if:
+                                        properties:
+                                          type:
+                                            const: PRE-ORDER
+                                      then:
+                                        properties:
+                                          params:
+                                            required:
+                                              - transaction_id
+                              required:
+                                - fulfillment
+                                - payment
             examples:
               Return order with latest fulfillment status - Driver en-route to pickup:
                 value:
@@ -4197,52 +4561,6 @@ paths:
                         price:
                           currency: '60.5'
                           value: INR
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - on_status
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    order:
-                      allOf:
-                        - $ref: '#/components/schemas/Order'
-                        - properties:
-                            fulfillments:
-                              items:
-                                allOf:
-                                  - properties:
-                                      state:
-                                        allOf:
-                                          - properties:
-                                              descriptor:
-                                                required:
-                                                  - code
-                                        required:
-                                          - descriptor
-                                required:
-                                  - state
-                              type: array
-                      required:
-                        - quote
-                        - billing
-                        - payments
-                        - id
-                  required:
-                    - order
-                  type: object
-              required:
-                - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -4271,6 +4589,107 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - on_update
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                            - $ref: '#/components/schemas/Order'
+                      required:
+                        - order
+                      type: object
+                  required:
+                    - context
+                  type: object
+                - allOf:
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/0'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/1'
+                    - $ref: '#/paths/~1init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/3'
+                    - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              properties:
+                                fulfillment:
+                                  type: object
+                                  properties:
+                                    agent:
+                                      type: object
+                                      required:
+                                        - contact
+                                        - person
+                                    customer:
+                                      type: object
+                                      properties:
+                                        contact:
+                                          type: object
+                                        person:
+                                          type: object
+                                      required:
+                                        - contact
+                                        - person
+                                    state:
+                                      type: object
+                                      properties:
+                                        descriptor:
+                                          type: object
+                                          properties:
+                                            code:
+                                              type: string
+                                          required:
+                                            - code
+                                      required:
+                                        - descriptor
+                                    vehicle:
+                                      type: object
+                                      properties:
+                                        registration:
+                                          type: string
+                                      required:
+                                        - registration
+                                  required:
+                                    - agent
+                                    - customer
+                                    - state
+                                    - vehicle
+                                payment:
+                                  type: object
+                                  properties:
+                                    type:
+                                      type: string
+                                    params:
+                                      type: object
+                                      properties:
+                                        transaction_id:
+                                          type: string
+                                  required:
+                                    - type
+                                  allOf:
+                                    - if:
+                                        properties:
+                                          type:
+                                            const: PRE-ORDER
+                                      then:
+                                        properties:
+                                          params:
+                                            required:
+                                              - transaction_id
+                              required:
+                                - fulfillment
+                                - payment
             examples:
               Return updated order with payment transaction status:
                 value:
@@ -4602,52 +5021,6 @@ paths:
                         price:
                           currency: INR
                           value: '75'
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - on_update
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    order:
-                      allOf:
-                        - $ref: '#/components/schemas/Order'
-                        - properties:
-                            fulfillments:
-                              items:
-                                allOf:
-                                  - properties:
-                                      state:
-                                        allOf:
-                                          - properties:
-                                              descriptor:
-                                                required:
-                                                  - code
-                                        required:
-                                          - descriptor
-                                required:
-                                  - state
-                              type: array
-                      required:
-                        - quote
-                        - billing
-                        - payments
-                        - id
-                  required:
-                    - order
-                  type: object
-              required:
-                - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -4676,6 +5049,50 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - on_rating
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        feedback_form:
+                          allOf:
+                            - $ref: '#/components/schemas/XInput'
+                          description: A feedback form to allow the user to provide additional information on the rating provided
+                      type: object
+                  required:
+                    - context
+                    - message
+                  type: object
+                - allOf:
+                    - properties:
+                        message:
+                          properties:
+                            feedback_form:
+                              type: object
+                              properties:
+                                required:
+                                  type: boolean
+                                form:
+                                  type: object
+                              required:
+                                - required
+                              allOf:
+                                - if:
+                                    properties:
+                                      required:
+                                        const: true
+                                  then:
+                                    required:
+                                      - form
             examples:
               Return acknowledgement of rating and feedback:
                 value:
@@ -4700,30 +5117,6 @@ paths:
                         mime_type: text/html
                         url: 'https://www.example.com/feedbackform'
                       required: true
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - on_rating
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    feedback_form:
-                      allOf:
-                        - $ref: '#/components/schemas/XInput'
-                      description: A feedback form to allow the user to provide additional information on the rating provided
-                  type: object
-              required:
-                - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -4752,6 +5145,48 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - on_support
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        support:
+                          $ref: '#/components/schemas/Support'
+                      type: object
+                  required:
+                    - context
+                  type: object
+                - allOf:
+                    - properties:
+                        message:
+                          properties:
+                            support:
+                              type: object
+                              properties:
+                                email:
+                                  type: string
+                                  format: email
+                                phone:
+                                  type: string
+                                url:
+                                  type: string
+                                  format: uri
+                              anyOf:
+                                - required:
+                                    - email
+                                - required:
+                                    - phone
+                                - required:
+                                    - url
             examples:
               Return support information related to an order:
                 value:
@@ -4777,28 +5212,6 @@ paths:
                       phone: '+918068870525'
                       ref_id: 1386183jkgsgfjsf
                       url: 'https://support.example-bpp.com/gethelp'
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - on_support
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    support:
-                      $ref: '#/components/schemas/Support'
-                  type: object
-              required:
-                - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -4827,6 +5240,53 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - on_track
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        tracking:
+                          $ref: '#/components/schemas/Tracking'
+                      required:
+                        - tracking
+                      type: object
+                  required:
+                    - context
+                  type: object
+                - allOf:
+                    - properties:
+                        message:
+                          properties:
+                            tracking:
+                              type: object
+                              properties:
+                                status:
+                                  type: string
+                                url:
+                                  type: string
+                                location:
+                                  type: object
+                                  properties:
+                                    latitude:
+                                      type: number
+                                    longitude:
+                                      type: number
+                              required:
+                                - status
+                              oneOf:
+                                - required:
+                                    - url
+                                - required:
+                                    - location
             examples:
               Return tracking information for an order:
                 value:
@@ -4849,30 +5309,6 @@ paths:
                     tracking:
                       status: active
                       url: 'https://api.beckn.juspay.in/dobpp/ui/driver/location/abc9f0aa-bbfd-4e91-b378-41feee12f05f'
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - on_track
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    tracking:
-                      $ref: '#/components/schemas/Tracking'
-                  required:
-                    - tracking
-                  type: object
-              required:
-                - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -4901,6 +5337,75 @@ paths:
       requestBody:
         content:
           application/json:
+            schema:
+              allOf:
+                - properties:
+                    context:
+                      allOf:
+                        - $ref: '#/components/schemas/Context'
+                        - properties:
+                            action:
+                              enum:
+                                - on_cancel
+                    error:
+                      $ref: '#/components/schemas/Error'
+                    message:
+                      properties:
+                        order:
+                          allOf:
+                            - $ref: '#/components/schemas/Order'
+                      required:
+                        - order
+                      type: object
+                  required:
+                    - context
+                  type: object
+                - allOf:
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/0'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/1'
+                    - $ref: '#/paths/~1init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/3'
+                    - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              type: object
+                              properties:
+                                cancellation:
+                                  type: object
+                                  properties:
+                                    cancelled_by:
+                                      type: string
+                                      enum:
+                                        - CONSUMER
+                                        - PROVIDER
+                                    time:
+                                      type: string
+                                      format: date-time
+                                  required:
+                                    - cancelled_by
+                                    - time
+                                fulfillments:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      state:
+                                        type: object
+                                        properties:
+                                          descriptor:
+                                            type: object
+                                            properties:
+                                              code:
+                                                type: string
+                                                enum:
+                                                  - RIDE_CANCELLED
+                                            required:
+                                              - code
+                              required:
+                                - cancellation
+                                - fulfillments
             examples:
               Return cancelled ticket order with cancellation charges:
                 value:
@@ -5324,53 +5829,6 @@ paths:
                         price:
                           currency: INR
                           value: '0'
-            schema:
-              properties:
-                context:
-                  allOf:
-                    - $ref: '#/components/schemas/Context'
-                    - properties:
-                        action:
-                          enum:
-                            - on_cancel
-                      required:
-                        - bpp_id
-                        - bpp_uri
-                error:
-                  $ref: '#/components/schemas/Error'
-                message:
-                  properties:
-                    order:
-                      allOf:
-                        - $ref: '#/components/schemas/Order'
-                        - properties:
-                            fulfillments:
-                              items:
-                                allOf:
-                                  - properties:
-                                      state:
-                                        allOf:
-                                          - properties:
-                                              descriptor:
-                                                required:
-                                                  - code
-                                        required:
-                                          - descriptor
-                                required:
-                                  - state
-                              type: array
-                      required:
-                        - quote
-                        - billing
-                        - payments
-                        - id
-                        - cancellation
-                  required:
-                    - order
-                  type: object
-              required:
-                - context
-              type: object
         description: TODO
       responses:
         '200':
@@ -5514,9 +5972,6 @@ components:
             - $ref: '#/components/schemas/Descriptor'
           description: Any additional information regarding the nature of cancellation
         cancelled_by:
-          enum:
-            - CONSUMER
-            - PROVIDER
           type: string
         reason:
           allOf:
@@ -5526,9 +5981,6 @@ components:
           description: Date-time when the order was cancelled by the buyer
           format: date-time
           type: string
-      required:
-        - time
-        - cancelled_by
       type: object
     CancellationTerm:
       additionalProperties: false
@@ -5569,7 +6021,6 @@ components:
           description: Fulfillment modes offered at the BPP level. This is used when a BPP itself offers fulfillments on behalf of the providers it has onboarded.
           items:
             $ref: '#/components/schemas/Fulfillment'
-          minItems: 1
           type: array
         offers:
           description: Offers at the BPP-level. This is common across all providers onboarded by the BPP.
@@ -5583,40 +6034,11 @@ components:
           type: array
         providers:
           items:
-            allOf:
-              - $ref: '#/components/schemas/Provider'
-              - properties:
-                  descriptor:
-                    allOf:
-                      - $ref: '#/components/schemas/Descriptor'
-                    required:
-                      - name
-                  items:
-                    items:
-                      allOf:
-                        - $ref: '#/components/schemas/Item'
-                        - properties:
-                            descriptor:
-                              allOf:
-                                - $ref: '#/components/schemas/Descriptor'
-                              required:
-                                - name
-                      required:
-                        - descriptor
-                        - price
-                    type: array
-            required:
-              - id
-              - categories
-              - descriptor
-              - items
-          minItems: 1
+            $ref: '#/components/schemas/Provider'
           type: array
         ttl:
           description: Duration in seconds after which this catalog will expire
           type: string
-      required:
-        - providers
       type: object
     Category:
       additionalProperties: false
@@ -5913,7 +6335,6 @@ components:
           description: The list of logical stops encountered during the fulfillment of an order.
           items:
             $ref: '#/components/schemas/Stop'
-          minItems: 2
           type: array
         tags:
           items:
@@ -5928,26 +6349,13 @@ components:
           type: string
         vehicle:
           $ref: '#/components/schemas/Vehicle'
-      required:
-        - stops
       type: object
     FulfillmentState:
       additionalProperties: false
       description: Describes the state of fulfillment
       properties:
         descriptor:
-          allOf:
-            - $ref: '#/components/schemas/Descriptor'
-            - properties:
-                code:
-                  enum:
-                    - DRIVER_EN_ROUTE_TO_PICKUP
-                    - DRIVER_AT_PICKUP
-                    - RIDE_STARTED
-                    - RIDE_ENDED
-                    - RIDE_CANCELLED
-                    - PAYMENT_COLLECTED
-                  type: string
+          $ref: '#/components/schemas/Descriptor'
         updated_at:
           format: date-time
           type: string
@@ -6022,8 +6430,6 @@ components:
           items:
             $ref: '#/components/schemas/TagGroup'
           type: array
-      required:
-        - fulfillment
       type: object
     Item:
       additionalProperties: false
@@ -6345,7 +6751,6 @@ components:
           description: The fulfillments involved in completing this order
           items:
             $ref: '#/components/schemas/Fulfillment'
-          minItems: 1
           type: array
         id:
           description: Human-readable ID of the order. This is generated at the BPP layer. The BPP can either generate order id within its system or forward the order ID created at the provider level.
@@ -6354,7 +6759,6 @@ components:
           description: The items purchased / availed in this order
           items:
             $ref: '#/components/schemas/Item'
-          minItems: 1
           type: array
         offers:
           description: The offers applied in this order
@@ -6449,10 +6853,6 @@ components:
       properties:
         collected_by:
           description: 'This field indicates who is the collector of payment. The BAP can set this value to ''bap'' if it wants to collect the payment first and  settle it to the BPP. If the BPP agrees to those terms, the BPP should not send the payment url. Alternatively, the BPP can set this field with the value ''bpp'' if it wants the payment to be made directly.'
-          enum:
-            - DRIVER
-            - DRIVER_APP
-            - RIDER_APP
           type: string
         id:
           description: ID of the payment term that can be referred at an item or an order level in a catalog
@@ -6478,14 +6878,8 @@ components:
               type: string
             virtual_payment_address:
               type: string
-          required:
-            - amount
-            - currency
           type: object
         status:
-          enum:
-            - PAID
-            - NOT-PAID
           type: string
         tags:
           items:
@@ -6494,20 +6888,11 @@ components:
         time:
           $ref: '#/components/schemas/Time'
         type:
-          enum:
-            - PRE-ORDER
-            - PRE-FULFILLMENT
-            - ON-FULFILLMENT
-            - POST-FULFILLMENT
           type: string
         url:
           description: 'A payment url to be called by the BAP. If empty, then the payment is to be done offline. The details of payment should be present in the params object. If tl_method = http/get, then the payment details will be sent as url params. Two url param values, ```$transaction_id``` and ```$amount``` are mandatory.'
           format: uri
           type: string
-      required:
-        - collected_by
-        - type
-        - status
       type: object
     Person:
       additionalProperties: false
@@ -6593,7 +6978,6 @@ components:
         categories:
           items:
             $ref: '#/components/schemas/Category'
-          minItems: 1
           type: array
         category_id:
           description: Category Id of the provider at the BPP-level catalog
@@ -6614,7 +6998,6 @@ components:
         items:
           items:
             $ref: '#/components/schemas/Item'
-          minItems: 1
           type: array
         locations:
           items:
@@ -6655,22 +7038,10 @@ components:
               item:
                 $ref: '#/components/schemas/Item'
               price:
-                allOf:
-                  - $ref: '#/components/schemas/Price'
-                required:
-                  - value
+                $ref: '#/components/schemas/Price'
               title:
-                enum:
-                  - BASE FARE
-                  - TAX
-                  - DISCOUNT
-                  - WAITING CHARGE
                 type: string
-            required:
-              - title
-              - price
             type: object
-          minItems: 1
           type: array
         id:
           description: ID of the quote.
@@ -6680,15 +7051,8 @@ components:
           allOf:
             - $ref: '#/components/schemas/Price'
           description: The total quoted price
-          required:
-            - currency
-            - value
         ttl:
           $ref: '#/components/schemas/Duration'
-      required:
-        - price
-        - breakup
-        - ttl
       type: object
     Rating:
       additionalProperties: false
@@ -6699,18 +7063,10 @@ components:
           type: string
         rating_category:
           description: Category of the entity being rated
-          enum:
-            - RIDE
-            - DRIVER
-            - SERVICE
           type: string
         value:
           description: 'Rating value given to the object. This can be a single value or can also contain an inequality operator like gt, gte, lt, lte. This can also contain an inequality expression containing logical operators like && and ||.'
           type: string
-      required:
-        - rating_category
-        - id
-        - value
       type: object
     Region:
       additionalProperties: false
@@ -6753,8 +7109,6 @@ components:
           allOf:
             - $ref: '#/components/schemas/Time'
           description: 'Applicable only for buyer managed returns where the buyer has to replace the item before a certain date-time, failing which they will not be eligible for replacement'
-      required:
-        - replace_within
       type: object
     ReturnTerm:
       additionalProperties: false
@@ -6762,9 +7116,6 @@ components:
       properties:
         fulfillment_managed_by:
           description: The entity that will perform the return
-          enum:
-            - CONSUMER
-            - PROVIDER
           type: string
         fulfillment_state:
           allOf:
@@ -6781,8 +7132,6 @@ components:
           allOf:
             - $ref: '#/components/schemas/Time'
           description: 'Applicable only for buyer managed returns where the buyer has to return the item to the origin before a certain date-time, failing which they will not be eligible for refund.'
-      required:
-        - return_time
       type: object
     Scalar:
       additionalProperties: false
@@ -6892,8 +7241,6 @@ components:
         url:
           format: uri
           type: string
-      required:
-        - ref_id
       type: object
     Tag:
       additionalProperties: false

@@ -18,6 +18,12 @@ properties:
                 enum:
                   - PAID
                   - NOT-PAID
+              collected_by:
+                type: string
+                enum:
+                  - DRIVER
+                  - DRIVER_APP
+                  - RIDER_APP
               params:
                 type: object
                 properties:
@@ -31,6 +37,5 @@ properties:
             required:
               - type
               - status
-              - params
         required:
           - payment

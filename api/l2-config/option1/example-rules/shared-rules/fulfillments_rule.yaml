@@ -22,8 +22,31 @@ properties:
                             type: string
                         required:
                           - gps
+                      type:
+                        type: string
+                        enum:
+                          - START
+                          - END
                     required:
                       - location
+                      - type
+                state:
+                  type: object
+                  properties:
+                    descriptor:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          enum:
+                            - DRIVER_EN_ROUTE_TO_PICKUP
+                            - DRIVER_AT_PICKUP
+                            - RIDE_STARTED
+                            - RIDE_ENDED
+                            - RIDE_CANCELLED
+                            - PAYMENT_COLLECTED
+                      required:
+                        - code
               required:
                 - stops
         required:

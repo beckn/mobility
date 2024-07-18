@@ -11,12 +11,8 @@ properties:
                 properties:
                   contact:
                     type: object
-                    properties:
-                      # Define properties for contact if needed
                   person:
                     type: object
-                    properties:
-                      # Define properties for person if needed
                 required:
                   - contact
                   - person
@@ -25,12 +21,8 @@ properties:
                 properties:
                   contact:
                     type: object
-                    properties:
-                      # Define properties for contact if needed
                   person:
                     type: object
-                    properties:
-                      # Define properties for person if needed
                 required:
                   - contact
                   - person
