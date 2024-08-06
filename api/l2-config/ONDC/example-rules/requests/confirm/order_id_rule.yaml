@@ -1,0 +1,7 @@
+properties:
+  message:
+    properties:
+      order:
+        not:
+          required:
+            - id

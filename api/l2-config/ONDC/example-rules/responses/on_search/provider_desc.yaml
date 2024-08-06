@@ -1,0 +1,21 @@
+properties:
+  message:    
+    properties:
+      catalog:
+        properties:
+          providers:
+            items:
+              properties:
+                descriptor:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    images:
+                      type: array
+                      items:
+                        minItems: 1  # Ensure at least one image
+                  required:
+                    - name
+              required:
+                - descriptor

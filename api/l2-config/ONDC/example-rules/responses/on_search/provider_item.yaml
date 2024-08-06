@@ -1,0 +1,50 @@
+properties:
+  message:    
+    properties:
+      catalog:
+        properties:
+          providers:
+            items:
+              properties:
+                items:
+                  type: array
+                  minItems: 1  # Ensure at least one item
+                  items:
+                    type: object
+                    properties:
+                      descriptor:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          code:
+                            type: string
+                            enum:
+                              - RIDE
+                          # Add any other descriptor properties here
+                        required:
+                          - code
+                      price:
+                        type: object
+                        properties:
+                          value:
+                            type: string
+                            pattern: '^-?\d+(\.\d+)?$'
+                          # Add any other price properties here
+                        required:
+                          - value
+                          - currency
+                      fulfillment_ids:
+                        type: array
+                        minItems: 1
+                      payment_ids:
+                        type: array
+                        minItems: 1
+                    required:
+                      - id
+                      - descriptor
+                      - price
+                      - fulfillment_ids
+                      - payment_ids
+              required:
+                - items

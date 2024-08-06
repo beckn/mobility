@@ -1,0 +1,79 @@
+if:
+  properties:
+    message:
+      properties:
+        intent:
+          properties:
+            payment:
+              properties:
+                tags:
+                  items:
+                    properties:
+                      descriptor:
+                        properties:
+                          code:
+                            const: SETTLEMENT_TERMS
+then:
+  properties:
+    message:
+      properties:
+        intent:
+          properties:
+            payment:
+              properties:
+                tags:
+                  items:
+                    properties:
+                      list:
+                        allOf:
+                          - contains:
+                              type: object
+                              properties:
+                                descriptor:
+                                  type: object
+                                  properties:
+                                    code:
+                                      const: STATIC_TERMS
+                                  required:
+                                    - code
+                                value:
+                                  type: string
+                                  format: uri
+                              required:
+                                - descriptor
+                                - value
+                          - contains:
+                              type: object
+                              properties:
+                                descriptor:
+                                  type: object
+                                  properties:
+                                    code:
+                                      const: SETTLEMENT_TYPE
+                                  required:
+                                    - code
+                                value:
+                                  type: string
+                                  enum:
+                                    - "upi"
+                                    - "neft"
+                                    - "rtgs"
+                              required:
+                                - descriptor
+                                - value
+                          - contains:
+                              type: object
+                              properties:
+                                descriptor:
+                                  type: object
+                                  properties:
+                                    code:
+                                      const: SETTLEMENT_WINDOW
+                                  required:
+                                    - code
+                                value:
+                                  type: string
+                                  pattern: "^PT\\d+[MH]$"
+                              required:
+                                - descriptor
+                                - value

@@ -1,0 +1,41 @@
+#structure it like u did for search SETTLEMENT_TERMS
+properties:
+  message:
+    properties:
+      catalog:
+        properties:
+          providers:
+            items:
+              properties:
+                payments:
+                  items:
+                    properties:
+                      tags:
+                        items:
+                          if:
+                            properties:
+                              descriptor:
+                                properties:
+                                  code:
+                                    const: BUYER_FINDER_FEES
+                          then:
+                            properties:
+                              list:
+                                type: array
+                                items:
+                                  allOf:
+                                    - if:
+                                        properties:
+                                          descriptor:
+                                            properties:
+                                              code:
+                                                enum:
+                                                  - BUYER_FINDER_FEES_PERCENTAGE
+                                      then:
+                                        properties:
+                                          value:
+                                            type: string
+                                            pattern: '^-?\d+(\.\d+)?$'
+                                        required:
+                                          - descriptor
+                                          - value

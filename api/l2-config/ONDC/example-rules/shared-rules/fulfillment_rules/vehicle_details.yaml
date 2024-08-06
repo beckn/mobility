@@ -1,0 +1,20 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          fulfillments:
+            type: array
+            items:
+              properties:
+                vehicle:
+                  type: object
+                  properties:
+                    registration:
+                      type: string
+                  required:
+                    - registration
+                    - make
+                    - model
+              required:
+                - vehicle

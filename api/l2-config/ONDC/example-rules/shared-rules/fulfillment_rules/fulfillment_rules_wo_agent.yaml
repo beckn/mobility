@@ -1,0 +1,9 @@
+allOf:
+  - $ref: "./fulfillment_rules_part.yaml"
+  - $ref: "./no_agent.yaml"
+  - properties:
+      message:
+        properties:
+          order:
+            required:
+              - fulfillments

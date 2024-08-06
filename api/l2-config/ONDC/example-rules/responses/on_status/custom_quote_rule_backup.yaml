@@ -1,0 +1,41 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          quote:
+            properties:
+              breakup:
+                allOf:
+                  - contains:
+                      type: object
+                      properties:
+                        title:
+                          const: BASE_FARE
+                        price:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                          required:
+                            - value
+                      required:
+                        - title
+                        - price
+                  - contains:
+                      type: object
+                      properties:
+                        title:
+                          const: DISTANCE_FARE
+                        price:
+                          type: object
+                          properties:
+                            value:
+                              type: string
+                          required:
+                            - value
+                      required:
+                        - title
+                        - price
+
+

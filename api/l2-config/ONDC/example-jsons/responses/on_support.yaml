@@ -1,0 +1,24 @@
+Return support information related to an order:
+  value:
+    context:
+      action: on_support
+      bap_id: example-bap.com
+      bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
+      bpp_id: example-bpp.com
+      bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+      domain: nic2004:60221
+      location:
+        city:
+          code: std:080
+        country:
+          code: IND
+      message_id: ec3dea8c-c64c-4f06-b2a0-ec1f9584d7ba
+      timestamp: '2023-03-23T05:41:09Z'
+      version: 1.1.0
+    message:
+      support:
+        callback_phone: '+916756453421'
+        email: support@example-bpp.com
+        phone: '+918068870525'
+        ref_id: 1386183jkgsgfjsf
+        url: https://support.example-bpp.com/gethelp

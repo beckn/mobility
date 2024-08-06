@@ -1,0 +1,26 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          fulfillments:
+            type: array
+            minItems: 1
+            items:
+              properties:
+                stops:
+                  items:
+                    properties:
+                      authorization:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            enum:
+                              - OTP
+                          token:
+                            type: string
+                            pattern: '^-?\d+(\.\d+)?$'
+                        required:
+                          - type
+                          - token

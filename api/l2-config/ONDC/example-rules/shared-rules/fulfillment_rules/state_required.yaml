@@ -1,0 +1,9 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          fulfillments:
+            items:
+              required:
+                - state

@@ -1,0 +1,36 @@
+#structure it like u did for search SETTLEMENT_TERMS
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          payments:
+            items:
+              properties:
+                tags:
+                  items:
+                    if:
+                      properties:
+                        descriptor:
+                          properties:
+                            code:
+                              const: BUYER_FINDER_FEES
+                    then:
+                      properties:
+                        list: # there should not be a "type: array" block below this. dont know the reason yet.
+                          allOf:
+                            - contains:
+                                type: object
+                                properties:
+                                  descriptor:
+                                    type: object
+                                    properties:
+                                      code:
+                                        const: BUYER_FINDER_FEES_PERCENTAGE
+                                    required:
+                                      - code
+                                  value:
+                                    type: string
+                                required:
+                                  - descriptor
+                                  - value

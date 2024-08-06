@@ -1,0 +1,17 @@
+properties:
+  message:
+    type: object
+    properties:
+      order:
+        type: object
+        properties:
+          id:
+            type: string
+        required:
+          - id
+      update_target:
+        type: string
+        pattern: '^[^,]+(,[^,]+)*$'  # Regular expression to ensure it's a comma-separated value
+    required:
+      - order
+      - update_target

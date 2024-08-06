@@ -1,0 +1,43 @@
+properties:
+  context:
+    properties:
+      location:
+        properties:
+          city:
+            properties:
+              code:
+                type: string
+            required:
+              - code
+          country:
+            properties:
+              code:
+                type: string
+                enum:
+                  - IND
+            required:
+              - code
+      bap_id:
+        type: string
+        not:
+          format: uri
+      bpp_id:
+        type: string
+        not:
+          format: uri
+      ttl:
+        type: string
+        format: date-time #PT10M
+      timestamp:
+        type: string
+        format: date-time
+    required:
+      - location
+      - domain
+      - action
+      - timestamp
+      - message_id
+      - transaction_id
+      - bap_id
+      - bap_uri
+      - ttl

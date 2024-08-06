@@ -1,0 +1,13 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          fulfillments:
+            type: array
+            items:
+              allOf:
+                - not:
+                    required:
+                      - agent
+              

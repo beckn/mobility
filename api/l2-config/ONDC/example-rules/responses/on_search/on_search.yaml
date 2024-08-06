@@ -1,0 +1,11 @@
+allOf:
+  - $ref: "../../shared-rules/context_rules/context_rules.yaml"
+  - $ref: "./action.yaml"
+  - $ref: "./catalog_desc.yaml"
+  - $ref: "./catalog_providers.yaml"
+  - $ref: "./provider_desc.yaml"
+  - $ref: "./provider_fulfillment.yaml"
+  - $ref: "./provider_item.yaml"
+  - $ref: "./provider_payment.yaml"
+  - $ref: "./fulfillment_Stops.yaml"
+  - $ref: "./tags/tags.yaml"

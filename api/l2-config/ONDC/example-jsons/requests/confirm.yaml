@@ -1,0 +1,105 @@
+Confirm ride booking:
+  value:
+    context:
+      action: confirm
+      bap_id: example-bap.com
+      bap_uri: https://api.example-bap.com/pilot/bap/cab/v1
+      bpp_id: example-bpp.com
+      bpp_uri: https://api.example-bpp.com/dobpp/beckn/7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+      domain: nic2004:60221
+      location:
+        city:
+          code: std:080
+        country:
+          code: IND
+      message_id: 8926b747-0362-4fcc-b795-0994a6287700
+      timestamp: '2023-03-23T04:48:53Z'
+      transaction_id: b580c989-f84d-4abe-af28-2c818aafce3b
+      version: 1.1.0
+    message:
+      order:
+        fulfillments:
+        - customer:
+            contact:
+              phone: +91-9897867564
+            person:
+              language:
+                code: en
+                name: English
+              name: John Doe
+          id: fulf_5cf064d5-4c0a-42d3-b73d-5f19a6f7468e
+          stops:
+          - location:
+              address: 98 A, 6th Main Rd, Uttarahalli Hobli, Ramanjaneyanagar
+              area_code: 560061
+              city:
+                name: Bengaluru
+              country:
+                name: India
+              district: Ramanjaneyanagar
+              gps: 12.910458, 77.543089
+              state:
+                name: Karnataka
+            type: start
+          - location:
+              address: Basavanagudi, Chikkanna Garden, Rangadore Memorial
+                Hospital
+              area_code: 560061
+              city:
+                name: Bengaluru
+              country:
+                name: India
+              district: Chikkanna Garden
+              gps: 12.9535139,  77.5710434
+              state:
+                name: Karnataka
+            type: end
+          vehicle:
+            category: AUTO_RICKSHAW
+        items:
+        - fulfillment_ids:
+          - fb5c84d4-1b59-4b9d-96b5-9d79107432c5
+          id: 5777a0bf-9a08-49aa-a97d-1e5561a9622e
+          payment_ids:
+          - '1'
+        payments:
+        - id: 7f7896dd-787e-4a0b-8675-e9e6fe93bb8f
+          params:
+            amount: '81'
+            currency: INR
+          status: NOT-PAID
+          type: ON-FULFILLMENT
+        provider:
+          id: '1'
+Confirm ticket booking:
+  value:
+    context:
+      action: confirm
+      bap_id: https://example-bap.com
+      bap_uri: https://mock_bap.com/beckn/
+      bpp_id: https://kmrl-bpp.com
+      bpp_uri: https://kmrl-bpp.com/beckn/
+      domain: nic2004:60221
+      location:
+        city:
+          code: std:080
+        country:
+          code: IND
+      message_id: fde8b8b6-c2e5-49f7-b254-720843d528bd
+      timestamp: '2021-03-23T10:00:40.065Z'
+      transaction_id: 6f339232-2bc3-44d2-915c-30d2b053ce1d
+      version: 1.1.0
+    message:
+      order:
+        billing:
+          email: john.doe@example.com
+          name: John Doe
+        items:
+        - id: '1'
+        payment:
+          params:
+            amount: '55'
+            currency: INR
+            transaction_id: '24566345563'
+        provider:
+          id: '1'

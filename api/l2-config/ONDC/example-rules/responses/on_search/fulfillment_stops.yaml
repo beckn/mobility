@@ -1,0 +1,45 @@
+properties:
+  message:
+    properties:
+      catalog:
+        properties:
+          providers:
+            items:
+              properties:
+                fulfillments:
+                  items:
+                    properties:
+                      stops:
+                        allOf:
+                          - contains:
+                              type: object
+                              properties:
+                                location:
+                                  type: object
+                                  properties:
+                                    gps:
+                                      type: string
+                                  required:
+                                    - gps
+                                type:
+                                  const: START
+                              required:
+                                - location
+                                - type
+                          - contains:
+                              type: object
+                              properties:
+                                location:
+                                  type: object
+                                  properties:
+                                    gps:
+                                      type: string
+                                  required:
+                                    - gps
+                                type:
+                                  const: END
+                              required:
+                                - location
+                                - type
+                    required:
+                      - stops

@@ -1,0 +1,4 @@
+allOf:
+  - $ref: "../../shared-rules/context_rules/context_rules.yaml"
+  - $ref: "./action.yaml"
+  - $ref: "./cancellation_rules.yaml"

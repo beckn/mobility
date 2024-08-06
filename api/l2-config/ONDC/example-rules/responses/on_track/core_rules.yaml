@@ -1,0 +1,22 @@
+properties:
+  message:
+    properties:
+      tracking:
+        type: object
+        properties:
+          status:
+            type: string
+          url:
+            type: string
+          location:
+            type: object
+            properties:
+              latitude:
+                type: number
+              longitude:
+                type: number
+        required:
+          - status
+        oneOf:
+          - required: ["url"]
+          - required: ["location"]

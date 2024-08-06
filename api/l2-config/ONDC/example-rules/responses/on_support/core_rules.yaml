@@ -1,0 +1,18 @@
+properties:
+  message:
+    properties:
+      support:
+        type: object
+        properties:
+          email:
+            type: string
+            format: email
+          phone:
+            type: string
+          url:
+            type: string
+            format: uri
+        anyOf:
+          - required: ["email"]
+          - required: ["phone"]
+          - required: ["url"]

@@ -1,0 +1,20 @@
+allOf:
+  - $ref: "../../shared-rules/context_rules/context_rules.yaml"
+  - $ref: "./action.yaml"
+  - $ref: "../../shared-rules/provider_rule.yaml"
+  - $ref: "../../shared-rules/item_rules/item_rules.yaml"
+  - $ref: "../../shared-rules/item_rules/ids.yaml"
+  - $ref: "../../shared-rules/fulfillment_rules/fulfillment_rules.yaml"
+  - $ref: "../../shared-rules/fulfillment_rules/type_rule.yaml"
+  - $ref: "../../shared-rules/quote_rules/quote_rules.yaml"
+  - $ref: "../../shared-rules/payment_rules/payment_rules.yaml"
+  - $ref: "../../shared-rules/cancellation_terms_rule.yaml"
+  #- $ref: "./core_rules.yaml"
+  # rules needed for a confirmed order
+  - $ref: "../../shared-rules/payment_rules/payment_dynamic_rules.yaml"
+  - $ref: "../../shared-rules/fulfillment_rules/vehicle_details.yaml"
+  - $ref: "../../shared-rules/fulfillment_rules/state_required.yaml"
+  - $ref: "../../shared-rules/order_id.yaml"
+# enums for cancelled order
+  - $ref: "./status_enum.yaml"
+  - $ref: "./reason_required.yaml"

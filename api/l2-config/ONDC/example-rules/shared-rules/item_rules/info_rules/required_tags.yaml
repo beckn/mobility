@@ -1,0 +1,37 @@
+#structure it like u did for search SETTLEMENT_TERMS
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          items:
+            items:
+              properties:
+                tags:
+                  items:
+                    if:
+                      properties:
+                        descriptor:
+                          properties:
+                            code:
+                              const: INFO
+                    then:
+                      properties:
+                        list: # there should not be a "type: array" block below this. dont know the reason yet.
+                          allOf:
+                            - contains:
+                                type: object
+                                properties:
+                                  descriptor:
+                                    type: object
+                                    properties:
+                                      code:
+                                        const: ETA_TO_NEAREST_DRIVER_MIN
+                                    required:
+                                      - code
+                                  value:
+                                    type: string
+                                    pattern: '^-?\d+(\.\d+)?$'
+                                required:
+                                  - descriptor
+                                  - value

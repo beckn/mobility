@@ -1,0 +1,10 @@
+allOf:
+  - $ref: "../../shared-rules/context_rules/context_rules.yaml"
+  - $ref: "./action.yaml"
+  - $ref: "../../shared-rules/provider_rule.yaml"
+  - $ref: "../../shared-rules/item_rules/item_rules.yaml"
+  - $ref: "../../shared-rules/item_rules/ids.yaml"
+  - $ref: "../../shared-rules/fulfillment_rules/fulfillment_base_rules.yaml"
+  - $ref: "../../shared-rules/fulfillment_rules/type_rule.yaml"
+  - $ref: "../../shared-rules/fulfillment_rules/no_agent.yaml"
+  - $ref: "../../shared-rules/quote_rules/quote_rules.yaml"

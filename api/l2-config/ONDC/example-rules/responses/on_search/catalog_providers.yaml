@@ -1,0 +1,18 @@
+properties:
+  message:    
+    properties:
+      catalog:
+        type: object
+        properties:
+          providers:
+            type: array
+            minItems: 1  # Ensure at least one provider
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+              required:
+                - id
+        required:
+          - providers

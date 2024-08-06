@@ -1,0 +1,3 @@
+allOf:
+  - $ref: "./base_rules.yaml"
+  - $ref: "./required_fields.yaml"

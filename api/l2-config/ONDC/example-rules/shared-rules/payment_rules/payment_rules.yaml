@@ -1,0 +1,3 @@
+allOf:
+  - $ref: "./simple_payment_rules.yaml"
+  - $ref: "./tags/tags.yaml"

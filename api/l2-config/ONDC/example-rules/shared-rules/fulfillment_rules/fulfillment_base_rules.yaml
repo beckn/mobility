@@ -1,0 +1,6 @@
+allOf:
+  - $ref: "./basic_rules.yaml"
+  - $ref: "./state_rule.yaml"
+  - $ref: "./stops_auth.yaml"
+  - $ref: "./stops_locations.yaml"
+  - $ref: "./vehicle.yaml"

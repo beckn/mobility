@@ -1,0 +1,28 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          payments:
+            type: array
+            items:
+              properties:
+                type:
+                  type: string
+                params:
+                  type: object
+                  properties:
+                    transaction_id:
+                      type: string
+              required:
+                - type
+              allOf:
+                - if:
+                    properties:
+                      type:
+                        const: PRE-ORDER
+                  then:
+                    properties:
+                      params:
+                        required:
+                          - transaction_id

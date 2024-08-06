@@ -1,0 +1,23 @@
+properties:
+  message:    
+    properties:
+      catalog:
+        properties:
+          providers:
+            items:
+              properties:
+                payments:
+                  type: array
+                  minItems: 1  # Ensure at least one payment
+                  items:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                      collected_by:
+                        type: string
+                    required:
+                      - type
+                      - collected_by
+              required:
+                - payments

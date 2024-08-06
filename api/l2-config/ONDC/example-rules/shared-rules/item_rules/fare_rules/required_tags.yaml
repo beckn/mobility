@@ -1,0 +1,51 @@
+#structure it like u did for search SETTLEMENT_TERMS
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          items:
+            items:
+              properties:
+                tags:
+                  items:
+                    if:
+                      properties:
+                        descriptor:
+                          properties:
+                            code:
+                              const: FARE_POLICY
+                    then:
+                      properties:
+                        list: # there should not be a "type: array" block below this. dont know the reason yet.
+                          allOf:
+                            - contains:
+                                type: object
+                                properties:
+                                  descriptor:
+                                    type: object
+                                    properties:
+                                      code:
+                                        const: MIN_FARE
+                                    required:
+                                      - code
+                                  value:
+                                    type: string
+                                required:
+                                  - descriptor
+                                  - value
+                            - contains:
+                                type: object
+                                properties:
+                                  descriptor:
+                                    type: object
+                                    properties:
+                                      code:
+                                        const: MIN_FARE_DISTANCE_KM
+                                    required:
+                                      - code
+                                  value:
+                                    type: string
+                                required:
+                                  - descriptor
+                                  - value
