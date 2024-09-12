@@ -31,7 +31,23 @@ properties:
                                       - code
                                   value:
                                     type: string
-                                    pattern: '^-?\d+(\.\d+)?$'
+                                    pattern:  '^\d+(\.\d+)?$'
+                                required:
+                                  - descriptor
+                                  - value
+                            - contains:
+                                type: object
+                                properties:
+                                  descriptor:
+                                    type: object
+                                    properties:
+                                      code:
+                                        const: DISTANCE_TO_NEAREST_DRIVER_METER
+                                    required:
+                                      - code
+                                  value:
+                                    type: string
+                                    pattern:  '^\d+(\.\d+)?$'
                                 required:
                                   - descriptor
                                   - value

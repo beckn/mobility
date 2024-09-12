@@ -3,7 +3,7 @@ allOf:
   - $ref: "./action.yaml"
   - $ref: "./catalog_desc.yaml"
   - $ref: "./catalog_providers.yaml"
-  - $ref: "./provider_desc.yaml"
+  #- $ref: "./provider_desc.yaml"
   - $ref: "./provider_fulfillment.yaml"
   - $ref: "./provider_item.yaml"
   - $ref: "./provider_payment.yaml"

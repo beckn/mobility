@@ -593,7 +593,7 @@ paths:
                                 - items
                     - allOf:
                         - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/3'
-                        - $ref: '#/paths/~1on_select/post/requestBody/content/application~1json/schema/allOf/1/allOf/7'
+                        - $ref: '#/paths/~1on_select/post/requestBody/content/application~1json/schema/allOf/1/allOf/8'
                         - properties:
                             message:
                               properties:
@@ -635,9 +635,6 @@ paths:
                                                 pattern: '^\d+(\.\d{1,2})?$'
                                               currency:
                                                 type: string
-                                            required:
-                                              - amount
-                                              - currency
                                         required:
                                           - type
                                           - status
@@ -828,7 +825,7 @@ paths:
                                 - confirm
                     - $ref: '#/paths/~1init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
                     - allOf:
-                        - $ref: '#/paths/~1on_select/post/requestBody/content/application~1json/schema/allOf/1/allOf/5'
+                        - $ref: '#/paths/~1on_select/post/requestBody/content/application~1json/schema/allOf/1/allOf/6'
                         - properties:
                             message:
                               properties:
@@ -971,6 +968,7 @@ paths:
                                                                     - code
                                                                 value:
                                                                   type: string
+                                                                  pattern: '^[0-9]+(\.[0-9]+)?$'
                                                               required:
                                                                 - descriptor
                                                                 - value
@@ -986,6 +984,87 @@ paths:
                                                                     - code
                                                                 value:
                                                                   type: string
+                                                                  pattern: '^[0-9]+(\.[0-9]+)?$'
+                                                              required:
+                                                                - descriptor
+                                                                - value
+                                                          - contains:
+                                                              type: object
+                                                              properties:
+                                                                descriptor:
+                                                                  type: object
+                                                                  properties:
+                                                                    code:
+                                                                      const: PER_KM_CHARGE
+                                                                  required:
+                                                                    - code
+                                                                value:
+                                                                  type: string
+                                                                  pattern: '^[0-9]+(\.[0-9]+)?$'
+                                                              required:
+                                                                - descriptor
+                                                                - value
+                                                          - contains:
+                                                              type: object
+                                                              properties:
+                                                                descriptor:
+                                                                  type: object
+                                                                  properties:
+                                                                    code:
+                                                                      const: PICKUP_CHARGE
+                                                                  required:
+                                                                    - code
+                                                                value:
+                                                                  type: string
+                                                                  pattern: '^[0-9]+(\.[0-9]+)?$'
+                                                              required:
+                                                                - descriptor
+                                                                - value
+                                                          - contains:
+                                                              type: object
+                                                              properties:
+                                                                descriptor:
+                                                                  type: object
+                                                                  properties:
+                                                                    code:
+                                                                      const: WAITING_CHARGE_PER_MIN
+                                                                  required:
+                                                                    - code
+                                                                value:
+                                                                  type: string
+                                                                  pattern: '^[0-9]+(\.[0-9]+)?$'
+                                                              required:
+                                                                - descriptor
+                                                                - value
+                                                          - contains:
+                                                              type: object
+                                                              properties:
+                                                                descriptor:
+                                                                  type: object
+                                                                  properties:
+                                                                    code:
+                                                                      const: NIGHT_CHARGE_MULTIPLIER
+                                                                  required:
+                                                                    - code
+                                                                value:
+                                                                  type: string
+                                                                  pattern: '^[0-9]+(\.[0-9]+)?$'
+                                                              required:
+                                                                - descriptor
+                                                                - value
+                                                          - contains:
+                                                              type: object
+                                                              properties:
+                                                                descriptor:
+                                                                  type: object
+                                                                  properties:
+                                                                    code:
+                                                                      const: NIGHT_SHIFT_START_TIME
+                                                                  required:
+                                                                    - code
+                                                                value:
+                                                                  type: string
+                                                                  pattern: '^([01][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$'
                                                               required:
                                                                 - descriptor
                                                                 - value
@@ -1124,7 +1203,23 @@ paths:
                                                                     - code
                                                                 value:
                                                                   type: string
-                                                                  pattern: ^-?\d+(\.\d+)?$
+                                                                  pattern: ^\d+(\.\d+)?$
+                                                              required:
+                                                                - descriptor
+                                                                - value
+                                                          - contains:
+                                                              type: object
+                                                              properties:
+                                                                descriptor:
+                                                                  type: object
+                                                                  properties:
+                                                                    code:
+                                                                      const: DISTANCE_TO_NEAREST_DRIVER_METER
+                                                                  required:
+                                                                    - code
+                                                                value:
+                                                                  type: string
+                                                                  pattern: ^\d+(\.\d+)?$
                                                               required:
                                                                 - descriptor
                                                                 - value
@@ -2404,27 +2499,6 @@ paths:
                                 providers:
                                   items:
                                     properties:
-                                      descriptor:
-                                        type: object
-                                        properties:
-                                          name:
-                                            type: string
-                                          images:
-                                            type: array
-                                            items:
-                                              minItems: 1
-                                        required:
-                                          - name
-                                    required:
-                                      - descriptor
-                    - properties:
-                        message:
-                          properties:
-                            catalog:
-                              properties:
-                                providers:
-                                  items:
-                                    properties:
                                       fulfillments:
                                         type: array
                                         minItems: 1
@@ -2516,7 +2590,6 @@ paths:
                                             collected_by:
                                               type: string
                                           required:
-                                            - type
                                             - collected_by
                                     required:
                                       - payments
@@ -3659,6 +3732,7 @@ paths:
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
                     - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/4'
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/4'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/5'
                     - allOf:
                         - properties:
                             message:
@@ -3721,6 +3795,7 @@ paths:
                                                       type: string
                                                       enum:
                                                         - OTP
+                                                        - QR
                                                     token:
                                                       type: string
                                                       pattern: ^-?\d+(\.\d+)?$
@@ -3791,7 +3866,7 @@ paths:
                                               - category
                                         required:
                                           - vehicle
-                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/6'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/7'
                     - properties:
                         message:
                           properties:
@@ -3804,7 +3879,7 @@ paths:
                                       - not:
                                           required:
                                             - agent
-                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/7'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/8'
             examples:
               Return a quote offered by a public transit service provider:
                 value:
@@ -4106,6 +4181,34 @@ paths:
                             order:
                               properties:
                                 items:
+                                  items:
+                                    properties:
+                                      tags:
+                                        allOf:
+                                          - contains:
+                                              properties:
+                                                descriptor:
+                                                  type: object
+                                                  properties:
+                                                    code:
+                                                      const: FARE_POLICY
+                                                  required:
+                                                    - code
+                                          - contains:
+                                              properties:
+                                                descriptor:
+                                                  type: object
+                                                  properties:
+                                                    code:
+                                                      const: INFO
+                                                  required:
+                                                    - code
+                    - properties:
+                        message:
+                          properties:
+                            order:
+                              properties:
+                                items:
                                   type: array
                                   minItems: 1
                                   items:
@@ -4179,7 +4282,8 @@ paths:
                                                   - DISTANCE_FARE
                                                   - TAX
                                                   - DISCOUNT
-                                                  - WAITING_CHARGE
+                                                  - WAITING_CHARG
+                                                  - CANCELLATION_CHARGES
                                             required:
                                               - price
                                               - title
@@ -4708,9 +4812,10 @@ paths:
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
                     - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/4'
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/4'
-                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/5'
-                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/6'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/5'
+                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/6'
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/7'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/8'
                     - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/5'
                     - properties:
                         message:
@@ -4724,7 +4829,7 @@ paths:
                                     - ACTIVE
                               required:
                                 - status
-                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/9'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/10'
                     - properties:
                         message:
                           properties:
@@ -4739,10 +4844,10 @@ paths:
                                     - SOFT_CANCEL
                               required:
                                 - status
-                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/10'
-                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/12'
                     - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/11'
                     - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/13'
+                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/12'
+                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/14'
             examples:
               Return confirmed order with latest fulfillment details:
                 value:
@@ -5195,6 +5300,7 @@ paths:
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
                     - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/4'
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/4'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/5'
                     - allOf:
                         - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/3'
                         - properties:
@@ -5227,10 +5333,10 @@ paths:
                                                   - person
                                             required:
                                               - agent
-                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/6'
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/7'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/8'
                     - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/5'
-                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/9'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/10'
                     - properties:
                         message:
                           properties:
@@ -6324,15 +6430,16 @@ paths:
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
                     - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/4'
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/4'
-                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/5'
-                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/6'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/5'
+                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/6'
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/7'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/8'
                     - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/5'
-                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/9'
-                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/10'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/10'
                     - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/11'
                     - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/12'
                     - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/13'
+                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/14'
             examples:
               Return updated order with payment transaction status:
                 value:
@@ -7043,15 +7150,16 @@ paths:
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/2'
                     - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/4'
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/4'
-                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/5'
-                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/6'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/5'
+                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/6'
                     - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/7'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/8'
                     - $ref: '#/paths/~1confirm/post/requestBody/content/application~1json/schema/allOf/1/allOf/5'
-                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/9'
-                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/10'
+                    - $ref: '#/paths/~1on_init/post/requestBody/content/application~1json/schema/allOf/1/allOf/10'
                     - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/11'
                     - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/12'
                     - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/13'
+                    - $ref: '#/paths/~1on_status/post/requestBody/content/application~1json/schema/allOf/1/allOf/14'
                     - properties:
                         message:
                           properties:

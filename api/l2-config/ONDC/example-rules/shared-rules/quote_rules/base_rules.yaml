@@ -40,7 +40,8 @@ properties:
                         - DISTANCE_FARE
                         - TAX
                         - DISCOUNT
-                        - WAITING_CHARGE
+                        - WAITING_CHARG
+                        - CANCELLATION_CHARGES
                   required:
                     - price
                     - title

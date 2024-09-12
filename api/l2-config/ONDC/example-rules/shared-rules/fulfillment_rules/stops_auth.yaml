@@ -18,6 +18,7 @@ properties:
                             type: string
                             enum:
                               - OTP
+                              - QR
                           token:
                             type: string
                             pattern: '^-?\d+(\.\d+)?$'

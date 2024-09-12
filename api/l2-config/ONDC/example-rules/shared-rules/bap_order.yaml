@@ -1,4 +1,4 @@
-# describes BAP's view of a basic order. what we send in a request, select onwards.
+# describes BAP's view of a basic order. what we send in a request select onwards.
 properties:
   message:
     properties:

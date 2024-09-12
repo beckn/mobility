@@ -32,9 +32,6 @@ properties:
                       pattern: '^\d+(\.\d{1,2})?$'
                     currency:
                       type: string
-                  required:
-                    - amount
-                    - currency
               required:
                 - type
                 - status
