@@ -1,0 +1,27 @@
+properties:
+  message:
+    properties:
+      intent:
+        properties:
+          fulfillment:
+            type: object
+            properties:
+              stops:
+                type: array
+                minItems: 2
+                items:
+                  type: object
+                  properties:
+                    location: 
+                      type: object
+                      properties:
+                        gps:
+                          type: string
+                      required:
+                        - gps
+                  required:
+                    - location
+            required:
+              - stops
+        required:
+          - fulfillment

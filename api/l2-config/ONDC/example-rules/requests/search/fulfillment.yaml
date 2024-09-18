@@ -1,0 +1,43 @@
+properties:
+  message:
+    properties:
+      intent:
+        properties:
+          fulfillment:
+            properties:
+              stops:
+                allOf:
+                  - contains:
+                      type: object
+                      properties:
+                        location:
+                          type: object
+                          properties:
+                            gps:
+                              type: string
+                          required:
+                            - gps
+                        type:
+                          const: START
+                      required:
+                        - location
+                        - type
+                  - contains:
+                      type: object
+                      properties:
+                        location:
+                          type: object
+                          properties:
+                            gps:
+                              type: string
+                          required:
+                            - gps
+                        type:
+                          const: END
+                      required:
+                        - location
+                        - type
+            required:
+              - stops
+        required:
+          - fulfillment

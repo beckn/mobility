@@ -1,0 +1,10 @@
+allOf:
+  - $ref: "../../shared-rules/context_rules/context_rules.yaml"
+  - $ref: "./action.yaml"
+  - $ref: "../../shared-rules/bap_order.yaml"
+  - $ref: "../../shared-rules/fulfillment_rules/fulfillment_rules_part.yaml"
+  - $ref: "../../shared-rules/item_rules/item_rules.yaml"
+  - $ref: "../../shared-rules/payment_rules/payment_rules.yaml"
+  - $ref: "../../shared-rules/billing_rules.yaml"
+  - $ref: "./core_rules.yaml"
+  - $ref: "./order_id_rule.yaml"

@@ -1,0 +1,20 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          payments:
+            items:
+              properties:
+                params:
+                  required:
+                    - bank_code
+                    - bank_account_number
+                    - virtual_payment_address
+              required:
+                - type
+                - status
+                - collected_by
+                - params
+        required:
+          - payments

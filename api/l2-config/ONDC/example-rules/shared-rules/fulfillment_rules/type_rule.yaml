@@ -1,0 +1,17 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          fulfillments:
+            type: array
+            minItems: 1
+            items:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum:
+                    - DELIVERY
+              required:
+                - type

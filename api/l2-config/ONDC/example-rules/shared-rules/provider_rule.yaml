@@ -1,0 +1,14 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          provider:
+            type: object
+            properties:
+              id:
+                type: string
+            required:
+              - id
+        required:
+          - provider

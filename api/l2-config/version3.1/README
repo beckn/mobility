@@ -1,0 +1,2 @@
+how to compile final.yaml from other components:
+swagger-cli bundle mobility_ondemandride_1.1.0_openapi_3.1.yaml --outfile final.yaml --type yaml

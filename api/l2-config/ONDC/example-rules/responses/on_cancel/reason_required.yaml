@@ -1,0 +1,11 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          cancellation_terms:
+            items:
+              required:
+                - reason_required
+        required:
+          - cancellation_terms

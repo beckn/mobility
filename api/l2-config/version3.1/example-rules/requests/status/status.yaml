@@ -1,0 +1,2 @@
+allOf:
+  - $ref: "./core_rules.yaml"

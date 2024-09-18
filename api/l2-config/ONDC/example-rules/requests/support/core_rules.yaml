@@ -1,0 +1,9 @@
+properties:
+  message:
+    properties:
+      support:
+        properties:
+          ref_id:
+            type: string
+        required:
+          - ref_id

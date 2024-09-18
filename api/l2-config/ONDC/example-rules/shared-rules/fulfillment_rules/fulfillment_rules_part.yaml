@@ -1,0 +1,3 @@
+allOf:
+  - $ref: "./fulfillment_base_rules.yaml"
+  - $ref: "./customer_details.yaml"

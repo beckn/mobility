@@ -1,0 +1,18 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          items:
+            type: array
+            minItems: 1
+            items:
+              type: object
+              properties:
+                fulfillment_ids:
+                  minItems: 1
+                location_ids:
+                  minItems: 1
+              required:
+                - fulfillment_ids
+                - location_ids

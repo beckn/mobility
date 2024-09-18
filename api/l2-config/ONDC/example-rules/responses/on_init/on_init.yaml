@@ -1,0 +1,13 @@
+allOf:
+  - $ref: "../../shared-rules/context_rules/context_rules.yaml"
+  - $ref: "./action.yaml"
+  - $ref: "../../shared-rules/provider_rule.yaml"
+  - $ref: "../../shared-rules/item_rules/item_rules.yaml"
+  - $ref: "../../shared-rules/item_rules/required_tag_groups.yaml"
+  - $ref: "../../shared-rules/item_rules/ids.yaml"
+  - $ref: "../../shared-rules/fulfillment_rules/fulfillment_rules_wo_agent.yaml"
+  - $ref: "../../shared-rules/fulfillment_rules/type_rule.yaml"
+  - $ref: "../../shared-rules/quote_rules/quote_rules.yaml"
+  - $ref: "../../shared-rules/payment_rules/payment_rules.yaml"
+  - $ref: "../../shared-rules/cancellation_terms_rule.yaml"
+  - $ref: "./core_rules.yaml"

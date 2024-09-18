@@ -1,0 +1,32 @@
+properties:
+  message:    
+    properties:
+      catalog:
+        properties:
+          providers:
+            items:
+              properties:
+                fulfillments:
+                  type: array
+                  minItems: 1 # Ensure at least one fulfillment
+                  items:
+                    properties:
+                      vehicle:
+                        properties:
+                          category:
+                            type: string
+                            enum:
+                              - AUTO_RICKSHAW
+                              - CAB
+                        required:
+                          - category
+                      type:
+                        type: string
+                        enum:
+                          - DELIVERY
+                    required:
+                      - id
+                      - vehicle
+                      - type
+              required:
+                - fulfillments

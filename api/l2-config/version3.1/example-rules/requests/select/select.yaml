@@ -1,0 +1,3 @@
+allOf:
+  - $ref: "../../shared-rules/bap_order.yaml"
+  - $ref: "../../shared-rules/fulfillments_rule.yaml"

@@ -1,0 +1,4 @@
+allOf:
+  - $ref: "./buyer_finder_fee/bff.yaml"
+  - $ref: "./settlement/settlement.yaml"
+  - $ref: "./required_tag_groups.yaml"

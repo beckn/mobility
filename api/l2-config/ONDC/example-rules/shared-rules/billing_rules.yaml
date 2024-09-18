@@ -1,0 +1,11 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          billing:
+            required:
+              - name
+        required:
+          - billing
+

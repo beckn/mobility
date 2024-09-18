@@ -1,0 +1,7 @@
+allOf:
+  - $ref: "./base_context_rules.yaml"
+  - properties:
+      context:
+        required:
+          - bpp_id
+          - bpp_uri

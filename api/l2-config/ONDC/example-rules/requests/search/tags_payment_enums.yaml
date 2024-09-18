@@ -1,0 +1,30 @@
+properties:
+  message:
+    properties:
+      intent:
+        properties:
+          tags:
+            items:
+              properties:
+                list:
+                  items:
+                    properties:
+                      value:
+                        type: string
+                        enum:
+                          - START
+                          - STOP
+          payment:
+            properties:
+              collected_by:
+                type: string
+                enum:
+                  - BPP
+                  - BAP
+            required:
+              - collected_by
+        required:
+          - payment
+          - tags
+    required:
+      - intent

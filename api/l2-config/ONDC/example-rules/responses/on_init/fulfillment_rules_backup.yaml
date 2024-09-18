@@ -1,0 +1,35 @@
+allOf:
+  - $ref: "../../shared-rules/fulfillment_rules/fulfillment_rules.yaml"
+  - properties:
+      message:
+        properties:
+          order:
+            properties:
+              fulfillments:
+                type: array
+                items:
+                  allOf:
+                    - properties:
+                        customer:
+                          properties:
+                            contact:
+                              properties:
+                                phone:
+                                  type: string
+                              required:
+                                - phone
+                            person:
+                              properties:
+                                name:
+                                  type: string
+                              required:
+                                - name
+                          required:
+                            - contact
+                            - person
+                      required:
+                        - customer
+                    - not:
+                        required:
+                          - agent
+                  
