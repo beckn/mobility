@@ -1,7 +1,0 @@
-allOf:
-  - $ref: "../../shared-rules/provider_rule.yaml"
-  - $ref: "../../shared-rules/items_rule.yaml"
-  - $ref: "../../shared-rules/fulfillments_rule.yaml"
-  - $ref: "../../shared-rules/quote_rule.yaml"
-  - $ref: "../../shared-rules/payment_rule.yaml"
-  - $ref: "./core_rule_1.yaml"

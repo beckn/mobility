@@ -1,7 +1,0 @@
-properties:
-  message:
-    properties:
-      order_id:
-        type: string
-    required:
-      - order_id
