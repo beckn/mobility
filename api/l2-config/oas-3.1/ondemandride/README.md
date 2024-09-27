@@ -1,6 +1,6 @@
 # Compilling On Demand Ride layer 2 configuration
 
-Note: All folders mentioned here are relative to the folder api/l2-config/oas-3.1/ondemandride/
+Note: All folders mentioned here are relative to the folder ``` api/l2-config/oas-3.1/ondemandride/ ```
 
 API Specific components(rules for specific APIs) are defined under the folder
 
@@ -40,16 +40,17 @@ sudo npm install -g swagger-cli
 ```
 
 ### Use the Swagger CLI to compile the template into a final specification yaml
-Go to the ``` api/l2-config/oas-3.1/ondemandride/ ``` folder
-Run the Swagger CLI command. Command format is:
+1. Go to the ``` api/l2-config/oas-3.1/ondemandride/ ``` folder
+2. Run the Swagger CLI command. Command format is:
 ```
 swagger-cli bundle <input-file-path> --outfile <output-file-path> --type yaml
 ```
-For example
+&nbsp;&nbsp;&nbsp;&nbsp;For example
 ```
 swagger-cli bundle template_mobility_ondemandride_1.1.0_openapi_3.1.yaml --outfile mobility_ondemandride_1.1.0_openapi_3.1.yaml --type yaml
 ```
-If the command runs successfully, you should see an output like this,
+3. If the command runs successfully, you should see an output like this.
 ```
 Created mobility_ondemandride_1.1.0_openapi_3.1.yaml from template_mobility_ondemandride_1.1.0_openapi_3.1.yaml
 ```
+&nbsp;&nbsp;&nbsp;&nbsp;The output file will have the final layer 2 configuration.
