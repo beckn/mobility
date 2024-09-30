@@ -1,0 +1,34 @@
+#structure it like u did for search SETTLEMENT_TERMS
+# we can define 3 things on a set of tags
+# 1. a list of tag values allowed under a taggroup.
+# 2. type of value for each of those tags
+# 3. the must have tags from the list (must be present in that taggroup)
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          payments:
+            items:
+              properties:
+                tags:
+                  items:
+                    if:
+                      properties:
+                        descriptor:
+                          properties:
+                            code:
+                              const: BUYER_FINDER_FEES
+                    then:
+                      properties:
+                        list:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              descriptor:
+                                properties:
+                                  code:
+                                    type: string
+                                    enum:
+                                      - BUYER_FINDER_FEES_PERCENTAGE

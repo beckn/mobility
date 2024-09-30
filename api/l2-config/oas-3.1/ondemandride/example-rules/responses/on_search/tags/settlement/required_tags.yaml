@@ -1,0 +1,69 @@
+#structure it like u did for search SETTLEMENT_TERMS
+properties:
+  message:
+    properties:
+      catalog:
+        properties:
+          providers:
+            items:
+              properties:
+                payments:
+                  items:
+                    properties:
+                      tags:
+                        items:
+                          if:
+                            properties:
+                              descriptor:
+                                properties:
+                                  code:
+                                    const: SETTLEMENT_TERMS
+                          then:
+                            properties:
+                              list: # there should not be a "type: array" block below this. dont know the reason yet.
+                                allOf:
+                                  - contains:
+                                      type: object
+                                      properties:
+                                        descriptor:
+                                          type: object
+                                          properties:
+                                            code:
+                                              const: STATIC_TERMS
+                                          required:
+                                            - code
+                                        value:
+                                          type: string
+                                      required:
+                                        - descriptor
+                                        - value
+                                  - contains:
+                                      type: object
+                                      properties:
+                                        descriptor:
+                                          type: object
+                                          properties:
+                                            code:
+                                              const: SETTLEMENT_TYPE
+                                          required:
+                                            - code
+                                        value:
+                                          type: string
+                                      required:
+                                        - descriptor
+                                        - value
+                                  - contains:
+                                        type: object
+                                        properties:
+                                          descriptor:
+                                            type: object
+                                            properties:
+                                              code:
+                                                const: SETTLEMENT_WINDOW
+                                            required:
+                                              - code
+                                          value:
+                                            type: string
+                                        required:
+                                          - descriptor
+                                          - value

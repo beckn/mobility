@@ -1,0 +1,26 @@
+# describes BAP's view of a basic order. what we send in a request select onwards.
+properties:
+  message:
+    properties:
+      order:
+        type: object
+        properties:
+          provider:
+            type: object
+            properties:
+              id:
+                type: string
+            required:
+              - id
+          items:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+              required:
+                - id
+        required:
+          - provider
+          - items

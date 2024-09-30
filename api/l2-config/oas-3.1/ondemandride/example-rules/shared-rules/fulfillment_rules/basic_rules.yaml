@@ -1,0 +1,13 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          fulfillments:
+            type: array
+            minItems: 1
+            items:
+              required:
+                - id
+        required:
+          - fulfillments

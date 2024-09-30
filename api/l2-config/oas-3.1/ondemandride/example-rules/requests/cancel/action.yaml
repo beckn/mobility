@@ -1,0 +1,7 @@
+properties:
+  context:
+    properties:
+      action:
+        type: string
+        enum:
+          - cancel

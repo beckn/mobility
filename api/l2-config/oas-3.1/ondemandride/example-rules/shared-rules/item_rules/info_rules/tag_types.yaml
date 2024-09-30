@@ -1,0 +1,39 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          items:
+            type: array
+            items:
+              properties:
+                tags:
+                  items:
+                    if:
+                      properties:
+                        descriptor:
+                          properties:
+                            code:
+                              const: INFO
+                    then:
+                      properties:
+                        list:
+                          type: array
+                          items:
+                            allOf:
+                              - if:
+                                  properties:
+                                    descriptor:
+                                      properties:
+                                        code:
+                                          enum:
+                                            - DISTANCE_TO_NEAREST_DRIVER_METER
+                                            - ETA_TO_NEAREST_DRIVER_MIN
+                                then:
+                                  properties:
+                                    value:
+                                      type: string
+                                      pattern: '^-?\d+(\.\d+)?$'
+                                  required:
+                                    - descriptor
+                                    - value

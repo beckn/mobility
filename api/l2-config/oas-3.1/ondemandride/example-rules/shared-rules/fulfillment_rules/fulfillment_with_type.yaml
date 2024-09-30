@@ -1,0 +1,4 @@
+#used in callbacks prior to 
+allOf:
+  - $ref: "./fulfillment_base_rules.yaml"
+  - $ref: "./type_rule.yaml"

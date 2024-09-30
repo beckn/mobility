@@ -1,0 +1,4 @@
+allOf:
+  - $ref: "./basic_rules.yaml"
+  - $ref: "./fare_rules/fare_rules.yaml"
+  - $ref: "./info_rules/info_rules.yaml"

@@ -1,0 +1,21 @@
+properties:
+  message:
+    properties:
+      order_id:
+        type: string
+      descriptor:
+        properties:
+          code:
+            type: string
+            enum:
+              - SOFT_CANCEL
+              - CONFIRM_CANCEL
+        required:
+          - code
+        cancellation_reason_id:
+          type: string
+          pattern: '^[0-9]+$'
+    required:
+      - order_id
+      - descriptor
+      - cancellation_reason_id

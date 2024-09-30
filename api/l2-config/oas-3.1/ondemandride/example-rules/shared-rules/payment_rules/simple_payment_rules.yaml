@@ -1,0 +1,3 @@
+allOf:
+  - $ref: "./payment_misc.yaml"
+  - $ref: "./payment_param_rule.yaml"

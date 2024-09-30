@@ -1,0 +1,20 @@
+properties:
+  message:
+    properties:
+      feedback_form:
+        type: object
+        properties:
+          required:
+            type: boolean
+          form:
+            type: object
+        required:
+          - required
+        allOf:
+          - if:
+              properties:
+                required:
+                  const: true
+            then:
+              required:
+                - form

@@ -1,0 +1,6 @@
+allOf:
+  - $ref: "../../shared-rules/context_rules/base_context_rules.yaml"
+  - $ref: "./action.yaml"
+  - $ref: "./tags_payment_enums.yaml"
+  - $ref: "./payment_tags.yaml"
+  - $ref: "./fulfillment.yaml"

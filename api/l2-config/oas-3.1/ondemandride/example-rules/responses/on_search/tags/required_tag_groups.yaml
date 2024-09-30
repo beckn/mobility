@@ -1,0 +1,33 @@
+
+properties:
+  message:
+    properties:
+      catalog:
+        properties:
+          providers:
+            items:
+              properties:
+                payments:
+                  items:
+                    properties:
+                      tags:
+                        allOf:
+                          - contains:
+                              properties:
+                                descriptor:
+                                  type: object
+                                  properties:
+                                    code:
+                                      const: BUYER_FINDER_FEES
+                                  required:
+                                    - code
+                          - contains:
+                              properties:
+                                descriptor:
+                                  type: object
+                                  properties:
+                                    code:
+                                      const: SETTLEMENT_TERMS
+                                  required:
+                                    - code
+                            

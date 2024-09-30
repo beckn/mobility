@@ -1,0 +1,28 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          fulfillments:
+            type: array
+            minItems: 1
+            items:
+              type: object
+              properties:
+                state:
+                  type: object
+                  properties:
+                    descriptor:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                          enum:
+                            - RIDE_ASSIGNED
+                            - RIDE_ENROUTE_PICKUP
+                            - RIDE_ARRIVED_PICKUP
+                            - RIDE_STARTED
+                            - RIDE_ENDED
+                            - RIDE_CANCELLED
+                      required:
+                        - code

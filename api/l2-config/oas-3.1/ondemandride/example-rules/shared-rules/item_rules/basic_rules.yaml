@@ -1,0 +1,41 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          items:
+            type: array
+            minItems: 1
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                descriptor:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    code:
+                      type: string
+                      enum:
+                        - RIDE
+                  required:
+                    - code
+                price:
+                  type: object
+                  properties:
+                    value:
+                      type: string
+                  required:
+                    - value
+                fulfillment_ids:
+                  minItems: 1
+                location_ids:
+                  minItems: 1
+              required:
+                - id
+                - price
+                - descriptor
+        required:
+          - items

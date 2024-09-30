@@ -1,0 +1,12 @@
+properties:
+  message:
+    properties:
+      order:
+        properties:
+          status:
+            type: string
+            enum:
+              - CANCELLED
+              - SOFT_CANCEL
+        required:
+          - status
