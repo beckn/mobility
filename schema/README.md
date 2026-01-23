@@ -113,5 +113,3 @@ This document provides an objective overview of prominent **mobility standards**
 | IATA ONE Order | —                      | —                       | —                | ✅                         | ◐                       | —                   | —                   |
 
 ---
-
-If you want this “heat map” to be **more quantitative**, I can score each cell (e.g., 0–3) and compute a per-standard “coverage index” (how much of the MaaS stack it spans) versus “depth index” (how strongly it owns one layer).
