@@ -1,0 +1,181 @@
+    AuthorizationEvidence:
+      type: object
+      additionalProperties: false
+      description: >
+        A presentable piece of evidence (token/document) for authorization.
+        May be machine-verifiable (QR/URL/signature) or manual (paper doc, ID card).
+      required:
+        - kind
+        - medium
+      properties:
+        kind:
+          type: string
+          description: Semantic type of evidence.
+          enum:
+            - PERMIT
+            - LICENSE
+            - VISA
+            - BOARDING_PASS
+            - ENTRY_TICKET
+            - WAYBILL
+            - BILL_OF_LADING
+            - E_WAYBILL
+            - GATE_PASS
+            - ID_DOCUMENT
+            - INSURANCE
+            - CERTIFICATE
+            - TOKEN
+            - OTHER
+
+        medium:
+          type: string
+          description: How the evidence is presented.
+          enum:
+            - QR_CODE
+            - BARCODE
+            - NFC
+            - OTP
+            - PIN
+            - CODE
+            - URL
+            - WALLET_PASS
+            - PDF
+            - IMAGE
+            - PAPER
+            - MANUAL_INSPECTION
+            - OTHER
+
+        label:
+          type: string
+          description: Human-readable label (e.g., "Transit Visa", "State Permit").
+
+        ref_id:
+          type: string
+          description: Issuer/reference number (PNR, permit no., visa no., etc.)
+
+        presentation:
+          $ref: '#/components/schemas/AuthorizationPresentation'
+
+        security:
+          $ref: '#/components/schemas/AuthorizationSecurity'
+
+        redaction:
+          type: string
+          description: Privacy handling guidance (avoid leaking PII).
+          enum: [NONE, PARTIAL, FULL_METADATA_ONLY]
+
+    AuthorizationPresentation:
+      type: object
+      additionalProperties: false
+      description: Renderable/usable material; keep optional for manual-only proofs.
+      properties:
+        code:
+          type: string
+          description: Short token/OTP/PNR/encoded payload (QR content, etc.)
+        uri:
+          type: string
+          format: uri
+          description: Link to pass/wallet/issuer-hosted credential.
+        mime_type:
+          type: string
+          description: MIME type if 'data' is provided (application/pdf, image/png).
+        data:
+          type: string
+          description: Base64-encoded payload when transported inline.
+
+    AuthorizationSecurity:
+      type: object
+      additionalProperties: false
+      properties:
+        checksum:
+          type: string
+        checksum_alg:
+          type: string
+          enum: [SHA256, SHA512, OTHER]
+        signature:
+          type: string
+        signature_alg:
+          type: string
+          description: e.g., Ed25519, ES256
+        key_id:
+          type: string
+
+    AuthorizationVerification:
+      type: object
+      additionalProperties: false
+      description: >
+        Captures verification/inspection results at this endpoint, including manual checks.
+      properties:
+        method:
+          type: string
+          enum:
+            - SCANNED
+            - ONLINE_VALIDATION
+            - OFFLINE_VALIDATION
+            - VISUAL_INSPECTION
+            - DOCUMENT_CHECK
+            - OTHER
+
+        verifier_ref:
+          type: string
+          description: Identifier of verifier/operator/device/system.
+
+        verified_at:
+          type: string
+          format: date-time
+
+        outcome:
+          type: string
+          enum: [PASS, FAIL, WARNING, NOT_CHECKED]
+
+        reason:
+          type: string
+          description: Free text or coded reason for fail/waive, if applicable.
+
+    AuthorizationIssuer:
+      type: object
+      additionalProperties: false
+      properties:
+        id: { type: string }
+        name: { type: string }
+        uri:
+          type: string
+          format: uri
+
+    AuthorizationHolder:
+      type: object
+      additionalProperties: false
+      description: The subject presenting/holding the authorization (person/org/vehicle).
+      properties:
+        id: { type: string }
+        name: { type: string }
+        type:
+          type: string
+          enum: [PERSON, ORGANIZATION, VEHICLE, OTHER]
+
+    AuthorizationValidity:
+      type: object
+      additionalProperties: false
+      properties:
+        valid_from: { type: string, format: date-time }
+        valid_until: { type: string, format: date-time }
+        timezone:
+          type: string
+          description: IANA TZ name (e.g., Asia/Kolkata)
+
+    AuthorizationScope:
+      type: object
+      additionalProperties: false
+      description: Constraints on where/what the evidence authorizes.
+      properties:
+        zone_ids:
+          type: array
+          items: { type: string }
+        segment_ids:
+          type: array
+          items: { type: string }
+        item_ids:
+          type: array
+          items: { type: string }
+        seat:
+          type: string
