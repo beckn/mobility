@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: Prognosis
+  version: 2.0.0
+  description: Schema definition for the Prognosis entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    Prognosis:
+      type: object
+      title: Prognosis
+      description: >
+        Attributes for the Prognosis entity in the Beckn Mobility domain.
+      properties: {}

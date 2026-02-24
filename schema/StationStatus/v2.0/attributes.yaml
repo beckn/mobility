@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: StationStatus
+  version: 2.0.0
+  description: Schema definition for the StationStatus entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    StationStatus:
+      type: object
+      title: StationStatus
+      description: >
+        Attributes for the StationStatus entity in the Beckn Mobility domain.
+      properties: {}

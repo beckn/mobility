@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: Schema
+  version: 2.0.0
+  description: Schema definition for the Schema entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    Schema:
+      type: object
+      title: Schema
+      description: >
+        Attributes for the Schema entity in the Beckn Mobility domain.
+      properties: {}

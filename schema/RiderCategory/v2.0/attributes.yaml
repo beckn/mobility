@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: RiderCategory
+  version: 2.0.0
+  description: Schema definition for the RiderCategory entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    RiderCategory:
+      type: object
+      title: RiderCategory
+      description: >
+        Attributes for the RiderCategory entity in the Beckn Mobility domain.
+      properties: {}

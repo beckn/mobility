@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: TariffZone
+  version: 2.0.0
+  description: Schema definition for the TariffZone entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    TariffZone:
+      type: object
+      title: TariffZone
+      description: >
+        Attributes for the TariffZone entity in the Beckn Mobility domain.
+      properties: {}

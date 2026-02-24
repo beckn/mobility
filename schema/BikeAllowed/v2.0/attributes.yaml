@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: BikeAllowed
+  version: 2.0.0
+  description: Schema definition for the BikeAllowed entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    BikeAllowed:
+      type: object
+      title: BikeAllowed
+      description: >
+        Attributes for the BikeAllowed entity in the Beckn Mobility domain.
+      properties: {}

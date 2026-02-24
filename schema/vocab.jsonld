@@ -1,0 +1,2996 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/",
+    "schema": "https://schema.org/",
+    "geo": "http://www.opengis.net/ont/geosparql#",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "gtfs": "http://vocab.gtfs.org/terms#",
+    "era": "http://data.europa.eu/949/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "https://schema.beckn.io/mobility/",
+      "@type": "owl:Ontology",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Beckn Mobility Vocabulary"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A vocabulary of unique mobility domain concepts derived from major global standards (GTFS, GBFS, MDS, SIRI, NeTEx, Transmodel, IATA NDC, IATA ONE Order, BOB, OSDM, TAP TSI, OCPI, OCPP, SAE J2735, C-ITS, TOMP-API, OpenMaaS, IXSI, OTP, APDS, ERA, LDES, CityGML, GeoSPARQL, INSPIRE, and more), consolidated into a single ontology vocabulary for the Beckn mobility domain."
+      },
+      "owl:versionInfo": "0.1.0"
+    },
+    {
+      "@id": "beckn:Operator",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Operator"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An organization that provides and operates public transport or shared mobility services under a defined service agreement."
+      },
+      "owl:equivalentClass": {
+        "@id": "gtfs:Agency"
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "schema:Organization"
+        },
+        {
+          "@id": "foaf:Organization"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:Authority",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Authority"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A governmental or administrative body responsible for planning, regulating, and overseeing transport services within a jurisdiction."
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "schema:GovernmentOrganization"
+        },
+        {
+          "@id": "foaf:Organization"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:Carrier",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Carrier"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A transport service provider identified in a passenger contract, responsible for operating a specific segment of travel."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:Organization"
+      }
+    },
+    {
+      "@id": "beckn:Passenger",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Passenger"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A person who travels using a transport service and is identified in a booking or travel document."
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "schema:Person"
+        },
+        {
+          "@id": "foaf:Person"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:User",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "User"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A registered participant in a mobility platform who may search, book, and use transport services."
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "schema:Person"
+        },
+        {
+          "@id": "foaf:Person"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:Stop",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Stop"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A designated location where vehicles stop to allow passengers to board or alight from a transport service."
+      },
+      "owl:equivalentClass": {
+        "@id": "gtfs:Stop"
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:BusStop"
+      }
+    },
+    {
+      "@id": "beckn:StopPlace",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Stop Place"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A physical location serving as a transit stop facility, comprising one or more quays, entrances, and associated infrastructure."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      },
+      "rdfs:seeAlso": {
+        "@id": "gtfs:Stop"
+      }
+    },
+    {
+      "@id": "beckn:StopPoint",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Stop Point"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An abstract or scheduled point in a public transport network at which passengers can board or alight from a service."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:Quay",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Quay"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A specific platform, bay, or boarding area within a Stop Place at which passengers board or alight from a vehicle."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      },
+      "rdfs:seeAlso": {
+        "@id": "gtfs:Stop"
+      }
+    },
+    {
+      "@id": "beckn:Station",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Station"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A major transit facility serving as a hub for one or more transport modes, typically offering waiting areas, ticketing, and interchange facilities."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:CivicStructure"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "schema:TrainStation"
+        },
+        {
+          "@id": "schema:BusStation"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:StopArea",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Stop Area"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A group of stops that collectively define a zone from which a demand-responsive service may pick up or drop off passengers."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:LocationGroup",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Location Group"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A set of geographic locations (stops or areas) that can collectively serve as an origin or destination for flexible transit services."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:LocationGroupStop",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Location Group Stop"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An association between a stop and a location group, used in flexible transit service planning."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:Level",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Level"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A floor or vertical level within a multi-level transit station or facility, used to define internal navigation paths."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Floor"
+      }
+    },
+    {
+      "@id": "beckn:Pathway",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Pathway"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A connection between two points within a transit station (e.g., stairway, elevator, walkway) used for indoor navigation and accessibility routing."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:Place",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Place"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A named or unnamed geographic location relevant to mobility, such as an address, point of interest, stop, or area."
+      },
+      "owl:equivalentClass": {
+        "@id": "schema:Place"
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:Area",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Area"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A geographic boundary defining a zone relevant to fare calculation or transport operations."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:GeoShape"
+      }
+    },
+    {
+      "@id": "beckn:TariffZone",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Tariff Zone"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A geographic zone used to define and apply fare structures, within which a single fare or set of rules applies."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:GeoShape"
+      }
+    },
+    {
+      "@id": "beckn:GeofencingZone",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Geofencing Zone"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A virtual geographic boundary used to define operational areas, speed limits, parking rules, or restrictions for shared mobility services."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:GeoShape"
+      }
+    },
+    {
+      "@id": "beckn:Geography",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Geography"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A defined geographic area used to specify operational policies for micromobility services such as e-scooters or bikes."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:SpatialObject",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Spatial Object"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Any object with a spatial extent or location, serving as the base class for all geographic features."
+      },
+      "owl:equivalentClass": {
+        "@id": "geo:SpatialObject"
+      }
+    },
+    {
+      "@id": "beckn:Geometry",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Geometry"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The geometric representation of a spatial object, such as a point, line, or polygon."
+      },
+      "owl:equivalentClass": {
+        "@id": "geo:Geometry"
+      }
+    },
+    {
+      "@id": "beckn:Feature",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Feature"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A spatially bounded real-world object with associated properties and a geometric representation."
+      },
+      "owl:equivalentClass": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:Point",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Point"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A zero-dimensional geometric primitive representing a single geographic coordinate."
+      },
+      "owl:equivalentClass": {
+        "@id": "geo:Point"
+      }
+    },
+    {
+      "@id": "beckn:Polygon",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Polygon"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A two-dimensional closed geometric shape representing an enclosed geographic area."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Geometry"
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:GeoShape"
+      }
+    },
+    {
+      "@id": "beckn:BoundingBox",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Bounding Box"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A rectangular geographic extent defined by minimum and maximum latitude and longitude values."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Geometry"
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:GeoShape"
+      }
+    },
+    {
+      "@id": "beckn:TransportNetwork",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Transport Network"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A connected set of transport links and nodes forming the infrastructure for a specific transport mode."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:TransportLink",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Transport Link"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A directed connection between two transport nodes representing a navigable segment of a transport network."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:TransportNode",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Transport Node"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A point in a transport network at which transport links meet, such as a junction, station, or terminal."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:Road",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Road"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A surface infrastructure element used by road vehicles, including carriageways, lanes, and road segments."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:Railway",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Railway"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A guided-track infrastructure element used by trains or trams, including tracks, switches, and rail corridors."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:Track",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Track"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A specific section of railway track with defined physical and operational parameters."
+      },
+      "owl:equivalentClass": {
+        "@id": "era:Track"
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:Waterway",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Waterway"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A navigable body of water used for ferry or boat transport services."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:AirRoute",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Air Route"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A defined path used by aircraft between two points, typically between airports or air navigation waypoints."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Flight"
+      }
+    },
+    {
+      "@id": "beckn:TrafficArea",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Traffic Area"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A surface area within a transport complex designated for vehicle movement, such as carriageways and manoeuvring areas."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:AuxiliaryTrafficArea",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Auxiliary Traffic Area"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A surface area adjacent to traffic areas, such as pedestrian paths, bicycle lanes, or parking areas within a transport complex."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:TransportationComplex",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Transportation Complex"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A set of transport infrastructure objects (roads, railways, squares) forming a unified urban transport feature."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:OperationalPoint",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Operational Point"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A location on the rail network with operational significance, such as a station, junction, or signal point."
+      },
+      "owl:equivalentClass": {
+        "@id": "era:OperationalPoint"
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:SectionOfLine",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Section of Line"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A segment of a railway line between two consecutive operational points, with defined track parameters."
+      },
+      "owl:equivalentClass": {
+        "@id": "era:SectionOfLine"
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:ContactLineSystem",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Contact Line System"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An overhead electrification system supplying traction power to electric rail vehicles."
+      },
+      "owl:equivalentClass": {
+        "@id": "era:ContactLineSystem"
+      }
+    },
+    {
+      "@id": "beckn:LoadCapability",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Load Capability"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The maximum permitted axle load or train weight for a section of railway track."
+      },
+      "owl:equivalentClass": {
+        "@id": "era:LoadCapability"
+      }
+    },
+    {
+      "@id": "beckn:TrainDetectionSystem",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Train Detection System"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A system used to detect the presence and location of trains on a section of railway track."
+      },
+      "owl:equivalentClass": {
+        "@id": "era:TrainDetectionSystem"
+      }
+    },
+    {
+      "@id": "beckn:TrackParameter",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Track Parameter"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A physical or operational parameter describing a railway track, such as gauge, gradient, or curvature."
+      },
+      "rdfs:seeAlso": {
+        "@id": "era:Track"
+      }
+    },
+    {
+      "@id": "beckn:Line",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Line"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A named, branded public transport service identified by a number or name, typically operating over one or more routes."
+      },
+      "rdfs:seeAlso": {
+        "@id": "gtfs:Route"
+      }
+    },
+    {
+      "@id": "beckn:Route",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Route"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The physical or logical path followed by a transport service, defined as an ordered sequence of stops or waypoints."
+      },
+      "owl:equivalentClass": {
+        "@id": "gtfs:Route"
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Trip"
+      }
+    },
+    {
+      "@id": "beckn:Network",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Network"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A grouping of routes and lines operated under a common brand or authority, used for fare and operational management."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Organization"
+      }
+    },
+    {
+      "@id": "beckn:VehicleJourney",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Vehicle Journey"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A specific operational instance of a vehicle traveling a defined route at a scheduled time on a given service day."
+      },
+      "rdfs:seeAlso": {
+        "@id": "gtfs:Trip"
+      }
+    },
+    {
+      "@id": "beckn:ServiceCalendar",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Service Calendar"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A schedule defining on which dates a transport service operates, including regular service days and exceptional dates."
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "gtfs:Calendar"
+        },
+        {
+          "@id": "schema:Schedule"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:DayType",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Day Type"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A classification of a day (e.g., weekday, weekend, public holiday) used to define when a service pattern is valid."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:DayOfWeek"
+      }
+    },
+    {
+      "@id": "beckn:Timetable",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Timetable"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A structured schedule listing planned arrival and departure times for vehicles at each stop along a route."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Schedule"
+      }
+    },
+    {
+      "@id": "beckn:StopTime",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Stop Time"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The scheduled arrival and departure times for a vehicle at a specific stop within a vehicle journey."
+      },
+      "owl:equivalentClass": {
+        "@id": "gtfs:StopTime"
+      }
+    },
+    {
+      "@id": "beckn:Frequency",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Frequency"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A headway-based service specification indicating how often a vehicle runs on a route within a given time window."
+      },
+      "owl:equivalentClass": {
+        "@id": "gtfs:Frequency"
+      }
+    },
+    {
+      "@id": "beckn:Shape",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Shape"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The geographic path traced by a vehicle along a route, represented as an ordered sequence of geographic coordinates."
+      },
+      "owl:equivalentClass": {
+        "@id": "gtfs:Shape"
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Geometry"
+      }
+    },
+    {
+      "@id": "beckn:Pattern",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Pattern"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A unique sequence of stops visited by trips on a route, grouping trips with identical stop sequences and timing structures."
+      },
+      "rdfs:seeAlso": {
+        "@id": "gtfs:Trip"
+      }
+    },
+    {
+      "@id": "beckn:Direction",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Direction"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The direction of travel of a transport service along a route, typically expressed as inbound or outbound."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Direction"
+      }
+    },
+    {
+      "@id": "beckn:Transfer",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Transfer"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A defined connection rule between two routes or services at a common stop, specifying minimum transfer time or transfer type."
+      },
+      "owl:equivalentClass": {
+        "@id": "gtfs:Transfer"
+      }
+    },
+    {
+      "@id": "beckn:Interchange",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Interchange"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A planned transfer connection point where passengers switch between two or more transport services, with defined timing constraints."
+      },
+      "rdfs:subClassOf": {
+        "@id": "beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:ExchangePoints",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Exchange Points"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Locations in a transport network where fixed-route and flexible services connect, enabling passenger interchange."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:VehiclePosition",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Vehicle Position"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The current real-time geographic position, bearing, and speed of a vehicle operating a transport service."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Vehicle"
+      }
+    },
+    {
+      "@id": "beckn:TripUpdate",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Trip Update"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A real-time update to the schedule of a vehicle journey, including predicted arrival and departure times at stops."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:VehicleJourney"
+      }
+    },
+    {
+      "@id": "beckn:StopTimeUpdate",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Stop Time Update"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A real-time update to the predicted arrival or departure time of a vehicle at a specific stop within a journey."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:StopTime"
+      }
+    },
+    {
+      "@id": "beckn:TripDescriptor",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Trip Descriptor"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An identifier that uniquely references a specific vehicle journey in a real-time transit feed."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:VehicleJourney"
+      }
+    },
+    {
+      "@id": "beckn:VehicleDescriptor",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Vehicle Descriptor"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An identifier that uniquely references a specific vehicle in a real-time transit feed."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Vehicle"
+      }
+    },
+    {
+      "@id": "beckn:MonitoredVehicleJourney",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Monitored Vehicle Journey"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A real-time representation of a vehicle journey being actively tracked, including position and schedule adherence data."
+      },
+      "rdfs:subClassOf": {
+        "@id": "beckn:VehicleJourney"
+      }
+    },
+    {
+      "@id": "beckn:MonitoredCall",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Monitored Call"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A real-time arrival or departure prediction for a specific vehicle at a specific stop within a monitored journey."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:StopTime"
+      }
+    },
+    {
+      "@id": "beckn:StopMonitoring",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Stop Monitoring"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A real-time data service providing predicted arrivals and departures of vehicles at a specific stop."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:EstimatedTimetableDelivery",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Estimated Timetable Delivery"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A real-time data delivery providing predicted departure and arrival times for a set of vehicle journeys."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Timetable"
+      }
+    },
+    {
+      "@id": "beckn:VehicleMonitoringDelivery",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Vehicle Monitoring Delivery"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A real-time data delivery providing current positions and operational states of a set of vehicles."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:VehiclePosition"
+      }
+    },
+    {
+      "@id": "beckn:GeneralMessageDelivery",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "General Message Delivery"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A real-time delivery of textual messages or alerts related to service disruptions or passenger information."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Alert"
+      }
+    },
+    {
+      "@id": "beckn:ServiceDelivery",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Service Delivery"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The top-level response container in SIRI encapsulating one or more real-time data delivery types."
+      }
+    },
+    {
+      "@id": "beckn:AffectedLine",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Affected Line"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A reference to a transport line that is affected by a service disruption or alert."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Line"
+      }
+    },
+    {
+      "@id": "beckn:DepartureMessage",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Departure Message"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A real-time message containing predicted departure times for vehicles at a stop, as used in VDV real-time standards."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:StopTime"
+      }
+    },
+    {
+      "@id": "beckn:Prognosis",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Prognosis"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A real-time prediction of a vehicle's arrival or departure time at a stop, including an indication of prediction confidence."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:StopTime"
+      }
+    },
+    {
+      "@id": "beckn:OccupancyStatus",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Occupancy Status"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An indicator of the current passenger load level of a vehicle, such as empty, many seats available, or full."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:ItemAvailability"
+      }
+    },
+    {
+      "@id": "beckn:PassengerCount",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Passenger Count"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The measured number of passengers currently aboard a vehicle, used for real-time capacity and load management."
+      }
+    },
+    {
+      "@id": "beckn:Telemetry",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Telemetry"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Time-series data streams reporting the real-time location, speed, and operational state of a mobility vehicle or asset."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Vehicle"
+      }
+    },
+    {
+      "@id": "beckn:Event",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Event"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A discrete state change in the lifecycle of a vehicle or mobility asset, such as a trip starting, vehicle reserved, or battery low."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:Event"
+      }
+    },
+    {
+      "@id": "beckn:Alert",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Alert"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A notification of a service disruption, delay, or advisory affecting one or more routes, stops, or vehicle journeys."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Event"
+      }
+    },
+    {
+      "@id": "beckn:EntitySelector",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Entity Selector"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A selector that identifies which transport entities (routes, trips, stops, or agencies) are affected by a given alert."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Alert"
+      }
+    },
+    {
+      "@id": "beckn:TimeRange",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Time Range"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A period defined by a start and end time during which an alert, service change, or condition is active."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Schedule"
+      }
+    },
+    {
+      "@id": "beckn:TranslatedString",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Translated String"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A text string provided in multiple languages, used for localizing alert messages or timetable information."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Language"
+      }
+    },
+    {
+      "@id": "beckn:Translation",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Translation"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A record providing a localized version of a specific field or value in a transit dataset."
+      }
+    },
+    {
+      "@id": "beckn:Notice",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Notice"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A textual notice or remark associated with a transport service element, providing supplementary information to passengers."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Note"
+      }
+    },
+    {
+      "@id": "beckn:Situation",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Situation"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A road traffic event or condition (e.g., accident, roadworks) that affects normal traffic flow and may require advisory action."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:Event"
+      }
+    },
+    {
+      "@id": "beckn:FareProduct",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Fare Product"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A purchasable entitlement to travel defining conditions of use, validity, and applicable passenger categories."
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "schema:Offer"
+        },
+        {
+          "@id": "schema:Product"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:FareLegRule",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Fare Leg Rule"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A rule defining how a fare is applied to a single leg of a journey based on origin, destination, network, and time."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:FareProduct"
+      }
+    },
+    {
+      "@id": "beckn:FareTransferRule",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Fare Transfer Rule"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A rule defining how fares from different legs are combined when a passenger makes a transfer between services."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:FareProduct"
+      }
+    },
+    {
+      "@id": "beckn:RiderCategory",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Rider Category"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A classification of passenger type (e.g., adult, child, senior, student) used to determine applicable fare entitlements."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:Person"
+      }
+    },
+    {
+      "@id": "beckn:FareMedium",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Fare Medium"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The physical or digital medium used to carry or present a fare product, such as a contactless card, mobile app, or paper ticket."
+      }
+    },
+    {
+      "@id": "beckn:Fare",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Fare"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The monetary cost of travel for a specific journey or service, calculated based on applicable fare rules and passenger categories."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:FareComponent",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Fare Component"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A component of an air travel fare that applies to a specific flight segment or leg, used in aviation pricing."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Fare"
+      }
+    },
+    {
+      "@id": "beckn:FareResult",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Fare Result"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The calculated fare for a requested trip, returned as part of a trip planning or fare enquiry response."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:SalesOfferPackage",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Sales Offer Package"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A combination of one or more fare products bundled for sale through a specific distribution channel."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Offer"
+      }
+    },
+    {
+      "@id": "beckn:SystemPricingPlan",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "System Pricing Plan"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A pricing plan defined by a shared mobility system, describing costs and billing rules for vehicle use."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:Tariff",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Tariff"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A structured set of pricing rules for a service, defining costs based on time, energy consumed, distance, or other parameters."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:Ticket",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Ticket"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A document or digital record granting the holder the right to travel on a specific transport service or within a defined validity scope."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Ticket"
+      }
+    },
+    {
+      "@id": "beckn:TravelDocument",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Travel Document"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A document (physical or digital) issued to a passenger proving entitlement to travel, used for validation or inspection."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:CreativeWork"
+      }
+    },
+    {
+      "@id": "beckn:Contract",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Contract"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An agreement between a passenger and a transit authority stored on a smart card, granting access to specific fare products."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Agreement"
+      }
+    },
+    {
+      "@id": "beckn:DistributionChannel",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Distribution Channel"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A channel or platform through which fare products or tickets are sold or distributed to end customers."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:ItemList"
+      }
+    },
+    {
+      "@id": "beckn:BookingRule",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Booking Rule"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A set of rules governing how and when a demand-responsive transport service must be booked in advance."
+      }
+    },
+    {
+      "@id": "beckn:Booking",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Booking"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A confirmed reservation of a transport service by a user, establishing the rights and conditions of travel."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Reservation"
+      }
+    },
+    {
+      "@id": "beckn:Offer",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Offer"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A priced and conditioned travel option presented to a customer prior to purchase, typically including fare and availability."
+      },
+      "owl:equivalentClass": {
+        "@id": "schema:Offer"
+      }
+    },
+    {
+      "@id": "beckn:OfferItem",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Offer Item"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A specific priced component within an offer, representing a flight, ancillary service, or seat."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:Offer"
+      }
+    },
+    {
+      "@id": "beckn:OfferPart",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Offer Part"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A component of an interoperable transport offer, representing one service segment or product element."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:Offer"
+      }
+    },
+    {
+      "@id": "beckn:Order",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Order"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A confirmed purchase record encompassing one or more travel products, created after a customer accepts an offer."
+      },
+      "owl:equivalentClass": {
+        "@id": "schema:Order"
+      }
+    },
+    {
+      "@id": "beckn:OrderItem",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Order Item"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A single item within a confirmed order, corresponding to a specific service or product purchased by the customer."
+      },
+      "owl:equivalentClass": {
+        "@id": "schema:OrderItem"
+      }
+    },
+    {
+      "@id": "beckn:Reservation",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Reservation"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A confirmed allocation of a specific resource (e.g., seat, charging point, parking space) to a customer for a defined period."
+      },
+      "owl:equivalentClass": {
+        "@id": "schema:Reservation"
+      }
+    },
+    {
+      "@id": "beckn:TripSpecification",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Trip Specification"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A description of the desired journey used as input to search and price transport options."
+      }
+    },
+    {
+      "@id": "beckn:PlaceRequest",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Place Request"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A request for a specific accommodation or seat assignment within a transport service during the booking process."
+      }
+    },
+    {
+      "@id": "beckn:Availability",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Availability"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The real-time or scheduled state of a vehicle, dock, or service indicating whether it is currently available for use or booking."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:ItemAvailability"
+      }
+    },
+    {
+      "@id": "beckn:TripRequest",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Trip Request"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A request submitted to a journey planning system specifying origin, destination, travel time, and preferences."
+      }
+    },
+    {
+      "@id": "beckn:TripResult",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Trip Result"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The result of a trip planning request, containing one or more journey options with leg details and timing."
+      }
+    },
+    {
+      "@id": "beckn:Leg",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Leg"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A single uninterrupted segment of a journey made using one transport mode or service between two consecutive locations."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Trip"
+      }
+    },
+    {
+      "@id": "beckn:Journey",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Journey"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A complete travel itinerary from origin to destination, potentially comprising multiple legs using different transport modes."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Trip"
+      }
+    },
+    {
+      "@id": "beckn:Itinerary",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Itinerary"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A complete planned trip containing an ordered sequence of legs, including transfer points, durations, and timing."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Trip"
+      }
+    },
+    {
+      "@id": "beckn:Plan",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Plan"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A journey planning response containing one or more itinerary options for a given trip request."
+      }
+    },
+    {
+      "@id": "beckn:PlanningResult",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Planning Result"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The output of a MaaS platform planning request, listing available transport options for a requested trip."
+      }
+    },
+    {
+      "@id": "beckn:LocationInformationRequest",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Location Information Request"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A request for details about a specific geographic location, stop, or point of interest in the transport network."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Place"
+      }
+    },
+    {
+      "@id": "beckn:StopEvent",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Stop Event"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A departure or arrival event at a stop, used to retrieve the next or previous vehicle movements at a specific location."
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:StopTime"
+      }
+    },
+    {
+      "@id": "beckn:Segment",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Segment"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A portion of a rail journey operated continuously by a single carrier between two consecutive stops or stations."
+      },
+      "rdfs:subClassOf": {
+        "@id": "beckn:Leg"
+      }
+    },
+    {
+      "@id": "beckn:FlightSegment",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Flight Segment"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A single non-stop flight operated between two airports, forming a unit of an air travel itinerary."
+      },
+      "rdfs:subClassOf": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Flight"
+      }
+    },
+    {
+      "@id": "beckn:ItineraryElement",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Itinerary Element"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A component of an aviation itinerary such as a flight segment, ground transport leg, or ancillary service."
+      },
+      "rdfs:subClassOf": {
+        "@id": "beckn:Itinerary"
+      }
+    },
+    {
+      "@id": "beckn:Vehicle",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Vehicle"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A motorized or human-powered mobility asset used to carry passengers or goods between locations."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Vehicle"
+      }
+    },
+    {
+      "@id": "beckn:VehicleType",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Vehicle Type"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A class or category of vehicle defined by its mode of transport, capacity, propulsion type, and accessibility features."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:Vehicle"
+      }
+    },
+    {
+      "@id": "beckn:Asset",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Asset"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A specific mobility resource (vehicle, bike, scooter, or car) managed and made available for use by a mobility provider."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Product"
+      }
+    },
+    {
+      "@id": "beckn:VehicleStatus",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Vehicle Status"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The real-time operational state of a vehicle or mobility asset, such as available, in use, reserved, or disabled."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:ItemAvailability"
+      }
+    },
+    {
+      "@id": "beckn:BikeAllowed",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Bike Allowed"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An indicator specifying whether bicycles are permitted on board a particular route or vehicle journey."
+      }
+    },
+    {
+      "@id": "beckn:StationInformation",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Station Information"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Static descriptive information about a shared mobility docking station, including its location, capacity, and features."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:CivicStructure"
+      }
+    },
+    {
+      "@id": "beckn:StationStatus",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Station Status"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The real-time operational state of a shared mobility station, including the number of available docks and vehicles."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:ItemAvailability"
+      }
+    },
+    {
+      "@id": "beckn:SystemInformation",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "System Information"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Static metadata about a shared mobility or transport system, including name, operator, timezone, and coverage area."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Organization"
+      }
+    },
+    {
+      "@id": "beckn:ChargingStation",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Charging Station"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A physical facility containing one or more EV supply equipment units for charging electric vehicles."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:LocalBusiness"
+      }
+    },
+    {
+      "@id": "beckn:EVSE",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "EVSE"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An Electric Vehicle Supply Equipment unit at a charging location, capable of charging one vehicle at a time."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:LocalBusiness"
+      }
+    },
+    {
+      "@id": "beckn:Connector",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Connector"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A physical socket or coupling at an EVSE used to connect an electric vehicle for charging."
+      }
+    },
+    {
+      "@id": "beckn:Session",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Session"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An active usage or charging session at a resource, tracking energy consumption, duration, and cost."
+      }
+    },
+    {
+      "@id": "beckn:ChargeDetailRecord",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Charge Detail Record"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A complete record of a finished EV charging session, including energy consumed, duration, start/stop times, and cost."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:Invoice"
+      }
+    },
+    {
+      "@id": "beckn:Token",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Token"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An authorization token (e.g., RFID card or app token) used to authenticate a user at an EV charging station."
+      }
+    },
+    {
+      "@id": "beckn:Command",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Command"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A remote instruction sent to an EV charging station to perform an action such as starting or stopping a charging session."
+      }
+    },
+    {
+      "@id": "beckn:MeterValue",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Meter Value"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An energy meter reading from an EV charger, used to measure consumption for billing and monitoring purposes."
+      }
+    },
+    {
+      "@id": "beckn:Authorization",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Authorization"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A check or decision confirming whether a user or token is permitted to initiate a session at a charging station or resource."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:DigitalDocument"
+      }
+    },
+    {
+      "@id": "beckn:Payment",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Payment"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A financial transaction made by a user to settle the cost of a transport, parking, or charging service."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:PayAction"
+      }
+    },
+    {
+      "@id": "beckn:PaymentMethod",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Payment Method"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The instrument or mechanism used to make a payment, such as a credit card, bank transfer, or digital wallet."
+      },
+      "owl:equivalentClass": {
+        "@id": "schema:PaymentMethod"
+      }
+    },
+    {
+      "@id": "beckn:PaymentTransaction",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Payment Transaction"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A completed or in-progress financial transaction associated with purchasing a transport or mobility service."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:PayAction"
+      }
+    },
+    {
+      "@id": "beckn:PaymentInstruction",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Payment Instruction"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A formal instruction to transfer funds between financial institutions, as defined in ISO 20022."
+      }
+    },
+    {
+      "@id": "beckn:Transaction",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Transaction"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A discrete financial or data exchange event, such as a fare payment, contactless card tap, or charging session settlement."
+      }
+    },
+    {
+      "@id": "beckn:Account",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Account"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A financial account held by a user or institution, used for storing value or settling transport payments."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:FinancialProduct"
+      }
+    },
+    {
+      "@id": "beckn:CreditTransfer",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Credit Transfer"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A payment instruction initiated by the payer to push funds from their account to a payee's account."
+      }
+    },
+    {
+      "@id": "beckn:DirectDebit",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Direct Debit"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A payment instruction initiated by the payee to pull funds from a payer's account on a one-off or recurring basis."
+      }
+    },
+    {
+      "@id": "beckn:FinancialInstitution",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Financial Institution"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A bank or payment service provider that processes, clears, or settles financial transactions."
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "schema:Organization"
+        },
+        {
+          "@id": "foaf:Organization"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:Deposit",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Deposit"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A security deposit collected from a user at the start of a shared mobility service, refundable upon satisfactory return."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:PayAction"
+      }
+    },
+    {
+      "@id": "beckn:Purse",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Purse"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An electronic stored-value wallet on a smart card used to pre-pay for transit services by deducting value per journey."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:MonetaryAmount"
+      }
+    },
+    {
+      "@id": "beckn:SecurityModule",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Security Module"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A tamper-resistant hardware component on a smart card that manages cryptographic keys and secure data operations."
+      }
+    },
+    {
+      "@id": "beckn:Application",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Application"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A software application stored on a smart card that manages a specific transit service or fare product."
+      }
+    },
+    {
+      "@id": "beckn:Terminal",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Terminal"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A physical device at which passengers interact with a transit system for ticketing, fare validation, or payment."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:LocalBusiness"
+      }
+    },
+    {
+      "@id": "beckn:BasicSafetyMessage",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Basic Safety Message"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A periodic V2X broadcast message transmitted by vehicles containing speed, heading, and position for collision avoidance."
+      }
+    },
+    {
+      "@id": "beckn:MapData",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Map Data"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A V2X message describing the topology of an intersection or road segment for use by connected vehicles."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Map"
+      }
+    },
+    {
+      "@id": "beckn:SignalPhaseAndTiming",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Signal Phase and Timing"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A V2X message providing real-time traffic signal phase and timing data to vehicles approaching an intersection."
+      }
+    },
+    {
+      "@id": "beckn:TravelerInformationMessage",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Traveler Information Message"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A V2X message delivered to vehicles or devices containing road conditions, speed limits, or safety advisories."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Message"
+      }
+    },
+    {
+      "@id": "beckn:ProbeVehicleData",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Probe Vehicle Data"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Position, speed, and heading data collected from a moving vehicle used for traffic monitoring and analytics."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Vehicle"
+      }
+    },
+    {
+      "@id": "beckn:RoadSideAlert",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Road Side Alert"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A V2X alert message broadcast by a roadside unit warning vehicles of hazards, incidents, or road conditions."
+      },
+      "rdfs:subClassOf": {
+        "@id": "beckn:Alert"
+      }
+    },
+    {
+      "@id": "beckn:CooperativeAwarenessMessage",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Cooperative Awareness Message"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A periodic V2X broadcast by a vehicle or infrastructure unit sharing its identity, position, and status with nearby entities."
+      }
+    },
+    {
+      "@id": "beckn:DecentralizedEnvironmentalNotificationMessage",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Decentralized Environmental Notification Message"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A V2X event-triggered message notifying nearby road users of a detected hazard or unusual environmental condition."
+      },
+      "rdfs:subClassOf": {
+        "@id": "beckn:Alert"
+      }
+    },
+    {
+      "@id": "beckn:InVehicleInformation",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "In-Vehicle Information"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A V2X message delivering road sign or regulatory information directly to an in-vehicle human-machine interface."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Message"
+      }
+    },
+    {
+      "@id": "beckn:CollectivePerceptionMessage",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Collective Perception Message"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A V2X message sharing a vehicle's perception of nearby objects (pedestrians, vehicles) with surrounding road users."
+      }
+    },
+    {
+      "@id": "beckn:TrafficStatus",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Traffic Status"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A classification of current traffic conditions on a road segment, such as free flow, slow, queuing, or stationary."
+      }
+    },
+    {
+      "@id": "beckn:TrafficFlow",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Traffic Flow"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A measured or estimated count of vehicles passing a specific point on a road within a given time interval."
+      }
+    },
+    {
+      "@id": "beckn:TravelTime",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Travel Time"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The estimated or measured time required to traverse a defined road segment under current traffic conditions."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Duration"
+      }
+    },
+    {
+      "@id": "beckn:MeasurementSite",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Measurement Site"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A physical or virtual location where traffic data such as flow, speed, or occupancy is collected or measured."
+      },
+      "rdfs:subClassOf": {
+        "@id": "geo:Feature"
+      }
+    },
+    {
+      "@id": "beckn:ParkingRecord",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Parking Record"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A description of a parking facility including its location, capacity, access restrictions, and static pricing information."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:CivicStructure"
+      }
+    },
+    {
+      "@id": "beckn:ParkingTable",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Parking Table"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A collection of parking records describing the parking facilities available in a defined area or operator network."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:ItemList"
+      }
+    },
+    {
+      "@id": "beckn:ElaboratedDataPublication",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Elaborated Data Publication"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A structured publication of processed or aggregated traffic data, such as journey times or congestion indices."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:DataFeed"
+      }
+    },
+    {
+      "@id": "beckn:Rate",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Rate"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A pricing rule for a parking facility, defining costs based on duration, vehicle type, time of day, or other criteria."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:RightSpecification",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Right Specification"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A specification defining the conditions under which a parking right or permit is granted, including time, location, and vehicle type."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Permit"
+      }
+    },
+    {
+      "@id": "beckn:Observation",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Observation"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A recorded event or measurement in a parking context, such as a vehicle entering or leaving a parking space."
+      }
+    },
+    {
+      "@id": "beckn:Issuer",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Issuer"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An organization or authority that issues parking rights, permits, or authorization credentials."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:Organization"
+      }
+    },
+    {
+      "@id": "beckn:Assignee",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Assignee"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A person or entity to whom a parking right, permit, or credential has been assigned."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:Person"
+      }
+    },
+    {
+      "@id": "beckn:Provider",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Provider"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A mobility service provider registered on a MaaS platform, offering transport options to end users."
+      },
+      "rdfs:subClassOf": [
+        {
+          "@id": "schema:Organization"
+        },
+        {
+          "@id": "foaf:Organization"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:Attribute",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Attribute"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A descriptive property or feature associated with a mobility asset, such as electric propulsion, wheelchair accessibility, or child seat."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:PropertyValue"
+      }
+    },
+    {
+      "@id": "beckn:Policy",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Policy"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A set of operational rules defined by a mobility authority governing vehicle behavior, permitted areas, speed, or parking."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:GovernmentService"
+      }
+    },
+    {
+      "@id": "beckn:Seat",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Seat"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A specific seat position reserved or assigned to a passenger on a flight, train, or other transport service."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Seat"
+      }
+    },
+    {
+      "@id": "beckn:BaggageAllowance",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Baggage Allowance"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The quantity and weight of baggage a passenger is permitted to carry or check in without incurring additional charges."
+      }
+    },
+    {
+      "@id": "beckn:AncillaryService",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Ancillary Service"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An optional or additional service available for purchase alongside base transport, such as extra baggage or lounge access."
+      },
+      "rdfs:subClassOf": {
+        "@id": "schema:Service"
+      }
+    },
+    {
+      "@id": "beckn:Service",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Service"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A purchasable service component included in a transport order, such as catering, priority boarding, or seat upgrade."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Service"
+      }
+    },
+    {
+      "@id": "beckn:Price",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Price"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The monetary amount associated with an offer, fare, or service, including breakdowns for taxes, surcharges, and fees."
+      },
+      "owl:equivalentClass": {
+        "@id": "schema:PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:EventStream",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Event Stream"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A linked data stream of time-ordered events representing changes to a dataset, following the LDES specification."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:DataFeed"
+      }
+    },
+    {
+      "@id": "beckn:Collection",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Collection"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A set of linked data resources forming a cohesive dataset or versioned event stream."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Collection"
+      }
+    },
+    {
+      "@id": "beckn:View",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "View"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A paginated or filtered access point into a linked data collection or event stream."
+      }
+    },
+    {
+      "@id": "beckn:FragmentationStrategy",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Fragmentation Strategy"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A method for dividing a linked data collection into navigable fragments based on time, property, or spatial criteria."
+      }
+    },
+    {
+      "@id": "beckn:Member",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Member"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "An individual data item or event that is part of a linked data collection or event stream."
+      }
+    },
+    {
+      "@id": "beckn:TreeNode",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Tree Node"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A node in the TREE hypermedia structure that links to related data fragments within a linked data collection."
+      }
+    },
+    {
+      "@id": "beckn:Relation",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Relation"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A typed link between two tree nodes indicating a navigational or filtering relationship within a linked data collection."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:PropertyValue"
+      }
+    },
+    {
+      "@id": "beckn:Feed",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Feed"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A data publication providing transit or mobility information in a standardized format for consumption by applications or planners."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:DataFeed"
+      }
+    },
+    {
+      "@id": "beckn:Message",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Message"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A structured data container used to communicate a request, response, or notification between transport or financial systems."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:Message"
+      }
+    },
+    {
+      "@id": "beckn:Endpoint",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Path (Endpoint)"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A specific URL path exposed by an API, representing a resource or operation accessible to API clients."
+      }
+    },
+    {
+      "@id": "beckn:RequestBody",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Request Body"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The structured data payload sent by a client in the body of an API request."
+      }
+    },
+    {
+      "@id": "beckn:Response",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Response"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The structured data returned by an API server in reply to a client request."
+      }
+    },
+    {
+      "@id": "beckn:Schema",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Schema"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A formal definition of the structure and data types used in an API request or response payload."
+      },
+      "rdfs:seeAlso": {
+        "@id": "schema:DataType"
+      }
+    },
+    {
+      "@id": "beckn:Parameter",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Parameter"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A named input variable passed to an API endpoint via path, query string, header, or cookie."
+      }
+    },
+    {
+      "@id": "beckn:SecurityScheme",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Security Scheme"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A definition of the authentication or authorization mechanism required to access a secured API endpoint."
+      }
+    },
+    {
+      "@id": "beckn:TransportObject",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Transport Object"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "A generic transport entity in the OSLO mobility ontology representing any object involved in transport operations."
+      }
+    }
+  ]
+}

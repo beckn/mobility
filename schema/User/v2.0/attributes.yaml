@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: User
+  version: 2.0.0
+  description: Schema definition for the User entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    User:
+      type: object
+      title: User
+      description: >
+        Attributes for the User entity in the Beckn Mobility domain.
+      properties: {}

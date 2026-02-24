@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: Purse
+  version: 2.0.0
+  description: Schema definition for the Purse entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    Purse:
+      type: object
+      title: Purse
+      description: >
+        Attributes for the Purse entity in the Beckn Mobility domain.
+      properties: {}

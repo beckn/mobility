@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: MonitoredVehicleJourney
+  version: 2.0.0
+  description: Schema definition for the MonitoredVehicleJourney entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    MonitoredVehicleJourney:
+      type: object
+      title: MonitoredVehicleJourney
+      description: >
+        Attributes for the MonitoredVehicleJourney entity in the Beckn Mobility domain.
+      properties: {}

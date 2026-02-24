@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: Itinerary
+  version: 2.0.0
+  description: Schema definition for the Itinerary entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    Itinerary:
+      type: object
+      title: Itinerary
+      description: >
+        Attributes for the Itinerary entity in the Beckn Mobility domain.
+      properties: {}

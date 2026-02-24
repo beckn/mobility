@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: TripResult
+  version: 2.0.0
+  description: Schema definition for the TripResult entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    TripResult:
+      type: object
+      title: TripResult
+      description: >
+        Attributes for the TripResult entity in the Beckn Mobility domain.
+      properties: {}

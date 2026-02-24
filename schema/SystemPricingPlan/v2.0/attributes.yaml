@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: SystemPricingPlan
+  version: 2.0.0
+  description: Schema definition for the SystemPricingPlan entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    SystemPricingPlan:
+      type: object
+      title: SystemPricingPlan
+      description: >
+        Attributes for the SystemPricingPlan entity in the Beckn Mobility domain.
+      properties: {}

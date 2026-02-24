@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: VehicleJourney
+  version: 2.0.0
+  description: Schema definition for the VehicleJourney entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    VehicleJourney:
+      type: object
+      title: VehicleJourney
+      description: >
+        Attributes for the VehicleJourney entity in the Beckn Mobility domain.
+      properties: {}

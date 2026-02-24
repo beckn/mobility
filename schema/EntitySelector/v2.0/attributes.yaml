@@ -1,0 +1,20 @@
+openapi: 3.1.0
+info:
+  title: EntitySelector
+  version: 2.0.0
+  description: Schema definition for the EntitySelector entity in the Beckn Mobility domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    EntitySelector:
+      type: object
+      title: EntitySelector
+      description: >
+        Attributes for the EntitySelector entity in the Beckn Mobility domain.
+      properties: {}
