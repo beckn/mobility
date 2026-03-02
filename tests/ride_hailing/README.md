@@ -2,16 +2,16 @@
 
 ## Use Case Narrative
 
-Priya opens a ride-hailing app on her phone. She sets her current location as pickup and her office as the destination. The app shows her several ride options — Auto, Mini, Sedan — each with a fare estimate and ETA. She selects a Mini, sees the final fare breakup with surge pricing applied, enters her name and payment preference, and confirms the booking. A driver accepts the ride; she can see his location on a live map. When she arrives at the office, a receipt is issued. Later, she rates the driver and leaves a short review. Her forgotten umbrella prompts her to raise a support case.
+Priya opens a ride-hailing app on her phone. She sets her current GPS location as pickup and drops a pin on her office as destination. The app shows several ride options — Auto, Mini, Sedan — each with an estimated fare and ETA. She selects a Mini with an insurance add-on, sees the fare breakup with surge pricing applied, is asked to choose toll vs non-toll route, selects online payment, and confirms the booking. The BPP acknowledges the booking and starts searching for a driver. Shortly after, a driver is assigned — the app shows his name, rating, vehicle plate, and current live location, along with the ride-start OTP. She completes the ride and receives a receipt. Later she rates the driver and raises a support case for a lost umbrella.
 
 ## Actors
 
 | Actor | Role | Beckn Entity |
 |-------|------|-------------|
 | Priya | Consumer — the person requesting the ride | Represented by BAP |
-| MaaS App | BAP — renders options, relays Priya's decisions | `beckn:BAP` |
+| MaaS App | BAP — renders options, relays decisions | `beckn:BAP` |
 | Ride Platform | BPP — manages driver supply, dispatching, pricing | `beckn:BPP` |
-| Driver | Fulfillment agent — operates the vehicle | `mobility:Driver` |
+| Driver | Fulfillment agent | `mobility:Driver` |
 
 ---
 
@@ -22,42 +22,52 @@ Priya opens a ride-hailing app on her phone. She sets her current location as pi
 ---
 
 #### Action: `search`
-**Semantic intent:** Priya expresses her ride intent — pickup, dropoff, time, passenger count, and preferred vehicle type.
+**Semantic intent:** Priya expresses her ride intent — exact GPS pickup location, exact GPS drop location, and preferences.
 
-**Schema classes required (BAP → BPP):**
+**Information in message (BAP → BPP):**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`RideRequest`](../../schema/RideRequest/README.md) | Top-level intent carrying pickup, dropoff, time, preferences | `beckn:Intent` | ✅ |
-| [`Place`](../../schema/Place/README.md) | Pickup location (origin) | `beckn:Location` | ✅ |
-| [`Place`](../../schema/Place/README.md) | Dropoff location (destination) | `beckn:Location` | ✅ |
-| [`VehicleCategory`](../../schema/VehicleCategory/README.md) | Rider's preferred vehicle class (Auto, Mini, Sedan) | `beckn:CategoryCode` | ✅ |
-| [`RiderCategory`](../../schema/RiderCategory/README.md) | Passenger type (Adult) — affects surge/concession eligibility | `beckn:CategoryCode` | ✅ |
-| [`PassengerGroup`](../../schema/PassengerGroup/README.md) | Number and type of passengers in this ride | `beckn:Quantity` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Top-level intent | [`RideRequest`](../../schema/RideRequest/README.md) | — | ✅ |
+| Pickup GPS coordinates | [`Place`](../../schema/Place/README.md) | `gps` (via beckn:Location) | ✅ |
+| Pickup place name | [`Place`](../../schema/Place/README.md) | `placeName` | ✅ |
+| Drop GPS coordinates | [`Place`](../../schema/Place/README.md) | `gps` (via beckn:Location) | ✅ |
+| Drop place name | [`Place`](../../schema/Place/README.md) | `placeName` | ✅ |
+| Preferred vehicle class | [`VehicleCategory`](../../schema/VehicleCategory/README.md) | `vehicleCategoryCode` | ✅ |
+| Passenger type (Adult) | [`RiderCategory`](../../schema/RiderCategory/README.md) | `riderCategoryId` | ✅ |
+| Number of passengers | [`PassengerGroup`](../../schema/PassengerGroup/README.md) | `groupSize` | ✅ |
 
-**Notes:** `RideRequest.origin` and `RideRequest.destination` use `beckn:Location`. The `Place` subclass adds `placeType` and `placeName` for human-readable identification (e.g., "Indiranagar Metro Station"). The BAP SHOULD include `RiderCategory` when the rider has a registered category (student, senior) so BPP can compute concessions early.
+**Notes:** `Place.gps` carries the raw GPS string (lat,lon). `RideRequest.origin` and `.destination` embed two `Place` instances. The BAP sends exact GPS at search time — the BPP uses this to compute ETAs and check serviceability.
 
 ---
 
 #### Action: `on_search`
-**Semantic intent:** The BPP returns a catalog of available ride options matching Priya's intent — each option is a combination of vehicle category, ETA, and pricing model.
+**Semantic intent:** The BPP returns available ride products, vehicle features, driver platform features, insurance add-ons, and pricing.
 
-**Schema classes required (BPP → BAP):**
+**Information in message (BPP → BAP):**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`PlanningResult`](../../schema/PlanningResult/README.md) | Top-level catalog container for ride options | `beckn:Catalog` | ✅ |
-| [`RideOption`](../../schema/RideOption/README.md) | A single selectable ride product (e.g., Mini, Sedan) | `beckn:Offer` | ✅ |
-| [`VehicleCategory`](../../schema/VehicleCategory/README.md) | Vehicle class for each option | `beckn:CategoryCode` | ✅ |
-| [`FareEstimate`](../../schema/FareEstimate/README.md) | Pre-booking price estimate with min/max range | `beckn:Offer` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Itemised components of the estimate (base, surge, tax) | `beckn:PriceComponent` | ✅ |
-| [`SurgeMultiplier`](../../schema/SurgeMultiplier/README.md) | Dynamic demand multiplier applied to base fare | `beckn:PriceComponent` | ✅ |
-| [`PricingModel`](../../schema/PricingModel/README.md) | Tariff structure — metered, upfront quote, subscription | `beckn:Offer` | ✅ |
-| [`WaitingPolicy`](../../schema/WaitingPolicy/README.md) | How long driver will wait, and waiting charges | `beckn:Policy` | ✅ |
-| [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Pre-confirmation cancellation terms | `beckn:CancellationPolicy` | ✅ |
-| [`Operator`](../../schema/Operator/README.md) | The ride platform or fleet operator | `beckn:Provider` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Catalog container | [`PlanningResult`](../../schema/PlanningResult/README.md) | — | ✅ |
+| Each ride product (Auto / Mini / Sedan) | [`RideOption`](../../schema/RideOption/README.md) | — | ✅ |
+| Vehicle class for each option | [`VehicleCategory`](../../schema/VehicleCategory/README.md) | `vehicleCategoryCode` | ✅ |
+| Vehicle type details (capacity, fuel) | [`VehicleType`](../../schema/VehicleType/README.md) | `maxCapacity`, `propulsionType`, `wheelchairAccessible` | ✅ |
+| Boot space / luggage capacity | [`VehicleType`](../../schema/VehicleType/README.md) | `tags` (inherited) | ⚠️ |
+| A/C availability | [`VehicleType`](../../schema/VehicleType/README.md) | `tags` (inherited) | ⚠️ |
+| Platform rating / driver quality indicator | [`Operator`](../../schema/Operator/README.md) | `rating` (inherited) | ✅ |
+| Insurance add-on option | [`AncillaryService`](../../schema/AncillaryService/README.md) | `serviceCode`, `serviceCategory` | ✅ |
+| Fare estimate (min–max range) | [`FareEstimate`](../../schema/FareEstimate/README.md) | `estimatedAmount`, `minimumAmount`, `maximumAmount` | ✅ |
+| Fare component breakdown | [`FareBreakup`](../../schema/FareBreakup/README.md) | `componentTitle`, `amount` | ✅ |
+| Surge multiplier (if applied) | [`SurgeMultiplier`](../../schema/SurgeMultiplier/README.md) | `multiplierValue`, `reason` | ✅ |
+| Pricing model (metered vs upfront) | [`PricingModel`](../../schema/PricingModel/README.md) | `modelType`, `baseRate`, `perKmRate`, `perMinuteRate` | ✅ |
+| Waiting time policy | [`WaitingPolicy`](../../schema/WaitingPolicy/README.md) | `freeWaitingTimeMinutes`, `chargePerExtraMinute` | ✅ |
+| Cancellation terms at discovery | [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | `cancellationTerms`, `refundPercentage` | ✅ |
+| Platform/operator details | [`Operator`](../../schema/Operator/README.md) | `operatorId`, `operatingRegions` | ✅ |
+| ETA to pickup | [`RideOption`](../../schema/RideOption/README.md) | `estimatedArrival` | ✅ |
 
-**Notes:** `PlanningResult` contains an array of `RideOption` entries, each referencing a `VehicleCategory` and a `FareEstimate`. The `SurgeMultiplier` is attached to `FareBreakup` as a distinct price component — this preserves the breakdown so riders understand why the fare is elevated. `PricingModel` describes whether the fare is a fixed upfront quote or metered (distance + time).
+**⚠️ Notes on vehicle features:** `VehicleType` does not have explicit properties for `bootSpace` or `hasAC`. These are currently expressed via inherited `tags` from `beckn:Item`. A dedicated `VehicleFeature` class (following the `BikeAllowed` pattern) would provide cleaner semantics. **Identified Gap #1: no structured vehicle feature class beyond `BikeAllowed`.**
+
+**Notes on driver features:** At catalog (search) time, individual driver details are NOT available — only platform-level quality indicators. Driver details arrive at `on_update` after assignment. `Operator.rating` covers platform-level aggregated quality.
 
 ---
 
@@ -66,93 +76,106 @@ Priya opens a ride-hailing app on her phone. She sets her current location as pi
 ---
 
 #### Action: `select`
-**Semantic intent:** Priya taps on "Mini" — she selects a specific ride option and optionally specifies additional preferences (e.g., quiet ride, AC).
+**Semantic intent:** Priya selects the Mini option, provides her EXACT GPS pickup and drop locations (possibly refined from search), and selects any add-ons.
 
-**Schema classes required (BAP → BPP):**
+**This action initiates the CONTRACT. The BAP sends:**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`RideOption`](../../schema/RideOption/README.md) | The selected ride product (identified by id) | `beckn:Offer` | ✅ |
-| [`ServiceClass`](../../schema/ServiceClass/README.md) | Service tier preference (Economy, Premium, Shared) | `beckn:CategoryCode` | ✅ |
-| [`PickupPolicy`](../../schema/PickupPolicy/README.md) | Preferred pickup zone or meet-point instructions | `beckn:Policy` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Selected ride product | [`RideOption`](../../schema/RideOption/README.md) | `id` | ✅ |
+| Exact GPS pickup location | [`Place`](../../schema/Place/README.md) | `gps`, `placeName` | ✅ |
+| Exact GPS drop location | [`Place`](../../schema/Place/README.md) | `gps`, `placeName` | ✅ |
+| Service tier (Economy/Premium) | [`ServiceClass`](../../schema/ServiceClass/README.md) | `serviceClassCode` | ✅ |
+| Insurance add-on selected | [`AncillaryService`](../../schema/AncillaryService/README.md) | `serviceCode: INSURANCE` | ✅ |
+| Pickup meet-point preference | [`PickupPolicy`](../../schema/PickupPolicy/README.md) | `pickupConditions` | ✅ |
+
+**Notes:** The exact GPS from `select` may differ from search (e.g., Priya walked to the actual pickup gate). The BPP MUST re-compute ETA and serviceability with the refined coordinates.
 
 ---
 
 #### Action: `on_select`
-**Semantic intent:** The BPP confirms the selected option is available, locks the fare estimate, and returns driver/vehicle assignment if pre-assigned.
+**Semantic intent:** The BPP confirms the exact pickup/drop is serviceable, locks the fare, and returns the contract draft.
 
-**Schema classes required (BPP → BAP):**
+**BPP returns everything from `select` PLUS:**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`RideOption`](../../schema/RideOption/README.md) | Confirmed ride option with updated ETA | `beckn:Offer` | ✅ |
-| [`FareEstimate`](../../schema/FareEstimate/README.md) | Locked fare estimate (not yet final breakup) | `beckn:Offer` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Component-level fare breakdown | `beckn:PriceComponent` | ✅ |
-| [`Vehicle`](../../schema/Vehicle/README.md) | The specific vehicle to be dispatched | `beckn:Item` | ✅ |
-| [`VehicleType`](../../schema/VehicleType/README.md) | Type details (fuel, capacity, accessibility) | `beckn:CategoryCode` | ✅ |
-| [`WaitingPolicy`](../../schema/WaitingPolicy/README.md) | Waiting time terms — confirmed at this stage | `beckn:Policy` | ✅ |
-| [`PickupPolicy`](../../schema/PickupPolicy/README.md) | Confirmed pickup zone/meet-point | `beckn:Policy` | ✅ |
-| [`DropPolicy`](../../schema/DropPolicy/README.md) | Drop zone rules and any restrictions | `beckn:Policy` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Locked fare estimate | [`FareEstimate`](../../schema/FareEstimate/README.md) | `estimatedAmount`, `currency` | ✅ |
+| Fare component breakdown | [`FareBreakup`](../../schema/FareBreakup/README.md) | Base fare, surge, platform fee, taxes | ✅ |
+| Confirmed vehicle type details | [`VehicleType`](../../schema/VehicleType/README.md) | `maxCapacity`, `propulsionType` | ✅ |
+| Confirmed waiting policy | [`WaitingPolicy`](../../schema/WaitingPolicy/README.md) | `freeWaitingTimeMinutes` | ✅ |
+| Confirmed pickup zone | [`PickupPolicy`](../../schema/PickupPolicy/README.md) | `allowedPickupAreas` | ✅ |
+| Drop zone rules | [`DropPolicy`](../../schema/DropPolicy/README.md) | `dropConditions` | ✅ |
 
 ---
 
 #### Action: `init`
-**Semantic intent:** Priya submits her personal details and payment method preference to initiate the order.
+**Semantic intent:** Priya submits her billing participant details — name, phone, payment preference.
 
-**Schema classes required (BAP → BPP):**
+**BAP sends everything from `on_select` PLUS:**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Rider`](../../schema/Rider/README.md) | Priya's identity, payment preference, membership plan | `beckn:Participant` | ✅ |
-| [`RiderCategory`](../../schema/RiderCategory/README.md) | Passenger classification (Adult) | `beckn:CategoryCode` | ✅ |
-| [`PassengerGroup`](../../schema/PassengerGroup/README.md) | Number of passengers traveling | `beckn:Quantity` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Billing participant identity | [`Rider`](../../schema/Rider/README.md) | `riderId`, `preferredPaymentMethod` | ✅ |
+| Passenger category | [`RiderCategory`](../../schema/RiderCategory/README.md) | `riderCategoryId` | ✅ |
 
 ---
 
 #### Action: `on_init`
-**Semantic intent:** The BPP returns the full terms of the contract — final pricing, all applicable policies, and payment breakup — prior to payment confirmation.
+**Semantic intent:** The BPP returns the full pre-payment contract terms — including a FORM asking Priya to choose toll or non-toll route, the available payment channels, and binding cancellation terms.
 
-**Schema classes required (BPP → BAP):**
+**BPP returns everything from `init` PLUS:**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Draft contract (order) — not yet confirmed | `beckn:Contract` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Final fare breakup before payment | `beckn:PriceComponent` | ✅ |
-| [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Cancellation terms now binding | `beckn:CancellationPolicy` | ✅ |
-| [`NoShowPolicy`](../../schema/NoShowPolicy/README.md) | No-show fee if rider doesn't appear | `beckn:Policy` | ✅ |
-| [`WaitingPolicy`](../../schema/WaitingPolicy/README.md) | Confirmed waiting time and charge | `beckn:Policy` | ✅ |
-| [`SafetyPolicy`](../../schema/SafetyPolicy/README.md) | Emergency contact and safety instructions | `beckn:Policy` | ✅ |
-| [`Entitlement`](../../schema/Entitlement/README.md) | Any applied voucher, coupon, or promo discount | `beckn:Entitlement` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Draft order object | [`Trip`](../../schema/Trip/README.md) | `tripId`, `state` | ✅ |
+| Post-payment terms | [`Trip`](../../schema/Trip/README.md) | `descriptor` (payment instructions) | ✅ |
+| Binding cancellation terms | [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | `cancellationTerms`, `refundPercentage`, `cancelByTime` | ✅ |
+| No-show fee terms | [`NoShowPolicy`](../../schema/NoShowPolicy/README.md) | `noShowFee`, `gracePeriodMinutes` | ✅ |
+| **Toll / non-toll route selection form** | ❌ No dedicated class | — | ❌ |
+| Payment channel options (online / cash) | [`Trip`](../../schema/Trip/README.md) | `descriptor.tags` (payment options) | ⚠️ |
+| Safety policy and emergency contact | [`SafetyPolicy`](../../schema/SafetyPolicy/README.md) | `safetyInstructions`, `emergencyContact` | ✅ |
+| Applied voucher/promo discount | [`Entitlement`](../../schema/Entitlement/README.md) | `entitlementType: PROMOTION` | ✅ |
+
+**❌ Gap #2 — Toll/Non-toll Route Selection Form:**
+The `on_init` for ride hailing MUST include a form that collects the rider's route preference (toll vs non-toll road). This is a critical pre-payment decision that affects the final fare. In Beckn protocol, this uses the `XInput` (extended input) mechanism — a form URL or schema returned by the BPP. The mobility schema has no dedicated class for `RoutePreference`. This is a confirmed gap: a `RoutePreference` class (or `JourneyPreference`) is needed, extending `beckn:Form` or carrying structured preference options.
 
 ---
 
 #### Action: `confirm`
-**Semantic intent:** Priya confirms payment — the booking is locked in. Payment is transmitted.
+**Semantic intent:** Priya selects the toll/non-toll option from the form, selects "Pay Online" as the payment channel, and confirms.
 
-**Schema classes required (BAP → BPP):**
+**BAP sends everything from `on_init` PLUS:**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Order being confirmed (by id) | `beckn:Contract` | ✅ |
-| [`Rider`](../../schema/Rider/README.md) | Confirming rider identity | `beckn:Participant` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Selected route preference (toll/non-toll) | ❌ No dedicated class | — | ❌ |
+| Selected payment channel | [`Trip`](../../schema/Trip/README.md) | `descriptor.tags: PAYMENT_CHANNEL=ONLINE` | ⚠️ |
+| Payment reference (if online pre-pay) | [`Trip`](../../schema/Trip/README.md) | `descriptor.tags: PAYMENT_REF` | ⚠️ |
 
 ---
 
 #### Action: `on_confirm`
-**Semantic intent:** The BPP creates the confirmed booking, assigns a driver and vehicle, and returns the full contract with fulfillment details.
+**Semantic intent:** The BPP creates the confirmed booking, returns the contract with a booking ID, and signals that driver allocation has STARTED — but does NOT yet return driver/vehicle details.
 
-**Schema classes required (BPP → BAP):**
+**BPP returns:**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Confirmed contract with all binding terms | `beckn:Contract` | ✅ |
-| [`Driver`](../../schema/Driver/README.md) | Assigned driver's details and ratings | `beckn:FulfillmentAgent` | ✅ |
-| [`Vehicle`](../../schema/Vehicle/README.md) | Assigned vehicle with plate number and type | `beckn:Item` | ✅ |
-| [`ContactHandle`](../../schema/ContactHandle/README.md) | Masked phone or chat handle to reach driver | `beckn:SupportInfo` | ✅ |
-| [`VehiclePosition`](../../schema/VehiclePosition/README.md) | Driver's current live location | `beckn:Tracking` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Final fare breakup (now binding) | `beckn:PriceComponent` | ✅ |
-| [`WaitingPolicy`](../../schema/WaitingPolicy/README.md) | Binding waiting time terms | `beckn:Policy` | ✅ |
-| [`PickupDropoffPoint`](../../schema/PickupDropoffPoint/README.md) | Confirmed pickup meet-point with landmark | `beckn:FulfillmentStop` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Confirmed booking contract | [`Trip`](../../schema/Trip/README.md) | `tripId`, `state` | ✅ |
+| Exact confirmed pickup (GPS) | [`Place`](../../schema/Place/README.md) | `gps`, `placeName` | ✅ |
+| Exact confirmed drop (GPS) | [`Place`](../../schema/Place/README.md) | `gps`, `placeName` | ✅ |
+| Confirmed ride offer | [`RideOption`](../../schema/RideOption/README.md) | `id`, `vehicleType` | ✅ |
+| Confirmed add-ons | [`AncillaryService`](../../schema/AncillaryService/README.md) | `serviceCode`, `serviceCategory` | ✅ |
+| Billing participant reference | [`Rider`](../../schema/Rider/README.md) | `riderId` | ✅ |
+| Confirmed fare estimate with breakup | [`FareBreakup`](../../schema/FareBreakup/README.md) | All components | ✅ |
+| Binding cancellation terms | [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | `cancellationTerms` | ✅ |
+| Selected payment channel | [`Trip`](../../schema/Trip/README.md) | `descriptor.tags` | ⚠️ |
+| **Driver allocation status — SEARCHING** | [`Event`](../../schema/Event/README.md) | `eventType: DRIVER_ALLOCATION_SEARCHING` | ✅ |
+| Confirmed pickup meet-point | [`PickupDropoffPoint`](../../schema/PickupDropoffPoint/README.md) | `landmark`, `accessNotes` | ✅ |
+| Platform support contact | [`ContactHandle`](../../schema/ContactHandle/README.md) | `handleType: PHONE`, `handle` | ✅ |
+
+> **⚠️ Critical design note:** `on_confirm` does NOT include driver details or vehicle details. These arrive later via `on_update` when a driver actually accepts the job. At `on_confirm` time, the BPP only confirms the booking is accepted and that it is SEARCHING for a driver.
 
 ---
 
@@ -160,104 +183,78 @@ Priya opens a ride-hailing app on her phone. She sets her current location as pi
 
 ---
 
-#### Action: `status`
-**Semantic intent:** Priya's app polls the BPP to check the current state of the trip (driver en route, arrived, trip started, etc.).
+#### Action: `on_update` *(BPP-initiated push — driver assignment)*
+**Semantic intent:** After a driver accepts the job, the BPP pushes the FULL updated order state to the BAP. This is the most information-dense message in the ride lifecycle. It carries everything from `on_confirm` PLUS the newly assigned driver, vehicle, live location, tracking active flag, and the ride-start OTP.
 
-**Schema classes required (BAP → BPP):**
+**BPP pushes (full order state + new fulfillment elements):**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Order being queried (by id) | `beckn:Contract` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Full updated contract | [`Trip`](../../schema/Trip/README.md) | `tripId`, `state: DRIVER_ASSIGNED` | ✅ |
+| Exact pickup (GPS) | [`Place`](../../schema/Place/README.md) | `gps` | ✅ |
+| Exact drop (GPS) | [`Place`](../../schema/Place/README.md) | `gps` | ✅ |
+| Confirmed ride offer + add-ons | [`RideOption`](../../schema/RideOption/README.md) | `id` | ✅ |
+| Billing participant reference | [`Rider`](../../schema/Rider/README.md) | `riderId` | ✅ |
+| Fare estimate with breakup | [`FareBreakup`](../../schema/FareBreakup/README.md) | All components | ✅ |
+| Payment terms | [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | `cancellationTerms` | ✅ |
+| Selected payment channel | [`Trip`](../../schema/Trip/README.md) | `descriptor.tags` | ⚠️ |
+| **Assigned driver details** | [`Driver`](../../schema/Driver/README.md) | `licenseNumber`, `yearsOfExperience` | ✅ |
+| **Driver aggregated rating** | [`Driver`](../../schema/Driver/README.md) | via `beckn:FulfillmentAgent.rating` | ✅ |
+| **Assigned vehicle details** | [`Vehicle`](../../schema/Vehicle/README.md) | `licensePlate`, `make`, `model`, `color`, `year` | ✅ |
+| **Vehicle type** | [`VehicleType`](../../schema/VehicleType/README.md) | `vehicleTypeCode`, `maxCapacity` | ✅ |
+| **Driver live location** | [`VehiclePosition`](../../schema/VehiclePosition/README.md) | `latitude`, `longitude`, `bearing`, `speed` | ✅ |
+| **Driver masked contact** | [`ContactHandle`](../../schema/ContactHandle/README.md) | `handleType: PHONE`, masked number | ✅ |
+| **Tracking now ACTIVE** | [`TripUpdate`](../../schema/TripUpdate/README.md) | `trackingEndpoint` (status: ACTIVE) | ✅ |
+| Driver assignment event | [`Event`](../../schema/Event/README.md) | `eventType: DRIVER_ASSIGNED` | ✅ |
+| **Ride start OTP / fulfillment auth** | ❌ No dedicated mobility class | `beckn:Fulfillment.start.authorization` | ❌ |
+
+**❌ Gap #3 — Fulfillment Start Authorization (OTP):**
+When the BPP assigns a driver, it issues a ride-start OTP. The driver shows this OTP to the rider (or vice versa) to authenticate the trip start. In Beckn core, this is `beckn:Fulfillment.start.authorization` with `type: OTP` and `token: "1234"`. The mobility `Trip` class doesn't explicitly surface this relationship. The `Trip` class needs a `startAuthorization` property linking to `beckn:Authorization` from core. **This is Gap #3.**
 
 ---
 
-#### Action: `on_status`
-**Semantic intent:** The BPP returns the current fulfillment state, including driver location and trip phase.
+#### Action: `status`
+**Semantic intent:** BAP polls for current trip state (driver en route, arrived, trip started, trip ended).
 
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`TripUpdate`](../../schema/TripUpdate/README.md) | Multi-dimensional state snapshot (contract + status + tracking) | `beckn:Contract` | ✅ |
-| [`VehiclePosition`](../../schema/VehiclePosition/README.md) | Real-time driver GPS position | `beckn:Tracking` | ✅ |
-| [`Driver`](../../schema/Driver/README.md) | Driver reference (in case of reassignment) | `beckn:FulfillmentAgent` | ✅ |
-| [`OccupancyStatus`](../../schema/OccupancyStatus/README.md) | Seats available (for shared ride variant) | `beckn:State` | ✅ |
-| [`Event`](../../schema/Event/README.md) | Lifecycle event (DRIVER_ARRIVED, TRIP_STARTED, TRIP_ENDED) | `beckn:State` | ✅ |
-
-**Notes:** The `TripUpdate.stateUpdate` carries the `Event` (e.g., `DRIVER_ARRIVED`). The `TripUpdate.trackingEndpoint` carries the `VehiclePosition` live URL. These three dimensions — contract state, status event, and tracking endpoint — are unified in `TripUpdate` by design.
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Trip being queried | [`Trip`](../../schema/Trip/README.md) | `tripId` | ✅ |
+| Current state snapshot | [`TripUpdate`](../../schema/TripUpdate/README.md) | `stateUpdate`, `trackingEndpoint` | ✅ |
+| Driver live location | [`VehiclePosition`](../../schema/VehiclePosition/README.md) | `latitude`, `longitude` | ✅ |
+| Trip lifecycle event | [`Event`](../../schema/Event/README.md) | `DRIVER_EN_ROUTE`, `DRIVER_ARRIVED`, `TRIP_STARTED`, `TRIP_ENDED` | ✅ |
+| Seat availability (shared ride) | [`OccupancyStatus`](../../schema/OccupancyStatus/README.md) | `occupancyLevel` | ✅ |
 
 ---
 
 #### Action: `track`
-**Semantic intent:** Priya's app opens the live map — it requests the real-time tracking endpoint from the BPP.
+**Semantic intent:** Priya opens the live map — BAP requests the tracking endpoint.
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Order being tracked (by id) | `beckn:Contract` | ✅ |
-
----
-
-#### Action: `on_track`
-**Semantic intent:** The BPP returns the tracking URL or data stream for live driver location.
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`VehiclePosition`](../../schema/VehiclePosition/README.md) | Current driver coordinates, bearing, speed | `beckn:Tracking` | ✅ |
-| [`Telemetry`](../../schema/Telemetry/README.md) | Detailed time-series data (speed, battery, odometer) | `beckn:Tracking` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Live driver coordinates + speed | [`VehiclePosition`](../../schema/VehiclePosition/README.md) | `latitude`, `longitude`, `speed`, `bearing` | ✅ |
+| Telemetry stream (odometer, battery) | [`Telemetry`](../../schema/Telemetry/README.md) | `speed`, `bearing`, `odometer` | ✅ |
 
 ---
 
-#### Action: `update`
-**Semantic intent:** Priya adds a stop mid-ride (to collect a friend). The BPP updates the contract and recalculates the fare.
+#### Action: `update` *(BAP-initiated — mid-ride change)*
+**Semantic intent:** Priya requests an intermediate stop to pick up a friend.
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`TripUpdate`](../../schema/TripUpdate/README.md) | Updated contract with new stop | `beckn:Contract` | ✅ |
-| [`PickupDropoffPoint`](../../schema/PickupDropoffPoint/README.md) | The new intermediate stop location | `beckn:FulfillmentStop` | ✅ |
-
----
-
-#### Action: `on_update`
-**Semantic intent:** The BPP acknowledges the stop addition and returns an updated fare.
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`TripUpdate`](../../schema/TripUpdate/README.md) | Updated contract state including revised fare | `beckn:Contract` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Revised fare breakup with additional stop component | `beckn:PriceComponent` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Contract modification | [`TripUpdate`](../../schema/TripUpdate/README.md) | `contractChanges` (new stop) | ✅ |
+| New intermediate stop | [`PickupDropoffPoint`](../../schema/PickupDropoffPoint/README.md) | `pdpType: PICKUP`, `landmark` | ✅ |
+| Revised fare breakup | [`FareBreakup`](../../schema/FareBreakup/README.md) | Updated total | ✅ |
 
 ---
 
 #### Action: `cancel`
-**Semantic intent:** Priya cancels the booking before the driver arrives.
+**Semantic intent:** Priya cancels before driver arrives.
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Order being cancelled (by id) | `beckn:Contract` | ✅ |
-| [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Referenced policy under which cancellation is requested | `beckn:CancellationPolicy` | ✅ |
-
----
-
-#### Action: `on_cancel`
-**Semantic intent:** The BPP applies the cancellation policy, calculates refund (if any), and returns the final receipt.
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Cancelled contract with final state | `beckn:Contract` | ✅ |
-| [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | The policy applied, including refund percentage | `beckn:CancellationPolicy` | ✅ |
-| [`Receipt`](../../schema/Receipt/README.md) | Cancellation receipt (with refund amount) | `beckn:Invoice` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Net settlement after applying cancellation charges | `beckn:PriceComponent` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Contract cancellation | [`Trip`](../../schema/Trip/README.md) | `tripId` | ✅ |
+| Applied policy + refund | [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | `refundPercentage`, `gracePeriodMinutes` | ✅ |
+| Cancellation receipt | [`Receipt`](../../schema/Receipt/README.md) | `receiptId`, `paymentMethod` | ✅ |
 
 ---
 
@@ -266,50 +263,22 @@ Priya opens a ride-hailing app on her phone. She sets her current location as pi
 ---
 
 #### Action: `rating`
-**Semantic intent:** Priya rates the driver 4 stars and selects "Clean Vehicle" as a positive tag.
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Rating`](../../schema/Rating/README.md) | Numeric score for the driver (ratedEntityType: DRIVER) | `beckn:RatingInput` | ✅ |
-| [`Review`](../../schema/Review/README.md) | Free-text review submitted alongside the rating | `beckn:RatingInput` | ✅ |
-| [`Feedback`](../../schema/Feedback/README.md) | Structured tags (e.g., CLEAN_VEHICLE, SAFE_DRIVER) | `beckn:Feedback` | ✅ |
-
----
-
-#### Action: `on_rating`
-**Semantic intent:** The BPP acknowledges the rating submission.
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Rating`](../../schema/Rating/README.md) | Acknowledged rating record with confirmation | `beckn:RatingInput` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Numeric driver rating | [`Rating`](../../schema/Rating/README.md) | `ratingValue`, `ratedEntityType: DRIVER` | ✅ |
+| Free-text review | [`Review`](../../schema/Review/README.md) | `reviewText` | ✅ |
+| Structured feedback tags | [`Feedback`](../../schema/Feedback/README.md) | `feedbackType` | ✅ |
 
 ---
 
 #### Action: `support`
-**Semantic intent:** Priya realizes she left her umbrella in the cab. She raises a lost-and-found support case.
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`SupportCase`](../../schema/SupportCase/README.md) | Top-level support request (type: LOST_ITEM) | `beckn:SupportRequest` | ✅ |
-| [`LostAndFoundItem`](../../schema/LostAndFoundItem/README.md) | Description, type, and time of the lost umbrella | `beckn:SupportRequest` | ✅ |
-
----
-
-#### Action: `on_support`
-**Semantic intent:** The BPP returns a contact handle to reach the driver or support team.
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`SupportCase`](../../schema/SupportCase/README.md) | Updated case with ticket ID and status | `beckn:SupportRequest` | ✅ |
-| [`ContactHandle`](../../schema/ContactHandle/README.md) | Driver or support agent contact (masked phone/chat) | `beckn:SupportInfo` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Lost item report | [`LostAndFoundItem`](../../schema/LostAndFoundItem/README.md) | `itemType`, `itemDescription` | ✅ |
+| Support case | [`SupportCase`](../../schema/SupportCase/README.md) | `caseType: LOST_ITEM` | ✅ |
+| Driver contact for item recovery | [`ContactHandle`](../../schema/ContactHandle/README.md) | `handleType: PHONE` | ✅ |
 
 ---
 
@@ -318,39 +287,40 @@ Priya opens a ride-hailing app on her phone. She sets her current location as pi
 | Class | Actions Used In | Lifecycle Stage |
 |-------|----------------|----------------|
 | `RideRequest` | search | Discovery |
-| `Place` | search | Discovery |
+| `Place` | search, select, on_select, on_confirm, on_update | All |
 | `VehicleCategory` | search, on_search, select | Discovery, Contracting |
 | `RiderCategory` | search, init | Discovery, Contracting |
-| `PassengerGroup` | search, init | Discovery, Contracting |
+| `PassengerGroup` | search | Discovery |
 | `PlanningResult` | on_search | Discovery |
-| `RideOption` | on_search, select, on_select | Discovery, Contracting |
+| `RideOption` | on_search, select, on_select, on_confirm, on_update | Discovery, Contracting |
+| `VehicleType` | on_search, on_select, on_update | Discovery, Contracting, Fulfillment |
+| `AncillaryService` | on_search, select, on_confirm, on_update | All |
 | `FareEstimate` | on_search, on_select | Discovery, Contracting |
-| `FareBreakup` | on_search, on_select, on_init, on_confirm, on_update, on_cancel | All stages |
+| `FareBreakup` | on_search, on_select, on_init, on_confirm, on_update, update, on_cancel | All stages |
 | `SurgeMultiplier` | on_search | Discovery |
 | `PricingModel` | on_search | Discovery |
-| `WaitingPolicy` | on_search, on_select, on_init, on_confirm | Contracting |
-| `CancellationPolicy` | on_search, on_init, cancel, on_cancel | Contracting, Fulfillment |
+| `WaitingPolicy` | on_search, on_select | Discovery, Contracting |
+| `CancellationPolicy` | on_search, on_init, on_confirm, on_update, cancel | Contracting, Fulfillment |
 | `Operator` | on_search | Discovery |
 | `ServiceClass` | select | Contracting |
 | `PickupPolicy` | select, on_select | Contracting |
 | `DropPolicy` | on_select | Contracting |
-| `Vehicle` | on_select, on_confirm | Contracting |
-| `VehicleType` | on_select | Contracting |
-| `Rider` | init, confirm | Contracting |
-| `Trip` | on_init, confirm, on_confirm, status, track, cancel, on_cancel | Contracting, Fulfillment |
+| `Rider` | init, on_confirm, on_update | Contracting |
+| `Trip` | on_init, confirm, on_confirm, on_update, status, cancel | Contracting, Fulfillment |
 | `NoShowPolicy` | on_init | Contracting |
 | `SafetyPolicy` | on_init | Contracting |
 | `Entitlement` | on_init | Contracting |
-| `Driver` | on_confirm, on_status | Contracting, Fulfillment |
-| `ContactHandle` | on_confirm, on_support | Contracting, Post-Fulfillment |
-| `VehiclePosition` | on_confirm, on_status, on_track | Fulfillment |
+| `Event` | on_confirm, on_update, status | Contracting, Fulfillment |
 | `PickupDropoffPoint` | on_confirm, update | Contracting, Fulfillment |
-| `TripUpdate` | on_status, update, on_update | Fulfillment |
-| `OccupancyStatus` | on_status | Fulfillment |
-| `Event` | on_status | Fulfillment |
+| `ContactHandle` | on_confirm, on_update, on_support | Contracting, Fulfillment, Post |
+| `Driver` | on_update | Fulfillment |
+| `Vehicle` | on_update | Fulfillment |
+| `VehiclePosition` | on_update, status, on_track | Fulfillment |
+| `TripUpdate` | on_update, status, update | Fulfillment |
+| `OccupancyStatus` | status | Fulfillment |
 | `Telemetry` | on_track | Fulfillment |
 | `Receipt` | on_cancel | Fulfillment |
-| `Rating` | rating, on_rating | Post-Fulfillment |
+| `Rating` | rating | Post-Fulfillment |
 | `Review` | rating | Post-Fulfillment |
 | `Feedback` | rating | Post-Fulfillment |
 | `SupportCase` | support, on_support | Post-Fulfillment |
@@ -360,8 +330,8 @@ Priya opens a ride-hailing app on her phone. She sets her current location as pi
 
 ## Gap Report
 
-| Gap | Description | Severity |
-|-----|-------------|----------|
-| No gaps detected | All schema classes required for the canonical ride hailing lifecycle exist in the mobility schema and carry appropriate properties inherited from correct Beckn core parent classes. | — |
-
-> **Note:** The shared-ride variant (multiple passengers sharing one vehicle) would additionally require a `PassengerGroup` at the `on_confirm` stage to identify co-passengers. This is already covered by the existing `PassengerGroup` class.
+| # | Gap | Description | Severity | Proposed Resolution |
+|---|-----|-------------|----------|---------------------|
+| 1 | **VehicleFeature** | `VehicleType` has no structured properties for boot space, A/C availability, child seat capacity. These vehicle attributes are shown at catalog time (`on_search`) for rider to compare options. Currently only expressible via inherited `tags`. | Medium | Create `VehicleFeature` class extending `beckn:Feature` (following `BikeAllowed` pattern) with properties: `featureCode`, `featureValue`. Instances: `BootSpace`, `AirConditioning`, `ChildSeat`. |
+| 2 | **RoutePreference** | No mobility class for capturing ride route preferences (toll vs non-toll road, highway vs city road). The BPP must present a form in `on_init` to collect this. Currently, Beckn core's `XInput` mechanism handles the form delivery but there is no semantically-typed `RoutePreference` class in the mobility schema. | Medium | Create `RoutePreference` class extending `beckn:Form` (or `beckn:Descriptor`) with properties: `tollPreference` (TOLL / NO_TOLL / ANY), `routeType` (HIGHWAY / CITY), `acPreference` (AC / NON_AC). |
+| 3 | **FulfillmentAuthorization** | The ride-start OTP (sent by BPP at driver assignment via `on_update`) has no dedicated mobility class. It uses `beckn:Fulfillment.start.authorization` from core, but the `Trip` class does not expose this relationship explicitly. BAP implementations must know to look in `fulfillments[].start.authorization`. | Medium | Add `startAuthorization` property to `Trip` class, typed as `beckn:Authorization` from core. Or create a `FulfillmentAuthorization` class with `type` (OTP / PIN / QR) and `token` properties. |

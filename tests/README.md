@@ -231,3 +231,26 @@ The table below shows which schema classes are shared across multiple use cases,
 | Public Transit (Bus) | [tests/public_transit_bus/README.md](./public_transit_bus/README.md) | ✅ Complete |
 | Public Transit (Metro) | [tests/public_transit_metro/README.md](./public_transit_metro/README.md) | ✅ Complete |
 | Intercity Bus Transport | [tests/intercity_bus/README.md](./intercity_bus/README.md) | ✅ Complete |
+
+---
+
+## Consolidated Gap Report
+
+After running stress tests across all 6 use cases, **3 schema gaps** were identified. All gaps are in the ride hailing / rental cluster. Transit use cases (bus, metro, intercity) are fully covered.
+
+| # | Gap Class | Description | Use Cases Affected | Severity | Proposed Resolution |
+|---|-----------|-------------|-------------------|----------|---------------------|
+| 1 | **`VehicleFeature`** | `VehicleType` has no structured properties for vehicle amenities shown at catalog time: boot space, A/C availability, child seat, WiFi, charging points, reclining seats. Currently only expressible via untyped `tags` inherited from `beckn:Item`. | Ride Hailing, Advance Cab, Cab Rental, Intercity Bus | Medium | Create `VehicleFeature` class extending `beckn:Feature` (following the `BikeAllowed` pattern). Properties: `featureCode` (schema:Text), `featureValue` (schema:Text). Example instances: `BootSpace` (featureValue: "350L"), `AirConditioning` (featureValue: "yes"), `WiFi` (featureValue: "yes"). |
+| 2 | **`RoutePreference`** | No mobility class for capturing ride route preferences (toll vs non-toll, highway vs city). The BPP must present a form in `on_init` for ride hailing to collect this preference — it affects the final fare. Beckn protocol's `XInput` mechanism handles the form delivery, but the mobility schema has no semantically-typed class for the preference itself. | Ride Hailing, Advance Cab, Cab Rental | Medium | Create `RoutePreference` class extending `beckn:Form` (or `beckn:Descriptor`) with properties: `tollPreference` (TOLL / NO_TOLL / ANY), `routeType` (HIGHWAY / CITY / ANY), `acPreference` (AC / NON_AC / ANY). This enables type-safe preference handling across BPP implementations. |
+| 3 | **`FulfillmentAuthorization`** | The ride-start / rental-start OTP is issued by BPP at driver assignment (via `on_update`). In Beckn core, this is `beckn:Fulfillment.start.authorization` with `type: OTP` and `token`. The `Trip` class does not explicitly surface this relationship — BAP implementations must know to look in `fulfillments[].start.authorization` from core. | Ride Hailing, Advance Cab, Cab Rental | Medium | Add `startAuthorization` property to the `Trip` class, typed as `beckn:Authorization` from core (with `type` OTP/PIN/QR and `token`). Alternatively, create a `FulfillmentAuthorization` mobility class that wraps the core concept with clear documentation. |
+
+### Key Design Decisions Confirmed by Stress Testing
+
+| Decision | Rationale |
+|----------|-----------|
+| `on_confirm` for ride hailing returns DRIVER ALLOCATION STATUS, not driver details | Driver details arrive only when a driver actually accepts — this is via BPP-pushed `on_update`. Returning placeholder driver info at `on_confirm` would be misleading. |
+| `on_update` is the primary channel for driver assignment in ride hailing | The BPP pushes the full order state + driver + vehicle + OTP when a driver accepts. This is the most information-dense message in the ride lifecycle. |
+| Bus and Metro `on_update` carry NOTHING in contract changes | Tickets remain valid regardless of route diversions or delays. Only informational `Alert` objects are pushed. No `TripUpdate.contractChanges` needed. |
+| Intercity bus `on_update` carries tracking active flag + GPS URL | After departure, BPP activates live tracking and pushes the tracking endpoint. This is different from bus/metro (no tracking) and ride hailing (tracking active from `on_update` at driver assignment). |
+| Search intent type varies by use case | Ride hailing: GPS `Place`. City bus: `Stop` (stop-to-stop). Metro: `StopPlace` (station-to-station). Intercity bus: `Place` (city-to-city). These are semantically distinct and must be implemented separately. |
+| Tickets are Verifiable Credentials (VCs) for transit | `TravelDocument.documentType: QR_CODE` with a signed token enables VC-based ticketing for bus, metro, and intercity bus. The `Ticket` class carries the record; `TravelDocument` carries the proof. |

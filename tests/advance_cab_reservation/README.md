@@ -2,16 +2,18 @@
 
 ## Use Case Narrative
 
-Arjun is traveling to Mumbai airport tomorrow morning for a 6 AM flight. He opens a cab app the night before, enters his home address, the airport as destination, and requests a cab pickup at 3:30 AM. The app shows him available cab options with fixed advance-booking fares (no surge at 3:30 AM). He selects a Sedan, enters his phone number, and confirms the booking with pre-payment. At 2:45 AM, the driver is assigned and his vehicle is visible on a map. Arjun is dropped at the departure terminal on time. Post-trip, he rates the driver and requests an invoice for reimbursement.
+Arjun has a 6 AM flight tomorrow. He opens a cab app the night before, sets his GPS home location as pickup, the airport terminal as destination, and requests pickup at 3:30 AM. The app returns available options with fixed advance-booking fares (no surge). He picks a Sedan with insurance, chooses non-toll route, pays online and confirms. The platform acknowledges with "BOOKING CONFIRMED — DRIVER WILL BE ASSIGNED BY 2:45 AM". At 2:45 AM the driver is assigned — Arjun gets the driver's name, vehicle plate, live location, and OTP. He lands safely and later requests a reimbursement receipt.
 
 ## Actors
 
 | Actor | Role | Beckn Entity |
 |-------|------|-------------|
 | Arjun | Consumer — advance-booking traveler | Represented by BAP |
-| Cab App | BAP — renders options, relays Arjun's selections | `beckn:BAP` |
+| Cab App | BAP — renders options, relays selections | `beckn:BAP` |
 | Cab Aggregator | BPP — manages fleet, pre-booking slots, pricing | `beckn:BPP` |
-| Driver | Fulfillment agent — picks Arjun up at 3:30 AM | `mobility:Driver` |
+| Driver | Fulfillment agent — assigned ~45 min before pickup | `mobility:Driver` |
+
+> **Key differentiator from instant ride hailing:** `RideRequest.requestedTime` is set to a FUTURE timestamp (3:30 AM). Everything else in the lifecycle is structurally identical to ride hailing — with the critical addition of `BookingRule` and `NoShowPolicy` in the catalog, and the deferred driver assignment pattern (driver assigned close to pickup time, not immediately after `on_confirm`).
 
 ---
 
@@ -22,137 +24,130 @@ Arjun is traveling to Mumbai airport tomorrow morning for a 6 AM flight. He open
 ---
 
 #### Action: `search`
-**Semantic intent:** Arjun expresses his intent — origin, destination, future pickup time, passenger count, and preference for a Sedan.
+**Semantic intent:** Arjun expresses his advance booking intent — GPS pickup, future pickup time, GPS destination.
 
-**Schema classes required (BAP → BPP):**
+**Information in message (BAP → BPP):**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`RideRequest`](../../schema/RideRequest/README.md) | Top-level intent with future `requestedTime` | `beckn:Intent` | ✅ |
-| [`Place`](../../schema/Place/README.md) | Home address (pickup origin) | `beckn:Location` | ✅ |
-| [`Place`](../../schema/Place/README.md) | Airport terminal (dropoff destination) | `beckn:Location` | ✅ |
-| [`VehicleCategory`](../../schema/VehicleCategory/README.md) | Arjun's preference — Sedan | `beckn:CategoryCode` | ✅ |
-| [`RiderCategory`](../../schema/RiderCategory/README.md) | Passenger type (Adult) | `beckn:CategoryCode` | ✅ |
-| [`PassengerGroup`](../../schema/PassengerGroup/README.md) | Number of passengers (1 adult) | `beckn:Quantity` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Top-level advance intent | [`RideRequest`](../../schema/RideRequest/README.md) | `requestedTime: "2026-02-04T03:30:00+05:30"` | ✅ |
+| Pickup GPS (home) | [`Place`](../../schema/Place/README.md) | `gps`, `placeName` | ✅ |
+| Destination GPS (airport terminal) | [`Place`](../../schema/Place/README.md) | `gps`, `placeType: AIRPORT` | ✅ |
+| Preferred vehicle class (Sedan) | [`VehicleCategory`](../../schema/VehicleCategory/README.md) | `vehicleCategoryCode` | ✅ |
+| Passenger type | [`RiderCategory`](../../schema/RiderCategory/README.md) | `riderCategoryId` | ✅ |
+| Number of passengers | [`PassengerGroup`](../../schema/PassengerGroup/README.md) | `groupSize` | ✅ |
 
-**Notes:** The key differentiator from instant ride hailing is `RideRequest.requestedTime` set to a future timestamp (3:30 AM). The BPP MUST recognise this as an advance reservation and apply pre-booking pricing (no surge for off-peak slots). `Place` with `placeType: AIRPORT` identifies the destination as an airport terminal.
+**Notes:** `RideRequest.requestedTime` carries the future pickup time. The BPP MUST interpret a non-null, future `requestedTime` as an advance reservation request and apply advance-booking pricing (no surge for off-peak slots).
 
 ---
 
 #### Action: `on_search`
-**Semantic intent:** The BPP returns available sedan options for the pre-booked 3:30 AM slot with fixed advance fares and relevant policies.
+**Semantic intent:** BPP returns advance-booking options with fixed fares, booking window rules, and no-show terms.
 
-**Schema classes required (BPP → BAP):**
+**Information in message (BPP → BAP):**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`PlanningResult`](../../schema/PlanningResult/README.md) | Catalog of advance-booking options | `beckn:Catalog` | ✅ |
-| [`RideOption`](../../schema/RideOption/README.md) | A sedan option with pre-assigned fare | `beckn:Offer` | ✅ |
-| [`VehicleCategory`](../../schema/VehicleCategory/README.md) | Sedan category details | `beckn:CategoryCode` | ✅ |
-| [`FareEstimate`](../../schema/FareEstimate/README.md) | Fixed advance fare (locked, no surge) | `beckn:Offer` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Base fare + toll estimate + platform fee | `beckn:PriceComponent` | ✅ |
-| [`PricingModel`](../../schema/PricingModel/README.md) | Fixed pricing model (upfront quote, not metered) | `beckn:Offer` | ✅ |
-| [`BookingRule`](../../schema/BookingRule/README.md) | Advance booking terms (earliest/latest booking time) | `beckn:Policy` | ✅ |
-| [`WaitingPolicy`](../../schema/WaitingPolicy/README.md) | Waiting time terms at 3:30 AM slot | `beckn:Policy` | ✅ |
-| [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Advance booking cancellation terms (may differ from instant) | `beckn:CancellationPolicy` | ✅ |
-| [`NoShowPolicy`](../../schema/NoShowPolicy/README.md) | No-show fee if Arjun is not at pickup at 3:30 AM | `beckn:Policy` | ✅ |
-| [`Operator`](../../schema/Operator/README.md) | The cab fleet operator | `beckn:Provider` | ✅ |
-
-**Notes:** `BookingRule` is the key differentiator here — it specifies `latestBookingTime` (e.g., must book at least 1 hour in advance), `priorNoticeDurationMin`, and `earliestBookingTime`. `NoShowPolicy` is critical for airport runs since the driver arrives at 3:30 AM sharp.
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Catalog container | [`PlanningResult`](../../schema/PlanningResult/README.md) | — | ✅ |
+| Each advance ride product | [`RideOption`](../../schema/RideOption/README.md) | `estimatedArrival`, `pricingModel` | ✅ |
+| Vehicle class | [`VehicleCategory`](../../schema/VehicleCategory/README.md) | `vehicleCategoryCode` | ✅ |
+| Vehicle type details | [`VehicleType`](../../schema/VehicleType/README.md) | `maxCapacity`, `propulsionType` | ✅ |
+| Boot space | [`VehicleType`](../../schema/VehicleType/README.md) | `tags` | ⚠️ |
+| Insurance add-on | [`AncillaryService`](../../schema/AncillaryService/README.md) | `serviceCode: INSURANCE` | ✅ |
+| Fixed advance fare estimate | [`FareEstimate`](../../schema/FareEstimate/README.md) | `estimatedAmount` (no range — fixed) | ✅ |
+| Fare breakdown | [`FareBreakup`](../../schema/FareBreakup/README.md) | Base fare, toll estimate, platform fee | ✅ |
+| Fixed pricing model | [`PricingModel`](../../schema/PricingModel/README.md) | `modelType: FIXED` | ✅ |
+| **Advance booking window rules** | [`BookingRule`](../../schema/BookingRule/README.md) | `latestBookingTime`, `earliestBookingTime`, `priorNoticeDurationMin` | ✅ |
+| Waiting policy at 3:30 AM | [`WaitingPolicy`](../../schema/WaitingPolicy/README.md) | `freeWaitingTimeMinutes` | ✅ |
+| Advance cancellation terms | [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Tiered: 100% >4h, 50% 2–4h, 0% <2h | ✅ |
+| **No-show fee (airport run critical)** | [`NoShowPolicy`](../../schema/NoShowPolicy/README.md) | `noShowFee`, `gracePeriodMinutes: 5` | ✅ |
+| Operator details | [`Operator`](../../schema/Operator/README.md) | `operatorId` | ✅ |
 
 ---
 
 ### Stage 2 — Contracting
 
+*(All contracting actions are identical to Ride Hailing. Key addition: `BookingRule` persists through select → on_init.)*
+
 ---
 
 #### Action: `select`
-**Semantic intent:** Arjun selects the Sedan with fixed fare and accepts the booking terms.
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`RideOption`](../../schema/RideOption/README.md) | Selected Sedan option (by id) | `beckn:Offer` | ✅ |
-| [`ServiceClass`](../../schema/ServiceClass/README.md) | Premium tier confirmation | `beckn:CategoryCode` | ✅ |
-| [`PickupPolicy`](../../schema/PickupPolicy/README.md) | Pickup gate or exact address for 3:30 AM | `beckn:Policy` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Selected Sedan option | [`RideOption`](../../schema/RideOption/README.md) | `id` | ✅ |
+| Exact GPS pickup (home gate) | [`Place`](../../schema/Place/README.md) | `gps`, `placeName` | ✅ |
+| Exact GPS drop (departure terminal) | [`Place`](../../schema/Place/README.md) | `gps`, `placeType: AIRPORT` | ✅ |
+| Service tier | [`ServiceClass`](../../schema/ServiceClass/README.md) | `serviceClassCode: PREMIUM` | ✅ |
+| Insurance add-on | [`AncillaryService`](../../schema/AncillaryService/README.md) | `serviceCode: INSURANCE` | ✅ |
+| Pickup instructions at 3:30 AM | [`PickupPolicy`](../../schema/PickupPolicy/README.md) | `pickupConditions` | ✅ |
 
 ---
 
 #### Action: `on_select`
-**Semantic intent:** The BPP confirms slot availability, locks the fare, and returns updated terms for the advance booking.
 
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`RideOption`](../../schema/RideOption/README.md) | Confirmed option with guaranteed 3:30 AM slot | `beckn:Offer` | ✅ |
-| [`FareEstimate`](../../schema/FareEstimate/README.md) | Guaranteed fixed advance fare | `beckn:Offer` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Final component breakdown | `beckn:PriceComponent` | ✅ |
-| [`Vehicle`](../../schema/Vehicle/README.md) | Vehicle type confirmed (model/fuel) | `beckn:Item` | ✅ |
-| [`VehicleType`](../../schema/VehicleType/README.md) | Type details (capacity, AC, accessibility) | `beckn:CategoryCode` | ✅ |
-| [`BookingRule`](../../schema/BookingRule/README.md) | Confirmed advance booking rules | `beckn:Policy` | ✅ |
-| [`WaitingPolicy`](../../schema/WaitingPolicy/README.md) | Waiting policy reconfirmed | `beckn:Policy` | ✅ |
-| [`PickupPolicy`](../../schema/PickupPolicy/README.md) | Confirmed pickup instructions | `beckn:Policy` | ✅ |
-| [`DropPolicy`](../../schema/DropPolicy/README.md) | Airport drop restrictions (terminal, zone) | `beckn:Policy` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Confirmed 3:30 AM slot guaranteed | [`RideOption`](../../schema/RideOption/README.md) | `estimatedArrival: 3:30 AM` | ✅ |
+| Locked advance fare | [`FareEstimate`](../../schema/FareEstimate/README.md) | `estimatedAmount` (fixed, no range) | ✅ |
+| Fare breakdown | [`FareBreakup`](../../schema/FareBreakup/README.md) | Base + toll + fee | ✅ |
+| Vehicle type details | [`VehicleType`](../../schema/VehicleType/README.md) | `vehicleTypeCode` | ✅ |
+| Confirmed booking window | [`BookingRule`](../../schema/BookingRule/README.md) | `latestBookingTime` | ✅ |
+| Waiting policy | [`WaitingPolicy`](../../schema/WaitingPolicy/README.md) | `freeWaitingTimeMinutes` | ✅ |
+| Airport drop zone rules | [`DropPolicy`](../../schema/DropPolicy/README.md) | `dropConditions: DEPARTURE_TERMINAL_ONLY` | ✅ |
 
 ---
 
 #### Action: `init`
-**Semantic intent:** Arjun submits his phone number, name, and pre-payment details to initiate the booking.
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Rider`](../../schema/Rider/README.md) | Arjun's contact info and payment preference | `beckn:Participant` | ✅ |
-| [`RiderCategory`](../../schema/RiderCategory/README.md) | Adult passenger classification | `beckn:CategoryCode` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Billing participant | [`Rider`](../../schema/Rider/README.md) | `riderId`, phone, `preferredPaymentMethod` | ✅ |
+| Passenger type | [`RiderCategory`](../../schema/RiderCategory/README.md) | `riderCategoryId` | ✅ |
 
 ---
 
 #### Action: `on_init`
-**Semantic intent:** The BPP returns the complete advance booking contract terms — fare, policies, and payment instructions.
 
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Draft advance booking contract | `beckn:Contract` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Final fare components before payment | `beckn:PriceComponent` | ✅ |
-| [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Advance cancellation terms (e.g., full refund >4 hrs, 50% <2 hrs) | `beckn:CancellationPolicy` | ✅ |
-| [`NoShowPolicy`](../../schema/NoShowPolicy/README.md) | Full fare charged if Arjun is absent at 3:30 AM | `beckn:Policy` | ✅ |
-| [`WaitingPolicy`](../../schema/WaitingPolicy/README.md) | Final waiting time terms | `beckn:Policy` | ✅ |
-| [`SafetyPolicy`](../../schema/SafetyPolicy/README.md) | Safety instructions and emergency contact | `beckn:Policy` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Draft advance booking contract | [`Trip`](../../schema/Trip/README.md) | `tripId`, `startTime: 3:30 AM` | ✅ |
+| Final fare before payment | [`FareBreakup`](../../schema/FareBreakup/README.md) | All components | ✅ |
+| Advance cancellation terms | [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Tiered refund schedule | ✅ |
+| No-show fee (binding) | [`NoShowPolicy`](../../schema/NoShowPolicy/README.md) | `noShowFee` | ✅ |
+| Waiting terms at airport run | [`WaitingPolicy`](../../schema/WaitingPolicy/README.md) | `freeWaitingTimeMinutes: 5` | ✅ |
+| Safety policy | [`SafetyPolicy`](../../schema/SafetyPolicy/README.md) | `emergencyContact` | ✅ |
+| **Toll/non-toll route form** | ❌ No dedicated class | — | ❌ |
+| Payment channel options | [`Trip`](../../schema/Trip/README.md) | `descriptor.tags` | ⚠️ |
 
 ---
 
 #### Action: `confirm`
-**Semantic intent:** Arjun confirms the advance booking with pre-payment. The booking is now locked in until the next morning.
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Order being confirmed with payment | `beckn:Contract` | ✅ |
-| [`Rider`](../../schema/Rider/README.md) | Confirming rider identity and payment | `beckn:Participant` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Order confirmed with payment | [`Trip`](../../schema/Trip/README.md) | `tripId` | ✅ |
+| Route preference selected | ❌ No dedicated class | — | ❌ |
+| Payment channel selected | [`Trip`](../../schema/Trip/README.md) | `descriptor.tags: PAYMENT_CHANNEL=ONLINE` | ⚠️ |
+| Payment reference | [`Trip`](../../schema/Trip/README.md) | `descriptor.tags: PAYMENT_REF` | ⚠️ |
 
 ---
 
 #### Action: `on_confirm`
-**Semantic intent:** The BPP confirms the advance booking, stores it, and returns a booking confirmation with details to be shown to Arjun.
 
-**Schema classes required (BPP → BAP):**
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Confirmed advance booking contract | [`Trip`](../../schema/Trip/README.md) | `tripId`, `startTime: 3:30 AM` | ✅ |
+| Pickup GPS | [`Place`](../../schema/Place/README.md) | `gps` | ✅ |
+| Drop GPS | [`Place`](../../schema/Place/README.md) | `gps` | ✅ |
+| Confirmed ride offer + insurance | [`RideOption`](../../schema/RideOption/README.md) | `id` | ✅ |
+| Fare estimate + breakup | [`FareBreakup`](../../schema/FareBreakup/README.md) | All components | ✅ |
+| Cancellation and no-show terms | [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Binding | ✅ |
+| **Driver status: WILL BE ASSIGNED BY 2:45 AM** | [`Event`](../../schema/Event/README.md) | `eventType: DRIVER_ALLOCATION_DEFERRED` | ✅ |
+| Platform support contact | [`ContactHandle`](../../schema/ContactHandle/README.md) | `handleType: PHONE` | ✅ |
+| Pickup meet-point | [`PickupDropoffPoint`](../../schema/PickupDropoffPoint/README.md) | `landmark`, `accessNotes` | ✅ |
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Confirmed advance booking contract | `beckn:Contract` | ✅ |
-| [`Driver`](../../schema/Driver/README.md) | Assigned driver (may be placeholder until near pickup time) | `beckn:FulfillmentAgent` | ⚠️ |
-| [`Vehicle`](../../schema/Vehicle/README.md) | Vehicle details (may be allocated closer to pickup) | `beckn:Item` | ⚠️ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Final binding fare breakup | `beckn:PriceComponent` | ✅ |
-| [`PickupDropoffPoint`](../../schema/PickupDropoffPoint/README.md) | Confirmed pickup location and landmark | `beckn:FulfillmentStop` | ✅ |
-| [`ContactHandle`](../../schema/ContactHandle/README.md) | Emergency support contact (driver assigned later) | `beckn:SupportInfo` | ✅ |
-
-**Notes (⚠️):** For advance bookings, the specific `Driver` and `Vehicle` are typically not allocated at `on_confirm` time — they are assigned closer to the pickup slot. The BPP MAY return placeholder driver info or omit it, with the actual assignment pushed via `on_status` nearer the time. This is a valid lifecycle pattern and does NOT represent a schema gap.
+> **⚠️ Deferred driver assignment:** Unlike instant ride hailing, advance bookings do NOT search for a driver immediately. The BPP stores the booking and triggers driver assignment ~30–45 minutes before the pickup slot. `on_confirm` returns `Event.eventType: DRIVER_ALLOCATION_DEFERRED` with the expected assignment time (e.g., 2:45 AM).
 
 ---
 
@@ -160,79 +155,39 @@ Arjun is traveling to Mumbai airport tomorrow morning for a 6 AM flight. He open
 
 ---
 
-#### Action: `status` (polled ~30 minutes before pickup)
-**Semantic intent:** Arjun's app polls at 3:00 AM to check if a driver has been assigned.
+#### Action: `on_update` *(BPP-initiated push at 2:45 AM — driver assigned)*
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Advance booking being queried | `beckn:Contract` | ✅ |
-
----
-
-#### Action: `on_status`
-**Semantic intent:** The BPP confirms driver assignment, returns live location, and signals "Driver En Route."
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`TripUpdate`](../../schema/TripUpdate/README.md) | State snapshot: driver assigned + en route | `beckn:Contract` | ✅ |
-| [`Driver`](../../schema/Driver/README.md) | Newly assigned driver details | `beckn:FulfillmentAgent` | ✅ |
-| [`Vehicle`](../../schema/Vehicle/README.md) | Allocated vehicle with plate number | `beckn:Item` | ✅ |
-| [`VehiclePosition`](../../schema/VehiclePosition/README.md) | Driver's live location at 3:00 AM | `beckn:Tracking` | ✅ |
-| [`Event`](../../schema/Event/README.md) | `DRIVER_ASSIGNED`, `DRIVER_EN_ROUTE` | `beckn:State` | ✅ |
-| [`ContactHandle`](../../schema/ContactHandle/README.md) | Driver's masked contact now available | `beckn:SupportInfo` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Full updated contract | [`Trip`](../../schema/Trip/README.md) | `state: DRIVER_ASSIGNED` | ✅ |
+| Pickup + drop GPS | [`Place`](../../schema/Place/README.md) | `gps` | ✅ |
+| Confirmed ride offer | [`RideOption`](../../schema/RideOption/README.md) | `id` | ✅ |
+| Billing participant | [`Rider`](../../schema/Rider/README.md) | `riderId` | ✅ |
+| Fare breakup | [`FareBreakup`](../../schema/FareBreakup/README.md) | All components | ✅ |
+| **Assigned driver** | [`Driver`](../../schema/Driver/README.md) | `licenseNumber`, `yearsOfExperience` | ✅ |
+| **Driver rating** | [`Driver`](../../schema/Driver/README.md) | via `beckn:FulfillmentAgent.rating` | ✅ |
+| **Assigned vehicle** | [`Vehicle`](../../schema/Vehicle/README.md) | `licensePlate`, `make`, `model`, `color` | ✅ |
+| **Driver current location** | [`VehiclePosition`](../../schema/VehiclePosition/README.md) | `latitude`, `longitude` | ✅ |
+| **Driver masked contact** | [`ContactHandle`](../../schema/ContactHandle/README.md) | masked phone | ✅ |
+| **Tracking ACTIVE** | [`TripUpdate`](../../schema/TripUpdate/README.md) | `trackingEndpoint.status: ACTIVE` | ✅ |
+| Driver assignment event | [`Event`](../../schema/Event/README.md) | `eventType: DRIVER_ASSIGNED` | ✅ |
+| **Ride start OTP** | ❌ No dedicated mobility class | `beckn:Fulfillment.start.authorization` | ❌ |
 
 ---
 
-#### Action: `track`
-**Semantic intent:** Arjun opens the live map to watch the driver approach.
+#### Action: `track` / `status`
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Advance booking being tracked | `beckn:Contract` | ✅ |
+*(Identical to ride hailing — see ride hailing stress test)*
 
 ---
 
-#### Action: `on_track`
-**Semantic intent:** BPP returns live tracking feed for the assigned driver.
+#### Action: `cancel` *(6 hours before — full refund)*
 
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`VehiclePosition`](../../schema/VehiclePosition/README.md) | Real-time driver coordinates and ETA | `beckn:Tracking` | ✅ |
-| [`Telemetry`](../../schema/Telemetry/README.md) | Speed and bearing for animated map display | `beckn:Tracking` | ✅ |
-
----
-
-#### Action: `cancel` (if Arjun cancels the night before)
-**Semantic intent:** Arjun's plans change — he cancels the advance booking 6 hours before the slot.
-
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Advance booking being cancelled | `beckn:Contract` | ✅ |
-| [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Policy governing >4 hr advance cancellation | `beckn:CancellationPolicy` | ✅ |
-
----
-
-#### Action: `on_cancel`
-**Semantic intent:** BPP applies the advance cancellation policy (full refund since >4 hrs before pickup) and returns a cancellation receipt.
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Trip`](../../schema/Trip/README.md) | Cancelled advance booking contract | `beckn:Contract` | ✅ |
-| [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Applied policy with refund amount | `beckn:CancellationPolicy` | ✅ |
-| [`Receipt`](../../schema/Receipt/README.md) | Cancellation receipt with full refund | `beckn:Invoice` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Net settlement (refund breakdown) | `beckn:PriceComponent` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Cancellation request | [`Trip`](../../schema/Trip/README.md) | `tripId` | ✅ |
+| Applied advance policy (full refund) | [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | `refundPercentage: 100` | ✅ |
+| Refund receipt | [`Receipt`](../../schema/Receipt/README.md) | `receiptId` | ✅ |
 
 ---
 
@@ -240,100 +195,22 @@ Arjun is traveling to Mumbai airport tomorrow morning for a 6 AM flight. He open
 
 ---
 
-#### Action: `rating`
-**Semantic intent:** Arjun rates the on-time pickup and smooth airport drop — 5 stars.
+#### Action: `support` *(invoice for employer reimbursement)*
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Rating`](../../schema/Rating/README.md) | 5-star rating for driver (ratedEntityType: DRIVER) | `beckn:RatingInput` | ✅ |
-| [`Review`](../../schema/Review/README.md) | "Driver was on time at 3:30 AM!" review text | `beckn:RatingInput` | ✅ |
-| [`Feedback`](../../schema/Feedback/README.md) | Tags: ON_TIME, SMOOTH_RIDE | `beckn:Feedback` | ✅ |
-
----
-
-#### Action: `on_rating`
-**Semantic intent:** BPP acknowledges rating.
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Rating`](../../schema/Rating/README.md) | Confirmed rating record | `beckn:RatingInput` | ✅ |
-
----
-
-#### Action: `support`
-**Semantic intent:** Arjun requests an itemised receipt for travel reimbursement from his employer.
-
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`SupportCase`](../../schema/SupportCase/README.md) | Support case (type: INVOICE_REQUEST) | `beckn:SupportRequest` | ✅ |
-
----
-
-#### Action: `on_support`
-**Semantic intent:** BPP returns the itemised receipt.
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Receipt`](../../schema/Receipt/README.md) | Full itemised receipt with all components | `beckn:Invoice` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Itemised components for reimbursement | `beckn:PriceComponent` | ✅ |
-| [`ContactHandle`](../../schema/ContactHandle/README.md) | Support contact if more help needed | `beckn:SupportInfo` | ✅ |
-
----
-
-## Coverage Summary
-
-| Class | Actions Used In | Lifecycle Stage |
-|-------|----------------|----------------|
-| `RideRequest` | search | Discovery |
-| `Place` | search | Discovery |
-| `VehicleCategory` | search, on_search, select | Discovery, Contracting |
-| `RiderCategory` | search, init | Discovery, Contracting |
-| `PassengerGroup` | search | Discovery |
-| `PlanningResult` | on_search | Discovery |
-| `RideOption` | on_search, select, on_select | Discovery, Contracting |
-| `FareEstimate` | on_search, on_select | Discovery, Contracting |
-| `FareBreakup` | on_search, on_select, on_init, on_confirm, on_cancel, on_support | All stages |
-| `PricingModel` | on_search | Discovery |
-| `BookingRule` | on_search, on_select | Discovery, Contracting |
-| `WaitingPolicy` | on_search, on_select, on_init | Contracting |
-| `CancellationPolicy` | on_search, on_init, cancel, on_cancel | Contracting, Fulfillment |
-| `NoShowPolicy` | on_search, on_init | Discovery, Contracting |
-| `Operator` | on_search | Discovery |
-| `ServiceClass` | select | Contracting |
-| `PickupPolicy` | select, on_select | Contracting |
-| `DropPolicy` | on_select | Contracting |
-| `Vehicle` | on_select, on_confirm, on_status | Contracting, Fulfillment |
-| `VehicleType` | on_select | Contracting |
-| `Rider` | init, confirm | Contracting |
-| `Trip` | on_init, confirm, on_confirm, status, track, cancel, on_cancel | Contracting, Fulfillment |
-| `SafetyPolicy` | on_init | Contracting |
-| `Driver` | on_confirm, on_status | Contracting, Fulfillment |
-| `PickupDropoffPoint` | on_confirm | Contracting |
-| `ContactHandle` | on_confirm, on_status, on_support | Contracting, Fulfillment, Post |
-| `TripUpdate` | on_status | Fulfillment |
-| `VehiclePosition` | on_status, on_track | Fulfillment |
-| `Event` | on_status | Fulfillment |
-| `Telemetry` | on_track | Fulfillment |
-| `Receipt` | on_cancel, on_support | Fulfillment, Post-Fulfillment |
-| `Rating` | rating, on_rating | Post-Fulfillment |
-| `Review` | rating | Post-Fulfillment |
-| `Feedback` | rating | Post-Fulfillment |
-| `SupportCase` | support | Post-Fulfillment |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Invoice request support case | [`SupportCase`](../../schema/SupportCase/README.md) | `caseType: INVOICE_REQUEST` | ✅ |
+| Itemised receipt | [`Receipt`](../../schema/Receipt/README.md) | `receiptId`, all `FareBreakup` components | ✅ |
+| Support contact | [`ContactHandle`](../../schema/ContactHandle/README.md) | `handleType: PHONE` | ✅ |
 
 ---
 
 ## Gap Report
 
-| Gap | Description | Severity |
-|-----|-------------|----------|
-| No gaps detected | All schema classes required for the advance cab reservation lifecycle exist in the mobility schema. `BookingRule` correctly handles the advance booking time window; `NoShowPolicy` handles airport no-shows; `CancellationPolicy` handles tiered refunds. | — |
+*(Same gaps as Ride Hailing — this use case inherits all three gaps.)*
 
-> **Design note:** The deferred driver/vehicle assignment pattern (driver allocated close to pickup time, not at `on_confirm`) is a real-world advance booking behavior. It is handled by the `TripUpdate.stateUpdate` carrying a `DRIVER_ASSIGNED` event in `on_status` — no additional schema class is needed.
+| # | Gap | Description | Severity |
+|---|-----|-------------|----------|
+| 1 | **VehicleFeature** | Boot space, A/C not structured in `VehicleType` | Medium |
+| 2 | **RoutePreference** | No class for toll/non-toll form in `on_init` | Medium |
+| 3 | **FulfillmentAuthorization** | Ride-start OTP not surfaced in `Trip` class | Medium |

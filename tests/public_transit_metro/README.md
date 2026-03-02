@@ -2,34 +2,17 @@
 
 ## Use Case Narrative
 
-Kavya needs to travel from MG Road metro station to Whitefield on the Kochi Metro's Purple Line. She opens the Kochi Metro app, searches for her journey, and is shown a single-trip fare of ₹45 for an Adult. She taps to purchase, pays via UPI, and receives a QR code. At MG Road station she scans the QR code at the fare gate on the concourse level. She checks the next train arrival on the app (live ETA board), boards the train at Platform 2, and travels to Whitefield. The app shows a service alert mid-journey — a delay due to signal maintenance. She exits via the QR gate at Whitefield. Post-journey, she rates the service.
+Kavya needs to travel from MG Road metro station to Whitefield on Kochi Metro's Purple Line. She opens the Kochi Metro app, selects MG Road station as origin and Whitefield as destination. The app shows her a ₹45 Adult single-trip fare. She pays via UPI and receives a QR code ticket. At MG Road she taps the QR on the fare gate, takes the escalator to Platform 2. The app shows a real-time departure board (metro live updates link). She boards, travels, and exits at Whitefield. Post-journey she rates the service and raises a fare gate complaint.
 
 ## Actors
 
 | Actor | Role | Beckn Entity |
 |-------|------|-------------|
-| Kavya | Consumer — the metro commuter | Represented by BAP |
-| Metro App | BAP — ticket purchase and journey tracking | `beckn:BAP` |
-| Kochi Metro Platform | BPP — manages ticketing, timetables, real-time data | `beckn:BPP` |
-| Metro Train | Fulfillment vehicle — operates the Purple Line | `mobility:Vehicle` |
+| Kavya | Consumer — metro commuter | Represented by BAP |
+| Metro App | BAP — ticket purchase and journey info | `beckn:BAP` |
+| Kochi Metro Platform | BPP — ticketing, timetables, real-time | `beckn:BPP` |
 
----
-
-## Key Differentiators vs Bus Transit
-
-Metro stress testing introduces several additional schema classes not needed for bus:
-
-| Additional Class | Why Metro-Specific |
-|-----------------|-------------------|
-| `StopPlace` | Metro stations are complex multi-level facilities (not simple roadside stops) |
-| `Quay` | Metro platforms (Platform 1, Platform 2) within a station |
-| `Level` | Station concourse level, platform level, street level |
-| `Pathway` | Lifts, escalators, stairways within station for accessibility routing |
-| `Interchange` | Timed connections at interchange stations (e.g., MG Road to Green Line) |
-| `FareMedium` | Contactless smart card (Metro card / NCMC) or QR code |
-| `TariffZone` | Metro fare zones determining the ₹45 fare |
-| `FareTransferRule` | Free or discounted transfer between metro lines |
-| `StopArea` | Station entry/exit zones for gating |
+> **Key differentiators from bus:** Metro uses `StopPlace` (complex multi-level facility) rather than `Stop`. Additional station infrastructure classes (`Quay`, `Level`, `Pathway`) are returned at `on_confirm` for in-station wayfinding. **`on_confirm` includes a metro live updates link** — a URL to the real-time departure board. **`on_update` carries NOTHING** (same as bus).
 
 ---
 
@@ -40,52 +23,46 @@ Metro stress testing introduces several additional schema classes not needed for
 ---
 
 #### Action: `search`
-**Semantic intent:** Kavya submits a metro journey search — origin station, destination station, departure time, and passenger category.
+**Semantic intent:** Kavya selects her origin station and destination station. Search is STATION-TO-STATION, not GPS.
 
-**Schema classes required (BAP → BPP):**
+**Information in message (BAP → BPP):**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`TripRequest`](../../schema/TripRequest/README.md) | Top-level metro journey intent | `beckn:Intent` | ✅ |
-| [`StopPlace`](../../schema/StopPlace/README.md) | MG Road metro station (origin) | `beckn:Location` | ✅ |
-| [`StopPlace`](../../schema/StopPlace/README.md) | Whitefield metro station (destination) | `beckn:Location` | ✅ |
-| [`RiderCategory`](../../schema/RiderCategory/README.md) | Adult passenger category | `beckn:CategoryCode` | ✅ |
-| [`PassengerGroup`](../../schema/PassengerGroup/README.md) | Number of passengers | `beckn:Quantity` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Top-level metro intent | [`TripRequest`](../../schema/TripRequest/README.md) | `origin`, `destination`, `departureTime`, `modes: METRO` | ✅ |
+| **Origin metro station** | [`StopPlace`](../../schema/StopPlace/README.md) | `stopPlaceId`, `stopPlaceType: METRO_STATION` | ✅ |
+| **Destination metro station** | [`StopPlace`](../../schema/StopPlace/README.md) | `stopPlaceId`, `stopPlaceType: METRO_STATION` | ✅ |
+| Passenger category | [`RiderCategory`](../../schema/RiderCategory/README.md) | `riderCategoryId: ADULT` | ✅ |
+| Number of passengers | [`PassengerGroup`](../../schema/PassengerGroup/README.md) | `groupSize: 1` | ✅ |
 
-**Notes:** Unlike bus, metro search uses `StopPlace` (a complex station facility) rather than bare `Stop`. The `StopPlace.quays` carry the specific platform boarding information. `TripRequest.modes` = METRO.
+**Notes:** Metro uses `StopPlace` (not `Stop`) because metro stations are complex multi-level facilities. `StopPlace` contains `quays` (platforms), `entrances` (fare gate pathways), and accessibility information — all of which are unavailable at the simpler `Stop` level.
 
 ---
 
 #### Action: `on_search`
-**Semantic intent:** The Kochi Metro platform returns available metro trips, fare products, and station details.
+**Semantic intent:** Kochi Metro returns Purple Line trips, fare products, and zone-based pricing.
 
-**Schema classes required (BPP → BAP):**
+**Information in message (BPP → BAP):**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`TripResult`](../../schema/TripResult/README.md) | Top-level catalog of metro journey options | `beckn:Catalog` | ✅ |
-| [`Itinerary`](../../schema/Itinerary/README.md) | The direct MG Road → Whitefield journey | `beckn:Contract` | ✅ |
-| [`Leg`](../../schema/Leg/README.md) | The metro leg (single uninterrupted segment) | `beckn:Fulfillment` | ✅ |
-| [`VehicleJourney`](../../schema/VehicleJourney/README.md) | Specific Purple Line train service | `beckn:Fulfillment` | ✅ |
-| [`StopTime`](../../schema/StopTime/README.md) | Scheduled departure from MG Road and arrival at Whitefield | `beckn:TimePeriod` | ✅ |
-| [`Line`](../../schema/Line/README.md) | Kochi Metro Purple Line details | `beckn:Item` | ✅ |
-| [`Route`](../../schema/Route/README.md) | Purple Line route from Airport to Whitefield | `beckn:Item` | ✅ |
-| [`Quay`](../../schema/Quay/README.md) | Platform 2 at MG Road station (boarding platform) | `beckn:FulfillmentStop` | ✅ |
-| [`StopPlace`](../../schema/StopPlace/README.md) | Full station details for MG Road and Whitefield | `beckn:Location` | ✅ |
-| [`Level`](../../schema/Level/README.md) | Platform level and concourse level within MG Road station | `beckn:Location` | ✅ |
-| [`Pathway`](../../schema/Pathway/README.md) | Escalator from concourse to platform at MG Road | `beckn:Location` | ✅ |
-| [`FareProduct`](../../schema/FareProduct/README.md) | Adult single-trip QR ticket fare product | `beckn:Offer` | ✅ |
-| [`Fare`](../../schema/Fare/README.md) | ₹45 fare for the MG Road → Whitefield journey | `beckn:Offer` | ✅ |
-| [`FareLegRule`](../../schema/FareLegRule/README.md) | Rules applying this fare to the specific leg and zone | `beckn:Policy` | ✅ |
-| [`TariffZone`](../../schema/TariffZone/README.md) | Metro fare zones for computing the ₹45 | `beckn:Location` | ✅ |
-| [`FareTransferRule`](../../schema/FareTransferRule/README.md) | Transfer discount if Kavya changes lines at an interchange | `beckn:Policy` | ✅ |
-| [`Network`](../../schema/Network/README.md) | Kochi Metro network | `beckn:Catalog` | ✅ |
-| [`Operator`](../../schema/Operator/README.md) | Kochi Metro Rail Limited | `beckn:Provider` | ✅ |
-| [`Timetable`](../../schema/Timetable/README.md) | Published metro timetable | `beckn:Catalog` | ✅ |
-| [`ServiceCalendar`](../../schema/ServiceCalendar/README.md) | Metro operating days | `beckn:TimePeriod` | ✅ |
-| [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Metro ticket cancellation terms | `beckn:CancellationPolicy` | ✅ |
-
-**Notes:** `TariffZone` + `FareLegRule` determine the ₹45 fare based on origin and destination zones. `Quay` identifies Platform 2 specifically. `Level` + `Pathway` enable the app to show Kavya which escalator leads from the fare gate to the platform — critical for accessibility routing.
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Catalog of metro journey options | [`TripResult`](../../schema/TripResult/README.md) | — | ✅ |
+| Metro journey | [`Itinerary`](../../schema/Itinerary/README.md) | `legs`, `totalDuration`, `departureTime` | ✅ |
+| Metro leg | [`Leg`](../../schema/Leg/README.md) | `mode: METRO`, `origin`, `destination` | ✅ |
+| Purple Line route | [`Route`](../../schema/Route/README.md) | `routeId`, `routeType: SUBWAY` | ✅ |
+| Purple Line service | [`Line`](../../schema/Line/README.md) | `lineId`, `longName: Purple Line` | ✅ |
+| Specific train departure | [`VehicleJourney`](../../schema/VehicleJourney/README.md) | `vehicleJourneyCode`, `stopTimes` | ✅ |
+| Departure time from MG Road | [`StopTime`](../../schema/StopTime/README.md) | `departureTime`, `stopSequence` | ✅ |
+| **Adult single-trip fare product** | [`FareProduct`](../../schema/FareProduct/README.md) | `fareProductId`, `durationType: SINGLE_TRIP` | ✅ |
+| ₹45 fare | [`Fare`](../../schema/Fare/README.md) | `amount: 45`, `currency: INR` | ✅ |
+| **Fare zone computation** | [`TariffZone`](../../schema/TariffZone/README.md) | `zoneId`, `zoneName` (origin + destination zones) | ✅ |
+| Fare leg rule (zone-based) | [`FareLegRule`](../../schema/FareLegRule/README.md) | `fromAreaId`, `toAreaId`, `fareProductId` | ✅ |
+| Transfer discount (if multi-line) | [`FareTransferRule`](../../schema/FareTransferRule/README.md) | `fareProductId`, `durationLimit` | ✅ |
+| Kochi Metro network | [`Network`](../../schema/Network/README.md) | `networkId` | ✅ |
+| Kochi Metro operator | [`Operator`](../../schema/Operator/README.md) | `operatorId` | ✅ |
+| Metro timetable | [`Timetable`](../../schema/Timetable/README.md) | `routeRef`, `validFrom` | ✅ |
+| Operating calendar | [`ServiceCalendar`](../../schema/ServiceCalendar/README.md) | `monday–sunday` | ✅ |
+| Cancellation policy | [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | `cancellationTerms: NON_REFUNDABLE_ONCE_SCANNED` | ✅ |
 
 ---
 
@@ -94,92 +71,103 @@ Metro stress testing introduces several additional schema classes not needed for
 ---
 
 #### Action: `select`
-**Semantic intent:** Kavya selects the specific train departure and confirms the Adult single-trip QR code ticket.
+**Semantic intent:** Kavya selects a specific train, Adult single-trip QR ticket. This starts the CONTRACT.
 
-**Schema classes required (BAP → BPP):**
+**Information in message (BAP → BPP):**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`VehicleJourney`](../../schema/VehicleJourney/README.md) | Specific metro train trip (by id) | `beckn:Fulfillment` | ✅ |
-| [`FareProduct`](../../schema/FareProduct/README.md) | Adult single-trip QR ticket | `beckn:Offer` | ✅ |
-| [`FareMedium`](../../schema/FareMedium/README.md) | QR code (mobile app) as the preferred fare medium | `beckn:Entitlement` | ✅ |
-| [`RiderCategory`](../../schema/RiderCategory/README.md) | Adult category confirmation | `beckn:CategoryCode` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Specific train trip | [`VehicleJourney`](../../schema/VehicleJourney/README.md) | `vehicleJourneyCode` | ✅ |
+| Fare product | [`FareProduct`](../../schema/FareProduct/README.md) | `fareProductId` | ✅ |
+| Ticket medium (QR code) | [`FareMedium`](../../schema/FareMedium/README.md) | `mediumType: QR_CODE` | ✅ |
+| Quantity | [`PassengerGroup`](../../schema/PassengerGroup/README.md) | `groupSize: 1` | ✅ |
+| Boarding station | [`StopPlace`](../../schema/StopPlace/README.md) | `stopPlaceId: MG_ROAD` | ✅ |
+| Alighting station | [`StopPlace`](../../schema/StopPlace/README.md) | `stopPlaceId: WHITEFIELD` | ✅ |
+| Passenger category | [`RiderCategory`](../../schema/RiderCategory/README.md) | `riderCategoryId: ADULT` | ✅ |
 
 ---
 
 #### Action: `on_select`
-**Semantic intent:** The BPP confirms the train availability and returns the locked fare with boarding station details.
+**Semantic intent:** BPP confirms train availability and returns locked ₹45 fare with boarding platform details.
 
-**Schema classes required (BPP → BAP):**
+**Information in message (BPP → BAP):**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`VehicleJourney`](../../schema/VehicleJourney/README.md) | Confirmed metro trip with full stop times | `beckn:Fulfillment` | ✅ |
-| [`Fare`](../../schema/Fare/README.md) | Locked ₹45 fare | `beckn:Offer` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Base fare + any taxes | `beckn:PriceComponent` | ✅ |
-| [`Quay`](../../schema/Quay/README.md) | Confirmed boarding platform (Platform 2, MG Road) | `beckn:FulfillmentStop` | ✅ |
-| [`StopTime`](../../schema/StopTime/README.md) | Exact departure time from Platform 2 | `beckn:TimePeriod` | ✅ |
-| [`FareMedium`](../../schema/FareMedium/README.md) | Confirmed QR code medium | `beckn:Entitlement` | ✅ |
-| [`StopArea`](../../schema/StopArea/README.md) | Fare gate entry zone at MG Road station | `beckn:Location` | ✅ |
-| [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Metro ticket policy (typically non-refundable once used) | `beckn:CancellationPolicy` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Confirmed metro trip | [`VehicleJourney`](../../schema/VehicleJourney/README.md) | `vehicleJourneyCode`, `stopTimes` | ✅ |
+| Confirmed ₹45 fare | [`Fare`](../../schema/Fare/README.md) | `amount: 45`, `currency: INR` | ✅ |
+| Fare breakdown | [`FareBreakup`](../../schema/FareBreakup/README.md) | Base fare + taxes | ✅ |
+| **Boarding platform at MG Road** | [`Quay`](../../schema/Quay/README.md) | `quayId`, `publicCode: Platform 2` | ✅ |
+| Departure time from Platform 2 | [`StopTime`](../../schema/StopTime/README.md) | `departureTime` | ✅ |
+| Fare gate entry zone | [`StopArea`](../../schema/StopArea/README.md) | `areaId`, `areaName: MG_ROAD_FARE_GATE` | ✅ |
+| Confirmed QR medium | [`FareMedium`](../../schema/FareMedium/README.md) | `mediumType: QR_CODE` | ✅ |
+| Cancellation terms | [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | `cancellationTerms` | ✅ |
 
 ---
 
 #### Action: `init`
-**Semantic intent:** Kavya submits her identity for ticket issuance and chooses QR code delivery.
+**Semantic intent:** Kavya submits her identity for ticket issuance.
 
-**Schema classes required (BAP → BPP):**
+**Information in message (BAP → BPP):**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Passenger`](../../schema/Passenger/README.md) | Kavya's passenger identity | `beckn:Participant` | ✅ |
-| [`RiderCategory`](../../schema/RiderCategory/README.md) | Adult category | `beckn:CategoryCode` | ✅ |
-| [`FareMedium`](../../schema/FareMedium/README.md) | QR code delivery method | `beckn:Entitlement` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Billing passenger | [`Passenger`](../../schema/Passenger/README.md) | `passengerId`, `passengerType: ADULT` | ✅ |
+| Passenger category | [`RiderCategory`](../../schema/RiderCategory/README.md) | `riderCategoryId` | ✅ |
+| Delivery medium | [`FareMedium`](../../schema/FareMedium/README.md) | `mediumType: QR_CODE` | ✅ |
 
 ---
 
 #### Action: `on_init`
-**Semantic intent:** BPP returns the final ticketing contract before payment.
+**Semantic intent:** BPP returns final ₹45 fare and pre-payment terms.
 
-**Schema classes required (BPP → BAP):**
+**Information in message (BPP → BAP):**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Itinerary`](../../schema/Itinerary/README.md) | Draft metro journey contract | `beckn:Contract` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | ₹45 final fare before payment | `beckn:PriceComponent` | ✅ |
-| [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Binding: no refund once the QR is scanned | `beckn:CancellationPolicy` | ✅ |
-| [`Entitlement`](../../schema/Entitlement/README.md) | Travel entitlement for the MG Road → Whitefield leg | `beckn:Entitlement` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Draft metro journey contract | [`Itinerary`](../../schema/Itinerary/README.md) | `legs`, `departureTime` | ✅ |
+| Final ₹45 fare | [`FareBreakup`](../../schema/FareBreakup/README.md) | Base fare total | ✅ |
+| **Pre-payment terms** | [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Non-refundable once scanned | ✅ |
+| Travel entitlement | [`Entitlement`](../../schema/Entitlement/README.md) | MG Road → Whitefield single-trip | ✅ |
+
+> **Pass scenario:** If Kavya already has a metro pass, `on_init` and beyond may contain no fare — only entitlement validation. `FareProduct` with `durationType: MONTHLY` would already be active in her account; `select` would carry only the pass reference.
 
 ---
 
 #### Action: `confirm`
-**Semantic intent:** Kavya pays ₹45 via UPI and confirms the purchase.
+**Semantic intent:** Kavya pays ₹45 via UPI and confirms.
 
-**Schema classes required (BAP → BPP):**
+**Information in message (BAP → BPP):**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Itinerary`](../../schema/Itinerary/README.md) | Confirmed metro journey order | `beckn:Contract` | ✅ |
-| [`Passenger`](../../schema/Passenger/README.md) | Confirming passenger | `beckn:Participant` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Journey order confirmed | [`Itinerary`](../../schema/Itinerary/README.md) | `id` | ✅ |
+| Billing passenger | [`Passenger`](../../schema/Passenger/README.md) | `passengerId` | ✅ |
+| Payment reference | [`Itinerary`](../../schema/Itinerary/README.md) | `descriptor.tags: PAYMENT_REF` | ⚠️ |
 
 ---
 
 #### Action: `on_confirm`
-**Semantic intent:** BPP issues the QR code ticket and returns the complete journey contract.
+**Semantic intent:** BPP issues QR ticket, returns complete journey contract with **metro live updates link** — a URL to the real-time departure board for the Purple Line.
 
-**Schema classes required (BPP → BAP):**
+**Information in message (BPP → BAP):**
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Itinerary`](../../schema/Itinerary/README.md) | Confirmed metro journey contract | `beckn:Contract` | ✅ |
-| [`Ticket`](../../schema/Ticket/README.md) | Issued QR code ticket (validFrom, validUntil) | `beckn:Entitlement` | ✅ |
-| [`TravelDocument`](../../schema/TravelDocument/README.md) | QR code as the digital travel document (type: QR_CODE) | `beckn:Entitlement` | ✅ |
-| [`FareProduct`](../../schema/FareProduct/README.md) | Adult single-trip product with validity scope | `beckn:Offer` | ✅ |
-| [`FareBreakup`](../../schema/FareBreakup/README.md) | Final ₹45 binding fare breakup | `beckn:PriceComponent` | ✅ |
-| [`Quay`](../../schema/Quay/README.md) | Boarding platform (Platform 2, MG Road) | `beckn:FulfillmentStop` | ✅ |
-| [`Level`](../../schema/Level/README.md) | Platform level at MG Road (for wayfinding) | `beckn:Location` | ✅ |
-| [`Pathway`](../../schema/Pathway/README.md) | Escalator route from station entrance to Platform 2 | `beckn:Location` | ✅ |
-| [`VehicleJourney`](../../schema/VehicleJourney/README.md) | Train departure reference | `beckn:Fulfillment` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Confirmed metro journey contract | [`Itinerary`](../../schema/Itinerary/README.md) | All journey details binding | ✅ |
+| Train trip reference | [`VehicleJourney`](../../schema/VehicleJourney/README.md) | `vehicleJourneyCode` | ✅ |
+| Fare product purchased | [`FareProduct`](../../schema/FareProduct/README.md) | `fareProductId`, `validFrom`, `validUntil` | ✅ |
+| Fare breakdown (binding) | [`FareBreakup`](../../schema/FareBreakup/README.md) | ₹45 binding | ✅ |
+| **QR code ticket (VC)** | [`TravelDocument`](../../schema/TravelDocument/README.md) | `documentType: QR_CODE`, signed VC token | ✅ |
+| Issued ticket record | [`Ticket`](../../schema/Ticket/README.md) | `ticketId`, `ticketType: SINGLE`, `validFrom`, `validUntil` | ✅ |
+| **Kiosk print instructions** | [`TravelDocument`](../../schema/TravelDocument/README.md) | `documentType: BARCODE` + kiosk location | ✅ |
+| **Invoice link** | [`Receipt`](../../schema/Receipt/README.md) | `receiptId`, invoice URL | ✅ |
+| **Boarding platform** | [`Quay`](../../schema/Quay/README.md) | `quayId: Platform 2`, `publicCode` | ✅ |
+| **Floor/level to reach platform** | [`Level`](../../schema/Level/README.md) | `levelName: Platform Level`, `elevation` | ✅ |
+| **Escalator route to platform** | [`Pathway`](../../schema/Pathway/README.md) | `pathwayMode: 4 (ESCALATOR)`, `traversalTime` | ✅ |
+| **Metro live updates link** | [`TripUpdate`](../../schema/TripUpdate/README.md) | `trackingEndpoint.url` (real-time departure board) | ✅ |
+
+**Notes on metro live updates link:** At `on_confirm`, the BPP includes the `trackingEndpoint.url` — a URL to the Purple Line's live departure board (e.g., `https://kochimetro.org/live?line=purple&station=mg_road`). This is distinct from the polling `track` action. It is the link the passenger clicks to see the real-time arrival board in-app. `TripUpdate.trackingEndpoint` (from `beckn:Tracking`) carries this URL.
 
 ---
 
@@ -188,108 +176,54 @@ Metro stress testing introduces several additional schema classes not needed for
 ---
 
 #### Action: `status`
-**Semantic intent:** Kavya checks when the next Purple Line train is due at Platform 2.
+**Semantic intent:** Kavya checks next Purple Line train ETA at Platform 2.
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Itinerary`](../../schema/Itinerary/README.md) | Metro journey being queried | `beckn:Contract` | ✅ |
-
----
-
-#### Action: `on_status`
-**Semantic intent:** BPP returns real-time train status — next departure ETA, platform, and any delays.
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`TripUpdate`](../../schema/TripUpdate/README.md) | Journey state snapshot | `beckn:Contract` | ✅ |
-| [`VehiclePosition`](../../schema/VehiclePosition/README.md) | Current position of the Purple Line train | `beckn:Tracking` | ✅ |
-| [`StopTimeUpdate`](../../schema/StopTimeUpdate/README.md) | Predicted arrival at MG Road (delay in seconds) | `beckn:Tracking` | ✅ |
-| [`EstimatedTimetableDelivery`](../../schema/EstimatedTimetableDelivery/README.md) | Full estimated timetable for upcoming Purple Line services | `beckn:Tracking` | ✅ |
-| [`OccupancyStatus`](../../schema/OccupancyStatus/README.md) | Train car occupancy (MANY_SEATS_AVAILABLE) | `beckn:State` | ✅ |
-| [`Alert`](../../schema/Alert/README.md) | Signal maintenance alert causing a 5-minute delay | `beckn:Alert` | ✅ |
-| [`Incident`](../../schema/Incident/README.md) | Signal maintenance classified as infrastructure incident | `beckn:Alert` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Journey state snapshot | [`TripUpdate`](../../schema/TripUpdate/README.md) | `stateUpdate`, `trackingEndpoint` | ✅ |
+| Train live position | [`VehiclePosition`](../../schema/VehiclePosition/README.md) | `latitude`, `longitude` | ✅ |
+| Predicted arrival delay | [`StopTimeUpdate`](../../schema/StopTimeUpdate/README.md) | `arrivalDelay`, `departureDelay` | ✅ |
+| Estimated timetable | [`EstimatedTimetableDelivery`](../../schema/EstimatedTimetableDelivery/README.md) | `estimatedVehicleJourneys`, `validUntil` | ✅ |
+| Train car occupancy | [`OccupancyStatus`](../../schema/OccupancyStatus/README.md) | `occupancyLevel: MANY_SEATS_AVAILABLE` | ✅ |
+| Signal fault alert | [`Alert`](../../schema/Alert/README.md) | `cause: TECHNICAL_PROBLEM`, `effect: REDUCED_SERVICE` | ✅ |
 
 ---
 
 #### Action: `track`
-**Semantic intent:** Kavya checks the live ETA board on the app while waiting on Platform 2.
+**Semantic intent:** Kavya taps the live updates link from `on_confirm` or polls directly.
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Itinerary`](../../schema/Itinerary/README.md) | Journey being tracked | `beckn:Contract` | ✅ |
-
----
-
-#### Action: `on_track`
-**Semantic intent:** BPP returns real-time vehicle position and platform-specific arrival prediction.
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`VehiclePosition`](../../schema/VehiclePosition/README.md) | Train's live coordinates and speed | `beckn:Tracking` | ✅ |
-| [`MonitoredVehicleJourney`](../../schema/MonitoredVehicleJourney/README.md) | Real-time monitored Purple Line journey | `beckn:Tracking` | ✅ |
-| [`MonitoredCall`](../../schema/MonitoredCall/README.md) | Predicted arrival at MG Road Platform 2 | `beckn:Tracking` | ✅ |
-| [`StopMonitoring`](../../schema/StopMonitoring/README.md) | All upcoming services at MG Road Platform 2 | `beckn:Tracking` | ✅ |
-| [`ServiceDelivery`](../../schema/ServiceDelivery/README.md) | SIRI-compliant service delivery container | `beckn:Catalog` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Train live GPS | [`VehiclePosition`](../../schema/VehiclePosition/README.md) | `latitude`, `longitude`, `speed` | ✅ |
+| Monitored Purple Line journey | [`MonitoredVehicleJourney`](../../schema/MonitoredVehicleJourney/README.md) | `vehicleLocation`, `delay`, `occupancy` | ✅ |
+| Predicted arrival at Platform 2 | [`MonitoredCall`](../../schema/MonitoredCall/README.md) | `expectedArrivalTime`, `aimedArrivalTime` | ✅ |
+| All upcoming services at MG Road | [`StopMonitoring`](../../schema/StopMonitoring/README.md) | `monitoredCalls`, `stopRef` | ✅ |
+| SIRI service delivery envelope | [`ServiceDelivery`](../../schema/ServiceDelivery/README.md) | `stopMonitoring`, `vehicleMonitoring` | ✅ |
 
 ---
 
-#### Action: `update`
-**Semantic intent:** During the journey, a signal fault is reported — all trains are running 8 minutes late.
+#### Action: `update` / `on_update`
+**Semantic intent:** Signal fault — 8-minute delay pushed to all passengers. **No contract changes for metro.**
 
-**Schema classes required (BPP → BAP):**
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Delay alert | [`Alert`](../../schema/Alert/README.md) | `cause: TECHNICAL_PROBLEM`, `effect: SIGNIFICANT_DELAYS` | ✅ |
+| Affected entities | [`EntitySelector`](../../schema/EntitySelector/README.md) | `routeId: PURPLE`, `stopId: MG_ROAD` | ✅ |
+| Passenger information text | [`GeneralMessageDelivery`](../../schema/GeneralMessageDelivery/README.md) | `infoMessages`, `channel: APP` | ✅ |
+| Revised stop time predictions | [`StopTimeUpdate`](../../schema/StopTimeUpdate/README.md) | `arrivalDelay: 480` (8 minutes) | ✅ |
 
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`TripUpdate`](../../schema/TripUpdate/README.md) | Contract update: delay notification | `beckn:Contract` | ✅ |
-| [`Alert`](../../schema/Alert/README.md) | Service disruption alert (SIGNAL_FAULT) | `beckn:Alert` | ✅ |
-| [`EntitySelector`](../../schema/EntitySelector/README.md) | Identifies which trains/stops are affected | `beckn:Alert` | ✅ |
-| [`GeneralMessageDelivery`](../../schema/GeneralMessageDelivery/README.md) | SIRI general message with passenger information text | `beckn:Alert` | ✅ |
-
----
-
-#### Action: `on_update`
-**Semantic intent:** BPP acknowledges with revised arrival times.
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`TripUpdate`](../../schema/TripUpdate/README.md) | Updated journey with revised ETA at Whitefield | `beckn:Contract` | ✅ |
-| [`StopTimeUpdate`](../../schema/StopTimeUpdate/README.md) | 8-minute delay applied to all upcoming stops | `beckn:Tracking` | ✅ |
+> **Ravi's guidance: metro `on_update` carries NOTHING in terms of contract changes.** Only informational alerts and revised arrival times are pushed. No `TripUpdate.contractChanges` needed.
 
 ---
 
 #### Action: `cancel`
-**Semantic intent:** Kavya cancels her ticket before boarding due to the extended delay.
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Itinerary`](../../schema/Itinerary/README.md) | Metro journey order being cancelled | `beckn:Contract` | ✅ |
-| [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Metro ticket cancellation policy | `beckn:CancellationPolicy` | ✅ |
-
----
-
-#### Action: `on_cancel`
-**Semantic intent:** BPP invalidates the QR code and processes refund (operator-discretion full refund for delay-caused cancellations).
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Itinerary`](../../schema/Itinerary/README.md) | Cancelled journey contract | `beckn:Contract` | ✅ |
-| [`Ticket`](../../schema/Ticket/README.md) | Invalidated QR code ticket | `beckn:Entitlement` | ✅ |
-| [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Applied policy (full refund due to delay) | `beckn:CancellationPolicy` | ✅ |
-| [`Receipt`](../../schema/Receipt/README.md) | Cancellation receipt with full refund | `beckn:Invoice` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Journey cancellation | [`Itinerary`](../../schema/Itinerary/README.md) | `id` | ✅ |
+| Applied policy | [`CancellationPolicy`](../../schema/CancellationPolicy/README.md) | Full refund if delay-caused | ✅ |
+| QR ticket invalidated | [`Ticket`](../../schema/Ticket/README.md) | `ticketId`, status: CANCELLED | ✅ |
+| Cancellation receipt | [`Receipt`](../../schema/Receipt/README.md) | `receiptId` | ✅ |
 
 ---
 
@@ -298,118 +232,29 @@ Metro stress testing introduces several additional schema classes not needed for
 ---
 
 #### Action: `rating`
-**Semantic intent:** Kavya rates the metro service — 4 stars (clean station, delay was frustrating).
 
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Rating`](../../schema/Rating/README.md) | 4-star service rating (ratedEntityType: SERVICE) | `beckn:RatingInput` | ✅ |
-| [`Review`](../../schema/Review/README.md) | "Clean stations but the delay was unexpected" | `beckn:RatingInput` | ✅ |
-| [`Feedback`](../../schema/Feedback/README.md) | Tags: CLEAN_STATION, PUNCTUALITY_ISSUE | `beckn:Feedback` | ✅ |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Service rating | [`Rating`](../../schema/Rating/README.md) | `ratingValue: 4`, `ratedEntityType: SERVICE` | ✅ |
+| Review text | [`Review`](../../schema/Review/README.md) | `reviewText` | ✅ |
+| Feedback tags | [`Feedback`](../../schema/Feedback/README.md) | `feedbackType` | ✅ |
 
 ---
 
-#### Action: `on_rating`
-**Semantic intent:** BPP acknowledges the rating.
+#### Action: `support` *(fare gate scan failure — double-charged)*
 
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`Rating`](../../schema/Rating/README.md) | Confirmed rating | `beckn:RatingInput` | ✅ |
-
----
-
-#### Action: `support`
-**Semantic intent:** Kavya's QR code didn't scan at the exit gate — she was double-charged. She raises a fare recovery support case.
-
-**Schema classes required (BAP → BPP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`SupportCase`](../../schema/SupportCase/README.md) | Fare gate / billing complaint (type: COMPLAINT) | `beckn:SupportRequest` | ✅ |
-
----
-
-#### Action: `on_support`
-**Semantic intent:** BPP returns the station helpdesk contact and ticket details for resolution.
-
-**Schema classes required (BPP → BAP):**
-
-| Class | Role in Message | Lifecycle Parent | Status |
-|-------|----------------|-----------------|--------|
-| [`SupportCase`](../../schema/SupportCase/README.md) | Updated case with ticket ID | `beckn:SupportRequest` | ✅ |
-| [`Receipt`](../../schema/Receipt/README.md) | Original ticket for dispute evidence | `beckn:Invoice` | ✅ |
-| [`ContactHandle`](../../schema/ContactHandle/README.md) | Kochi Metro helpdesk number and chat | `beckn:SupportInfo` | ✅ |
-
----
-
-## Coverage Summary
-
-| Class | Actions Used In | Lifecycle Stage |
-|-------|----------------|----------------|
-| `TripRequest` | search | Discovery |
-| `StopPlace` | search, on_search, on_select | Discovery, Contracting |
-| `RiderCategory` | search, select, init | Discovery, Contracting |
-| `PassengerGroup` | search | Discovery |
-| `TripResult` | on_search | Discovery |
-| `Itinerary` | on_search, on_init, confirm, on_confirm, status, track, update, on_update, cancel, on_cancel | All stages |
-| `Leg` | on_search | Discovery |
-| `VehicleJourney` | on_search, select, on_select, on_confirm | Discovery, Contracting |
-| `StopTime` | on_search, on_select | Discovery, Contracting |
-| `Line` | on_search | Discovery |
-| `Route` | on_search | Discovery |
-| `Quay` | on_search, on_select, on_confirm | Discovery, Contracting |
-| `Level` | on_search, on_confirm | Discovery, Contracting |
-| `Pathway` | on_search, on_confirm | Discovery, Contracting |
-| `FareProduct` | on_search, select, on_confirm | Discovery, Contracting |
-| `Fare` | on_search, on_select | Discovery, Contracting |
-| `FareLegRule` | on_search | Discovery |
-| `TariffZone` | on_search | Discovery |
-| `FareTransferRule` | on_search | Discovery |
-| `Network` | on_search | Discovery |
-| `Operator` | on_search | Discovery |
-| `Timetable` | on_search | Discovery |
-| `ServiceCalendar` | on_search | Discovery |
-| `CancellationPolicy` | on_search, on_select, on_init, cancel, on_cancel | Discovery, Contracting, Fulfillment |
-| `FareMedium` | select, on_select, init | Contracting |
-| `FareBreakup` | on_select, on_init, on_confirm | Contracting |
-| `StopArea` | on_select | Contracting |
-| `Passenger` | init, confirm | Contracting |
-| `Entitlement` | on_init | Contracting |
-| `Ticket` | on_confirm, on_cancel | Contracting, Fulfillment |
-| `TravelDocument` | on_confirm | Contracting |
-| `TripUpdate` | on_status, update, on_update | Fulfillment |
-| `VehiclePosition` | on_status, on_track | Fulfillment |
-| `StopTimeUpdate` | on_status, on_update | Fulfillment |
-| `EstimatedTimetableDelivery` | on_status | Fulfillment |
-| `OccupancyStatus` | on_status | Fulfillment |
-| `Alert` | on_status, update | Fulfillment |
-| `Incident` | on_status | Fulfillment |
-| `MonitoredVehicleJourney` | on_track | Fulfillment |
-| `MonitoredCall` | on_track | Fulfillment |
-| `StopMonitoring` | on_track | Fulfillment |
-| `ServiceDelivery` | on_track | Fulfillment |
-| `EntitySelector` | update | Fulfillment |
-| `GeneralMessageDelivery` | update | Fulfillment |
-| `Receipt` | on_cancel, on_support | Fulfillment, Post-Fulfillment |
-| `Rating` | rating, on_rating | Post-Fulfillment |
-| `Review` | rating | Post-Fulfillment |
-| `Feedback` | rating | Post-Fulfillment |
-| `SupportCase` | support, on_support | Post-Fulfillment |
-| `ContactHandle` | on_support | Post-Fulfillment |
-| `Interchange` | (used in multi-line journey variant) | Contracting |
+| Information | Schema Class | Property | Status |
+|-------------|-------------|----------|--------|
+| Fare dispute complaint | [`SupportCase`](../../schema/SupportCase/README.md) | `caseType: COMPLAINT` | ✅ |
+| Original ticket receipt | [`Receipt`](../../schema/Receipt/README.md) | `receiptId` | ✅ |
+| Metro helpdesk contact | [`ContactHandle`](../../schema/ContactHandle/README.md) | `handleType: PHONE` | ✅ |
 
 ---
 
 ## Gap Report
 
-| Gap | Description | Severity |
-|-----|-------------|----------|
-| No gaps detected | All schema classes required for the metro lifecycle exist in the mobility schema. The NeTEx station model (`StopPlace`, `Quay`, `Level`, `Pathway`), SIRI real-time stack (`MonitoredVehicleJourney`, `MonitoredCall`, `ServiceDelivery`, `GeneralMessageDelivery`, `EstimatedTimetableDelivery`), GTFS Fares v2 (`TariffZone`, `FareLegRule`, `FareTransferRule`), and the full Beckn entitlement model (`Ticket`, `TravelDocument`, `FareMedium`) are all well-represented. | — |
+| # | Gap | Description | Severity |
+|---|-----|-------------|----------|
+| No functional gaps | The metro lifecycle is fully covered. `StopPlace` + `Quay` + `Level` + `Pathway` handle NeTEx station model. `TariffZone` + `FareLegRule` + `FareTransferRule` handle GTFS Fares v2 zone pricing. `TravelDocument` (VC/QR) handles smart ticketing. `TripUpdate.trackingEndpoint` carries the metro live updates link at `on_confirm`. SIRI real-time stack (`ServiceDelivery`, `MonitoredVehicleJourney`, `EstimatedTimetableDelivery`) handles fulfillment. | — |
 
-> **Design notes:**
-> - The `Interchange` class handles multi-line journeys where Kavya transfers between the Purple Line and the Blue Line at a timed interchange station — it specifies `minTransferTime` and `transferType: TIMED`.
-> - The `GeneralMessageDelivery` + `EntitySelector` pair maps directly to the SIRI GM Service for passenger information broadcasts.
-> - The `ServiceDelivery` class acts as the SIRI-compliant envelope wrapping `StopMonitoring`, `VehicleMonitoringDelivery`, and `EstimatedTimetableDelivery`.
+> **Pass scenario:** When Kavya has a monthly pass (`FareProduct.durationType: MONTHLY`), the `select` and `on_select` messages carry only the pass reference — no fare calculation needed. `init` / `on_init` may return zero fare. `on_confirm` returns a journey authorization rather than a ticket. This variant is handled by the existing `FareProduct` and `Entitlement` classes.
