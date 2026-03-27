@@ -2,7 +2,7 @@ openapi: 3.1.0
 info:
   title: Carrier
   version: 2.0.0
-  description: Schema definition for the Carrier entity in the Beckn Logistics domain.
+  description: Schema definition for the Carrier entity in the Beckn Mobility domain.
   contact:
     name: Beckn Foundation
     url: https://beckn.org
@@ -15,87 +15,6 @@ components:
     Carrier:
       type: object
       title: Carrier
-      description: 'A Carrier is a transport service provider responsible for moving
-        goods across distances. Carriers operate fleets of vehicles and may own/manage
-        logistics hubs. Maps to beckn:Provider.
-
-        '
-      required:
-      - id
-      - name
-      properties:
-        id:
-          type: string
-          description: Unique carrier identifier
-          example: CAR-DTDC-001
-        name:
-          type: string
-          description: Legal name of the carrier
-          example: DTDC Express Limited
-        code:
-          type: string
-          description: Short carrier code
-          example: DTDC
-        logo:
-          type: string
-          format: uri
-          description: URL to carrier logo
-        website:
-          type: string
-          format: uri
-        contact:
-          $ref: https://schema.beckn.io/Contact/v2.0/attributes.yaml#/components/schemas/Contact
-        rating:
-          type: number
-          minimum: 1
-          maximum: 5
-          example: 4.2
-        serviceTypes:
-          type: array
-          description: Types of logistics services offered
-          items:
-            type: string
-            enum:
-            - HYPERLOCAL
-            - COURIER
-            - INTERSTATE
-            - LONG_HAUL
-            - EXPRESS
-        serviceCoverage:
-          type: array
-          description: Geographic regions served
-          items:
-            type: object
-            properties:
-              country:
-                type: string
-              states:
-                type: array
-                items:
-                  type: string
-              pincodes:
-                type: array
-                items:
-                  type: string
-        fleetSize:
-          type: integer
-          description: Number of vehicles in fleet
-          example: 500
-        hubs:
-          type: array
-          description: Logistics hubs operated by this carrier
-          items:
-            $ref: https://schema.beckn.io/Hub/v2.0/attributes.yaml#/components/schemas/Hub
-        licenseNumber:
-          type: string
-          description: Transport license number
-        gstNumber:
-          type: string
-          description: GST registration number
-        panNumber:
-          type: string
-          description: PAN for tax purposes
-        active:
-          type: boolean
-          description: Whether carrier is currently active on network
-          example: true
+      description: >
+        Attributes for the Carrier entity in the Beckn Mobility domain.
+      properties: {}
