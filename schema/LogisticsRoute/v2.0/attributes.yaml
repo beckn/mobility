@@ -1,0 +1,111 @@
+openapi: 3.1.0
+info:
+  title: LogisticsRoute
+  version: 2.0.0
+  description: Schema definition for the LogisticsRoute entity in the Beckn Logistics
+    domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    LogisticsRoute:
+      type: object
+      title: LogisticsRoute
+      description: 'A Route is the planned path for a shipment from origin to destination,
+        potentially passing through multiple hubs and waypoints. Maps to beckn:Journey.
+
+        '
+      required:
+      - id
+      - origin
+      - destination
+      properties:
+        id:
+          type: string
+          description: Unique route identifier
+          example: RTE-BLR-DEL-001
+        name:
+          type: string
+          description: Human-readable route name
+          example: Bangalore to Delhi via Hyderabad
+        origin:
+          $ref: https://schema.beckn.io/LogisticsPlace/v2.0/attributes.yaml#/components/schemas/LogisticsPlace
+        destination:
+          $ref: https://schema.beckn.io/LogisticsPlace/v2.0/attributes.yaml#/components/schemas/LogisticsPlace
+        waypoints:
+          type: array
+          description: Intermediate waypoints/hubs on the route
+          items:
+            $ref: https://schema.beckn.io/Waypoint/v2.0/attributes.yaml#/components/schemas/Waypoint
+        totalDistance:
+          type: object
+          properties:
+            value:
+              type: number
+              example: 2150
+            unit:
+              type: string
+              enum:
+              - km
+              - miles
+              example: km
+        estimatedDuration:
+          type: object
+          properties:
+            value:
+              type: number
+              example: 36
+            unit:
+              type: string
+              enum:
+              - hours
+              - days
+              example: hours
+        transportMode:
+          type: string
+          enum:
+          - ROAD
+          - AIR
+          - RAIL
+          - MULTIMODAL
+          example: ROAD
+        routeType:
+          type: string
+          description: Classification of route
+          enum:
+          - HYPERLOCAL
+          - LAST_MILE
+          - FIRST_MILE
+          - LINE_HAUL
+          - CROSS_DOCKING
+          example: LINE_HAUL
+        geometry:
+          type: object
+          description: GeoJSON LineString of route geometry
+          properties:
+            type:
+              type: string
+              example: LineString
+            coordinates:
+              type: array
+              items:
+                type: array
+                items:
+                  type: number
+        tollCost:
+          type: number
+          description: Estimated toll charges in INR
+          example: 1250
+        restrictions:
+          type: array
+          description: Route restrictions (e.g. night driving ban)
+          items:
+            type: string
+          example:
+          - No night driving in MP
+          - Heavy vehicle ban in city center

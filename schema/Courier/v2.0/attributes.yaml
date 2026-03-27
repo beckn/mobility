@@ -1,0 +1,90 @@
+openapi: 3.1.0
+info:
+  title: Courier
+  version: 2.0.0
+  description: Schema definition for the Courier entity in the Beckn Logistics domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    Courier:
+      type: object
+      title: Courier
+      description: 'A Courier is an individual delivery agent responsible for last-mile
+        pickup and delivery of packages, typically in hyperlocal or urban delivery
+        contexts. Maps to beckn:Agent.
+
+        '
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+          description: Unique courier identifier
+          example: CRR-001234
+        name:
+          type: string
+          description: Full name of the courier
+          example: Ramesh Kumar
+        phone:
+          type: string
+          description: Contact phone number
+          example: '+919876543210'
+        email:
+          type: string
+          format: email
+          description: Email address
+        profilePhoto:
+          type: string
+          format: uri
+          description: URL to courier's profile photo
+        rating:
+          type: number
+          description: Average rating (1-5)
+          minimum: 1
+          maximum: 5
+          example: 4.6
+        vehicleType:
+          type: string
+          description: Type of vehicle used
+          enum:
+          - BICYCLE
+          - MOTORCYCLE
+          - ELECTRIC_SCOOTER
+          - CAR
+          - VAN
+          example: MOTORCYCLE
+        vehicleNumber:
+          type: string
+          description: Vehicle registration number
+          example: KA05AB1234
+        currentLocation:
+          $ref: https://schema.beckn.io/LogisticsPlace/v2.0/attributes.yaml#/components/schemas/LogisticsPlace
+        status:
+          type: string
+          enum:
+          - AVAILABLE
+          - ASSIGNED
+          - ON_PICKUP
+          - ON_DELIVERY
+          - OFFLINE
+          example: ON_DELIVERY
+        activeShipments:
+          type: array
+          description: Currently assigned shipments
+          items:
+            type: string
+        kycVerified:
+          type: boolean
+          description: Whether courier has completed KYC verification
+          example: true
+        joiningDate:
+          type: string
+          format: date
+          description: Date the courier joined the network

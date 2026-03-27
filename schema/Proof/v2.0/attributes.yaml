@@ -1,0 +1,85 @@
+openapi: 3.1.0
+info:
+  title: Proof
+  version: 2.0.0
+  description: Schema definition for the Proof entity in the Beckn Logistics domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    Proof:
+      type: object
+      title: Proof
+      description: 'Proof of delivery or pickup evidence, including photos, signatures,
+        OTP confirmations, or digital receipts. Maps to beckn:Document.
+
+        '
+      required:
+      - id
+      - type
+      - timestamp
+      properties:
+        id:
+          type: string
+          example: POD-SHP001-001
+        shipmentId:
+          type: string
+          example: SHP-2024-001234
+        type:
+          type: string
+          enum:
+          - PHOTO
+          - SIGNATURE
+          - OTP
+          - BIOMETRIC
+          - DIGITAL_RECEIPT
+          - DOCUMENT_SCAN
+          example: PHOTO
+        subType:
+          type: string
+          description: What was captured
+          enum:
+          - DELIVERED_AT_DOOR
+          - DELIVERED_TO_PERSON
+          - LEFT_AT_SAFE_PLACE
+          - HANDED_TO_NEIGHBOUR
+          - PICKUP_CONFIRMED
+          example: DELIVERED_TO_PERSON
+        mediaUrl:
+          type: string
+          format: uri
+          description: URL to proof media (photo/signature image)
+        signatureData:
+          type: string
+          description: Base64-encoded signature data
+        otpVerified:
+          type: boolean
+          description: Whether OTP was verified for delivery
+          example: true
+        recipientName:
+          type: string
+          description: Name of person who received the package
+          example: Anita Sharma
+        recipientRelation:
+          type: string
+          description: Relation to consignee if not consignee
+          example: Spouse
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+            lng:
+              type: number
+        timestamp:
+          type: string
+          format: date-time
+        driverSignoff:
+          type: boolean
+          description: Driver confirmed successful delivery
+          example: true

@@ -1,0 +1,97 @@
+openapi: 3.1.0
+info:
+  title: TrackingUpdate
+  version: 2.0.0
+  description: Schema definition for the TrackingUpdate entity in the Beckn Logistics
+    domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    TrackingUpdate:
+      type: object
+      title: TrackingUpdate
+      description: 'A TrackingUpdate is a real-time or periodic update on the status
+        and location of a shipment during transit. Maps to beckn:Event.
+
+        '
+      required:
+      - id
+      - shipmentId
+      - status
+      - timestamp
+      properties:
+        id:
+          type: string
+          example: TRK-EVT-00123
+        shipmentId:
+          type: string
+          example: SHP-2024-001234
+        status:
+          type: string
+          enum:
+          - BOOKED
+          - PICKED_UP
+          - IN_TRANSIT
+          - AT_HUB
+          - OUT_FOR_DELIVERY
+          - DELIVERED
+          - FAILED_DELIVERY
+          - RETURNED
+          - EXCEPTION
+          example: IN_TRANSIT
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+              example: 17.385
+            lng:
+              type: number
+              example: 78.4867
+            address:
+              type: string
+              example: Near Hyderabad Sorting Hub, NH-44
+        timestamp:
+          type: string
+          format: date-time
+          example: '2024-03-15T14:30:00+05:30'
+        message:
+          type: string
+          description: Human-readable status message
+          example: Your shipment has arrived at Hyderabad hub and is being sorted.
+        hub:
+          $ref: https://schema.beckn.io/Hub/v2.0/attributes.yaml#/components/schemas/Hub
+        driver:
+          $ref: https://schema.beckn.io/LogisticsDriver/v2.0/attributes.yaml#/components/schemas/LogisticsDriver
+        vehicle:
+          $ref: https://schema.beckn.io/LogisticsVehicle/v2.0/attributes.yaml#/components/schemas/LogisticsVehicle
+        exceptionDetails:
+          type: object
+          description: Details if this update is an exception
+          properties:
+            reason:
+              type: string
+              enum:
+              - ADDRESS_NOT_FOUND
+              - CONSIGNEE_UNAVAILABLE
+              - ACCESS_DENIED
+              - NATURAL_DISASTER
+              - VEHICLE_BREAKDOWN
+              - CUSTOMS_HOLD
+              example: CONSIGNEE_UNAVAILABLE
+            remarks:
+              type: string
+        nextAction:
+          type: string
+          description: Next planned action
+          example: Re-delivery attempt scheduled for tomorrow 10 AM - 1 PM
+        notificationSent:
+          type: boolean
+          description: Whether customer was notified of this update
+          example: true

@@ -1,0 +1,149 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: LogisticsVehicle JSON Schema
+type: object
+properties:
+  components:
+    type: object
+    properties:
+      schemas:
+        type: object
+        properties:
+          LogisticsVehicle:
+            $ref: '#/$defs/LogisticsVehicle'
+        additionalProperties: false
+    required:
+    - schemas
+    additionalProperties: false
+required:
+- components
+additionalProperties: false
+$defs:
+  LogisticsVehicle:
+    type: object
+    title: LogisticsVehicle
+    description: 'A Vehicle is a transport asset used for logistics operations. Vehicle
+      types range from bicycles for hyperlocal delivery to heavy trucks for long haul
+      freight. Maps to beckn:Asset.
+
+      '
+    required:
+    - id
+    - registrationNumber
+    - type
+    properties:
+      id:
+        type: string
+        description: Unique vehicle identifier
+        example: VEH-00789
+      registrationNumber:
+        type: string
+        description: Vehicle registration/license plate number
+        example: KA01AB5678
+      type:
+        type: string
+        description: Type of vehicle
+        enum:
+        - BICYCLE
+        - ELECTRIC_SCOOTER
+        - MOTORCYCLE
+        - THREE_WHEELER
+        - CAR
+        - VAN
+        - MINI_TRUCK
+        - TRUCK_LCV
+        - TRUCK_HCV
+        - CONTAINER_TRUCK
+        - TRAILER
+        example: TRUCK_LCV
+      make:
+        type: string
+        description: Vehicle manufacturer
+        example: Tata Motors
+      model:
+        type: string
+        description: Vehicle model
+        example: Tata Ace Gold
+      year:
+        type: integer
+        description: Year of manufacture
+        example: 2022
+      color:
+        type: string
+        example: White
+      fuelType:
+        type: string
+        enum:
+        - PETROL
+        - DIESEL
+        - CNG
+        - ELECTRIC
+        - HYBRID
+        example: DIESEL
+      payloadCapacity:
+        type: object
+        description: Maximum cargo capacity
+        properties:
+          value:
+            type: number
+            example: 750
+          unit:
+            type: string
+            enum:
+            - kg
+            - ton
+            example: kg
+      volumeCapacity:
+        type: object
+        description: Cargo volume capacity
+        properties:
+          value:
+            type: number
+            example: 6
+          unit:
+            type: string
+            enum:
+            - cubic_feet
+            - cubic_meters
+            example: cubic_feet
+      hasRefrigeration:
+        type: boolean
+        description: Whether vehicle has refrigeration (cold chain)
+        example: false
+      gpsEnabled:
+        type: boolean
+        description: Whether vehicle has GPS tracking
+        example: true
+      insuranceExpiry:
+        type: string
+        format: date
+      pollutionCertExpiry:
+        type: string
+        format: date
+      fitnessExpiry:
+        type: string
+        format: date
+      currentLocation:
+        type: object
+        properties:
+          lat:
+            type: number
+          lng:
+            type: number
+          speed:
+            type: number
+            description: Speed in km/h
+          heading:
+            type: number
+            description: Bearing in degrees
+          updatedAt:
+            type: string
+            format: date-time
+      status:
+        type: string
+        enum:
+        - AVAILABLE
+        - ASSIGNED
+        - ON_ROUTE
+        - MAINTENANCE
+        - INACTIVE
+        example: ON_ROUTE

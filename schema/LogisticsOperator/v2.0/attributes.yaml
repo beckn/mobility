@@ -1,0 +1,77 @@
+openapi: 3.1.0
+info:
+  title: LogisticsOperator
+  version: 2.0.0
+  description: Schema definition for the LogisticsOperator entity in the Beckn Logistics
+    domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    LogisticsOperator:
+      type: object
+      title: LogisticsOperator
+      description: Entity operating a logistics network or fleet, responsible for
+        end-to-end delivery service.
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+          example: OPR-DELHIVERY-001
+        name:
+          type: string
+          example: Delhivery
+        type:
+          type: string
+          enum:
+          - 3PL
+          - CAPTIVE
+          - AGGREGATOR
+          - POSTAL
+          example: 3PL
+        contact:
+          $ref: https://schema.beckn.io/Contact/v2.0/attributes.yaml#/components/schemas/Contact
+        website:
+          type: string
+          format: uri
+        supportEmail:
+          type: string
+          format: email
+        supportPhone:
+          type: string
+        rating:
+          type: number
+          minimum: 1
+          maximum: 5
+        activeCarriers:
+          type: integer
+          description: Number of carriers on the operator's network
+        activeDrivers:
+          type: integer
+        deliveriesPerDay:
+          type: integer
+        serviceCoverage:
+          type: object
+          properties:
+            countries:
+              type: array
+              items:
+                type: string
+            cities:
+              type: array
+              items:
+                type: string
+        certifications:
+          type: array
+          items:
+            type: string
+          example:
+          - ISO9001
+          - GDPR_COMPLIANT

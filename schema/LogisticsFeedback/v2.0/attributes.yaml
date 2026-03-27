@@ -1,0 +1,54 @@
+openapi: 3.1.0
+info:
+  title: LogisticsFeedback
+  version: 2.0.0
+  description: Schema definition for the LogisticsFeedback entity in the Beckn Logistics
+    domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    LogisticsFeedback:
+      type: object
+      title: LogisticsFeedback
+      description: Qualitative feedback from sender or receiver about a logistics
+        experience.
+      properties:
+        id:
+          type: string
+          example: FBK-001
+        shipmentId:
+          type: string
+        rating:
+          $ref: https://schema.beckn.io/LogisticsRating/v2.0/attributes.yaml#/components/schemas/LogisticsRating
+        review:
+          type: string
+          description: Free text review
+          example: Driver was very professional and delivered on time.
+        tags:
+          type: array
+          description: Structured feedback tags
+          items:
+            type: string
+          example:
+          - ON_TIME
+          - PROFESSIONAL_DRIVER
+          - GOOD_PACKAGING
+        wouldRecommend:
+          type: boolean
+          example: true
+        submittedBy:
+          type: string
+          description: User ID of feedback submitter
+        submittedAt:
+          type: string
+          format: date-time
+        isPublic:
+          type: boolean
+          description: Whether feedback is publicly visible
+          example: true

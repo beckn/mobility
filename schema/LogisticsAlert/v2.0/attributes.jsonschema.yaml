@@ -1,0 +1,104 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: LogisticsAlert JSON Schema
+type: object
+properties:
+  components:
+    type: object
+    properties:
+      schemas:
+        type: object
+        properties:
+          LogisticsAlert:
+            $ref: '#/$defs/LogisticsAlert'
+        additionalProperties: false
+    required:
+    - schemas
+    additionalProperties: false
+required:
+- components
+additionalProperties: false
+$defs:
+  LogisticsAlert:
+    type: object
+    title: LogisticsAlert
+    description: 'An Alert is a notification or warning related to a shipment, such
+      as delays, exceptions, damage reports, or SLA breaches. Maps to beckn:Event.
+
+      '
+    required:
+    - id
+    - type
+    - severity
+    - message
+    - timestamp
+    properties:
+      id:
+        type: string
+        example: ALT-0001
+      shipmentId:
+        type: string
+        example: SHP-2024-001234
+      type:
+        type: string
+        enum:
+        - DELAY
+        - DAMAGE
+        - LOSS
+        - FAILED_DELIVERY
+        - CUSTOMS_HOLD
+        - WEATHER_DISRUPTION
+        - ROUTE_DEVIATION
+        - SLA_BREACH
+        - ADDRESS_ISSUE
+        - PAYMENT_FAILED
+        example: DELAY
+      severity:
+        type: string
+        enum:
+        - INFO
+        - WARNING
+        - CRITICAL
+        example: WARNING
+      message:
+        type: string
+        example: Your shipment is delayed by 4 hours due to traffic at NH-44.
+      cause:
+        type: string
+        description: Root cause of the alert
+        example: Highway accident causing major traffic backlog
+      impactedETA:
+        type: string
+        format: date-time
+        description: Revised ETA due to alert
+      timestamp:
+        type: string
+        format: date-time
+      resolvedAt:
+        type: string
+        format: date-time
+      status:
+        type: string
+        enum:
+        - OPEN
+        - ACKNOWLEDGED
+        - RESOLVED
+        example: OPEN
+      notificationChannels:
+        type: array
+        items:
+          type: string
+          enum:
+          - SMS
+          - EMAIL
+          - PUSH
+          - WHATSAPP
+        example:
+        - SMS
+        - PUSH
+      actionRequired:
+        type: boolean
+        description: Whether customer action is needed
+        example: false
+      suggestedAction:
+        type: string
+        example: Please reschedule delivery for tomorrow.

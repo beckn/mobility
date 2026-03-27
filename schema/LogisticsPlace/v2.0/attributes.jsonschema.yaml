@@ -1,0 +1,91 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: LogisticsPlace JSON Schema
+type: object
+properties:
+  components:
+    type: object
+    properties:
+      schemas:
+        type: object
+        properties:
+          LogisticsPlace:
+            $ref: '#/$defs/LogisticsPlace'
+        additionalProperties: false
+    required:
+    - schemas
+    additionalProperties: false
+required:
+- components
+additionalProperties: false
+$defs:
+  LogisticsPlace:
+    type: object
+    title: LogisticsPlace
+    description: 'A geographic location relevant to logistics such as origin, destination,
+      hub, or waypoint. Includes structured address and GPS coordinates. Maps to beckn:Location
+      and schema:Place.
+
+      '
+    required:
+    - id
+    properties:
+      id:
+        type: string
+        example: PLC-BLR-001
+      name:
+        type: string
+        description: Name of the place
+        example: Anita's Home
+      type:
+        type: string
+        enum:
+        - PICKUP
+        - DELIVERY
+        - HUB
+        - WAYPOINT
+        - STORE
+        - WAREHOUSE
+        example: DELIVERY
+      address:
+        type: object
+        properties:
+          line1:
+            type: string
+            example: 42, 5th Cross Road
+          line2:
+            type: string
+            example: Indiranagar
+          landmark:
+            type: string
+            example: Near Total Mall
+          city:
+            type: string
+            example: Bengaluru
+          state:
+            type: string
+            example: Karnataka
+          country:
+            type: string
+            example: India
+          pincode:
+            type: string
+            example: '560038'
+      gps:
+        type: object
+        properties:
+          lat:
+            type: number
+            example: 12.9719
+          lng:
+            type: number
+            example: 77.6412
+      contact:
+        $ref: https://schema.beckn.io/Contact/v2.0/attributes.jsonschema.yaml#/properties/components/properties/schemas/properties/Contact
+      accessInstructions:
+        type: string
+        description: Instructions for courier to reach the place
+        example: Ring bell twice. Building B, 3rd floor.
+      isVerified:
+        type: boolean
+        description: Whether the address has been geocode-verified
+        example: true

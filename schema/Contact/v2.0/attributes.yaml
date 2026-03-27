@@ -1,0 +1,37 @@
+openapi: 3.1.0
+info:
+  title: Contact
+  version: 2.0.0
+  description: Schema definition for the Contact entity in the Beckn Logistics domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    Contact:
+      type: object
+      title: Contact
+      description: Contact information for sender, receiver, driver, or operator.
+      properties:
+        name:
+          type: string
+          example: Priya Mehta
+        phone:
+          type: string
+          example: '+919876543210'
+        email:
+          type: string
+          format: email
+          example: priya.mehta@email.com
+        alternatePhone:
+          type: string
+        company:
+          type: string
+          description: Company name if B2B contact
+        gstNumber:
+          type: string
+          description: GST number for B2B invoicing

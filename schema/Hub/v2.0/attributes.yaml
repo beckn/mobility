@@ -1,0 +1,97 @@
+openapi: 3.1.0
+info:
+  title: Hub
+  version: 2.0.0
+  description: Schema definition for the Hub entity in the Beckn Logistics domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    Hub:
+      type: object
+      title: Hub
+      description: 'A Hub is a logistics fulfillment center, sorting facility, or
+        distribution point where goods are consolidated, sorted, and dispatched for
+        onward delivery. Maps to beckn:Location.
+
+        '
+      required:
+      - id
+      - name
+      - place
+      properties:
+        id:
+          type: string
+          example: HUB-BLR-MAIN
+        name:
+          type: string
+          example: Bengaluru Main Sorting Hub
+        code:
+          type: string
+          description: Short hub code
+          example: BLR-MAIN
+        place:
+          $ref: https://schema.beckn.io/LogisticsPlace/v2.0/attributes.yaml#/components/schemas/LogisticsPlace
+        type:
+          type: string
+          enum:
+          - FULFILLMENT_CENTER
+          - SORTING_HUB
+          - COLLECTION_POINT
+          - LAST_MILE_HUB
+          - DARK_STORE
+          - CUSTOMS_WAREHOUSE
+          example: SORTING_HUB
+        operator:
+          $ref: https://schema.beckn.io/LogisticsOperator/v2.0/attributes.yaml#/components/schemas/LogisticsOperator
+        operatingHours:
+          type: object
+          properties:
+            open:
+              type: string
+              example: 06:00
+            close:
+              type: string
+              example: '23:00'
+            is24x7:
+              type: boolean
+              example: false
+        processingCapacity:
+          type: object
+          description: Maximum packages processed per day
+          properties:
+            value:
+              type: integer
+              example: 50000
+            unit:
+              type: string
+              example: packages/day
+        serviceablePincodes:
+          type: array
+          description: PIN codes serviced from this hub
+          items:
+            type: string
+          example:
+          - '560001'
+          - '560002'
+          - '560068'
+        facilities:
+          type: array
+          description: Facilities available at hub
+          items:
+            type: string
+          example:
+          - cold_storage
+          - hazmat_storage
+          - customer_service_desk
+        contactPhone:
+          type: string
+          example: '+918028001234'
+        active:
+          type: boolean
+          example: true

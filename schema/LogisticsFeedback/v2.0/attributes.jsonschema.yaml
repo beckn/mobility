@@ -1,0 +1,58 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: LogisticsFeedback JSON Schema
+type: object
+properties:
+  components:
+    type: object
+    properties:
+      schemas:
+        type: object
+        properties:
+          LogisticsFeedback:
+            $ref: '#/$defs/LogisticsFeedback'
+        additionalProperties: false
+    required:
+    - schemas
+    additionalProperties: false
+required:
+- components
+additionalProperties: false
+$defs:
+  LogisticsFeedback:
+    type: object
+    title: LogisticsFeedback
+    description: Qualitative feedback from sender or receiver about a logistics experience.
+    properties:
+      id:
+        type: string
+        example: FBK-001
+      shipmentId:
+        type: string
+      rating:
+        $ref: https://schema.beckn.io/LogisticsRating/v2.0/attributes.jsonschema.yaml#/properties/components/properties/schemas/properties/LogisticsRating
+      review:
+        type: string
+        description: Free text review
+        example: Driver was very professional and delivered on time.
+      tags:
+        type: array
+        description: Structured feedback tags
+        items:
+          type: string
+        example:
+        - ON_TIME
+        - PROFESSIONAL_DRIVER
+        - GOOD_PACKAGING
+      wouldRecommend:
+        type: boolean
+        example: true
+      submittedBy:
+        type: string
+        description: User ID of feedback submitter
+      submittedAt:
+        type: string
+        format: date-time
+      isPublic:
+        type: boolean
+        description: Whether feedback is publicly visible
+        example: true

@@ -1,0 +1,98 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: LogisticsSupportCase JSON Schema
+type: object
+properties:
+  components:
+    type: object
+    properties:
+      schemas:
+        type: object
+        properties:
+          LogisticsSupportCase:
+            $ref: '#/$defs/LogisticsSupportCase'
+        additionalProperties: false
+    required:
+    - schemas
+    additionalProperties: false
+required:
+- components
+additionalProperties: false
+$defs:
+  LogisticsSupportCase:
+    type: object
+    title: LogisticsSupportCase
+    description: Customer support ticket for shipment issues — loss, damage, delay,
+      or billing.
+    required:
+    - id
+    - issueType
+    - shipmentId
+    properties:
+      id:
+        type: string
+        example: SUP-2024-00789
+      shipmentId:
+        type: string
+      issueType:
+        type: string
+        enum:
+        - SHIPMENT_LOST
+        - SHIPMENT_DAMAGED
+        - DELIVERY_DELAYED
+        - WRONG_ITEM_DELIVERED
+        - BILLING_DISPUTE
+        - DRIVER_MISCONDUCT
+        - OTHER
+        example: DELIVERY_DELAYED
+      description:
+        type: string
+        example: My package was supposed to be delivered yesterday but has not arrived.
+      priority:
+        type: string
+        enum:
+        - LOW
+        - MEDIUM
+        - HIGH
+        - URGENT
+        example: MEDIUM
+      status:
+        type: string
+        enum:
+        - OPEN
+        - IN_PROGRESS
+        - AWAITING_CUSTOMER
+        - RESOLVED
+        - CLOSED
+        example: OPEN
+      raisedBy:
+        type: string
+        description: User ID who raised the ticket
+      assignedAgent:
+        type: string
+        description: Support agent ID
+      attachments:
+        type: array
+        description: Photo/document evidence
+        items:
+          type: object
+          properties:
+            url:
+              type: string
+              format: uri
+            type:
+              type: string
+              enum:
+              - PHOTO
+              - DOCUMENT
+      claimAmount:
+        type: number
+        description: Amount claimed for loss/damage
+      resolution:
+        type: string
+        description: Resolution details
+      createdAt:
+        type: string
+        format: date-time
+      resolvedAt:
+        type: string
+        format: date-time

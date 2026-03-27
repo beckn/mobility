@@ -1,0 +1,76 @@
+openapi: 3.1.0
+info:
+  title: LogisticsFare
+  version: 2.0.0
+  description: Schema definition for the LogisticsFare entity in the Beckn Logistics
+    domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    LogisticsFare:
+      type: object
+      title: LogisticsFare
+      description: Total cost charged for a logistics service including base freight,
+        surcharges, taxes.
+      required:
+      - currency
+      - totalAmount
+      properties:
+        currency:
+          type: string
+          example: INR
+        baseFreight:
+          type: number
+          description: Base freight charge
+          example: 450
+        fuelSurcharge:
+          type: number
+          example: 45
+        odaSurcharge:
+          type: number
+          description: Out of Delivery Area surcharge
+          example: 0
+        codCharge:
+          type: number
+          description: Cash on delivery charge
+          example: 30
+        insuranceCharge:
+          type: number
+          example: 25
+        gst:
+          type: number
+          description: GST amount
+          example: 81
+        otherCharges:
+          type: number
+          example: 0
+        discount:
+          type: number
+          example: 50
+        totalAmount:
+          type: number
+          description: Final total payable
+          example: 581
+        breakup:
+          type: array
+          description: Detailed fare breakup line items
+          items:
+            $ref: https://schema.beckn.io/LogisticsFareBreakup/v2.0/attributes.yaml#/components/schemas/LogisticsFareBreakup
+        estimatedFare:
+          type: boolean
+          description: Whether this is an estimate or confirmed fare
+          example: false
+        paymentMode:
+          type: string
+          enum:
+          - PREPAID
+          - COD
+          - TO_PAY
+          - CREDIT
+          example: PREPAID

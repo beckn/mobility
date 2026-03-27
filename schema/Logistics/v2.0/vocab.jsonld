@@ -1,0 +1,403 @@
+{
+  "@context": {
+    "log": "https://schema.beckn.io/logistics/v2.0/",
+    "beckn": "https://schema.beckn.io/core/v2.0/",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "skos": "http://www.w3.org/2004/02/skos/core#"
+  },
+  "@graph": [
+    {
+      "@id": "https://schema.beckn.io/logistics/v2.0/",
+      "@type": "owl:Ontology",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Beckn Logistics Vocabulary"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Unified ontology graph for Beckn Logistics v2.0."
+      },
+      "owl:versionInfo": "2.0.0"
+    },
+    {
+      "@id": "log:LogisticsAlert",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "LogisticsAlert"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Exception events: `DELAY`, `DAMAGE`, `LOSS`, `FAILED_DELIVERY`, `CUSTOMS_HOLD`, `SLA_BREACH`"
+      },
+      "rdfs:subClassOf": {
+        "@id": "beckn:Event"
+      }
+    },
+    {
+      "@id": "log:LogisticsCancellationPolicy",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "LogisticsCancellationPolicy"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Cancellable until: `BEFORE_PICKUP`, `BEFORE_DISPATCH`, `ANYTIME`, `NON_CANCELLABLE`"
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Policy"
+      }
+    },
+    {
+      "@id": "log:Carrier",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Carrier"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Transport service provider. Carriers own fleets and operate hubs."
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Provider"
+      }
+    },
+    {
+      "@id": "log:Consignment",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Consignment"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Commercial grouping of shipments under a single transaction (AWB)."
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Order"
+      }
+    },
+    {
+      "@id": "log:Contact",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Contact"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Logistics concept: Contact"
+      },
+      "skos:exactMatch": {
+        "@id": "beckn:Contact"
+      }
+    },
+    {
+      "@id": "log:Courier",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Courier"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Last-mile delivery agent for urban hyperlocal contexts."
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Agent"
+      }
+    },
+    {
+      "@id": "log:DeliverySlot",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "DeliverySlot"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Time windows: `EXPRESS_1HR`, `EXPRESS_2HR`, `MORNING`, `AFTERNOON`, `EVENING`, `NEXT_DAY`"
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:TimeSlot"
+      }
+    },
+    {
+      "@id": "log:LogisticsDriver",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "LogisticsDriver"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Vehicle operator assigned to shipments."
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Agent"
+      }
+    },
+    {
+      "@id": "log:LogisticsFare",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "LogisticsFare"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Total cost = Base Freight + Fuel Surcharge + ODA + COD + Insurance + GST − Discount"
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Price"
+      }
+    },
+    {
+      "@id": "log:LogisticsFareBreakup",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "LogisticsFareBreakup"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Individual line items: `ITEM`, `SURCHARGE`, `TAX`, `DISCOUNT`, `FEE`"
+      },
+      "rdfs:subClassOf": {
+        "@id": "beckn:Price"
+      }
+    },
+    {
+      "@id": "log:LogisticsFeedback",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "LogisticsFeedback"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Free text + structured tags: `ON_TIME`, `PROFESSIONAL_DRIVER`, `GOOD_PACKAGING`"
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Feedback"
+      }
+    },
+    {
+      "@id": "log:Hub",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Hub"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Logistics facility: `FULFILLMENT_CENTER`, `SORTING_HUB`, `DARK_STORE`, `LAST_MILE_HUB`"
+      },
+      "rdfs:subClassOf": {
+        "@id": "beckn:Location"
+      }
+    },
+    {
+      "@id": "log:LogisticsOperator",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "LogisticsOperator"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Network manager. Operators coordinate carriers, drivers, and platform policies."
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Provider"
+      }
+    },
+    {
+      "@id": "log:Package",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Package"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Physical unit of goods. Multiple packages constitute a shipment."
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Item"
+      }
+    },
+    {
+      "@id": "log:LogisticsPlace",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "LogisticsPlace"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Geographic location with structured address and GPS coordinates."
+      },
+      "skos:exactMatch": {
+        "@id": "beckn:Location"
+      }
+    },
+    {
+      "@id": "log:Proof",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Proof"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Delivery evidence types: `PHOTO`, `SIGNATURE`, `OTP`, `BIOMETRIC`, `DIGITAL_RECEIPT`"
+      },
+      "rdfs:subClassOf": {
+        "@id": "beckn:Document"
+      }
+    },
+    {
+      "@id": "log:LogisticsRating",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "LogisticsRating"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Categories: `DRIVER`, `CARRIER`, `SERVICE`, `PACKAGING`"
+      },
+      "skos:exactMatch": {
+        "@id": "beckn:Rating"
+      }
+    },
+    {
+      "@id": "log:LogisticsReceipt",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "LogisticsReceipt"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Transaction acknowledgment with fare details and payment confirmation."
+      },
+      "rdfs:subClassOf": {
+        "@id": "beckn:Document"
+      }
+    },
+    {
+      "@id": "log:ReturnPolicy",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "ReturnPolicy"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Return reasons: `DAMAGED_IN_TRANSIT`, `WRONG_ITEM`, `CONSIGNEE_REFUSED`, `ADDRESS_NOT_FOUND`"
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Policy"
+      }
+    },
+    {
+      "@id": "log:LogisticsRoute",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "LogisticsRoute"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Planned path with total distance, duration, and transport mode."
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Journey"
+      }
+    },
+    {
+      "@id": "log:Shipment",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Shipment"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "The root fulfillment entity. A Shipment tracks the complete lifecycle of goods movement."
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Fulfillment"
+      },
+      "skos:broadMatch": {
+        "@id": "beckn:Order"
+      }
+    },
+    {
+      "@id": "log:LogisticsSupportCase",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "LogisticsSupportCase"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Issue types: `SHIPMENT_LOST`, `SHIPMENT_DAMAGED`, `DELIVERY_DELAYED`, `BILLING_DISPUTE`, `DRIVER_MISCONDUCT`"
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Issue"
+      }
+    },
+    {
+      "@id": "log:TrackingUpdate",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "TrackingUpdate"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Lifecycle event for shipments. Status progression:"
+      },
+      "rdfs:subClassOf": {
+        "@id": "beckn:Event"
+      }
+    },
+    {
+      "@id": "log:LogisticsVehicle",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "LogisticsVehicle"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Transport asset ranging from bicycles to container trucks."
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Asset"
+      }
+    },
+    {
+      "@id": "log:Waypoint",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@language": "en",
+        "@value": "Waypoint"
+      },
+      "rdfs:comment": {
+        "@language": "en",
+        "@value": "Intermediate stop: `HUB`, `RELAY_POINT`, `CUSTOMS`, `PICKUP`, `DELIVERY`"
+      },
+      "owl:equivalentClass": {
+        "@id": "beckn:Stop"
+      }
+    }
+  ]
+}

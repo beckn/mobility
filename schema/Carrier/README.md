@@ -1,43 +1,13 @@
 # Carrier
-A schema.beckn.io TODO( Select Type / Property based on the nature of the schema)
 
-TODO(Insert description here taken from 4_Beckn_Mobility_Concepts.md)
+A schema.beckn.io Type
 
-**Canonical IRI :** mobility:Carrier
-**Canonical URL:** https://schema.beckn.io/mobility/Carrier
-**Related Classes:**
+Transport service provider. Carriers own fleets and operate hubs.
 
-| Type | Relationship | Strength |
-|------|--------------|----------|
-| [insert domain_standard_prefix]:[Insert Type in domain standard] | [Insert Relationship] | [Insert Strength] |
+**Canonical IRI :** `log:Carrier`
 
+**Canonical URL:** https://schema.beckn.io/logistics/Carrier
 
 ## Open Issues
-[Open issues](https://github.com/beckn/mobility/issues)
 
-## Properties
-| Property     | Expected Type  | Description           |
-|--------------|----------------|-----------------------|
-| [Insert hyperlinked PropertyName] | [Insert Hyperlinked TypeName]  | [Insert Property description]  |
-
-## [If there are multiple examples then call this heading Examples, else call it Example]
-
-### [if multiple examples ,then insert call it Example (number) or omit this heading]
-
-[Insert brief description of the example]
-
-```
-[Insert Example JSON-LD]
-```
-
-## Example Beckn Protocol Requests Payload using this Schema
-
-### TODO(if multiple examples ,then insert call it Example # or omit this heading)
-> [Brief description of the request with container schema, core schema, and mobility bindings]
-
-
-```
-[Insert Example JSON-LD]
-```
-
-
+[Open issues](https://github.com/beckn/logistics/issues)

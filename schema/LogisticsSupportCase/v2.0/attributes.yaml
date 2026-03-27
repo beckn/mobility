@@ -1,0 +1,93 @@
+openapi: 3.1.0
+info:
+  title: LogisticsSupportCase
+  version: 2.0.0
+  description: Schema definition for the LogisticsSupportCase entity in the Beckn
+    Logistics domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    LogisticsSupportCase:
+      type: object
+      title: LogisticsSupportCase
+      description: Customer support ticket for shipment issues — loss, damage, delay,
+        or billing.
+      required:
+      - id
+      - issueType
+      - shipmentId
+      properties:
+        id:
+          type: string
+          example: SUP-2024-00789
+        shipmentId:
+          type: string
+        issueType:
+          type: string
+          enum:
+          - SHIPMENT_LOST
+          - SHIPMENT_DAMAGED
+          - DELIVERY_DELAYED
+          - WRONG_ITEM_DELIVERED
+          - BILLING_DISPUTE
+          - DRIVER_MISCONDUCT
+          - OTHER
+          example: DELIVERY_DELAYED
+        description:
+          type: string
+          example: My package was supposed to be delivered yesterday but has not arrived.
+        priority:
+          type: string
+          enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+          - URGENT
+          example: MEDIUM
+        status:
+          type: string
+          enum:
+          - OPEN
+          - IN_PROGRESS
+          - AWAITING_CUSTOMER
+          - RESOLVED
+          - CLOSED
+          example: OPEN
+        raisedBy:
+          type: string
+          description: User ID who raised the ticket
+        assignedAgent:
+          type: string
+          description: Support agent ID
+        attachments:
+          type: array
+          description: Photo/document evidence
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                format: uri
+              type:
+                type: string
+                enum:
+                - PHOTO
+                - DOCUMENT
+        claimAmount:
+          type: number
+          description: Amount claimed for loss/damage
+        resolution:
+          type: string
+          description: Resolution details
+        createdAt:
+          type: string
+          format: date-time
+        resolvedAt:
+          type: string
+          format: date-time

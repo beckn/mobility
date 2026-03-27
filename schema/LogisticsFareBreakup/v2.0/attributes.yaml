@@ -1,0 +1,61 @@
+openapi: 3.1.0
+info:
+  title: LogisticsFareBreakup
+  version: 2.0.0
+  description: Schema definition for the LogisticsFareBreakup entity in the Beckn
+    Logistics domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    LogisticsFareBreakup:
+      type: object
+      title: LogisticsFareBreakup
+      description: A single line item in the fare breakup for a logistics service.
+      required:
+      - title
+      - amount
+      properties:
+        title:
+          type: string
+          description: Name of the fare component
+          example: Base Freight
+        amount:
+          type: number
+          example: 450
+        currency:
+          type: string
+          example: INR
+        type:
+          type: string
+          enum:
+          - ITEM
+          - SURCHARGE
+          - TAX
+          - DISCOUNT
+          - FEE
+          example: ITEM
+        taxBreakup:
+          type: array
+          description: Tax sub-components if applicable
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: CGST @ 9%
+              percent:
+                type: number
+                example: 9
+              amount:
+                type: number
+                example: 40.5
+        waived:
+          type: boolean
+          description: Whether this component was waived
+          example: false

@@ -1,0 +1,74 @@
+openapi: 3.1.0
+info:
+  title: LogisticsCancellationPolicy
+  version: 2.0.0
+  description: Schema definition for the LogisticsCancellationPolicy entity in the
+    Beckn Logistics domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    LogisticsCancellationPolicy:
+      type: object
+      title: LogisticsCancellationPolicy
+      description: Defines terms under which a shipment booking can be cancelled.
+      properties:
+        id:
+          type: string
+          example: CP-EXPRESS-001
+        cancellableUntil:
+          type: string
+          description: Cancellation allowed until this lifecycle stage
+          enum:
+          - BEFORE_PICKUP
+          - BEFORE_DISPATCH
+          - ANYTIME
+          - NON_CANCELLABLE
+          example: BEFORE_PICKUP
+        cancellationFee:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - FLAT
+              - PERCENTAGE
+              - NIL
+              example: FLAT
+            value:
+              type: number
+              example: 50
+            currency:
+              type: string
+              example: INR
+        refundPolicy:
+          type: object
+          properties:
+            refundable:
+              type: boolean
+              example: true
+            refundPercentage:
+              type: number
+              example: 100
+            processingDays:
+              type: integer
+              example: 5
+        conditions:
+          type: array
+          items:
+            type: string
+          example:
+          - Full refund if cancelled before pickup
+          - 50% refund if cancelled after pickup
+        applicableServiceTypes:
+          type: array
+          items:
+            type: string
+          example:
+          - EXPRESS
+          - COURIER

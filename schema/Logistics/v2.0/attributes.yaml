@@ -1,0 +1,1827 @@
+openapi: 3.1.0
+info:
+  title: Logistics
+  version: 2.0.0
+  description: Master schema package for Beckn Logistics domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    Carrier:
+      type: object
+      title: Carrier
+      description: 'A Carrier is a transport service provider responsible for moving
+        goods across distances. Carriers operate fleets of vehicles and may own/manage
+        logistics hubs. Maps to beckn:Provider.
+
+        '
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+          description: Unique carrier identifier
+          example: CAR-DTDC-001
+        name:
+          type: string
+          description: Legal name of the carrier
+          example: DTDC Express Limited
+        code:
+          type: string
+          description: Short carrier code
+          example: DTDC
+        logo:
+          type: string
+          format: uri
+          description: URL to carrier logo
+        website:
+          type: string
+          format: uri
+        contact:
+          $ref: https://schema.beckn.io/Contact/v2.0/attributes.yaml#/components/schemas/Contact
+        rating:
+          type: number
+          minimum: 1
+          maximum: 5
+          example: 4.2
+        serviceTypes:
+          type: array
+          description: Types of logistics services offered
+          items:
+            type: string
+            enum:
+            - HYPERLOCAL
+            - COURIER
+            - INTERSTATE
+            - LONG_HAUL
+            - EXPRESS
+        serviceCoverage:
+          type: array
+          description: Geographic regions served
+          items:
+            type: object
+            properties:
+              country:
+                type: string
+              states:
+                type: array
+                items:
+                  type: string
+              pincodes:
+                type: array
+                items:
+                  type: string
+        fleetSize:
+          type: integer
+          description: Number of vehicles in fleet
+          example: 500
+        hubs:
+          type: array
+          description: Logistics hubs operated by this carrier
+          items:
+            $ref: https://schema.beckn.io/Hub/v2.0/attributes.yaml#/components/schemas/Hub
+        licenseNumber:
+          type: string
+          description: Transport license number
+        gstNumber:
+          type: string
+          description: GST registration number
+        panNumber:
+          type: string
+          description: PAN for tax purposes
+        active:
+          type: boolean
+          description: Whether carrier is currently active on network
+          example: true
+    Consignment:
+      type: object
+      title: Consignment
+      description: 'A Consignment is a collection of packages or shipments grouped
+        together under a single commercial transaction between a shipper and consignee.
+        Maps to beckn:Order.
+
+        '
+      required:
+      - id
+      - shipper
+      - consignee
+      properties:
+        id:
+          type: string
+          description: Unique consignment identifier (e.g. AWB number)
+          example: AWB-2024-9900123
+        shipper:
+          $ref: https://schema.beckn.io/Contact/v2.0/attributes.yaml#/components/schemas/Contact
+        consignee:
+          $ref: https://schema.beckn.io/Contact/v2.0/attributes.yaml#/components/schemas/Contact
+        shipments:
+          type: array
+          description: List of shipments in this consignment
+          items:
+            $ref: https://schema.beckn.io/Shipment/v2.0/attributes.yaml#/components/schemas/Shipment
+        carrier:
+          $ref: https://schema.beckn.io/Carrier/v2.0/attributes.yaml#/components/schemas/Carrier
+        totalWeight:
+          type: object
+          properties:
+            value:
+              type: number
+            unit:
+              type: string
+              enum:
+              - kg
+              - ton
+        totalPackages:
+          type: integer
+          description: Total number of packages in this consignment
+        serviceType:
+          type: string
+          enum:
+          - COURIER
+          - INTERSTATE
+          - LONG_HAUL
+          - EXPRESS
+        paymentMode:
+          type: string
+          enum:
+          - PREPAID
+          - TO_PAY
+          - COD
+          description: Payment responsibility
+        commercialInvoiceNumber:
+          type: string
+          description: Commercial invoice number for customs
+        customsDeclaration:
+          type: boolean
+          description: Whether customs declaration is required
+        status:
+          type: string
+          enum:
+          - CREATED
+          - BOOKED
+          - IN_TRANSIT
+          - DELIVERED
+          - CANCELLED
+        createdAt:
+          type: string
+          format: date-time
+        estimatedDelivery:
+          type: string
+          format: date-time
+    Contact:
+      type: object
+      title: Contact
+      description: Contact information for sender, receiver, driver, or operator.
+      properties:
+        name:
+          type: string
+          example: Priya Mehta
+        phone:
+          type: string
+          example: '+919876543210'
+        email:
+          type: string
+          format: email
+          example: priya.mehta@email.com
+        alternatePhone:
+          type: string
+        company:
+          type: string
+          description: Company name if B2B contact
+        gstNumber:
+          type: string
+          description: GST number for B2B invoicing
+    Courier:
+      type: object
+      title: Courier
+      description: 'A Courier is an individual delivery agent responsible for last-mile
+        pickup and delivery of packages, typically in hyperlocal or urban delivery
+        contexts. Maps to beckn:Agent.
+
+        '
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+          description: Unique courier identifier
+          example: CRR-001234
+        name:
+          type: string
+          description: Full name of the courier
+          example: Ramesh Kumar
+        phone:
+          type: string
+          description: Contact phone number
+          example: '+919876543210'
+        email:
+          type: string
+          format: email
+          description: Email address
+        profilePhoto:
+          type: string
+          format: uri
+          description: URL to courier's profile photo
+        rating:
+          type: number
+          description: Average rating (1-5)
+          minimum: 1
+          maximum: 5
+          example: 4.6
+        vehicleType:
+          type: string
+          description: Type of vehicle used
+          enum:
+          - BICYCLE
+          - MOTORCYCLE
+          - ELECTRIC_SCOOTER
+          - CAR
+          - VAN
+          example: MOTORCYCLE
+        vehicleNumber:
+          type: string
+          description: Vehicle registration number
+          example: KA05AB1234
+        currentLocation:
+          $ref: https://schema.beckn.io/LogisticsPlace/v2.0/attributes.yaml#/components/schemas/LogisticsPlace
+        status:
+          type: string
+          enum:
+          - AVAILABLE
+          - ASSIGNED
+          - ON_PICKUP
+          - ON_DELIVERY
+          - OFFLINE
+          example: ON_DELIVERY
+        activeShipments:
+          type: array
+          description: Currently assigned shipments
+          items:
+            type: string
+        kycVerified:
+          type: boolean
+          description: Whether courier has completed KYC verification
+          example: true
+        joiningDate:
+          type: string
+          format: date
+          description: Date the courier joined the network
+    DeliverySlot:
+      type: object
+      title: DeliverySlot
+      description: 'A DeliverySlot is a time window offered or agreed upon for delivery
+        of a shipment. Maps to beckn:TimeSlot.
+
+        '
+      required:
+      - id
+      - date
+      - startTime
+      - endTime
+      properties:
+        id:
+          type: string
+          example: SLOT-2024-03-15-AM
+        date:
+          type: string
+          format: date
+          example: '2024-03-15'
+        startTime:
+          type: string
+          example: '10:00'
+        endTime:
+          type: string
+          example: '13:00'
+        label:
+          type: string
+          description: Human-readable label
+          enum:
+          - EXPRESS_1HR
+          - EXPRESS_2HR
+          - MORNING
+          - AFTERNOON
+          - EVENING
+          - FULL_DAY
+          - NEXT_DAY
+          example: MORNING
+        available:
+          type: boolean
+          description: Whether this slot is still available
+          example: true
+        surcharge:
+          type: object
+          description: Additional charge for this slot (e.g. express slot)
+          properties:
+            amount:
+              type: number
+              example: 49
+            currency:
+              type: string
+              example: INR
+        capacity:
+          type: integer
+          description: Maximum deliveries in this slot
+          example: 100
+        remainingCapacity:
+          type: integer
+          example: 34
+        cutoffTime:
+          type: string
+          format: date-time
+          description: Last time to book this slot
+          example: '2024-03-14T22:00:00+05:30'
+    Hub:
+      type: object
+      title: Hub
+      description: 'A Hub is a logistics fulfillment center, sorting facility, or
+        distribution point where goods are consolidated, sorted, and dispatched for
+        onward delivery. Maps to beckn:Location.
+
+        '
+      required:
+      - id
+      - name
+      - place
+      properties:
+        id:
+          type: string
+          example: HUB-BLR-MAIN
+        name:
+          type: string
+          example: Bengaluru Main Sorting Hub
+        code:
+          type: string
+          description: Short hub code
+          example: BLR-MAIN
+        place:
+          $ref: https://schema.beckn.io/LogisticsPlace/v2.0/attributes.yaml#/components/schemas/LogisticsPlace
+        type:
+          type: string
+          enum:
+          - FULFILLMENT_CENTER
+          - SORTING_HUB
+          - COLLECTION_POINT
+          - LAST_MILE_HUB
+          - DARK_STORE
+          - CUSTOMS_WAREHOUSE
+          example: SORTING_HUB
+        operator:
+          $ref: https://schema.beckn.io/LogisticsOperator/v2.0/attributes.yaml#/components/schemas/LogisticsOperator
+        operatingHours:
+          type: object
+          properties:
+            open:
+              type: string
+              example: 06:00
+            close:
+              type: string
+              example: '23:00'
+            is24x7:
+              type: boolean
+              example: false
+        processingCapacity:
+          type: object
+          description: Maximum packages processed per day
+          properties:
+            value:
+              type: integer
+              example: 50000
+            unit:
+              type: string
+              example: packages/day
+        serviceablePincodes:
+          type: array
+          description: PIN codes serviced from this hub
+          items:
+            type: string
+          example:
+          - '560001'
+          - '560002'
+          - '560068'
+        facilities:
+          type: array
+          description: Facilities available at hub
+          items:
+            type: string
+          example:
+          - cold_storage
+          - hazmat_storage
+          - customer_service_desk
+        contactPhone:
+          type: string
+          example: '+918028001234'
+        active:
+          type: boolean
+          example: true
+    LogisticsAlert:
+      type: object
+      title: LogisticsAlert
+      description: 'An Alert is a notification or warning related to a shipment, such
+        as delays, exceptions, damage reports, or SLA breaches. Maps to beckn:Event.
+
+        '
+      required:
+      - id
+      - type
+      - severity
+      - message
+      - timestamp
+      properties:
+        id:
+          type: string
+          example: ALT-0001
+        shipmentId:
+          type: string
+          example: SHP-2024-001234
+        type:
+          type: string
+          enum:
+          - DELAY
+          - DAMAGE
+          - LOSS
+          - FAILED_DELIVERY
+          - CUSTOMS_HOLD
+          - WEATHER_DISRUPTION
+          - ROUTE_DEVIATION
+          - SLA_BREACH
+          - ADDRESS_ISSUE
+          - PAYMENT_FAILED
+          example: DELAY
+        severity:
+          type: string
+          enum:
+          - INFO
+          - WARNING
+          - CRITICAL
+          example: WARNING
+        message:
+          type: string
+          example: Your shipment is delayed by 4 hours due to traffic at NH-44.
+        cause:
+          type: string
+          description: Root cause of the alert
+          example: Highway accident causing major traffic backlog
+        impactedETA:
+          type: string
+          format: date-time
+          description: Revised ETA due to alert
+        timestamp:
+          type: string
+          format: date-time
+        resolvedAt:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - OPEN
+          - ACKNOWLEDGED
+          - RESOLVED
+          example: OPEN
+        notificationChannels:
+          type: array
+          items:
+            type: string
+            enum:
+            - SMS
+            - EMAIL
+            - PUSH
+            - WHATSAPP
+          example:
+          - SMS
+          - PUSH
+        actionRequired:
+          type: boolean
+          description: Whether customer action is needed
+          example: false
+        suggestedAction:
+          type: string
+          example: Please reschedule delivery for tomorrow.
+    LogisticsCancellationPolicy:
+      type: object
+      title: LogisticsCancellationPolicy
+      description: Defines terms under which a shipment booking can be cancelled.
+      properties:
+        id:
+          type: string
+          example: CP-EXPRESS-001
+        cancellableUntil:
+          type: string
+          description: Cancellation allowed until this lifecycle stage
+          enum:
+          - BEFORE_PICKUP
+          - BEFORE_DISPATCH
+          - ANYTIME
+          - NON_CANCELLABLE
+          example: BEFORE_PICKUP
+        cancellationFee:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - FLAT
+              - PERCENTAGE
+              - NIL
+              example: FLAT
+            value:
+              type: number
+              example: 50
+            currency:
+              type: string
+              example: INR
+        refundPolicy:
+          type: object
+          properties:
+            refundable:
+              type: boolean
+              example: true
+            refundPercentage:
+              type: number
+              example: 100
+            processingDays:
+              type: integer
+              example: 5
+        conditions:
+          type: array
+          items:
+            type: string
+          example:
+          - Full refund if cancelled before pickup
+          - 50% refund if cancelled after pickup
+        applicableServiceTypes:
+          type: array
+          items:
+            type: string
+          example:
+          - EXPRESS
+          - COURIER
+    LogisticsDriver:
+      type: object
+      title: LogisticsDriver
+      description: 'A Driver is an individual who operates a vehicle for logistics
+        delivery. Drivers are assigned to shipments and responsible for physical transport.
+        Maps to beckn:Agent.
+
+        '
+      required:
+      - id
+      - name
+      - licenseNumber
+      properties:
+        id:
+          type: string
+          description: Unique driver identifier
+          example: DRV-00456
+        name:
+          type: string
+          description: Full name of the driver
+          example: Suresh Patil
+        phone:
+          type: string
+          example: '+919845001234'
+        email:
+          type: string
+          format: email
+        profilePhoto:
+          type: string
+          format: uri
+        licenseNumber:
+          type: string
+          description: Driving license number
+          example: MH1420210012345
+        licenseExpiry:
+          type: string
+          format: date
+          description: License expiry date
+        rating:
+          type: number
+          minimum: 1
+          maximum: 5
+          example: 4.5
+        currentLocation:
+          type: object
+          description: Real-time GPS location
+          properties:
+            lat:
+              type: number
+              example: 12.9716
+            lng:
+              type: number
+              example: 77.5946
+            updatedAt:
+              type: string
+              format: date-time
+        status:
+          type: string
+          enum:
+          - AVAILABLE
+          - ASSIGNED
+          - ON_ROUTE
+          - OFFLINE
+          example: ON_ROUTE
+        vehicle:
+          $ref: '#/components/schemas/LogisticsVehicle'
+        experienceYears:
+          type: integer
+          description: Years of driving experience
+          example: 5
+        backgroundVerified:
+          type: boolean
+          description: Whether background verification is complete
+          example: true
+        languagesSpoken:
+          type: array
+          items:
+            type: string
+          example:
+          - Hindi
+          - Kannada
+        operatingZones:
+          type: array
+          description: Geographic zones the driver operates in
+          items:
+            type: string
+          example:
+          - Bangalore North
+          - Bangalore East
+    LogisticsFare:
+      type: object
+      title: LogisticsFare
+      description: Total cost charged for a logistics service including base freight,
+        surcharges, taxes.
+      required:
+      - currency
+      - totalAmount
+      properties:
+        currency:
+          type: string
+          example: INR
+        baseFreight:
+          type: number
+          description: Base freight charge
+          example: 450
+        fuelSurcharge:
+          type: number
+          example: 45
+        odaSurcharge:
+          type: number
+          description: Out of Delivery Area surcharge
+          example: 0
+        codCharge:
+          type: number
+          description: Cash on delivery charge
+          example: 30
+        insuranceCharge:
+          type: number
+          example: 25
+        gst:
+          type: number
+          description: GST amount
+          example: 81
+        otherCharges:
+          type: number
+          example: 0
+        discount:
+          type: number
+          example: 50
+        totalAmount:
+          type: number
+          description: Final total payable
+          example: 581
+        breakup:
+          type: array
+          description: Detailed fare breakup line items
+          items:
+            $ref: '#/components/schemas/LogisticsFareBreakup'
+        estimatedFare:
+          type: boolean
+          description: Whether this is an estimate or confirmed fare
+          example: false
+        paymentMode:
+          type: string
+          enum:
+          - PREPAID
+          - COD
+          - TO_PAY
+          - CREDIT
+          example: PREPAID
+    LogisticsFareBreakup:
+      type: object
+      title: LogisticsFareBreakup
+      description: A single line item in the fare breakup for a logistics service.
+      required:
+      - title
+      - amount
+      properties:
+        title:
+          type: string
+          description: Name of the fare component
+          example: Base Freight
+        amount:
+          type: number
+          example: 450
+        currency:
+          type: string
+          example: INR
+        type:
+          type: string
+          enum:
+          - ITEM
+          - SURCHARGE
+          - TAX
+          - DISCOUNT
+          - FEE
+          example: ITEM
+        taxBreakup:
+          type: array
+          description: Tax sub-components if applicable
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: CGST @ 9%
+              percent:
+                type: number
+                example: 9
+              amount:
+                type: number
+                example: 40.5
+        waived:
+          type: boolean
+          description: Whether this component was waived
+          example: false
+    LogisticsFeedback:
+      type: object
+      title: LogisticsFeedback
+      description: Qualitative feedback from sender or receiver about a logistics
+        experience.
+      properties:
+        id:
+          type: string
+          example: FBK-001
+        shipmentId:
+          type: string
+        rating:
+          $ref: '#/components/schemas/LogisticsRating'
+        review:
+          type: string
+          description: Free text review
+          example: Driver was very professional and delivered on time.
+        tags:
+          type: array
+          description: Structured feedback tags
+          items:
+            type: string
+          example:
+          - ON_TIME
+          - PROFESSIONAL_DRIVER
+          - GOOD_PACKAGING
+        wouldRecommend:
+          type: boolean
+          example: true
+        submittedBy:
+          type: string
+          description: User ID of feedback submitter
+        submittedAt:
+          type: string
+          format: date-time
+        isPublic:
+          type: boolean
+          description: Whether feedback is publicly visible
+          example: true
+    LogisticsOperator:
+      type: object
+      title: LogisticsOperator
+      description: Entity operating a logistics network or fleet, responsible for
+        end-to-end delivery service.
+      required:
+      - id
+      - name
+      properties:
+        id:
+          type: string
+          example: OPR-DELHIVERY-001
+        name:
+          type: string
+          example: Delhivery
+        type:
+          type: string
+          enum:
+          - 3PL
+          - CAPTIVE
+          - AGGREGATOR
+          - POSTAL
+          example: 3PL
+        contact:
+          $ref: '#/components/schemas/Contact'
+        website:
+          type: string
+          format: uri
+        supportEmail:
+          type: string
+          format: email
+        supportPhone:
+          type: string
+        rating:
+          type: number
+          minimum: 1
+          maximum: 5
+        activeCarriers:
+          type: integer
+          description: Number of carriers on the operator's network
+        activeDrivers:
+          type: integer
+        deliveriesPerDay:
+          type: integer
+        serviceCoverage:
+          type: object
+          properties:
+            countries:
+              type: array
+              items:
+                type: string
+            cities:
+              type: array
+              items:
+                type: string
+        certifications:
+          type: array
+          items:
+            type: string
+          example:
+          - ISO9001
+          - GDPR_COMPLIANT
+    LogisticsPlace:
+      type: object
+      title: LogisticsPlace
+      description: 'A geographic location relevant to logistics such as origin, destination,
+        hub, or waypoint. Includes structured address and GPS coordinates. Maps to
+        beckn:Location and schema:Place.
+
+        '
+      required:
+      - id
+      properties:
+        id:
+          type: string
+          example: PLC-BLR-001
+        name:
+          type: string
+          description: Name of the place
+          example: Anita's Home
+        type:
+          type: string
+          enum:
+          - PICKUP
+          - DELIVERY
+          - HUB
+          - WAYPOINT
+          - STORE
+          - WAREHOUSE
+          example: DELIVERY
+        address:
+          type: object
+          properties:
+            line1:
+              type: string
+              example: 42, 5th Cross Road
+            line2:
+              type: string
+              example: Indiranagar
+            landmark:
+              type: string
+              example: Near Total Mall
+            city:
+              type: string
+              example: Bengaluru
+            state:
+              type: string
+              example: Karnataka
+            country:
+              type: string
+              example: India
+            pincode:
+              type: string
+              example: '560038'
+        gps:
+          type: object
+          properties:
+            lat:
+              type: number
+              example: 12.9719
+            lng:
+              type: number
+              example: 77.6412
+        contact:
+          $ref: '#/components/schemas/Contact'
+        accessInstructions:
+          type: string
+          description: Instructions for courier to reach the place
+          example: Ring bell twice. Building B, 3rd floor.
+        isVerified:
+          type: boolean
+          description: Whether the address has been geocode-verified
+          example: true
+    LogisticsRating:
+      type: object
+      title: LogisticsRating
+      description: A numeric score given by a user for a logistics service, driver,
+        or carrier.
+      required:
+      - value
+      - ratingFor
+      properties:
+        id:
+          type: string
+          example: RTG-00456
+        value:
+          type: number
+          minimum: 1
+          maximum: 5
+          example: 4.5
+        ratingFor:
+          type: string
+          enum:
+          - DRIVER
+          - CARRIER
+          - SERVICE
+          - PACKAGING
+          example: DRIVER
+        ratedBy:
+          type: string
+          description: User ID who gave the rating
+        shipmentId:
+          type: string
+        categories:
+          type: object
+          description: Category-wise ratings
+          properties:
+            timeliness:
+              type: number
+              minimum: 1
+              maximum: 5
+            packaging:
+              type: number
+              minimum: 1
+              maximum: 5
+            handling:
+              type: number
+              minimum: 1
+              maximum: 5
+            communication:
+              type: number
+              minimum: 1
+              maximum: 5
+        timestamp:
+          type: string
+          format: date-time
+    LogisticsReceipt:
+      type: object
+      title: LogisticsReceipt
+      description: Digital acknowledgment of payment and delivery for a logistics
+        service.
+      required:
+      - id
+      - shipmentId
+      - fare
+      properties:
+        id:
+          type: string
+          example: RCP-2024-001234
+        shipmentId:
+          type: string
+          example: SHP-2024-001234
+        invoiceNumber:
+          type: string
+          example: INV-2024-9900
+        issuedAt:
+          type: string
+          format: date-time
+        fare:
+          $ref: '#/components/schemas/LogisticsFare'
+        paymentMode:
+          type: string
+          enum:
+          - PREPAID
+          - COD
+          - TO_PAY
+          - CREDIT
+          example: PREPAID
+        paymentTransactionId:
+          type: string
+          example: TXN-UPI-2024-123456
+        paidAt:
+          type: string
+          format: date-time
+        shipper:
+          $ref: '#/components/schemas/Contact'
+        consignee:
+          $ref: '#/components/schemas/Contact'
+        carrier:
+          $ref: '#/components/schemas/Carrier'
+        deliveryProof:
+          $ref: '#/components/schemas/Proof'
+        downloadUrl:
+          type: string
+          format: uri
+          description: URL to download PDF receipt
+    LogisticsRoute:
+      type: object
+      title: LogisticsRoute
+      description: 'A Route is the planned path for a shipment from origin to destination,
+        potentially passing through multiple hubs and waypoints. Maps to beckn:Journey.
+
+        '
+      required:
+      - id
+      - origin
+      - destination
+      properties:
+        id:
+          type: string
+          description: Unique route identifier
+          example: RTE-BLR-DEL-001
+        name:
+          type: string
+          description: Human-readable route name
+          example: Bangalore to Delhi via Hyderabad
+        origin:
+          $ref: '#/components/schemas/LogisticsPlace'
+        destination:
+          $ref: '#/components/schemas/LogisticsPlace'
+        waypoints:
+          type: array
+          description: Intermediate waypoints/hubs on the route
+          items:
+            $ref: '#/components/schemas/Waypoint'
+        totalDistance:
+          type: object
+          properties:
+            value:
+              type: number
+              example: 2150
+            unit:
+              type: string
+              enum:
+              - km
+              - miles
+              example: km
+        estimatedDuration:
+          type: object
+          properties:
+            value:
+              type: number
+              example: 36
+            unit:
+              type: string
+              enum:
+              - hours
+              - days
+              example: hours
+        transportMode:
+          type: string
+          enum:
+          - ROAD
+          - AIR
+          - RAIL
+          - MULTIMODAL
+          example: ROAD
+        routeType:
+          type: string
+          description: Classification of route
+          enum:
+          - HYPERLOCAL
+          - LAST_MILE
+          - FIRST_MILE
+          - LINE_HAUL
+          - CROSS_DOCKING
+          example: LINE_HAUL
+        geometry:
+          type: object
+          description: GeoJSON LineString of route geometry
+          properties:
+            type:
+              type: string
+              example: LineString
+            coordinates:
+              type: array
+              items:
+                type: array
+                items:
+                  type: number
+        tollCost:
+          type: number
+          description: Estimated toll charges in INR
+          example: 1250
+        restrictions:
+          type: array
+          description: Route restrictions (e.g. night driving ban)
+          items:
+            type: string
+          example:
+          - No night driving in MP
+          - Heavy vehicle ban in city center
+    LogisticsSupportCase:
+      type: object
+      title: LogisticsSupportCase
+      description: Customer support ticket for shipment issues — loss, damage, delay,
+        or billing.
+      required:
+      - id
+      - issueType
+      - shipmentId
+      properties:
+        id:
+          type: string
+          example: SUP-2024-00789
+        shipmentId:
+          type: string
+        issueType:
+          type: string
+          enum:
+          - SHIPMENT_LOST
+          - SHIPMENT_DAMAGED
+          - DELIVERY_DELAYED
+          - WRONG_ITEM_DELIVERED
+          - BILLING_DISPUTE
+          - DRIVER_MISCONDUCT
+          - OTHER
+          example: DELIVERY_DELAYED
+        description:
+          type: string
+          example: My package was supposed to be delivered yesterday but has not arrived.
+        priority:
+          type: string
+          enum:
+          - LOW
+          - MEDIUM
+          - HIGH
+          - URGENT
+          example: MEDIUM
+        status:
+          type: string
+          enum:
+          - OPEN
+          - IN_PROGRESS
+          - AWAITING_CUSTOMER
+          - RESOLVED
+          - CLOSED
+          example: OPEN
+        raisedBy:
+          type: string
+          description: User ID who raised the ticket
+        assignedAgent:
+          type: string
+          description: Support agent ID
+        attachments:
+          type: array
+          description: Photo/document evidence
+          items:
+            type: object
+            properties:
+              url:
+                type: string
+                format: uri
+              type:
+                type: string
+                enum:
+                - PHOTO
+                - DOCUMENT
+        claimAmount:
+          type: number
+          description: Amount claimed for loss/damage
+        resolution:
+          type: string
+          description: Resolution details
+        createdAt:
+          type: string
+          format: date-time
+        resolvedAt:
+          type: string
+          format: date-time
+    LogisticsVehicle:
+      type: object
+      title: LogisticsVehicle
+      description: 'A Vehicle is a transport asset used for logistics operations.
+        Vehicle types range from bicycles for hyperlocal delivery to heavy trucks
+        for long haul freight. Maps to beckn:Asset.
+
+        '
+      required:
+      - id
+      - registrationNumber
+      - type
+      properties:
+        id:
+          type: string
+          description: Unique vehicle identifier
+          example: VEH-00789
+        registrationNumber:
+          type: string
+          description: Vehicle registration/license plate number
+          example: KA01AB5678
+        type:
+          type: string
+          description: Type of vehicle
+          enum:
+          - BICYCLE
+          - ELECTRIC_SCOOTER
+          - MOTORCYCLE
+          - THREE_WHEELER
+          - CAR
+          - VAN
+          - MINI_TRUCK
+          - TRUCK_LCV
+          - TRUCK_HCV
+          - CONTAINER_TRUCK
+          - TRAILER
+          example: TRUCK_LCV
+        make:
+          type: string
+          description: Vehicle manufacturer
+          example: Tata Motors
+        model:
+          type: string
+          description: Vehicle model
+          example: Tata Ace Gold
+        year:
+          type: integer
+          description: Year of manufacture
+          example: 2022
+        color:
+          type: string
+          example: White
+        fuelType:
+          type: string
+          enum:
+          - PETROL
+          - DIESEL
+          - CNG
+          - ELECTRIC
+          - HYBRID
+          example: DIESEL
+        payloadCapacity:
+          type: object
+          description: Maximum cargo capacity
+          properties:
+            value:
+              type: number
+              example: 750
+            unit:
+              type: string
+              enum:
+              - kg
+              - ton
+              example: kg
+        volumeCapacity:
+          type: object
+          description: Cargo volume capacity
+          properties:
+            value:
+              type: number
+              example: 6
+            unit:
+              type: string
+              enum:
+              - cubic_feet
+              - cubic_meters
+              example: cubic_feet
+        hasRefrigeration:
+          type: boolean
+          description: Whether vehicle has refrigeration (cold chain)
+          example: false
+        gpsEnabled:
+          type: boolean
+          description: Whether vehicle has GPS tracking
+          example: true
+        insuranceExpiry:
+          type: string
+          format: date
+        pollutionCertExpiry:
+          type: string
+          format: date
+        fitnessExpiry:
+          type: string
+          format: date
+        currentLocation:
+          type: object
+          properties:
+            lat:
+              type: number
+            lng:
+              type: number
+            speed:
+              type: number
+              description: Speed in km/h
+            heading:
+              type: number
+              description: Bearing in degrees
+            updatedAt:
+              type: string
+              format: date-time
+        status:
+          type: string
+          enum:
+          - AVAILABLE
+          - ASSIGNED
+          - ON_ROUTE
+          - MAINTENANCE
+          - INACTIVE
+          example: ON_ROUTE
+    Package:
+      type: object
+      title: Package
+      description: 'A Package is a physical unit of goods prepared for transport within
+        a shipment. Maps to beckn:Item.
+
+        '
+      required:
+      - id
+      - weight
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the package
+          example: PKG-001
+        description:
+          type: string
+          description: Description of package contents
+          example: Electronics - Laptop
+        weight:
+          type: object
+          description: Weight of the package
+          properties:
+            value:
+              type: number
+              example: 2.5
+            unit:
+              type: string
+              enum:
+              - kg
+              - g
+              - lb
+              example: kg
+        dimensions:
+          type: object
+          description: Physical dimensions of the package
+          properties:
+            length:
+              type: number
+              example: 40
+            width:
+              type: number
+              example: 30
+            height:
+              type: number
+              example: 10
+            unit:
+              type: string
+              enum:
+              - cm
+              - in
+              example: cm
+        volumetricWeight:
+          type: number
+          description: Calculated volumetric weight in kg
+          example: 3.0
+        fragile:
+          type: boolean
+          description: Whether the package requires fragile handling
+          example: false
+        hazardous:
+          type: boolean
+          description: Whether the package contains hazardous materials
+          example: false
+        declaredValue:
+          type: object
+          description: Declared monetary value of contents
+          properties:
+            amount:
+              type: number
+              example: 50000
+            currency:
+              type: string
+              example: INR
+        packageType:
+          type: string
+          description: Type of packaging
+          enum:
+          - BOX
+          - ENVELOPE
+          - PALLET
+          - DRUM
+          - BAG
+          - TUBE
+          example: BOX
+        barcode:
+          type: string
+          description: Package-level barcode or QR code
+          example: '4012345678901'
+        temperatureControl:
+          type: object
+          description: Temperature control requirements for cold chain
+          properties:
+            required:
+              type: boolean
+              example: false
+            minTemp:
+              type: number
+              example: 2
+            maxTemp:
+              type: number
+              example: 8
+            unit:
+              type: string
+              enum:
+              - C
+              - F
+              example: C
+        insuranceRequired:
+          type: boolean
+          description: Whether insurance is required for this package
+          example: false
+    Proof:
+      type: object
+      title: Proof
+      description: 'Proof of delivery or pickup evidence, including photos, signatures,
+        OTP confirmations, or digital receipts. Maps to beckn:Document.
+
+        '
+      required:
+      - id
+      - type
+      - timestamp
+      properties:
+        id:
+          type: string
+          example: POD-SHP001-001
+        shipmentId:
+          type: string
+          example: SHP-2024-001234
+        type:
+          type: string
+          enum:
+          - PHOTO
+          - SIGNATURE
+          - OTP
+          - BIOMETRIC
+          - DIGITAL_RECEIPT
+          - DOCUMENT_SCAN
+          example: PHOTO
+        subType:
+          type: string
+          description: What was captured
+          enum:
+          - DELIVERED_AT_DOOR
+          - DELIVERED_TO_PERSON
+          - LEFT_AT_SAFE_PLACE
+          - HANDED_TO_NEIGHBOUR
+          - PICKUP_CONFIRMED
+          example: DELIVERED_TO_PERSON
+        mediaUrl:
+          type: string
+          format: uri
+          description: URL to proof media (photo/signature image)
+        signatureData:
+          type: string
+          description: Base64-encoded signature data
+        otpVerified:
+          type: boolean
+          description: Whether OTP was verified for delivery
+          example: true
+        recipientName:
+          type: string
+          description: Name of person who received the package
+          example: Anita Sharma
+        recipientRelation:
+          type: string
+          description: Relation to consignee if not consignee
+          example: Spouse
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+            lng:
+              type: number
+        timestamp:
+          type: string
+          format: date-time
+        driverSignoff:
+          type: boolean
+          description: Driver confirmed successful delivery
+          example: true
+    ReturnPolicy:
+      type: object
+      title: ReturnPolicy
+      description: Defines conditions for returning goods and reverse logistics workflows.
+      properties:
+        id:
+          type: string
+          example: RP-STD-001
+        returnsAccepted:
+          type: boolean
+          example: true
+        returnWindow:
+          type: object
+          properties:
+            value:
+              type: integer
+              example: 7
+            unit:
+              type: string
+              enum:
+              - days
+              - hours
+              example: days
+        returnReason:
+          type: array
+          items:
+            type: string
+          example:
+          - DAMAGED_IN_TRANSIT
+          - WRONG_ITEM
+          - CONSIGNEE_REFUSED
+          - ADDRESS_NOT_FOUND
+        reversePickupCharge:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - FREE
+              - FLAT
+              - PERCENTAGE
+              example: FREE
+            value:
+              type: number
+              example: 0
+            currency:
+              type: string
+              example: INR
+        refundOnReturn:
+          type: boolean
+          example: true
+        returnHubAddress:
+          $ref: https://schema.beckn.io/LogisticsPlace/v2.0/attributes.yaml#/components/schemas/LogisticsPlace
+    Shipment:
+      type: object
+      title: Shipment
+      description: 'A Shipment represents the movement of one or more packages from
+        an origin to a destination. It is the top-level fulfillment entity in a logistics
+        transaction and maps to beckn:Fulfillment.
+
+        '
+      required:
+      - id
+      - status
+      - origin
+      - destination
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the shipment
+          example: SHP-2024-001234
+        trackingId:
+          type: string
+          description: Public tracking identifier shared with sender/receiver
+          example: TRK9876543210IN
+        status:
+          type: string
+          description: Current status of the shipment
+          enum:
+          - CREATED
+          - PICKUP_PENDING
+          - PICKED_UP
+          - IN_TRANSIT
+          - AT_HUB
+          - OUT_FOR_DELIVERY
+          - DELIVERED
+          - FAILED_DELIVERY
+          - RETURNED
+          - CANCELLED
+          example: IN_TRANSIT
+        origin:
+          $ref: https://schema.beckn.io/LogisticsPlace/v2.0/attributes.yaml#/components/schemas/LogisticsPlace
+        destination:
+          $ref: https://schema.beckn.io/LogisticsPlace/v2.0/attributes.yaml#/components/schemas/LogisticsPlace
+        packages:
+          type: array
+          description: List of packages in this shipment
+          items:
+            $ref: https://schema.beckn.io/Package/v2.0/attributes.yaml#/components/schemas/Package
+        carrier:
+          $ref: https://schema.beckn.io/Carrier/v2.0/attributes.yaml#/components/schemas/Carrier
+        driver:
+          $ref: https://schema.beckn.io/LogisticsDriver/v2.0/attributes.yaml#/components/schemas/LogisticsDriver
+        vehicle:
+          $ref: https://schema.beckn.io/LogisticsVehicle/v2.0/attributes.yaml#/components/schemas/LogisticsVehicle
+        route:
+          $ref: https://schema.beckn.io/LogisticsRoute/v2.0/attributes.yaml#/components/schemas/LogisticsRoute
+        scheduledPickup:
+          type: string
+          format: date-time
+          description: Scheduled pickup time
+        estimatedDelivery:
+          type: string
+          format: date-time
+          description: Estimated delivery date and time
+        actualDelivery:
+          type: string
+          format: date-time
+          description: Actual delivery date and time
+        deliverySlot:
+          $ref: https://schema.beckn.io/DeliverySlot/v2.0/attributes.yaml#/components/schemas/DeliverySlot
+        serviceType:
+          type: string
+          description: Type of logistics service
+          enum:
+          - HYPERLOCAL
+          - COURIER
+          - INTERSTATE
+          - LONG_HAUL
+          - EXPRESS
+          example: EXPRESS
+        specialInstructions:
+          type: string
+          description: Special handling instructions for the shipment
+          example: Handle with care. Do not tilt.
+        proof:
+          $ref: https://schema.beckn.io/Proof/v2.0/attributes.yaml#/components/schemas/Proof
+        fare:
+          $ref: https://schema.beckn.io/LogisticsFare/v2.0/attributes.yaml#/components/schemas/LogisticsFare
+        receipt:
+          $ref: https://schema.beckn.io/LogisticsReceipt/v2.0/attributes.yaml#/components/schemas/LogisticsReceipt
+        cancellationPolicy:
+          $ref: https://schema.beckn.io/LogisticsCancellationPolicy/v2.0/attributes.yaml#/components/schemas/LogisticsCancellationPolicy
+        returnPolicy:
+          $ref: https://schema.beckn.io/ReturnPolicy/v2.0/attributes.yaml#/components/schemas/ReturnPolicy
+        alerts:
+          type: array
+          description: Alerts raised for this shipment
+          items:
+            $ref: https://schema.beckn.io/LogisticsAlert/v2.0/attributes.yaml#/components/schemas/LogisticsAlert
+        trackingUpdates:
+          type: array
+          description: History of tracking updates
+          items:
+            $ref: https://schema.beckn.io/TrackingUpdate/v2.0/attributes.yaml#/components/schemas/TrackingUpdate
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when shipment was created
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp of last update
+    TrackingUpdate:
+      type: object
+      title: TrackingUpdate
+      description: 'A TrackingUpdate is a real-time or periodic update on the status
+        and location of a shipment during transit. Maps to beckn:Event.
+
+        '
+      required:
+      - id
+      - shipmentId
+      - status
+      - timestamp
+      properties:
+        id:
+          type: string
+          example: TRK-EVT-00123
+        shipmentId:
+          type: string
+          example: SHP-2024-001234
+        status:
+          type: string
+          enum:
+          - BOOKED
+          - PICKED_UP
+          - IN_TRANSIT
+          - AT_HUB
+          - OUT_FOR_DELIVERY
+          - DELIVERED
+          - FAILED_DELIVERY
+          - RETURNED
+          - EXCEPTION
+          example: IN_TRANSIT
+        location:
+          type: object
+          properties:
+            lat:
+              type: number
+              example: 17.385
+            lng:
+              type: number
+              example: 78.4867
+            address:
+              type: string
+              example: Near Hyderabad Sorting Hub, NH-44
+        timestamp:
+          type: string
+          format: date-time
+          example: '2024-03-15T14:30:00+05:30'
+        message:
+          type: string
+          description: Human-readable status message
+          example: Your shipment has arrived at Hyderabad hub and is being sorted.
+        hub:
+          $ref: https://schema.beckn.io/Hub/v2.0/attributes.yaml#/components/schemas/Hub
+        driver:
+          $ref: https://schema.beckn.io/LogisticsDriver/v2.0/attributes.yaml#/components/schemas/LogisticsDriver
+        vehicle:
+          $ref: https://schema.beckn.io/LogisticsVehicle/v2.0/attributes.yaml#/components/schemas/LogisticsVehicle
+        exceptionDetails:
+          type: object
+          description: Details if this update is an exception
+          properties:
+            reason:
+              type: string
+              enum:
+              - ADDRESS_NOT_FOUND
+              - CONSIGNEE_UNAVAILABLE
+              - ACCESS_DENIED
+              - NATURAL_DISASTER
+              - VEHICLE_BREAKDOWN
+              - CUSTOMS_HOLD
+              example: CONSIGNEE_UNAVAILABLE
+            remarks:
+              type: string
+        nextAction:
+          type: string
+          description: Next planned action
+          example: Re-delivery attempt scheduled for tomorrow 10 AM - 1 PM
+        notificationSent:
+          type: boolean
+          description: Whether customer was notified of this update
+          example: true
+    Waypoint:
+      type: object
+      title: Waypoint
+      description: 'A Waypoint is an intermediate stop or checkpoint on a logistics
+        route, such as a sorting hub, relay station, or customs checkpoint. Maps to
+        beckn:Stop.
+
+        '
+      required:
+      - id
+      - place
+      properties:
+        id:
+          type: string
+          example: WPT-HYD-001
+        name:
+          type: string
+          example: Hyderabad Sorting Hub
+        place:
+          $ref: https://schema.beckn.io/LogisticsPlace/v2.0/attributes.yaml#/components/schemas/LogisticsPlace
+        type:
+          type: string
+          enum:
+          - HUB
+          - RELAY_POINT
+          - CUSTOMS
+          - PICKUP
+          - DELIVERY
+          example: HUB
+        sequenceNumber:
+          type: integer
+          description: Order of this waypoint in the route
+          example: 2
+        scheduledArrival:
+          type: string
+          format: date-time
+        scheduledDeparture:
+          type: string
+          format: date-time
+        actualArrival:
+          type: string
+          format: date-time
+        actualDeparture:
+          type: string
+          format: date-time
+        dwellTimeMinutes:
+          type: integer
+          description: Expected dwell time at this waypoint in minutes
+          example: 120
+        handoverRequired:
+          type: boolean
+          description: Whether shipment changes carrier/vehicle at this point
+          example: true
+        status:
+          type: string
+          enum:
+          - PENDING
+          - REACHED
+          - DEPARTED
+          - SKIPPED

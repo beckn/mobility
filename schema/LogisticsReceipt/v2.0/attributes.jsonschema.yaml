@@ -1,0 +1,69 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: LogisticsReceipt JSON Schema
+type: object
+properties:
+  components:
+    type: object
+    properties:
+      schemas:
+        type: object
+        properties:
+          LogisticsReceipt:
+            $ref: '#/$defs/LogisticsReceipt'
+        additionalProperties: false
+    required:
+    - schemas
+    additionalProperties: false
+required:
+- components
+additionalProperties: false
+$defs:
+  LogisticsReceipt:
+    type: object
+    title: LogisticsReceipt
+    description: Digital acknowledgment of payment and delivery for a logistics service.
+    required:
+    - id
+    - shipmentId
+    - fare
+    properties:
+      id:
+        type: string
+        example: RCP-2024-001234
+      shipmentId:
+        type: string
+        example: SHP-2024-001234
+      invoiceNumber:
+        type: string
+        example: INV-2024-9900
+      issuedAt:
+        type: string
+        format: date-time
+      fare:
+        $ref: https://schema.beckn.io/LogisticsFare/v2.0/attributes.jsonschema.yaml#/properties/components/properties/schemas/properties/LogisticsFare
+      paymentMode:
+        type: string
+        enum:
+        - PREPAID
+        - COD
+        - TO_PAY
+        - CREDIT
+        example: PREPAID
+      paymentTransactionId:
+        type: string
+        example: TXN-UPI-2024-123456
+      paidAt:
+        type: string
+        format: date-time
+      shipper:
+        $ref: https://schema.beckn.io/Contact/v2.0/attributes.jsonschema.yaml#/properties/components/properties/schemas/properties/Contact
+      consignee:
+        $ref: https://schema.beckn.io/Contact/v2.0/attributes.jsonschema.yaml#/properties/components/properties/schemas/properties/Contact
+      carrier:
+        $ref: https://schema.beckn.io/Carrier/v2.0/attributes.jsonschema.yaml#/properties/components/properties/schemas/properties/Carrier
+      deliveryProof:
+        $ref: https://schema.beckn.io/Proof/v2.0/attributes.jsonschema.yaml#/properties/components/properties/schemas/properties/Proof
+      downloadUrl:
+        type: string
+        format: uri
+        description: URL to download PDF receipt

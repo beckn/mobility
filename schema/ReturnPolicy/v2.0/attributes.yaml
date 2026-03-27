@@ -1,0 +1,68 @@
+openapi: 3.1.0
+info:
+  title: ReturnPolicy
+  version: 2.0.0
+  description: Schema definition for the ReturnPolicy entity in the Beckn Logistics
+    domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    ReturnPolicy:
+      type: object
+      title: ReturnPolicy
+      description: Defines conditions for returning goods and reverse logistics workflows.
+      properties:
+        id:
+          type: string
+          example: RP-STD-001
+        returnsAccepted:
+          type: boolean
+          example: true
+        returnWindow:
+          type: object
+          properties:
+            value:
+              type: integer
+              example: 7
+            unit:
+              type: string
+              enum:
+              - days
+              - hours
+              example: days
+        returnReason:
+          type: array
+          items:
+            type: string
+          example:
+          - DAMAGED_IN_TRANSIT
+          - WRONG_ITEM
+          - CONSIGNEE_REFUSED
+          - ADDRESS_NOT_FOUND
+        reversePickupCharge:
+          type: object
+          properties:
+            type:
+              type: string
+              enum:
+              - FREE
+              - FLAT
+              - PERCENTAGE
+              example: FREE
+            value:
+              type: number
+              example: 0
+            currency:
+              type: string
+              example: INR
+        refundOnReturn:
+          type: boolean
+          example: true
+        returnHubAddress:
+          $ref: https://schema.beckn.io/LogisticsPlace/v2.0/attributes.yaml#/components/schemas/LogisticsPlace

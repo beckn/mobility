@@ -1,0 +1,90 @@
+openapi: 3.1.0
+info:
+  title: Consignment
+  version: 2.0.0
+  description: Schema definition for the Consignment entity in the Beckn Logistics
+    domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    Consignment:
+      type: object
+      title: Consignment
+      description: 'A Consignment is a collection of packages or shipments grouped
+        together under a single commercial transaction between a shipper and consignee.
+        Maps to beckn:Order.
+
+        '
+      required:
+      - id
+      - shipper
+      - consignee
+      properties:
+        id:
+          type: string
+          description: Unique consignment identifier (e.g. AWB number)
+          example: AWB-2024-9900123
+        shipper:
+          $ref: https://schema.beckn.io/Contact/v2.0/attributes.yaml#/components/schemas/Contact
+        consignee:
+          $ref: https://schema.beckn.io/Contact/v2.0/attributes.yaml#/components/schemas/Contact
+        shipments:
+          type: array
+          description: List of shipments in this consignment
+          items:
+            $ref: https://schema.beckn.io/Shipment/v2.0/attributes.yaml#/components/schemas/Shipment
+        carrier:
+          $ref: https://schema.beckn.io/Carrier/v2.0/attributes.yaml#/components/schemas/Carrier
+        totalWeight:
+          type: object
+          properties:
+            value:
+              type: number
+            unit:
+              type: string
+              enum:
+              - kg
+              - ton
+        totalPackages:
+          type: integer
+          description: Total number of packages in this consignment
+        serviceType:
+          type: string
+          enum:
+          - COURIER
+          - INTERSTATE
+          - LONG_HAUL
+          - EXPRESS
+        paymentMode:
+          type: string
+          enum:
+          - PREPAID
+          - TO_PAY
+          - COD
+          description: Payment responsibility
+        commercialInvoiceNumber:
+          type: string
+          description: Commercial invoice number for customs
+        customsDeclaration:
+          type: boolean
+          description: Whether customs declaration is required
+        status:
+          type: string
+          enum:
+          - CREATED
+          - BOOKED
+          - IN_TRANSIT
+          - DELIVERED
+          - CANCELLED
+        createdAt:
+          type: string
+          format: date-time
+        estimatedDelivery:
+          type: string
+          format: date-time

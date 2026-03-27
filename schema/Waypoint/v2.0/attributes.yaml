@@ -1,0 +1,74 @@
+openapi: 3.1.0
+info:
+  title: Waypoint
+  version: 2.0.0
+  description: Schema definition for the Waypoint entity in the Beckn Logistics domain.
+  contact:
+    name: Beckn Foundation
+    url: https://beckn.org
+  license:
+    name: MIT
+    url: https://opensource.org/licenses/MIT
+paths: {}
+components:
+  schemas:
+    Waypoint:
+      type: object
+      title: Waypoint
+      description: 'A Waypoint is an intermediate stop or checkpoint on a logistics
+        route, such as a sorting hub, relay station, or customs checkpoint. Maps to
+        beckn:Stop.
+
+        '
+      required:
+      - id
+      - place
+      properties:
+        id:
+          type: string
+          example: WPT-HYD-001
+        name:
+          type: string
+          example: Hyderabad Sorting Hub
+        place:
+          $ref: https://schema.beckn.io/LogisticsPlace/v2.0/attributes.yaml#/components/schemas/LogisticsPlace
+        type:
+          type: string
+          enum:
+          - HUB
+          - RELAY_POINT
+          - CUSTOMS
+          - PICKUP
+          - DELIVERY
+          example: HUB
+        sequenceNumber:
+          type: integer
+          description: Order of this waypoint in the route
+          example: 2
+        scheduledArrival:
+          type: string
+          format: date-time
+        scheduledDeparture:
+          type: string
+          format: date-time
+        actualArrival:
+          type: string
+          format: date-time
+        actualDeparture:
+          type: string
+          format: date-time
+        dwellTimeMinutes:
+          type: integer
+          description: Expected dwell time at this waypoint in minutes
+          example: 120
+        handoverRequired:
+          type: boolean
+          description: Whether shipment changes carrier/vehicle at this point
+          example: true
+        status:
+          type: string
+          enum:
+          - PENDING
+          - REACHED
+          - DEPARTED
+          - SKIPPED

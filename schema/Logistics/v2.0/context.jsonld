@@ -1,0 +1,31 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/core/v2.0/",
+    "@vocab": "https://schema.beckn.io/core/v2.0/",
+    "LogisticsAlert": "beckn:Event",
+    "LogisticsCancellationPolicy": "beckn:Policy",
+    "Carrier": "beckn:Provider",
+    "Consignment": "beckn:Order",
+    "Contact": "beckn:Contact",
+    "Courier": "beckn:Agent",
+    "DeliverySlot": "beckn:TimeSlot",
+    "LogisticsDriver": "beckn:Agent",
+    "LogisticsFare": "beckn:Price",
+    "LogisticsFareBreakup": "beckn:Price",
+    "LogisticsFeedback": "beckn:Feedback",
+    "Hub": "beckn:Location",
+    "LogisticsOperator": "beckn:Provider",
+    "Package": "beckn:Item",
+    "LogisticsPlace": "beckn:Location",
+    "Proof": "beckn:Document",
+    "LogisticsRating": "beckn:Rating",
+    "LogisticsReceipt": "beckn:Document",
+    "ReturnPolicy": "beckn:Policy",
+    "LogisticsRoute": "beckn:Journey",
+    "Shipment": "beckn:Fulfillment",
+    "LogisticsSupportCase": "beckn:Issue",
+    "TrackingUpdate": "beckn:Event",
+    "LogisticsVehicle": "beckn:Asset",
+    "Waypoint": "beckn:Stop"
+  }
+}

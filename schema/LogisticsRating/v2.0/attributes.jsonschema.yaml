@@ -1,0 +1,73 @@
+$schema: https://json-schema.org/draft/2020-12/schema
+title: LogisticsRating JSON Schema
+type: object
+properties:
+  components:
+    type: object
+    properties:
+      schemas:
+        type: object
+        properties:
+          LogisticsRating:
+            $ref: '#/$defs/LogisticsRating'
+        additionalProperties: false
+    required:
+    - schemas
+    additionalProperties: false
+required:
+- components
+additionalProperties: false
+$defs:
+  LogisticsRating:
+    type: object
+    title: LogisticsRating
+    description: A numeric score given by a user for a logistics service, driver,
+      or carrier.
+    required:
+    - value
+    - ratingFor
+    properties:
+      id:
+        type: string
+        example: RTG-00456
+      value:
+        type: number
+        minimum: 1
+        maximum: 5
+        example: 4.5
+      ratingFor:
+        type: string
+        enum:
+        - DRIVER
+        - CARRIER
+        - SERVICE
+        - PACKAGING
+        example: DRIVER
+      ratedBy:
+        type: string
+        description: User ID who gave the rating
+      shipmentId:
+        type: string
+      categories:
+        type: object
+        description: Category-wise ratings
+        properties:
+          timeliness:
+            type: number
+            minimum: 1
+            maximum: 5
+          packaging:
+            type: number
+            minimum: 1
+            maximum: 5
+          handling:
+            type: number
+            minimum: 1
+            maximum: 5
+          communication:
+            type: number
+            minimum: 1
+            maximum: 5
+      timestamp:
+        type: string
+        format: date-time
