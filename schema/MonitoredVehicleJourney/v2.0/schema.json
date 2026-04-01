@@ -6,19 +6,19 @@
   "properties": {
     "lineRef": {
       "description": "Reference to the line being monitored",
-      "$ref": "../../Line/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Line/v2.0/schema.json"
     },
     "directionRef": {
       "description": "Direction of travel being monitored",
-      "$ref": "../../Direction/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Direction/v2.0/schema.json"
     },
     "vehicleRef": {
       "description": "Vehicle assigned to this journey",
-      "$ref": "../../Vehicle/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Vehicle/v2.0/schema.json"
     },
     "vehicleLocation": {
       "description": "Current geographic position of the vehicle",
-      "$ref": "../../VehiclePosition/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/VehiclePosition/v2.0/schema.json"
     },
     "bearing": {
       "description": "Compass bearing of travel in degrees",
@@ -30,7 +30,7 @@
     },
     "occupancy": {
       "description": "Current passenger occupancy of the vehicle",
-      "$ref": "../../OccupancyStatus/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/OccupancyStatus/v2.0/schema.json"
     },
     "vehicleJourneyCode": {
       "description": "Unique code for this vehicle journey",
@@ -38,19 +38,19 @@
     },
     "routeRef": {
       "description": "Reference to the route being served",
-      "$ref": "../../Route/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Route/v2.0/schema.json"
     },
     "serviceCalendarRef": {
       "description": "Calendar defining when this journey operates",
-      "$ref": "../../ServiceCalendar/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/ServiceCalendar/v2.0/schema.json"
     },
     "patternRef": {
       "description": "Journey pattern being followed",
-      "$ref": "../../Pattern/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Pattern/v2.0/schema.json"
     },
     "stopTimes": {
       "description": "Scheduled stop times for each stop on this journey",
-      "$ref": "../../StopTime/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/StopTime/v2.0/schema.json"
     }
   },
   "additionalProperties": false

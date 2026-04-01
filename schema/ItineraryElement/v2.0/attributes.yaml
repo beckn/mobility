@@ -22,10 +22,10 @@ components:
           type: string
         segmentRef:
           description: Reference to a flight segment if this is a flight element
-          $ref: ../../FlightSegment/v2.0/schema.json#/$defs/FlightSegment
+          $ref: https://schema.beckn.io/FlightSegment/v2.0/attributes.yaml#/components/schemas/FlightSegment
         legRef:
           description: Reference to a transport leg if this is a surface element
-          $ref: ../../Leg/v2.0/schema.json#/$defs/Leg
+          $ref: https://schema.beckn.io/Leg/v2.0/attributes.yaml#/components/schemas/Leg
         sequence:
           description: Sequential order of this element within the itinerary
           type: number

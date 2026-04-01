@@ -23,7 +23,7 @@
     },
     "vehiclePreference": {
       "description": "Preferred vehicle category",
-      "$ref": "../../VehicleCategory/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/VehicleCategory/v2.0/schema.json"
     },
     "textSearch": {
       "description": "Free-text search query expressing what the traveler is looking for",

@@ -34,7 +34,7 @@ components:
           type: string
         segmentRef:
           description: Flight segment this fare component applies to
-          $ref: ../../FlightSegment/v2.0/schema.json#/$defs/FlightSegment
+          $ref: https://schema.beckn.io/FlightSegment/v2.0/attributes.yaml#/components/schemas/FlightSegment
         title:
           description: Title or label of this price component
           type: string

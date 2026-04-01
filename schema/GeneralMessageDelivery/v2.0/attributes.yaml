@@ -23,7 +23,7 @@ components:
           format: date-time
         infoMessages:
           description: List of informational messages in this delivery
-          $ref: ../../Alert/v2.0/schema.json#/$defs/Alert
+          $ref: https://schema.beckn.io/Alert/v2.0/attributes.yaml#/components/schemas/Alert
         channel:
           description: Distribution channel for this message (e.g. WEB, SMS, APP)
           type: string

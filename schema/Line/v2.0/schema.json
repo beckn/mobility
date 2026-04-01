@@ -30,11 +30,11 @@
     },
     "operatorRef": {
       "description": "Reference to the operator running this line",
-      "$ref": "../../Operator/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Operator/v2.0/schema.json"
     },
     "networkRef": {
       "description": "Reference to the network this line belongs to",
-      "$ref": "../../Network/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Network/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the item",

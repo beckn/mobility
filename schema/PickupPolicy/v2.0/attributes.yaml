@@ -19,7 +19,7 @@ components:
       properties:
         allowedPickupAreas:
           description: Geographic areas where pickup is permitted
-          $ref: ../../Geofence/v2.0/schema.json#/$defs/Geofence
+          $ref: https://schema.beckn.io/Geofence/v2.0/attributes.yaml#/components/schemas/Geofence
         pickupConditions:
           description: Conditions that must be met for a valid pickup
           type: string

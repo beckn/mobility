@@ -20,11 +20,11 @@
     },
     "stopRef": {
       "description": "Reference to the Stop entity for this fulfillment stop",
-      "$ref": "../../Stop/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Stop/v2.0/schema.json"
     },
     "passengerCount": {
       "description": "Passenger count at this fulfillment stop",
-      "$ref": "../../PassengerCount/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/PassengerCount/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the fulfillment stop",

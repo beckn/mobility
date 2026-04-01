@@ -28,13 +28,13 @@ components:
           type: string
         platforms:
           description: Platforms or quays within this station
-          $ref: ../../Quay/v2.0/schema.json#/$defs/Quay
+          $ref: https://schema.beckn.io/Quay/v2.0/attributes.yaml#/components/schemas/Quay
         levels:
           description: Levels or floors within the station
-          $ref: ../../Level/v2.0/schema.json#/$defs/Level
+          $ref: https://schema.beckn.io/Level/v2.0/attributes.yaml#/components/schemas/Level
         pathways:
           description: Internal navigation pathways within the station
-          $ref: ../../Pathway/v2.0/schema.json#/$defs/Pathway
+          $ref: https://schema.beckn.io/Pathway/v2.0/attributes.yaml#/components/schemas/Pathway
         id:
           description: Unique identifier for the location
           type: string

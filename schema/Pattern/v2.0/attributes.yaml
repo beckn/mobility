@@ -22,16 +22,16 @@ components:
           type: string
         routeRef:
           description: Reference to the route this pattern belongs to
-          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+          $ref: https://schema.beckn.io/Route/v2.0/attributes.yaml#/components/schemas/Route
         directionId:
           description: Direction of travel (0 or 1)
           type: string
         stops:
           description: Ordered list of stops in this pattern
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         shapeRef:
           description: Reference to the geographic shape of this pattern
-          $ref: ../../Shape/v2.0/schema.json#/$defs/Shape
+          $ref: https://schema.beckn.io/Shape/v2.0/attributes.yaml#/components/schemas/Shape
         id:
           description: Unique identifier for the item
           type: string

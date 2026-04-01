@@ -15,7 +15,7 @@
     },
     "reviewer": {
       "description": "The passenger who submitted this review",
-      "$ref": "../../Rider/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Rider/v2.0/schema.json"
     },
     "target": {
       "description": "The entity being rated, with id and category (Order, Fulfillment, Provider, Agent)",

@@ -22,7 +22,7 @@ components:
           type: string
         riderCategoryId:
           description: Passenger category eligible for this fare product
-          $ref: ../../RiderCategory/v2.0/schema.json#/$defs/RiderCategory
+          $ref: https://schema.beckn.io/RiderCategory/v2.0/attributes.yaml#/components/schemas/RiderCategory
         durationType:
           description: Duration basis (e.g. SINGLE_TRIP, DAILY, MONTHLY)
           type: string

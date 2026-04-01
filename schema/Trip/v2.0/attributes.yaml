@@ -39,10 +39,10 @@ components:
           type: number
         driverRef:
           description: Reference to the driver for this trip
-          $ref: ../../Driver/v2.0/schema.json#/$defs/Driver
+          $ref: https://schema.beckn.io/Driver/v2.0/attributes.yaml#/components/schemas/Driver
         vehicleRef:
           description: Reference to the vehicle for this trip
-          $ref: ../../Vehicle/v2.0/schema.json#/$defs/Vehicle
+          $ref: https://schema.beckn.io/Vehicle/v2.0/attributes.yaml#/components/schemas/Vehicle
         id:
           description: Unique identifier for the contract
           type: string

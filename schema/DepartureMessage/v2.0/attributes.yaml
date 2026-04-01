@@ -19,13 +19,13 @@ components:
       properties:
         stopRef:
           description: Reference to the stop for which departures are reported
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         lineRef:
           description: Reference to the line departing from this stop
-          $ref: ../../Line/v2.0/schema.json#/$defs/Line
+          $ref: https://schema.beckn.io/Line/v2.0/attributes.yaml#/components/schemas/Line
         vehicleRef:
           description: Reference to the departing vehicle
-          $ref: ../../VehicleDescriptor/v2.0/schema.json#/$defs/VehicleDescriptor
+          $ref: https://schema.beckn.io/VehicleDescriptor/v2.0/attributes.yaml#/components/schemas/VehicleDescriptor
         expectedDeparture:
           description: Predicted departure time
           type: string

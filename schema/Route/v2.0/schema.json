@@ -22,11 +22,11 @@
     },
     "operatorRef": {
       "description": "Operator providing this route",
-      "$ref": "../../Operator/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Operator/v2.0/schema.json"
     },
     "networkRef": {
       "description": "Network this route belongs to",
-      "$ref": "../../Network/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Network/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the item",

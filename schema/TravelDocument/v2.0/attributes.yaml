@@ -26,7 +26,7 @@ components:
           type: string
         issuingAuthority:
           description: The operator or authority that issued this document
-          $ref: ../../Operator/v2.0/schema.json#/$defs/Operator
+          $ref: https://schema.beckn.io/Operator/v2.0/attributes.yaml#/components/schemas/Operator
         validFrom:
           description: Start date of the document validity
           type: string

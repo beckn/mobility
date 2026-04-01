@@ -25,16 +25,16 @@ components:
           type: string
         fromStopId:
           description: The stop passengers transfer from
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         toStopId:
           description: The stop passengers transfer to
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         fromTripId:
           description: The vehicle journey passengers transfer from
-          $ref: ../../VehicleJourney/v2.0/schema.json#/$defs/VehicleJourney
+          $ref: https://schema.beckn.io/VehicleJourney/v2.0/attributes.yaml#/components/schemas/VehicleJourney
         toTripId:
           description: The vehicle journey passengers transfer to
-          $ref: ../../VehicleJourney/v2.0/schema.json#/$defs/VehicleJourney
+          $ref: https://schema.beckn.io/VehicleJourney/v2.0/attributes.yaml#/components/schemas/VehicleJourney
         stopId:
           description: Unique identifier for the stop
           type: string
@@ -50,7 +50,7 @@ components:
           type: string
         parentStation:
           description: Reference to the parent station if this is a platform
-          $ref: ../../Station/v2.0/schema.json#/$defs/Station
+          $ref: https://schema.beckn.io/Station/v2.0/attributes.yaml#/components/schemas/Station
         wheelchairBoarding:
           description: Wheelchair accessibility (0=no info, 1=accessible, 2=not accessible)
           type: string

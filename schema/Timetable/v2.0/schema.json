@@ -6,11 +6,11 @@
   "properties": {
     "routeRef": {
       "description": "Reference to the route this timetable covers",
-      "$ref": "../../Route/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Route/v2.0/schema.json"
     },
     "trips": {
       "description": "Vehicle journeys (trips) in this timetable",
-      "$ref": "../../VehicleJourney/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/VehicleJourney/v2.0/schema.json"
     },
     "validFrom": {
       "description": "Date from which this timetable is valid",

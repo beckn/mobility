@@ -19,7 +19,7 @@ components:
       properties:
         stopId:
           description: Reference to the stop being updated
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         stopSequence:
           description: Sequence of this stop in the trip
           type: number

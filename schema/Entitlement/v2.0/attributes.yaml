@@ -25,7 +25,7 @@ components:
           type: string
         issuingAuthority:
           description: The authority or operator that issued this entitlement
-          $ref: ../../Authority/v2.0/schema.json#/$defs/Authority
+          $ref: https://schema.beckn.io/Authority/v2.0/attributes.yaml#/components/schemas/Authority
         validity:
           description: Validity period of the entitlement
           $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod

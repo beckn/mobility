@@ -6,15 +6,15 @@
   "properties": {
     "stopRef": {
       "description": "Reference to the stop for which departures are reported",
-      "$ref": "../../Stop/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Stop/v2.0/schema.json"
     },
     "lineRef": {
       "description": "Reference to the line departing from this stop",
-      "$ref": "../../Line/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Line/v2.0/schema.json"
     },
     "vehicleRef": {
       "description": "Reference to the departing vehicle",
-      "$ref": "../../VehicleDescriptor/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/VehicleDescriptor/v2.0/schema.json"
     },
     "expectedDeparture": {
       "description": "Predicted departure time",

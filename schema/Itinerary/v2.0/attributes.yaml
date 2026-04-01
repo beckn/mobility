@@ -19,7 +19,7 @@ components:
       properties:
         legs:
           description: Ordered list of legs making up this itinerary
-          $ref: ../../Leg/v2.0/schema.json#/$defs/Leg
+          $ref: https://schema.beckn.io/Leg/v2.0/attributes.yaml#/components/schemas/Leg
         totalDuration:
           description: Total travel duration for the itinerary
           type: string

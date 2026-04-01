@@ -19,15 +19,15 @@
     },
     "stopMonitoring": {
       "description": "Stop monitoring delivery payloads",
-      "$ref": "../../StopMonitoring/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/StopMonitoring/v2.0/schema.json"
     },
     "vehicleMonitoring": {
       "description": "Vehicle monitoring delivery payloads",
-      "$ref": "../../VehicleMonitoringDelivery/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/VehicleMonitoringDelivery/v2.0/schema.json"
     },
     "estimatedTimetable": {
       "description": "Estimated timetable delivery payloads",
-      "$ref": "../../EstimatedTimetableDelivery/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/EstimatedTimetableDelivery/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the catalog",

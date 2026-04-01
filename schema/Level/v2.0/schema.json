@@ -18,7 +18,7 @@
     },
     "stationRef": {
       "description": "Reference to the station this level belongs to",
-      "$ref": "../../Station/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Station/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the location",

@@ -29,7 +29,7 @@ components:
           type: string
         geofenceRef:
           description: Geographic area where the surge pricing applies
-          $ref: ../../Geofence/v2.0/schema.json#/$defs/Geofence
+          $ref: https://schema.beckn.io/Geofence/v2.0/attributes.yaml#/components/schemas/Geofence
         title:
           description: Title or label of this price component
           type: string

@@ -11,7 +11,7 @@
     },
     "itineraries": {
       "description": "List of itinerary options returned in the plan",
-      "$ref": "../../Itinerary/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Itinerary/v2.0/schema.json"
     },
     "from": {
       "description": "Origin location for this plan",

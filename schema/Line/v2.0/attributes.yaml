@@ -37,10 +37,10 @@ components:
           type: string
         operatorRef:
           description: Reference to the operator running this line
-          $ref: ../../Operator/v2.0/schema.json#/$defs/Operator
+          $ref: https://schema.beckn.io/Operator/v2.0/attributes.yaml#/components/schemas/Operator
         networkRef:
           description: Reference to the network this line belongs to
-          $ref: ../../Network/v2.0/schema.json#/$defs/Network
+          $ref: https://schema.beckn.io/Network/v2.0/attributes.yaml#/components/schemas/Network
         id:
           description: Unique identifier for the item
           type: string

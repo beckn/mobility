@@ -25,7 +25,7 @@ components:
           type: number
         leadPassenger:
           description: The lead or primary passenger for the group
-          $ref: ../../Passenger/v2.0/schema.json#/$defs/Passenger
+          $ref: https://schema.beckn.io/Passenger/v2.0/attributes.yaml#/components/schemas/Passenger
         unitCode:
           description: Unit of measure code (UN/ECE Rec 20)
           type: string

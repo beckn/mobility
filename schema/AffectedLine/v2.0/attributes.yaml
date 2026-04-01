@@ -22,10 +22,10 @@ components:
           type: string
         lineRef:
           description: Reference to the affected Line entity
-          $ref: ../../Line/v2.0/schema.json#/$defs/Line
+          $ref: https://schema.beckn.io/Line/v2.0/attributes.yaml#/components/schemas/Line
         affectedStops:
           description: Stops on this line affected by the disruption
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         cause:
           description: Cause of the disruption affecting this line
           type: string

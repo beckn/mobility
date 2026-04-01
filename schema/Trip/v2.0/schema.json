@@ -32,11 +32,11 @@
     },
     "driverRef": {
       "description": "Reference to the driver for this trip",
-      "$ref": "../../Driver/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Driver/v2.0/schema.json"
     },
     "vehicleRef": {
       "description": "Reference to the vehicle for this trip",
-      "$ref": "../../Vehicle/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Vehicle/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the contract",

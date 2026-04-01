@@ -52,7 +52,7 @@
     },
     "routeRef": {
       "description": "Reference to the route served on this leg",
-      "$ref": "../../Route/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Route/v2.0/schema.json"
     }
   },
   "additionalProperties": false

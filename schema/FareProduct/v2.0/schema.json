@@ -10,7 +10,7 @@
     },
     "riderCategoryId": {
       "description": "Passenger category eligible for this fare product",
-      "$ref": "../../RiderCategory/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/RiderCategory/v2.0/schema.json"
     },
     "durationType": {
       "description": "Duration basis (e.g. SINGLE_TRIP, DAILY, MONTHLY)",

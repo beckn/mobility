@@ -6,11 +6,11 @@
   "properties": {
     "tripDescriptor": {
       "description": "Identifies the trip this vehicle is operating",
-      "$ref": "../../TripDescriptor/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/TripDescriptor/v2.0/schema.json"
     },
     "vehicleDescriptor": {
       "description": "Identifies the reporting vehicle",
-      "$ref": "../../VehicleDescriptor/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/VehicleDescriptor/v2.0/schema.json"
     },
     "latitude": {
       "description": "Current latitude in WGS-84 decimal degrees",

@@ -28,13 +28,13 @@ components:
           type: string
         fromAreaId:
           description: Origin tariff zone for this fare leg rule
-          $ref: ../../TariffZone/v2.0/schema.json#/$defs/TariffZone
+          $ref: https://schema.beckn.io/TariffZone/v2.0/attributes.yaml#/components/schemas/TariffZone
         toAreaId:
           description: Destination tariff zone for this fare leg rule
-          $ref: ../../TariffZone/v2.0/schema.json#/$defs/TariffZone
+          $ref: https://schema.beckn.io/TariffZone/v2.0/attributes.yaml#/components/schemas/TariffZone
         containsServiceId:
           description: Specific route this rule applies to
-          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+          $ref: https://schema.beckn.io/Route/v2.0/attributes.yaml#/components/schemas/Route
         id:
           description: Unique identifier for the policy
           type: string

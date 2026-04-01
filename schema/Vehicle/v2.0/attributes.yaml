@@ -37,7 +37,7 @@ components:
           type: string
         vehicleType:
           description: Type classification of the vehicle
-          $ref: ../../VehicleType/v2.0/schema.json#/$defs/VehicleType
+          $ref: https://schema.beckn.io/VehicleType/v2.0/attributes.yaml#/components/schemas/VehicleType
         id:
           description: Unique identifier for the item
           type: string

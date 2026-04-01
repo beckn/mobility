@@ -10,11 +10,11 @@
     },
     "lineRef": {
       "description": "Reference to the affected Line entity",
-      "$ref": "../../Line/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Line/v2.0/schema.json"
     },
     "affectedStops": {
       "description": "Stops on this line affected by the disruption",
-      "$ref": "../../Stop/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Stop/v2.0/schema.json"
     },
     "cause": {
       "description": "Cause of the disruption affecting this line",

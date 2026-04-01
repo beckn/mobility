@@ -25,7 +25,7 @@ components:
           type: string
         seatRef:
           description: Specific seat requested, if applicable
-          $ref: ../../Seat/v2.0/schema.json#/$defs/Seat
+          $ref: https://schema.beckn.io/Seat/v2.0/attributes.yaml#/components/schemas/Seat
         id:
           description: Unique identifier for the contract item
           type: string

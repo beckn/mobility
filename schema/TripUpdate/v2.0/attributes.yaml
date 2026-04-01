@@ -37,7 +37,7 @@ components:
         driverRef:
           description: Reference to the current driver if changed from the originally
             assigned driver
-          $ref: ../../Driver/v2.0/schema.json#/$defs/Driver
+          $ref: https://schema.beckn.io/Driver/v2.0/attributes.yaml#/components/schemas/Driver
         updatedAt:
           description: Timestamp when this trip update was issued
           type: string

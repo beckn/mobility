@@ -6,7 +6,7 @@
   "properties": {
     "legs": {
       "description": "Ordered list of legs making up this itinerary",
-      "$ref": "../../Leg/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Leg/v2.0/schema.json"
     },
     "totalDuration": {
       "description": "Total travel duration for the itinerary",

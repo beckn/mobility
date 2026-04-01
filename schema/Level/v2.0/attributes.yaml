@@ -29,7 +29,7 @@ components:
           type: number
         stationRef:
           description: Reference to the station this level belongs to
-          $ref: ../../Station/v2.0/schema.json#/$defs/Station
+          $ref: https://schema.beckn.io/Station/v2.0/attributes.yaml#/components/schemas/Station
         id:
           description: Unique identifier for the location
           type: string

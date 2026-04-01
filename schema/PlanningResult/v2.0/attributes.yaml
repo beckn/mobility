@@ -25,10 +25,10 @@ components:
           $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
         options:
           description: Available transport options returned
-          $ref: ../../RideOption/v2.0/schema.json#/$defs/RideOption
+          $ref: https://schema.beckn.io/RideOption/v2.0/attributes.yaml#/components/schemas/RideOption
         itineraries:
           description: Multi-modal itinerary options if applicable
-          $ref: ../../Itinerary/v2.0/schema.json#/$defs/Itinerary
+          $ref: https://schema.beckn.io/Itinerary/v2.0/attributes.yaml#/components/schemas/Itinerary
         id:
           description: Unique identifier for the catalog
           type: string

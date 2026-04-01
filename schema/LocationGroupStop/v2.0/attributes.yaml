@@ -22,7 +22,7 @@ components:
           type: string
         stopId:
           description: Reference to the stop in this association
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         id:
           description: Unique identifier for the location
           type: string

@@ -14,7 +14,7 @@
     },
     "issuingAuthority": {
       "description": "The operator or authority that issued this document",
-      "$ref": "../../Operator/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Operator/v2.0/schema.json"
     },
     "validFrom": {
       "description": "Start date of the document validity",

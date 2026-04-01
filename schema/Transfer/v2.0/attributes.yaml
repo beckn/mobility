@@ -19,16 +19,16 @@ components:
       properties:
         fromStopId:
           description: Stop passengers transfer from
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         toStopId:
           description: Stop passengers transfer to
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         fromRouteId:
           description: Route passengers transfer from
-          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+          $ref: https://schema.beckn.io/Route/v2.0/attributes.yaml#/components/schemas/Route
         toRouteId:
           description: Route passengers transfer to
-          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+          $ref: https://schema.beckn.io/Route/v2.0/attributes.yaml#/components/schemas/Route
         transferType:
           description: Type of transfer (0=recommended, 1=timed, 2=min_time, 3=not_possible)
           type: string

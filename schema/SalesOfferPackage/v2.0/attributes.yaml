@@ -19,10 +19,10 @@ components:
       properties:
         fareProducts:
           description: Fare products included in this sales package
-          $ref: ../../FareProduct/v2.0/schema.json#/$defs/FareProduct
+          $ref: https://schema.beckn.io/FareProduct/v2.0/attributes.yaml#/components/schemas/FareProduct
         distributions:
           description: Channels through which this package can be purchased
-          $ref: ../../DistributionChannel/v2.0/schema.json#/$defs/DistributionChannel
+          $ref: https://schema.beckn.io/DistributionChannel/v2.0/attributes.yaml#/components/schemas/DistributionChannel
         conditionsOfTravel:
           description: Conditions applying to the use of this package
           type: string

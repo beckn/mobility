@@ -10,7 +10,7 @@
     },
     "emergencyContact": {
       "description": "Emergency contact handle for safety incidents",
-      "$ref": "../../ContactHandle/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/ContactHandle/v2.0/schema.json"
     },
     "insuranceCoverage": {
       "description": "Description of insurance coverage under this policy",

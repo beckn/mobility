@@ -19,7 +19,7 @@ components:
       properties:
         stopPointRef:
           description: Reference to the stop point for this call
-          $ref: ../../StopPoint/v2.0/schema.json#/$defs/StopPoint
+          $ref: https://schema.beckn.io/StopPoint/v2.0/attributes.yaml#/components/schemas/StopPoint
         visitNumber:
           description: Visit sequence number for loop services
           type: number

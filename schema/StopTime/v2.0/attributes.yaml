@@ -28,7 +28,7 @@ components:
           type: number
         stopRef:
           description: Reference to the stop for this stop time
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         pickupType:
           description: How passengers board at this stop (0=regular, 1=no_pickup,
             2=phone_agency, 3=coordinate_with_driver)

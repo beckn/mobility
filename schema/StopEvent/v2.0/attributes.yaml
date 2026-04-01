@@ -30,10 +30,10 @@ components:
           format: date-time
         serviceJourneyRef:
           description: Reference to the vehicle journey for this event
-          $ref: ../../VehicleJourney/v2.0/schema.json#/$defs/VehicleJourney
+          $ref: https://schema.beckn.io/VehicleJourney/v2.0/attributes.yaml#/components/schemas/VehicleJourney
         stopPointRef:
           description: Reference to the stop point where the event occurs
-          $ref: ../../StopPoint/v2.0/schema.json#/$defs/StopPoint
+          $ref: https://schema.beckn.io/StopPoint/v2.0/attributes.yaml#/components/schemas/StopPoint
         id:
           description: Unique identifier for the fulfillment stop
           type: string

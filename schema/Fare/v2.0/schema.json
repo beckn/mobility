@@ -22,7 +22,7 @@
     },
     "fareRules": {
       "description": "Leg rules that determine when this fare applies",
-      "$ref": "../../FareLegRule/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/FareLegRule/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the offer",

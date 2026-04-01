@@ -22,19 +22,19 @@ components:
           type: string
         routeRef:
           description: Reference to the route being served
-          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+          $ref: https://schema.beckn.io/Route/v2.0/attributes.yaml#/components/schemas/Route
         serviceCalendarRef:
           description: Calendar defining when this journey operates
-          $ref: ../../ServiceCalendar/v2.0/schema.json#/$defs/ServiceCalendar
+          $ref: https://schema.beckn.io/ServiceCalendar/v2.0/attributes.yaml#/components/schemas/ServiceCalendar
         vehicleRef:
           description: Vehicle assigned to this journey
-          $ref: ../../Vehicle/v2.0/schema.json#/$defs/Vehicle
+          $ref: https://schema.beckn.io/Vehicle/v2.0/attributes.yaml#/components/schemas/Vehicle
         patternRef:
           description: Journey pattern being followed
-          $ref: ../../Pattern/v2.0/schema.json#/$defs/Pattern
+          $ref: https://schema.beckn.io/Pattern/v2.0/attributes.yaml#/components/schemas/Pattern
         stopTimes:
           description: Scheduled stop times for each stop on this journey
-          $ref: ../../StopTime/v2.0/schema.json#/$defs/StopTime
+          $ref: https://schema.beckn.io/StopTime/v2.0/attributes.yaml#/components/schemas/StopTime
         id:
           description: Unique identifier for the fulfillment
           type: string

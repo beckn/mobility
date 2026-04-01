@@ -23,7 +23,7 @@ components:
           format: date-time
         estimatedVehicleJourneys:
           description: Vehicle journeys with estimated timetable data
-          $ref: ../../VehicleJourney/v2.0/schema.json#/$defs/VehicleJourney
+          $ref: https://schema.beckn.io/VehicleJourney/v2.0/attributes.yaml#/components/schemas/VehicleJourney
         validUntil:
           description: Time until which this estimated data is valid
           type: string

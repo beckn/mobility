@@ -26,10 +26,10 @@ components:
           type: string
         quays:
           description: Quays or boarding areas within this stop place
-          $ref: ../../Quay/v2.0/schema.json#/$defs/Quay
+          $ref: https://schema.beckn.io/Quay/v2.0/attributes.yaml#/components/schemas/Quay
         entrances:
           description: Entrances and pathways into this stop place
-          $ref: ../../Pathway/v2.0/schema.json#/$defs/Pathway
+          $ref: https://schema.beckn.io/Pathway/v2.0/attributes.yaml#/components/schemas/Pathway
         id:
           description: Unique identifier for the location
           type: string

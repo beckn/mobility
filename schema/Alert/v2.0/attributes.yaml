@@ -38,7 +38,7 @@ components:
           $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
         informedEntity:
           description: Transport entities affected by this alert
-          $ref: ../../EntitySelector/v2.0/schema.json#/$defs/EntitySelector
+          $ref: https://schema.beckn.io/EntitySelector/v2.0/attributes.yaml#/components/schemas/EntitySelector
         id:
           description: Unique identifier for the alert
           type: string

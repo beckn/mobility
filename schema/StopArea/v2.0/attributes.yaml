@@ -25,7 +25,7 @@ components:
           type: string
         stops:
           description: Stops contained within this area
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         geometry:
           description: GeoJSON geometry defining the area boundary
           $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry

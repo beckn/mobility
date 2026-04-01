@@ -25,10 +25,10 @@ components:
           type: string
         fareProducts:
           description: Fare products applicable to the result
-          $ref: ../../FareProduct/v2.0/schema.json#/$defs/FareProduct
+          $ref: https://schema.beckn.io/FareProduct/v2.0/attributes.yaml#/components/schemas/FareProduct
         fareBreakup:
           description: Itemised breakdown of the calculated fare
-          $ref: ../../FareBreakup/v2.0/schema.json#/$defs/FareBreakup
+          $ref: https://schema.beckn.io/FareBreakup/v2.0/attributes.yaml#/components/schemas/FareBreakup
         id:
           description: Unique identifier for the offer
           type: string

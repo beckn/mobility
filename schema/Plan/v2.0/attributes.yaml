@@ -23,7 +23,7 @@ components:
           format: date-time
         itineraries:
           description: List of itinerary options returned in the plan
-          $ref: ../../Itinerary/v2.0/schema.json#/$defs/Itinerary
+          $ref: https://schema.beckn.io/Itinerary/v2.0/attributes.yaml#/components/schemas/Itinerary
         from:
           description: Origin location for this plan
           $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location

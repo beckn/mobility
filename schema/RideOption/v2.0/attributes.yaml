@@ -19,7 +19,7 @@ components:
       properties:
         vehicleType:
           description: Category of vehicle for this ride option
-          $ref: ../../VehicleCategory/v2.0/schema.json#/$defs/VehicleCategory
+          $ref: https://schema.beckn.io/VehicleCategory/v2.0/attributes.yaml#/components/schemas/VehicleCategory
         estimatedArrival:
           description: Estimated vehicle arrival time at the pickup point
           type: string
@@ -33,7 +33,7 @@ components:
           type: number
         pricingModel:
           description: Pricing model applicable to this ride option
-          $ref: ../../PricingModel/v2.0/schema.json#/$defs/PricingModel
+          $ref: https://schema.beckn.io/PricingModel/v2.0/attributes.yaml#/components/schemas/PricingModel
         id:
           description: Unique identifier for the offer
           type: string

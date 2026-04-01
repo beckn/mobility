@@ -25,7 +25,7 @@ components:
           type: string
         stops:
           description: Stops included in this location group
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         id:
           description: Unique identifier for the location
           type: string

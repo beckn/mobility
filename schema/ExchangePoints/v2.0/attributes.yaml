@@ -22,7 +22,7 @@ components:
           type: string
         connectingServices:
           description: Services that connect at this exchange point
-          $ref: ../../VehicleJourney/v2.0/schema.json#/$defs/VehicleJourney
+          $ref: https://schema.beckn.io/VehicleJourney/v2.0/attributes.yaml#/components/schemas/VehicleJourney
         id:
           description: Unique identifier for the fulfillment stop
           type: string

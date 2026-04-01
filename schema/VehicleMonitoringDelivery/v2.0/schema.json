@@ -11,7 +11,7 @@
     },
     "vehicleActivities": {
       "description": "List of vehicle activity records in this delivery",
-      "$ref": "../../MonitoredVehicleJourney/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/MonitoredVehicleJourney/v2.0/schema.json"
     },
     "validUntil": {
       "description": "Time until which this delivery data is valid",

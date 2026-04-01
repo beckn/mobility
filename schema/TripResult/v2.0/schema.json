@@ -6,11 +6,11 @@
   "properties": {
     "itineraries": {
       "description": "List of itinerary options in the result",
-      "$ref": "../../Itinerary/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Itinerary/v2.0/schema.json"
     },
     "requestRef": {
       "description": "Reference to the originating trip request",
-      "$ref": "../../TripRequest/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/TripRequest/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the catalog",

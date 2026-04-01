@@ -31,7 +31,7 @@ components:
           type: string
         fareRules:
           description: Leg rules that determine when this fare applies
-          $ref: ../../FareLegRule/v2.0/schema.json#/$defs/FareLegRule
+          $ref: https://schema.beckn.io/FareLegRule/v2.0/attributes.yaml#/components/schemas/FareLegRule
         id:
           description: Unique identifier for the offer
           type: string

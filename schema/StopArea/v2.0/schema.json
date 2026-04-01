@@ -14,7 +14,7 @@
     },
     "stops": {
       "description": "Stops contained within this area",
-      "$ref": "../../Stop/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Stop/v2.0/schema.json"
     },
     "geometry": {
       "description": "GeoJSON geometry defining the area boundary",

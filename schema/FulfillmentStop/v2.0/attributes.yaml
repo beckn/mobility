@@ -30,10 +30,10 @@ components:
           format: date-time
         stopRef:
           description: Reference to the Stop entity for this fulfillment stop
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         passengerCount:
           description: Passenger count at this fulfillment stop
-          $ref: ../../PassengerCount/v2.0/schema.json#/$defs/PassengerCount
+          $ref: https://schema.beckn.io/PassengerCount/v2.0/attributes.yaml#/components/schemas/PassengerCount
         id:
           description: Unique identifier for the fulfillment stop
           type: string

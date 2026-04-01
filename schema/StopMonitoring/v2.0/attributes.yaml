@@ -19,10 +19,10 @@ components:
       properties:
         stopRef:
           description: Reference to the stop being monitored
-          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
         monitoredCalls:
           description: List of real-time arrival/departure calls at this stop
-          $ref: ../../MonitoredCall/v2.0/schema.json#/$defs/MonitoredCall
+          $ref: https://schema.beckn.io/MonitoredCall/v2.0/attributes.yaml#/components/schemas/MonitoredCall
         responseTimestamp:
           description: Timestamp of this stop monitoring response
           type: string

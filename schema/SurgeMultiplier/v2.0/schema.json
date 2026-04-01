@@ -19,7 +19,7 @@
     },
     "geofenceRef": {
       "description": "Geographic area where the surge pricing applies",
-      "$ref": "../../Geofence/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Geofence/v2.0/schema.json"
     },
     "title": {
       "description": "Title or label of this price component",

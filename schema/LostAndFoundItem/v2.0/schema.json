@@ -24,7 +24,7 @@
     },
     "vehicleRef": {
       "description": "Vehicle on which the item was found or lost",
-      "$ref": "../../Vehicle/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Vehicle/v2.0/schema.json"
     },
     "orderId": {
       "description": "Identifier of the contract/order against which support is required",

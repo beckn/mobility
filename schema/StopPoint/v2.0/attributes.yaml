@@ -28,7 +28,7 @@ components:
           type: string
         stopAreaRef:
           description: Reference to the stop area this point belongs to
-          $ref: ../../StopArea/v2.0/schema.json#/$defs/StopArea
+          $ref: https://schema.beckn.io/StopArea/v2.0/attributes.yaml#/components/schemas/StopArea
         id:
           description: Unique identifier for the fulfillment stop
           type: string

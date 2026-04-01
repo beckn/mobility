@@ -22,7 +22,7 @@ components:
           type: string
         emergencyContact:
           description: Emergency contact handle for safety incidents
-          $ref: ../../ContactHandle/v2.0/schema.json#/$defs/ContactHandle
+          $ref: https://schema.beckn.io/ContactHandle/v2.0/attributes.yaml#/components/schemas/ContactHandle
         insuranceCoverage:
           description: Description of insurance coverage under this policy
           type: string

@@ -11,7 +11,7 @@
     },
     "infoMessages": {
       "description": "List of informational messages in this delivery",
-      "$ref": "../../Alert/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Alert/v2.0/schema.json"
     },
     "channel": {
       "description": "Distribution channel for this message (e.g. WEB, SMS, APP)",

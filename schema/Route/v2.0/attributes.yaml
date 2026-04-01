@@ -31,10 +31,10 @@ components:
           type: string
         operatorRef:
           description: Operator providing this route
-          $ref: ../../Operator/v2.0/schema.json#/$defs/Operator
+          $ref: https://schema.beckn.io/Operator/v2.0/attributes.yaml#/components/schemas/Operator
         networkRef:
           description: Network this route belongs to
-          $ref: ../../Network/v2.0/schema.json#/$defs/Network
+          $ref: https://schema.beckn.io/Network/v2.0/attributes.yaml#/components/schemas/Network
         id:
           description: Unique identifier for the item
           type: string

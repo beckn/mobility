@@ -10,7 +10,7 @@
     },
     "stopId": {
       "description": "Reference to the stop in this association",
-      "$ref": "../../Stop/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Stop/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the location",

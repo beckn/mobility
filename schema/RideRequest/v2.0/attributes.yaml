@@ -32,7 +32,7 @@ components:
           type: number
         vehiclePreference:
           description: Preferred vehicle category
-          $ref: ../../VehicleCategory/v2.0/schema.json#/$defs/VehicleCategory
+          $ref: https://schema.beckn.io/VehicleCategory/v2.0/attributes.yaml#/components/schemas/VehicleCategory
         textSearch:
           description: Free-text search query expressing what the traveler is looking
             for

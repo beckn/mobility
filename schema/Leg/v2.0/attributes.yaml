@@ -42,7 +42,7 @@ components:
           type: string
         routeRef:
           description: Reference to the route served on this leg
-          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+          $ref: https://schema.beckn.io/Route/v2.0/attributes.yaml#/components/schemas/Route
         id:
           description: Unique identifier for the fulfillment
           type: string

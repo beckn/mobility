@@ -19,10 +19,10 @@ components:
       properties:
         routeRef:
           description: Reference to the route this timetable covers
-          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+          $ref: https://schema.beckn.io/Route/v2.0/attributes.yaml#/components/schemas/Route
         trips:
           description: Vehicle journeys (trips) in this timetable
-          $ref: ../../VehicleJourney/v2.0/schema.json#/$defs/VehicleJourney
+          $ref: https://schema.beckn.io/VehicleJourney/v2.0/attributes.yaml#/components/schemas/VehicleJourney
         validFrom:
           description: Date from which this timetable is valid
           type: string

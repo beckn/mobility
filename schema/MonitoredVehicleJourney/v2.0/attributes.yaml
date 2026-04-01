@@ -19,16 +19,16 @@ components:
       properties:
         lineRef:
           description: Reference to the line being monitored
-          $ref: ../../Line/v2.0/schema.json#/$defs/Line
+          $ref: https://schema.beckn.io/Line/v2.0/attributes.yaml#/components/schemas/Line
         directionRef:
           description: Direction of travel being monitored
-          $ref: ../../Direction/v2.0/schema.json#/$defs/Direction
+          $ref: https://schema.beckn.io/Direction/v2.0/attributes.yaml#/components/schemas/Direction
         vehicleRef:
           description: Vehicle assigned to this journey
-          $ref: ../../Vehicle/v2.0/schema.json#/$defs/Vehicle
+          $ref: https://schema.beckn.io/Vehicle/v2.0/attributes.yaml#/components/schemas/Vehicle
         vehicleLocation:
           description: Current geographic position of the vehicle
-          $ref: ../../VehiclePosition/v2.0/schema.json#/$defs/VehiclePosition
+          $ref: https://schema.beckn.io/VehiclePosition/v2.0/attributes.yaml#/components/schemas/VehiclePosition
         bearing:
           description: Compass bearing of travel in degrees
           type: number
@@ -37,20 +37,20 @@ components:
           type: number
         occupancy:
           description: Current passenger occupancy of the vehicle
-          $ref: ../../OccupancyStatus/v2.0/schema.json#/$defs/OccupancyStatus
+          $ref: https://schema.beckn.io/OccupancyStatus/v2.0/attributes.yaml#/components/schemas/OccupancyStatus
         vehicleJourneyCode:
           description: Unique code for this vehicle journey
           type: string
         routeRef:
           description: Reference to the route being served
-          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+          $ref: https://schema.beckn.io/Route/v2.0/attributes.yaml#/components/schemas/Route
         serviceCalendarRef:
           description: Calendar defining when this journey operates
-          $ref: ../../ServiceCalendar/v2.0/schema.json#/$defs/ServiceCalendar
+          $ref: https://schema.beckn.io/ServiceCalendar/v2.0/attributes.yaml#/components/schemas/ServiceCalendar
         patternRef:
           description: Journey pattern being followed
-          $ref: ../../Pattern/v2.0/schema.json#/$defs/Pattern
+          $ref: https://schema.beckn.io/Pattern/v2.0/attributes.yaml#/components/schemas/Pattern
         stopTimes:
           description: Scheduled stop times for each stop on this journey
-          $ref: ../../StopTime/v2.0/schema.json#/$defs/StopTime
+          $ref: https://schema.beckn.io/StopTime/v2.0/attributes.yaml#/components/schemas/StopTime
       additionalProperties: false

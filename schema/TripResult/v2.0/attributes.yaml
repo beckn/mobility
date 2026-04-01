@@ -19,10 +19,10 @@ components:
       properties:
         itineraries:
           description: List of itinerary options in the result
-          $ref: ../../Itinerary/v2.0/schema.json#/$defs/Itinerary
+          $ref: https://schema.beckn.io/Itinerary/v2.0/attributes.yaml#/components/schemas/Itinerary
         requestRef:
           description: Reference to the originating trip request
-          $ref: ../../TripRequest/v2.0/schema.json#/$defs/TripRequest
+          $ref: https://schema.beckn.io/TripRequest/v2.0/attributes.yaml#/components/schemas/TripRequest
         id:
           description: Unique identifier for the catalog
           type: string

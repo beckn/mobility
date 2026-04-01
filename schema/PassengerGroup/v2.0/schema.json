@@ -14,7 +14,7 @@
     },
     "leadPassenger": {
       "description": "The lead or primary passenger for the group",
-      "$ref": "../../Passenger/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Passenger/v2.0/schema.json"
     },
     "unitCode": {
       "description": "Unit of measure code (UN/ECE Rec 20)",

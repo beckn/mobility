@@ -29,7 +29,7 @@ components:
           type: string
         tripRef:
           description: Reference to the trip for which this receipt is issued
-          $ref: ../../Trip/v2.0/schema.json#/$defs/Trip
+          $ref: https://schema.beckn.io/Trip/v2.0/attributes.yaml#/components/schemas/Trip
         id:
           description: Unique identifier for the invoice
           type: string

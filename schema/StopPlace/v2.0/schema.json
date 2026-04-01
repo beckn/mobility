@@ -14,11 +14,11 @@
     },
     "quays": {
       "description": "Quays or boarding areas within this stop place",
-      "$ref": "../../Quay/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Quay/v2.0/schema.json"
     },
     "entrances": {
       "description": "Entrances and pathways into this stop place",
-      "$ref": "../../Pathway/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Pathway/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the location",

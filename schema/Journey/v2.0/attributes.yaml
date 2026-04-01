@@ -33,7 +33,7 @@ components:
           format: date-time
         legs:
           description: Ordered list of legs comprising this journey
-          $ref: ../../Leg/v2.0/schema.json#/$defs/Leg
+          $ref: https://schema.beckn.io/Leg/v2.0/attributes.yaml#/components/schemas/Leg
         id:
           description: Unique identifier for the contract
           type: string

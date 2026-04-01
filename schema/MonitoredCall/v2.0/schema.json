@@ -6,7 +6,7 @@
   "properties": {
     "stopPointRef": {
       "description": "Reference to the stop point for this call",
-      "$ref": "../../StopPoint/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/StopPoint/v2.0/schema.json"
     },
     "visitNumber": {
       "description": "Visit sequence number for loop services",

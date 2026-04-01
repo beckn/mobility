@@ -22,7 +22,7 @@
     },
     "driverRef": {
       "description": "Reference to the current driver if changed from the originally assigned driver",
-      "$ref": "../../Driver/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Driver/v2.0/schema.json"
     },
     "updatedAt": {
       "description": "Timestamp when this trip update was issued",

@@ -31,7 +31,7 @@ components:
           type: number
         fareBreakup:
           description: Itemised breakdown of the estimated fare
-          $ref: ../../FareBreakup/v2.0/schema.json#/$defs/FareBreakup
+          $ref: https://schema.beckn.io/FareBreakup/v2.0/attributes.yaml#/components/schemas/FareBreakup
         id:
           description: Unique identifier for the offer
           type: string

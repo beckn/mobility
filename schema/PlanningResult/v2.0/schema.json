@@ -14,11 +14,11 @@
     },
     "options": {
       "description": "Available transport options returned",
-      "$ref": "../../RideOption/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/RideOption/v2.0/schema.json"
     },
     "itineraries": {
       "description": "Multi-modal itinerary options if applicable",
-      "$ref": "../../Itinerary/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Itinerary/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the catalog",

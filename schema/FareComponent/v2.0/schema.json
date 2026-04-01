@@ -26,7 +26,7 @@
     },
     "segmentRef": {
       "description": "Flight segment this fare component applies to",
-      "$ref": "../../FlightSegment/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/FlightSegment/v2.0/schema.json"
     },
     "title": {
       "description": "Title or label of this price component",

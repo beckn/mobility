@@ -10,11 +10,11 @@
     },
     "segmentRef": {
       "description": "Reference to a flight segment if this is a flight element",
-      "$ref": "../../FlightSegment/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/FlightSegment/v2.0/schema.json"
     },
     "legRef": {
       "description": "Reference to a transport leg if this is a surface element",
-      "$ref": "../../Leg/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Leg/v2.0/schema.json"
     },
     "sequence": {
       "description": "Sequential order of this element within the itinerary",

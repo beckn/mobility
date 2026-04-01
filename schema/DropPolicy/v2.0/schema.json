@@ -6,7 +6,7 @@
   "properties": {
     "allowedDropAreas": {
       "description": "Geographic areas where drop-off is permitted",
-      "$ref": "../../Geofence/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Geofence/v2.0/schema.json"
     },
     "dropConditions": {
       "description": "Conditions that must be met for a valid drop-off",

@@ -29,13 +29,13 @@ components:
           type: string
         stopMonitoring:
           description: Stop monitoring delivery payloads
-          $ref: ../../StopMonitoring/v2.0/schema.json#/$defs/StopMonitoring
+          $ref: https://schema.beckn.io/StopMonitoring/v2.0/attributes.yaml#/components/schemas/StopMonitoring
         vehicleMonitoring:
           description: Vehicle monitoring delivery payloads
-          $ref: ../../VehicleMonitoringDelivery/v2.0/schema.json#/$defs/VehicleMonitoringDelivery
+          $ref: https://schema.beckn.io/VehicleMonitoringDelivery/v2.0/attributes.yaml#/components/schemas/VehicleMonitoringDelivery
         estimatedTimetable:
           description: Estimated timetable delivery payloads
-          $ref: ../../EstimatedTimetableDelivery/v2.0/schema.json#/$defs/EstimatedTimetableDelivery
+          $ref: https://schema.beckn.io/EstimatedTimetableDelivery/v2.0/attributes.yaml#/components/schemas/EstimatedTimetableDelivery
         id:
           description: Unique identifier for the catalog
           type: string

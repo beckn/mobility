@@ -10,23 +10,23 @@
     },
     "routeRef": {
       "description": "Reference to the route being served",
-      "$ref": "../../Route/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Route/v2.0/schema.json"
     },
     "serviceCalendarRef": {
       "description": "Calendar defining when this journey operates",
-      "$ref": "../../ServiceCalendar/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/ServiceCalendar/v2.0/schema.json"
     },
     "vehicleRef": {
       "description": "Vehicle assigned to this journey",
-      "$ref": "../../Vehicle/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Vehicle/v2.0/schema.json"
     },
     "patternRef": {
       "description": "Journey pattern being followed",
-      "$ref": "../../Pattern/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Pattern/v2.0/schema.json"
     },
     "stopTimes": {
       "description": "Scheduled stop times for each stop on this journey",
-      "$ref": "../../StopTime/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/StopTime/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the fulfillment",

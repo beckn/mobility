@@ -26,7 +26,7 @@ components:
           format: date-time
         reviewer:
           description: The passenger who submitted this review
-          $ref: ../../Rider/v2.0/schema.json#/$defs/Rider
+          $ref: https://schema.beckn.io/Rider/v2.0/attributes.yaml#/components/schemas/Rider
         target:
           description: The entity being rated, with id and category (Order, Fulfillment,
             Provider, Agent)

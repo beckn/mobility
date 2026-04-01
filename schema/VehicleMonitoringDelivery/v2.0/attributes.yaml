@@ -23,7 +23,7 @@ components:
           format: date-time
         vehicleActivities:
           description: List of vehicle activity records in this delivery
-          $ref: ../../MonitoredVehicleJourney/v2.0/schema.json#/$defs/MonitoredVehicleJourney
+          $ref: https://schema.beckn.io/MonitoredVehicleJourney/v2.0/attributes.yaml#/components/schemas/MonitoredVehicleJourney
         validUntil:
           description: Time until which this delivery data is valid
           type: string

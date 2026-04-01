@@ -25,10 +25,10 @@ components:
           type: string
         operatorRef:
           description: Operator(s) running services within this network
-          $ref: ../../Operator/v2.0/schema.json#/$defs/Operator
+          $ref: https://schema.beckn.io/Operator/v2.0/attributes.yaml#/components/schemas/Operator
         lines:
           description: Lines that belong to this network
-          $ref: ../../Line/v2.0/schema.json#/$defs/Line
+          $ref: https://schema.beckn.io/Line/v2.0/attributes.yaml#/components/schemas/Line
         id:
           description: Unique identifier for the catalog
           type: string

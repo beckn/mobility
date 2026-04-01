@@ -10,11 +10,11 @@
     },
     "assetType": {
       "description": "Vehicle type classification of this asset",
-      "$ref": "../../VehicleType/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/VehicleType/v2.0/schema.json"
     },
     "currentStatus": {
       "description": "Real-time operational status of this asset",
-      "$ref": "../../VehicleStatus/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/VehicleStatus/v2.0/schema.json"
     },
     "currentLocation": {
       "description": "Current geographic location of the asset",

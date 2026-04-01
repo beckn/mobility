@@ -18,7 +18,7 @@
     },
     "tripDescriptor": {
       "description": "Descriptor identifying the affected trip",
-      "$ref": "../../TripDescriptor/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/TripDescriptor/v2.0/schema.json"
     },
     "stopId": {
       "description": "Identifier of the affected stop",

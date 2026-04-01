@@ -6,7 +6,7 @@
   "properties": {
     "stopId": {
       "description": "Reference to the stop being updated",
-      "$ref": "../../Stop/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Stop/v2.0/schema.json"
     },
     "stopSequence": {
       "description": "Sequence of this stop in the trip",

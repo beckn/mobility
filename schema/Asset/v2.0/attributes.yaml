@@ -22,10 +22,10 @@ components:
           type: string
         assetType:
           description: Vehicle type classification of this asset
-          $ref: ../../VehicleType/v2.0/schema.json#/$defs/VehicleType
+          $ref: https://schema.beckn.io/VehicleType/v2.0/attributes.yaml#/components/schemas/VehicleType
         currentStatus:
           description: Real-time operational status of this asset
-          $ref: ../../VehicleStatus/v2.0/schema.json#/$defs/VehicleStatus
+          $ref: https://schema.beckn.io/VehicleStatus/v2.0/attributes.yaml#/components/schemas/VehicleStatus
         currentLocation:
           description: Current geographic location of the asset
           $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location

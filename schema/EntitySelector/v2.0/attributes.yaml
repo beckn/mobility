@@ -28,7 +28,7 @@ components:
           type: string
         tripDescriptor:
           description: Descriptor identifying the affected trip
-          $ref: ../../TripDescriptor/v2.0/schema.json#/$defs/TripDescriptor
+          $ref: https://schema.beckn.io/TripDescriptor/v2.0/attributes.yaml#/components/schemas/TripDescriptor
         stopId:
           description: Identifier of the affected stop
           type: string

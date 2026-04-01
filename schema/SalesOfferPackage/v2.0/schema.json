@@ -6,11 +6,11 @@
   "properties": {
     "fareProducts": {
       "description": "Fare products included in this sales package",
-      "$ref": "../../FareProduct/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/FareProduct/v2.0/schema.json"
     },
     "distributions": {
       "description": "Channels through which this package can be purchased",
-      "$ref": "../../DistributionChannel/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/DistributionChannel/v2.0/schema.json"
     },
     "conditionsOfTravel": {
       "description": "Conditions applying to the use of this package",

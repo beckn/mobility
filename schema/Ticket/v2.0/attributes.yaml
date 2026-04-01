@@ -33,10 +33,10 @@ components:
           format: date-time
         fareProductRef:
           description: Reference to the fare product this ticket is issued under
-          $ref: ../../FareProduct/v2.0/schema.json#/$defs/FareProduct
+          $ref: https://schema.beckn.io/FareProduct/v2.0/attributes.yaml#/components/schemas/FareProduct
         passengerRef:
           description: Reference to the passenger this ticket is issued to
-          $ref: ../../Passenger/v2.0/schema.json#/$defs/Passenger
+          $ref: https://schema.beckn.io/Passenger/v2.0/attributes.yaml#/components/schemas/Passenger
         id:
           description: Unique identifier for the entitlement
           type: string

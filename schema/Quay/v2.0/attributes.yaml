@@ -28,7 +28,7 @@ components:
           type: string
         stopPlaceRef:
           description: Reference to the parent Stop Place
-          $ref: ../../StopPlace/v2.0/schema.json#/$defs/StopPlace
+          $ref: https://schema.beckn.io/StopPlace/v2.0/attributes.yaml#/components/schemas/StopPlace
         id:
           description: Unique identifier for the fulfillment stop
           type: string

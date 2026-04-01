@@ -14,11 +14,11 @@
     },
     "operatorRef": {
       "description": "Operator(s) running services within this network",
-      "$ref": "../../Operator/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Operator/v2.0/schema.json"
     },
     "lines": {
       "description": "Lines that belong to this network",
-      "$ref": "../../Line/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Line/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the catalog",

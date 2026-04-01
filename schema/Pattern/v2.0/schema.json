@@ -10,7 +10,7 @@
     },
     "routeRef": {
       "description": "Reference to the route this pattern belongs to",
-      "$ref": "../../Route/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Route/v2.0/schema.json"
     },
     "directionId": {
       "description": "Direction of travel (0 or 1)",
@@ -18,11 +18,11 @@
     },
     "stops": {
       "description": "Ordered list of stops in this pattern",
-      "$ref": "../../Stop/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Stop/v2.0/schema.json"
     },
     "shapeRef": {
       "description": "Reference to the geographic shape of this pattern",
-      "$ref": "../../Shape/v2.0/schema.json"
+      "$ref": "https://schema.beckn.io/Shape/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the item",
