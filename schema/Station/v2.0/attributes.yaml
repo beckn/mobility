@@ -16,6 +16,10 @@ components:
       title: Station
       description: A major transit facility serving as a hub for one or more transport
         modes, typically offering waiting areas, ticketing, and interchange facilities.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         stationId:
           description: Unique identifier for the station

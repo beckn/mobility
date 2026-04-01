@@ -16,6 +16,9 @@ components:
       title: Trip
       description: A confirmed and booked journey from an origin to a destination,
         representing a completed mobility service order.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         tripId:
           description: Unique identifier for the trip

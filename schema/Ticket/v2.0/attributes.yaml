@@ -16,6 +16,10 @@ components:
       title: Ticket
       description: A document or digital record granting the holder the right to travel
         on a specific transport service or within a defined validity scope.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         ticketId:
           description: Unique identifier or serial number of the ticket

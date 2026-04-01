@@ -35,5 +35,8 @@
       "format": "date-time"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "x-tags": [
+    "redundant"
+  ]
 }

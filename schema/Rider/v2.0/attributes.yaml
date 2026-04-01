@@ -16,6 +16,9 @@ components:
       title: Rider
       description: A person using a shared mobility service (such as a bike-share,
         scooter, or car-share) who has a registered account with the provider.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         riderId:
           description: Unique identifier for the rider account

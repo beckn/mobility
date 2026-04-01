@@ -33,5 +33,9 @@
       "type": "number"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "ride-hailing"
+  ]
 }

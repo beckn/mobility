@@ -16,6 +16,10 @@ components:
       title: SalesOfferPackage
       description: A combination of one or more fare products bundled for sale through
         a specific distribution channel.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         fareProducts:
           description: Fare products included in this sales package

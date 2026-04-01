@@ -16,6 +16,8 @@ components:
       title: Rating
       description: A numerical or categorical score assigned by a user to a driver,
         vehicle, or mobility service experience.
+      x-tags:
+        - redundant
       properties:
         ratedEntityId:
           description: Identifier of the entity being rated (driver, vehicle, service)

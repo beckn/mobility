@@ -16,6 +16,9 @@ components:
       title: LocationGroupStop
       description: An association between a stop and a location group, used in flexible
         transit service planning.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         locationGroupId:
           description: Identifier of the parent location group

@@ -16,6 +16,8 @@ components:
       title: Entitlement
       description: A specific right or benefit granted to a passenger or rider, such
         as free travel, priority boarding, or a concessionary pass.
+      x-tags:
+        - redundant
       properties:
         entitlementType:
           description: Type of entitlement (e.g. FREE_TRAVEL, CONCESSION, PRIORITY)

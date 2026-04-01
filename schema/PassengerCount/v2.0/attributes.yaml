@@ -16,6 +16,9 @@ components:
       title: PassengerCount
       description: The measured number of passengers currently aboard a vehicle, used
         for real-time capacity and load management.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         boardingCount:
           description: Number of passengers who boarded at the last stop

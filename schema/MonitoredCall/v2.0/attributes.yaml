@@ -16,6 +16,9 @@ components:
       title: MonitoredCall
       description: A real-time arrival or departure prediction for a specific vehicle
         at a specific stop within a monitored journey.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         stopPointRef:
           description: Reference to the stop point for this call

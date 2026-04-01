@@ -16,6 +16,10 @@ components:
       title: LocationGroup
       description: A set of geographic locations (stops or areas) that can collectively
         serve as an origin or destination for flexible transit services.
+      x-tags:
+        - mobility
+        - geosparql
+        - ride-hailing
       properties:
         locationGroupId:
           description: Unique identifier for the location group

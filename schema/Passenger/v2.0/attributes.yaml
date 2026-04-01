@@ -16,6 +16,10 @@ components:
       title: Passenger
       description: A person who travels using a transport service and is identified
         in a booking or travel document.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         passengerId:
           description: Unique identifier for the passenger in this booking

@@ -16,6 +16,10 @@ components:
       title: VehicleStatus
       description: The real-time operational state of a vehicle or mobility asset,
         such as available, in use, reserved, or disabled.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         statusCode:
           description: Operational status code (e.g. AVAILABLE, IN_USE, RESERVED,

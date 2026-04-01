@@ -16,6 +16,8 @@ components:
       title: Asset
       description: A specific mobility resource (vehicle, bike, scooter, or car) managed
         and made available for use by a mobility provider.
+      x-tags:
+        - redundant
       properties:
         assetId:
           description: Provider-assigned unique identifier for the asset

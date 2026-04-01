@@ -34,5 +34,8 @@
       "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "x-tags": [
+    "redundant"
+  ]
 }

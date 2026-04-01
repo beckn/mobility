@@ -16,6 +16,10 @@ components:
       title: Timetable
       description: A structured schedule listing planned arrival and departure times
         for vehicles at each stop along a route.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         routeRef:
           description: Reference to the route this timetable covers

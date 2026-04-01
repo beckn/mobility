@@ -16,6 +16,8 @@ components:
       title: Feedback
       description: A passenger's qualitative assessment or textual comment about a
         completed trip, driver, or mobility service.
+      x-tags:
+        - redundant
       properties:
         feedbackText:
           description: Textual content of the feedback

@@ -16,6 +16,8 @@ components:
       title: Provider
       description: A mobility service provider registered on a MaaS platform, offering
         transport options to end users.
+      x-tags:
+        - redundant
       properties:
         providerId:
           description: Unique identifier for the mobility provider

@@ -16,6 +16,9 @@ components:
       title: BookingRule
       description: A set of rules governing how and when a demand-responsive transport
         service must be booked in advance.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         latestBookingTime:
           description: Latest time before departure that a booking can be made

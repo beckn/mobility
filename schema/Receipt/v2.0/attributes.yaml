@@ -16,6 +16,8 @@ components:
       title: Receipt
       description: A payment receipt issued to a passenger upon completion and settlement
         of a transport service trip.
+      x-tags:
+        - redundant
       properties:
         receiptId:
           description: Unique identifier for the receipt

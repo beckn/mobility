@@ -16,6 +16,9 @@ components:
       title: VehicleCategory
       description: A broad classification of vehicles by their physical type, such
         as two-wheeler, three-wheeler, four-wheeler, or bus.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         vehicleCategoryCode:
           description: Code for the vehicle category (e.g. TWO_WHEELER, THREE_WHEELER,

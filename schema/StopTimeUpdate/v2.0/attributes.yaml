@@ -16,6 +16,9 @@ components:
       title: StopTimeUpdate
       description: A real-time update to the predicted arrival or departure time of
         a vehicle at a specific stop within a journey.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         stopId:
           description: Reference to the stop being updated

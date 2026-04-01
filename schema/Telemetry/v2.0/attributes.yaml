@@ -16,6 +16,8 @@ components:
       title: Telemetry
       description: Time-series data streams reporting the real-time location, speed,
         and operational state of a mobility vehicle or asset.
+      x-tags:
+        - redundant
       properties:
         vehicleId:
           description: Identifier of the vehicle transmitting telemetry

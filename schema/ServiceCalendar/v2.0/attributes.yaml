@@ -16,6 +16,10 @@ components:
       title: ServiceCalendar
       description: A schedule defining on which dates a transport service operates,
         including regular service days and exceptional dates.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         serviceId:
           description: Unique identifier for the service calendar

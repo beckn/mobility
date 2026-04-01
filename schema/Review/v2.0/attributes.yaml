@@ -16,6 +16,8 @@ components:
       title: Review
       description: A written review or opinion submitted by a passenger about a completed
         mobility service, driver, or vehicle.
+      x-tags:
+        - redundant
       properties:
         reviewText:
           description: The written text of the review

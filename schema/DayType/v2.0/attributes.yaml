@@ -16,6 +16,10 @@ components:
       title: DayType
       description: A classification of a day (e.g., weekday, weekend, public holiday)
         used to define when a service pattern is valid.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         dayTypeCode:
           description: Code identifying the day type (e.g. WEEKDAY, WEEKEND, HOLIDAY)

@@ -16,6 +16,10 @@ components:
       title: ExchangePoints
       description: Locations in a transport network where fixed-route and flexible
         services connect, enabling passenger interchange.
+      x-tags:
+        - mobility
+        - geosparql
+        - ride-hailing
       properties:
         exchangePointType:
           description: Type of exchange point (e.g. FIXED_TO_FLEX, FLEX_TO_FLEX)

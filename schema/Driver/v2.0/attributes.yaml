@@ -16,6 +16,9 @@ components:
       title: Driver
       description: A person who operates a transport vehicle and is responsible for
         the safe delivery of passengers during a mobility service trip.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         licenseNumber:
           description: Driver's license number

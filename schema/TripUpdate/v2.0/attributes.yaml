@@ -18,6 +18,9 @@ components:
         trip, covering contract modifications (added/removed services, route changes),
         status notifications (driver arriving, trip started), and real-time tracking
         endpoint information.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         contractChanges:
           description: Items added or modified in the trip contract (new stop, route

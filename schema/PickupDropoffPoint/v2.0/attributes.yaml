@@ -16,6 +16,9 @@ components:
       title: PickupDropoffPoint
       description: A designated location used as a pickup or dropoff point for passengers
         in a ride-hailing or demand-responsive transport service.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         pdpType:
           description: Type of point (PICKUP, DROPOFF, BOTH)

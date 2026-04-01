@@ -16,6 +16,10 @@ components:
       title: Level
       description: A floor or vertical level within a multi-level transit station
         or facility, used to define internal navigation paths.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         levelId:
           description: Unique identifier for this level within the station

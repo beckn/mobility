@@ -16,6 +16,9 @@ components:
       title: PickupPolicy
       description: A set of rules governing the locations and conditions under which
         passengers may be picked up for a ride-hailing or on-demand transport service.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         allowedPickupAreas:
           description: Geographic areas where pickup is permitted

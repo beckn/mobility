@@ -16,6 +16,9 @@ components:
       title: TripDescriptor
       description: An identifier that uniquely references a specific vehicle journey
         in a real-time transit feed.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         tripId:
           description: GTFS trip_id of the trip being referenced

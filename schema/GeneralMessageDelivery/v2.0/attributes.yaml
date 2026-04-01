@@ -16,6 +16,9 @@ components:
       title: GeneralMessageDelivery
       description: A real-time delivery of textual messages or alerts related to service
         disruptions or passenger information.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         responseTimestamp:
           description: Timestamp of this general message delivery

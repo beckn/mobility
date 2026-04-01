@@ -16,6 +16,9 @@ components:
       title: FareMedium
       description: The physical or digital medium used to carry or present a fare
         product, such as a contactless card, mobile app, or paper ticket.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         mediumType:
           description: Type of fare medium (e.g. CONTACTLESS_CARD, MOBILE_APP, PAPER_TICKET,

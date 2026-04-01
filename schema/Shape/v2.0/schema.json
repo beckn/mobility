@@ -21,5 +21,10 @@
       "type": "array"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "geosparql",
+    "ride-hailing"
+  ]
 }

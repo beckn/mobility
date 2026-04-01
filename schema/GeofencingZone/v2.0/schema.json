@@ -53,5 +53,11 @@
       "$ref": "https://schema.beckn.io/GeoJSONGeometry/v2.0/schema.json"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "geosparql",
+    "schema-org",
+    "ride-hailing"
+  ]
 }

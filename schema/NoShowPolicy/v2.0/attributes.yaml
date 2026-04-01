@@ -16,6 +16,9 @@ components:
       title: NoShowPolicy
       description: Rules governing the consequences and fees applied when a passenger
         fails to appear for a confirmed transport service booking.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         noShowFee:
           description: Flat fee charged for a no-show

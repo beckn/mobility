@@ -16,6 +16,9 @@ components:
       title: RideOption
       description: A specific ride-hailing vehicle category and pricing option presented
         to a passenger in response to a ride request.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         vehicleType:
           description: Category of vehicle for this ride option

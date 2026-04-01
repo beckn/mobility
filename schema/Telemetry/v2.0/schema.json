@@ -55,5 +55,8 @@
       "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "x-tags": [
+    "redundant"
+  ]
 }

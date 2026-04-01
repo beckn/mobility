@@ -16,6 +16,8 @@ components:
       title: PricingModel
       description: The pricing structure or tariff model used by a mobility service
         provider to calculate fares.
+      x-tags:
+        - redundant
       properties:
         modelType:
           description: Type of pricing model (e.g. FIXED, METERED, SUBSCRIPTION, SURGE)

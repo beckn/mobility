@@ -16,6 +16,11 @@ components:
       title: VehiclePosition
       description: The current real-time geographic position, bearing, and speed of
         a vehicle operating a transport service.
+      x-tags:
+        - mobility
+        - geosparql
+        - schema-org
+        - ride-hailing
       properties:
         tripDescriptor:
           description: Identifies the trip this vehicle is operating

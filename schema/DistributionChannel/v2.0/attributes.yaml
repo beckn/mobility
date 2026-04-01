@@ -16,6 +16,8 @@ components:
       title: DistributionChannel
       description: A channel or platform through which fare products or tickets are
         sold or distributed to end customers.
+      x-tags:
+        - redundant
       properties:
         channelType:
           description: Type of distribution channel (e.g. ONLINE, TICKET_OFFICE, MOBILE_APP)

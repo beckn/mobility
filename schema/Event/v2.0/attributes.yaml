@@ -16,6 +16,8 @@ components:
       title: Event
       description: A discrete state change in the lifecycle of a vehicle or mobility
         asset, such as a trip starting, vehicle reserved, or battery low.
+      x-tags:
+        - redundant
       properties:
         eventType:
           description: Type of lifecycle event (e.g. TRIP_START, VEHICLE_RESERVED,

@@ -16,6 +16,10 @@ components:
       title: Fare
       description: The monetary cost of travel for a specific journey or service,
         calculated based on applicable fare rules and passenger categories.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         fareId:
           description: Unique identifier for the fare

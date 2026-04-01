@@ -16,6 +16,10 @@ components:
       title: Shape
       description: The geographic path traced by a vehicle along a route, represented
         as an ordered sequence of geographic coordinates.
+      x-tags:
+        - mobility
+        - geosparql
+        - ride-hailing
       properties:
         shapeId:
           description: Unique identifier for the shape

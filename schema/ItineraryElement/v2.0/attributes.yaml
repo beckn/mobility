@@ -16,6 +16,9 @@ components:
       title: ItineraryElement
       description: A component of an aviation itinerary such as a flight segment,
         ground transport leg, or ancillary service.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         elementType:
           description: Type of itinerary element (FLIGHT, GROUND_TRANSPORT, ANCILLARY)

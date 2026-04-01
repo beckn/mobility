@@ -16,6 +16,12 @@ components:
       title: Stop
       description: A designated location where vehicles stop to allow passengers to
         board or alight from a transport service.
+      x-tags:
+        - mobility
+        - geosparql
+        - schema-org
+        - transmodel-netex
+        - ride-hailing
       properties:
         stopId:
           description: Unique identifier for the stop

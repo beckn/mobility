@@ -16,6 +16,9 @@ components:
       title: AffectedLine
       description: A reference to a transport line that is affected by a service disruption
         or alert.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         lineId:
           description: Identifier of the affected transport line

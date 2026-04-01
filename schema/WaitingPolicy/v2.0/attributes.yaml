@@ -16,6 +16,9 @@ components:
       title: WaitingPolicy
       description: Rules governing the maximum time a driver is required to wait for
         a passenger at the pickup location before being permitted to cancel the booking.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         freeWaitingTimeMinutes:
           description: Number of minutes the driver waits for free before charging

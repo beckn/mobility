@@ -16,6 +16,10 @@ components:
       title: RiderCategory
       description: A classification of passenger type (e.g., adult, child, senior,
         student) used to determine applicable fare entitlements.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         riderCategoryId:
           description: Unique identifier for the rider category

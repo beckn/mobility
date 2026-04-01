@@ -16,6 +16,10 @@ components:
       title: StopPlace
       description: A physical location serving as a transit stop facility, comprising
         one or more quays, entrances, and associated infrastructure.
+      x-tags:
+        - mobility
+        - geosparql
+        - ride-hailing
       properties:
         stopPlaceId:
           description: Unique identifier for the stop place

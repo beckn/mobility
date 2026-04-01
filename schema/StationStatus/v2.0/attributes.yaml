@@ -16,6 +16,10 @@ components:
       title: StationStatus
       description: The real-time operational state of a shared mobility station, including
         the number of available docks and vehicles.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         stationId:
           description: Unique identifier of the station being reported

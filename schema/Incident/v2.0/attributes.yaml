@@ -16,6 +16,9 @@ components:
       title: Incident
       description: A reported event on the transport network that affects normal service
         operations, such as a disruption, roadblock, or infrastructure failure.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         incidentType:
           description: Type of incident (e.g. DISRUPTION, ROADBLOCK, MAINTENANCE)

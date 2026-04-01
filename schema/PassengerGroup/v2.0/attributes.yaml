@@ -16,6 +16,9 @@ components:
       title: PassengerGroup
       description: A collection of passengers traveling together as a group, with
         a group size and a designated lead passenger.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         groupId:
           description: Unique identifier for this passenger group

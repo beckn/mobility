@@ -33,5 +33,10 @@
       "type": "string"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "schema-org",
+    "ride-hailing"
+  ]
 }

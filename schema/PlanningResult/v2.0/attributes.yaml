@@ -16,6 +16,9 @@ components:
       title: PlanningResult
       description: The output of a MaaS platform planning request, listing available
         transport options for a requested trip.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         origin:
           description: Origin location for the planning query

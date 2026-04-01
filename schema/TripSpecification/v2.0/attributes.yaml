@@ -16,6 +16,9 @@ components:
       title: TripSpecification
       description: A description of the desired journey used as input to search and
         price transport options.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         origin:
           description: Desired origin of the trip

@@ -16,6 +16,10 @@ components:
       title: VehicleJourney
       description: A specific operational instance of a vehicle traveling a defined
         route at a scheduled time on a given service day.
+      x-tags:
+        - mobility
+        - transmodel-netex
+        - ride-hailing
       properties:
         vehicleJourneyCode:
           description: Unique code for this vehicle journey

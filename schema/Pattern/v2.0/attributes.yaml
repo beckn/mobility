@@ -16,6 +16,10 @@ components:
       title: Pattern
       description: A unique sequence of stops visited by trips on a route, grouping
         trips with identical stop sequences and timing structures.
+      x-tags:
+        - mobility
+        - transmodel-netex
+        - ride-hailing
       properties:
         patternId:
           description: Unique identifier for the journey pattern

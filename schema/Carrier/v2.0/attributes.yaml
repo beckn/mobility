@@ -15,5 +15,9 @@ components:
       type: object
       title: Carrier
       description: Attributes for the Carrier entity in the Beckn Mobility domain.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties: {}
       additionalProperties: false

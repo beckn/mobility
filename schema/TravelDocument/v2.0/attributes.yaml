@@ -16,6 +16,10 @@ components:
       title: TravelDocument
       description: A document (physical or digital) issued to a passenger proving
         entitlement to travel, used for validation or inspection.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         documentType:
           description: Type of travel document (e.g. E_TICKET, PDF_TICKET, SMARTCARD,

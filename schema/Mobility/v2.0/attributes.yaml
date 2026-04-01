@@ -15,5 +15,8 @@ components:
       type: object
       title: Mobility
       description: Attributes for the Mobility entity in the Beckn Mobility domain.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties: {}
       additionalProperties: false

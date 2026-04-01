@@ -16,6 +16,11 @@ components:
       title: Operator
       description: An organization that provides and operates public transport or
         shared mobility services under a defined service agreement.
+      x-tags:
+        - mobility
+        - schema-org
+        - transmodel-netex
+        - ride-hailing
       properties:
         operatorId:
           description: Unique identifier for the operator

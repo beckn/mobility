@@ -16,6 +16,9 @@ components:
       title: TripRequest
       description: A request submitted to a journey planning system specifying origin,
         destination, travel time, and preferences.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         origin:
           description: Origin location for the trip

@@ -16,6 +16,11 @@ components:
       title: TariffZone
       description: A geographic zone used to define and apply fare structures, within
         which a single fare or set of rules applies.
+      x-tags:
+        - mobility
+        - geosparql
+        - schema-org
+        - ride-hailing
       properties:
         zoneId:
           description: Unique identifier for the tariff zone

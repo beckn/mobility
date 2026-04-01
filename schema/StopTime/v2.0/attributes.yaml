@@ -16,6 +16,10 @@ components:
       title: StopTime
       description: The scheduled arrival and departure times for a vehicle at a specific
         stop within a vehicle journey.
+      x-tags:
+        - mobility
+        - transmodel-netex
+        - ride-hailing
       properties:
         arrivalTime:
           description: Scheduled arrival time in HH:MM:SS format

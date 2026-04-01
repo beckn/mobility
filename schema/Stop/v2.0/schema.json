@@ -49,5 +49,12 @@
       "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "geosparql",
+    "schema-org",
+    "transmodel-netex",
+    "ride-hailing"
+  ]
 }

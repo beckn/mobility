@@ -16,6 +16,9 @@ components:
       title: DepartureMessage
       description: A real-time message containing predicted departure times for vehicles
         at a stop, as used in VDV real-time standards.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         stopRef:
           description: Reference to the stop for which departures are reported

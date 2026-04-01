@@ -16,6 +16,8 @@ components:
       title: SupportCase
       description: A formal customer service inquiry, complaint, or request raised
         by a passenger or provider through the mobility platform's support system.
+      x-tags:
+        - redundant
       properties:
         caseType:
           description: Type of support case (e.g. COMPLAINT, INQUIRY, TECHNICAL)

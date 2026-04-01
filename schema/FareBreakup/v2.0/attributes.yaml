@@ -16,6 +16,9 @@ components:
       title: FareBreakup
       description: A detailed breakdown of the total fare into its constituent components,
         including base fare, taxes, surcharges, and discounts.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         componentTitle:
           description: Human-readable title for this fare component

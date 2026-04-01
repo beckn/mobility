@@ -16,6 +16,10 @@ components:
       title: Transfer
       description: A defined connection rule between two routes or services at a common
         stop, specifying minimum transfer time or transfer type.
+      x-tags:
+        - mobility
+        - transmodel-netex
+        - ride-hailing
       properties:
         fromStopId:
           description: Stop passengers transfer from

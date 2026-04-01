@@ -16,6 +16,8 @@ components:
       title: Place
       description: A named or unnamed geographic location relevant to mobility, such
         as an address, point of interest, stop, or area.
+      x-tags:
+        - redundant
       properties:
         placeType:
           description: Type of place (e.g. ADDRESS, STOP, POI, STATION, AREA)

@@ -16,6 +16,10 @@ components:
       title: Network
       description: A grouping of routes and lines operated under a common brand or
         authority, used for fare and operational management.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         networkId:
           description: Unique identifier for the network

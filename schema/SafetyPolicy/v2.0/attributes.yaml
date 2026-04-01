@@ -16,6 +16,9 @@ components:
       title: SafetyPolicy
       description: A set of rules, protocols, and standards governing safety requirements
         for drivers, vehicles, and passengers on a mobility platform.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         safetyInstructions:
           description: Instructions and guidelines for passenger and driver safety

@@ -16,6 +16,9 @@ components:
       title: PlaceRequest
       description: A request for a specific accommodation or seat assignment within
         a transport service during the booking process.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         accommodationType:
           description: Type of accommodation requested (e.g. SEAT, BERTH, COMPARTMENT)

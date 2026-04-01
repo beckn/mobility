@@ -4,5 +4,10 @@
   "type": "object",
   "description": "Attributes for the Carrier entity in the Beckn Mobility domain.",
   "properties": {},
-  "additionalProperties": false
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "schema-org",
+    "ride-hailing"
+  ]
 }

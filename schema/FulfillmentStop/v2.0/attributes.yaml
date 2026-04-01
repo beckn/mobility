@@ -16,6 +16,9 @@ components:
       title: FulfillmentStop
       description: A specific location associated with a fulfillment (trip or journey)
         at which passengers board, alight, or transfer between services.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         stopType:
           description: Role of this stop in the fulfillment (START, END, INTERMEDIATE)

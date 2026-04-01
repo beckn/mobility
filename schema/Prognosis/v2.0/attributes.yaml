@@ -16,6 +16,9 @@ components:
       title: Prognosis
       description: A real-time prediction of a vehicle's arrival or departure time
         at a stop, including an indication of prediction confidence.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         scheduledTime:
           description: Timetabled scheduled time

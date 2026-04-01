@@ -16,6 +16,9 @@ components:
       title: VehicleDescriptor
       description: An identifier that uniquely references a specific vehicle in a
         real-time transit feed.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         vehicleId:
           description: Internal system identifier for the vehicle

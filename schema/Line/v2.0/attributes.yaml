@@ -16,6 +16,10 @@ components:
       title: Line
       description: A named, branded public transport service identified by a number
         or name, typically operating over one or more routes.
+      x-tags:
+        - mobility
+        - transmodel-netex
+        - ride-hailing
       properties:
         lineId:
           description: GTFS or NeTEx identifier for the line

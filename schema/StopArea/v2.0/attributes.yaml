@@ -16,6 +16,10 @@ components:
       title: StopArea
       description: A group of stops that collectively define a zone from which a demand-responsive
         service may pick up or drop off passengers.
+      x-tags:
+        - mobility
+        - geosparql
+        - ride-hailing
       properties:
         areaId:
           description: Unique identifier for the stop area

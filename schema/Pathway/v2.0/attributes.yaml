@@ -17,6 +17,10 @@ components:
       description: A connection between two points within a transit station (e.g.,
         stairway, elevator, walkway) used for indoor navigation and accessibility
         routing.
+      x-tags:
+        - mobility
+        - geosparql
+        - ride-hailing
       properties:
         pathwayId:
           description: Unique identifier for the pathway

@@ -16,6 +16,9 @@ components:
       title: LocationInformationRequest
       description: A request for details about a specific geographic location, stop,
         or point of interest in the transport network.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         requestType:
           description: Type of location information requested (e.g. STOP, ADDRESS,

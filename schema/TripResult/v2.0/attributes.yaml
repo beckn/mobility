@@ -16,6 +16,9 @@ components:
       title: TripResult
       description: The result of a trip planning request, containing one or more journey
         options with leg details and timing.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         itineraries:
           description: List of itinerary options in the result

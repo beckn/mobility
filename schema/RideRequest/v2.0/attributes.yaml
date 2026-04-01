@@ -16,6 +16,9 @@ components:
       title: RideRequest
       description: A passenger's request for an on-demand transport service between
         two points, specifying origin, destination, and travel preferences.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         origin:
           description: Pickup location for the ride

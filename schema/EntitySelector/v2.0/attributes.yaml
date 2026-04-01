@@ -16,6 +16,9 @@ components:
       title: EntitySelector
       description: A selector that identifies which transport entities (routes, trips,
         stops, or agencies) are affected by a given alert.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         agencyId:
           description: Identifier of the affected agency

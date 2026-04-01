@@ -16,6 +16,9 @@ components:
       title: ServiceDelivery
       description: The top-level response container in SIRI encapsulating one or more
         real-time data delivery types.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         responseTimestamp:
           description: Timestamp when this service delivery was generated

@@ -16,6 +16,9 @@ components:
       title: StopMonitoring
       description: A real-time data service providing predicted arrivals and departures
         of vehicles at a specific stop.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         stopRef:
           description: Reference to the stop being monitored

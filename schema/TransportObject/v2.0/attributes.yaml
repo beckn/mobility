@@ -16,6 +16,10 @@ components:
       title: TransportObject
       description: A generic transport entity in the OSLO mobility ontology representing
         any object involved in transport operations.
+      x-tags:
+        - mobility
+        - oslo-mobility
+        - ride-hailing
       properties:
         objectType:
           description: Type of transport object (e.g. VEHICLE, INFRASTRUCTURE, ASSET)

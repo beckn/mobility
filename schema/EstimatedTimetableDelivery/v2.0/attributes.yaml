@@ -16,6 +16,9 @@ components:
       title: EstimatedTimetableDelivery
       description: A real-time data delivery providing predicted departure and arrival
         times for a set of vehicle journeys.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         responseTimestamp:
           description: Timestamp of this delivery response

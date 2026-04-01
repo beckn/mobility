@@ -16,6 +16,10 @@ components:
       title: Direction
       description: The direction of travel of a transport service along a route, typically
         expressed as inbound or outbound.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         directionId:
           description: Binary direction identifier (0 for one direction, 1 for the

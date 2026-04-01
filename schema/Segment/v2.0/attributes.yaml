@@ -16,6 +16,9 @@ components:
       title: Segment
       description: A portion of a rail journey operated continuously by a single carrier
         between two consecutive stops or stations.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         carrierCode:
           description: Code of the carrier operating this segment

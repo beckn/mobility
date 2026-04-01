@@ -16,6 +16,9 @@ components:
       title: FareLegRule
       description: A rule defining how a fare is applied to a single leg of a journey
         based on origin, destination, network, and time.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         fareProductId:
           description: Identifier of the fare product this rule applies to

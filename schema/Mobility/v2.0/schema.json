@@ -4,5 +4,9 @@
   "type": "object",
   "description": "Attributes for the Mobility entity in the Beckn Mobility domain.",
   "properties": {},
-  "additionalProperties": false
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "ride-hailing"
+  ]
 }

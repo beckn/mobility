@@ -17,6 +17,9 @@ components:
       description: A set of rules governing the locations and conditions under which
         passengers may be dropped off at the end of a ride-hailing or on-demand transport
         service.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         allowedDropAreas:
           description: Geographic areas where drop-off is permitted

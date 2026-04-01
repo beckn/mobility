@@ -16,6 +16,9 @@ components:
       title: LostAndFoundItem
       description: An item that has been reported lost or found in connection with
         a transport service.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         itemType:
           description: Type of the lost/found item (e.g. BAG, PHONE, WALLET)

@@ -16,6 +16,10 @@ components:
       title: FareProduct
       description: A purchasable entitlement to travel defining conditions of use,
         validity, and applicable passenger categories.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         fareProductId:
           description: Unique identifier for the fare product

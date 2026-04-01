@@ -16,6 +16,9 @@ components:
       title: ServiceClass
       description: A classification of the level of service offered by a transport
         service, such as economy, business, or first class.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         serviceClassCode:
           description: Code identifying the service class (e.g. ECONOMY, BUSINESS,

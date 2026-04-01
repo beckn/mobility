@@ -16,6 +16,9 @@ components:
       title: Interchange
       description: A planned transfer connection point where passengers switch between
         two or more transport services, with defined timing constraints.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         minTransferTime:
           description: Minimum required transfer time in seconds

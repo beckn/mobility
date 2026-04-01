@@ -16,6 +16,11 @@ components:
       title: GeofencingZone
       description: A virtual geographic boundary used to define operational areas,
         speed limits, parking rules, or restrictions for shared mobility services.
+      x-tags:
+        - mobility
+        - geosparql
+        - schema-org
+        - ride-hailing
       properties:
         featureType:
           description: Type of geofencing zone feature (e.g. parking, restricted,

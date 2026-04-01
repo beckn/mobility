@@ -16,6 +16,9 @@ components:
       title: FareEstimate
       description: An estimated fare for a requested trip, typically returned in response
         to a search before the booking is confirmed.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         estimatedAmount:
           description: Estimated total fare amount

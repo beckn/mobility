@@ -16,6 +16,9 @@ components:
       title: StopEvent
       description: A departure or arrival event at a stop, used to retrieve the next
         or previous vehicle movements at a specific location.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         stopEventType:
           description: Type of event (DEPARTURE, ARRIVAL)

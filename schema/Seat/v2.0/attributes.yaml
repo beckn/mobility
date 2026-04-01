@@ -16,6 +16,10 @@ components:
       title: Seat
       description: A specific seat position reserved or assigned to a passenger on
         a flight, train, or other transport service.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         seatId:
           description: Unique identifier or label for the seat

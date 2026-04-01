@@ -16,6 +16,9 @@ components:
       title: BaggageAllowance
       description: The quantity and weight of baggage a passenger is permitted to
         carry or check in without incurring additional charges.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         cabinBaggageCount:
           description: Maximum number of cabin (carry-on) bags allowed

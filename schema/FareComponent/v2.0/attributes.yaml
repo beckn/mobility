@@ -16,6 +16,9 @@ components:
       title: FareComponent
       description: A component of an air travel fare that applies to a specific flight
         segment or leg, used in aviation pricing.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         fareBasisCode:
           description: IATA fare basis code identifying the fare type

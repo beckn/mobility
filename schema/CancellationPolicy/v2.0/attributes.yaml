@@ -17,6 +17,9 @@ components:
       description: A policy defining the terms and conditions under which a transport
         booking can be cancelled, including applicable refund percentages and cancellation
         deadlines.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         cancellationFee:
           description: Flat cancellation fee charged upon cancellation

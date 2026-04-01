@@ -16,6 +16,9 @@ components:
       title: Plan
       description: A journey planning response containing one or more itinerary options
         for a given trip request.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         requestedTime:
           description: The departure or arrival time that was requested

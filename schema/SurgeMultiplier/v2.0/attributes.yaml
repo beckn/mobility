@@ -16,6 +16,9 @@ components:
       title: SurgeMultiplier
       description: A dynamic pricing factor applied during periods of high demand
         that increases base fares proportionally to balance supply and demand.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         multiplierValue:
           description: The surge multiplier value (e.g. 1.5 for 1.5x surge)

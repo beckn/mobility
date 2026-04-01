@@ -16,6 +16,9 @@ components:
       title: MonitoredVehicleJourney
       description: A real-time representation of a vehicle journey being actively
         tracked, including position and schedule adherence data.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         lineRef:
           description: Reference to the line being monitored

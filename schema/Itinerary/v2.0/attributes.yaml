@@ -16,6 +16,10 @@ components:
       title: Itinerary
       description: A complete planned trip containing an ordered sequence of legs,
         including transfer points, durations, and timing.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         legs:
           description: Ordered list of legs making up this itinerary

@@ -16,6 +16,9 @@ components:
       title: Frequency
       description: A headway-based service specification indicating how often a vehicle
         runs on a route within a given time window.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         headwaySecs:
           description: Time in seconds between consecutive vehicle departures

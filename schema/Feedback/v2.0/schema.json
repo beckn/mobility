@@ -29,5 +29,8 @@
       "$ref": "https://schema.beckn.io/Rating/v2.0/schema.json"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "x-tags": [
+    "redundant"
+  ]
 }

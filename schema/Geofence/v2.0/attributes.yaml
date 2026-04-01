@@ -16,6 +16,9 @@ components:
       title: Geofence
       description: A virtual geographic boundary used to define service areas, restricted
         zones, or operational boundaries for mobility assets.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         geofenceType:
           description: Type of geofence (e.g. SERVICE_AREA, RESTRICTED, SPEED_LIMIT)

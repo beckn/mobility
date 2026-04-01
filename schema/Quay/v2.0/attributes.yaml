@@ -16,6 +16,10 @@ components:
       title: Quay
       description: A specific platform, bay, or boarding area within a Stop Place
         at which passengers board or alight from a vehicle.
+      x-tags:
+        - mobility
+        - geosparql
+        - ride-hailing
       properties:
         quayId:
           description: Unique identifier for the quay

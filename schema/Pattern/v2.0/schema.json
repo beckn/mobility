@@ -49,5 +49,10 @@
       "type": "string"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "transmodel-netex",
+    "ride-hailing"
+  ]
 }

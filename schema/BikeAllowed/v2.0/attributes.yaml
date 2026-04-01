@@ -16,6 +16,9 @@ components:
       title: BikeAllowed
       description: An indicator specifying whether bicycles are permitted on board
         a particular route or vehicle journey.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         bikeAllowedValue:
           description: 'Indicates whether bikes are allowed: yes, no, or unknown'

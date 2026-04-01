@@ -16,6 +16,9 @@ components:
       title: VehicleMonitoringDelivery
       description: A real-time data delivery providing current positions and operational
         states of a set of vehicles.
+      x-tags:
+        - mobility
+        - ride-hailing
       properties:
         responseTimestamp:
           description: Timestamp of this monitoring delivery

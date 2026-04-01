@@ -16,6 +16,10 @@ components:
       title: StopPoint
       description: An abstract or scheduled point in a public transport network at
         which passengers can board or alight from a service.
+      x-tags:
+        - mobility
+        - geosparql
+        - ride-hailing
       properties:
         stopPointId:
           description: Unique identifier for the stop point

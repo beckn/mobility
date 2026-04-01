@@ -16,6 +16,10 @@ components:
       title: Alert
       description: A notification of a service disruption, delay, or advisory affecting
         one or more routes, stops, or vehicle journeys.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         cause:
           description: Cause of the alert (e.g. TECHNICAL_PROBLEM, STRIKE, ACCIDENT)

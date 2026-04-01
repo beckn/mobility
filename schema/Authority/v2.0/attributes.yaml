@@ -16,6 +16,10 @@ components:
       title: Authority
       description: A governmental or administrative body responsible for planning,
         regulating, and overseeing transport services within a jurisdiction.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
       properties:
         authorityId:
           description: Unique identifier for the authority

@@ -43,5 +43,9 @@
       "$ref": "https://schema.beckn.io/State/v2.0/schema.json"
     }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "ride-hailing"
+  ]
 }
