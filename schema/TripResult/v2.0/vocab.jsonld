@@ -1,0 +1,135 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:TripResult",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "TripResult",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The result of a trip planning request, containing one or more journey options with leg details and timing.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "beckn:Itinerary"
+        },
+        {
+          "@id": "beckn:TripRequest"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:itineraries",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "itineraries",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "List of itinerary options in the result",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripResult"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Itinerary"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Itinerary/v2.0/vocab.jsonld#beckn:Itinerary"
+      }
+    },
+    {
+      "@id": "beckn:requestRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "requestRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the originating trip request",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripResult"
+      },
+      "rdfs:range": {
+        "@id": "beckn:TripRequest"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../TripRequest/v2.0/vocab.jsonld#beckn:TripRequest"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripResult"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripResult"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags associated with the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripResult"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

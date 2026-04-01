@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EstimatedTimetableDelivery",
+  "type": "object",
+  "description": "A real-time data delivery providing predicted departure and arrival times for a set of vehicle journeys.",
+  "properties": {
+    "responseTimestamp": {
+      "description": "Timestamp of this delivery response",
+      "type": "string",
+      "format": "date-time"
+    },
+    "estimatedVehicleJourneys": {
+      "description": "Vehicle journeys with estimated timetable data",
+      "$ref": "../../VehicleJourney/v2.0/schema.json"
+    },
+    "validUntil": {
+      "description": "Time until which this estimated data is valid",
+      "type": "string",
+      "format": "date-time"
+    },
+    "id": {
+      "description": "Unique identifier for the tracking record",
+      "type": "string"
+    },
+    "url": {
+      "description": "URL endpoint for real-time tracking information",
+      "type": "string",
+      "format": "uri"
+    },
+    "status": {
+      "description": "Current tracking status",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/State"
+    },
+    "validity": {
+      "description": "Validity period for this tracking record",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    }
+  },
+  "additionalProperties": false
+}

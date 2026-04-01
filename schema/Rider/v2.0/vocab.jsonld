@@ -1,0 +1,166 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Rider",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Rider",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A person using a shared mobility service (such as a bike-share, scooter, or car-share) who has a registered account with the provider.",
+        "@language": "en"
+      },
+      "rdfs:subClassOf": {
+        "@id": "https://schema.org/Person"
+      }
+    },
+    {
+      "@id": "beckn:riderId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "riderId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the rider account",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Rider"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:preferredPaymentMethod",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "preferredPaymentMethod",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Rider preferred payment method",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Rider"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:membershipPlan",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "membershipPlan",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Active membership or subscription plan",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Rider"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the participant",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Rider"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:person",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "person",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Personal details of the participant",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Rider"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Person"
+      }
+    },
+    {
+      "@id": "beckn:organization",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "organization",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Organisation the participant belongs to",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Rider"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Organization"
+      }
+    },
+    {
+      "@id": "beckn:entitlements",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "entitlements",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Entitlements held by the participant",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Rider"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Entitlement"
+      }
+    }
+  ]
+}

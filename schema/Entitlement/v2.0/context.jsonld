@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Entitlement": "beckn:Entitlement",
+    "entitlementType": "beckn:entitlementType",
+    "eligibilityRules": "beckn:eligibilityRules",
+    "issuingAuthority": "beckn:issuingAuthority",
+    "validity": "beckn:validity",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "resource": "beckn:resource",
+    "credentials": "beckn:credentials"
+  }
+}

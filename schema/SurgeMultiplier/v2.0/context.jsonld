@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "SurgeMultiplier": "beckn:SurgeMultiplier",
+    "multiplierValue": "beckn:multiplierValue",
+    "validUntil": "beckn:validUntil",
+    "reason": "beckn:reason",
+    "geofenceRef": "beckn:geofenceRef",
+    "title": "beckn:title",
+    "price": "beckn:price",
+    "tags": "beckn:tags"
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:StationInformation",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "StationInformation",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Static descriptive information about a shared mobility docking station, including its location, capacity, and features.",
+        "@language": "en"
+      },
+      "rdfs:subClassOf": {
+        "@id": "https://schema.org/CivicStructure"
+      }
+    },
+    {
+      "@id": "beckn:stationId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stationId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the docking station",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StationInformation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:shortName",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "shortName",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Shortened name of the station for display",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StationInformation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:capacity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "capacity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Total number of docking points at this station",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StationInformation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:hasKiosk",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "hasKiosk",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Whether this station has a kiosk for key cards or passes",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StationInformation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Boolean"
+      }
+    },
+    {
+      "@id": "beckn:rentalMethods",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "rentalMethods",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Methods by which bikes can be rented (e.g. KEY, CREDITCARD, APP)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StationInformation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:regionId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "regionId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Identifier of the system region this station belongs to",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StationInformation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StationInformation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StationInformation"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:gps",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "gps",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "GPS coordinates as a latitude,longitude string",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StationInformation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:address",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "address",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Physical address of the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StationInformation"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Address"
+      }
+    },
+    {
+      "@id": "beckn:city",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "city",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "City name",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StationInformation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:country",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "country",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "ISO 3166-1 alpha-2 country code",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StationInformation"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:geojson",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "geojson",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "GeoJSON geometry object representing this location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StationInformation"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#GeoJSONGeometry"
+      }
+    }
+  ]
+}

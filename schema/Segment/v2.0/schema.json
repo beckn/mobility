@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Segment",
+  "type": "object",
+  "description": "A portion of a rail journey operated continuously by a single carrier between two consecutive stops or stations.",
+  "properties": {
+    "carrierCode": {
+      "description": "Code of the carrier operating this segment",
+      "type": "string"
+    },
+    "segmentNumber": {
+      "description": "Sequence number of this segment within the journey",
+      "type": "number"
+    },
+    "trainNumber": {
+      "description": "Train or service number for this segment",
+      "type": "string"
+    },
+    "coachNumber": {
+      "description": "Coach or carriage number",
+      "type": "string"
+    },
+    "mode": {
+      "description": "Transport mode for this leg (e.g. BUS, RAIL, WALK, BICYCLE)",
+      "type": "string"
+    },
+    "origin": {
+      "description": "Start location of the leg",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+    },
+    "destination": {
+      "description": "End location of the leg",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+    },
+    "startTime": {
+      "description": "Scheduled or actual start time of the leg",
+      "type": "string",
+      "format": "date-time"
+    },
+    "endTime": {
+      "description": "Scheduled or actual end time of the leg",
+      "type": "string",
+      "format": "date-time"
+    },
+    "distance": {
+      "description": "Distance of this leg in metres",
+      "type": "number"
+    },
+    "headsign": {
+      "description": "Destination sign text displayed on the vehicle",
+      "type": "string"
+    },
+    "routeRef": {
+      "description": "Reference to the route served on this leg",
+      "$ref": "../../Route/v2.0/schema.json"
+    }
+  },
+  "additionalProperties": false
+}

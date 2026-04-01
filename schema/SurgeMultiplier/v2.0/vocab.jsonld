@@ -1,0 +1,172 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:SurgeMultiplier",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "SurgeMultiplier",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A dynamic pricing factor applied during periods of high demand that increases base fares proportionally to balance supply and demand.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Geofence"
+      }
+    },
+    {
+      "@id": "beckn:multiplierValue",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "multiplierValue",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The surge multiplier value (e.g. 1.5 for 1.5x surge)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SurgeMultiplier"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:validUntil",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validUntil",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Timestamp until which the surge multiplier is active",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SurgeMultiplier"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:reason",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "reason",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reason for the surge (e.g. HIGH_DEMAND, SPECIAL_EVENT)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SurgeMultiplier"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:geofenceRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "geofenceRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Geographic area where the surge pricing applies",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SurgeMultiplier"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Geofence"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Geofence/v2.0/vocab.jsonld#beckn:Geofence"
+      }
+    },
+    {
+      "@id": "beckn:title",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "title",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Title or label of this price component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SurgeMultiplier"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Monetary value of this component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SurgeMultiplier"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags associated with this price component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SurgeMultiplier"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

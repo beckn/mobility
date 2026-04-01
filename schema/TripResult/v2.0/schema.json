@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TripResult",
+  "type": "object",
+  "description": "The result of a trip planning request, containing one or more journey options with leg details and timing.",
+  "properties": {
+    "itineraries": {
+      "description": "List of itinerary options in the result",
+      "$ref": "../../Itinerary/v2.0/schema.json"
+    },
+    "requestRef": {
+      "description": "Reference to the originating trip request",
+      "$ref": "../../TripRequest/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the catalog",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the catalog",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "tags": {
+      "description": "Tags associated with the catalog",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

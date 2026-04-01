@@ -1,0 +1,43 @@
+openapi: 3.1.0
+info:
+  title: SupportCase
+  version: 2.0.0
+  description: Schema definition for the SupportCase entity in the Beckn Mobility
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    SupportCase:
+      type: object
+      title: SupportCase
+      description: A formal customer service inquiry, complaint, or request raised
+        by a passenger or provider through the mobility platform's support system.
+      properties:
+        caseType:
+          description: Type of support case (e.g. COMPLAINT, INQUIRY, TECHNICAL)
+          type: string
+        priority:
+          description: Priority level of the case (LOW, MEDIUM, HIGH, URGENT)
+          type: string
+        reportedAt:
+          description: Timestamp when the case was reported
+          type: string
+          format: date-time
+        resolvedAt:
+          description: Timestamp when the case was resolved
+          type: string
+          format: date-time
+        orderId:
+          description: Identifier of the contract/order against which support is required
+          type: string
+        ticketIds:
+          description: Identifiers of any open support tickets
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/SupportTicket
+        callbackPhone:
+          description: Telephone number for callback support
+          type: string
+      additionalProperties: false

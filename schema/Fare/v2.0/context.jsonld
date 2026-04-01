@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Fare": "beckn:Fare",
+    "fareId": "beckn:fareId",
+    "amount": "beckn:amount",
+    "currency": "beckn:currency",
+    "fareAttributes": "beckn:fareAttributes",
+    "fareRules": "beckn:fareRules",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "price": "beckn:price",
+    "validity": "beckn:validity",
+    "tags": "beckn:tags"
+  }
+}

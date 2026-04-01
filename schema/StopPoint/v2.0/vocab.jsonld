@@ -1,0 +1,208 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:StopPoint",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "StopPoint",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "An abstract or scheduled point in a public transport network at which passengers can board or alight from a service.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:StopArea"
+      }
+    },
+    {
+      "@id": "beckn:stopPointId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopPointId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the stop point",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPoint"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:shortName",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "shortName",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Short display name or code",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPoint"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:publicCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "publicCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Publicly visible code displayed at the stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPoint"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:stopAreaRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopAreaRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the stop area this point belongs to",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPoint"
+      },
+      "rdfs:range": {
+        "@id": "beckn:StopArea"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../StopArea/v2.0/vocab.jsonld#beckn:StopArea"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the fulfillment stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPoint"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:location",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "location",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Geographic location of the stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPoint"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:type",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "type",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of stop (start, end, intermediate)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPoint"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:instructions",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "instructions",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Instructions for passengers at this stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPoint"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:time",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "time",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Expected time window at this stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPoint"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    }
+  ]
+}

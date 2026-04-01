@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PlanningResult",
+  "type": "object",
+  "description": "The output of a MaaS platform planning request, listing available transport options for a requested trip.",
+  "properties": {
+    "origin": {
+      "description": "Origin location for the planning query",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+    },
+    "destination": {
+      "description": "Destination location for the planning query",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+    },
+    "options": {
+      "description": "Available transport options returned",
+      "$ref": "../../RideOption/v2.0/schema.json"
+    },
+    "itineraries": {
+      "description": "Multi-modal itinerary options if applicable",
+      "$ref": "../../Itinerary/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the catalog",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the catalog",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "tags": {
+      "description": "Tags associated with the catalog",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

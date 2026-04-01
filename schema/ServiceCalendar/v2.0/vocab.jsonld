@@ -1,0 +1,301 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:ServiceCalendar",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "ServiceCalendar",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A schedule defining on which dates a transport service operates, including regular service days and exceptional dates.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "https://schema.org/Schedule"
+      }
+    },
+    {
+      "@id": "beckn:serviceId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "serviceId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the service calendar",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:monday",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "monday",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Whether service operates on Mondays",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Boolean"
+      }
+    },
+    {
+      "@id": "beckn:tuesday",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tuesday",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Whether service operates on Tuesdays",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Boolean"
+      }
+    },
+    {
+      "@id": "beckn:wednesday",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "wednesday",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Whether service operates on Wednesdays",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Boolean"
+      }
+    },
+    {
+      "@id": "beckn:thursday",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "thursday",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Whether service operates on Thursdays",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Boolean"
+      }
+    },
+    {
+      "@id": "beckn:friday",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "friday",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Whether service operates on Fridays",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Boolean"
+      }
+    },
+    {
+      "@id": "beckn:saturday",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "saturday",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Whether service operates on Saturdays",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Boolean"
+      }
+    },
+    {
+      "@id": "beckn:sunday",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "sunday",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Whether service operates on Sundays",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Boolean"
+      }
+    },
+    {
+      "@id": "beckn:exceptionDates",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "exceptionDates",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Dates on which service is added or removed from the regular schedule",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:startDate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "startDate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Start date and time of the period",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:endDate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "endDate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "End date and time of the period",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:startTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "startTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Start time of day in HH:MM:SS format",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:endTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "endTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "End time of day in HH:MM:SS format",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Direction": "beckn:Direction",
+    "directionId": "beckn:directionId",
+    "directionCode": "beckn:directionCode",
+    "name": "beckn:name",
+    "short_desc": "beckn:short_desc",
+    "long_desc": "beckn:long_desc",
+    "media": "beckn:media",
+    "images": "beckn:images"
+  }
+}

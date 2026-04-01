@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "RideOption": "beckn:RideOption",
+    "vehicleType": "beckn:vehicleType",
+    "estimatedArrival": "beckn:estimatedArrival",
+    "estimatedDuration": "beckn:estimatedDuration",
+    "estimatedDistance": "beckn:estimatedDistance",
+    "pricingModel": "beckn:pricingModel",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "price": "beckn:price",
+    "validity": "beckn:validity",
+    "tags": "beckn:tags"
+  }
+}

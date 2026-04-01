@@ -1,0 +1,20 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Line": "beckn:Line",
+    "lineId": "beckn:lineId",
+    "shortName": "beckn:shortName",
+    "longName": "beckn:longName",
+    "lineType": "beckn:lineType",
+    "color": "beckn:color",
+    "textColor": "beckn:textColor",
+    "operatorRef": "beckn:operatorRef",
+    "networkRef": "beckn:networkRef",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "categoryId": "beckn:categoryId",
+    "price": "beckn:price",
+    "quantity": "beckn:quantity",
+    "tags": "beckn:tags"
+  }
+}

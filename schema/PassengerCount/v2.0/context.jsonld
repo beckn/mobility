@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "PassengerCount": "beckn:PassengerCount",
+    "boardingCount": "beckn:boardingCount",
+    "alightingCount": "beckn:alightingCount",
+    "currentOccupancy": "beckn:currentOccupancy",
+    "unitCode": "beckn:unitCode",
+    "value": "beckn:value",
+    "maximum": "beckn:maximum",
+    "minimum": "beckn:minimum"
+  }
+}

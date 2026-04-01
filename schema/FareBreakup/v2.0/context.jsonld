@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "FareBreakup": "beckn:FareBreakup",
+    "componentTitle": "beckn:componentTitle",
+    "amount": "beckn:amount",
+    "currency": "beckn:currency",
+    "taxAmount": "beckn:taxAmount",
+    "taxRate": "beckn:taxRate",
+    "title": "beckn:title",
+    "price": "beckn:price",
+    "tags": "beckn:tags"
+  }
+}

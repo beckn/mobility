@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BaggageAllowance",
+  "type": "object",
+  "description": "The quantity and weight of baggage a passenger is permitted to carry or check in without incurring additional charges.",
+  "properties": {
+    "cabinBaggageCount": {
+      "description": "Maximum number of cabin (carry-on) bags allowed",
+      "type": "number"
+    },
+    "cabinBaggageWeight": {
+      "description": "Maximum weight in kilograms for cabin baggage",
+      "type": "number"
+    },
+    "checkedBaggageCount": {
+      "description": "Maximum number of checked bags allowed",
+      "type": "number"
+    },
+    "checkedBaggageWeight": {
+      "description": "Maximum weight in kilograms per checked bag",
+      "type": "number"
+    },
+    "id": {
+      "description": "Unique identifier for the constraint",
+      "type": "string"
+    },
+    "constraintType": {
+      "description": "Type of constraint (extensible term)",
+      "type": "string"
+    },
+    "operator": {
+      "description": "Comparator operator (e.g. <=, >=, =)",
+      "type": "string"
+    },
+    "value": {
+      "description": "Numeric value of the constraint",
+      "type": "number"
+    },
+    "unitCode": {
+      "description": "Unit of measure code (UN/ECE Rec 20)",
+      "type": "string"
+    },
+    "validity": {
+      "description": "Validity window for this constraint",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    }
+  },
+  "additionalProperties": false
+}

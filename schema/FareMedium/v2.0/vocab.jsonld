@@ -1,0 +1,142 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:FareMedium",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "FareMedium",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The physical or digital medium used to carry or present a fare product, such as a contactless card, mobile app, or paper ticket.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:mediumType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "mediumType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of fare medium (e.g. CONTACTLESS_CARD, MOBILE_APP, PAPER_TICKET, QR_CODE)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareMedium"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:mediumId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "mediumId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier or number of the physical or digital medium",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareMedium"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareMedium"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable information about the entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareMedium"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:resource",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "resource",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The resource being accessed against this entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareMedium"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#ContractItem"
+      }
+    },
+    {
+      "@id": "beckn:credentials",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "credentials",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Credential descriptors for the entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareMedium"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    }
+  ]
+}

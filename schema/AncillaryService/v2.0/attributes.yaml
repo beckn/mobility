@@ -2,19 +2,43 @@ openapi: 3.1.0
 info:
   title: AncillaryService
   version: 2.0.0
-  description: Schema definition for the AncillaryService entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the AncillaryService entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     AncillaryService:
       type: object
       title: AncillaryService
-      description: >
-        Attributes for the AncillaryService entity in the Beckn Mobility domain.
-      properties: {}
+      description: An optional or additional service available for purchase alongside
+        base transport, such as extra baggage or lounge access.
+      properties:
+        serviceCode:
+          description: IATA service code (e.g. BG for extra baggage)
+          type: string
+        serviceCategory:
+          description: Category of the ancillary service
+          type: string
+        maxQuantity:
+          description: Maximum quantity of this service that can be purchased
+          type: number
+        id:
+          description: Unique identifier for the offer
+          type: string
+        descriptor:
+          description: Human-readable description of the offer
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        price:
+          description: Price specification for this offer
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification
+        validity:
+          description: Validity period of the offer
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        tags:
+          description: Tags or labels associated with the offer
+          type: string
+      additionalProperties: false

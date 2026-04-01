@@ -1,0 +1,41 @@
+openapi: 3.1.0
+info:
+  title: Rider
+  version: 2.0.0
+  description: Schema definition for the Rider entity in the Beckn Mobility domain.
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    Rider:
+      type: object
+      title: Rider
+      description: A person using a shared mobility service (such as a bike-share,
+        scooter, or car-share) who has a registered account with the provider.
+      properties:
+        riderId:
+          description: Unique identifier for the rider account
+          type: string
+        preferredPaymentMethod:
+          description: Rider preferred payment method
+          type: string
+        membershipPlan:
+          description: Active membership or subscription plan
+          type: string
+        id:
+          description: Unique identifier for the participant
+          type: string
+        person:
+          description: Personal details of the participant
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Person
+        organization:
+          description: Organisation the participant belongs to
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Organization
+        entitlements:
+          description: Entitlements held by the participant
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Entitlement
+      additionalProperties: false

@@ -2,19 +2,38 @@ openapi: 3.1.0
 info:
   title: DistributionChannel
   version: 2.0.0
-  description: Schema definition for the DistributionChannel entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the DistributionChannel entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     DistributionChannel:
       type: object
       title: DistributionChannel
-      description: >
-        Attributes for the DistributionChannel entity in the Beckn Mobility domain.
-      properties: {}
+      description: A channel or platform through which fare products or tickets are
+        sold or distributed to end customers.
+      properties:
+        channelType:
+          description: Type of distribution channel (e.g. ONLINE, TICKET_OFFICE, MOBILE_APP)
+          type: string
+        channelName:
+          description: Human-readable name of this distribution channel
+          type: string
+        url:
+          description: URL to access this distribution channel
+          type: string
+          format: uri
+        id:
+          description: Unique identifier for the catalog
+          type: string
+        descriptor:
+          description: Human-readable description of the catalog
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        tags:
+          description: Tags associated with the catalog
+          type: string
+      additionalProperties: false

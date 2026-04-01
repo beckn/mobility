@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Prognosis",
+  "type": "object",
+  "description": "A real-time prediction of a vehicle's arrival or departure time at a stop, including an indication of prediction confidence.",
+  "properties": {
+    "scheduledTime": {
+      "description": "Timetabled scheduled time",
+      "type": "string",
+      "format": "date-time"
+    },
+    "estimatedTime": {
+      "description": "Predicted actual time",
+      "type": "string",
+      "format": "date-time"
+    },
+    "certainty": {
+      "description": "Confidence of the prognosis (e.g. real, prognosis, calculated, unknown)",
+      "type": "string"
+    },
+    "delaySeconds": {
+      "description": "Delay in seconds relative to the scheduled time",
+      "type": "number"
+    },
+    "id": {
+      "description": "Unique identifier for the tracking record",
+      "type": "string"
+    },
+    "url": {
+      "description": "URL endpoint for real-time tracking information",
+      "type": "string",
+      "format": "uri"
+    },
+    "status": {
+      "description": "Current tracking status",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/State"
+    },
+    "validity": {
+      "description": "Validity period for this tracking record",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    }
+  },
+  "additionalProperties": false
+}

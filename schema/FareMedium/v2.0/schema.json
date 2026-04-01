@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FareMedium",
+  "type": "object",
+  "description": "The physical or digital medium used to carry or present a fare product, such as a contactless card, mobile app, or paper ticket.",
+  "properties": {
+    "mediumType": {
+      "description": "Type of fare medium (e.g. CONTACTLESS_CARD, MOBILE_APP, PAPER_TICKET, QR_CODE)",
+      "type": "string"
+    },
+    "mediumId": {
+      "description": "Unique identifier or number of the physical or digital medium",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the entitlement",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable information about the entitlement",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "resource": {
+      "description": "The resource being accessed against this entitlement",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/ContractItem"
+    },
+    "credentials": {
+      "description": "Credential descriptors for the entitlement",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    }
+  },
+  "additionalProperties": false
+}

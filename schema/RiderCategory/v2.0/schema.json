@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RiderCategory",
+  "type": "object",
+  "description": "A classification of passenger type (e.g., adult, child, senior, student) used to determine applicable fare entitlements.",
+  "properties": {
+    "riderCategoryId": {
+      "description": "Unique identifier for the rider category",
+      "type": "string"
+    },
+    "eligibilityRules": {
+      "description": "Rules defining who qualifies for this rider category",
+      "type": "string"
+    },
+    "proofRequired": {
+      "description": "Type of proof required to qualify (e.g. student ID, senior card)",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the category code",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable label for the category",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "parentCategoryId": {
+      "description": "Identifier of the parent category if hierarchical",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

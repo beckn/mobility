@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FareComponent",
+  "type": "object",
+  "description": "A component of an air travel fare that applies to a specific flight segment or leg, used in aviation pricing.",
+  "properties": {
+    "fareBasisCode": {
+      "description": "IATA fare basis code identifying the fare type",
+      "type": "string"
+    },
+    "cabin": {
+      "description": "Cabin class (ECONOMY, BUSINESS, FIRST)",
+      "type": "string"
+    },
+    "bookingCode": {
+      "description": "Booking class code (e.g. Y, M, K)",
+      "type": "string"
+    },
+    "amount": {
+      "description": "Fare amount for this component",
+      "type": "number"
+    },
+    "currency": {
+      "description": "ISO 4217 currency code",
+      "type": "string"
+    },
+    "segmentRef": {
+      "description": "Flight segment this fare component applies to",
+      "$ref": "../../FlightSegment/v2.0/schema.json"
+    },
+    "title": {
+      "description": "Title or label of this price component",
+      "type": "string"
+    },
+    "price": {
+      "description": "Monetary value of this component",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "tags": {
+      "description": "Tags associated with this price component",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

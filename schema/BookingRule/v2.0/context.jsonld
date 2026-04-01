@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "BookingRule": "beckn:BookingRule",
+    "latestBookingTime": "beckn:latestBookingTime",
+    "earliestBookingTime": "beckn:earliestBookingTime",
+    "priorNoticeDurationMin": "beckn:priorNoticeDurationMin",
+    "priorNoticeStartDay": "beckn:priorNoticeStartDay",
+    "priorNoticeStartTime": "beckn:priorNoticeStartTime",
+    "message": "beckn:message",
+    "phoneNumber": "beckn:phoneNumber",
+    "url": "beckn:url",
+    "id": "beckn:id",
+    "policyType": "beckn:policyType",
+    "descriptor": "beckn:descriptor",
+    "validity": "beckn:validity",
+    "policyAttributes": "beckn:policyAttributes"
+  }
+}

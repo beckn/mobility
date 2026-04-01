@@ -1,0 +1,222 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:ServiceDelivery",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "ServiceDelivery",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The top-level response container in SIRI encapsulating one or more real-time data delivery types.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "beckn:EstimatedTimetableDelivery"
+        },
+        {
+          "@id": "beckn:StopMonitoring"
+        },
+        {
+          "@id": "beckn:VehicleMonitoringDelivery"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:responseTimestamp",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "responseTimestamp",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Timestamp when this service delivery was generated",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceDelivery"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:producerRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "producerRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Identifier of the system producing this delivery",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceDelivery"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:requestMessageRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "requestMessageRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the request that triggered this delivery",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceDelivery"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:stopMonitoring",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopMonitoring",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Stop monitoring delivery payloads",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceDelivery"
+      },
+      "rdfs:range": {
+        "@id": "beckn:StopMonitoring"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../StopMonitoring/v2.0/vocab.jsonld#beckn:StopMonitoring"
+      }
+    },
+    {
+      "@id": "beckn:vehicleMonitoring",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleMonitoring",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Vehicle monitoring delivery payloads",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceDelivery"
+      },
+      "rdfs:range": {
+        "@id": "beckn:VehicleMonitoringDelivery"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../VehicleMonitoringDelivery/v2.0/vocab.jsonld#beckn:VehicleMonitoringDelivery"
+      }
+    },
+    {
+      "@id": "beckn:estimatedTimetable",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "estimatedTimetable",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Estimated timetable delivery payloads",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceDelivery"
+      },
+      "rdfs:range": {
+        "@id": "beckn:EstimatedTimetableDelivery"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../EstimatedTimetableDelivery/v2.0/vocab.jsonld#beckn:EstimatedTimetableDelivery"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceDelivery"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceDelivery"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags associated with the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceDelivery"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

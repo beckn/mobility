@@ -1,0 +1,45 @@
+openapi: 3.1.0
+info:
+  title: EmergencyEvent
+  version: 2.0.0
+  description: Schema definition for the EmergencyEvent entity in the Beckn Mobility
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    EmergencyEvent:
+      type: object
+      title: EmergencyEvent
+      description: A critical safety or operational event requiring immediate response,
+        such as an accident, vehicle breakdown, or passenger emergency.
+      properties:
+        emergencyType:
+          description: Type of emergency (e.g. ACCIDENT, BREAKDOWN, MEDICAL)
+          type: string
+        severity:
+          description: Severity level of the emergency (LOW, MEDIUM, HIGH, CRITICAL)
+          type: string
+        reportedAt:
+          description: Timestamp when the emergency was reported
+          type: string
+          format: date-time
+        location:
+          description: Geographic location of the emergency
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        id:
+          description: Unique identifier for the alert
+          type: string
+        descriptor:
+          description: Human-readable description of the alert
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        validity:
+          description: Time period during which the alert is active
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        status:
+          description: Current status of the alert
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/State
+      additionalProperties: false

@@ -1,0 +1,53 @@
+openapi: 3.1.0
+info:
+  title: PricingModel
+  version: 2.0.0
+  description: Schema definition for the PricingModel entity in the Beckn Mobility
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    PricingModel:
+      type: object
+      title: PricingModel
+      description: The pricing structure or tariff model used by a mobility service
+        provider to calculate fares.
+      properties:
+        modelType:
+          description: Type of pricing model (e.g. FIXED, METERED, SUBSCRIPTION, SURGE)
+          type: string
+        baseRate:
+          description: Base fare charged at the start of a trip
+          type: number
+        perMinuteRate:
+          description: Additional charge per minute of travel
+          type: number
+        perKmRate:
+          description: Additional charge per kilometre of travel
+          type: number
+        currency:
+          description: ISO 4217 currency code
+          type: string
+        surgeEnabled:
+          description: Whether surge pricing can be applied
+          type: boolean
+        id:
+          description: Unique identifier for the offer
+          type: string
+        descriptor:
+          description: Human-readable description of the offer
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        price:
+          description: Price specification for this offer
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification
+        validity:
+          description: Validity period of the offer
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        tags:
+          description: Tags or labels associated with the offer
+          type: string
+      additionalProperties: false

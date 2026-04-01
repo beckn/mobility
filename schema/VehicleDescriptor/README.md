@@ -1,43 +1,51 @@
 # VehicleDescriptor
-A schema.beckn.io TODO( Select Type / Property based on the nature of the schema)
 
-TODO(Insert description here taken from 4_Beckn_Mobility_Concepts.md)
+A schema.beckn.io Type
 
-**Canonical IRI :** mobility:VehicleDescriptor
+An identifier that uniquely references a specific vehicle in a real-time transit feed.
+
+**Canonical IRI :** `mobility:VehicleDescriptor`
+
 **Canonical URL:** https://schema.beckn.io/mobility/VehicleDescriptor
+
 **Related Classes:**
 
 | Type | Relationship | Strength |
 |------|--------------|----------|
-| [insert domain_standard_prefix]:[Insert Type in domain standard] | [Insert Relationship] | [Insert Strength] |
-
+| [beckn:Descriptor](https://github.com/beckn/core_schema/tree/draft/schema/Descriptor) | rdfs:subClassOf | Subclass |
+| [mobility:Vehicle](https://schema.beckn.io/mobility/Vehicle) | rdfs:seeAlso | Related |
 
 ## Open Issues
+
 [Open issues](https://github.com/beckn/mobility/issues)
 
 ## Properties
-| Property     | Expected Type  | Description           |
-|--------------|----------------|-----------------------|
-| [Insert hyperlinked PropertyName] | [Insert Hyperlinked TypeName]  | [Insert Property description]  |
 
-## [If there are multiple examples then call this heading Examples, else call it Example]
+| Property | Expected Type | Description |
+|---|---|---|
+| **[Properties from VehicleDescriptor](https://schema.beckn.io/mobility/VehicleDescriptor)** | | |
+| [vehicleId](https://schema.beckn.io/mobility/vehicleId) | [schema:Text](https://schema.org/Text) | Internal system identifier for the vehicle |
+| [label](https://schema.beckn.io/mobility/label) | [schema:Text](https://schema.org/Text) | User-visible label or number for the vehicle |
+| [licensePlate](https://schema.beckn.io/mobility/licensePlate) | [schema:Text](https://schema.org/Text) | Vehicle license plate number |
+| **[Properties from Descriptor](https://github.com/beckn/core_schema/tree/draft/schema/Descriptor)** | | |
+| [name](https://schema.beckn.io/core/name) | [schema:Text](https://schema.org/Text) | Short display name of the entity |
+| [short_desc](https://schema.beckn.io/core/short_desc) | [schema:Text](https://schema.org/Text) | Brief textual description |
+| [long_desc](https://schema.beckn.io/core/long_desc) | [schema:Text](https://schema.org/Text) | Detailed or long-form description |
+| [media](https://schema.beckn.io/core/media) | [schema:URL](https://schema.org/URL) | Media resource URLs (images, audio, video) |
+| [images](https://schema.beckn.io/core/images) | [schema:URL](https://schema.org/URL) | Image URLs for visual display |
 
-### [if multiple examples ,then insert call it Example (number) or omit this heading]
+## Example
 
 [Insert brief description of the example]
 
-```
+```json
 [Insert Example JSON-LD]
 ```
 
 ## Example Beckn Protocol Requests Payload using this Schema
 
-### TODO(if multiple examples ,then insert call it Example # or omit this heading)
 > [Brief description of the request with container schema, core schema, and mobility bindings]
 
-
-```
+```json
 [Insert Example JSON-LD]
 ```
-
-

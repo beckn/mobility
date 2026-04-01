@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Timetable": "beckn:Timetable",
+    "routeRef": "beckn:routeRef",
+    "trips": "beckn:trips",
+    "validFrom": "beckn:validFrom",
+    "validUntil": "beckn:validUntil",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "tags": "beckn:tags"
+  }
+}

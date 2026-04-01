@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "AffectedLine": "beckn:AffectedLine",
+    "lineId": "beckn:lineId",
+    "lineRef": "beckn:lineRef",
+    "affectedStops": "beckn:affectedStops",
+    "cause": "beckn:cause",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "validity": "beckn:validity",
+    "status": "beckn:status"
+  }
+}

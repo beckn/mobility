@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "BaggageAllowance": "beckn:BaggageAllowance",
+    "cabinBaggageCount": "beckn:cabinBaggageCount",
+    "cabinBaggageWeight": "beckn:cabinBaggageWeight",
+    "checkedBaggageCount": "beckn:checkedBaggageCount",
+    "checkedBaggageWeight": "beckn:checkedBaggageWeight",
+    "id": "beckn:id",
+    "constraintType": "beckn:constraintType",
+    "operator": "beckn:operator",
+    "value": "beckn:value",
+    "unitCode": "beckn:unitCode",
+    "validity": "beckn:validity"
+  }
+}

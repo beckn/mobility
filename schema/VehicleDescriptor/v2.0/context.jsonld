@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "VehicleDescriptor": "beckn:VehicleDescriptor",
+    "vehicleId": "beckn:vehicleId",
+    "label": "beckn:label",
+    "licensePlate": "beckn:licensePlate",
+    "name": "beckn:name",
+    "short_desc": "beckn:short_desc",
+    "long_desc": "beckn:long_desc",
+    "media": "beckn:media",
+    "images": "beckn:images"
+  }
+}

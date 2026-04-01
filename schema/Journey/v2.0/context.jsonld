@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Journey": "beckn:Journey",
+    "origin": "beckn:origin",
+    "destination": "beckn:destination",
+    "departureTime": "beckn:departureTime",
+    "arrivalTime": "beckn:arrivalTime",
+    "legs": "beckn:legs",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "items": "beckn:items",
+    "fulfillments": "beckn:fulfillments",
+    "state": "beckn:state"
+  }
+}

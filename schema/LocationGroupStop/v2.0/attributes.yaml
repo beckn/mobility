@@ -2,19 +2,46 @@ openapi: 3.1.0
 info:
   title: LocationGroupStop
   version: 2.0.0
-  description: Schema definition for the LocationGroupStop entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the LocationGroupStop entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     LocationGroupStop:
       type: object
       title: LocationGroupStop
-      description: >
-        Attributes for the LocationGroupStop entity in the Beckn Mobility domain.
-      properties: {}
+      description: An association between a stop and a location group, used in flexible
+        transit service planning.
+      properties:
+        locationGroupId:
+          description: Identifier of the parent location group
+          type: string
+        stopId:
+          description: Reference to the stop in this association
+          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+        id:
+          description: Unique identifier for the location
+          type: string
+        descriptor:
+          description: Human-readable description of the location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        gps:
+          description: GPS coordinates as a latitude,longitude string
+          type: string
+        address:
+          description: Physical address of the location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Address
+        city:
+          description: City name
+          type: string
+        country:
+          description: ISO 3166-1 alpha-2 country code
+          type: string
+        geojson:
+          description: GeoJSON geometry object representing this location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry
+      additionalProperties: false

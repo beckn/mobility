@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "SupportCase": "beckn:SupportCase",
+    "caseType": "beckn:caseType",
+    "priority": "beckn:priority",
+    "reportedAt": "beckn:reportedAt",
+    "resolvedAt": "beckn:resolvedAt",
+    "orderId": "beckn:orderId",
+    "ticketIds": "beckn:ticketIds",
+    "callbackPhone": "beckn:callbackPhone"
+  }
+}

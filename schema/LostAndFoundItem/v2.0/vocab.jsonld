@@ -1,0 +1,193 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:LostAndFoundItem",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "LostAndFoundItem",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "An item that has been reported lost or found in connection with a transport service.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Vehicle"
+      }
+    },
+    {
+      "@id": "beckn:itemType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "itemType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of the lost/found item (e.g. BAG, PHONE, WALLET)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LostAndFoundItem"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:itemDescription",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "itemDescription",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Detailed description of the item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LostAndFoundItem"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:foundAt",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "foundAt",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Date and time the item was found",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LostAndFoundItem"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:lostAt",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "lostAt",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Date and time the item was lost",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LostAndFoundItem"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:vehicleRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Vehicle on which the item was found or lost",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LostAndFoundItem"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Vehicle"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Vehicle/v2.0/vocab.jsonld#beckn:Vehicle"
+      }
+    },
+    {
+      "@id": "beckn:orderId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "orderId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Identifier of the contract/order against which support is required",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LostAndFoundItem"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:ticketIds",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "ticketIds",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Identifiers of any open support tickets",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LostAndFoundItem"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#SupportTicket"
+      }
+    },
+    {
+      "@id": "beckn:callbackPhone",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "callbackPhone",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Telephone number for callback support",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LostAndFoundItem"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DepartureMessage",
+  "type": "object",
+  "description": "A real-time message containing predicted departure times for vehicles at a stop, as used in VDV real-time standards.",
+  "properties": {
+    "stopRef": {
+      "description": "Reference to the stop for which departures are reported",
+      "$ref": "../../Stop/v2.0/schema.json"
+    },
+    "lineRef": {
+      "description": "Reference to the line departing from this stop",
+      "$ref": "../../Line/v2.0/schema.json"
+    },
+    "vehicleRef": {
+      "description": "Reference to the departing vehicle",
+      "$ref": "../../VehicleDescriptor/v2.0/schema.json"
+    },
+    "expectedDeparture": {
+      "description": "Predicted departure time",
+      "type": "string",
+      "format": "date-time"
+    },
+    "delaySeconds": {
+      "description": "Delay in seconds relative to scheduled departure",
+      "type": "number"
+    },
+    "id": {
+      "description": "Unique identifier for the alert",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the alert",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "validity": {
+      "description": "Time period during which the alert is active",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    },
+    "status": {
+      "description": "Current status of the alert",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/State"
+    }
+  },
+  "additionalProperties": false
+}

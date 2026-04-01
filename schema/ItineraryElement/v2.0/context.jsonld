@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "ItineraryElement": "beckn:ItineraryElement",
+    "elementType": "beckn:elementType",
+    "segmentRef": "beckn:segmentRef",
+    "legRef": "beckn:legRef",
+    "sequence": "beckn:sequence",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "price": "beckn:price",
+    "quantity": "beckn:quantity"
+  }
+}

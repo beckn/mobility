@@ -1,0 +1,10 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Shape": "beckn:Shape",
+    "shapeId": "beckn:shapeId",
+    "distanceTraveled": "beckn:distanceTraveled",
+    "type": "beckn:type",
+    "coordinates": "beckn:coordinates"
+  }
+}

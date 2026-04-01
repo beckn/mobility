@@ -2,19 +2,43 @@ openapi: 3.1.0
 info:
   title: ItineraryElement
   version: 2.0.0
-  description: Schema definition for the ItineraryElement entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the ItineraryElement entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     ItineraryElement:
       type: object
       title: ItineraryElement
-      description: >
-        Attributes for the ItineraryElement entity in the Beckn Mobility domain.
-      properties: {}
+      description: A component of an aviation itinerary such as a flight segment,
+        ground transport leg, or ancillary service.
+      properties:
+        elementType:
+          description: Type of itinerary element (FLIGHT, GROUND_TRANSPORT, ANCILLARY)
+          type: string
+        segmentRef:
+          description: Reference to a flight segment if this is a flight element
+          $ref: ../../FlightSegment/v2.0/schema.json#/$defs/FlightSegment
+        legRef:
+          description: Reference to a transport leg if this is a surface element
+          $ref: ../../Leg/v2.0/schema.json#/$defs/Leg
+        sequence:
+          description: Sequential order of this element within the itinerary
+          type: number
+        id:
+          description: Unique identifier for the contract item
+          type: string
+        descriptor:
+          description: Human-readable description of the item
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        price:
+          description: Price for this contract item
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification
+        quantity:
+          description: Quantity of this contract item
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Quantity
+      additionalProperties: false

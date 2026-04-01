@@ -2,19 +2,43 @@ openapi: 3.1.0
 info:
   title: SalesOfferPackage
   version: 2.0.0
-  description: Schema definition for the SalesOfferPackage entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the SalesOfferPackage entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     SalesOfferPackage:
       type: object
       title: SalesOfferPackage
-      description: >
-        Attributes for the SalesOfferPackage entity in the Beckn Mobility domain.
-      properties: {}
+      description: A combination of one or more fare products bundled for sale through
+        a specific distribution channel.
+      properties:
+        fareProducts:
+          description: Fare products included in this sales package
+          $ref: ../../FareProduct/v2.0/schema.json#/$defs/FareProduct
+        distributions:
+          description: Channels through which this package can be purchased
+          $ref: ../../DistributionChannel/v2.0/schema.json#/$defs/DistributionChannel
+        conditionsOfTravel:
+          description: Conditions applying to the use of this package
+          type: string
+        id:
+          description: Unique identifier for the offer
+          type: string
+        descriptor:
+          description: Human-readable description of the offer
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        price:
+          description: Price specification for this offer
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification
+        validity:
+          description: Validity period of the offer
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        tags:
+          description: Tags or labels associated with the offer
+          type: string
+      additionalProperties: false

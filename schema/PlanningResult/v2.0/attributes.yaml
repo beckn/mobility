@@ -2,19 +2,40 @@ openapi: 3.1.0
 info:
   title: PlanningResult
   version: 2.0.0
-  description: Schema definition for the PlanningResult entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the PlanningResult entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     PlanningResult:
       type: object
       title: PlanningResult
-      description: >
-        Attributes for the PlanningResult entity in the Beckn Mobility domain.
-      properties: {}
+      description: The output of a MaaS platform planning request, listing available
+        transport options for a requested trip.
+      properties:
+        origin:
+          description: Origin location for the planning query
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        destination:
+          description: Destination location for the planning query
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        options:
+          description: Available transport options returned
+          $ref: ../../RideOption/v2.0/schema.json#/$defs/RideOption
+        itineraries:
+          description: Multi-modal itinerary options if applicable
+          $ref: ../../Itinerary/v2.0/schema.json#/$defs/Itinerary
+        id:
+          description: Unique identifier for the catalog
+          type: string
+        descriptor:
+          description: Human-readable description of the catalog
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        tags:
+          description: Tags associated with the catalog
+          type: string
+      additionalProperties: false

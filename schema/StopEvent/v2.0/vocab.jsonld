@@ -1,0 +1,234 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:StopEvent",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "StopEvent",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A departure or arrival event at a stop, used to retrieve the next or previous vehicle movements at a specific location.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "beckn:StopPoint"
+        },
+        {
+          "@id": "beckn:VehicleJourney"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:stopEventType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopEventType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of event (DEPARTURE, ARRIVAL)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopEvent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:timetabledTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "timetabledTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Scheduled time for the event",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopEvent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:estimatedTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "estimatedTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Estimated actual time for the event",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopEvent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:serviceJourneyRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "serviceJourneyRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the vehicle journey for this event",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopEvent"
+      },
+      "rdfs:range": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../VehicleJourney/v2.0/vocab.jsonld#beckn:VehicleJourney"
+      }
+    },
+    {
+      "@id": "beckn:stopPointRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopPointRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the stop point where the event occurs",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopEvent"
+      },
+      "rdfs:range": {
+        "@id": "beckn:StopPoint"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../StopPoint/v2.0/vocab.jsonld#beckn:StopPoint"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the fulfillment stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopEvent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:location",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "location",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Geographic location of the stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopEvent"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:type",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "type",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of stop (start, end, intermediate)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopEvent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:instructions",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "instructions",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Instructions for passengers at this stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopEvent"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:time",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "time",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Expected time window at this stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopEvent"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    }
+  ]
+}

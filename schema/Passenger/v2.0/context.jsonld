@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Passenger": "beckn:Passenger",
+    "passengerId": "beckn:passengerId",
+    "passengerType": "beckn:passengerType",
+    "specialRequirements": "beckn:specialRequirements",
+    "id": "beckn:id",
+    "person": "beckn:person",
+    "organization": "beckn:organization",
+    "entitlements": "beckn:entitlements"
+  }
+}

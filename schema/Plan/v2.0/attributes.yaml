@@ -3,18 +3,40 @@ info:
   title: Plan
   version: 2.0.0
   description: Schema definition for the Plan entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Plan:
       type: object
       title: Plan
-      description: >
-        Attributes for the Plan entity in the Beckn Mobility domain.
-      properties: {}
+      description: A journey planning response containing one or more itinerary options
+        for a given trip request.
+      properties:
+        requestedTime:
+          description: The departure or arrival time that was requested
+          type: string
+          format: date-time
+        itineraries:
+          description: List of itinerary options returned in the plan
+          $ref: ../../Itinerary/v2.0/schema.json#/$defs/Itinerary
+        from:
+          description: Origin location for this plan
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        to:
+          description: Destination location for this plan
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        id:
+          description: Unique identifier for the catalog
+          type: string
+        descriptor:
+          description: Human-readable description of the catalog
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        tags:
+          description: Tags associated with the catalog
+          type: string
+      additionalProperties: false

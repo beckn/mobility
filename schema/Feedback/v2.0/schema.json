@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Feedback",
+  "type": "object",
+  "description": "A passenger's qualitative assessment or textual comment about a completed trip, driver, or mobility service.",
+  "properties": {
+    "feedbackText": {
+      "description": "Textual content of the feedback",
+      "type": "string"
+    },
+    "feedbackType": {
+      "description": "Category of feedback (e.g. COMPLIMENT, COMPLAINT, SUGGESTION)",
+      "type": "string"
+    },
+    "serviceComponent": {
+      "description": "Component of the service being reviewed (e.g. DRIVER, VEHICLE, APP)",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the feedback",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Feedback content and form",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "rating": {
+      "description": "Rating associated with this feedback",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Rating"
+    }
+  },
+  "additionalProperties": false
+}

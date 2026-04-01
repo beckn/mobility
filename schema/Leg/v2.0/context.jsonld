@@ -1,0 +1,21 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Leg": "beckn:Leg",
+    "mode": "beckn:mode",
+    "origin": "beckn:origin",
+    "destination": "beckn:destination",
+    "startTime": "beckn:startTime",
+    "endTime": "beckn:endTime",
+    "distance": "beckn:distance",
+    "headsign": "beckn:headsign",
+    "routeRef": "beckn:routeRef",
+    "id": "beckn:id",
+    "type": "beckn:type",
+    "agent": "beckn:agent",
+    "state": "beckn:state",
+    "participants": "beckn:participants",
+    "stages": "beckn:stages",
+    "instructions": "beckn:instructions"
+  }
+}

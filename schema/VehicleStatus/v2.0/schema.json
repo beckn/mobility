@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VehicleStatus",
+  "type": "object",
+  "description": "The real-time operational state of a vehicle or mobility asset, such as available, in use, reserved, or disabled.",
+  "properties": {
+    "statusCode": {
+      "description": "Operational status code (e.g. AVAILABLE, IN_USE, RESERVED, DISABLED, CHARGING)",
+      "type": "string"
+    },
+    "batteryLevel": {
+      "description": "Current battery charge percentage",
+      "type": "number"
+    },
+    "rangeMeters": {
+      "description": "Estimated remaining range in metres",
+      "type": "number"
+    },
+    "lastReportedAt": {
+      "description": "Timestamp of the last status update",
+      "type": "string",
+      "format": "date-time"
+    },
+    "id": {
+      "description": "Unique identifier for the state",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the state",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "updatedAt": {
+      "description": "Timestamp when the state was last updated",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "ServiceDelivery": "beckn:ServiceDelivery",
+    "responseTimestamp": "beckn:responseTimestamp",
+    "producerRef": "beckn:producerRef",
+    "requestMessageRef": "beckn:requestMessageRef",
+    "stopMonitoring": "beckn:stopMonitoring",
+    "vehicleMonitoring": "beckn:vehicleMonitoring",
+    "estimatedTimetable": "beckn:estimatedTimetable",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "tags": "beckn:tags"
+  }
+}

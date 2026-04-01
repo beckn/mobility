@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "FareLegRule": "beckn:FareLegRule",
+    "fareProductId": "beckn:fareProductId",
+    "legGroupId": "beckn:legGroupId",
+    "networkId": "beckn:networkId",
+    "fromAreaId": "beckn:fromAreaId",
+    "toAreaId": "beckn:toAreaId",
+    "containsServiceId": "beckn:containsServiceId",
+    "id": "beckn:id",
+    "policyType": "beckn:policyType",
+    "descriptor": "beckn:descriptor",
+    "validity": "beckn:validity",
+    "policyAttributes": "beckn:policyAttributes"
+  }
+}

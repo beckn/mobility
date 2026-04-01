@@ -1,0 +1,237 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Ticket",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Ticket",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A document or digital record granting the holder the right to travel on a specific transport service or within a defined validity scope.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "https://schema.org/Ticket"
+        },
+        {
+          "@id": "beckn:FareProduct"
+        },
+        {
+          "@id": "beckn:Passenger"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:ticketId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "ticketId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier or serial number of the ticket",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:ticketType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "ticketType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of ticket (e.g. SINGLE, RETURN, SEASON, FLEXI)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:validFrom",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validFrom",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Date and time from which the ticket is valid",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:validUntil",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validUntil",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Date and time until which the ticket is valid",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:fareProductRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fareProductRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the fare product this ticket is issued under",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "beckn:FareProduct"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../FareProduct/v2.0/vocab.jsonld#beckn:FareProduct"
+      }
+    },
+    {
+      "@id": "beckn:passengerRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "passengerRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the passenger this ticket is issued to",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Passenger"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Passenger/v2.0/vocab.jsonld#beckn:Passenger"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable information about the entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:resource",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "resource",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The resource being accessed against this entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#ContractItem"
+      }
+    },
+    {
+      "@id": "beckn:credentials",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "credentials",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Credential descriptors for the entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Ticket"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    }
+  ]
+}

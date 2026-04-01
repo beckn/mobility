@@ -1,0 +1,210 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Receipt",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Receipt",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A payment receipt issued to a passenger upon completion and settlement of a transport service trip.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "https://schema.org/Invoice"
+        },
+        {
+          "@id": "beckn:Trip"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:receiptId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "receiptId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the receipt",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Receipt"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:issuedAt",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "issuedAt",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Timestamp when the receipt was issued",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Receipt"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:paymentMethod",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "paymentMethod",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Method of payment used (e.g. CARD, UPI, CASH, WALLET)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Receipt"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:tripRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tripRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the trip for which this receipt is issued",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Receipt"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Trip/v2.0/vocab.jsonld#beckn:Trip"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the invoice",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Receipt"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the invoice",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Receipt"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Total price for the invoice",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Receipt"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:breakup",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "breakup",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Itemised price breakup",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Receipt"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity period of the invoice",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Receipt"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    }
+  ]
+}

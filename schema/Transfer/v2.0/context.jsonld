@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Transfer": "beckn:Transfer",
+    "fromStopId": "beckn:fromStopId",
+    "toStopId": "beckn:toStopId",
+    "fromRouteId": "beckn:fromRouteId",
+    "toRouteId": "beckn:toRouteId",
+    "transferType": "beckn:transferType",
+    "minTransferTime": "beckn:minTransferTime",
+    "id": "beckn:id",
+    "location": "beckn:location",
+    "type": "beckn:type",
+    "instructions": "beckn:instructions",
+    "time": "beckn:time"
+  }
+}

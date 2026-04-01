@@ -1,0 +1,151 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:DayType",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "DayType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A classification of a day (e.g., weekday, weekend, public holiday) used to define when a service pattern is valid.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "https://schema.org/DayOfWeek"
+      }
+    },
+    {
+      "@id": "beckn:dayTypeCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "dayTypeCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Code identifying the day type (e.g. WEEKDAY, WEEKEND, HOLIDAY)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DayType"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:daysOfWeek",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "daysOfWeek",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "List of days of the week applicable to this day type",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DayType"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "beckn:startDate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "startDate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Start date and time of the period",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DayType"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:endDate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "endDate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "End date and time of the period",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DayType"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:startTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "startTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Start time of day in HH:MM:SS format",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DayType"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:endTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "endTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "End time of day in HH:MM:SS format",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DayType"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

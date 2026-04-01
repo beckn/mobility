@@ -1,0 +1,255 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Transfer",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Transfer",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A defined connection rule between two routes or services at a common stop, specifying minimum transfer time or transfer type.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "beckn:Route"
+        },
+        {
+          "@id": "beckn:Stop"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:fromStopId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fromStopId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Stop passengers transfer from",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Transfer"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Stop"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Stop/v2.0/vocab.jsonld#beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:toStopId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "toStopId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Stop passengers transfer to",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Transfer"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Stop"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Stop/v2.0/vocab.jsonld#beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:fromRouteId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fromRouteId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Route passengers transfer from",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Transfer"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Route/v2.0/vocab.jsonld#beckn:Route"
+      }
+    },
+    {
+      "@id": "beckn:toRouteId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "toRouteId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Route passengers transfer to",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Transfer"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Route/v2.0/vocab.jsonld#beckn:Route"
+      }
+    },
+    {
+      "@id": "beckn:transferType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "transferType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of transfer (0=recommended, 1=timed, 2=min_time, 3=not_possible)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Transfer"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:minTransferTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "minTransferTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Minimum transfer time in seconds",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Transfer"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the fulfillment stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Transfer"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:location",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "location",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Geographic location of the stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Transfer"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:type",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "type",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of stop (start, end, intermediate)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Transfer"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:instructions",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "instructions",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Instructions for passengers at this stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Transfer"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:time",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "time",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Expected time window at this stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Transfer"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    }
+  ]
+}

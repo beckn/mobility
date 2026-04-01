@@ -1,0 +1,46 @@
+openapi: 3.1.0
+info:
+  title: LostAndFoundItem
+  version: 2.0.0
+  description: Schema definition for the LostAndFoundItem entity in the Beckn Mobility
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    LostAndFoundItem:
+      type: object
+      title: LostAndFoundItem
+      description: An item that has been reported lost or found in connection with
+        a transport service.
+      properties:
+        itemType:
+          description: Type of the lost/found item (e.g. BAG, PHONE, WALLET)
+          type: string
+        itemDescription:
+          description: Detailed description of the item
+          type: string
+        foundAt:
+          description: Date and time the item was found
+          type: string
+          format: date-time
+        lostAt:
+          description: Date and time the item was lost
+          type: string
+          format: date-time
+        vehicleRef:
+          description: Vehicle on which the item was found or lost
+          $ref: ../../Vehicle/v2.0/schema.json#/$defs/Vehicle
+        orderId:
+          description: Identifier of the contract/order against which support is required
+          type: string
+        ticketIds:
+          description: Identifiers of any open support tickets
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/SupportTicket
+        callbackPhone:
+          description: Telephone number for callback support
+          type: string
+      additionalProperties: false

@@ -1,0 +1,276 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Route",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Route",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The physical or logical path followed by a transport service, defined as an ordered sequence of stops or waypoints.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "https://schema.org/Trip"
+        },
+        {
+          "@id": "beckn:Network"
+        },
+        {
+          "@id": "beckn:Operator"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:routeId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "routeId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the route",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:shortName",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "shortName",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Short public-facing name (e.g. 42A)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:longName",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "longName",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Full descriptive name of the route",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:routeType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "routeType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Mode of transport (e.g. BUS, RAIL, TRAM, FERRY)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:operatorRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "operatorRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Operator providing this route",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Operator/v2.0/vocab.jsonld#beckn:Operator"
+      }
+    },
+    {
+      "@id": "beckn:networkRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "networkRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Network this route belongs to",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Network"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Network/v2.0/vocab.jsonld#beckn:Network"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:categoryId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "categoryId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Category code classifying the item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#CategoryCode"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Price specification for this item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:quantity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "quantity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Available quantity of the item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Quantity"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags associated with the item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

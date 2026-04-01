@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "GeofencingZone": "beckn:GeofencingZone",
+    "featureType": "beckn:featureType",
+    "geometry": "beckn:geometry",
+    "rideAllowed": "beckn:rideAllowed",
+    "rideThroughAllowed": "beckn:rideThroughAllowed",
+    "stationParking": "beckn:stationParking",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "gps": "beckn:gps",
+    "address": "beckn:address",
+    "city": "beckn:city",
+    "country": "beckn:country",
+    "geojson": "beckn:geojson"
+  }
+}

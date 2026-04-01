@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AffectedLine",
+  "type": "object",
+  "description": "A reference to a transport line that is affected by a service disruption or alert.",
+  "properties": {
+    "lineId": {
+      "description": "Identifier of the affected transport line",
+      "type": "string"
+    },
+    "lineRef": {
+      "description": "Reference to the affected Line entity",
+      "$ref": "../../Line/v2.0/schema.json"
+    },
+    "affectedStops": {
+      "description": "Stops on this line affected by the disruption",
+      "$ref": "../../Stop/v2.0/schema.json"
+    },
+    "cause": {
+      "description": "Cause of the disruption affecting this line",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the alert",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the alert",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "validity": {
+      "description": "Time period during which the alert is active",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    },
+    "status": {
+      "description": "Current status of the alert",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/State"
+    }
+  },
+  "additionalProperties": false
+}

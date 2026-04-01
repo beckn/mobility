@@ -1,0 +1,106 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:BikeAllowed",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "BikeAllowed",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "An indicator specifying whether bicycles are permitted on board a particular route or vehicle journey.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:bikeAllowedValue",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "bikeAllowedValue",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Indicates whether bikes are allowed: yes, no, or unknown",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BikeAllowed"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the feature",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BikeAllowed"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable label of the feature",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BikeAllowed"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:value",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "value",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Value of the feature (e.g. yes, no, unknown)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BikeAllowed"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

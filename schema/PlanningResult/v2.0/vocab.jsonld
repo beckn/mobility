@@ -1,0 +1,171 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:PlanningResult",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "PlanningResult",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The output of a MaaS platform planning request, listing available transport options for a requested trip.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "beckn:Itinerary"
+        },
+        {
+          "@id": "beckn:RideOption"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:origin",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "origin",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Origin location for the planning query",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlanningResult"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:destination",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "destination",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Destination location for the planning query",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlanningResult"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:options",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "options",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Available transport options returned",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlanningResult"
+      },
+      "rdfs:range": {
+        "@id": "beckn:RideOption"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../RideOption/v2.0/vocab.jsonld#beckn:RideOption"
+      }
+    },
+    {
+      "@id": "beckn:itineraries",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "itineraries",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Multi-modal itinerary options if applicable",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlanningResult"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Itinerary"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Itinerary/v2.0/vocab.jsonld#beckn:Itinerary"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlanningResult"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlanningResult"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags associated with the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlanningResult"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

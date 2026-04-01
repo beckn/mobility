@@ -1,0 +1,172 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:VehicleStatus",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "VehicleStatus",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The real-time operational state of a vehicle or mobility asset, such as available, in use, reserved, or disabled.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "https://schema.org/ItemAvailability"
+      }
+    },
+    {
+      "@id": "beckn:statusCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "statusCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Operational status code (e.g. AVAILABLE, IN_USE, RESERVED, DISABLED, CHARGING)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleStatus"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:batteryLevel",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "batteryLevel",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current battery charge percentage",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleStatus"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:rangeMeters",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "rangeMeters",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Estimated remaining range in metres",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleStatus"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:lastReportedAt",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "lastReportedAt",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Timestamp of the last status update",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleStatus"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the state",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleStatus"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the state",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleStatus"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:updatedAt",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "updatedAt",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Timestamp when the state was last updated",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleStatus"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    }
+  ]
+}

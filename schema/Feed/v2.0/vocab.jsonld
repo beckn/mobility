@@ -1,0 +1,214 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Feed",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Feed",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A data publication providing transit or mobility information in a standardised format for consumption by applications or planners.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "https://schema.org/DataFeed"
+      }
+    },
+    {
+      "@id": "beckn:feedType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "feedType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Format of the feed (e.g. GTFS, GTFS_RT, GBFS, NeTEx)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Feed"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:feedId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "feedId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the feed",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Feed"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:feedPublisher",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "feedPublisher",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Name of the organisation publishing this feed",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Feed"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:feedLanguage",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "feedLanguage",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "BCP-47 language code for the feed content",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Feed"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:feedStartDate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "feedStartDate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Date from which the feed data is valid",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Feed"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:feedEndDate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "feedEndDate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Date until which the feed data is valid",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Feed"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Feed"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Feed"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags associated with the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Feed"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

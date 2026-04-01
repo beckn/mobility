@@ -1,0 +1,10 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "BikeAllowed": "beckn:BikeAllowed",
+    "bikeAllowedValue": "beckn:bikeAllowedValue",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "value": "beckn:value"
+  }
+}

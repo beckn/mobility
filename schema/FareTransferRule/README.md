@@ -1,43 +1,52 @@
 # FareTransferRule
-A schema.beckn.io TODO( Select Type / Property based on the nature of the schema)
 
-TODO(Insert description here taken from 4_Beckn_Mobility_Concepts.md)
+A schema.beckn.io Type
 
-**Canonical IRI :** mobility:FareTransferRule
+A rule defining how fares from different legs are combined when a passenger makes a transfer between services.
+
+**Canonical IRI :** `mobility:FareTransferRule`
+
 **Canonical URL:** https://schema.beckn.io/mobility/FareTransferRule
+
 **Related Classes:**
 
 | Type | Relationship | Strength |
 |------|--------------|----------|
-| [insert domain_standard_prefix]:[Insert Type in domain standard] | [Insert Relationship] | [Insert Strength] |
-
+| [beckn:Policy](https://github.com/beckn/core_schema/tree/draft/schema/Policy) | rdfs:subClassOf | Subclass |
+| [mobility:FareProduct](https://schema.beckn.io/mobility/FareProduct) | rdfs:seeAlso | Related |
 
 ## Open Issues
+
 [Open issues](https://github.com/beckn/mobility/issues)
 
 ## Properties
-| Property     | Expected Type  | Description           |
-|--------------|----------------|-----------------------|
-| [Insert hyperlinked PropertyName] | [Insert Hyperlinked TypeName]  | [Insert Property description]  |
 
-## [If there are multiple examples then call this heading Examples, else call it Example]
+| Property | Expected Type | Description |
+|---|---|---|
+| **[Properties from FareTransferRule](https://schema.beckn.io/mobility/FareTransferRule)** | | |
+| [fareProductId](https://schema.beckn.io/mobility/fareProductId) | [schema:Text](https://schema.org/Text) | Identifier of the fare product this transfer rule applies to |
+| [transferCount](https://schema.beckn.io/mobility/transferCount) | [schema:Number](https://schema.org/Number) | Number of transfers permitted under this rule |
+| [durationLimit](https://schema.beckn.io/mobility/durationLimit) | [schema:Number](https://schema.org/Number) | Maximum duration in minutes for the transfer window |
+| [fareTransferType](https://schema.beckn.io/mobility/fareTransferType) | [schema:Text](https://schema.org/Text) | Type of fare adjustment on transfer (e.g. FREE, DISCOUNT, ADDITIONAL_FARE) |
+| **[Properties from Policy](https://github.com/beckn/core_schema/tree/draft/schema/Policy)** | | |
+| [id](https://schema.beckn.io/core/id) | [schema:Text](https://schema.org/Text) | Unique identifier for the policy |
+| [policyType](https://schema.beckn.io/core/policyType) | [schema:Text](https://schema.org/Text) | Type of policy (extensible term) |
+| [descriptor](https://schema.beckn.io/core/descriptor) | [Descriptor](https://github.com/beckn/core_schema/tree/draft/schema/Descriptor) | Human-readable description of the policy |
+| [validity](https://schema.beckn.io/core/validity) | [TimePeriod](https://github.com/beckn/core_schema/tree/draft/schema/TimePeriod) | Validity window for this policy version |
+| [policyAttributes](https://schema.beckn.io/core/policyAttributes) | [Attributes](https://github.com/beckn/core_schema/tree/draft/schema/Attributes) | Extensible domain-specific policy attributes |
 
-### [if multiple examples ,then insert call it Example (number) or omit this heading]
+## Example
 
 [Insert brief description of the example]
 
-```
+```json
 [Insert Example JSON-LD]
 ```
 
 ## Example Beckn Protocol Requests Payload using this Schema
 
-### TODO(if multiple examples ,then insert call it Example # or omit this heading)
 > [Brief description of the request with container schema, core schema, and mobility bindings]
 
-
-```
+```json
 [Insert Example JSON-LD]
 ```
-
-

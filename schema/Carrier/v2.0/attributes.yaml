@@ -3,18 +3,17 @@ info:
   title: Carrier
   version: 2.0.0
   description: Schema definition for the Carrier entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Carrier:
       type: object
       title: Carrier
-      description: >
-        Attributes for the Carrier entity in the Beckn Mobility domain.
+      description: Attributes for the Carrier entity in the Beckn Mobility domain.
       properties: {}
+      additionalProperties: false

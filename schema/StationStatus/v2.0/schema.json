@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StationStatus",
+  "type": "object",
+  "description": "The real-time operational state of a shared mobility station, including the number of available docks and vehicles.",
+  "properties": {
+    "stationId": {
+      "description": "Unique identifier of the station being reported",
+      "type": "string"
+    },
+    "numBikesAvailable": {
+      "description": "Number of bikes currently available for rental",
+      "type": "number"
+    },
+    "numDocksAvailable": {
+      "description": "Number of empty docking points currently available",
+      "type": "number"
+    },
+    "isInstalled": {
+      "description": "Whether the station is physically installed and operational",
+      "type": "boolean"
+    },
+    "isRenting": {
+      "description": "Whether the station is currently renting bikes",
+      "type": "boolean"
+    },
+    "isReturning": {
+      "description": "Whether the station is currently accepting bike returns",
+      "type": "boolean"
+    },
+    "lastReported": {
+      "description": "Timestamp of the last status update for this station",
+      "type": "string",
+      "format": "date-time"
+    },
+    "id": {
+      "description": "Unique identifier for the state",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the state",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "updatedAt": {
+      "description": "Timestamp when the state was last updated",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

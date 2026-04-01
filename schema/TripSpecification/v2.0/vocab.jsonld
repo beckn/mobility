@@ -1,0 +1,205 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:TripSpecification",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "TripSpecification",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A description of the desired journey used as input to search and price transport options.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:origin",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "origin",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Desired origin of the trip",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripSpecification"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:destination",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "destination",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Desired destination of the trip",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripSpecification"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:time",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "time",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Desired departure or arrival time",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripSpecification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:numTravelers",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "numTravelers",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Number of travelers for whom to price options",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripSpecification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:modes",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "modes",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Preferred transport modes for the trip",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripSpecification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:textSearch",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "textSearch",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Free-text search query expressing what the traveler is looking for",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripSpecification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:filters",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "filters",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "JSONPath filter criteria applied to the search results",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripSpecification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:spatial",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "spatial",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Geographic constraints on the search area",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripSpecification"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#SpatialConstraint"
+      }
+    },
+    {
+      "@id": "beckn:provider",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "provider",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Identifier of a specific provider to search within",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripSpecification"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "VehicleJourney": "beckn:VehicleJourney",
+    "vehicleJourneyCode": "beckn:vehicleJourneyCode",
+    "routeRef": "beckn:routeRef",
+    "serviceCalendarRef": "beckn:serviceCalendarRef",
+    "vehicleRef": "beckn:vehicleRef",
+    "patternRef": "beckn:patternRef",
+    "stopTimes": "beckn:stopTimes",
+    "id": "beckn:id",
+    "type": "beckn:type",
+    "agent": "beckn:agent",
+    "mode": "beckn:mode",
+    "state": "beckn:state",
+    "participants": "beckn:participants",
+    "stages": "beckn:stages",
+    "instructions": "beckn:instructions"
+  }
+}

@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Event",
+  "type": "object",
+  "description": "A discrete state change in the lifecycle of a vehicle or mobility asset, such as a trip starting, vehicle reserved, or battery low.",
+  "properties": {
+    "eventType": {
+      "description": "Type of lifecycle event (e.g. TRIP_START, VEHICLE_RESERVED, BATTERY_LOW)",
+      "type": "string"
+    },
+    "entityId": {
+      "description": "Identifier of the entity that generated the event",
+      "type": "string"
+    },
+    "triggeredAt": {
+      "description": "Timestamp when the event was triggered",
+      "type": "string",
+      "format": "date-time"
+    },
+    "payload": {
+      "description": "Additional event-specific data payload",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the state",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the state",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "updatedAt": {
+      "description": "Timestamp when the state was last updated",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "additionalProperties": false
+}

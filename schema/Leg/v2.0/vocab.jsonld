@@ -1,0 +1,345 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Leg",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Leg",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A single uninterrupted segment of a journey made using one transport mode or service between two consecutive locations.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "https://schema.org/Trip"
+        },
+        {
+          "@id": "beckn:Route"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:mode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "mode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Transport mode for this leg (e.g. BUS, RAIL, WALK, BICYCLE)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:origin",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "origin",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Start location of the leg",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:destination",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "destination",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "End location of the leg",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:startTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "startTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Scheduled or actual start time of the leg",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:endTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "endTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Scheduled or actual end time of the leg",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:distance",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "distance",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Distance of this leg in metres",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:headsign",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "headsign",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Destination sign text displayed on the vehicle",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:routeRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "routeRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the route served on this leg",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Route/v2.0/vocab.jsonld#beckn:Route"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the fulfillment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:type",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "type",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of fulfillment (extensible term)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:agent",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "agent",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The entity responsible for performing the fulfillment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#FulfillmentAgent"
+      }
+    },
+    {
+      "@id": "beckn:mode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "mode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Mode of fulfillment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#FulfillmentMode"
+      }
+    },
+    {
+      "@id": "beckn:state",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "state",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current state of the fulfillment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    },
+    {
+      "@id": "beckn:participants",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "participants",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Participants entitled to receive this fulfillment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Participant"
+      }
+    },
+    {
+      "@id": "beckn:stages",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stages",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Stages in the fulfillment lifecycle",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#FulfillmentStage"
+      }
+    },
+    {
+      "@id": "beckn:instructions",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "instructions",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Instructions for fulfillment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    }
+  ]
+}

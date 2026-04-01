@@ -2,19 +2,62 @@ openapi: 3.1.0
 info:
   title: ServiceCalendar
   version: 2.0.0
-  description: Schema definition for the ServiceCalendar entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the ServiceCalendar entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     ServiceCalendar:
       type: object
       title: ServiceCalendar
-      description: >
-        Attributes for the ServiceCalendar entity in the Beckn Mobility domain.
-      properties: {}
+      description: A schedule defining on which dates a transport service operates,
+        including regular service days and exceptional dates.
+      properties:
+        serviceId:
+          description: Unique identifier for the service calendar
+          type: string
+        monday:
+          description: Whether service operates on Mondays
+          type: boolean
+        tuesday:
+          description: Whether service operates on Tuesdays
+          type: boolean
+        wednesday:
+          description: Whether service operates on Wednesdays
+          type: boolean
+        thursday:
+          description: Whether service operates on Thursdays
+          type: boolean
+        friday:
+          description: Whether service operates on Fridays
+          type: boolean
+        saturday:
+          description: Whether service operates on Saturdays
+          type: boolean
+        sunday:
+          description: Whether service operates on Sundays
+          type: boolean
+        exceptionDates:
+          description: Dates on which service is added or removed from the regular
+            schedule
+          type: string
+          format: date-time
+        startDate:
+          description: Start date and time of the period
+          type: string
+          format: date-time
+        endDate:
+          description: End date and time of the period
+          type: string
+          format: date-time
+        startTime:
+          description: Start time of day in HH:MM:SS format
+          type: string
+        endTime:
+          description: End time of day in HH:MM:SS format
+          type: string
+      additionalProperties: false

@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RideOption",
+  "type": "object",
+  "description": "A specific ride-hailing vehicle category and pricing option presented to a passenger in response to a ride request.",
+  "properties": {
+    "vehicleType": {
+      "description": "Category of vehicle for this ride option",
+      "$ref": "../../VehicleCategory/v2.0/schema.json"
+    },
+    "estimatedArrival": {
+      "description": "Estimated vehicle arrival time at the pickup point",
+      "type": "string",
+      "format": "date-time"
+    },
+    "estimatedDuration": {
+      "description": "Estimated trip duration",
+      "type": "string",
+      "format": "duration"
+    },
+    "estimatedDistance": {
+      "description": "Estimated trip distance in kilometres",
+      "type": "number"
+    },
+    "pricingModel": {
+      "description": "Pricing model applicable to this ride option",
+      "$ref": "../../PricingModel/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the offer",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "price": {
+      "description": "Price specification for this offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "validity": {
+      "description": "Validity period of the offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    },
+    "tags": {
+      "description": "Tags or labels associated with the offer",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

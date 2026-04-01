@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "PlanningResult": "beckn:PlanningResult",
+    "origin": "beckn:origin",
+    "destination": "beckn:destination",
+    "options": "beckn:options",
+    "itineraries": "beckn:itineraries",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "tags": "beckn:tags"
+  }
+}

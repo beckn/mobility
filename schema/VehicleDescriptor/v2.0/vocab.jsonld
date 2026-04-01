@@ -1,0 +1,193 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:VehicleDescriptor",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "VehicleDescriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "An identifier that uniquely references a specific vehicle in a real-time transit feed.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:vehicleId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Internal system identifier for the vehicle",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleDescriptor"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:label",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "label",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "User-visible label or number for the vehicle",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleDescriptor"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:licensePlate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "licensePlate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Vehicle license plate number",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleDescriptor"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:name",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "name",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Short display name of the entity",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleDescriptor"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:short_desc",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "short_desc",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Brief textual description",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleDescriptor"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:long_desc",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "long_desc",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Detailed or long-form description",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleDescriptor"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:media",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "media",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Media resource URLs (images, audio, video)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleDescriptor"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/URL"
+      }
+    },
+    {
+      "@id": "beckn:images",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "images",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Image URLs for visual display",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleDescriptor"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/URL"
+      }
+    }
+  ]
+}

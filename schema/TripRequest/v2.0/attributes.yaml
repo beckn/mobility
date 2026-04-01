@@ -2,19 +2,52 @@ openapi: 3.1.0
 info:
   title: TripRequest
   version: 2.0.0
-  description: Schema definition for the TripRequest entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the TripRequest entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     TripRequest:
       type: object
       title: TripRequest
-      description: >
-        Attributes for the TripRequest entity in the Beckn Mobility domain.
-      properties: {}
+      description: A request submitted to a journey planning system specifying origin,
+        destination, travel time, and preferences.
+      properties:
+        origin:
+          description: Origin location for the trip
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        destination:
+          description: Destination location for the trip
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        departureTime:
+          description: Requested departure time
+          type: string
+          format: date-time
+        arrivalTime:
+          description: Requested arrival time (alternative to departureTime)
+          type: string
+          format: date-time
+        modes:
+          description: Permitted transport modes (e.g. BUS, RAIL, WALK)
+          type: string
+        numItineraries:
+          description: Number of itinerary alternatives requested
+          type: number
+        textSearch:
+          description: Free-text search query expressing what the traveler is looking
+            for
+          type: string
+        filters:
+          description: JSONPath filter criteria applied to the search results
+          type: string
+        spatial:
+          description: Geographic constraints on the search area
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/SpatialConstraint
+        provider:
+          description: Identifier of a specific provider to search within
+          type: string
+      additionalProperties: false

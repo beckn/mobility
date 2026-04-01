@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Plan",
+  "type": "object",
+  "description": "A journey planning response containing one or more itinerary options for a given trip request.",
+  "properties": {
+    "requestedTime": {
+      "description": "The departure or arrival time that was requested",
+      "type": "string",
+      "format": "date-time"
+    },
+    "itineraries": {
+      "description": "List of itinerary options returned in the plan",
+      "$ref": "../../Itinerary/v2.0/schema.json"
+    },
+    "from": {
+      "description": "Origin location for this plan",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+    },
+    "to": {
+      "description": "Destination location for this plan",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+    },
+    "id": {
+      "description": "Unique identifier for the catalog",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the catalog",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "tags": {
+      "description": "Tags associated with the catalog",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

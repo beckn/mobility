@@ -2,19 +2,52 @@ openapi: 3.1.0
 info:
   title: FareLegRule
   version: 2.0.0
-  description: Schema definition for the FareLegRule entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the FareLegRule entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     FareLegRule:
       type: object
       title: FareLegRule
-      description: >
-        Attributes for the FareLegRule entity in the Beckn Mobility domain.
-      properties: {}
+      description: A rule defining how a fare is applied to a single leg of a journey
+        based on origin, destination, network, and time.
+      properties:
+        fareProductId:
+          description: Identifier of the fare product this rule applies to
+          type: string
+        legGroupId:
+          description: Leg group identifier for grouping related rules
+          type: string
+        networkId:
+          description: Network to which this rule is restricted
+          type: string
+        fromAreaId:
+          description: Origin tariff zone for this fare leg rule
+          $ref: ../../TariffZone/v2.0/schema.json#/$defs/TariffZone
+        toAreaId:
+          description: Destination tariff zone for this fare leg rule
+          $ref: ../../TariffZone/v2.0/schema.json#/$defs/TariffZone
+        containsServiceId:
+          description: Specific route this rule applies to
+          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+        id:
+          description: Unique identifier for the policy
+          type: string
+        policyType:
+          description: Type of policy (extensible term)
+          type: string
+        descriptor:
+          description: Human-readable description of the policy
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        validity:
+          description: Validity window for this policy version
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        policyAttributes:
+          description: Extensible domain-specific policy attributes
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Attributes
+      additionalProperties: false

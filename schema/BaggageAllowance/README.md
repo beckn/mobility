@@ -1,43 +1,52 @@
 # BaggageAllowance
-A schema.beckn.io TODO( Select Type / Property based on the nature of the schema)
 
-TODO(Insert description here taken from 4_Beckn_Mobility_Concepts.md)
+A schema.beckn.io Type
 
-**Canonical IRI :** mobility:BaggageAllowance
+The quantity and weight of baggage a passenger is permitted to carry or check in without incurring additional charges.
+
+**Canonical IRI :** `mobility:BaggageAllowance`
+
 **Canonical URL:** https://schema.beckn.io/mobility/BaggageAllowance
+
 **Related Classes:**
 
 | Type | Relationship | Strength |
 |------|--------------|----------|
-| [insert domain_standard_prefix]:[Insert Type in domain standard] | [Insert Relationship] | [Insert Strength] |
-
+| [beckn:Constraint](https://github.com/beckn/core_schema/tree/draft/schema/Constraint) | rdfs:subClassOf | Subclass |
 
 ## Open Issues
+
 [Open issues](https://github.com/beckn/mobility/issues)
 
 ## Properties
-| Property     | Expected Type  | Description           |
-|--------------|----------------|-----------------------|
-| [Insert hyperlinked PropertyName] | [Insert Hyperlinked TypeName]  | [Insert Property description]  |
 
-## [If there are multiple examples then call this heading Examples, else call it Example]
+| Property | Expected Type | Description |
+|---|---|---|
+| **[Properties from BaggageAllowance](https://schema.beckn.io/mobility/BaggageAllowance)** | | |
+| [cabinBaggageCount](https://schema.beckn.io/mobility/cabinBaggageCount) | [schema:Number](https://schema.org/Number) | Maximum number of cabin (carry-on) bags allowed |
+| [cabinBaggageWeight](https://schema.beckn.io/mobility/cabinBaggageWeight) | [schema:Number](https://schema.org/Number) | Maximum weight in kilograms for cabin baggage |
+| [checkedBaggageCount](https://schema.beckn.io/mobility/checkedBaggageCount) | [schema:Number](https://schema.org/Number) | Maximum number of checked bags allowed |
+| [checkedBaggageWeight](https://schema.beckn.io/mobility/checkedBaggageWeight) | [schema:Number](https://schema.org/Number) | Maximum weight in kilograms per checked bag |
+| **[Properties from Constraint](https://github.com/beckn/core_schema/tree/draft/schema/Constraint)** | | |
+| [id](https://schema.beckn.io/core/id) | [schema:Text](https://schema.org/Text) | Unique identifier for the constraint |
+| [constraintType](https://schema.beckn.io/core/constraintType) | [schema:Text](https://schema.org/Text) | Type of constraint (extensible term) |
+| [operator](https://schema.beckn.io/core/operator) | [schema:Text](https://schema.org/Text) | Comparator operator (e.g. <=, >=, =) |
+| [value](https://schema.beckn.io/core/value) | [schema:Number](https://schema.org/Number) | Numeric value of the constraint |
+| [unitCode](https://schema.beckn.io/core/unitCode) | [schema:Text](https://schema.org/Text) | Unit of measure code (UN/ECE Rec 20) |
+| [validity](https://schema.beckn.io/core/validity) | [TimePeriod](https://github.com/beckn/core_schema/tree/draft/schema/TimePeriod) | Validity window for this constraint |
 
-### [if multiple examples ,then insert call it Example (number) or omit this heading]
+## Example
 
 [Insert brief description of the example]
 
-```
+```json
 [Insert Example JSON-LD]
 ```
 
 ## Example Beckn Protocol Requests Payload using this Schema
 
-### TODO(if multiple examples ,then insert call it Example # or omit this heading)
 > [Brief description of the request with container schema, core schema, and mobility bindings]
 
-
-```
+```json
 [Insert Example JSON-LD]
 ```
-
-

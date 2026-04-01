@@ -1,0 +1,44 @@
+openapi: 3.1.0
+info:
+  title: SafetyPolicy
+  version: 2.0.0
+  description: Schema definition for the SafetyPolicy entity in the Beckn Mobility
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    SafetyPolicy:
+      type: object
+      title: SafetyPolicy
+      description: A set of rules, protocols, and standards governing safety requirements
+        for drivers, vehicles, and passengers on a mobility platform.
+      properties:
+        safetyInstructions:
+          description: Instructions and guidelines for passenger and driver safety
+          type: string
+        emergencyContact:
+          description: Emergency contact handle for safety incidents
+          $ref: ../../ContactHandle/v2.0/schema.json#/$defs/ContactHandle
+        insuranceCoverage:
+          description: Description of insurance coverage under this policy
+          type: string
+        id:
+          description: Unique identifier for the policy
+          type: string
+        policyType:
+          description: Type of policy (extensible term)
+          type: string
+        descriptor:
+          description: Human-readable description of the policy
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        validity:
+          description: Validity window for this policy version
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        policyAttributes:
+          description: Extensible domain-specific policy attributes
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Attributes
+      additionalProperties: false

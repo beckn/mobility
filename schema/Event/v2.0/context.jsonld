@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Event": "beckn:Event",
+    "eventType": "beckn:eventType",
+    "entityId": "beckn:entityId",
+    "triggeredAt": "beckn:triggeredAt",
+    "payload": "beckn:payload",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "updatedAt": "beckn:updatedAt"
+  }
+}

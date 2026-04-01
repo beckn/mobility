@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "VehicleStatus": "beckn:VehicleStatus",
+    "statusCode": "beckn:statusCode",
+    "batteryLevel": "beckn:batteryLevel",
+    "rangeMeters": "beckn:rangeMeters",
+    "lastReportedAt": "beckn:lastReportedAt",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "updatedAt": "beckn:updatedAt"
+  }
+}

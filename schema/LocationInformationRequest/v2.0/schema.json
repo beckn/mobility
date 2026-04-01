@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LocationInformationRequest",
+  "type": "object",
+  "description": "A request for details about a specific geographic location, stop, or point of interest in the transport network.",
+  "properties": {
+    "requestType": {
+      "description": "Type of location information requested (e.g. STOP, ADDRESS, POI)",
+      "type": "string"
+    },
+    "locationName": {
+      "description": "Name or keyword to search for",
+      "type": "string"
+    },
+    "coordinates": {
+      "description": "Geographic coordinates to query around",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry"
+    },
+    "radius": {
+      "description": "Search radius in metres",
+      "type": "number"
+    },
+    "textSearch": {
+      "description": "Free-text search query expressing what the traveler is looking for",
+      "type": "string"
+    },
+    "filters": {
+      "description": "JSONPath filter criteria applied to the search results",
+      "type": "string"
+    },
+    "spatial": {
+      "description": "Geographic constraints on the search area",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/SpatialConstraint"
+    },
+    "provider": {
+      "description": "Identifier of a specific provider to search within",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

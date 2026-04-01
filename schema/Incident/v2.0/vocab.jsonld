@@ -1,0 +1,202 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Incident",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Incident",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A reported event on the transport network that affects normal service operations, such as a disruption, roadblock, or infrastructure failure.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:incidentType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "incidentType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of incident (e.g. DISRUPTION, ROADBLOCK, MAINTENANCE)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Incident"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:severity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "severity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Severity level of the incident (LOW, MEDIUM, HIGH)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Incident"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:affectedArea",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "affectedArea",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Geographic area affected by the incident",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Incident"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:startTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "startTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Date and time the incident started",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Incident"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:endTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "endTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Expected or actual end date and time of the incident",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Incident"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Incident"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Incident"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Time period during which the alert is active",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Incident"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:status",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "status",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current status of the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Incident"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    }
+  ]
+}

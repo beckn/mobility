@@ -1,0 +1,208 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:EntitySelector",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "EntitySelector",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A selector that identifies which transport entities (routes, trips, stops, or agencies) are affected by a given alert.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:TripDescriptor"
+      }
+    },
+    {
+      "@id": "beckn:agencyId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "agencyId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Identifier of the affected agency",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:EntitySelector"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:routeId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "routeId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Identifier of the affected route",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:EntitySelector"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:routeType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "routeType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of the affected route (e.g. BUS, RAIL)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:EntitySelector"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:tripDescriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tripDescriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Descriptor identifying the affected trip",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:EntitySelector"
+      },
+      "rdfs:range": {
+        "@id": "beckn:TripDescriptor"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../TripDescriptor/v2.0/vocab.jsonld#beckn:TripDescriptor"
+      }
+    },
+    {
+      "@id": "beckn:stopId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Identifier of the affected stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:EntitySelector"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:EntitySelector"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:EntitySelector"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Time period during which the alert is active",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:EntitySelector"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:status",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "status",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current status of the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:EntitySelector"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    }
+  ]
+}

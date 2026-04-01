@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "FareMedium": "beckn:FareMedium",
+    "mediumType": "beckn:mediumType",
+    "mediumId": "beckn:mediumId",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "resource": "beckn:resource",
+    "credentials": "beckn:credentials"
+  }
+}

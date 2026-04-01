@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Operator": "beckn:Operator",
+    "operatorId": "beckn:operatorId",
+    "operatingRegions": "beckn:operatingRegions",
+    "licenseNumber": "beckn:licenseNumber",
+    "contactInfo": "beckn:contactInfo",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "categories": "beckn:categories",
+    "locations": "beckn:locations",
+    "items": "beckn:items",
+    "fulfillments": "beckn:fulfillments",
+    "ratingsTotal": "beckn:ratingsTotal",
+    "rating": "beckn:rating"
+  }
+}

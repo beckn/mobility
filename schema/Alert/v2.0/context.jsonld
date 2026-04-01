@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Alert": "beckn:Alert",
+    "cause": "beckn:cause",
+    "effect": "beckn:effect",
+    "url": "beckn:url",
+    "headerText": "beckn:headerText",
+    "descriptionText": "beckn:descriptionText",
+    "activePeriod": "beckn:activePeriod",
+    "informedEntity": "beckn:informedEntity",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "validity": "beckn:validity",
+    "status": "beckn:status"
+  }
+}

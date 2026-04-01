@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "StopMonitoring": "beckn:StopMonitoring",
+    "stopRef": "beckn:stopRef",
+    "monitoredCalls": "beckn:monitoredCalls",
+    "responseTimestamp": "beckn:responseTimestamp",
+    "id": "beckn:id",
+    "url": "beckn:url",
+    "status": "beckn:status",
+    "validity": "beckn:validity"
+  }
+}

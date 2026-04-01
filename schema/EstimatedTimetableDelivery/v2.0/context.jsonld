@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "EstimatedTimetableDelivery": "beckn:EstimatedTimetableDelivery",
+    "responseTimestamp": "beckn:responseTimestamp",
+    "estimatedVehicleJourneys": "beckn:estimatedVehicleJourneys",
+    "validUntil": "beckn:validUntil",
+    "id": "beckn:id",
+    "url": "beckn:url",
+    "status": "beckn:status",
+    "validity": "beckn:validity"
+  }
+}

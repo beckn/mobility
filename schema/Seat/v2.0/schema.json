@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Seat",
+  "type": "object",
+  "description": "A specific seat position reserved or assigned to a passenger on a flight, train, or other transport service.",
+  "properties": {
+    "seatId": {
+      "description": "Unique identifier or label for the seat",
+      "type": "string"
+    },
+    "row": {
+      "description": "Row designation (number or letter)",
+      "type": "string"
+    },
+    "column": {
+      "description": "Column or seat letter within the row",
+      "type": "string"
+    },
+    "seatType": {
+      "description": "Type of seat (e.g. WINDOW, AISLE, MIDDLE, UPPER_BERTH)",
+      "type": "string"
+    },
+    "seatCharacteristics": {
+      "description": "Additional characteristics (e.g. EXTRA_LEGROOM, QUIET_ZONE, ACCESSIBLE)",
+      "type": "string"
+    },
+    "deckLevel": {
+      "description": "Deck or level (UPPER, LOWER, MAIN)",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the entitlement",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable information about the entitlement",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "resource": {
+      "description": "The resource being accessed against this entitlement",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/ContractItem"
+    },
+    "credentials": {
+      "description": "Credential descriptors for the entitlement",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    }
+  },
+  "additionalProperties": false
+}

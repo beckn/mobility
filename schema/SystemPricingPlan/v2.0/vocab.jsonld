@@ -1,0 +1,250 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:SystemPricingPlan",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "SystemPricingPlan",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A pricing plan defined by a shared mobility system, describing costs and billing rules for vehicle use.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "https://schema.org/PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:planId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "planId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the pricing plan",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SystemPricingPlan"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:currency",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "currency",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "ISO 4217 currency code",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SystemPricingPlan"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:isTaxable",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "isTaxable",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Whether tax is applied to this pricing plan",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SystemPricingPlan"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Boolean"
+      }
+    },
+    {
+      "@id": "beckn:perMinuteChargingRate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "perMinuteChargingRate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Charge per minute of vehicle use",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SystemPricingPlan"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:perKmChargingRate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "perKmChargingRate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Charge per kilometre of vehicle use",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SystemPricingPlan"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:perTripStartingFee",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "perTripStartingFee",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Flat fee charged at the start of each trip",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SystemPricingPlan"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SystemPricingPlan"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SystemPricingPlan"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Price specification for this offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SystemPricingPlan"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity period of the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SystemPricingPlan"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags or labels associated with the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SystemPricingPlan"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

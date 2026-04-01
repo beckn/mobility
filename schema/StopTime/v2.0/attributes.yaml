@@ -3,18 +3,55 @@ info:
   title: StopTime
   version: 2.0.0
   description: Schema definition for the StopTime entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     StopTime:
       type: object
       title: StopTime
-      description: >
-        Attributes for the StopTime entity in the Beckn Mobility domain.
-      properties: {}
+      description: The scheduled arrival and departure times for a vehicle at a specific
+        stop within a vehicle journey.
+      properties:
+        arrivalTime:
+          description: Scheduled arrival time in HH:MM:SS format
+          type: string
+        departureTime:
+          description: Scheduled departure time in HH:MM:SS format
+          type: string
+        stopSequence:
+          description: Order of this stop within the vehicle journey
+          type: number
+        stopRef:
+          description: Reference to the stop for this stop time
+          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+        pickupType:
+          description: How passengers board at this stop (0=regular, 1=no_pickup,
+            2=phone_agency, 3=coordinate_with_driver)
+          type: string
+        dropOffType:
+          description: How passengers alight at this stop (0=regular, 1=no_drop_off,
+            2=phone_agency, 3=coordinate_with_driver)
+          type: string
+        distanceTraveled:
+          description: Distance from the route origin to this stop in metres
+          type: number
+        startDate:
+          description: Start date and time of the period
+          type: string
+          format: date-time
+        endDate:
+          description: End date and time of the period
+          type: string
+          format: date-time
+        startTime:
+          description: Start time of day in HH:MM:SS format
+          type: string
+        endTime:
+          description: End time of day in HH:MM:SS format
+          type: string
+      additionalProperties: false

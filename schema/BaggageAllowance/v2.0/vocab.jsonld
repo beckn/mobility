@@ -1,0 +1,232 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:BaggageAllowance",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "BaggageAllowance",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The quantity and weight of baggage a passenger is permitted to carry or check in without incurring additional charges.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:cabinBaggageCount",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "cabinBaggageCount",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Maximum number of cabin (carry-on) bags allowed",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BaggageAllowance"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:cabinBaggageWeight",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "cabinBaggageWeight",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Maximum weight in kilograms for cabin baggage",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BaggageAllowance"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:checkedBaggageCount",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "checkedBaggageCount",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Maximum number of checked bags allowed",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BaggageAllowance"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:checkedBaggageWeight",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "checkedBaggageWeight",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Maximum weight in kilograms per checked bag",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BaggageAllowance"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the constraint",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BaggageAllowance"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:constraintType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "constraintType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of constraint (extensible term)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BaggageAllowance"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:operator",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "operator",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Comparator operator (e.g. <=, >=, =)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BaggageAllowance"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:value",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "value",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Numeric value of the constraint",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BaggageAllowance"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:unitCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "unitCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unit of measure code (UN/ECE Rec 20)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BaggageAllowance"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity window for this constraint",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BaggageAllowance"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    }
+  ]
+}

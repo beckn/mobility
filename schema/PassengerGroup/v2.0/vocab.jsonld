@@ -1,0 +1,175 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:PassengerGroup",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "PassengerGroup",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A collection of passengers traveling together as a group, with a group size and a designated lead passenger.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Passenger"
+      }
+    },
+    {
+      "@id": "beckn:groupId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "groupId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for this passenger group",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PassengerGroup"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:groupSize",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "groupSize",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Total number of passengers in the group",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PassengerGroup"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:leadPassenger",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "leadPassenger",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The lead or primary passenger for the group",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PassengerGroup"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Passenger"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Passenger/v2.0/vocab.jsonld#beckn:Passenger"
+      }
+    },
+    {
+      "@id": "beckn:unitCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "unitCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unit of measure code (UN/ECE Rec 20)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PassengerGroup"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:value",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "value",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Numeric quantity value",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PassengerGroup"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:maximum",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "maximum",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Maximum allowed quantity",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PassengerGroup"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:minimum",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "minimum",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Minimum required quantity",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PassengerGroup"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    }
+  ]
+}

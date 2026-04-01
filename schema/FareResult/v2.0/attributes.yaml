@@ -3,18 +3,45 @@ info:
   title: FareResult
   version: 2.0.0
   description: Schema definition for the FareResult entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     FareResult:
       type: object
       title: FareResult
-      description: >
-        Attributes for the FareResult entity in the Beckn Mobility domain.
-      properties: {}
+      description: The calculated fare for a requested trip, returned as part of a
+        trip planning or fare enquiry response.
+      properties:
+        totalAmount:
+          description: Total calculated fare amount
+          type: number
+        currency:
+          description: ISO 4217 currency code
+          type: string
+        fareProducts:
+          description: Fare products applicable to the result
+          $ref: ../../FareProduct/v2.0/schema.json#/$defs/FareProduct
+        fareBreakup:
+          description: Itemised breakdown of the calculated fare
+          $ref: ../../FareBreakup/v2.0/schema.json#/$defs/FareBreakup
+        id:
+          description: Unique identifier for the offer
+          type: string
+        descriptor:
+          description: Human-readable description of the offer
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        price:
+          description: Price specification for this offer
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification
+        validity:
+          description: Validity period of the offer
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        tags:
+          description: Tags or labels associated with the offer
+          type: string
+      additionalProperties: false

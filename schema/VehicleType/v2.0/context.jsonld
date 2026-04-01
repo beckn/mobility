@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "VehicleType": "beckn:VehicleType",
+    "vehicleTypeCode": "beckn:vehicleTypeCode",
+    "maxCapacity": "beckn:maxCapacity",
+    "propulsionType": "beckn:propulsionType",
+    "wheelchairAccessible": "beckn:wheelchairAccessible",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "parentCategoryId": "beckn:parentCategoryId"
+  }
+}

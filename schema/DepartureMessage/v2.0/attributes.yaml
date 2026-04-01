@@ -2,19 +2,47 @@ openapi: 3.1.0
 info:
   title: DepartureMessage
   version: 2.0.0
-  description: Schema definition for the DepartureMessage entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the DepartureMessage entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     DepartureMessage:
       type: object
       title: DepartureMessage
-      description: >
-        Attributes for the DepartureMessage entity in the Beckn Mobility domain.
-      properties: {}
+      description: A real-time message containing predicted departure times for vehicles
+        at a stop, as used in VDV real-time standards.
+      properties:
+        stopRef:
+          description: Reference to the stop for which departures are reported
+          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+        lineRef:
+          description: Reference to the line departing from this stop
+          $ref: ../../Line/v2.0/schema.json#/$defs/Line
+        vehicleRef:
+          description: Reference to the departing vehicle
+          $ref: ../../VehicleDescriptor/v2.0/schema.json#/$defs/VehicleDescriptor
+        expectedDeparture:
+          description: Predicted departure time
+          type: string
+          format: date-time
+        delaySeconds:
+          description: Delay in seconds relative to scheduled departure
+          type: number
+        id:
+          description: Unique identifier for the alert
+          type: string
+        descriptor:
+          description: Human-readable description of the alert
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        validity:
+          description: Time period during which the alert is active
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        status:
+          description: Current status of the alert
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/State
+      additionalProperties: false

@@ -2,19 +2,55 @@ openapi: 3.1.0
 info:
   title: MonitoredVehicleJourney
   version: 2.0.0
-  description: Schema definition for the MonitoredVehicleJourney entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the MonitoredVehicleJourney entity in the Beckn
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     MonitoredVehicleJourney:
       type: object
       title: MonitoredVehicleJourney
-      description: >
-        Attributes for the MonitoredVehicleJourney entity in the Beckn Mobility domain.
-      properties: {}
+      description: A real-time representation of a vehicle journey being actively
+        tracked, including position and schedule adherence data.
+      properties:
+        lineRef:
+          description: Reference to the line being monitored
+          $ref: ../../Line/v2.0/schema.json#/$defs/Line
+        directionRef:
+          description: Direction of travel being monitored
+          $ref: ../../Direction/v2.0/schema.json#/$defs/Direction
+        vehicleRef:
+          description: Vehicle assigned to this journey
+          $ref: ../../Vehicle/v2.0/schema.json#/$defs/Vehicle
+        vehicleLocation:
+          description: Current geographic position of the vehicle
+          $ref: ../../VehiclePosition/v2.0/schema.json#/$defs/VehiclePosition
+        bearing:
+          description: Compass bearing of travel in degrees
+          type: number
+        delay:
+          description: Delay in seconds relative to schedule (negative = early)
+          type: number
+        occupancy:
+          description: Current passenger occupancy of the vehicle
+          $ref: ../../OccupancyStatus/v2.0/schema.json#/$defs/OccupancyStatus
+        vehicleJourneyCode:
+          description: Unique code for this vehicle journey
+          type: string
+        routeRef:
+          description: Reference to the route being served
+          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+        serviceCalendarRef:
+          description: Calendar defining when this journey operates
+          $ref: ../../ServiceCalendar/v2.0/schema.json#/$defs/ServiceCalendar
+        patternRef:
+          description: Journey pattern being followed
+          $ref: ../../Pattern/v2.0/schema.json#/$defs/Pattern
+        stopTimes:
+          description: Scheduled stop times for each stop on this journey
+          $ref: ../../StopTime/v2.0/schema.json#/$defs/StopTime
+      additionalProperties: false

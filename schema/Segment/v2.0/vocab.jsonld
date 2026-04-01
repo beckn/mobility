@@ -1,0 +1,274 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Segment",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Segment",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A portion of a rail journey operated continuously by a single carrier between two consecutive stops or stations.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Route"
+      }
+    },
+    {
+      "@id": "beckn:carrierCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "carrierCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Code of the carrier operating this segment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Segment"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:segmentNumber",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "segmentNumber",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Sequence number of this segment within the journey",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Segment"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:trainNumber",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "trainNumber",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Train or service number for this segment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Segment"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:coachNumber",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "coachNumber",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Coach or carriage number",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Segment"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:mode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "mode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Transport mode for this leg (e.g. BUS, RAIL, WALK, BICYCLE)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Segment"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:origin",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "origin",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Start location of the leg",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Segment"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:destination",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "destination",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "End location of the leg",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Segment"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:startTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "startTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Scheduled or actual start time of the leg",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Segment"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:endTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "endTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Scheduled or actual end time of the leg",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Segment"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:distance",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "distance",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Distance of this leg in metres",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Segment"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:headsign",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "headsign",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Destination sign text displayed on the vehicle",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Segment"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:routeRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "routeRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the route served on this leg",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Segment"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Route/v2.0/vocab.jsonld#beckn:Route"
+      }
+    }
+  ]
+}

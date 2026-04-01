@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Ticket": "beckn:Ticket",
+    "ticketId": "beckn:ticketId",
+    "ticketType": "beckn:ticketType",
+    "validFrom": "beckn:validFrom",
+    "validUntil": "beckn:validUntil",
+    "fareProductRef": "beckn:fareProductRef",
+    "passengerRef": "beckn:passengerRef",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "resource": "beckn:resource",
+    "credentials": "beckn:credentials"
+  }
+}

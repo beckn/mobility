@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Feed": "beckn:Feed",
+    "feedType": "beckn:feedType",
+    "feedId": "beckn:feedId",
+    "feedPublisher": "beckn:feedPublisher",
+    "feedLanguage": "beckn:feedLanguage",
+    "feedStartDate": "beckn:feedStartDate",
+    "feedEndDate": "beckn:feedEndDate",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "tags": "beckn:tags"
+  }
+}

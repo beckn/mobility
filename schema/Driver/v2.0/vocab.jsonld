@@ -1,0 +1,187 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Driver",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Driver",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A person who operates a transport vehicle and is responsible for the safe delivery of passengers during a mobility service trip.",
+        "@language": "en"
+      },
+      "rdfs:subClassOf": {
+        "@id": "https://schema.org/Person"
+      }
+    },
+    {
+      "@id": "beckn:licenseNumber",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "licenseNumber",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Driver's license number",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Driver"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:vehicleNumber",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleNumber",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Registration number of the vehicle being driven",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Driver"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:yearsOfExperience",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "yearsOfExperience",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Number of years of professional driving experience",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Driver"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the fulfillment agent",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Driver"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:person",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "person",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Personal details of the agent",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Driver"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Person"
+      }
+    },
+    {
+      "@id": "beckn:organization",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "organization",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Organisation the agent belongs to",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Driver"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Organization"
+      }
+    },
+    {
+      "@id": "beckn:contact",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "contact",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Contact information for the agent",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Driver"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:rating",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "rating",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Overall rating of the agent",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Driver"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Rating"
+      }
+    }
+  ]
+}

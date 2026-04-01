@@ -1,0 +1,216 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:DepartureMessage",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "DepartureMessage",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A real-time message containing predicted departure times for vehicles at a stop, as used in VDV real-time standards.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "beckn:Line"
+        },
+        {
+          "@id": "beckn:Stop"
+        },
+        {
+          "@id": "beckn:VehicleDescriptor"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:stopRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the stop for which departures are reported",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DepartureMessage"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Stop"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Stop/v2.0/vocab.jsonld#beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:lineRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "lineRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the line departing from this stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DepartureMessage"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Line"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Line/v2.0/vocab.jsonld#beckn:Line"
+      }
+    },
+    {
+      "@id": "beckn:vehicleRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the departing vehicle",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DepartureMessage"
+      },
+      "rdfs:range": {
+        "@id": "beckn:VehicleDescriptor"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../VehicleDescriptor/v2.0/vocab.jsonld#beckn:VehicleDescriptor"
+      }
+    },
+    {
+      "@id": "beckn:expectedDeparture",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "expectedDeparture",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Predicted departure time",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DepartureMessage"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:delaySeconds",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "delaySeconds",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Delay in seconds relative to scheduled departure",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DepartureMessage"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DepartureMessage"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DepartureMessage"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Time period during which the alert is active",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DepartureMessage"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:status",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "status",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current status of the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:DepartureMessage"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    }
+  ]
+}

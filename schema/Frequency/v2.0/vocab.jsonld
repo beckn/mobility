@@ -1,0 +1,232 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Frequency",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Frequency",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A headway-based service specification indicating how often a vehicle runs on a route within a given time window.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:headwaySecs",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "headwaySecs",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Time in seconds between consecutive vehicle departures",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Frequency"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:exactTimes",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "exactTimes",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Whether departures are at exact scheduled times (true) or headway-based (false)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Frequency"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Boolean"
+      }
+    },
+    {
+      "@id": "beckn:startTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "startTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Time at which this frequency period begins (HH:MM:SS)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Frequency"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:endTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "endTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Time at which this frequency period ends (HH:MM:SS)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Frequency"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the constraint",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Frequency"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:constraintType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "constraintType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of constraint (extensible term)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Frequency"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:operator",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "operator",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Comparator operator (e.g. <=, >=, =)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Frequency"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:value",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "value",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Numeric value of the constraint",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Frequency"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:unitCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "unitCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unit of measure code (UN/ECE Rec 20)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Frequency"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity window for this constraint",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Frequency"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    }
+  ]
+}

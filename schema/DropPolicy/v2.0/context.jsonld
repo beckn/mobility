@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "DropPolicy": "beckn:DropPolicy",
+    "allowedDropAreas": "beckn:allowedDropAreas",
+    "dropConditions": "beckn:dropConditions",
+    "dropNote": "beckn:dropNote",
+    "id": "beckn:id",
+    "policyType": "beckn:policyType",
+    "descriptor": "beckn:descriptor",
+    "validity": "beckn:validity",
+    "policyAttributes": "beckn:policyAttributes"
+  }
+}

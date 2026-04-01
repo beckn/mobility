@@ -1,0 +1,223 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Geofence",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Geofence",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A virtual geographic boundary used to define service areas, restricted zones, or operational boundaries for mobility assets.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:geofenceType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "geofenceType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of geofence (e.g. SERVICE_AREA, RESTRICTED, SPEED_LIMIT)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Geofence"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:geometry",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "geometry",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "GeoJSON geometry defining the geofence boundary",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Geofence"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#GeoJSONGeometry"
+      }
+    },
+    {
+      "@id": "beckn:rules",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "rules",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Operational rules applied within this geofence",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Geofence"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Geofence"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Geofence"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:gps",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "gps",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "GPS coordinates as a latitude,longitude string",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Geofence"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:address",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "address",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Physical address of the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Geofence"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Address"
+      }
+    },
+    {
+      "@id": "beckn:city",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "city",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "City name",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Geofence"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:country",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "country",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "ISO 3166-1 alpha-2 country code",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Geofence"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:geojson",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "geojson",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "GeoJSON geometry object representing this location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Geofence"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#GeoJSONGeometry"
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "NoShowPolicy": "beckn:NoShowPolicy",
+    "noShowFee": "beckn:noShowFee",
+    "gracePeriodMinutes": "beckn:gracePeriodMinutes",
+    "currency": "beckn:currency",
+    "id": "beckn:id",
+    "policyType": "beckn:policyType",
+    "descriptor": "beckn:descriptor",
+    "validity": "beckn:validity",
+    "policyAttributes": "beckn:policyAttributes"
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "DayType": "beckn:DayType",
+    "dayTypeCode": "beckn:dayTypeCode",
+    "daysOfWeek": "beckn:daysOfWeek",
+    "startDate": "beckn:startDate",
+    "endDate": "beckn:endDate",
+    "startTime": "beckn:startTime",
+    "endTime": "beckn:endTime"
+  }
+}

@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MonitoredCall",
+  "type": "object",
+  "description": "A real-time arrival or departure prediction for a specific vehicle at a specific stop within a monitored journey.",
+  "properties": {
+    "stopPointRef": {
+      "description": "Reference to the stop point for this call",
+      "$ref": "../../StopPoint/v2.0/schema.json"
+    },
+    "visitNumber": {
+      "description": "Visit sequence number for loop services",
+      "type": "number"
+    },
+    "vehicleAtStop": {
+      "description": "Whether the vehicle is currently at the stop",
+      "type": "boolean"
+    },
+    "expectedArrivalTime": {
+      "description": "Predicted arrival time at this stop",
+      "type": "string",
+      "format": "date-time"
+    },
+    "expectedDepartureTime": {
+      "description": "Predicted departure time from this stop",
+      "type": "string",
+      "format": "date-time"
+    },
+    "aimedArrivalTime": {
+      "description": "Scheduled arrival time from the timetable",
+      "type": "string",
+      "format": "date-time"
+    },
+    "aimedDepartureTime": {
+      "description": "Scheduled departure time from the timetable",
+      "type": "string",
+      "format": "date-time"
+    },
+    "arrivalStatus": {
+      "description": "Arrival status (e.g. onTime, delayed, early)",
+      "type": "string"
+    },
+    "departureStatus": {
+      "description": "Departure status (e.g. onTime, delayed, early)",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the tracking record",
+      "type": "string"
+    },
+    "url": {
+      "description": "URL endpoint for real-time tracking information",
+      "type": "string",
+      "format": "uri"
+    },
+    "status": {
+      "description": "Current tracking status",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/State"
+    },
+    "validity": {
+      "description": "Validity period for this tracking record",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    }
+  },
+  "additionalProperties": false
+}

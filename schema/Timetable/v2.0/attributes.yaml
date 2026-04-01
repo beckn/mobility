@@ -3,18 +3,41 @@ info:
   title: Timetable
   version: 2.0.0
   description: Schema definition for the Timetable entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Timetable:
       type: object
       title: Timetable
-      description: >
-        Attributes for the Timetable entity in the Beckn Mobility domain.
-      properties: {}
+      description: A structured schedule listing planned arrival and departure times
+        for vehicles at each stop along a route.
+      properties:
+        routeRef:
+          description: Reference to the route this timetable covers
+          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+        trips:
+          description: Vehicle journeys (trips) in this timetable
+          $ref: ../../VehicleJourney/v2.0/schema.json#/$defs/VehicleJourney
+        validFrom:
+          description: Date from which this timetable is valid
+          type: string
+          format: date-time
+        validUntil:
+          description: Date until which this timetable is valid
+          type: string
+          format: date-time
+        id:
+          description: Unique identifier for the catalog
+          type: string
+        descriptor:
+          description: Human-readable description of the catalog
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        tags:
+          description: Tags associated with the catalog
+          type: string
+      additionalProperties: false

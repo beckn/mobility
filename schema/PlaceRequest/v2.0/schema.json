@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PlaceRequest",
+  "type": "object",
+  "description": "A request for a specific accommodation or seat assignment within a transport service during the booking process.",
+  "properties": {
+    "accommodationType": {
+      "description": "Type of accommodation requested (e.g. SEAT, BERTH, COMPARTMENT)",
+      "type": "string"
+    },
+    "preferences": {
+      "description": "Passenger preferences (e.g. window, aisle, quiet zone)",
+      "type": "string"
+    },
+    "seatRef": {
+      "description": "Specific seat requested, if applicable",
+      "$ref": "../../Seat/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the contract item",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "price": {
+      "description": "Price for this contract item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "quantity": {
+      "description": "Quantity of this contract item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Quantity"
+    }
+  },
+  "additionalProperties": false
+}

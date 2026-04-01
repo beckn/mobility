@@ -1,0 +1,187 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:SafetyPolicy",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "SafetyPolicy",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A set of rules, protocols, and standards governing safety requirements for drivers, vehicles, and passengers on a mobility platform.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:ContactHandle"
+      }
+    },
+    {
+      "@id": "beckn:safetyInstructions",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "safetyInstructions",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Instructions and guidelines for passenger and driver safety",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SafetyPolicy"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:emergencyContact",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "emergencyContact",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Emergency contact handle for safety incidents",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SafetyPolicy"
+      },
+      "rdfs:range": {
+        "@id": "beckn:ContactHandle"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../ContactHandle/v2.0/vocab.jsonld#beckn:ContactHandle"
+      }
+    },
+    {
+      "@id": "beckn:insuranceCoverage",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "insuranceCoverage",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Description of insurance coverage under this policy",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SafetyPolicy"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the policy",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SafetyPolicy"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:policyType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "policyType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of policy (extensible term)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SafetyPolicy"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the policy",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SafetyPolicy"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity window for this policy version",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SafetyPolicy"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:policyAttributes",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "policyAttributes",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Extensible domain-specific policy attributes",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:SafetyPolicy"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Attributes"
+      }
+    }
+  ]
+}

@@ -3,18 +3,52 @@ info:
   title: StopPlace
   version: 2.0.0
   description: Schema definition for the StopPlace entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     StopPlace:
       type: object
       title: StopPlace
-      description: >
-        Attributes for the StopPlace entity in the Beckn Mobility domain.
-      properties: {}
+      description: A physical location serving as a transit stop facility, comprising
+        one or more quays, entrances, and associated infrastructure.
+      properties:
+        stopPlaceId:
+          description: Unique identifier for the stop place
+          type: string
+        stopPlaceType:
+          description: Type of stop place (e.g. AIRPORT, BUS_STATION, FERRY_STOP,
+            METRO_STATION)
+          type: string
+        quays:
+          description: Quays or boarding areas within this stop place
+          $ref: ../../Quay/v2.0/schema.json#/$defs/Quay
+        entrances:
+          description: Entrances and pathways into this stop place
+          $ref: ../../Pathway/v2.0/schema.json#/$defs/Pathway
+        id:
+          description: Unique identifier for the location
+          type: string
+        descriptor:
+          description: Human-readable description of the location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        gps:
+          description: GPS coordinates as a latitude,longitude string
+          type: string
+        address:
+          description: Physical address of the location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Address
+        city:
+          description: City name
+          type: string
+        country:
+          description: ISO 3166-1 alpha-2 country code
+          type: string
+        geojson:
+          description: GeoJSON geometry object representing this location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry
+      additionalProperties: false

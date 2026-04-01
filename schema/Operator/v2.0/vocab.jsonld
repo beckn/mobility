@@ -1,0 +1,262 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Operator",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Operator",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "An organization that provides and operates public transport or shared mobility services under a defined service agreement.",
+        "@language": "en"
+      },
+      "rdfs:subClassOf": {
+        "@id": "https://schema.org/Organization"
+      }
+    },
+    {
+      "@id": "beckn:operatorId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "operatorId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the operator",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:operatingRegions",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "operatingRegions",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Geographic regions where the operator provides services",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:licenseNumber",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "licenseNumber",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Regulatory license or accreditation number",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:contactInfo",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "contactInfo",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Public contact information for the operator",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the provider",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the provider",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:categories",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "categories",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Service categories offered by the provider",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#CategoryCode"
+      }
+    },
+    {
+      "@id": "beckn:locations",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "locations",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Locations where the provider offers services",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:items",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "items",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Items available for discovery from this provider",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Item"
+      }
+    },
+    {
+      "@id": "beckn:fulfillments",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fulfillments",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Fulfillment options offered by this provider",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Fulfillment"
+      }
+    },
+    {
+      "@id": "beckn:ratingsTotal",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "ratingsTotal",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Total number of ratings received",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:rating",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "rating",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Aggregate rating of the provider",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Rating"
+      }
+    }
+  ]
+}

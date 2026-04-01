@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "LostAndFoundItem": "beckn:LostAndFoundItem",
+    "itemType": "beckn:itemType",
+    "itemDescription": "beckn:itemDescription",
+    "foundAt": "beckn:foundAt",
+    "lostAt": "beckn:lostAt",
+    "vehicleRef": "beckn:vehicleRef",
+    "orderId": "beckn:orderId",
+    "ticketIds": "beckn:ticketIds",
+    "callbackPhone": "beckn:callbackPhone"
+  }
+}

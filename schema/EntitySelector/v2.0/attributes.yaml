@@ -2,19 +2,46 @@ openapi: 3.1.0
 info:
   title: EntitySelector
   version: 2.0.0
-  description: Schema definition for the EntitySelector entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the EntitySelector entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     EntitySelector:
       type: object
       title: EntitySelector
-      description: >
-        Attributes for the EntitySelector entity in the Beckn Mobility domain.
-      properties: {}
+      description: A selector that identifies which transport entities (routes, trips,
+        stops, or agencies) are affected by a given alert.
+      properties:
+        agencyId:
+          description: Identifier of the affected agency
+          type: string
+        routeId:
+          description: Identifier of the affected route
+          type: string
+        routeType:
+          description: Type of the affected route (e.g. BUS, RAIL)
+          type: string
+        tripDescriptor:
+          description: Descriptor identifying the affected trip
+          $ref: ../../TripDescriptor/v2.0/schema.json#/$defs/TripDescriptor
+        stopId:
+          description: Identifier of the affected stop
+          type: string
+        id:
+          description: Unique identifier for the alert
+          type: string
+        descriptor:
+          description: Human-readable description of the alert
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        validity:
+          description: Time period during which the alert is active
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        status:
+          description: Current status of the alert
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/State
+      additionalProperties: false

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GeneralMessageDelivery",
+  "type": "object",
+  "description": "A real-time delivery of textual messages or alerts related to service disruptions or passenger information.",
+  "properties": {
+    "responseTimestamp": {
+      "description": "Timestamp of this general message delivery",
+      "type": "string",
+      "format": "date-time"
+    },
+    "infoMessages": {
+      "description": "List of informational messages in this delivery",
+      "$ref": "../../Alert/v2.0/schema.json"
+    },
+    "channel": {
+      "description": "Distribution channel for this message (e.g. WEB, SMS, APP)",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the alert",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the alert",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "validity": {
+      "description": "Time period during which the alert is active",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    },
+    "status": {
+      "description": "Current status of the alert",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/State"
+    }
+  },
+  "additionalProperties": false
+}

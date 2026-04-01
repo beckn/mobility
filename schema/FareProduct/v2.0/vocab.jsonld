@@ -1,0 +1,237 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:FareProduct",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "FareProduct",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A purchasable entitlement to travel defining conditions of use, validity, and applicable passenger categories.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "https://schema.org/Offer"
+        },
+        {
+          "@id": "https://schema.org/Product"
+        },
+        {
+          "@id": "beckn:RiderCategory"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:fareProductId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fareProductId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the fare product",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:riderCategoryId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "riderCategoryId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Passenger category eligible for this fare product",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareProduct"
+      },
+      "rdfs:range": {
+        "@id": "beckn:RiderCategory"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../RiderCategory/v2.0/vocab.jsonld#beckn:RiderCategory"
+      }
+    },
+    {
+      "@id": "beckn:durationType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "durationType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Duration basis (e.g. SINGLE_TRIP, DAILY, MONTHLY)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:mediaDuration",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "mediaDuration",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Duration for which the fare product is valid",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:duration"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Duration"
+      }
+    },
+    {
+      "@id": "beckn:fixedStartDate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fixedStartDate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Fixed start date for calendar-based fare products",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareProduct"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Price specification for this offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareProduct"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity period of the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareProduct"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags or labels associated with the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareProduct"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

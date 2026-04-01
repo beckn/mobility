@@ -1,0 +1,187 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:LocationInformationRequest",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "LocationInformationRequest",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A request for details about a specific geographic location, stop, or point of interest in the transport network.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:requestType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "requestType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of location information requested (e.g. STOP, ADDRESS, POI)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LocationInformationRequest"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:locationName",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "locationName",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Name or keyword to search for",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LocationInformationRequest"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:coordinates",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "coordinates",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Geographic coordinates to query around",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LocationInformationRequest"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#GeoJSONGeometry"
+      }
+    },
+    {
+      "@id": "beckn:radius",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "radius",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Search radius in metres",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LocationInformationRequest"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:textSearch",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "textSearch",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Free-text search query expressing what the traveler is looking for",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LocationInformationRequest"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:filters",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "filters",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "JSONPath filter criteria applied to the search results",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LocationInformationRequest"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:spatial",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "spatial",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Geographic constraints on the search area",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LocationInformationRequest"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#SpatialConstraint"
+      }
+    },
+    {
+      "@id": "beckn:provider",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "provider",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Identifier of a specific provider to search within",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:LocationInformationRequest"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

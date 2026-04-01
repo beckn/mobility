@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "PickupPolicy": "beckn:PickupPolicy",
+    "allowedPickupAreas": "beckn:allowedPickupAreas",
+    "pickupConditions": "beckn:pickupConditions",
+    "pickupNote": "beckn:pickupNote",
+    "id": "beckn:id",
+    "policyType": "beckn:policyType",
+    "descriptor": "beckn:descriptor",
+    "validity": "beckn:validity",
+    "policyAttributes": "beckn:policyAttributes"
+  }
+}

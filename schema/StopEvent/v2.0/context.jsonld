@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "StopEvent": "beckn:StopEvent",
+    "stopEventType": "beckn:stopEventType",
+    "timetabledTime": "beckn:timetabledTime",
+    "estimatedTime": "beckn:estimatedTime",
+    "serviceJourneyRef": "beckn:serviceJourneyRef",
+    "stopPointRef": "beckn:stopPointRef",
+    "id": "beckn:id",
+    "location": "beckn:location",
+    "type": "beckn:type",
+    "instructions": "beckn:instructions",
+    "time": "beckn:time"
+  }
+}

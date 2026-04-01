@@ -1,43 +1,50 @@
 # Timetable
-A schema.beckn.io TODO( Select Type / Property based on the nature of the schema)
 
-TODO(Insert description here taken from 4_Beckn_Mobility_Concepts.md)
+A schema.beckn.io Type
 
-**Canonical IRI :** mobility:Timetable
+A structured schedule listing planned arrival and departure times for vehicles at each stop along a route.
+
+**Canonical IRI :** `mobility:Timetable`
+
 **Canonical URL:** https://schema.beckn.io/mobility/Timetable
+
 **Related Classes:**
 
 | Type | Relationship | Strength |
 |------|--------------|----------|
-| [insert domain_standard_prefix]:[Insert Type in domain standard] | [Insert Relationship] | [Insert Strength] |
-
+| [beckn:Catalog](https://github.com/beckn/core_schema/tree/draft/schema/Catalog) | rdfs:subClassOf | Subclass |
+| [schema:Schedule](https://schema.org/Schedule) | rdfs:seeAlso | Related |
 
 ## Open Issues
+
 [Open issues](https://github.com/beckn/mobility/issues)
 
 ## Properties
-| Property     | Expected Type  | Description           |
-|--------------|----------------|-----------------------|
-| [Insert hyperlinked PropertyName] | [Insert Hyperlinked TypeName]  | [Insert Property description]  |
 
-## [If there are multiple examples then call this heading Examples, else call it Example]
+| Property | Expected Type | Description |
+|---|---|---|
+| **[Properties from Timetable](https://schema.beckn.io/mobility/Timetable)** | | |
+| [routeRef](https://schema.beckn.io/mobility/routeRef) | [Route](https://schema.beckn.io/mobility/Route) | Reference to the route this timetable covers |
+| [trips](https://schema.beckn.io/mobility/trips) | [VehicleJourney](https://schema.beckn.io/mobility/VehicleJourney) | Vehicle journeys (trips) in this timetable |
+| [validFrom](https://schema.beckn.io/mobility/validFrom) | [schema:DateTime](https://schema.org/DateTime) | Date from which this timetable is valid |
+| [validUntil](https://schema.beckn.io/mobility/validUntil) | [schema:DateTime](https://schema.org/DateTime) | Date until which this timetable is valid |
+| **[Properties from Catalog](https://github.com/beckn/core_schema/tree/draft/schema/Catalog)** | | |
+| [id](https://schema.beckn.io/core/id) | [schema:Text](https://schema.org/Text) | Unique identifier for the catalog |
+| [descriptor](https://schema.beckn.io/core/descriptor) | [Descriptor](https://github.com/beckn/core_schema/tree/draft/schema/Descriptor) | Human-readable description of the catalog |
+| [tags](https://schema.beckn.io/core/tags) | [schema:Text](https://schema.org/Text) | Tags associated with the catalog |
 
-### [if multiple examples ,then insert call it Example (number) or omit this heading]
+## Example
 
 [Insert brief description of the example]
 
-```
+```json
 [Insert Example JSON-LD]
 ```
 
 ## Example Beckn Protocol Requests Payload using this Schema
 
-### TODO(if multiple examples ,then insert call it Example # or omit this heading)
 > [Brief description of the request with container schema, core schema, and mobility bindings]
 
-
-```
+```json
 [Insert Example JSON-LD]
 ```
-
-

@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SalesOfferPackage",
+  "type": "object",
+  "description": "A combination of one or more fare products bundled for sale through a specific distribution channel.",
+  "properties": {
+    "fareProducts": {
+      "description": "Fare products included in this sales package",
+      "$ref": "../../FareProduct/v2.0/schema.json"
+    },
+    "distributions": {
+      "description": "Channels through which this package can be purchased",
+      "$ref": "../../DistributionChannel/v2.0/schema.json"
+    },
+    "conditionsOfTravel": {
+      "description": "Conditions applying to the use of this package",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the offer",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "price": {
+      "description": "Price specification for this offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "validity": {
+      "description": "Validity period of the offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    },
+    "tags": {
+      "description": "Tags or labels associated with the offer",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

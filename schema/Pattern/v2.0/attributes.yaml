@@ -3,18 +3,51 @@ info:
   title: Pattern
   version: 2.0.0
   description: Schema definition for the Pattern entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Pattern:
       type: object
       title: Pattern
-      description: >
-        Attributes for the Pattern entity in the Beckn Mobility domain.
-      properties: {}
+      description: A unique sequence of stops visited by trips on a route, grouping
+        trips with identical stop sequences and timing structures.
+      properties:
+        patternId:
+          description: Unique identifier for the journey pattern
+          type: string
+        routeRef:
+          description: Reference to the route this pattern belongs to
+          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+        directionId:
+          description: Direction of travel (0 or 1)
+          type: string
+        stops:
+          description: Ordered list of stops in this pattern
+          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+        shapeRef:
+          description: Reference to the geographic shape of this pattern
+          $ref: ../../Shape/v2.0/schema.json#/$defs/Shape
+        id:
+          description: Unique identifier for the item
+          type: string
+        descriptor:
+          description: Human-readable description of the item
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        categoryId:
+          description: Category code classifying the item
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/CategoryCode
+        price:
+          description: Price specification for this item
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification
+        quantity:
+          description: Available quantity of the item
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Quantity
+        tags:
+          description: Tags associated with the item
+          type: string
+      additionalProperties: false

@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "SalesOfferPackage": "beckn:SalesOfferPackage",
+    "fareProducts": "beckn:fareProducts",
+    "distributions": "beckn:distributions",
+    "conditionsOfTravel": "beckn:conditionsOfTravel",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "price": "beckn:price",
+    "validity": "beckn:validity",
+    "tags": "beckn:tags"
+  }
+}

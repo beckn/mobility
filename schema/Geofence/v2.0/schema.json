@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Geofence",
+  "type": "object",
+  "description": "A virtual geographic boundary used to define service areas, restricted zones, or operational boundaries for mobility assets.",
+  "properties": {
+    "geofenceType": {
+      "description": "Type of geofence (e.g. SERVICE_AREA, RESTRICTED, SPEED_LIMIT)",
+      "type": "string"
+    },
+    "geometry": {
+      "description": "GeoJSON geometry defining the geofence boundary",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry"
+    },
+    "rules": {
+      "description": "Operational rules applied within this geofence",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the location",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "gps": {
+      "description": "GPS coordinates as a latitude,longitude string",
+      "type": "string"
+    },
+    "address": {
+      "description": "Physical address of the location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Address"
+    },
+    "city": {
+      "description": "City name",
+      "type": "string"
+    },
+    "country": {
+      "description": "ISO 3166-1 alpha-2 country code",
+      "type": "string"
+    },
+    "geojson": {
+      "description": "GeoJSON geometry object representing this location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry"
+    }
+  },
+  "additionalProperties": false
+}

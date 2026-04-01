@@ -3,18 +3,45 @@ info:
   title: Quay
   version: 2.0.0
   description: Schema definition for the Quay entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Quay:
       type: object
       title: Quay
-      description: >
-        Attributes for the Quay entity in the Beckn Mobility domain.
-      properties: {}
+      description: A specific platform, bay, or boarding area within a Stop Place
+        at which passengers board or alight from a vehicle.
+      properties:
+        quayId:
+          description: Unique identifier for the quay
+          type: string
+        publicCode:
+          description: Publicly displayed platform or bay code
+          type: string
+        quayType:
+          description: Type of quay (e.g. RAIL_PLATFORM, BUS_BAY, FERRY_BERTH)
+          type: string
+        stopPlaceRef:
+          description: Reference to the parent Stop Place
+          $ref: ../../StopPlace/v2.0/schema.json#/$defs/StopPlace
+        id:
+          description: Unique identifier for the fulfillment stop
+          type: string
+        location:
+          description: Geographic location of the stop
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        type:
+          description: Type of stop (start, end, intermediate)
+          type: string
+        instructions:
+          description: Instructions for passengers at this stop
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        time:
+          description: Expected time window at this stop
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+      additionalProperties: false

@@ -1,0 +1,255 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:StopPlace",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "StopPlace",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A physical location serving as a transit stop facility, comprising one or more quays, entrances, and associated infrastructure.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "beckn:Pathway"
+        },
+        {
+          "@id": "beckn:Quay"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:stopPlaceId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopPlaceId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the stop place",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPlace"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:stopPlaceType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopPlaceType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of stop place (e.g. AIRPORT, BUS_STATION, FERRY_STOP, METRO_STATION)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPlace"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:quays",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "quays",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Quays or boarding areas within this stop place",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPlace"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Quay"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Quay/v2.0/vocab.jsonld#beckn:Quay"
+      }
+    },
+    {
+      "@id": "beckn:entrances",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "entrances",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Entrances and pathways into this stop place",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPlace"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Pathway/v2.0/vocab.jsonld#beckn:Pathway"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPlace"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPlace"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:gps",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "gps",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "GPS coordinates as a latitude,longitude string",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPlace"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:address",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "address",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Physical address of the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPlace"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Address"
+      }
+    },
+    {
+      "@id": "beckn:city",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "city",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "City name",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPlace"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:country",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "country",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "ISO 3166-1 alpha-2 country code",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPlace"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:geojson",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "geojson",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "GeoJSON geometry object representing this location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopPlace"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#GeoJSONGeometry"
+      }
+    }
+  ]
+}

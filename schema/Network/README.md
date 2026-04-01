@@ -1,43 +1,50 @@
 # Network
-A schema.beckn.io TODO( Select Type / Property based on the nature of the schema)
 
-TODO(Insert description here taken from 4_Beckn_Mobility_Concepts.md)
+A schema.beckn.io Type
 
-**Canonical IRI :** mobility:Network
+A grouping of routes and lines operated under a common brand or authority, used for fare and operational management.
+
+**Canonical IRI :** `mobility:Network`
+
 **Canonical URL:** https://schema.beckn.io/mobility/Network
+
 **Related Classes:**
 
 | Type | Relationship | Strength |
 |------|--------------|----------|
-| [insert domain_standard_prefix]:[Insert Type in domain standard] | [Insert Relationship] | [Insert Strength] |
-
+| [beckn:Catalog](https://github.com/beckn/core_schema/tree/draft/schema/Catalog) | rdfs:subClassOf | Subclass |
+| [schema:Organization](https://schema.org/Organization) | rdfs:seeAlso | Related |
 
 ## Open Issues
+
 [Open issues](https://github.com/beckn/mobility/issues)
 
 ## Properties
-| Property     | Expected Type  | Description           |
-|--------------|----------------|-----------------------|
-| [Insert hyperlinked PropertyName] | [Insert Hyperlinked TypeName]  | [Insert Property description]  |
 
-## [If there are multiple examples then call this heading Examples, else call it Example]
+| Property | Expected Type | Description |
+|---|---|---|
+| **[Properties from Network](https://schema.beckn.io/mobility/Network)** | | |
+| [networkId](https://schema.beckn.io/mobility/networkId) | [schema:Text](https://schema.org/Text) | Unique identifier for the network |
+| [networkName](https://schema.beckn.io/mobility/networkName) | [schema:Text](https://schema.org/Text) | Human-readable name of the network |
+| [operatorRef](https://schema.beckn.io/mobility/operatorRef) | [Operator](https://schema.beckn.io/mobility/Operator) | Operator(s) running services within this network |
+| [lines](https://schema.beckn.io/mobility/lines) | [Line](https://schema.beckn.io/mobility/Line) | Lines that belong to this network |
+| **[Properties from Catalog](https://github.com/beckn/core_schema/tree/draft/schema/Catalog)** | | |
+| [id](https://schema.beckn.io/core/id) | [schema:Text](https://schema.org/Text) | Unique identifier for the catalog |
+| [descriptor](https://schema.beckn.io/core/descriptor) | [Descriptor](https://github.com/beckn/core_schema/tree/draft/schema/Descriptor) | Human-readable description of the catalog |
+| [tags](https://schema.beckn.io/core/tags) | [schema:Text](https://schema.org/Text) | Tags associated with the catalog |
 
-### [if multiple examples ,then insert call it Example (number) or omit this heading]
+## Example
 
 [Insert brief description of the example]
 
-```
+```json
 [Insert Example JSON-LD]
 ```
 
 ## Example Beckn Protocol Requests Payload using this Schema
 
-### TODO(if multiple examples ,then insert call it Example # or omit this heading)
 > [Brief description of the request with container schema, core schema, and mobility bindings]
 
-
-```
+```json
 [Insert Example JSON-LD]
 ```
-
-

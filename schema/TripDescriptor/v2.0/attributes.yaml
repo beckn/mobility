@@ -2,19 +2,55 @@ openapi: 3.1.0
 info:
   title: TripDescriptor
   version: 2.0.0
-  description: Schema definition for the TripDescriptor entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the TripDescriptor entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     TripDescriptor:
       type: object
       title: TripDescriptor
-      description: >
-        Attributes for the TripDescriptor entity in the Beckn Mobility domain.
-      properties: {}
+      description: An identifier that uniquely references a specific vehicle journey
+        in a real-time transit feed.
+      properties:
+        tripId:
+          description: GTFS trip_id of the trip being referenced
+          type: string
+        routeId:
+          description: GTFS route_id associated with the trip
+          type: string
+        directionId:
+          description: Direction of travel (0 or 1)
+          type: string
+        startTime:
+          description: Scheduled start time of the trip in HH:MM:SS
+          type: string
+        startDate:
+          description: Start date of the trip in YYYYMMDD format
+          type: string
+        scheduleRelationship:
+          description: Relationship to the GTFS schedule (SCHEDULED, ADDED, UNSCHEDULED,
+            CANCELED)
+          type: string
+        name:
+          description: Short display name of the entity
+          type: string
+        short_desc:
+          description: Brief textual description
+          type: string
+        long_desc:
+          description: Detailed or long-form description
+          type: string
+        media:
+          description: Media resource URLs (images, audio, video)
+          type: string
+          format: uri
+        images:
+          description: Image URLs for visual display
+          type: string
+          format: uri
+      additionalProperties: false

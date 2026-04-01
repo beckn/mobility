@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TransportObject",
+  "type": "object",
+  "description": "A generic transport entity in the OSLO mobility ontology representing any object involved in transport operations.",
+  "properties": {
+    "objectType": {
+      "description": "Type of transport object (e.g. VEHICLE, INFRASTRUCTURE, ASSET)",
+      "type": "string"
+    },
+    "attributes": {
+      "description": "Additional extensible attributes for this transport object",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the item",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "categoryId": {
+      "description": "Category code classifying the item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/CategoryCode"
+    },
+    "price": {
+      "description": "Price specification for this item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "quantity": {
+      "description": "Available quantity of the item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Quantity"
+    },
+    "tags": {
+      "description": "Tags associated with the item",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -3,18 +3,54 @@ info:
   title: Operator
   version: 2.0.0
   description: Schema definition for the Operator entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Operator:
       type: object
       title: Operator
-      description: >
-        Attributes for the Operator entity in the Beckn Mobility domain.
-      properties: {}
+      description: An organization that provides and operates public transport or
+        shared mobility services under a defined service agreement.
+      properties:
+        operatorId:
+          description: Unique identifier for the operator
+          type: string
+        operatingRegions:
+          description: Geographic regions where the operator provides services
+          type: string
+        licenseNumber:
+          description: Regulatory license or accreditation number
+          type: string
+        contactInfo:
+          description: Public contact information for the operator
+          type: string
+        id:
+          description: Unique identifier for the provider
+          type: string
+        descriptor:
+          description: Human-readable description of the provider
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        categories:
+          description: Service categories offered by the provider
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/CategoryCode
+        locations:
+          description: Locations where the provider offers services
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        items:
+          description: Items available for discovery from this provider
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Item
+        fulfillments:
+          description: Fulfillment options offered by this provider
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Fulfillment
+        ratingsTotal:
+          description: Total number of ratings received
+          type: number
+        rating:
+          description: Aggregate rating of the provider
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Rating
+      additionalProperties: false

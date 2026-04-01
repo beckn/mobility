@@ -1,0 +1,313 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Pathway",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Pathway",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A connection between two points within a transit station (e.g., stairway, elevator, walkway) used for indoor navigation and accessibility routing.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:pathwayId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "pathwayId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the pathway",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:fromStopId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fromStopId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Stop at the start of the pathway",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Stop"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Stop/v2.0/vocab.jsonld#beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:toStopId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "toStopId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Stop at the end of the pathway",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Stop"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Stop/v2.0/vocab.jsonld#beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:pathwayMode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "pathwayMode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of pathway (1=walkway, 2=stairs, 3=moving_sidewalk, 4=escalator, 5=elevator, 6=fare_gate, 7=exit_gate)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:isBidirectional",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "isBidirectional",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Whether the pathway can be traversed in both directions",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "xsd:boolean"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Boolean"
+      }
+    },
+    {
+      "@id": "beckn:length",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "length",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Length of the pathway in metres",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:traversalTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "traversalTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Time in seconds to traverse the pathway",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:gps",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "gps",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "GPS coordinates as a latitude,longitude string",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:address",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "address",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Physical address of the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Address"
+      }
+    },
+    {
+      "@id": "beckn:city",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "city",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "City name",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:country",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "country",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "ISO 3166-1 alpha-2 country code",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:geojson",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "geojson",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "GeoJSON geometry object representing this location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pathway"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#GeoJSONGeometry"
+      }
+    }
+  ]
+}

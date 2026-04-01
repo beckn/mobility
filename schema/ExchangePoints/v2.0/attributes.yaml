@@ -2,19 +2,40 @@ openapi: 3.1.0
 info:
   title: ExchangePoints
   version: 2.0.0
-  description: Schema definition for the ExchangePoints entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the ExchangePoints entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     ExchangePoints:
       type: object
       title: ExchangePoints
-      description: >
-        Attributes for the ExchangePoints entity in the Beckn Mobility domain.
-      properties: {}
+      description: Locations in a transport network where fixed-route and flexible
+        services connect, enabling passenger interchange.
+      properties:
+        exchangePointType:
+          description: Type of exchange point (e.g. FIXED_TO_FLEX, FLEX_TO_FLEX)
+          type: string
+        connectingServices:
+          description: Services that connect at this exchange point
+          $ref: ../../VehicleJourney/v2.0/schema.json#/$defs/VehicleJourney
+        id:
+          description: Unique identifier for the fulfillment stop
+          type: string
+        location:
+          description: Geographic location of the stop
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        type:
+          description: Type of stop (start, end, intermediate)
+          type: string
+        instructions:
+          description: Instructions for passengers at this stop
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        time:
+          description: Expected time window at this stop
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+      additionalProperties: false

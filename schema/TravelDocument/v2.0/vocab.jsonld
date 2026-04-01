@@ -1,0 +1,211 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:TravelDocument",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "TravelDocument",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A document (physical or digital) issued to a passenger proving entitlement to travel, used for validation or inspection.",
+        "@language": "en"
+      },
+      "rdfs:subClassOf": {
+        "@id": "https://schema.org/CreativeWork"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Operator"
+      }
+    },
+    {
+      "@id": "beckn:documentType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "documentType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of travel document (e.g. E_TICKET, PDF_TICKET, SMARTCARD, BARCODE)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TravelDocument"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:documentNumber",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "documentNumber",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique document number or serial",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TravelDocument"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:issuingAuthority",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "issuingAuthority",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The operator or authority that issued this document",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TravelDocument"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Operator/v2.0/vocab.jsonld#beckn:Operator"
+      }
+    },
+    {
+      "@id": "beckn:validFrom",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validFrom",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Start date of the document validity",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TravelDocument"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:validUntil",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validUntil",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Expiry date of the document",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TravelDocument"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TravelDocument"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable information about the entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TravelDocument"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:resource",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "resource",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The resource being accessed against this entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TravelDocument"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#ContractItem"
+      }
+    },
+    {
+      "@id": "beckn:credentials",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "credentials",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Credential descriptors for the entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TravelDocument"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    }
+  ]
+}

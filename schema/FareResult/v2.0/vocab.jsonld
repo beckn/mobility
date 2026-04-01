@@ -1,0 +1,216 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:FareResult",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "FareResult",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The calculated fare for a requested trip, returned as part of a trip planning or fare enquiry response.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "https://schema.org/PriceSpecification"
+        },
+        {
+          "@id": "beckn:FareBreakup"
+        },
+        {
+          "@id": "beckn:FareProduct"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:totalAmount",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "totalAmount",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Total calculated fare amount",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareResult"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:currency",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "currency",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "ISO 4217 currency code",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareResult"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:fareProducts",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fareProducts",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Fare products applicable to the result",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareResult"
+      },
+      "rdfs:range": {
+        "@id": "beckn:FareProduct"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../FareProduct/v2.0/vocab.jsonld#beckn:FareProduct"
+      }
+    },
+    {
+      "@id": "beckn:fareBreakup",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fareBreakup",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Itemised breakdown of the calculated fare",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareResult"
+      },
+      "rdfs:range": {
+        "@id": "beckn:FareBreakup"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../FareBreakup/v2.0/vocab.jsonld#beckn:FareBreakup"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareResult"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareResult"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Price specification for this offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareResult"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity period of the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareResult"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags or labels associated with the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareResult"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

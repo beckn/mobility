@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "PlaceRequest": "beckn:PlaceRequest",
+    "accommodationType": "beckn:accommodationType",
+    "preferences": "beckn:preferences",
+    "seatRef": "beckn:seatRef",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "price": "beckn:price",
+    "quantity": "beckn:quantity"
+  }
+}

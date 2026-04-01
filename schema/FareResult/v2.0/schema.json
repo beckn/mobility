@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FareResult",
+  "type": "object",
+  "description": "The calculated fare for a requested trip, returned as part of a trip planning or fare enquiry response.",
+  "properties": {
+    "totalAmount": {
+      "description": "Total calculated fare amount",
+      "type": "number"
+    },
+    "currency": {
+      "description": "ISO 4217 currency code",
+      "type": "string"
+    },
+    "fareProducts": {
+      "description": "Fare products applicable to the result",
+      "$ref": "../../FareProduct/v2.0/schema.json"
+    },
+    "fareBreakup": {
+      "description": "Itemised breakdown of the calculated fare",
+      "$ref": "../../FareBreakup/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the offer",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "price": {
+      "description": "Price specification for this offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "validity": {
+      "description": "Validity period of the offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    },
+    "tags": {
+      "description": "Tags or labels associated with the offer",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,190 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:FareBreakup",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "FareBreakup",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A detailed breakdown of the total fare into its constituent components, including base fare, taxes, surcharges, and discounts.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:componentTitle",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "componentTitle",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable title for this fare component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareBreakup"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:amount",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "amount",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Monetary amount for this fare component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareBreakup"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:currency",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "currency",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "ISO 4217 currency code for this component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareBreakup"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:taxAmount",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "taxAmount",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tax amount included in this component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareBreakup"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:taxRate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "taxRate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tax rate percentage applied",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareBreakup"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:title",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "title",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Title or label of this price component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareBreakup"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Monetary value of this component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareBreakup"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags associated with this price component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareBreakup"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

@@ -1,11 +1,13 @@
 {
   "@context": {
-    "beckn": "https://schema.beckn.io/mobility/",
-    "schema": "https://schema.org/",
+    "mobility": "https://schema.beckn.io/mobility/",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
     "geo": "http://www.opengis.net/ont/geosparql#",
-    "foaf": "http://xmlns.com/foaf/0.1/",
-    "gtfs": "http://vocab.gtfs.org/terms#",
-    "era": "http://data.europa.eu/949/",
+    "transmodel": "https://w3id.org/transmodel/ontology#",
+    "ldes": "https://w3id.org/ldes/",
+    "oslo": "https://data.vlaanderen.be/ns/mobiliteit#",
+    "inspire": "https://inspire.ec.europa.eu/ontology/",
+    "era": "https://data.europa.eu/949/",
     "owl": "http://www.w3.org/2002/07/owl#",
     "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
     "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
@@ -26,7 +28,7 @@
       "owl:versionInfo": "0.1.0"
     },
     {
-      "@id": "beckn:Operator",
+      "@id": "mobility:Operator",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -37,19 +39,14 @@
         "@value": "An organization that provides and operates public transport or shared mobility services under a defined service agreement."
       },
       "owl:equivalentClass": {
-        "@id": "gtfs:Agency"
+        "@id": "transmodel:Operator"
       },
-      "rdfs:subClassOf": [
-        {
-          "@id": "schema:Organization"
-        },
-        {
-          "@id": "foaf:Organization"
-        }
-      ]
+      "rdfs:subClassOf": {
+        "@id": "schema:Organization"
+      }
     },
     {
-      "@id": "beckn:Authority",
+      "@id": "mobility:Authority",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -59,17 +56,12 @@
         "@language": "en",
         "@value": "A governmental or administrative body responsible for planning, regulating, and overseeing transport services within a jurisdiction."
       },
-      "rdfs:subClassOf": [
-        {
-          "@id": "schema:GovernmentOrganization"
-        },
-        {
-          "@id": "foaf:Organization"
-        }
-      ]
+      "rdfs:subClassOf": {
+        "@id": "schema:GovernmentOrganization"
+      }
     },
     {
-      "@id": "beckn:Carrier",
+      "@id": "mobility:Carrier",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -84,7 +76,7 @@
       }
     },
     {
-      "@id": "beckn:Passenger",
+      "@id": "mobility:Passenger",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -94,17 +86,12 @@
         "@language": "en",
         "@value": "A person who travels using a transport service and is identified in a booking or travel document."
       },
-      "rdfs:subClassOf": [
-        {
-          "@id": "schema:Person"
-        },
-        {
-          "@id": "foaf:Person"
-        }
-      ]
+      "rdfs:subClassOf": {
+        "@id": "schema:Person"
+      }
     },
     {
-      "@id": "beckn:User",
+      "@id": "mobility:User",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -114,17 +101,12 @@
         "@language": "en",
         "@value": "A registered participant in a mobility platform who may search, book, and use transport services."
       },
-      "rdfs:subClassOf": [
-        {
-          "@id": "schema:Person"
-        },
-        {
-          "@id": "foaf:Person"
-        }
-      ]
+      "rdfs:subClassOf": {
+        "@id": "schema:Person"
+      }
     },
     {
-      "@id": "beckn:Stop",
+      "@id": "mobility:Stop",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -134,18 +116,20 @@
         "@language": "en",
         "@value": "A designated location where vehicles stop to allow passengers to board or alight from a transport service."
       },
-      "owl:equivalentClass": {
-        "@id": "gtfs:Stop"
-      },
       "rdfs:subClassOf": {
         "@id": "geo:Feature"
       },
-      "rdfs:seeAlso": {
-        "@id": "schema:BusStop"
-      }
+      "rdfs:seeAlso": [
+        {
+          "@id": "schema:BusStop"
+        },
+        {
+          "@id": "transmodel:ScheduledStopPoint"
+        }
+      ]
     },
     {
-      "@id": "beckn:StopPlace",
+      "@id": "mobility:StopPlace",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -157,13 +141,10 @@
       },
       "rdfs:subClassOf": {
         "@id": "geo:Feature"
-      },
-      "rdfs:seeAlso": {
-        "@id": "gtfs:Stop"
       }
     },
     {
-      "@id": "beckn:StopPoint",
+      "@id": "mobility:StopPoint",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -178,7 +159,7 @@
       }
     },
     {
-      "@id": "beckn:Quay",
+      "@id": "mobility:Quay",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -190,13 +171,10 @@
       },
       "rdfs:subClassOf": {
         "@id": "geo:Feature"
-      },
-      "rdfs:seeAlso": {
-        "@id": "gtfs:Stop"
       }
     },
     {
-      "@id": "beckn:Station",
+      "@id": "mobility:Station",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -219,7 +197,7 @@
       ]
     },
     {
-      "@id": "beckn:StopArea",
+      "@id": "mobility:StopArea",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -234,7 +212,7 @@
       }
     },
     {
-      "@id": "beckn:LocationGroup",
+      "@id": "mobility:LocationGroup",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -249,7 +227,7 @@
       }
     },
     {
-      "@id": "beckn:LocationGroupStop",
+      "@id": "mobility:LocationGroupStop",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -260,11 +238,11 @@
         "@value": "An association between a stop and a location group, used in flexible transit service planning."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:Stop"
+        "@id": "mobility:Stop"
       }
     },
     {
-      "@id": "beckn:Level",
+      "@id": "mobility:Level",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -279,7 +257,7 @@
       }
     },
     {
-      "@id": "beckn:Pathway",
+      "@id": "mobility:Pathway",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -294,7 +272,7 @@
       }
     },
     {
-      "@id": "beckn:Place",
+      "@id": "mobility:Place",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -312,7 +290,7 @@
       }
     },
     {
-      "@id": "beckn:Area",
+      "@id": "mobility:Area",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -330,7 +308,7 @@
       }
     },
     {
-      "@id": "beckn:TariffZone",
+      "@id": "mobility:TariffZone",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -348,7 +326,7 @@
       }
     },
     {
-      "@id": "beckn:GeofencingZone",
+      "@id": "mobility:GeofencingZone",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -366,7 +344,7 @@
       }
     },
     {
-      "@id": "beckn:Geography",
+      "@id": "mobility:Geography",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -381,7 +359,7 @@
       }
     },
     {
-      "@id": "beckn:SpatialObject",
+      "@id": "mobility:SpatialObject",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -396,7 +374,7 @@
       }
     },
     {
-      "@id": "beckn:Geometry",
+      "@id": "mobility:Geometry",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -411,7 +389,7 @@
       }
     },
     {
-      "@id": "beckn:Feature",
+      "@id": "mobility:Feature",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -426,7 +404,7 @@
       }
     },
     {
-      "@id": "beckn:Point",
+      "@id": "mobility:Point",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -441,7 +419,7 @@
       }
     },
     {
-      "@id": "beckn:Polygon",
+      "@id": "mobility:Polygon",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -459,7 +437,7 @@
       }
     },
     {
-      "@id": "beckn:BoundingBox",
+      "@id": "mobility:BoundingBox",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -477,7 +455,7 @@
       }
     },
     {
-      "@id": "beckn:TransportNetwork",
+      "@id": "mobility:TransportNetwork",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -489,10 +467,13 @@
       },
       "rdfs:subClassOf": {
         "@id": "geo:Feature"
+      },
+      "rdfs:seeAlso": {
+        "@id": "inspire:TransportNetwork"
       }
     },
     {
-      "@id": "beckn:TransportLink",
+      "@id": "mobility:TransportLink",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -507,7 +488,7 @@
       }
     },
     {
-      "@id": "beckn:TransportNode",
+      "@id": "mobility:TransportNode",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -522,7 +503,7 @@
       }
     },
     {
-      "@id": "beckn:Road",
+      "@id": "mobility:Road",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -534,10 +515,13 @@
       },
       "rdfs:subClassOf": {
         "@id": "geo:Feature"
+      },
+      "rdfs:seeAlso": {
+        "@id": "inspire:Road"
       }
     },
     {
-      "@id": "beckn:Railway",
+      "@id": "mobility:Railway",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -549,10 +533,13 @@
       },
       "rdfs:subClassOf": {
         "@id": "geo:Feature"
+      },
+      "rdfs:seeAlso": {
+        "@id": "inspire:RailwayLink"
       }
     },
     {
-      "@id": "beckn:Track",
+      "@id": "mobility:Track",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -570,7 +557,7 @@
       }
     },
     {
-      "@id": "beckn:Waterway",
+      "@id": "mobility:Waterway",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -585,7 +572,7 @@
       }
     },
     {
-      "@id": "beckn:AirRoute",
+      "@id": "mobility:AirRoute",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -603,7 +590,7 @@
       }
     },
     {
-      "@id": "beckn:TrafficArea",
+      "@id": "mobility:TrafficArea",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -618,7 +605,7 @@
       }
     },
     {
-      "@id": "beckn:AuxiliaryTrafficArea",
+      "@id": "mobility:AuxiliaryTrafficArea",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -633,7 +620,7 @@
       }
     },
     {
-      "@id": "beckn:TransportationComplex",
+      "@id": "mobility:TransportationComplex",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -648,7 +635,7 @@
       }
     },
     {
-      "@id": "beckn:OperationalPoint",
+      "@id": "mobility:OperationalPoint",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -666,7 +653,7 @@
       }
     },
     {
-      "@id": "beckn:SectionOfLine",
+      "@id": "mobility:SectionOfLine",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -684,7 +671,7 @@
       }
     },
     {
-      "@id": "beckn:ContactLineSystem",
+      "@id": "mobility:ContactLineSystem",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -699,7 +686,7 @@
       }
     },
     {
-      "@id": "beckn:LoadCapability",
+      "@id": "mobility:LoadCapability",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -714,7 +701,7 @@
       }
     },
     {
-      "@id": "beckn:TrainDetectionSystem",
+      "@id": "mobility:TrainDetectionSystem",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -729,7 +716,7 @@
       }
     },
     {
-      "@id": "beckn:TrackParameter",
+      "@id": "mobility:TrackParameter",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -744,7 +731,7 @@
       }
     },
     {
-      "@id": "beckn:Line",
+      "@id": "mobility:Line",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -754,12 +741,12 @@
         "@language": "en",
         "@value": "A named, branded public transport service identified by a number or name, typically operating over one or more routes."
       },
-      "rdfs:seeAlso": {
-        "@id": "gtfs:Route"
+      "owl:equivalentClass": {
+        "@id": "transmodel:Line"
       }
     },
     {
-      "@id": "beckn:Route",
+      "@id": "mobility:Route",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -769,15 +756,17 @@
         "@language": "en",
         "@value": "The physical or logical path followed by a transport service, defined as an ordered sequence of stops or waypoints."
       },
-      "owl:equivalentClass": {
-        "@id": "gtfs:Route"
-      },
-      "rdfs:seeAlso": {
-        "@id": "schema:Trip"
-      }
+      "rdfs:seeAlso": [
+        {
+          "@id": "transmodel:Route"
+        },
+        {
+          "@id": "schema:Trip"
+        }
+      ]
     },
     {
-      "@id": "beckn:Network",
+      "@id": "mobility:Network",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -792,7 +781,7 @@
       }
     },
     {
-      "@id": "beckn:VehicleJourney",
+      "@id": "mobility:VehicleJourney",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -802,12 +791,12 @@
         "@language": "en",
         "@value": "A specific operational instance of a vehicle traveling a defined route at a scheduled time on a given service day."
       },
-      "rdfs:seeAlso": {
-        "@id": "gtfs:Trip"
+      "owl:equivalentClass": {
+        "@id": "transmodel:VehicleJourney"
       }
     },
     {
-      "@id": "beckn:ServiceCalendar",
+      "@id": "mobility:ServiceCalendar",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -817,17 +806,12 @@
         "@language": "en",
         "@value": "A schedule defining on which dates a transport service operates, including regular service days and exceptional dates."
       },
-      "rdfs:seeAlso": [
-        {
-          "@id": "gtfs:Calendar"
-        },
-        {
-          "@id": "schema:Schedule"
-        }
-      ]
+      "rdfs:seeAlso": {
+        "@id": "schema:Schedule"
+      }
     },
     {
-      "@id": "beckn:DayType",
+      "@id": "mobility:DayType",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -842,7 +826,7 @@
       }
     },
     {
-      "@id": "beckn:Timetable",
+      "@id": "mobility:Timetable",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -857,7 +841,7 @@
       }
     },
     {
-      "@id": "beckn:StopTime",
+      "@id": "mobility:StopTime",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -867,12 +851,12 @@
         "@language": "en",
         "@value": "The scheduled arrival and departure times for a vehicle at a specific stop within a vehicle journey."
       },
-      "owl:equivalentClass": {
-        "@id": "gtfs:StopTime"
+      "rdfs:seeAlso": {
+        "@id": "transmodel:PassingTime"
       }
     },
     {
-      "@id": "beckn:Frequency",
+      "@id": "mobility:Frequency",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -881,13 +865,10 @@
       "rdfs:comment": {
         "@language": "en",
         "@value": "A headway-based service specification indicating how often a vehicle runs on a route within a given time window."
-      },
-      "owl:equivalentClass": {
-        "@id": "gtfs:Frequency"
       }
     },
     {
-      "@id": "beckn:Shape",
+      "@id": "mobility:Shape",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -897,15 +878,12 @@
         "@language": "en",
         "@value": "The geographic path traced by a vehicle along a route, represented as an ordered sequence of geographic coordinates."
       },
-      "owl:equivalentClass": {
-        "@id": "gtfs:Shape"
-      },
       "rdfs:subClassOf": {
         "@id": "geo:Geometry"
       }
     },
     {
-      "@id": "beckn:Pattern",
+      "@id": "mobility:Pattern",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -916,11 +894,11 @@
         "@value": "A unique sequence of stops visited by trips on a route, grouping trips with identical stop sequences and timing structures."
       },
       "rdfs:seeAlso": {
-        "@id": "gtfs:Trip"
+        "@id": "transmodel:JourneyPattern"
       }
     },
     {
-      "@id": "beckn:Direction",
+      "@id": "mobility:Direction",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -935,7 +913,7 @@
       }
     },
     {
-      "@id": "beckn:Transfer",
+      "@id": "mobility:Transfer",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -945,12 +923,12 @@
         "@language": "en",
         "@value": "A defined connection rule between two routes or services at a common stop, specifying minimum transfer time or transfer type."
       },
-      "owl:equivalentClass": {
-        "@id": "gtfs:Transfer"
+      "rdfs:seeAlso": {
+        "@id": "transmodel:Interchange"
       }
     },
     {
-      "@id": "beckn:Interchange",
+      "@id": "mobility:Interchange",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -961,11 +939,11 @@
         "@value": "A planned transfer connection point where passengers switch between two or more transport services, with defined timing constraints."
       },
       "rdfs:subClassOf": {
-        "@id": "beckn:Stop"
+        "@id": "mobility:Stop"
       }
     },
     {
-      "@id": "beckn:ExchangePoints",
+      "@id": "mobility:ExchangePoints",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -980,7 +958,7 @@
       }
     },
     {
-      "@id": "beckn:VehiclePosition",
+      "@id": "mobility:VehiclePosition",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -998,7 +976,7 @@
       }
     },
     {
-      "@id": "beckn:TripUpdate",
+      "@id": "mobility:TripUpdate",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1009,11 +987,11 @@
         "@value": "A real-time update to the schedule of a vehicle journey, including predicted arrival and departure times at stops."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:VehicleJourney"
+        "@id": "mobility:VehicleJourney"
       }
     },
     {
-      "@id": "beckn:StopTimeUpdate",
+      "@id": "mobility:StopTimeUpdate",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1024,11 +1002,11 @@
         "@value": "A real-time update to the predicted arrival or departure time of a vehicle at a specific stop within a journey."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:StopTime"
+        "@id": "mobility:StopTime"
       }
     },
     {
-      "@id": "beckn:TripDescriptor",
+      "@id": "mobility:TripDescriptor",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1039,11 +1017,11 @@
         "@value": "An identifier that uniquely references a specific vehicle journey in a real-time transit feed."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:VehicleJourney"
+        "@id": "mobility:VehicleJourney"
       }
     },
     {
-      "@id": "beckn:VehicleDescriptor",
+      "@id": "mobility:VehicleDescriptor",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1054,11 +1032,11 @@
         "@value": "An identifier that uniquely references a specific vehicle in a real-time transit feed."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:Vehicle"
+        "@id": "mobility:Vehicle"
       }
     },
     {
-      "@id": "beckn:MonitoredVehicleJourney",
+      "@id": "mobility:MonitoredVehicleJourney",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1069,11 +1047,11 @@
         "@value": "A real-time representation of a vehicle journey being actively tracked, including position and schedule adherence data."
       },
       "rdfs:subClassOf": {
-        "@id": "beckn:VehicleJourney"
+        "@id": "mobility:VehicleJourney"
       }
     },
     {
-      "@id": "beckn:MonitoredCall",
+      "@id": "mobility:MonitoredCall",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1084,11 +1062,11 @@
         "@value": "A real-time arrival or departure prediction for a specific vehicle at a specific stop within a monitored journey."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:StopTime"
+        "@id": "mobility:StopTime"
       }
     },
     {
-      "@id": "beckn:StopMonitoring",
+      "@id": "mobility:StopMonitoring",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1099,11 +1077,11 @@
         "@value": "A real-time data service providing predicted arrivals and departures of vehicles at a specific stop."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:Stop"
+        "@id": "mobility:Stop"
       }
     },
     {
-      "@id": "beckn:EstimatedTimetableDelivery",
+      "@id": "mobility:EstimatedTimetableDelivery",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1114,11 +1092,11 @@
         "@value": "A real-time data delivery providing predicted departure and arrival times for a set of vehicle journeys."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:Timetable"
+        "@id": "mobility:Timetable"
       }
     },
     {
-      "@id": "beckn:VehicleMonitoringDelivery",
+      "@id": "mobility:VehicleMonitoringDelivery",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1129,11 +1107,11 @@
         "@value": "A real-time data delivery providing current positions and operational states of a set of vehicles."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:VehiclePosition"
+        "@id": "mobility:VehiclePosition"
       }
     },
     {
-      "@id": "beckn:GeneralMessageDelivery",
+      "@id": "mobility:GeneralMessageDelivery",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1144,11 +1122,11 @@
         "@value": "A real-time delivery of textual messages or alerts related to service disruptions or passenger information."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:Alert"
+        "@id": "mobility:Alert"
       }
     },
     {
-      "@id": "beckn:ServiceDelivery",
+      "@id": "mobility:ServiceDelivery",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1160,7 +1138,7 @@
       }
     },
     {
-      "@id": "beckn:AffectedLine",
+      "@id": "mobility:AffectedLine",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1171,11 +1149,11 @@
         "@value": "A reference to a transport line that is affected by a service disruption or alert."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:Line"
+        "@id": "mobility:Line"
       }
     },
     {
-      "@id": "beckn:DepartureMessage",
+      "@id": "mobility:DepartureMessage",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1186,11 +1164,11 @@
         "@value": "A real-time message containing predicted departure times for vehicles at a stop, as used in VDV real-time standards."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:StopTime"
+        "@id": "mobility:StopTime"
       }
     },
     {
-      "@id": "beckn:Prognosis",
+      "@id": "mobility:Prognosis",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1201,11 +1179,11 @@
         "@value": "A real-time prediction of a vehicle's arrival or departure time at a stop, including an indication of prediction confidence."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:StopTime"
+        "@id": "mobility:StopTime"
       }
     },
     {
-      "@id": "beckn:OccupancyStatus",
+      "@id": "mobility:OccupancyStatus",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1220,7 +1198,7 @@
       }
     },
     {
-      "@id": "beckn:PassengerCount",
+      "@id": "mobility:PassengerCount",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1232,7 +1210,7 @@
       }
     },
     {
-      "@id": "beckn:Telemetry",
+      "@id": "mobility:Telemetry",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1247,7 +1225,7 @@
       }
     },
     {
-      "@id": "beckn:Event",
+      "@id": "mobility:Event",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1262,7 +1240,7 @@
       }
     },
     {
-      "@id": "beckn:Alert",
+      "@id": "mobility:Alert",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1277,7 +1255,7 @@
       }
     },
     {
-      "@id": "beckn:EntitySelector",
+      "@id": "mobility:EntitySelector",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1288,11 +1266,11 @@
         "@value": "A selector that identifies which transport entities (routes, trips, stops, or agencies) are affected by a given alert."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:Alert"
+        "@id": "mobility:Alert"
       }
     },
     {
-      "@id": "beckn:TimeRange",
+      "@id": "mobility:TimeRange",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1307,7 +1285,7 @@
       }
     },
     {
-      "@id": "beckn:TranslatedString",
+      "@id": "mobility:TranslatedString",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1322,7 +1300,7 @@
       }
     },
     {
-      "@id": "beckn:Translation",
+      "@id": "mobility:Translation",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1334,7 +1312,7 @@
       }
     },
     {
-      "@id": "beckn:Notice",
+      "@id": "mobility:Notice",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1349,7 +1327,7 @@
       }
     },
     {
-      "@id": "beckn:Situation",
+      "@id": "mobility:Situation",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1364,7 +1342,7 @@
       }
     },
     {
-      "@id": "beckn:FareProduct",
+      "@id": "mobility:FareProduct",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1384,7 +1362,7 @@
       ]
     },
     {
-      "@id": "beckn:FareLegRule",
+      "@id": "mobility:FareLegRule",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1395,11 +1373,11 @@
         "@value": "A rule defining how a fare is applied to a single leg of a journey based on origin, destination, network, and time."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:FareProduct"
+        "@id": "mobility:FareProduct"
       }
     },
     {
-      "@id": "beckn:FareTransferRule",
+      "@id": "mobility:FareTransferRule",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1410,11 +1388,11 @@
         "@value": "A rule defining how fares from different legs are combined when a passenger makes a transfer between services."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:FareProduct"
+        "@id": "mobility:FareProduct"
       }
     },
     {
-      "@id": "beckn:RiderCategory",
+      "@id": "mobility:RiderCategory",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1429,7 +1407,7 @@
       }
     },
     {
-      "@id": "beckn:FareMedium",
+      "@id": "mobility:FareMedium",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1441,7 +1419,7 @@
       }
     },
     {
-      "@id": "beckn:Fare",
+      "@id": "mobility:Fare",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1456,7 +1434,7 @@
       }
     },
     {
-      "@id": "beckn:FareComponent",
+      "@id": "mobility:FareComponent",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1467,11 +1445,11 @@
         "@value": "A component of an air travel fare that applies to a specific flight segment or leg, used in aviation pricing."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:Fare"
+        "@id": "mobility:Fare"
       }
     },
     {
-      "@id": "beckn:FareResult",
+      "@id": "mobility:FareResult",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1486,7 +1464,7 @@
       }
     },
     {
-      "@id": "beckn:SalesOfferPackage",
+      "@id": "mobility:SalesOfferPackage",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1501,7 +1479,7 @@
       }
     },
     {
-      "@id": "beckn:SystemPricingPlan",
+      "@id": "mobility:SystemPricingPlan",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1516,7 +1494,7 @@
       }
     },
     {
-      "@id": "beckn:Tariff",
+      "@id": "mobility:Tariff",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1531,7 +1509,7 @@
       }
     },
     {
-      "@id": "beckn:Ticket",
+      "@id": "mobility:Ticket",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1546,7 +1524,7 @@
       }
     },
     {
-      "@id": "beckn:TravelDocument",
+      "@id": "mobility:TravelDocument",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1561,7 +1539,7 @@
       }
     },
     {
-      "@id": "beckn:Contract",
+      "@id": "mobility:Contract",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1576,7 +1554,7 @@
       }
     },
     {
-      "@id": "beckn:DistributionChannel",
+      "@id": "mobility:DistributionChannel",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1591,7 +1569,7 @@
       }
     },
     {
-      "@id": "beckn:BookingRule",
+      "@id": "mobility:BookingRule",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1603,7 +1581,7 @@
       }
     },
     {
-      "@id": "beckn:Booking",
+      "@id": "mobility:Booking",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1618,7 +1596,7 @@
       }
     },
     {
-      "@id": "beckn:Offer",
+      "@id": "mobility:Offer",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1633,7 +1611,7 @@
       }
     },
     {
-      "@id": "beckn:OfferItem",
+      "@id": "mobility:OfferItem",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1648,7 +1626,7 @@
       }
     },
     {
-      "@id": "beckn:OfferPart",
+      "@id": "mobility:OfferPart",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1663,7 +1641,7 @@
       }
     },
     {
-      "@id": "beckn:Order",
+      "@id": "mobility:Order",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1678,7 +1656,7 @@
       }
     },
     {
-      "@id": "beckn:OrderItem",
+      "@id": "mobility:OrderItem",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1693,7 +1671,7 @@
       }
     },
     {
-      "@id": "beckn:Reservation",
+      "@id": "mobility:Reservation",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1708,7 +1686,7 @@
       }
     },
     {
-      "@id": "beckn:TripSpecification",
+      "@id": "mobility:TripSpecification",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1720,7 +1698,7 @@
       }
     },
     {
-      "@id": "beckn:PlaceRequest",
+      "@id": "mobility:PlaceRequest",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1732,7 +1710,7 @@
       }
     },
     {
-      "@id": "beckn:Availability",
+      "@id": "mobility:Availability",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1747,7 +1725,7 @@
       }
     },
     {
-      "@id": "beckn:TripRequest",
+      "@id": "mobility:TripRequest",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1759,7 +1737,7 @@
       }
     },
     {
-      "@id": "beckn:TripResult",
+      "@id": "mobility:TripResult",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1771,7 +1749,7 @@
       }
     },
     {
-      "@id": "beckn:Leg",
+      "@id": "mobility:Leg",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1786,7 +1764,7 @@
       }
     },
     {
-      "@id": "beckn:Journey",
+      "@id": "mobility:Journey",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1801,7 +1779,7 @@
       }
     },
     {
-      "@id": "beckn:Itinerary",
+      "@id": "mobility:Itinerary",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1816,7 +1794,7 @@
       }
     },
     {
-      "@id": "beckn:Plan",
+      "@id": "mobility:Plan",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1828,7 +1806,7 @@
       }
     },
     {
-      "@id": "beckn:PlanningResult",
+      "@id": "mobility:PlanningResult",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1840,7 +1818,7 @@
       }
     },
     {
-      "@id": "beckn:LocationInformationRequest",
+      "@id": "mobility:LocationInformationRequest",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1851,11 +1829,11 @@
         "@value": "A request for details about a specific geographic location, stop, or point of interest in the transport network."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:Place"
+        "@id": "mobility:Place"
       }
     },
     {
-      "@id": "beckn:StopEvent",
+      "@id": "mobility:StopEvent",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1866,11 +1844,11 @@
         "@value": "A departure or arrival event at a stop, used to retrieve the next or previous vehicle movements at a specific location."
       },
       "rdfs:seeAlso": {
-        "@id": "beckn:StopTime"
+        "@id": "mobility:StopTime"
       }
     },
     {
-      "@id": "beckn:Segment",
+      "@id": "mobility:Segment",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1881,11 +1859,11 @@
         "@value": "A portion of a rail journey operated continuously by a single carrier between two consecutive stops or stations."
       },
       "rdfs:subClassOf": {
-        "@id": "beckn:Leg"
+        "@id": "mobility:Leg"
       }
     },
     {
-      "@id": "beckn:FlightSegment",
+      "@id": "mobility:FlightSegment",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1896,14 +1874,14 @@
         "@value": "A single non-stop flight operated between two airports, forming a unit of an air travel itinerary."
       },
       "rdfs:subClassOf": {
-        "@id": "beckn:Leg"
+        "@id": "mobility:Leg"
       },
       "rdfs:seeAlso": {
         "@id": "schema:Flight"
       }
     },
     {
-      "@id": "beckn:ItineraryElement",
+      "@id": "mobility:ItineraryElement",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1914,11 +1892,11 @@
         "@value": "A component of an aviation itinerary such as a flight segment, ground transport leg, or ancillary service."
       },
       "rdfs:subClassOf": {
-        "@id": "beckn:Itinerary"
+        "@id": "mobility:Itinerary"
       }
     },
     {
-      "@id": "beckn:Vehicle",
+      "@id": "mobility:Vehicle",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1933,7 +1911,7 @@
       }
     },
     {
-      "@id": "beckn:VehicleType",
+      "@id": "mobility:VehicleType",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1948,7 +1926,7 @@
       }
     },
     {
-      "@id": "beckn:Asset",
+      "@id": "mobility:Asset",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1963,7 +1941,7 @@
       }
     },
     {
-      "@id": "beckn:VehicleStatus",
+      "@id": "mobility:VehicleStatus",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1978,7 +1956,7 @@
       }
     },
     {
-      "@id": "beckn:BikeAllowed",
+      "@id": "mobility:BikeAllowed",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -1990,7 +1968,7 @@
       }
     },
     {
-      "@id": "beckn:StationInformation",
+      "@id": "mobility:StationInformation",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2005,7 +1983,7 @@
       }
     },
     {
-      "@id": "beckn:StationStatus",
+      "@id": "mobility:StationStatus",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2020,7 +1998,7 @@
       }
     },
     {
-      "@id": "beckn:SystemInformation",
+      "@id": "mobility:SystemInformation",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2035,7 +2013,7 @@
       }
     },
     {
-      "@id": "beckn:ChargingStation",
+      "@id": "mobility:ChargingStation",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2050,7 +2028,7 @@
       }
     },
     {
-      "@id": "beckn:EVSE",
+      "@id": "mobility:EVSE",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2065,7 +2043,7 @@
       }
     },
     {
-      "@id": "beckn:Connector",
+      "@id": "mobility:Connector",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2077,7 +2055,7 @@
       }
     },
     {
-      "@id": "beckn:Session",
+      "@id": "mobility:Session",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2089,7 +2067,7 @@
       }
     },
     {
-      "@id": "beckn:ChargeDetailRecord",
+      "@id": "mobility:ChargeDetailRecord",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2104,7 +2082,7 @@
       }
     },
     {
-      "@id": "beckn:Token",
+      "@id": "mobility:Token",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2116,7 +2094,7 @@
       }
     },
     {
-      "@id": "beckn:Command",
+      "@id": "mobility:Command",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2128,7 +2106,7 @@
       }
     },
     {
-      "@id": "beckn:MeterValue",
+      "@id": "mobility:MeterValue",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2140,7 +2118,7 @@
       }
     },
     {
-      "@id": "beckn:Authorization",
+      "@id": "mobility:Authorization",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2155,7 +2133,7 @@
       }
     },
     {
-      "@id": "beckn:Payment",
+      "@id": "mobility:Payment",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2170,7 +2148,7 @@
       }
     },
     {
-      "@id": "beckn:PaymentMethod",
+      "@id": "mobility:PaymentMethod",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2185,7 +2163,7 @@
       }
     },
     {
-      "@id": "beckn:PaymentTransaction",
+      "@id": "mobility:PaymentTransaction",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2200,7 +2178,7 @@
       }
     },
     {
-      "@id": "beckn:PaymentInstruction",
+      "@id": "mobility:PaymentInstruction",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2212,7 +2190,7 @@
       }
     },
     {
-      "@id": "beckn:Transaction",
+      "@id": "mobility:Transaction",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2224,7 +2202,7 @@
       }
     },
     {
-      "@id": "beckn:Account",
+      "@id": "mobility:Account",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2239,7 +2217,7 @@
       }
     },
     {
-      "@id": "beckn:CreditTransfer",
+      "@id": "mobility:CreditTransfer",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2251,7 +2229,7 @@
       }
     },
     {
-      "@id": "beckn:DirectDebit",
+      "@id": "mobility:DirectDebit",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2263,7 +2241,7 @@
       }
     },
     {
-      "@id": "beckn:FinancialInstitution",
+      "@id": "mobility:FinancialInstitution",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2273,17 +2251,12 @@
         "@language": "en",
         "@value": "A bank or payment service provider that processes, clears, or settles financial transactions."
       },
-      "rdfs:subClassOf": [
-        {
-          "@id": "schema:Organization"
-        },
-        {
-          "@id": "foaf:Organization"
-        }
-      ]
+      "rdfs:subClassOf": {
+        "@id": "schema:Organization"
+      }
     },
     {
-      "@id": "beckn:Deposit",
+      "@id": "mobility:Deposit",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2298,7 +2271,7 @@
       }
     },
     {
-      "@id": "beckn:Purse",
+      "@id": "mobility:Purse",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2313,7 +2286,7 @@
       }
     },
     {
-      "@id": "beckn:SecurityModule",
+      "@id": "mobility:SecurityModule",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2325,7 +2298,7 @@
       }
     },
     {
-      "@id": "beckn:Application",
+      "@id": "mobility:Application",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2337,7 +2310,7 @@
       }
     },
     {
-      "@id": "beckn:Terminal",
+      "@id": "mobility:Terminal",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2352,7 +2325,7 @@
       }
     },
     {
-      "@id": "beckn:BasicSafetyMessage",
+      "@id": "mobility:BasicSafetyMessage",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2364,7 +2337,7 @@
       }
     },
     {
-      "@id": "beckn:MapData",
+      "@id": "mobility:MapData",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2379,7 +2352,7 @@
       }
     },
     {
-      "@id": "beckn:SignalPhaseAndTiming",
+      "@id": "mobility:SignalPhaseAndTiming",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2391,7 +2364,7 @@
       }
     },
     {
-      "@id": "beckn:TravelerInformationMessage",
+      "@id": "mobility:TravelerInformationMessage",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2406,7 +2379,7 @@
       }
     },
     {
-      "@id": "beckn:ProbeVehicleData",
+      "@id": "mobility:ProbeVehicleData",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2421,7 +2394,7 @@
       }
     },
     {
-      "@id": "beckn:RoadSideAlert",
+      "@id": "mobility:RoadSideAlert",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2432,11 +2405,11 @@
         "@value": "A V2X alert message broadcast by a roadside unit warning vehicles of hazards, incidents, or road conditions."
       },
       "rdfs:subClassOf": {
-        "@id": "beckn:Alert"
+        "@id": "mobility:Alert"
       }
     },
     {
-      "@id": "beckn:CooperativeAwarenessMessage",
+      "@id": "mobility:CooperativeAwarenessMessage",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2448,7 +2421,7 @@
       }
     },
     {
-      "@id": "beckn:DecentralizedEnvironmentalNotificationMessage",
+      "@id": "mobility:DecentralizedEnvironmentalNotificationMessage",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2459,11 +2432,11 @@
         "@value": "A V2X event-triggered message notifying nearby road users of a detected hazard or unusual environmental condition."
       },
       "rdfs:subClassOf": {
-        "@id": "beckn:Alert"
+        "@id": "mobility:Alert"
       }
     },
     {
-      "@id": "beckn:InVehicleInformation",
+      "@id": "mobility:InVehicleInformation",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2478,7 +2451,7 @@
       }
     },
     {
-      "@id": "beckn:CollectivePerceptionMessage",
+      "@id": "mobility:CollectivePerceptionMessage",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2490,7 +2463,7 @@
       }
     },
     {
-      "@id": "beckn:TrafficStatus",
+      "@id": "mobility:TrafficStatus",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2502,7 +2475,7 @@
       }
     },
     {
-      "@id": "beckn:TrafficFlow",
+      "@id": "mobility:TrafficFlow",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2514,7 +2487,7 @@
       }
     },
     {
-      "@id": "beckn:TravelTime",
+      "@id": "mobility:TravelTime",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2529,7 +2502,7 @@
       }
     },
     {
-      "@id": "beckn:MeasurementSite",
+      "@id": "mobility:MeasurementSite",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2544,7 +2517,7 @@
       }
     },
     {
-      "@id": "beckn:ParkingRecord",
+      "@id": "mobility:ParkingRecord",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2559,7 +2532,7 @@
       }
     },
     {
-      "@id": "beckn:ParkingTable",
+      "@id": "mobility:ParkingTable",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2574,7 +2547,7 @@
       }
     },
     {
-      "@id": "beckn:ElaboratedDataPublication",
+      "@id": "mobility:ElaboratedDataPublication",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2589,7 +2562,7 @@
       }
     },
     {
-      "@id": "beckn:Rate",
+      "@id": "mobility:Rate",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2604,7 +2577,7 @@
       }
     },
     {
-      "@id": "beckn:RightSpecification",
+      "@id": "mobility:RightSpecification",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2619,7 +2592,7 @@
       }
     },
     {
-      "@id": "beckn:Observation",
+      "@id": "mobility:Observation",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2631,7 +2604,7 @@
       }
     },
     {
-      "@id": "beckn:Issuer",
+      "@id": "mobility:Issuer",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2646,7 +2619,7 @@
       }
     },
     {
-      "@id": "beckn:Assignee",
+      "@id": "mobility:Assignee",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2661,7 +2634,7 @@
       }
     },
     {
-      "@id": "beckn:Provider",
+      "@id": "mobility:Provider",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2671,17 +2644,12 @@
         "@language": "en",
         "@value": "A mobility service provider registered on a MaaS platform, offering transport options to end users."
       },
-      "rdfs:subClassOf": [
-        {
-          "@id": "schema:Organization"
-        },
-        {
-          "@id": "foaf:Organization"
-        }
-      ]
+      "rdfs:subClassOf": {
+        "@id": "schema:Organization"
+      }
     },
     {
-      "@id": "beckn:Attribute",
+      "@id": "mobility:Attribute",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2696,7 +2664,7 @@
       }
     },
     {
-      "@id": "beckn:Policy",
+      "@id": "mobility:Policy",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2711,7 +2679,7 @@
       }
     },
     {
-      "@id": "beckn:Seat",
+      "@id": "mobility:Seat",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2726,7 +2694,7 @@
       }
     },
     {
-      "@id": "beckn:BaggageAllowance",
+      "@id": "mobility:BaggageAllowance",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2738,7 +2706,7 @@
       }
     },
     {
-      "@id": "beckn:AncillaryService",
+      "@id": "mobility:AncillaryService",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2753,7 +2721,7 @@
       }
     },
     {
-      "@id": "beckn:Service",
+      "@id": "mobility:Service",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2768,7 +2736,7 @@
       }
     },
     {
-      "@id": "beckn:Price",
+      "@id": "mobility:Price",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2783,7 +2751,7 @@
       }
     },
     {
-      "@id": "beckn:EventStream",
+      "@id": "mobility:EventStream",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2793,12 +2761,15 @@
         "@language": "en",
         "@value": "A linked data stream of time-ordered events representing changes to a dataset, following the LDES specification."
       },
+      "owl:equivalentClass": {
+        "@id": "ldes:EventStream"
+      },
       "rdfs:seeAlso": {
         "@id": "schema:DataFeed"
       }
     },
     {
-      "@id": "beckn:Collection",
+      "@id": "mobility:Collection",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2813,7 +2784,7 @@
       }
     },
     {
-      "@id": "beckn:View",
+      "@id": "mobility:View",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2825,7 +2796,7 @@
       }
     },
     {
-      "@id": "beckn:FragmentationStrategy",
+      "@id": "mobility:FragmentationStrategy",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2837,7 +2808,7 @@
       }
     },
     {
-      "@id": "beckn:Member",
+      "@id": "mobility:Member",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2849,7 +2820,7 @@
       }
     },
     {
-      "@id": "beckn:TreeNode",
+      "@id": "mobility:TreeNode",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2861,7 +2832,7 @@
       }
     },
     {
-      "@id": "beckn:Relation",
+      "@id": "mobility:Relation",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2876,7 +2847,7 @@
       }
     },
     {
-      "@id": "beckn:Feed",
+      "@id": "mobility:Feed",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2891,7 +2862,7 @@
       }
     },
     {
-      "@id": "beckn:Message",
+      "@id": "mobility:Message",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2906,7 +2877,7 @@
       }
     },
     {
-      "@id": "beckn:Endpoint",
+      "@id": "mobility:Endpoint",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2918,7 +2889,7 @@
       }
     },
     {
-      "@id": "beckn:RequestBody",
+      "@id": "mobility:RequestBody",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2930,7 +2901,7 @@
       }
     },
     {
-      "@id": "beckn:Response",
+      "@id": "mobility:Response",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2942,7 +2913,7 @@
       }
     },
     {
-      "@id": "beckn:Schema",
+      "@id": "mobility:Schema",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2957,7 +2928,7 @@
       }
     },
     {
-      "@id": "beckn:Parameter",
+      "@id": "mobility:Parameter",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2969,7 +2940,7 @@
       }
     },
     {
-      "@id": "beckn:SecurityScheme",
+      "@id": "mobility:SecurityScheme",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2981,7 +2952,7 @@
       }
     },
     {
-      "@id": "beckn:TransportObject",
+      "@id": "mobility:TransportObject",
       "@type": "owl:Class",
       "rdfs:label": {
         "@language": "en",
@@ -2990,6 +2961,9 @@
       "rdfs:comment": {
         "@language": "en",
         "@value": "A generic transport entity in the OSLO mobility ontology representing any object involved in transport operations."
+      },
+      "owl:equivalentClass": {
+        "@id": "oslo:TransportObject"
       }
     }
   ]

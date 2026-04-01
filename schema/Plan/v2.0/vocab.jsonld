@@ -1,0 +1,166 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Plan",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Plan",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A journey planning response containing one or more itinerary options for a given trip request.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Itinerary"
+      }
+    },
+    {
+      "@id": "beckn:requestedTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "requestedTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The departure or arrival time that was requested",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Plan"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:itineraries",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "itineraries",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "List of itinerary options returned in the plan",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Plan"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Itinerary"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Itinerary/v2.0/vocab.jsonld#beckn:Itinerary"
+      }
+    },
+    {
+      "@id": "beckn:from",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "from",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Origin location for this plan",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Plan"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:to",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "to",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Destination location for this plan",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Plan"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Plan"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Plan"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags associated with the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Plan"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

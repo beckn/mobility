@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StopArea",
+  "type": "object",
+  "description": "A group of stops that collectively define a zone from which a demand-responsive service may pick up or drop off passengers.",
+  "properties": {
+    "areaId": {
+      "description": "Unique identifier for the stop area",
+      "type": "string"
+    },
+    "areaName": {
+      "description": "Human-readable name of the stop area",
+      "type": "string"
+    },
+    "stops": {
+      "description": "Stops contained within this area",
+      "$ref": "../../Stop/v2.0/schema.json"
+    },
+    "geometry": {
+      "description": "GeoJSON geometry defining the area boundary",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry"
+    },
+    "id": {
+      "description": "Unique identifier for the location",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "gps": {
+      "description": "GPS coordinates as a latitude,longitude string",
+      "type": "string"
+    },
+    "address": {
+      "description": "Physical address of the location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Address"
+    },
+    "city": {
+      "description": "City name",
+      "type": "string"
+    },
+    "country": {
+      "description": "ISO 3166-1 alpha-2 country code",
+      "type": "string"
+    },
+    "geojson": {
+      "description": "GeoJSON geometry object representing this location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry"
+    }
+  },
+  "additionalProperties": false
+}

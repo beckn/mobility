@@ -1,43 +1,52 @@
 # StopPoint
-A schema.beckn.io TODO( Select Type / Property based on the nature of the schema)
 
-TODO(Insert description here taken from 4_Beckn_Mobility_Concepts.md)
+A schema.beckn.io Type
 
-**Canonical IRI :** mobility:StopPoint
+An abstract or scheduled point in a public transport network at which passengers can board or alight from a service.
+
+**Canonical IRI :** `mobility:StopPoint`
+
 **Canonical URL:** https://schema.beckn.io/mobility/StopPoint
+
 **Related Classes:**
 
 | Type | Relationship | Strength |
 |------|--------------|----------|
-| [insert domain_standard_prefix]:[Insert Type in domain standard] | [Insert Relationship] | [Insert Strength] |
-
+| [beckn:FulfillmentStop](https://github.com/beckn/core_schema/tree/draft/schema/FulfillmentStop) | rdfs:subClassOf | Subclass |
+| [geo:Feature](http://www.opengis.net/ont/geosparql#Feature) | rdfs:subClassOf | Subclass |
 
 ## Open Issues
+
 [Open issues](https://github.com/beckn/mobility/issues)
 
 ## Properties
-| Property     | Expected Type  | Description           |
-|--------------|----------------|-----------------------|
-| [Insert hyperlinked PropertyName] | [Insert Hyperlinked TypeName]  | [Insert Property description]  |
 
-## [If there are multiple examples then call this heading Examples, else call it Example]
+| Property | Expected Type | Description |
+|---|---|---|
+| **[Properties from StopPoint](https://schema.beckn.io/mobility/StopPoint)** | | |
+| [stopPointId](https://schema.beckn.io/mobility/stopPointId) | [schema:Text](https://schema.org/Text) | Unique identifier for the stop point |
+| [shortName](https://schema.beckn.io/mobility/shortName) | [schema:Text](https://schema.org/Text) | Short display name or code |
+| [publicCode](https://schema.beckn.io/mobility/publicCode) | [schema:Text](https://schema.org/Text) | Publicly visible code displayed at the stop |
+| [stopAreaRef](https://schema.beckn.io/mobility/stopAreaRef) | [StopArea](https://schema.beckn.io/mobility/StopArea) | Reference to the stop area this point belongs to |
+| **[Properties from FulfillmentStop](https://schema.beckn.io/core/FulfillmentStop)** | | |
+| [id](https://schema.beckn.io/core/id) | [schema:Text](https://schema.org/Text) | Unique identifier for the fulfillment stop |
+| [location](https://schema.beckn.io/core/location) | [Location](https://github.com/beckn/core_schema/tree/draft/schema/Location) | Geographic location of the stop |
+| [type](https://schema.beckn.io/core/type) | [schema:Text](https://schema.org/Text) | Type of stop (start, end, intermediate) |
+| [instructions](https://schema.beckn.io/core/instructions) | [Descriptor](https://github.com/beckn/core_schema/tree/draft/schema/Descriptor) | Instructions for passengers at this stop |
+| [time](https://schema.beckn.io/core/time) | [TimePeriod](https://github.com/beckn/core_schema/tree/draft/schema/TimePeriod) | Expected time window at this stop |
 
-### [if multiple examples ,then insert call it Example (number) or omit this heading]
+## Example
 
 [Insert brief description of the example]
 
-```
+```json
 [Insert Example JSON-LD]
 ```
 
 ## Example Beckn Protocol Requests Payload using this Schema
 
-### TODO(if multiple examples ,then insert call it Example # or omit this heading)
 > [Brief description of the request with container schema, core schema, and mobility bindings]
 
-
-```
+```json
 [Insert Example JSON-LD]
 ```
-
-

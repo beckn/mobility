@@ -2,19 +2,51 @@ openapi: 3.1.0
 info:
   title: StationStatus
   version: 2.0.0
-  description: Schema definition for the StationStatus entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the StationStatus entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     StationStatus:
       type: object
       title: StationStatus
-      description: >
-        Attributes for the StationStatus entity in the Beckn Mobility domain.
-      properties: {}
+      description: The real-time operational state of a shared mobility station, including
+        the number of available docks and vehicles.
+      properties:
+        stationId:
+          description: Unique identifier of the station being reported
+          type: string
+        numBikesAvailable:
+          description: Number of bikes currently available for rental
+          type: number
+        numDocksAvailable:
+          description: Number of empty docking points currently available
+          type: number
+        isInstalled:
+          description: Whether the station is physically installed and operational
+          type: boolean
+        isRenting:
+          description: Whether the station is currently renting bikes
+          type: boolean
+        isReturning:
+          description: Whether the station is currently accepting bike returns
+          type: boolean
+        lastReported:
+          description: Timestamp of the last status update for this station
+          type: string
+          format: date-time
+        id:
+          description: Unique identifier for the state
+          type: string
+        descriptor:
+          description: Human-readable description of the state
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        updatedAt:
+          description: Timestamp when the state was last updated
+          type: string
+          format: date-time
+      additionalProperties: false

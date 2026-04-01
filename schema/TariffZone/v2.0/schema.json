@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TariffZone",
+  "type": "object",
+  "description": "A geographic zone used to define and apply fare structures, within which a single fare or set of rules applies.",
+  "properties": {
+    "zoneId": {
+      "description": "Unique identifier for the tariff zone",
+      "type": "string"
+    },
+    "zoneName": {
+      "description": "Human-readable name of the tariff zone",
+      "type": "string"
+    },
+    "geometry": {
+      "description": "GeoJSON geometry defining the zone boundary",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry"
+    },
+    "id": {
+      "description": "Unique identifier for the location",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "gps": {
+      "description": "GPS coordinates as a latitude,longitude string",
+      "type": "string"
+    },
+    "address": {
+      "description": "Physical address of the location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Address"
+    },
+    "city": {
+      "description": "City name",
+      "type": "string"
+    },
+    "country": {
+      "description": "ISO 3166-1 alpha-2 country code",
+      "type": "string"
+    },
+    "geojson": {
+      "description": "GeoJSON geometry object representing this location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry"
+    }
+  },
+  "additionalProperties": false
+}

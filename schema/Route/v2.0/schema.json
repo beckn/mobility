@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Route",
+  "type": "object",
+  "description": "The physical or logical path followed by a transport service, defined as an ordered sequence of stops or waypoints.",
+  "properties": {
+    "routeId": {
+      "description": "Unique identifier for the route",
+      "type": "string"
+    },
+    "shortName": {
+      "description": "Short public-facing name (e.g. 42A)",
+      "type": "string"
+    },
+    "longName": {
+      "description": "Full descriptive name of the route",
+      "type": "string"
+    },
+    "routeType": {
+      "description": "Mode of transport (e.g. BUS, RAIL, TRAM, FERRY)",
+      "type": "string"
+    },
+    "operatorRef": {
+      "description": "Operator providing this route",
+      "$ref": "../../Operator/v2.0/schema.json"
+    },
+    "networkRef": {
+      "description": "Network this route belongs to",
+      "$ref": "../../Network/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the item",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "categoryId": {
+      "description": "Category code classifying the item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/CategoryCode"
+    },
+    "price": {
+      "description": "Price specification for this item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "quantity": {
+      "description": "Available quantity of the item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Quantity"
+    },
+    "tags": {
+      "description": "Tags associated with the item",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

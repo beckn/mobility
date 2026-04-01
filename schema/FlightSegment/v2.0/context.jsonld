@@ -1,0 +1,21 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "FlightSegment": "beckn:FlightSegment",
+    "flightNumber": "beckn:flightNumber",
+    "departureAirport": "beckn:departureAirport",
+    "arrivalAirport": "beckn:arrivalAirport",
+    "departureTime": "beckn:departureTime",
+    "arrivalTime": "beckn:arrivalTime",
+    "airline": "beckn:airline",
+    "aircraftType": "beckn:aircraftType",
+    "mode": "beckn:mode",
+    "origin": "beckn:origin",
+    "destination": "beckn:destination",
+    "startTime": "beckn:startTime",
+    "endTime": "beckn:endTime",
+    "distance": "beckn:distance",
+    "headsign": "beckn:headsign",
+    "routeRef": "beckn:routeRef"
+  }
+}

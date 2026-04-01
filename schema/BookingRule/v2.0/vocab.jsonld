@@ -1,0 +1,289 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:BookingRule",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "BookingRule",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A set of rules governing how and when a demand-responsive transport service must be booked in advance.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:latestBookingTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "latestBookingTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Latest time before departure that a booking can be made",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BookingRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:earliestBookingTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "earliestBookingTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Earliest time before departure that a booking can be made",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BookingRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:priorNoticeDurationMin",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "priorNoticeDurationMin",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Minimum advance notice in minutes required for booking",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BookingRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:priorNoticeStartDay",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "priorNoticeStartDay",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Earliest day before service when booking opens",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BookingRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:priorNoticeStartTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "priorNoticeStartTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Time of day on the start day when booking opens",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BookingRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:message",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "message",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Customer-facing message about booking requirements",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BookingRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:phoneNumber",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "phoneNumber",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Phone number to call for booking",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BookingRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:url",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "url",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "URL to booking interface",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BookingRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/URL"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the policy",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BookingRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:policyType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "policyType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of policy (extensible term)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BookingRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the policy",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BookingRule"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity window for this policy version",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BookingRule"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:policyAttributes",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "policyAttributes",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Extensible domain-specific policy attributes",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:BookingRule"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Attributes"
+      }
+    }
+  ]
+}

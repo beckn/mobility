@@ -1,0 +1,288 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Trip",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Trip",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A confirmed and booked journey from an origin to a destination, representing a completed mobility service order.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "beckn:Driver"
+        },
+        {
+          "@id": "beckn:Vehicle"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:tripId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tripId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the trip",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:origin",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "origin",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Pickup location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:destination",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "destination",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Dropoff location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:startTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "startTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Actual start time of the trip",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:endTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "endTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Actual end time of the trip",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:distance",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "distance",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Total distance of the trip in kilometres",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:driverRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "driverRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the driver for this trip",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Driver"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Driver/v2.0/vocab.jsonld#beckn:Driver"
+      }
+    },
+    {
+      "@id": "beckn:vehicleRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the vehicle for this trip",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Vehicle"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Vehicle/v2.0/vocab.jsonld#beckn:Vehicle"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the contract",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the contract",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:items",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "items",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Line items within the contract",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#ContractItem"
+      }
+    },
+    {
+      "@id": "beckn:fulfillments",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fulfillments",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Fulfillments associated with this contract",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Fulfillment"
+      }
+    },
+    {
+      "@id": "beckn:state",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "state",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current state of the contract",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Trip"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    }
+  ]
+}

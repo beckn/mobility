@@ -1,0 +1,44 @@
+openapi: 3.1.0
+info:
+  title: NoShowPolicy
+  version: 2.0.0
+  description: Schema definition for the NoShowPolicy entity in the Beckn Mobility
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    NoShowPolicy:
+      type: object
+      title: NoShowPolicy
+      description: Rules governing the consequences and fees applied when a passenger
+        fails to appear for a confirmed transport service booking.
+      properties:
+        noShowFee:
+          description: Flat fee charged for a no-show
+          type: number
+        gracePeriodMinutes:
+          description: Grace period in minutes before a no-show is recorded
+          type: number
+        currency:
+          description: ISO 4217 currency code for the no-show fee
+          type: string
+        id:
+          description: Unique identifier for the policy
+          type: string
+        policyType:
+          description: Type of policy (extensible term)
+          type: string
+        descriptor:
+          description: Human-readable description of the policy
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        validity:
+          description: Validity window for this policy version
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        policyAttributes:
+          description: Extensible domain-specific policy attributes
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Attributes
+      additionalProperties: false

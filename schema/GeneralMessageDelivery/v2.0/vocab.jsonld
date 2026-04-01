@@ -1,0 +1,166 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:GeneralMessageDelivery",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "GeneralMessageDelivery",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A real-time delivery of textual messages or alerts related to service disruptions or passenger information.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Alert"
+      }
+    },
+    {
+      "@id": "beckn:responseTimestamp",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "responseTimestamp",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Timestamp of this general message delivery",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:GeneralMessageDelivery"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:infoMessages",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "infoMessages",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "List of informational messages in this delivery",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:GeneralMessageDelivery"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Alert"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Alert/v2.0/vocab.jsonld#beckn:Alert"
+      }
+    },
+    {
+      "@id": "beckn:channel",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "channel",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Distribution channel for this message (e.g. WEB, SMS, APP)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:GeneralMessageDelivery"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:GeneralMessageDelivery"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:GeneralMessageDelivery"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Time period during which the alert is active",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:GeneralMessageDelivery"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:status",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "status",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current status of the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:GeneralMessageDelivery"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    }
+  ]
+}

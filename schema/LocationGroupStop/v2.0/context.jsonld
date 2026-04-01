@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "LocationGroupStop": "beckn:LocationGroupStop",
+    "locationGroupId": "beckn:locationGroupId",
+    "stopId": "beckn:stopId",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "gps": "beckn:gps",
+    "address": "beckn:address",
+    "city": "beckn:city",
+    "country": "beckn:country",
+    "geojson": "beckn:geojson"
+  }
+}

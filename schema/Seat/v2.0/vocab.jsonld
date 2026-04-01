@@ -1,0 +1,229 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Seat",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Seat",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A specific seat position reserved or assigned to a passenger on a flight, train, or other transport service.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "https://schema.org/Seat"
+      }
+    },
+    {
+      "@id": "beckn:seatId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "seatId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier or label for the seat",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Seat"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:row",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "row",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Row designation (number or letter)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Seat"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:column",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "column",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Column or seat letter within the row",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Seat"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:seatType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "seatType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of seat (e.g. WINDOW, AISLE, MIDDLE, UPPER_BERTH)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Seat"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:seatCharacteristics",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "seatCharacteristics",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Additional characteristics (e.g. EXTRA_LEGROOM, QUIET_ZONE, ACCESSIBLE)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Seat"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:deckLevel",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "deckLevel",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Deck or level (UPPER, LOWER, MAIN)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Seat"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Seat"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable information about the entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Seat"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:resource",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "resource",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The resource being accessed against this entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Seat"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#ContractItem"
+      }
+    },
+    {
+      "@id": "beckn:credentials",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "credentials",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Credential descriptors for the entitlement",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Seat"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    }
+  ]
+}

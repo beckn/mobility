@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SurgeMultiplier",
+  "type": "object",
+  "description": "A dynamic pricing factor applied during periods of high demand that increases base fares proportionally to balance supply and demand.",
+  "properties": {
+    "multiplierValue": {
+      "description": "The surge multiplier value (e.g. 1.5 for 1.5x surge)",
+      "type": "number"
+    },
+    "validUntil": {
+      "description": "Timestamp until which the surge multiplier is active",
+      "type": "string",
+      "format": "date-time"
+    },
+    "reason": {
+      "description": "Reason for the surge (e.g. HIGH_DEMAND, SPECIAL_EVENT)",
+      "type": "string"
+    },
+    "geofenceRef": {
+      "description": "Geographic area where the surge pricing applies",
+      "$ref": "../../Geofence/v2.0/schema.json"
+    },
+    "title": {
+      "description": "Title or label of this price component",
+      "type": "string"
+    },
+    "price": {
+      "description": "Monetary value of this component",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "tags": {
+      "description": "Tags associated with this price component",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

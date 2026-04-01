@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Pattern",
+  "type": "object",
+  "description": "A unique sequence of stops visited by trips on a route, grouping trips with identical stop sequences and timing structures.",
+  "properties": {
+    "patternId": {
+      "description": "Unique identifier for the journey pattern",
+      "type": "string"
+    },
+    "routeRef": {
+      "description": "Reference to the route this pattern belongs to",
+      "$ref": "../../Route/v2.0/schema.json"
+    },
+    "directionId": {
+      "description": "Direction of travel (0 or 1)",
+      "type": "string"
+    },
+    "stops": {
+      "description": "Ordered list of stops in this pattern",
+      "$ref": "../../Stop/v2.0/schema.json"
+    },
+    "shapeRef": {
+      "description": "Reference to the geographic shape of this pattern",
+      "$ref": "../../Shape/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the item",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "categoryId": {
+      "description": "Category code classifying the item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/CategoryCode"
+    },
+    "price": {
+      "description": "Price specification for this item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "quantity": {
+      "description": "Available quantity of the item",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Quantity"
+    },
+    "tags": {
+      "description": "Tags associated with the item",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

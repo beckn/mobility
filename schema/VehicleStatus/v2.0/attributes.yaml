@@ -2,19 +2,43 @@ openapi: 3.1.0
 info:
   title: VehicleStatus
   version: 2.0.0
-  description: Schema definition for the VehicleStatus entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the VehicleStatus entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     VehicleStatus:
       type: object
       title: VehicleStatus
-      description: >
-        Attributes for the VehicleStatus entity in the Beckn Mobility domain.
-      properties: {}
+      description: The real-time operational state of a vehicle or mobility asset,
+        such as available, in use, reserved, or disabled.
+      properties:
+        statusCode:
+          description: Operational status code (e.g. AVAILABLE, IN_USE, RESERVED,
+            DISABLED, CHARGING)
+          type: string
+        batteryLevel:
+          description: Current battery charge percentage
+          type: number
+        rangeMeters:
+          description: Estimated remaining range in metres
+          type: number
+        lastReportedAt:
+          description: Timestamp of the last status update
+          type: string
+          format: date-time
+        id:
+          description: Unique identifier for the state
+          type: string
+        descriptor:
+          description: Human-readable description of the state
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        updatedAt:
+          description: Timestamp when the state was last updated
+          type: string
+          format: date-time
+      additionalProperties: false

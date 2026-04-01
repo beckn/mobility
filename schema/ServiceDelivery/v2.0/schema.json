@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ServiceDelivery",
+  "type": "object",
+  "description": "The top-level response container in SIRI encapsulating one or more real-time data delivery types.",
+  "properties": {
+    "responseTimestamp": {
+      "description": "Timestamp when this service delivery was generated",
+      "type": "string",
+      "format": "date-time"
+    },
+    "producerRef": {
+      "description": "Identifier of the system producing this delivery",
+      "type": "string"
+    },
+    "requestMessageRef": {
+      "description": "Reference to the request that triggered this delivery",
+      "type": "string"
+    },
+    "stopMonitoring": {
+      "description": "Stop monitoring delivery payloads",
+      "$ref": "../../StopMonitoring/v2.0/schema.json"
+    },
+    "vehicleMonitoring": {
+      "description": "Vehicle monitoring delivery payloads",
+      "$ref": "../../VehicleMonitoringDelivery/v2.0/schema.json"
+    },
+    "estimatedTimetable": {
+      "description": "Estimated timetable delivery payloads",
+      "$ref": "../../EstimatedTimetableDelivery/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the catalog",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the catalog",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "tags": {
+      "description": "Tags associated with the catalog",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

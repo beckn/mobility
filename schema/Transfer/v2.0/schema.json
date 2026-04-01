@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Transfer",
+  "type": "object",
+  "description": "A defined connection rule between two routes or services at a common stop, specifying minimum transfer time or transfer type.",
+  "properties": {
+    "fromStopId": {
+      "description": "Stop passengers transfer from",
+      "$ref": "../../Stop/v2.0/schema.json"
+    },
+    "toStopId": {
+      "description": "Stop passengers transfer to",
+      "$ref": "../../Stop/v2.0/schema.json"
+    },
+    "fromRouteId": {
+      "description": "Route passengers transfer from",
+      "$ref": "../../Route/v2.0/schema.json"
+    },
+    "toRouteId": {
+      "description": "Route passengers transfer to",
+      "$ref": "../../Route/v2.0/schema.json"
+    },
+    "transferType": {
+      "description": "Type of transfer (0=recommended, 1=timed, 2=min_time, 3=not_possible)",
+      "type": "string"
+    },
+    "minTransferTime": {
+      "description": "Minimum transfer time in seconds",
+      "type": "number"
+    },
+    "id": {
+      "description": "Unique identifier for the fulfillment stop",
+      "type": "string"
+    },
+    "location": {
+      "description": "Geographic location of the stop",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+    },
+    "type": {
+      "description": "Type of stop (start, end, intermediate)",
+      "type": "string"
+    },
+    "instructions": {
+      "description": "Instructions for passengers at this stop",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "time": {
+      "description": "Expected time window at this stop",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    }
+  },
+  "additionalProperties": false
+}

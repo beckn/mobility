@@ -1,0 +1,166 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:PlaceRequest",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "PlaceRequest",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A request for a specific accommodation or seat assignment within a transport service during the booking process.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Seat"
+      }
+    },
+    {
+      "@id": "beckn:accommodationType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "accommodationType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of accommodation requested (e.g. SEAT, BERTH, COMPARTMENT)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlaceRequest"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:preferences",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "preferences",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Passenger preferences (e.g. window, aisle, quiet zone)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlaceRequest"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:seatRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "seatRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Specific seat requested, if applicable",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlaceRequest"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Seat"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Seat/v2.0/vocab.jsonld#beckn:Seat"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the contract item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlaceRequest"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlaceRequest"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Price for this contract item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlaceRequest"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:quantity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "quantity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Quantity of this contract item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:PlaceRequest"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Quantity"
+      }
+    }
+  ]
+}

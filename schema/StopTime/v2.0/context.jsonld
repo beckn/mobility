@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "StopTime": "beckn:StopTime",
+    "arrivalTime": "beckn:arrivalTime",
+    "departureTime": "beckn:departureTime",
+    "stopSequence": "beckn:stopSequence",
+    "stopRef": "beckn:stopRef",
+    "pickupType": "beckn:pickupType",
+    "dropOffType": "beckn:dropOffType",
+    "distanceTraveled": "beckn:distanceTraveled",
+    "startDate": "beckn:startDate",
+    "endDate": "beckn:endDate",
+    "startTime": "beckn:startTime",
+    "endTime": "beckn:endTime"
+  }
+}

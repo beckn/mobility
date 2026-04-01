@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "FulfillmentStop": "beckn:FulfillmentStop",
+    "stopType": "beckn:stopType",
+    "scheduledTime": "beckn:scheduledTime",
+    "actualTime": "beckn:actualTime",
+    "stopRef": "beckn:stopRef",
+    "passengerCount": "beckn:passengerCount",
+    "id": "beckn:id",
+    "location": "beckn:location",
+    "type": "beckn:type",
+    "instructions": "beckn:instructions",
+    "time": "beckn:time"
+  }
+}

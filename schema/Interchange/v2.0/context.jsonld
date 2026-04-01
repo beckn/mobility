@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Interchange": "beckn:Interchange",
+    "minTransferTime": "beckn:minTransferTime",
+    "transferType": "beckn:transferType",
+    "fromStopId": "beckn:fromStopId",
+    "toStopId": "beckn:toStopId",
+    "fromTripId": "beckn:fromTripId",
+    "toTripId": "beckn:toTripId",
+    "stopId": "beckn:stopId",
+    "stopCode": "beckn:stopCode",
+    "stopName": "beckn:stopName",
+    "locationType": "beckn:locationType",
+    "parentStation": "beckn:parentStation",
+    "wheelchairBoarding": "beckn:wheelchairBoarding"
+  }
+}

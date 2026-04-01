@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StopEvent",
+  "type": "object",
+  "description": "A departure or arrival event at a stop, used to retrieve the next or previous vehicle movements at a specific location.",
+  "properties": {
+    "stopEventType": {
+      "description": "Type of event (DEPARTURE, ARRIVAL)",
+      "type": "string"
+    },
+    "timetabledTime": {
+      "description": "Scheduled time for the event",
+      "type": "string",
+      "format": "date-time"
+    },
+    "estimatedTime": {
+      "description": "Estimated actual time for the event",
+      "type": "string",
+      "format": "date-time"
+    },
+    "serviceJourneyRef": {
+      "description": "Reference to the vehicle journey for this event",
+      "$ref": "../../VehicleJourney/v2.0/schema.json"
+    },
+    "stopPointRef": {
+      "description": "Reference to the stop point where the event occurs",
+      "$ref": "../../StopPoint/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the fulfillment stop",
+      "type": "string"
+    },
+    "location": {
+      "description": "Geographic location of the stop",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+    },
+    "type": {
+      "description": "Type of stop (start, end, intermediate)",
+      "type": "string"
+    },
+    "instructions": {
+      "description": "Instructions for passengers at this stop",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "time": {
+      "description": "Expected time window at this stop",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    }
+  },
+  "additionalProperties": false
+}

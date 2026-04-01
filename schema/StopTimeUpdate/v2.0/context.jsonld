@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "StopTimeUpdate": "beckn:StopTimeUpdate",
+    "stopId": "beckn:stopId",
+    "stopSequence": "beckn:stopSequence",
+    "arrivalDelay": "beckn:arrivalDelay",
+    "departureDelay": "beckn:departureDelay",
+    "scheduleRelationship": "beckn:scheduleRelationship",
+    "id": "beckn:id",
+    "url": "beckn:url",
+    "status": "beckn:status",
+    "validity": "beckn:validity"
+  }
+}

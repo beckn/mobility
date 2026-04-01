@@ -3,18 +3,62 @@ info:
   title: Pathway
   version: 2.0.0
   description: Schema definition for the Pathway entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Pathway:
       type: object
       title: Pathway
-      description: >
-        Attributes for the Pathway entity in the Beckn Mobility domain.
-      properties: {}
+      description: A connection between two points within a transit station (e.g.,
+        stairway, elevator, walkway) used for indoor navigation and accessibility
+        routing.
+      properties:
+        pathwayId:
+          description: Unique identifier for the pathway
+          type: string
+        fromStopId:
+          description: Stop at the start of the pathway
+          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+        toStopId:
+          description: Stop at the end of the pathway
+          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+        pathwayMode:
+          description: Type of pathway (1=walkway, 2=stairs, 3=moving_sidewalk, 4=escalator,
+            5=elevator, 6=fare_gate, 7=exit_gate)
+          type: string
+        isBidirectional:
+          description: Whether the pathway can be traversed in both directions
+          type: boolean
+        length:
+          description: Length of the pathway in metres
+          type: number
+        traversalTime:
+          description: Time in seconds to traverse the pathway
+          type: number
+        id:
+          description: Unique identifier for the location
+          type: string
+        descriptor:
+          description: Human-readable description of the location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        gps:
+          description: GPS coordinates as a latitude,longitude string
+          type: string
+        address:
+          description: Physical address of the location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Address
+        city:
+          description: City name
+          type: string
+        country:
+          description: ISO 3166-1 alpha-2 country code
+          type: string
+        geojson:
+          description: GeoJSON geometry object representing this location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry
+      additionalProperties: false

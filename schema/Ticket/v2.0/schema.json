@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Ticket",
+  "type": "object",
+  "description": "A document or digital record granting the holder the right to travel on a specific transport service or within a defined validity scope.",
+  "properties": {
+    "ticketId": {
+      "description": "Unique identifier or serial number of the ticket",
+      "type": "string"
+    },
+    "ticketType": {
+      "description": "Type of ticket (e.g. SINGLE, RETURN, SEASON, FLEXI)",
+      "type": "string"
+    },
+    "validFrom": {
+      "description": "Date and time from which the ticket is valid",
+      "type": "string",
+      "format": "date-time"
+    },
+    "validUntil": {
+      "description": "Date and time until which the ticket is valid",
+      "type": "string",
+      "format": "date-time"
+    },
+    "fareProductRef": {
+      "description": "Reference to the fare product this ticket is issued under",
+      "$ref": "../../FareProduct/v2.0/schema.json"
+    },
+    "passengerRef": {
+      "description": "Reference to the passenger this ticket is issued to",
+      "$ref": "../../Passenger/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the entitlement",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable information about the entitlement",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "resource": {
+      "description": "The resource being accessed against this entitlement",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/ContractItem"
+    },
+    "credentials": {
+      "description": "Credential descriptors for the entitlement",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,49 @@
+openapi: 3.1.0
+info:
+  title: Incident
+  version: 2.0.0
+  description: Schema definition for the Incident entity in the Beckn Mobility domain.
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    Incident:
+      type: object
+      title: Incident
+      description: A reported event on the transport network that affects normal service
+        operations, such as a disruption, roadblock, or infrastructure failure.
+      properties:
+        incidentType:
+          description: Type of incident (e.g. DISRUPTION, ROADBLOCK, MAINTENANCE)
+          type: string
+        severity:
+          description: Severity level of the incident (LOW, MEDIUM, HIGH)
+          type: string
+        affectedArea:
+          description: Geographic area affected by the incident
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        startTime:
+          description: Date and time the incident started
+          type: string
+          format: date-time
+        endTime:
+          description: Expected or actual end date and time of the incident
+          type: string
+          format: date-time
+        id:
+          description: Unique identifier for the alert
+          type: string
+        descriptor:
+          description: Human-readable description of the alert
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        validity:
+          description: Time period during which the alert is active
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        status:
+          description: Current status of the alert
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/State
+      additionalProperties: false

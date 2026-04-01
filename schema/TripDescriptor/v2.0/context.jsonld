@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "TripDescriptor": "beckn:TripDescriptor",
+    "tripId": "beckn:tripId",
+    "routeId": "beckn:routeId",
+    "directionId": "beckn:directionId",
+    "startTime": "beckn:startTime",
+    "startDate": "beckn:startDate",
+    "scheduleRelationship": "beckn:scheduleRelationship",
+    "name": "beckn:name",
+    "short_desc": "beckn:short_desc",
+    "long_desc": "beckn:long_desc",
+    "media": "beckn:media",
+    "images": "beckn:images"
+  }
+}

@@ -1,0 +1,44 @@
+openapi: 3.1.0
+info:
+  title: Entitlement
+  version: 2.0.0
+  description: Schema definition for the Entitlement entity in the Beckn Mobility
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    Entitlement:
+      type: object
+      title: Entitlement
+      description: A specific right or benefit granted to a passenger or rider, such
+        as free travel, priority boarding, or a concessionary pass.
+      properties:
+        entitlementType:
+          description: Type of entitlement (e.g. FREE_TRAVEL, CONCESSION, PRIORITY)
+          type: string
+        eligibilityRules:
+          description: Rules defining who is eligible for this entitlement
+          type: string
+        issuingAuthority:
+          description: The authority or operator that issued this entitlement
+          $ref: ../../Authority/v2.0/schema.json#/$defs/Authority
+        validity:
+          description: Validity period of the entitlement
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        id:
+          description: Unique identifier for the entitlement
+          type: string
+        descriptor:
+          description: Human-readable information about the entitlement
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        resource:
+          description: The resource being accessed against this entitlement
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/ContractItem
+        credentials:
+          description: Credential descriptors for the entitlement
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+      additionalProperties: false

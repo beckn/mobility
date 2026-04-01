@@ -3,18 +3,37 @@ info:
   title: FareMedium
   version: 2.0.0
   description: Schema definition for the FareMedium entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     FareMedium:
       type: object
       title: FareMedium
-      description: >
-        Attributes for the FareMedium entity in the Beckn Mobility domain.
-      properties: {}
+      description: The physical or digital medium used to carry or present a fare
+        product, such as a contactless card, mobile app, or paper ticket.
+      properties:
+        mediumType:
+          description: Type of fare medium (e.g. CONTACTLESS_CARD, MOBILE_APP, PAPER_TICKET,
+            QR_CODE)
+          type: string
+        mediumId:
+          description: Unique identifier or number of the physical or digital medium
+          type: string
+        id:
+          description: Unique identifier for the entitlement
+          type: string
+        descriptor:
+          description: Human-readable information about the entitlement
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        resource:
+          description: The resource being accessed against this entitlement
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/ContractItem
+        credentials:
+          description: Credential descriptors for the entitlement
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+      additionalProperties: false

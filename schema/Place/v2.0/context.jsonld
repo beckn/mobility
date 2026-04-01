@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Place": "beckn:Place",
+    "placeType": "beckn:placeType",
+    "placeName": "beckn:placeName",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "gps": "beckn:gps",
+    "address": "beckn:address",
+    "city": "beckn:city",
+    "country": "beckn:country",
+    "geojson": "beckn:geojson"
+  }
+}

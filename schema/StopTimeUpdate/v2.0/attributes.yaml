@@ -2,19 +2,47 @@ openapi: 3.1.0
 info:
   title: StopTimeUpdate
   version: 2.0.0
-  description: Schema definition for the StopTimeUpdate entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the StopTimeUpdate entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     StopTimeUpdate:
       type: object
       title: StopTimeUpdate
-      description: >
-        Attributes for the StopTimeUpdate entity in the Beckn Mobility domain.
-      properties: {}
+      description: A real-time update to the predicted arrival or departure time of
+        a vehicle at a specific stop within a journey.
+      properties:
+        stopId:
+          description: Reference to the stop being updated
+          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+        stopSequence:
+          description: Sequence of this stop in the trip
+          type: number
+        arrivalDelay:
+          description: Arrival delay in seconds (negative = early)
+          type: number
+        departureDelay:
+          description: Departure delay in seconds (negative = early)
+          type: number
+        scheduleRelationship:
+          description: Relationship to schedule (SCHEDULED, SKIPPED, NO_DATA)
+          type: string
+        id:
+          description: Unique identifier for the tracking record
+          type: string
+        url:
+          description: URL endpoint for real-time tracking information
+          type: string
+          format: uri
+        status:
+          description: Current tracking status
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/State
+        validity:
+          description: Validity period for this tracking record
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+      additionalProperties: false

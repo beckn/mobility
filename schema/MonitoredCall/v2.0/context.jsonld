@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "MonitoredCall": "beckn:MonitoredCall",
+    "stopPointRef": "beckn:stopPointRef",
+    "visitNumber": "beckn:visitNumber",
+    "vehicleAtStop": "beckn:vehicleAtStop",
+    "expectedArrivalTime": "beckn:expectedArrivalTime",
+    "expectedDepartureTime": "beckn:expectedDepartureTime",
+    "aimedArrivalTime": "beckn:aimedArrivalTime",
+    "aimedDepartureTime": "beckn:aimedDepartureTime",
+    "arrivalStatus": "beckn:arrivalStatus",
+    "departureStatus": "beckn:departureStatus",
+    "id": "beckn:id",
+    "url": "beckn:url",
+    "status": "beckn:status",
+    "validity": "beckn:validity"
+  }
+}

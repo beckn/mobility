@@ -1,0 +1,187 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Prognosis",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Prognosis",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A real-time prediction of a vehicle's arrival or departure time at a stop, including an indication of prediction confidence.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:scheduledTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "scheduledTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Timetabled scheduled time",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Prognosis"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:estimatedTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "estimatedTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Predicted actual time",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Prognosis"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:certainty",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "certainty",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Confidence of the prognosis (e.g. real, prognosis, calculated, unknown)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Prognosis"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:delaySeconds",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "delaySeconds",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Delay in seconds relative to the scheduled time",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Prognosis"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the tracking record",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Prognosis"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:url",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "url",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "URL endpoint for real-time tracking information",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Prognosis"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/URL"
+      }
+    },
+    {
+      "@id": "beckn:status",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "status",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current tracking status",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Prognosis"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity period for this tracking record",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Prognosis"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    }
+  ]
+}

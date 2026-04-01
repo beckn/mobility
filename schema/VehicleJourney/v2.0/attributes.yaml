@@ -2,19 +2,61 @@ openapi: 3.1.0
 info:
   title: VehicleJourney
   version: 2.0.0
-  description: Schema definition for the VehicleJourney entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the VehicleJourney entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     VehicleJourney:
       type: object
       title: VehicleJourney
-      description: >
-        Attributes for the VehicleJourney entity in the Beckn Mobility domain.
-      properties: {}
+      description: A specific operational instance of a vehicle traveling a defined
+        route at a scheduled time on a given service day.
+      properties:
+        vehicleJourneyCode:
+          description: Unique code for this vehicle journey
+          type: string
+        routeRef:
+          description: Reference to the route being served
+          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+        serviceCalendarRef:
+          description: Calendar defining when this journey operates
+          $ref: ../../ServiceCalendar/v2.0/schema.json#/$defs/ServiceCalendar
+        vehicleRef:
+          description: Vehicle assigned to this journey
+          $ref: ../../Vehicle/v2.0/schema.json#/$defs/Vehicle
+        patternRef:
+          description: Journey pattern being followed
+          $ref: ../../Pattern/v2.0/schema.json#/$defs/Pattern
+        stopTimes:
+          description: Scheduled stop times for each stop on this journey
+          $ref: ../../StopTime/v2.0/schema.json#/$defs/StopTime
+        id:
+          description: Unique identifier for the fulfillment
+          type: string
+        type:
+          description: Type of fulfillment (extensible term)
+          type: string
+        agent:
+          description: The entity responsible for performing the fulfillment
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/FulfillmentAgent
+        mode:
+          description: Mode of fulfillment
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/FulfillmentMode
+        state:
+          description: Current state of the fulfillment
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/State
+        participants:
+          description: Participants entitled to receive this fulfillment
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Participant
+        stages:
+          description: Stages in the fulfillment lifecycle
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/FulfillmentStage
+        instructions:
+          description: Instructions for fulfillment
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+      additionalProperties: false

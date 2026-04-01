@@ -1,0 +1,255 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:FareLegRule",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "FareLegRule",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A rule defining how a fare is applied to a single leg of a journey based on origin, destination, network, and time.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "beckn:Route"
+        },
+        {
+          "@id": "beckn:TariffZone"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:fareProductId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fareProductId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Identifier of the fare product this rule applies to",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareLegRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:legGroupId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "legGroupId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Leg group identifier for grouping related rules",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareLegRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:networkId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "networkId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Network to which this rule is restricted",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareLegRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:fromAreaId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fromAreaId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Origin tariff zone for this fare leg rule",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareLegRule"
+      },
+      "rdfs:range": {
+        "@id": "beckn:TariffZone"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../TariffZone/v2.0/vocab.jsonld#beckn:TariffZone"
+      }
+    },
+    {
+      "@id": "beckn:toAreaId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "toAreaId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Destination tariff zone for this fare leg rule",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareLegRule"
+      },
+      "rdfs:range": {
+        "@id": "beckn:TariffZone"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../TariffZone/v2.0/vocab.jsonld#beckn:TariffZone"
+      }
+    },
+    {
+      "@id": "beckn:containsServiceId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "containsServiceId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Specific route this rule applies to",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareLegRule"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Route/v2.0/vocab.jsonld#beckn:Route"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the policy",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareLegRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:policyType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "policyType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of policy (extensible term)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareLegRule"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the policy",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareLegRule"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity window for this policy version",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareLegRule"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:policyAttributes",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "policyAttributes",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Extensible domain-specific policy attributes",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareLegRule"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Attributes"
+      }
+    }
+  ]
+}

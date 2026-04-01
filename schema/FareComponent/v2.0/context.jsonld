@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "FareComponent": "beckn:FareComponent",
+    "fareBasisCode": "beckn:fareBasisCode",
+    "cabin": "beckn:cabin",
+    "bookingCode": "beckn:bookingCode",
+    "amount": "beckn:amount",
+    "currency": "beckn:currency",
+    "segmentRef": "beckn:segmentRef",
+    "title": "beckn:title",
+    "price": "beckn:price",
+    "tags": "beckn:tags"
+  }
+}

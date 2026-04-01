@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "LocationInformationRequest": "beckn:LocationInformationRequest",
+    "requestType": "beckn:requestType",
+    "locationName": "beckn:locationName",
+    "coordinates": "beckn:coordinates",
+    "radius": "beckn:radius",
+    "textSearch": "beckn:textSearch",
+    "filters": "beckn:filters",
+    "spatial": "beckn:spatial",
+    "provider": "beckn:provider"
+  }
+}

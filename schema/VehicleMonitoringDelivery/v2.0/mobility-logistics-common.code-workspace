@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../.."
+		},
+		{
+			"path": "../../../../logistics"
+		},
+		{
+			"path": "../../../../spec_work/schemas"
+		},
+		{
+			"path": "../../../../spec_work/tools"
+		}
+	],
+    "settings": {}
+}

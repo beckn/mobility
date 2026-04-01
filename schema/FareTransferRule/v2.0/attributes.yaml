@@ -2,19 +2,46 @@ openapi: 3.1.0
 info:
   title: FareTransferRule
   version: 2.0.0
-  description: Schema definition for the FareTransferRule entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the FareTransferRule entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     FareTransferRule:
       type: object
       title: FareTransferRule
-      description: >
-        Attributes for the FareTransferRule entity in the Beckn Mobility domain.
-      properties: {}
+      description: A rule defining how fares from different legs are combined when
+        a passenger makes a transfer between services.
+      properties:
+        fareProductId:
+          description: Identifier of the fare product this transfer rule applies to
+          type: string
+        transferCount:
+          description: Number of transfers permitted under this rule
+          type: number
+        durationLimit:
+          description: Maximum duration in minutes for the transfer window
+          type: number
+        fareTransferType:
+          description: Type of fare adjustment on transfer (e.g. FREE, DISCOUNT, ADDITIONAL_FARE)
+          type: string
+        id:
+          description: Unique identifier for the policy
+          type: string
+        policyType:
+          description: Type of policy (extensible term)
+          type: string
+        descriptor:
+          description: Human-readable description of the policy
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        validity:
+          description: Validity window for this policy version
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        policyAttributes:
+          description: Extensible domain-specific policy attributes
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Attributes
+      additionalProperties: false

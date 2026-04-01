@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FareBreakup",
+  "type": "object",
+  "description": "A detailed breakdown of the total fare into its constituent components, including base fare, taxes, surcharges, and discounts.",
+  "properties": {
+    "componentTitle": {
+      "description": "Human-readable title for this fare component",
+      "type": "string"
+    },
+    "amount": {
+      "description": "Monetary amount for this fare component",
+      "type": "number"
+    },
+    "currency": {
+      "description": "ISO 4217 currency code for this component",
+      "type": "string"
+    },
+    "taxAmount": {
+      "description": "Tax amount included in this component",
+      "type": "number"
+    },
+    "taxRate": {
+      "description": "Tax rate percentage applied",
+      "type": "number"
+    },
+    "title": {
+      "description": "Title or label of this price component",
+      "type": "string"
+    },
+    "price": {
+      "description": "Monetary value of this component",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "tags": {
+      "description": "Tags associated with this price component",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

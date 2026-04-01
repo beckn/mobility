@@ -1,0 +1,252 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Alert",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Alert",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A notification of a service disruption, delay, or advisory affecting one or more routes, stops, or vehicle journeys.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "https://schema.org/Event"
+        },
+        {
+          "@id": "beckn:EntitySelector"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:cause",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "cause",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Cause of the alert (e.g. TECHNICAL_PROBLEM, STRIKE, ACCIDENT)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Alert"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:effect",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "effect",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Effect on service (e.g. DETOUR, REDUCED_SERVICE, NO_SERVICE)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Alert"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:url",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "url",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "URL to a page with more information about the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Alert"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/URL"
+      }
+    },
+    {
+      "@id": "beckn:headerText",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "headerText",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Short header text for the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Alert"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptionText",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptionText",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Detailed description of the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Alert"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:activePeriod",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "activePeriod",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Time period during which the alert is active",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Alert"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:informedEntity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "informedEntity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Transport entities affected by this alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Alert"
+      },
+      "rdfs:range": {
+        "@id": "beckn:EntitySelector"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../EntitySelector/v2.0/vocab.jsonld#beckn:EntitySelector"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Alert"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Alert"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Time period during which the alert is active",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Alert"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:status",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "status",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current status of the alert",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Alert"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    }
+  ]
+}

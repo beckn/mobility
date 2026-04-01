@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TripSpecification",
+  "type": "object",
+  "description": "A description of the desired journey used as input to search and price transport options.",
+  "properties": {
+    "origin": {
+      "description": "Desired origin of the trip",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+    },
+    "destination": {
+      "description": "Desired destination of the trip",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+    },
+    "time": {
+      "description": "Desired departure or arrival time",
+      "type": "string",
+      "format": "date-time"
+    },
+    "numTravelers": {
+      "description": "Number of travelers for whom to price options",
+      "type": "number"
+    },
+    "modes": {
+      "description": "Preferred transport modes for the trip",
+      "type": "string"
+    },
+    "textSearch": {
+      "description": "Free-text search query expressing what the traveler is looking for",
+      "type": "string"
+    },
+    "filters": {
+      "description": "JSONPath filter criteria applied to the search results",
+      "type": "string"
+    },
+    "spatial": {
+      "description": "Geographic constraints on the search area",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/SpatialConstraint"
+    },
+    "provider": {
+      "description": "Identifier of a specific provider to search within",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

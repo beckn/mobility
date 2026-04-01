@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DropPolicy",
+  "type": "object",
+  "description": "A set of rules governing the locations and conditions under which passengers may be dropped off at the end of a ride-hailing or on-demand transport service.",
+  "properties": {
+    "allowedDropAreas": {
+      "description": "Geographic areas where drop-off is permitted",
+      "$ref": "../../Geofence/v2.0/schema.json"
+    },
+    "dropConditions": {
+      "description": "Conditions that must be met for a valid drop-off",
+      "type": "string"
+    },
+    "dropNote": {
+      "description": "Customer-facing note about drop-off rules",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the policy",
+      "type": "string"
+    },
+    "policyType": {
+      "description": "Type of policy (extensible term)",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the policy",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "validity": {
+      "description": "Validity window for this policy version",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    },
+    "policyAttributes": {
+      "description": "Extensible domain-specific policy attributes",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Attributes"
+    }
+  },
+  "additionalProperties": false
+}

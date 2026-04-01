@@ -1,0 +1,48 @@
+openapi: 3.1.0
+info:
+  title: Receipt
+  version: 2.0.0
+  description: Schema definition for the Receipt entity in the Beckn Mobility domain.
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    Receipt:
+      type: object
+      title: Receipt
+      description: A payment receipt issued to a passenger upon completion and settlement
+        of a transport service trip.
+      properties:
+        receiptId:
+          description: Unique identifier for the receipt
+          type: string
+        issuedAt:
+          description: Timestamp when the receipt was issued
+          type: string
+          format: date-time
+        paymentMethod:
+          description: Method of payment used (e.g. CARD, UPI, CASH, WALLET)
+          type: string
+        tripRef:
+          description: Reference to the trip for which this receipt is issued
+          $ref: ../../Trip/v2.0/schema.json#/$defs/Trip
+        id:
+          description: Unique identifier for the invoice
+          type: string
+        descriptor:
+          description: Human-readable description of the invoice
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        price:
+          description: Total price for the invoice
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification
+        breakup:
+          description: Itemised price breakup
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification
+        validity:
+          description: Validity period of the invoice
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+      additionalProperties: false

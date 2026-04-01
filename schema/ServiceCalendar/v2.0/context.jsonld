@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "ServiceCalendar": "beckn:ServiceCalendar",
+    "serviceId": "beckn:serviceId",
+    "monday": "beckn:monday",
+    "tuesday": "beckn:tuesday",
+    "wednesday": "beckn:wednesday",
+    "thursday": "beckn:thursday",
+    "friday": "beckn:friday",
+    "saturday": "beckn:saturday",
+    "sunday": "beckn:sunday",
+    "exceptionDates": "beckn:exceptionDates",
+    "startDate": "beckn:startDate",
+    "endDate": "beckn:endDate",
+    "startTime": "beckn:startTime",
+    "endTime": "beckn:endTime"
+  }
+}

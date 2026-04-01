@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "TripSpecification": "beckn:TripSpecification",
+    "origin": "beckn:origin",
+    "destination": "beckn:destination",
+    "time": "beckn:time",
+    "numTravelers": "beckn:numTravelers",
+    "modes": "beckn:modes",
+    "textSearch": "beckn:textSearch",
+    "filters": "beckn:filters",
+    "spatial": "beckn:spatial",
+    "provider": "beckn:provider"
+  }
+}

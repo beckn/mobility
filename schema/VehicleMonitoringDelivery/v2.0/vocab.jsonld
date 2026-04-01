@@ -1,0 +1,169 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:VehicleMonitoringDelivery",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "VehicleMonitoringDelivery",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A real-time data delivery providing current positions and operational states of a set of vehicles.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      }
+    },
+    {
+      "@id": "beckn:responseTimestamp",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "responseTimestamp",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Timestamp of this monitoring delivery",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleMonitoringDelivery"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:vehicleActivities",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleActivities",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "List of vehicle activity records in this delivery",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleMonitoringDelivery"
+      },
+      "rdfs:range": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../MonitoredVehicleJourney/v2.0/vocab.jsonld#beckn:MonitoredVehicleJourney"
+      }
+    },
+    {
+      "@id": "beckn:validUntil",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validUntil",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Time until which this delivery data is valid",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleMonitoringDelivery"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the tracking record",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleMonitoringDelivery"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:url",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "url",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "URL endpoint for real-time tracking information",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleMonitoringDelivery"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/URL"
+      }
+    },
+    {
+      "@id": "beckn:status",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "status",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current tracking status",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleMonitoringDelivery"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity period for this tracking record",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleMonitoringDelivery"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    }
+  ]
+}

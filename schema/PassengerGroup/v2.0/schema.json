@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PassengerGroup",
+  "type": "object",
+  "description": "A collection of passengers traveling together as a group, with a group size and a designated lead passenger.",
+  "properties": {
+    "groupId": {
+      "description": "Unique identifier for this passenger group",
+      "type": "string"
+    },
+    "groupSize": {
+      "description": "Total number of passengers in the group",
+      "type": "number"
+    },
+    "leadPassenger": {
+      "description": "The lead or primary passenger for the group",
+      "$ref": "../../Passenger/v2.0/schema.json"
+    },
+    "unitCode": {
+      "description": "Unit of measure code (UN/ECE Rec 20)",
+      "type": "string"
+    },
+    "value": {
+      "description": "Numeric quantity value",
+      "type": "number"
+    },
+    "maximum": {
+      "description": "Maximum allowed quantity",
+      "type": "number"
+    },
+    "minimum": {
+      "description": "Minimum required quantity",
+      "type": "number"
+    }
+  },
+  "additionalProperties": false
+}

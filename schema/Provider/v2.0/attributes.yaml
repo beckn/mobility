@@ -3,18 +3,48 @@ info:
   title: Provider
   version: 2.0.0
   description: Schema definition for the Provider entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Provider:
       type: object
       title: Provider
-      description: >
-        Attributes for the Provider entity in the Beckn Mobility domain.
-      properties: {}
+      description: A mobility service provider registered on a MaaS platform, offering
+        transport options to end users.
+      properties:
+        providerId:
+          description: Unique identifier for the mobility provider
+          type: string
+        providerName:
+          description: Human-readable name of the provider
+          type: string
+        categories:
+          description: Service categories offered by the provider
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/CategoryCode
+        id:
+          description: Unique identifier for the provider
+          type: string
+        descriptor:
+          description: Human-readable description of the provider
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        locations:
+          description: Locations where the provider offers services
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        items:
+          description: Items available for discovery from this provider
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Item
+        fulfillments:
+          description: Fulfillment options offered by this provider
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Fulfillment
+        ratingsTotal:
+          description: Total number of ratings received
+          type: number
+        rating:
+          description: Aggregate rating of the provider
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Rating
+      additionalProperties: false

@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Prognosis": "beckn:Prognosis",
+    "scheduledTime": "beckn:scheduledTime",
+    "estimatedTime": "beckn:estimatedTime",
+    "certainty": "beckn:certainty",
+    "delaySeconds": "beckn:delaySeconds",
+    "id": "beckn:id",
+    "url": "beckn:url",
+    "status": "beckn:status",
+    "validity": "beckn:validity"
+  }
+}

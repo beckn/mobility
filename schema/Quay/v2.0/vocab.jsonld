@@ -1,0 +1,208 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Quay",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Quay",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A specific platform, bay, or boarding area within a Stop Place at which passengers board or alight from a vehicle.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:StopPlace"
+      }
+    },
+    {
+      "@id": "beckn:quayId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "quayId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the quay",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Quay"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:publicCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "publicCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Publicly displayed platform or bay code",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Quay"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:quayType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "quayType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of quay (e.g. RAIL_PLATFORM, BUS_BAY, FERRY_BERTH)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Quay"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:stopPlaceRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopPlaceRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the parent Stop Place",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Quay"
+      },
+      "rdfs:range": {
+        "@id": "beckn:StopPlace"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../StopPlace/v2.0/vocab.jsonld#beckn:StopPlace"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the fulfillment stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Quay"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:location",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "location",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Geographic location of the stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Quay"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Location"
+      }
+    },
+    {
+      "@id": "beckn:type",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "type",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of stop (start, end, intermediate)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Quay"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:instructions",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "instructions",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Instructions for passengers at this stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Quay"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:time",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "time",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Expected time window at this stop",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Quay"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    }
+  ]
+}

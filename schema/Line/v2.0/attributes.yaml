@@ -3,18 +3,60 @@ info:
   title: Line
   version: 2.0.0
   description: Schema definition for the Line entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Line:
       type: object
       title: Line
-      description: >
-        Attributes for the Line entity in the Beckn Mobility domain.
-      properties: {}
+      description: A named, branded public transport service identified by a number
+        or name, typically operating over one or more routes.
+      properties:
+        lineId:
+          description: GTFS or NeTEx identifier for the line
+          type: string
+        shortName:
+          description: Short public-facing name (e.g. 42, M1, Jubilee)
+          type: string
+        longName:
+          description: Full descriptive name of the line
+          type: string
+        lineType:
+          description: Mode of transport (e.g. BUS, SUBWAY, RAIL, FERRY)
+          type: string
+        color:
+          description: Hex colour code for line display on maps
+          type: string
+        textColor:
+          description: Hex colour code for text displayed on the line colour
+          type: string
+        operatorRef:
+          description: Reference to the operator running this line
+          $ref: ../../Operator/v2.0/schema.json#/$defs/Operator
+        networkRef:
+          description: Reference to the network this line belongs to
+          $ref: ../../Network/v2.0/schema.json#/$defs/Network
+        id:
+          description: Unique identifier for the item
+          type: string
+        descriptor:
+          description: Human-readable description of the item
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        categoryId:
+          description: Category code classifying the item
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/CategoryCode
+        price:
+          description: Price specification for this item
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification
+        quantity:
+          description: Available quantity of the item
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Quantity
+        tags:
+          description: Tags associated with the item
+          type: string
+      additionalProperties: false

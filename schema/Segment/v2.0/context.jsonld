@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Segment": "beckn:Segment",
+    "carrierCode": "beckn:carrierCode",
+    "segmentNumber": "beckn:segmentNumber",
+    "trainNumber": "beckn:trainNumber",
+    "coachNumber": "beckn:coachNumber",
+    "mode": "beckn:mode",
+    "origin": "beckn:origin",
+    "destination": "beckn:destination",
+    "startTime": "beckn:startTime",
+    "endTime": "beckn:endTime",
+    "distance": "beckn:distance",
+    "headsign": "beckn:headsign",
+    "routeRef": "beckn:routeRef"
+  }
+}

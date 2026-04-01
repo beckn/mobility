@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "PassengerGroup": "beckn:PassengerGroup",
+    "groupId": "beckn:groupId",
+    "groupSize": "beckn:groupSize",
+    "leadPassenger": "beckn:leadPassenger",
+    "unitCode": "beckn:unitCode",
+    "value": "beckn:value",
+    "maximum": "beckn:maximum",
+    "minimum": "beckn:minimum"
+  }
+}

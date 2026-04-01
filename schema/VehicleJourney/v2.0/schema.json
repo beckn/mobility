@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VehicleJourney",
+  "type": "object",
+  "description": "A specific operational instance of a vehicle traveling a defined route at a scheduled time on a given service day.",
+  "properties": {
+    "vehicleJourneyCode": {
+      "description": "Unique code for this vehicle journey",
+      "type": "string"
+    },
+    "routeRef": {
+      "description": "Reference to the route being served",
+      "$ref": "../../Route/v2.0/schema.json"
+    },
+    "serviceCalendarRef": {
+      "description": "Calendar defining when this journey operates",
+      "$ref": "../../ServiceCalendar/v2.0/schema.json"
+    },
+    "vehicleRef": {
+      "description": "Vehicle assigned to this journey",
+      "$ref": "../../Vehicle/v2.0/schema.json"
+    },
+    "patternRef": {
+      "description": "Journey pattern being followed",
+      "$ref": "../../Pattern/v2.0/schema.json"
+    },
+    "stopTimes": {
+      "description": "Scheduled stop times for each stop on this journey",
+      "$ref": "../../StopTime/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the fulfillment",
+      "type": "string"
+    },
+    "type": {
+      "description": "Type of fulfillment (extensible term)",
+      "type": "string"
+    },
+    "agent": {
+      "description": "The entity responsible for performing the fulfillment",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/FulfillmentAgent"
+    },
+    "mode": {
+      "description": "Mode of fulfillment",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/FulfillmentMode"
+    },
+    "state": {
+      "description": "Current state of the fulfillment",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/State"
+    },
+    "participants": {
+      "description": "Participants entitled to receive this fulfillment",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Participant"
+    },
+    "stages": {
+      "description": "Stages in the fulfillment lifecycle",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/FulfillmentStage"
+    },
+    "instructions": {
+      "description": "Instructions for fulfillment",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    }
+  },
+  "additionalProperties": false
+}

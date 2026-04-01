@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Stop": "beckn:Stop",
+    "stopId": "beckn:stopId",
+    "stopCode": "beckn:stopCode",
+    "stopName": "beckn:stopName",
+    "locationType": "beckn:locationType",
+    "parentStation": "beckn:parentStation",
+    "wheelchairBoarding": "beckn:wheelchairBoarding",
+    "id": "beckn:id",
+    "location": "beckn:location",
+    "type": "beckn:type",
+    "instructions": "beckn:instructions",
+    "time": "beckn:time"
+  }
+}

@@ -1,0 +1,234 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Fare",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Fare",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The monetary cost of travel for a specific journey or service, calculated based on applicable fare rules and passenger categories.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "https://schema.org/PriceSpecification"
+        },
+        {
+          "@id": "beckn:FareLegRule"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:fareId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fareId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the fare",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Fare"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:amount",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "amount",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Total fare amount",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Fare"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:currency",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "currency",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "ISO 4217 currency code",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Fare"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:fareAttributes",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fareAttributes",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Transfer permissions, agency, and transfer limit",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Fare"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:fareRules",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fareRules",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Leg rules that determine when this fare applies",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Fare"
+      },
+      "rdfs:range": {
+        "@id": "beckn:FareLegRule"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../FareLegRule/v2.0/vocab.jsonld#beckn:FareLegRule"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Fare"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Fare"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Price specification for this offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Fare"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity period of the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Fare"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags or labels associated with the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Fare"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

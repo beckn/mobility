@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Network": "beckn:Network",
+    "networkId": "beckn:networkId",
+    "networkName": "beckn:networkName",
+    "operatorRef": "beckn:operatorRef",
+    "lines": "beckn:lines",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "tags": "beckn:tags"
+  }
+}

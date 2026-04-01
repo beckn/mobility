@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "StationStatus": "beckn:StationStatus",
+    "stationId": "beckn:stationId",
+    "numBikesAvailable": "beckn:numBikesAvailable",
+    "numDocksAvailable": "beckn:numDocksAvailable",
+    "isInstalled": "beckn:isInstalled",
+    "isRenting": "beckn:isRenting",
+    "isReturning": "beckn:isReturning",
+    "lastReported": "beckn:lastReported",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "updatedAt": "beckn:updatedAt"
+  }
+}

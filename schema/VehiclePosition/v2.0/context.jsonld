@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "VehiclePosition": "beckn:VehiclePosition",
+    "tripDescriptor": "beckn:tripDescriptor",
+    "vehicleDescriptor": "beckn:vehicleDescriptor",
+    "latitude": "beckn:latitude",
+    "longitude": "beckn:longitude",
+    "bearing": "beckn:bearing",
+    "speed": "beckn:speed",
+    "currentStopSequence": "beckn:currentStopSequence",
+    "currentStatus": "beckn:currentStatus",
+    "timestamp": "beckn:timestamp",
+    "id": "beckn:id",
+    "url": "beckn:url",
+    "status": "beckn:status",
+    "validity": "beckn:validity"
+  }
+}

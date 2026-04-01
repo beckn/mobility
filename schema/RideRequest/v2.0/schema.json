@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RideRequest",
+  "type": "object",
+  "description": "A passenger's request for an on-demand transport service between two points, specifying origin, destination, and travel preferences.",
+  "properties": {
+    "origin": {
+      "description": "Pickup location for the ride",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+    },
+    "destination": {
+      "description": "Dropoff location for the ride",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+    },
+    "requestedTime": {
+      "description": "Requested pickup time",
+      "type": "string",
+      "format": "date-time"
+    },
+    "passengerCount": {
+      "description": "Number of passengers",
+      "type": "number"
+    },
+    "vehiclePreference": {
+      "description": "Preferred vehicle category",
+      "$ref": "../../VehicleCategory/v2.0/schema.json"
+    },
+    "textSearch": {
+      "description": "Free-text search query expressing what the traveler is looking for",
+      "type": "string"
+    },
+    "filters": {
+      "description": "JSONPath filter criteria applied to the search results",
+      "type": "string"
+    },
+    "spatial": {
+      "description": "Geographic constraints on the search area",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/SpatialConstraint"
+    },
+    "provider": {
+      "description": "Identifier of a specific provider to search within",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

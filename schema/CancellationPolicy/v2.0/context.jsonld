@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "CancellationPolicy": "beckn:CancellationPolicy",
+    "cancellationFee": "beckn:cancellationFee",
+    "gracePeriodMinutes": "beckn:gracePeriodMinutes",
+    "fareComponent": "beckn:fareComponent",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "cancellationTerms": "beckn:cancellationTerms",
+    "refundPercentage": "beckn:refundPercentage",
+    "cancelByTime": "beckn:cancelByTime"
+  }
+}

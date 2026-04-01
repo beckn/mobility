@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "TariffZone": "beckn:TariffZone",
+    "zoneId": "beckn:zoneId",
+    "zoneName": "beckn:zoneName",
+    "geometry": "beckn:geometry",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "gps": "beckn:gps",
+    "address": "beckn:address",
+    "city": "beckn:city",
+    "country": "beckn:country",
+    "geojson": "beckn:geojson"
+  }
+}

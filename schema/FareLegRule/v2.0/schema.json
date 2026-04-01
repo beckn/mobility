@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FareLegRule",
+  "type": "object",
+  "description": "A rule defining how a fare is applied to a single leg of a journey based on origin, destination, network, and time.",
+  "properties": {
+    "fareProductId": {
+      "description": "Identifier of the fare product this rule applies to",
+      "type": "string"
+    },
+    "legGroupId": {
+      "description": "Leg group identifier for grouping related rules",
+      "type": "string"
+    },
+    "networkId": {
+      "description": "Network to which this rule is restricted",
+      "type": "string"
+    },
+    "fromAreaId": {
+      "description": "Origin tariff zone for this fare leg rule",
+      "$ref": "../../TariffZone/v2.0/schema.json"
+    },
+    "toAreaId": {
+      "description": "Destination tariff zone for this fare leg rule",
+      "$ref": "../../TariffZone/v2.0/schema.json"
+    },
+    "containsServiceId": {
+      "description": "Specific route this rule applies to",
+      "$ref": "../../Route/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the policy",
+      "type": "string"
+    },
+    "policyType": {
+      "description": "Type of policy (extensible term)",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the policy",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "validity": {
+      "description": "Validity window for this policy version",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    },
+    "policyAttributes": {
+      "description": "Extensible domain-specific policy attributes",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Attributes"
+    }
+  },
+  "additionalProperties": false
+}

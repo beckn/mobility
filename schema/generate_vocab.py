@@ -36,7 +36,7 @@ def strip_backticks(s):
 def parse_equivalences(eq_str):
     """
     Parse equivalence string like:
-      `owl:equivalentClass gtfs:Agency` ; `rdfs:subClassOf schema:Organization` ; `rdfs:subClassOf foaf:Organization`
+      `owl:equivalentClass transmodel:Operator` ; `rdfs:subClassOf schema:Organization`
     Returns dict: { "predicate": [list of object strings] }
     """
     eq_str = eq_str.strip()
@@ -124,12 +124,14 @@ for row in rows:
 # Assemble the complete JSON-LD document
 vocab = {
     "@context": {
-        "beckn": "https://schema.beckn.io/mobility/",
+        "mobility": "https://schema.beckn.io/mobility/",
         "schema": "https://schema.org/",
         "geo": "http://www.opengis.net/ont/geosparql#",
-        "foaf": "http://xmlns.com/foaf/0.1/",
-        "gtfs": "http://vocab.gtfs.org/terms#",
-        "era": "http://data.europa.eu/949/",
+        "transmodel": "https://w3id.org/transmodel/ontology#",
+        "ldes": "https://w3id.org/ldes/",
+        "oslo": "https://data.vlaanderen.be/ns/mobiliteit#",
+        "inspire": "https://inspire.ec.europa.eu/ontology/",
+        "era": "https://data.europa.eu/949/",
         "owl": "http://www.w3.org/2002/07/owl#",
         "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
         "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",

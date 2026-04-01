@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Seat": "beckn:Seat",
+    "seatId": "beckn:seatId",
+    "row": "beckn:row",
+    "column": "beckn:column",
+    "seatType": "beckn:seatType",
+    "seatCharacteristics": "beckn:seatCharacteristics",
+    "deckLevel": "beckn:deckLevel",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "resource": "beckn:resource",
+    "credentials": "beckn:credentials"
+  }
+}

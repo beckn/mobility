@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Receipt",
+  "type": "object",
+  "description": "A payment receipt issued to a passenger upon completion and settlement of a transport service trip.",
+  "properties": {
+    "receiptId": {
+      "description": "Unique identifier for the receipt",
+      "type": "string"
+    },
+    "issuedAt": {
+      "description": "Timestamp when the receipt was issued",
+      "type": "string",
+      "format": "date-time"
+    },
+    "paymentMethod": {
+      "description": "Method of payment used (e.g. CARD, UPI, CASH, WALLET)",
+      "type": "string"
+    },
+    "tripRef": {
+      "description": "Reference to the trip for which this receipt is issued",
+      "$ref": "../../Trip/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the invoice",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the invoice",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "price": {
+      "description": "Total price for the invoice",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "breakup": {
+      "description": "Itemised price breakup",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "validity": {
+      "description": "Validity period of the invoice",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    }
+  },
+  "additionalProperties": false
+}

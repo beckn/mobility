@@ -3,18 +3,50 @@ info:
   title: Journey
   version: 2.0.0
   description: Schema definition for the Journey entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Journey:
       type: object
       title: Journey
-      description: >
-        Attributes for the Journey entity in the Beckn Mobility domain.
-      properties: {}
+      description: A complete travel itinerary from origin to destination, potentially
+        comprising multiple legs using different transport modes.
+      properties:
+        origin:
+          description: Origin location of the journey
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        destination:
+          description: Destination location of the journey
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        departureTime:
+          description: Planned departure time
+          type: string
+          format: date-time
+        arrivalTime:
+          description: Planned arrival time
+          type: string
+          format: date-time
+        legs:
+          description: Ordered list of legs comprising this journey
+          $ref: ../../Leg/v2.0/schema.json#/$defs/Leg
+        id:
+          description: Unique identifier for the contract
+          type: string
+        descriptor:
+          description: Human-readable description of the contract
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        items:
+          description: Line items within the contract
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/ContractItem
+        fulfillments:
+          description: Fulfillments associated with this contract
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Fulfillment
+        state:
+          description: Current state of the contract
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/State
+      additionalProperties: false

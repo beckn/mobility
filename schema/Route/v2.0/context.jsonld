@@ -1,0 +1,18 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Route": "beckn:Route",
+    "routeId": "beckn:routeId",
+    "shortName": "beckn:shortName",
+    "longName": "beckn:longName",
+    "routeType": "beckn:routeType",
+    "operatorRef": "beckn:operatorRef",
+    "networkRef": "beckn:networkRef",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "categoryId": "beckn:categoryId",
+    "price": "beckn:price",
+    "quantity": "beckn:quantity",
+    "tags": "beckn:tags"
+  }
+}

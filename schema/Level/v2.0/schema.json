@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Level",
+  "type": "object",
+  "description": "A floor or vertical level within a multi-level transit station or facility, used to define internal navigation paths.",
+  "properties": {
+    "levelId": {
+      "description": "Unique identifier for this level within the station",
+      "type": "string"
+    },
+    "levelName": {
+      "description": "Human-readable name of the level (e.g. Ground Floor, Level 1)",
+      "type": "string"
+    },
+    "elevation": {
+      "description": "Elevation of this level in metres above ground",
+      "type": "number"
+    },
+    "stationRef": {
+      "description": "Reference to the station this level belongs to",
+      "$ref": "../../Station/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the location",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "gps": {
+      "description": "GPS coordinates as a latitude,longitude string",
+      "type": "string"
+    },
+    "address": {
+      "description": "Physical address of the location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Address"
+    },
+    "city": {
+      "description": "City name",
+      "type": "string"
+    },
+    "country": {
+      "description": "ISO 3166-1 alpha-2 country code",
+      "type": "string"
+    },
+    "geojson": {
+      "description": "GeoJSON geometry object representing this location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry"
+    }
+  },
+  "additionalProperties": false
+}

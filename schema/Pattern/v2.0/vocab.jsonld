@@ -1,0 +1,255 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Pattern",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Pattern",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A unique sequence of stops visited by trips on a route, grouping trips with identical stop sequences and timing structures.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "beckn:Route"
+        },
+        {
+          "@id": "beckn:Shape"
+        },
+        {
+          "@id": "beckn:Stop"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:patternId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "patternId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the journey pattern",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pattern"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:routeRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "routeRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the route this pattern belongs to",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pattern"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Route/v2.0/vocab.jsonld#beckn:Route"
+      }
+    },
+    {
+      "@id": "beckn:directionId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "directionId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Direction of travel (0 or 1)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pattern"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:stops",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stops",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Ordered list of stops in this pattern",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pattern"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Stop"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Stop/v2.0/vocab.jsonld#beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:shapeRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "shapeRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the geographic shape of this pattern",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pattern"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Shape"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Shape/v2.0/vocab.jsonld#beckn:Shape"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pattern"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pattern"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:categoryId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "categoryId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Category code classifying the item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pattern"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#CategoryCode"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Price specification for this item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pattern"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:quantity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "quantity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Available quantity of the item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pattern"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Quantity"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags associated with the item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Pattern"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

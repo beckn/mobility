@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "EmergencyEvent": "beckn:EmergencyEvent",
+    "emergencyType": "beckn:emergencyType",
+    "severity": "beckn:severity",
+    "reportedAt": "beckn:reportedAt",
+    "location": "beckn:location",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "validity": "beckn:validity",
+    "status": "beckn:status"
+  }
+}

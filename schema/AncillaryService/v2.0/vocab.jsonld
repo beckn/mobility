@@ -1,0 +1,187 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:AncillaryService",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "AncillaryService",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "An optional or additional service available for purchase alongside base transport, such as extra baggage or lounge access.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "https://schema.org/Service"
+      }
+    },
+    {
+      "@id": "beckn:serviceCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "serviceCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "IATA service code (e.g. BG for extra baggage)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:AncillaryService"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:serviceCategory",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "serviceCategory",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Category of the ancillary service",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:AncillaryService"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:maxQuantity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "maxQuantity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Maximum quantity of this service that can be purchased",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:AncillaryService"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:AncillaryService"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:AncillaryService"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Price specification for this offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:AncillaryService"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity period of the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:AncillaryService"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags or labels associated with the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:AncillaryService"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

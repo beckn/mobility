@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "BookingRule",
+  "type": "object",
+  "description": "A set of rules governing how and when a demand-responsive transport service must be booked in advance.",
+  "properties": {
+    "latestBookingTime": {
+      "description": "Latest time before departure that a booking can be made",
+      "type": "string"
+    },
+    "earliestBookingTime": {
+      "description": "Earliest time before departure that a booking can be made",
+      "type": "string"
+    },
+    "priorNoticeDurationMin": {
+      "description": "Minimum advance notice in minutes required for booking",
+      "type": "number"
+    },
+    "priorNoticeStartDay": {
+      "description": "Earliest day before service when booking opens",
+      "type": "number"
+    },
+    "priorNoticeStartTime": {
+      "description": "Time of day on the start day when booking opens",
+      "type": "string"
+    },
+    "message": {
+      "description": "Customer-facing message about booking requirements",
+      "type": "string"
+    },
+    "phoneNumber": {
+      "description": "Phone number to call for booking",
+      "type": "string"
+    },
+    "url": {
+      "description": "URL to booking interface",
+      "type": "string",
+      "format": "uri"
+    },
+    "id": {
+      "description": "Unique identifier for the policy",
+      "type": "string"
+    },
+    "policyType": {
+      "description": "Type of policy (extensible term)",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the policy",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "validity": {
+      "description": "Validity window for this policy version",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    },
+    "policyAttributes": {
+      "description": "Extensible domain-specific policy attributes",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Attributes"
+    }
+  },
+  "additionalProperties": false
+}

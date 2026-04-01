@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FareProduct",
+  "type": "object",
+  "description": "A purchasable entitlement to travel defining conditions of use, validity, and applicable passenger categories.",
+  "properties": {
+    "fareProductId": {
+      "description": "Unique identifier for the fare product",
+      "type": "string"
+    },
+    "riderCategoryId": {
+      "description": "Passenger category eligible for this fare product",
+      "$ref": "../../RiderCategory/v2.0/schema.json"
+    },
+    "durationType": {
+      "description": "Duration basis (e.g. SINGLE_TRIP, DAILY, MONTHLY)",
+      "type": "string"
+    },
+    "mediaDuration": {
+      "description": "Duration for which the fare product is valid",
+      "type": "string",
+      "format": "duration"
+    },
+    "fixedStartDate": {
+      "description": "Fixed start date for calendar-based fare products",
+      "type": "string",
+      "format": "date-time"
+    },
+    "id": {
+      "description": "Unique identifier for the offer",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "price": {
+      "description": "Price specification for this offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "validity": {
+      "description": "Validity period of the offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    },
+    "tags": {
+      "description": "Tags or labels associated with the offer",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

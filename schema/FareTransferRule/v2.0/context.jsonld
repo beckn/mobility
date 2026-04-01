@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "FareTransferRule": "beckn:FareTransferRule",
+    "fareProductId": "beckn:fareProductId",
+    "transferCount": "beckn:transferCount",
+    "durationLimit": "beckn:durationLimit",
+    "fareTransferType": "beckn:fareTransferType",
+    "id": "beckn:id",
+    "policyType": "beckn:policyType",
+    "descriptor": "beckn:descriptor",
+    "validity": "beckn:validity",
+    "policyAttributes": "beckn:policyAttributes"
+  }
+}

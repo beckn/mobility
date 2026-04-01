@@ -3,18 +3,51 @@ info:
   title: Transfer
   version: 2.0.0
   description: Schema definition for the Transfer entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Transfer:
       type: object
       title: Transfer
-      description: >
-        Attributes for the Transfer entity in the Beckn Mobility domain.
-      properties: {}
+      description: A defined connection rule between two routes or services at a common
+        stop, specifying minimum transfer time or transfer type.
+      properties:
+        fromStopId:
+          description: Stop passengers transfer from
+          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+        toStopId:
+          description: Stop passengers transfer to
+          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+        fromRouteId:
+          description: Route passengers transfer from
+          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+        toRouteId:
+          description: Route passengers transfer to
+          $ref: ../../Route/v2.0/schema.json#/$defs/Route
+        transferType:
+          description: Type of transfer (0=recommended, 1=timed, 2=min_time, 3=not_possible)
+          type: string
+        minTransferTime:
+          description: Minimum transfer time in seconds
+          type: number
+        id:
+          description: Unique identifier for the fulfillment stop
+          type: string
+        location:
+          description: Geographic location of the stop
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+        type:
+          description: Type of stop (start, end, intermediate)
+          type: string
+        instructions:
+          description: Instructions for passengers at this stop
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        time:
+          description: Expected time window at this stop
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+      additionalProperties: false

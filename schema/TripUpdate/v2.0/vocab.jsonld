@@ -1,0 +1,235 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:TripUpdate",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "TripUpdate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A multi-dimensional update to an in-progress or upcoming mobility trip, covering contract modifications (added/removed services, route changes), status notifications (driver arriving, trip started), and real-time tracking endpoint information.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Driver"
+      }
+    },
+    {
+      "@id": "beckn:contractChanges",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "contractChanges",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Items added or modified in the trip contract (new stop, route change, add-on service)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripUpdate"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#ContractItem"
+      }
+    },
+    {
+      "@id": "beckn:cancelledItems",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "cancelledItems",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Items removed from the original trip contract",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripUpdate"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#ContractItem"
+      }
+    },
+    {
+      "@id": "beckn:stateUpdate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stateUpdate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Status notification for the traveler (e.g. driver arriving, trip started, trip ended, driver changed)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripUpdate"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    },
+    {
+      "@id": "beckn:trackingEndpoint",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "trackingEndpoint",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Real-time tracking endpoint including URL, protocol, and data schema reference",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripUpdate"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Tracking"
+      }
+    },
+    {
+      "@id": "beckn:driverRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "driverRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the current driver if changed from the originally assigned driver",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripUpdate"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Driver"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Driver/v2.0/vocab.jsonld#beckn:Driver"
+      }
+    },
+    {
+      "@id": "beckn:updatedAt",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "updatedAt",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Timestamp when this trip update was issued",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripUpdate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the contract",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripUpdate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the contract",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripUpdate"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:items",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "items",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Line items within the contract",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripUpdate"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#ContractItem"
+      }
+    },
+    {
+      "@id": "beckn:fulfillments",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fulfillments",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Fulfillments associated with this contract",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripUpdate"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Fulfillment"
+      }
+    },
+    {
+      "@id": "beckn:state",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "state",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current state of the contract",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:TripUpdate"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    }
+  ]
+}

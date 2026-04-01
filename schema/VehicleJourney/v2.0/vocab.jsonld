@@ -1,0 +1,318 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:VehicleJourney",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "VehicleJourney",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A specific operational instance of a vehicle traveling a defined route at a scheduled time on a given service day.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "beckn:Pattern"
+        },
+        {
+          "@id": "beckn:Route"
+        },
+        {
+          "@id": "beckn:ServiceCalendar"
+        },
+        {
+          "@id": "beckn:StopTime"
+        },
+        {
+          "@id": "beckn:Vehicle"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:vehicleJourneyCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleJourneyCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique code for this vehicle journey",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:routeRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "routeRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the route being served",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Route/v2.0/vocab.jsonld#beckn:Route"
+      }
+    },
+    {
+      "@id": "beckn:serviceCalendarRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "serviceCalendarRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Calendar defining when this journey operates",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../ServiceCalendar/v2.0/vocab.jsonld#beckn:ServiceCalendar"
+      }
+    },
+    {
+      "@id": "beckn:vehicleRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Vehicle assigned to this journey",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Vehicle"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Vehicle/v2.0/vocab.jsonld#beckn:Vehicle"
+      }
+    },
+    {
+      "@id": "beckn:patternRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "patternRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Journey pattern being followed",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Pattern"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Pattern/v2.0/vocab.jsonld#beckn:Pattern"
+      }
+    },
+    {
+      "@id": "beckn:stopTimes",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopTimes",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Scheduled stop times for each stop on this journey",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:StopTime"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../StopTime/v2.0/vocab.jsonld#beckn:StopTime"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the fulfillment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:type",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "type",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of fulfillment (extensible term)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:agent",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "agent",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The entity responsible for performing the fulfillment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#FulfillmentAgent"
+      }
+    },
+    {
+      "@id": "beckn:mode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "mode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Mode of fulfillment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#FulfillmentMode"
+      }
+    },
+    {
+      "@id": "beckn:state",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "state",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current state of the fulfillment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    },
+    {
+      "@id": "beckn:participants",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "participants",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Participants entitled to receive this fulfillment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Participant"
+      }
+    },
+    {
+      "@id": "beckn:stages",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stages",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Stages in the fulfillment lifecycle",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#FulfillmentStage"
+      }
+    },
+    {
+      "@id": "beckn:instructions",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "instructions",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Instructions for fulfillment",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    }
+  ]
+}

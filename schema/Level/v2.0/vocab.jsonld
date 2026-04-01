@@ -1,0 +1,255 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Level",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Level",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A floor or vertical level within a multi-level transit station or facility, used to define internal navigation paths.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "https://schema.org/Floor"
+        },
+        {
+          "@id": "beckn:Station"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:levelId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "levelId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for this level within the station",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Level"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:levelName",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "levelName",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable name of the level (e.g. Ground Floor, Level 1)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Level"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:elevation",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "elevation",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Elevation of this level in metres above ground",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Level"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:stationRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stationRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the station this level belongs to",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Level"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Station"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Station/v2.0/vocab.jsonld#beckn:Station"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Level"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Level"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:gps",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "gps",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "GPS coordinates as a latitude,longitude string",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Level"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:address",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "address",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Physical address of the location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Level"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Address"
+      }
+    },
+    {
+      "@id": "beckn:city",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "city",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "City name",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Level"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:country",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "country",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "ISO 3166-1 alpha-2 country code",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Level"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:geojson",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "geojson",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "GeoJSON geometry object representing this location",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Level"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#GeoJSONGeometry"
+      }
+    }
+  ]
+}

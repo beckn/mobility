@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "EntitySelector": "beckn:EntitySelector",
+    "agencyId": "beckn:agencyId",
+    "routeId": "beckn:routeId",
+    "routeType": "beckn:routeType",
+    "tripDescriptor": "beckn:tripDescriptor",
+    "stopId": "beckn:stopId",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "validity": "beckn:validity",
+    "status": "beckn:status"
+  }
+}

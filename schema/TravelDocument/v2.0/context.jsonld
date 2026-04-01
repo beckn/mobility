@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "TravelDocument": "beckn:TravelDocument",
+    "documentType": "beckn:documentType",
+    "documentNumber": "beckn:documentNumber",
+    "issuingAuthority": "beckn:issuingAuthority",
+    "validFrom": "beckn:validFrom",
+    "validUntil": "beckn:validUntil",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "resource": "beckn:resource",
+    "credentials": "beckn:credentials"
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EntitySelector",
+  "type": "object",
+  "description": "A selector that identifies which transport entities (routes, trips, stops, or agencies) are affected by a given alert.",
+  "properties": {
+    "agencyId": {
+      "description": "Identifier of the affected agency",
+      "type": "string"
+    },
+    "routeId": {
+      "description": "Identifier of the affected route",
+      "type": "string"
+    },
+    "routeType": {
+      "description": "Type of the affected route (e.g. BUS, RAIL)",
+      "type": "string"
+    },
+    "tripDescriptor": {
+      "description": "Descriptor identifying the affected trip",
+      "$ref": "../../TripDescriptor/v2.0/schema.json"
+    },
+    "stopId": {
+      "description": "Identifier of the affected stop",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the alert",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the alert",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "validity": {
+      "description": "Time period during which the alert is active",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    },
+    "status": {
+      "description": "Current status of the alert",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/State"
+    }
+  },
+  "additionalProperties": false
+}

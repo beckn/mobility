@@ -2,19 +2,41 @@ openapi: 3.1.0
 info:
   title: GeneralMessageDelivery
   version: 2.0.0
-  description: Schema definition for the GeneralMessageDelivery entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the GeneralMessageDelivery entity in the Beckn
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     GeneralMessageDelivery:
       type: object
       title: GeneralMessageDelivery
-      description: >
-        Attributes for the GeneralMessageDelivery entity in the Beckn Mobility domain.
-      properties: {}
+      description: A real-time delivery of textual messages or alerts related to service
+        disruptions or passenger information.
+      properties:
+        responseTimestamp:
+          description: Timestamp of this general message delivery
+          type: string
+          format: date-time
+        infoMessages:
+          description: List of informational messages in this delivery
+          $ref: ../../Alert/v2.0/schema.json#/$defs/Alert
+        channel:
+          description: Distribution channel for this message (e.g. WEB, SMS, APP)
+          type: string
+        id:
+          description: Unique identifier for the alert
+          type: string
+        descriptor:
+          description: Human-readable description of the alert
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        validity:
+          description: Time period during which the alert is active
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        status:
+          description: Current status of the alert
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/State
+      additionalProperties: false

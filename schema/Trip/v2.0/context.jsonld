@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Trip": "beckn:Trip",
+    "tripId": "beckn:tripId",
+    "origin": "beckn:origin",
+    "destination": "beckn:destination",
+    "startTime": "beckn:startTime",
+    "endTime": "beckn:endTime",
+    "distance": "beckn:distance",
+    "driverRef": "beckn:driverRef",
+    "vehicleRef": "beckn:vehicleRef",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "items": "beckn:items",
+    "fulfillments": "beckn:fulfillments",
+    "state": "beckn:state"
+  }
+}

@@ -3,18 +3,50 @@ info:
   title: Ticket
   version: 2.0.0
   description: Schema definition for the Ticket entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Ticket:
       type: object
       title: Ticket
-      description: >
-        Attributes for the Ticket entity in the Beckn Mobility domain.
-      properties: {}
+      description: A document or digital record granting the holder the right to travel
+        on a specific transport service or within a defined validity scope.
+      properties:
+        ticketId:
+          description: Unique identifier or serial number of the ticket
+          type: string
+        ticketType:
+          description: Type of ticket (e.g. SINGLE, RETURN, SEASON, FLEXI)
+          type: string
+        validFrom:
+          description: Date and time from which the ticket is valid
+          type: string
+          format: date-time
+        validUntil:
+          description: Date and time until which the ticket is valid
+          type: string
+          format: date-time
+        fareProductRef:
+          description: Reference to the fare product this ticket is issued under
+          $ref: ../../FareProduct/v2.0/schema.json#/$defs/FareProduct
+        passengerRef:
+          description: Reference to the passenger this ticket is issued to
+          $ref: ../../Passenger/v2.0/schema.json#/$defs/Passenger
+        id:
+          description: Unique identifier for the entitlement
+          type: string
+        descriptor:
+          description: Human-readable information about the entitlement
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        resource:
+          description: The resource being accessed against this entitlement
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/ContractItem
+        credentials:
+          description: Credential descriptors for the entitlement
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+      additionalProperties: false

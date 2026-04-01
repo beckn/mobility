@@ -1,0 +1,214 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:FareComponent",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "FareComponent",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A component of an air travel fare that applies to a specific flight segment or leg, used in aviation pricing.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:FlightSegment"
+      }
+    },
+    {
+      "@id": "beckn:fareBasisCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fareBasisCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "IATA fare basis code identifying the fare type",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareComponent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:cabin",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "cabin",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Cabin class (ECONOMY, BUSINESS, FIRST)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareComponent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:bookingCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "bookingCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Booking class code (e.g. Y, M, K)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareComponent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:amount",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "amount",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Fare amount for this component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareComponent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:currency",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "currency",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "ISO 4217 currency code",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareComponent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:segmentRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "segmentRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Flight segment this fare component applies to",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareComponent"
+      },
+      "rdfs:range": {
+        "@id": "beckn:FlightSegment"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../FlightSegment/v2.0/vocab.jsonld#beckn:FlightSegment"
+      }
+    },
+    {
+      "@id": "beckn:title",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "title",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Title or label of this price component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareComponent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Monetary value of this component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareComponent"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags associated with this price component",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareComponent"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

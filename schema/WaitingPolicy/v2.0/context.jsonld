@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "WaitingPolicy": "beckn:WaitingPolicy",
+    "freeWaitingTimeMinutes": "beckn:freeWaitingTimeMinutes",
+    "maxWaitingTimeMinutes": "beckn:maxWaitingTimeMinutes",
+    "chargePerExtraMinute": "beckn:chargePerExtraMinute",
+    "currency": "beckn:currency",
+    "id": "beckn:id",
+    "policyType": "beckn:policyType",
+    "descriptor": "beckn:descriptor",
+    "validity": "beckn:validity",
+    "policyAttributes": "beckn:policyAttributes"
+  }
+}

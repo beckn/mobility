@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VehicleType",
+  "type": "object",
+  "description": "A class or category of vehicle defined by its mode of transport, capacity, propulsion type, and accessibility features.",
+  "properties": {
+    "vehicleTypeCode": {
+      "description": "Code identifying the vehicle type (e.g. BUS, TRAM, METRO, BICYCLE, SCOOTER)",
+      "type": "string"
+    },
+    "maxCapacity": {
+      "description": "Maximum number of passengers the vehicle type can carry",
+      "type": "number"
+    },
+    "propulsionType": {
+      "description": "Propulsion type (e.g. ELECTRIC, COMBUSTION, HUMAN, HYBRID)",
+      "type": "string"
+    },
+    "wheelchairAccessible": {
+      "description": "Whether vehicles of this type are wheelchair accessible",
+      "type": "boolean"
+    },
+    "id": {
+      "description": "Unique identifier for the category code",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable label for the category",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "parentCategoryId": {
+      "description": "Identifier of the parent category if hierarchical",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

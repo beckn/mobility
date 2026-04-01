@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "RiderCategory": "beckn:RiderCategory",
+    "riderCategoryId": "beckn:riderCategoryId",
+    "eligibilityRules": "beckn:eligibilityRules",
+    "proofRequired": "beckn:proofRequired",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "parentCategoryId": "beckn:parentCategoryId"
+  }
+}

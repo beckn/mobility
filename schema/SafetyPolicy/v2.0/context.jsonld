@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "SafetyPolicy": "beckn:SafetyPolicy",
+    "safetyInstructions": "beckn:safetyInstructions",
+    "emergencyContact": "beckn:emergencyContact",
+    "insuranceCoverage": "beckn:insuranceCoverage",
+    "id": "beckn:id",
+    "policyType": "beckn:policyType",
+    "descriptor": "beckn:descriptor",
+    "validity": "beckn:validity",
+    "policyAttributes": "beckn:policyAttributes"
+  }
+}

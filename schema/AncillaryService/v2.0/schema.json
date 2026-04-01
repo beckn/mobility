@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AncillaryService",
+  "type": "object",
+  "description": "An optional or additional service available for purchase alongside base transport, such as extra baggage or lounge access.",
+  "properties": {
+    "serviceCode": {
+      "description": "IATA service code (e.g. BG for extra baggage)",
+      "type": "string"
+    },
+    "serviceCategory": {
+      "description": "Category of the ancillary service",
+      "type": "string"
+    },
+    "maxQuantity": {
+      "description": "Maximum quantity of this service that can be purchased",
+      "type": "number"
+    },
+    "id": {
+      "description": "Unique identifier for the offer",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "price": {
+      "description": "Price specification for this offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+    },
+    "validity": {
+      "description": "Validity period of the offer",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+    },
+    "tags": {
+      "description": "Tags or labels associated with the offer",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

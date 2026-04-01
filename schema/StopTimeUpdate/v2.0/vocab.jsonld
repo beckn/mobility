@@ -1,0 +1,211 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:StopTimeUpdate",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "StopTimeUpdate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A real-time update to the predicted arrival or departure time of a vehicle at a specific stop within a journey.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:stopId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the stop being updated",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTimeUpdate"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Stop"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Stop/v2.0/vocab.jsonld#beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:stopSequence",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopSequence",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Sequence of this stop in the trip",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTimeUpdate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:arrivalDelay",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "arrivalDelay",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Arrival delay in seconds (negative = early)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTimeUpdate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:departureDelay",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "departureDelay",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Departure delay in seconds (negative = early)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTimeUpdate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:scheduleRelationship",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "scheduleRelationship",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Relationship to schedule (SCHEDULED, SKIPPED, NO_DATA)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTimeUpdate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the tracking record",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTimeUpdate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:url",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "url",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "URL endpoint for real-time tracking information",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTimeUpdate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/URL"
+      }
+    },
+    {
+      "@id": "beckn:status",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "status",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current tracking status",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTimeUpdate"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity period for this tracking record",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTimeUpdate"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    }
+  ]
+}

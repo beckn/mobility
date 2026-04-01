@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LocationGroup",
+  "type": "object",
+  "description": "A set of geographic locations (stops or areas) that can collectively serve as an origin or destination for flexible transit services.",
+  "properties": {
+    "locationGroupId": {
+      "description": "Unique identifier for the location group",
+      "type": "string"
+    },
+    "locationGroupName": {
+      "description": "Human-readable name for the location group",
+      "type": "string"
+    },
+    "stops": {
+      "description": "Stops included in this location group",
+      "$ref": "../../Stop/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the location",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+    },
+    "gps": {
+      "description": "GPS coordinates as a latitude,longitude string",
+      "type": "string"
+    },
+    "address": {
+      "description": "Physical address of the location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Address"
+    },
+    "city": {
+      "description": "City name",
+      "type": "string"
+    },
+    "country": {
+      "description": "ISO 3166-1 alpha-2 country code",
+      "type": "string"
+    },
+    "geojson": {
+      "description": "GeoJSON geometry object representing this location",
+      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry"
+    }
+  },
+  "additionalProperties": false
+}

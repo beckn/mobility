@@ -1,0 +1,19 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "StationInformation": "beckn:StationInformation",
+    "stationId": "beckn:stationId",
+    "shortName": "beckn:shortName",
+    "capacity": "beckn:capacity",
+    "hasKiosk": "beckn:hasKiosk",
+    "rentalMethods": "beckn:rentalMethods",
+    "regionId": "beckn:regionId",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "gps": "beckn:gps",
+    "address": "beckn:address",
+    "city": "beckn:city",
+    "country": "beckn:country",
+    "geojson": "beckn:geojson"
+  }
+}

@@ -2,19 +2,47 @@ openapi: 3.1.0
 info:
   title: ServiceDelivery
   version: 2.0.0
-  description: Schema definition for the ServiceDelivery entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the ServiceDelivery entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     ServiceDelivery:
       type: object
       title: ServiceDelivery
-      description: >
-        Attributes for the ServiceDelivery entity in the Beckn Mobility domain.
-      properties: {}
+      description: The top-level response container in SIRI encapsulating one or more
+        real-time data delivery types.
+      properties:
+        responseTimestamp:
+          description: Timestamp when this service delivery was generated
+          type: string
+          format: date-time
+        producerRef:
+          description: Identifier of the system producing this delivery
+          type: string
+        requestMessageRef:
+          description: Reference to the request that triggered this delivery
+          type: string
+        stopMonitoring:
+          description: Stop monitoring delivery payloads
+          $ref: ../../StopMonitoring/v2.0/schema.json#/$defs/StopMonitoring
+        vehicleMonitoring:
+          description: Vehicle monitoring delivery payloads
+          $ref: ../../VehicleMonitoringDelivery/v2.0/schema.json#/$defs/VehicleMonitoringDelivery
+        estimatedTimetable:
+          description: Estimated timetable delivery payloads
+          $ref: ../../EstimatedTimetableDelivery/v2.0/schema.json#/$defs/EstimatedTimetableDelivery
+        id:
+          description: Unique identifier for the catalog
+          type: string
+        descriptor:
+          description: Human-readable description of the catalog
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        tags:
+          description: Tags associated with the catalog
+          type: string
+      additionalProperties: false

@@ -2,19 +2,40 @@ openapi: 3.1.0
 info:
   title: PassengerCount
   version: 2.0.0
-  description: Schema definition for the PassengerCount entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the PassengerCount entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     PassengerCount:
       type: object
       title: PassengerCount
-      description: >
-        Attributes for the PassengerCount entity in the Beckn Mobility domain.
-      properties: {}
+      description: The measured number of passengers currently aboard a vehicle, used
+        for real-time capacity and load management.
+      properties:
+        boardingCount:
+          description: Number of passengers who boarded at the last stop
+          type: number
+        alightingCount:
+          description: Number of passengers who alighted at the last stop
+          type: number
+        currentOccupancy:
+          description: Total number of passengers currently on board
+          type: number
+        unitCode:
+          description: Unit of measure code (UN/ECE Rec 20)
+          type: string
+        value:
+          description: Numeric quantity value
+          type: number
+        maximum:
+          description: Maximum allowed quantity
+          type: number
+        minimum:
+          description: Minimum required quantity
+          type: number
+      additionalProperties: false

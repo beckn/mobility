@@ -1,0 +1,259 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:StopTime",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "StopTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The scheduled arrival and departure times for a vehicle at a specific stop within a vehicle journey.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:arrivalTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "arrivalTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Scheduled arrival time in HH:MM:SS format",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTime"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:departureTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "departureTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Scheduled departure time in HH:MM:SS format",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTime"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:stopSequence",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopSequence",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Order of this stop within the vehicle journey",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTime"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:stopRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the stop for this stop time",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTime"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Stop"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Stop/v2.0/vocab.jsonld#beckn:Stop"
+      }
+    },
+    {
+      "@id": "beckn:pickupType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "pickupType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "How passengers board at this stop (0=regular, 1=no_pickup, 2=phone_agency, 3=coordinate_with_driver)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTime"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:dropOffType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "dropOffType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "How passengers alight at this stop (0=regular, 1=no_drop_off, 2=phone_agency, 3=coordinate_with_driver)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTime"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:distanceTraveled",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "distanceTraveled",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Distance from the route origin to this stop in metres",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTime"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:startDate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "startDate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Start date and time of the period",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTime"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:endDate",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "endDate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "End date and time of the period",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTime"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:startTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "startTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Start time of day in HH:MM:SS format",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTime"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:endTime",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "endTime",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "End time of day in HH:MM:SS format",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:StopTime"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

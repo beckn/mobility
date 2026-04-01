@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Direction",
+  "type": "object",
+  "description": "The direction of travel of a transport service along a route, typically expressed as inbound or outbound.",
+  "properties": {
+    "directionId": {
+      "description": "Binary direction identifier (0 for one direction, 1 for the other)",
+      "type": "string"
+    },
+    "directionCode": {
+      "description": "Named direction code (e.g. INBOUND, OUTBOUND, CLOCKWISE)",
+      "type": "string"
+    },
+    "name": {
+      "description": "Short display name of the entity",
+      "type": "string"
+    },
+    "short_desc": {
+      "description": "Brief textual description",
+      "type": "string"
+    },
+    "long_desc": {
+      "description": "Detailed or long-form description",
+      "type": "string"
+    },
+    "media": {
+      "description": "Media resource URLs (images, audio, video)",
+      "type": "string",
+      "format": "uri"
+    },
+    "images": {
+      "description": "Image URLs for visual display",
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "additionalProperties": false
+}

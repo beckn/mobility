@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "TripUpdate": "beckn:TripUpdate",
+    "contractChanges": "beckn:contractChanges",
+    "cancelledItems": "beckn:cancelledItems",
+    "stateUpdate": "beckn:stateUpdate",
+    "trackingEndpoint": "beckn:trackingEndpoint",
+    "driverRef": "beckn:driverRef",
+    "updatedAt": "beckn:updatedAt",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "items": "beckn:items",
+    "fulfillments": "beckn:fulfillments",
+    "state": "beckn:state"
+  }
+}

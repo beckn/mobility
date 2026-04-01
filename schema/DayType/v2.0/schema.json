@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DayType",
+  "type": "object",
+  "description": "A classification of a day (e.g., weekday, weekend, public holiday) used to define when a service pattern is valid.",
+  "properties": {
+    "dayTypeCode": {
+      "description": "Code identifying the day type (e.g. WEEKDAY, WEEKEND, HOLIDAY)",
+      "type": "string"
+    },
+    "daysOfWeek": {
+      "description": "List of days of the week applicable to this day type",
+      "type": "array"
+    },
+    "startDate": {
+      "description": "Start date and time of the period",
+      "type": "string",
+      "format": "date-time"
+    },
+    "endDate": {
+      "description": "End date and time of the period",
+      "type": "string",
+      "format": "date-time"
+    },
+    "startTime": {
+      "description": "Start time of day in HH:MM:SS format",
+      "type": "string"
+    },
+    "endTime": {
+      "description": "End time of day in HH:MM:SS format",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

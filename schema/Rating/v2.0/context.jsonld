@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Rating": "beckn:Rating",
+    "ratedEntityId": "beckn:ratedEntityId",
+    "ratedEntityType": "beckn:ratedEntityType",
+    "comment": "beckn:comment",
+    "target": "beckn:target",
+    "range": "beckn:range",
+    "ratingValue": "beckn:ratingValue",
+    "feedback": "beckn:feedback"
+  }
+}

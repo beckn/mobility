@@ -1,0 +1,180 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Network",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Network",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A grouping of routes and lines operated under a common brand or authority, used for fare and operational management.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "https://schema.org/Organization"
+        },
+        {
+          "@id": "beckn:Line"
+        },
+        {
+          "@id": "beckn:Operator"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:networkId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "networkId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the network",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Network"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:networkName",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "networkName",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable name of the network",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Network"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:operatorRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "operatorRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Operator(s) running services within this network",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Network"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Operator"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Operator/v2.0/vocab.jsonld#beckn:Operator"
+      }
+    },
+    {
+      "@id": "beckn:lines",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "lines",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Lines that belong to this network",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Network"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Line"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Line/v2.0/vocab.jsonld#beckn:Line"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Network"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Network"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags associated with the catalog",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Network"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

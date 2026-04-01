@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Rider": "beckn:Rider",
+    "riderId": "beckn:riderId",
+    "preferredPaymentMethod": "beckn:preferredPaymentMethod",
+    "membershipPlan": "beckn:membershipPlan",
+    "id": "beckn:id",
+    "person": "beckn:person",
+    "organization": "beckn:organization",
+    "entitlements": "beckn:entitlements"
+  }
+}

@@ -2,19 +2,43 @@ openapi: 3.1.0
 info:
   title: AffectedLine
   version: 2.0.0
-  description: Schema definition for the AffectedLine entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the AffectedLine entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     AffectedLine:
       type: object
       title: AffectedLine
-      description: >
-        Attributes for the AffectedLine entity in the Beckn Mobility domain.
-      properties: {}
+      description: A reference to a transport line that is affected by a service disruption
+        or alert.
+      properties:
+        lineId:
+          description: Identifier of the affected transport line
+          type: string
+        lineRef:
+          description: Reference to the affected Line entity
+          $ref: ../../Line/v2.0/schema.json#/$defs/Line
+        affectedStops:
+          description: Stops on this line affected by the disruption
+          $ref: ../../Stop/v2.0/schema.json#/$defs/Stop
+        cause:
+          description: Cause of the disruption affecting this line
+          type: string
+        id:
+          description: Unique identifier for the alert
+          type: string
+        descriptor:
+          description: Human-readable description of the alert
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        validity:
+          description: Time period during which the alert is active
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        status:
+          description: Current status of the alert
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/State
+      additionalProperties: false

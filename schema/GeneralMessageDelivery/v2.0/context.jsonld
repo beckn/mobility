@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "GeneralMessageDelivery": "beckn:GeneralMessageDelivery",
+    "responseTimestamp": "beckn:responseTimestamp",
+    "infoMessages": "beckn:infoMessages",
+    "channel": "beckn:channel",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "validity": "beckn:validity",
+    "status": "beckn:status"
+  }
+}

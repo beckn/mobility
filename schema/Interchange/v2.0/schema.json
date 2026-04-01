@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Interchange",
+  "type": "object",
+  "description": "A planned transfer connection point where passengers switch between two or more transport services, with defined timing constraints.",
+  "properties": {
+    "minTransferTime": {
+      "description": "Minimum required transfer time in seconds",
+      "type": "number"
+    },
+    "transferType": {
+      "description": "Type of interchange (e.g. TIMED, GUARANTEED, IN_SEAT)",
+      "type": "string"
+    },
+    "fromStopId": {
+      "description": "The stop passengers transfer from",
+      "$ref": "../../Stop/v2.0/schema.json"
+    },
+    "toStopId": {
+      "description": "The stop passengers transfer to",
+      "$ref": "../../Stop/v2.0/schema.json"
+    },
+    "fromTripId": {
+      "description": "The vehicle journey passengers transfer from",
+      "$ref": "../../VehicleJourney/v2.0/schema.json"
+    },
+    "toTripId": {
+      "description": "The vehicle journey passengers transfer to",
+      "$ref": "../../VehicleJourney/v2.0/schema.json"
+    },
+    "stopId": {
+      "description": "Unique identifier for the stop",
+      "type": "string"
+    },
+    "stopCode": {
+      "description": "Short public-facing code for the stop",
+      "type": "string"
+    },
+    "stopName": {
+      "description": "Human-readable name of the stop",
+      "type": "string"
+    },
+    "locationType": {
+      "description": "Classification of location (0=stop, 1=station, 2=entrance, 3=generic_node, 4=boarding_area)",
+      "type": "string"
+    },
+    "parentStation": {
+      "description": "Reference to the parent station if this is a platform",
+      "$ref": "../../Station/v2.0/schema.json"
+    },
+    "wheelchairBoarding": {
+      "description": "Wheelchair accessibility (0=no info, 1=accessible, 2=not accessible)",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

@@ -3,18 +3,57 @@ info:
   title: Station
   version: 2.0.0
   description: Schema definition for the Station entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Station:
       type: object
       title: Station
-      description: >
-        Attributes for the Station entity in the Beckn Mobility domain.
-      properties: {}
+      description: A major transit facility serving as a hub for one or more transport
+        modes, typically offering waiting areas, ticketing, and interchange facilities.
+      properties:
+        stationId:
+          description: Unique identifier for the station
+          type: string
+        stationName:
+          description: Human-readable name of the station
+          type: string
+        stationType:
+          description: Primary transport mode served (e.g. RAIL, BUS, METRO, FERRY)
+          type: string
+        platforms:
+          description: Platforms or quays within this station
+          $ref: ../../Quay/v2.0/schema.json#/$defs/Quay
+        levels:
+          description: Levels or floors within the station
+          $ref: ../../Level/v2.0/schema.json#/$defs/Level
+        pathways:
+          description: Internal navigation pathways within the station
+          $ref: ../../Pathway/v2.0/schema.json#/$defs/Pathway
+        id:
+          description: Unique identifier for the location
+          type: string
+        descriptor:
+          description: Human-readable description of the location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        gps:
+          description: GPS coordinates as a latitude,longitude string
+          type: string
+        address:
+          description: Physical address of the location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Address
+        city:
+          description: City name
+          type: string
+        country:
+          description: ISO 3166-1 alpha-2 country code
+          type: string
+        geojson:
+          description: GeoJSON geometry object representing this location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry
+      additionalProperties: false

@@ -1,0 +1,106 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Shape",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "Shape",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The geographic path traced by a vehicle along a route, represented as an ordered sequence of geographic coordinates.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:shapeId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "shapeId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the shape",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Shape"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:distanceTraveled",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "distanceTraveled",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Distance along the shape in metres up to this point",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Shape"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:type",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "type",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "GeoJSON geometry type (Point, Polygon, LineString, etc.)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Shape"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:coordinates",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "coordinates",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Coordinate array per RFC 7946",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:Shape"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    }
+  ]
+}

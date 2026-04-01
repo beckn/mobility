@@ -1,0 +1,303 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:VehiclePosition",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "VehiclePosition",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "The current real-time geographic position, bearing, and speed of a vehicle operating a transport service.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "https://schema.org/Vehicle"
+        },
+        {
+          "@id": "beckn:TripDescriptor"
+        },
+        {
+          "@id": "beckn:VehicleDescriptor"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:tripDescriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tripDescriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Identifies the trip this vehicle is operating",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:range": {
+        "@id": "beckn:TripDescriptor"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../TripDescriptor/v2.0/vocab.jsonld#beckn:TripDescriptor"
+      }
+    },
+    {
+      "@id": "beckn:vehicleDescriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleDescriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Identifies the reporting vehicle",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:range": {
+        "@id": "beckn:VehicleDescriptor"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../VehicleDescriptor/v2.0/vocab.jsonld#beckn:VehicleDescriptor"
+      }
+    },
+    {
+      "@id": "beckn:latitude",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "latitude",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current latitude in WGS-84 decimal degrees",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:longitude",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "longitude",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current longitude in WGS-84 decimal degrees",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:bearing",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "bearing",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current bearing in degrees (0=north, 90=east)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:speed",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "speed",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current speed in metres per second",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:currentStopSequence",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "currentStopSequence",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Stop sequence index of the stop the vehicle is at or approaching",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:currentStatus",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "currentStatus",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Vehicle status relative to the stop (INCOMING_AT, STOPPED_AT, IN_TRANSIT_TO)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:timestamp",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "timestamp",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Timestamp of this position report",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the tracking record",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:url",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "url",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "URL endpoint for real-time tracking information",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:range": {
+        "@id": "xsd:anyURI"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/URL"
+      }
+    },
+    {
+      "@id": "beckn:status",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "status",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current tracking status",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#State"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity period for this tracking record",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    }
+  ]
+}

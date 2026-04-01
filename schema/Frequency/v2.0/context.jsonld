@@ -1,0 +1,16 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Frequency": "beckn:Frequency",
+    "headwaySecs": "beckn:headwaySecs",
+    "exactTimes": "beckn:exactTimes",
+    "startTime": "beckn:startTime",
+    "endTime": "beckn:endTime",
+    "id": "beckn:id",
+    "constraintType": "beckn:constraintType",
+    "operator": "beckn:operator",
+    "value": "beckn:value",
+    "unitCode": "beckn:unitCode",
+    "validity": "beckn:validity"
+  }
+}

@@ -3,18 +3,49 @@ info:
   title: Frequency
   version: 2.0.0
   description: Schema definition for the Frequency entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Frequency:
       type: object
       title: Frequency
-      description: >
-        Attributes for the Frequency entity in the Beckn Mobility domain.
-      properties: {}
+      description: A headway-based service specification indicating how often a vehicle
+        runs on a route within a given time window.
+      properties:
+        headwaySecs:
+          description: Time in seconds between consecutive vehicle departures
+          type: number
+        exactTimes:
+          description: Whether departures are at exact scheduled times (true) or headway-based
+            (false)
+          type: boolean
+        startTime:
+          description: Time at which this frequency period begins (HH:MM:SS)
+          type: string
+        endTime:
+          description: Time at which this frequency period ends (HH:MM:SS)
+          type: string
+        id:
+          description: Unique identifier for the constraint
+          type: string
+        constraintType:
+          description: Type of constraint (extensible term)
+          type: string
+        operator:
+          description: Comparator operator (e.g. <=, >=, =)
+          type: string
+        value:
+          description: Numeric value of the constraint
+          type: number
+        unitCode:
+          description: Unit of measure code (UN/ECE Rec 20)
+          type: string
+        validity:
+          description: Validity window for this constraint
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+      additionalProperties: false

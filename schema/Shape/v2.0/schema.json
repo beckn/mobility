@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Shape",
+  "type": "object",
+  "description": "The geographic path traced by a vehicle along a route, represented as an ordered sequence of geographic coordinates.",
+  "properties": {
+    "shapeId": {
+      "description": "Unique identifier for the shape",
+      "type": "string"
+    },
+    "distanceTraveled": {
+      "description": "Distance along the shape in metres up to this point",
+      "type": "number"
+    },
+    "type": {
+      "description": "GeoJSON geometry type (Point, Polygon, LineString, etc.)",
+      "type": "string"
+    },
+    "coordinates": {
+      "description": "Coordinate array per RFC 7946",
+      "type": "array"
+    }
+  },
+  "additionalProperties": false
+}

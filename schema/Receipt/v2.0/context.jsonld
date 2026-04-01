@@ -1,0 +1,15 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Receipt": "beckn:Receipt",
+    "receiptId": "beckn:receiptId",
+    "issuedAt": "beckn:issuedAt",
+    "paymentMethod": "beckn:paymentMethod",
+    "tripRef": "beckn:tripRef",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "price": "beckn:price",
+    "breakup": "beckn:breakup",
+    "validity": "beckn:validity"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "VehicleMonitoringDelivery": "beckn:VehicleMonitoringDelivery",
+    "responseTimestamp": "beckn:responseTimestamp",
+    "vehicleActivities": "beckn:vehicleActivities",
+    "validUntil": "beckn:validUntil",
+    "id": "beckn:id",
+    "url": "beckn:url",
+    "status": "beckn:status",
+    "validity": "beckn:validity"
+  }
+}

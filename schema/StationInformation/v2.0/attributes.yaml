@@ -2,19 +2,59 @@ openapi: 3.1.0
 info:
   title: StationInformation
   version: 2.0.0
-  description: Schema definition for the StationInformation entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
+  description: Schema definition for the StationInformation entity in the Beckn Mobility
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     StationInformation:
       type: object
       title: StationInformation
-      description: >
-        Attributes for the StationInformation entity in the Beckn Mobility domain.
-      properties: {}
+      description: Static descriptive information about a shared mobility docking
+        station, including its location, capacity, and features.
+      properties:
+        stationId:
+          description: Unique identifier for the docking station
+          type: string
+        shortName:
+          description: Shortened name of the station for display
+          type: string
+        capacity:
+          description: Total number of docking points at this station
+          type: number
+        hasKiosk:
+          description: Whether this station has a kiosk for key cards or passes
+          type: boolean
+        rentalMethods:
+          description: Methods by which bikes can be rented (e.g. KEY, CREDITCARD,
+            APP)
+          type: string
+        regionId:
+          description: Identifier of the system region this station belongs to
+          type: string
+        id:
+          description: Unique identifier for the location
+          type: string
+        descriptor:
+          description: Human-readable description of the location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        gps:
+          description: GPS coordinates as a latitude,longitude string
+          type: string
+        address:
+          description: Physical address of the location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Address
+        city:
+          description: City name
+          type: string
+        country:
+          description: ISO 3166-1 alpha-2 country code
+          type: string
+        geojson:
+          description: GeoJSON geometry object representing this location
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry
+      additionalProperties: false

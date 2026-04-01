@@ -1,0 +1,330 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:MonitoredVehicleJourney",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "MonitoredVehicleJourney",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A real-time representation of a vehicle journey being actively tracked, including position and schedule adherence data.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "beckn:Direction"
+        },
+        {
+          "@id": "beckn:Line"
+        },
+        {
+          "@id": "beckn:OccupancyStatus"
+        },
+        {
+          "@id": "beckn:Pattern"
+        },
+        {
+          "@id": "beckn:Route"
+        },
+        {
+          "@id": "beckn:ServiceCalendar"
+        },
+        {
+          "@id": "beckn:StopTime"
+        },
+        {
+          "@id": "beckn:Vehicle"
+        },
+        {
+          "@id": "beckn:VehicleDescriptor"
+        },
+        {
+          "@id": "beckn:VehiclePosition"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:lineRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "lineRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the line being monitored",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Line"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Line/v2.0/vocab.jsonld#beckn:Line"
+      }
+    },
+    {
+      "@id": "beckn:directionRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "directionRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Direction of travel being monitored",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Direction"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Direction/v2.0/vocab.jsonld#beckn:Direction"
+      }
+    },
+    {
+      "@id": "beckn:vehicleRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the monitored vehicle",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:VehicleDescriptor"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../VehicleDescriptor/v2.0/vocab.jsonld#beckn:VehicleDescriptor"
+      }
+    },
+    {
+      "@id": "beckn:vehicleLocation",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleLocation",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current geographic position of the vehicle",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:VehiclePosition"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../VehiclePosition/v2.0/vocab.jsonld#beckn:VehiclePosition"
+      }
+    },
+    {
+      "@id": "beckn:bearing",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "bearing",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Compass bearing of travel in degrees",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:delay",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "delay",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Delay in seconds relative to schedule (negative = early)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:occupancy",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "occupancy",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Current passenger occupancy of the vehicle",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:OccupancyStatus"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../OccupancyStatus/v2.0/vocab.jsonld#beckn:OccupancyStatus"
+      }
+    },
+    {
+      "@id": "beckn:vehicleJourneyCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleJourneyCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique code for this vehicle journey",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:routeRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "routeRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to the route being served",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Route"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Route/v2.0/vocab.jsonld#beckn:Route"
+      }
+    },
+    {
+      "@id": "beckn:serviceCalendarRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "serviceCalendarRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Calendar defining when this journey operates",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:ServiceCalendar"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../ServiceCalendar/v2.0/vocab.jsonld#beckn:ServiceCalendar"
+      }
+    },
+    {
+      "@id": "beckn:vehicleRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "vehicleRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Vehicle assigned to this journey",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Vehicle"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Vehicle/v2.0/vocab.jsonld#beckn:Vehicle"
+      }
+    },
+    {
+      "@id": "beckn:patternRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "patternRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Journey pattern being followed",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Pattern"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Pattern/v2.0/vocab.jsonld#beckn:Pattern"
+      }
+    },
+    {
+      "@id": "beckn:stopTimes",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "stopTimes",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Scheduled stop times for each stop on this journey",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:MonitoredVehicleJourney"
+      },
+      "rdfs:range": {
+        "@id": "beckn:StopTime"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../StopTime/v2.0/vocab.jsonld#beckn:StopTime"
+      }
+    }
+  ]
+}

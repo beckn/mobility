@@ -1,0 +1,151 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:OccupancyStatus",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "OccupancyStatus",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "An indicator of the current passenger load level of a vehicle, such as empty, many seats available, or full.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "https://schema.org/ItemAvailability"
+      }
+    },
+    {
+      "@id": "beckn:occupancyLevel",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "occupancyLevel",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Occupancy level (EMPTY, MANY_SEATS_AVAILABLE, FEW_SEATS_AVAILABLE, STANDING_ROOM_ONLY, FULL, NOT_ACCEPTING_PASSENGERS)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:OccupancyStatus"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:availableSeats",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "availableSeats",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Estimated number of seats currently available",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:OccupancyStatus"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:totalSeats",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "totalSeats",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Total seating capacity of the vehicle",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:OccupancyStatus"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the state",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:OccupancyStatus"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the state",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:OccupancyStatus"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:updatedAt",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "updatedAt",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Timestamp when the state was last updated",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:OccupancyStatus"
+      },
+      "rdfs:range": {
+        "@id": "xsd:dateTime"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/DateTime"
+      }
+    }
+  ]
+}

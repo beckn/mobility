@@ -1,0 +1,41 @@
+openapi: 3.1.0
+info:
+  title: PassengerGroup
+  version: 2.0.0
+  description: Schema definition for the PassengerGroup entity in the Beckn Mobility
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    PassengerGroup:
+      type: object
+      title: PassengerGroup
+      description: A collection of passengers traveling together as a group, with
+        a group size and a designated lead passenger.
+      properties:
+        groupId:
+          description: Unique identifier for this passenger group
+          type: string
+        groupSize:
+          description: Total number of passengers in the group
+          type: number
+        leadPassenger:
+          description: The lead or primary passenger for the group
+          $ref: ../../Passenger/v2.0/schema.json#/$defs/Passenger
+        unitCode:
+          description: Unit of measure code (UN/ECE Rec 20)
+          type: string
+        value:
+          description: Numeric quantity value
+          type: number
+        maximum:
+          description: Maximum allowed quantity
+          type: number
+        minimum:
+          description: Minimum required quantity
+          type: number
+      additionalProperties: false

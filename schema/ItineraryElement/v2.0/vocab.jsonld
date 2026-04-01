@@ -1,0 +1,192 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:ItineraryElement",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "ItineraryElement",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A component of an aviation itinerary such as a flight segment, ground transport leg, or ancillary service.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": [
+        {
+          "@id": "beckn:FlightSegment"
+        },
+        {
+          "@id": "beckn:Leg"
+        }
+      ]
+    },
+    {
+      "@id": "beckn:elementType",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "elementType",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Type of itinerary element (FLIGHT, GROUND_TRANSPORT, ANCILLARY)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ItineraryElement"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:segmentRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "segmentRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to a flight segment if this is a flight element",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ItineraryElement"
+      },
+      "rdfs:range": {
+        "@id": "beckn:FlightSegment"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../FlightSegment/v2.0/vocab.jsonld#beckn:FlightSegment"
+      }
+    },
+    {
+      "@id": "beckn:legRef",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "legRef",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Reference to a transport leg if this is a surface element",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ItineraryElement"
+      },
+      "rdfs:range": {
+        "@id": "beckn:Leg"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../Leg/v2.0/vocab.jsonld#beckn:Leg"
+      }
+    },
+    {
+      "@id": "beckn:sequence",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "sequence",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Sequential order of this element within the itinerary",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ItineraryElement"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the contract item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ItineraryElement"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ItineraryElement"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Price for this contract item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ItineraryElement"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:quantity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "quantity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Quantity of this contract item",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ItineraryElement"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Quantity"
+      }
+    }
+  ]
+}

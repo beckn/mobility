@@ -3,18 +3,47 @@ info:
   title: Feed
   version: 2.0.0
   description: Schema definition for the Feed entity in the Beckn Mobility domain.
-  contact:
-    name: Beckn Foundation
-    url: https://beckn.org
   license:
-    name: MIT
-    url: https://opensource.org/licenses/MIT
-paths: {}
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
 components:
   schemas:
     Feed:
       type: object
       title: Feed
-      description: >
-        Attributes for the Feed entity in the Beckn Mobility domain.
-      properties: {}
+      description: A data publication providing transit or mobility information in
+        a standardised format for consumption by applications or planners.
+      properties:
+        feedType:
+          description: Format of the feed (e.g. GTFS, GTFS_RT, GBFS, NeTEx)
+          type: string
+        feedId:
+          description: Unique identifier for the feed
+          type: string
+        feedPublisher:
+          description: Name of the organisation publishing this feed
+          type: string
+        feedLanguage:
+          description: BCP-47 language code for the feed content
+          type: string
+        feedStartDate:
+          description: Date from which the feed data is valid
+          type: string
+          format: date-time
+        feedEndDate:
+          description: Date until which the feed data is valid
+          type: string
+          format: date-time
+        id:
+          description: Unique identifier for the catalog
+          type: string
+        descriptor:
+          description: Human-readable description of the catalog
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        tags:
+          description: Tags associated with the catalog
+          type: string
+      additionalProperties: false

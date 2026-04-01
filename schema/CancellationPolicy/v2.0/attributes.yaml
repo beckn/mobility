@@ -1,0 +1,46 @@
+openapi: 3.1.0
+info:
+  title: CancellationPolicy
+  version: 2.0.0
+  description: Schema definition for the CancellationPolicy entity in the Beckn Mobility
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    CancellationPolicy:
+      type: object
+      title: CancellationPolicy
+      description: A policy defining the terms and conditions under which a transport
+        booking can be cancelled, including applicable refund percentages and cancellation
+        deadlines.
+      properties:
+        cancellationFee:
+          description: Flat cancellation fee charged upon cancellation
+          type: number
+        gracePeriodMinutes:
+          description: Number of minutes after booking during which cancellation is
+            free
+          type: number
+        fareComponent:
+          description: Fare components affected by this cancellation policy
+          $ref: ../../FareBreakup/v2.0/schema.json#/$defs/FareBreakup
+        id:
+          description: Unique identifier for the cancellation policy
+          type: string
+        descriptor:
+          description: Human-readable description of the policy
+          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+        cancellationTerms:
+          description: Terms and conditions governing cancellation
+          type: string
+        refundPercentage:
+          description: Percentage of the fare refunded on cancellation
+          type: number
+        cancelByTime:
+          description: Deadline by which cancellation must be made
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+      additionalProperties: false

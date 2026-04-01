@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "OccupancyStatus": "beckn:OccupancyStatus",
+    "occupancyLevel": "beckn:occupancyLevel",
+    "availableSeats": "beckn:availableSeats",
+    "totalSeats": "beckn:totalSeats",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "updatedAt": "beckn:updatedAt"
+  }
+}

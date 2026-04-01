@@ -1,0 +1,12 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "DistributionChannel": "beckn:DistributionChannel",
+    "channelType": "beckn:channelType",
+    "channelName": "beckn:channelName",
+    "url": "beckn:url",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "tags": "beckn:tags"
+  }
+}

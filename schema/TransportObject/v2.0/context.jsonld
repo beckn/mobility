@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "TransportObject": "beckn:TransportObject",
+    "objectType": "beckn:objectType",
+    "attributes": "beckn:attributes",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "categoryId": "beckn:categoryId",
+    "price": "beckn:price",
+    "quantity": "beckn:quantity",
+    "tags": "beckn:tags"
+  }
+}
