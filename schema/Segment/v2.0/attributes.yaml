@@ -34,10 +34,10 @@ components:
           type: string
         origin:
           description: Start location of the leg
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
         destination:
           description: End location of the leg
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
         startTime:
           description: Scheduled or actual start time of the leg
           type: string

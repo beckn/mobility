@@ -27,7 +27,7 @@
     },
     "activePeriod": {
       "description": "Time period during which the alert is active",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
     },
     "informedEntity": {
       "description": "Transport entities affected by this alert",
@@ -39,15 +39,15 @@
     },
     "descriptor": {
       "description": "Human-readable description of the alert",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "validity": {
       "description": "Time period during which the alert is active",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
     },
     "status": {
       "description": "Current status of the alert",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/State"
+      "$ref": "https://schema.beckn.io/State/v2.0/schema.json"
     }
   },
   "additionalProperties": false

@@ -26,7 +26,7 @@
     },
     "descriptor": {
       "description": "Human-readable label for the category",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "parentCategoryId": {
       "description": "Identifier of the parent category if hierarchical",

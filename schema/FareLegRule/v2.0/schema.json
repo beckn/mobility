@@ -38,15 +38,15 @@
     },
     "descriptor": {
       "description": "Human-readable description of the policy",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "validity": {
       "description": "Validity window for this policy version",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
     },
     "policyAttributes": {
       "description": "Extensible domain-specific policy attributes",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Attributes"
+      "$ref": "https://schema.beckn.io/Attributes/v2.0/schema.json"
     }
   },
   "additionalProperties": false

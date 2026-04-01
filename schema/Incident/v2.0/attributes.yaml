@@ -25,7 +25,7 @@ components:
           type: string
         affectedArea:
           description: Geographic area affected by the incident
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
         startTime:
           description: Date and time the incident started
           type: string
@@ -39,11 +39,11 @@ components:
           type: string
         descriptor:
           description: Human-readable description of the alert
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
         validity:
           description: Time period during which the alert is active
           $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
         status:
           description: Current status of the alert
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/State
+          $ref: https://schema.beckn.io/State/v2.0/attributes.yaml#/components/schemas/State
       additionalProperties: false

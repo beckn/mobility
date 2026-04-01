@@ -14,7 +14,7 @@
     },
     "coordinates": {
       "description": "Geographic coordinates to query around",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry"
+      "$ref": "https://schema.beckn.io/GeoJSONGeometry/v2.0/schema.json"
     },
     "radius": {
       "description": "Search radius in metres",
@@ -30,7 +30,7 @@
     },
     "spatial": {
       "description": "Geographic constraints on the search area",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/SpatialConstraint"
+      "$ref": "https://schema.beckn.io/SpatialConstraint/v2.0/schema.json"
     },
     "provider": {
       "description": "Identifier of a specific provider to search within",

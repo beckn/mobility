@@ -31,11 +31,11 @@ components:
           type: string
         person:
           description: Personal details of the participant
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Person
+          $ref: https://schema.beckn.io/Person/v2.0/attributes.yaml#/components/schemas/Person
         organization:
           description: Organisation the participant belongs to
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Organization
+          $ref: https://schema.beckn.io/Organization/v2.0/attributes.yaml#/components/schemas/Organization
         entitlements:
           description: Entitlements held by the participant
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Entitlement
+          $ref: https://schema.beckn.io/Entitlement/v2.0/attributes.yaml#/components/schemas/Entitlement
       additionalProperties: false

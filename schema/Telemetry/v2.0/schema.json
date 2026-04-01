@@ -48,11 +48,11 @@
     },
     "status": {
       "description": "Current tracking status",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/State"
+      "$ref": "https://schema.beckn.io/State/v2.0/schema.json"
     },
     "validity": {
       "description": "Validity period for this tracking record",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
     }
   },
   "additionalProperties": false

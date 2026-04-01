@@ -22,11 +22,11 @@
     },
     "descriptor": {
       "description": "Feedback content and form",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "rating": {
       "description": "Rating associated with this feedback",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Rating"
+      "$ref": "https://schema.beckn.io/Rating/v2.0/schema.json"
     }
   },
   "additionalProperties": false

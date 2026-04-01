@@ -6,11 +6,11 @@
   "properties": {
     "origin": {
       "description": "Pickup location for the ride",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+      "$ref": "https://schema.beckn.io/Location/v2.0/schema.json"
     },
     "destination": {
       "description": "Dropoff location for the ride",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+      "$ref": "https://schema.beckn.io/Location/v2.0/schema.json"
     },
     "requestedTime": {
       "description": "Requested pickup time",
@@ -35,7 +35,7 @@
     },
     "spatial": {
       "description": "Geographic constraints on the search area",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/SpatialConstraint"
+      "$ref": "https://schema.beckn.io/SpatialConstraint/v2.0/schema.json"
     },
     "provider": {
       "description": "Identifier of a specific provider to search within",

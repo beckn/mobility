@@ -37,19 +37,19 @@
     },
     "descriptor": {
       "description": "Human-readable description of the contract",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "items": {
       "description": "Line items within the contract",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/ContractItem"
+      "$ref": "https://schema.beckn.io/ContractItem/v2.0/schema.json"
     },
     "fulfillments": {
       "description": "Fulfillments associated with this contract",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Fulfillment"
+      "$ref": "https://schema.beckn.io/Fulfillment/v2.1/schema.json"
     },
     "state": {
       "description": "Current state of the contract",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/State"
+      "$ref": "https://schema.beckn.io/State/v2.0/schema.json"
     }
   },
   "additionalProperties": false

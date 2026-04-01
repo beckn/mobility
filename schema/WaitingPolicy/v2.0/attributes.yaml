@@ -37,11 +37,11 @@ components:
           type: string
         descriptor:
           description: Human-readable description of the policy
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
         validity:
           description: Validity window for this policy version
           $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
         policyAttributes:
           description: Extensible domain-specific policy attributes
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Attributes
+          $ref: https://schema.beckn.io/Attributes/v2.0/attributes.yaml#/components/schemas/Attributes
       additionalProperties: false

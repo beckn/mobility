@@ -22,7 +22,7 @@
     },
     "descriptor": {
       "description": "Human-readable description of the policy",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "cancellationTerms": {
       "description": "Terms and conditions governing cancellation",
@@ -34,7 +34,7 @@
     },
     "cancelByTime": {
       "description": "Deadline by which cancellation must be made",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
     }
   },
   "additionalProperties": false

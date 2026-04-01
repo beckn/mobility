@@ -35,7 +35,7 @@
     },
     "descriptor": {
       "description": "Human-readable description of the catalog",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "tags": {
       "description": "Tags associated with the catalog",

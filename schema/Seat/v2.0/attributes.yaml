@@ -41,11 +41,11 @@ components:
           type: string
         descriptor:
           description: Human-readable information about the entitlement
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
         resource:
           description: The resource being accessed against this entitlement
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/ContractItem
+          $ref: https://schema.beckn.io/ContractItem/v2.0/attributes.yaml#/components/schemas/ContractItem
         credentials:
           description: Credential descriptors for the entitlement
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
       additionalProperties: false

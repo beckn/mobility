@@ -22,18 +22,18 @@ components:
         contractChanges:
           description: Items added or modified in the trip contract (new stop, route
             change, add-on service)
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/ContractItem
+          $ref: https://schema.beckn.io/ContractItem/v2.0/attributes.yaml#/components/schemas/ContractItem
         cancelledItems:
           description: Items removed from the original trip contract
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/ContractItem
+          $ref: https://schema.beckn.io/ContractItem/v2.0/attributes.yaml#/components/schemas/ContractItem
         stateUpdate:
           description: Status notification for the traveler (e.g. driver arriving,
             trip started, trip ended, driver changed)
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/State
+          $ref: https://schema.beckn.io/State/v2.0/attributes.yaml#/components/schemas/State
         trackingEndpoint:
           description: Real-time tracking endpoint including URL, protocol, and data
             schema reference
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Tracking
+          $ref: https://schema.beckn.io/Tracking/v2.1/attributes.yaml#/components/schemas/Tracking
         driverRef:
           description: Reference to the current driver if changed from the originally
             assigned driver
@@ -47,14 +47,14 @@ components:
           type: string
         descriptor:
           description: Human-readable description of the contract
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
         items:
           description: Line items within the contract
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/ContractItem
+          $ref: https://schema.beckn.io/ContractItem/v2.0/attributes.yaml#/components/schemas/ContractItem
         fulfillments:
           description: Fulfillments associated with this contract
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Fulfillment
+          $ref: https://schema.beckn.io/Fulfillment/v2.1/attributes.yaml#/components/schemas/Fulfillment
         state:
           description: Current state of the contract
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/State
+          $ref: https://schema.beckn.io/State/v2.0/attributes.yaml#/components/schemas/State
       additionalProperties: false

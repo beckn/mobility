@@ -31,14 +31,14 @@ components:
           type: string
         person:
           description: Personal details of the agent
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Person
+          $ref: https://schema.beckn.io/Person/v2.0/attributes.yaml#/components/schemas/Person
         organization:
           description: Organisation the agent belongs to
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Organization
+          $ref: https://schema.beckn.io/Organization/v2.0/attributes.yaml#/components/schemas/Organization
         contact:
           description: Contact information for the agent
           type: string
         rating:
           description: Overall rating of the agent
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Rating
+          $ref: https://schema.beckn.io/Rating/v2.0/attributes.yaml#/components/schemas/Rating
       additionalProperties: false

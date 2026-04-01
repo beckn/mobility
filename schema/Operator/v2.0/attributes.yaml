@@ -34,23 +34,23 @@ components:
           type: string
         descriptor:
           description: Human-readable description of the provider
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
         categories:
           description: Service categories offered by the provider
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/CategoryCode
+          $ref: https://schema.beckn.io/CategoryCode/v2.1/attributes.yaml#/components/schemas/CategoryCode
         locations:
           description: Locations where the provider offers services
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
         items:
           description: Items available for discovery from this provider
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Item
+          $ref: https://schema.beckn.io/Item/v2.1/attributes.yaml#/components/schemas/Item
         fulfillments:
           description: Fulfillment options offered by this provider
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Fulfillment
+          $ref: https://schema.beckn.io/Fulfillment/v2.1/attributes.yaml#/components/schemas/Fulfillment
         ratingsTotal:
           description: Total number of ratings received
           type: number
         rating:
           description: Aggregate rating of the provider
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Rating
+          $ref: https://schema.beckn.io/Rating/v2.0/attributes.yaml#/components/schemas/Rating
       additionalProperties: false

@@ -26,7 +26,7 @@ components:
           type: string
         coordinates:
           description: Geographic coordinates to query around
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry
+          $ref: https://schema.beckn.io/GeoJSONGeometry/v2.0/attributes.yaml#/components/schemas/GeoJSONGeometry
         radius:
           description: Search radius in metres
           type: number
@@ -39,7 +39,7 @@ components:
           type: string
         spatial:
           description: Geographic constraints on the search area
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/SpatialConstraint
+          $ref: https://schema.beckn.io/SpatialConstraint/v2.0/attributes.yaml#/components/schemas/SpatialConstraint
         provider:
           description: Identifier of a specific provider to search within
           type: string

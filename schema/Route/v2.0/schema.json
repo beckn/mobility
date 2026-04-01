@@ -34,19 +34,19 @@
     },
     "descriptor": {
       "description": "Human-readable description of the item",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "categoryId": {
       "description": "Category code classifying the item",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/CategoryCode"
+      "$ref": "https://schema.beckn.io/CategoryCode/v2.1/schema.json"
     },
     "price": {
       "description": "Price specification for this item",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+      "$ref": "https://schema.beckn.io/PriceSpecification/v2.1/schema.json"
     },
     "quantity": {
       "description": "Available quantity of the item",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Quantity"
+      "$ref": "https://schema.beckn.io/Quantity/v2.0/schema.json"
     },
     "tags": {
       "description": "Tags associated with the item",

@@ -42,7 +42,7 @@
     },
     "validity": {
       "description": "Validity window for this constraint",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
     }
   },
   "additionalProperties": false

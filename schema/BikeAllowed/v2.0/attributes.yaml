@@ -25,7 +25,7 @@ components:
           type: string
         descriptor:
           description: Human-readable label of the feature
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
         value:
           description: Value of the feature (e.g. yes, no, unknown)
           type: string

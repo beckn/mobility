@@ -40,10 +40,10 @@ components:
           type: string
         descriptor:
           description: Human-readable description of the offer
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
         price:
           description: Price specification for this offer
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification
+          $ref: https://schema.beckn.io/PriceSpecification/v2.1/attributes.yaml#/components/schemas/PriceSpecification
         validity:
           description: Validity period of the offer
           $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod

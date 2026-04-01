@@ -19,7 +19,7 @@
     },
     "location": {
       "description": "Geographic location of the emergency",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+      "$ref": "https://schema.beckn.io/Location/v2.0/schema.json"
     },
     "id": {
       "description": "Unique identifier for the alert",
@@ -27,15 +27,15 @@
     },
     "descriptor": {
       "description": "Human-readable description of the alert",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "validity": {
       "description": "Time period during which the alert is active",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
     },
     "status": {
       "description": "Current status of the alert",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/State"
+      "$ref": "https://schema.beckn.io/State/v2.0/schema.json"
     }
   },
   "additionalProperties": false

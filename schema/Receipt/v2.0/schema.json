@@ -27,19 +27,19 @@
     },
     "descriptor": {
       "description": "Human-readable description of the invoice",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "price": {
       "description": "Total price for the invoice",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+      "$ref": "https://schema.beckn.io/PriceSpecification/v2.1/schema.json"
     },
     "breakup": {
       "description": "Itemised price breakup",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+      "$ref": "https://schema.beckn.io/PriceSpecification/v2.1/schema.json"
     },
     "validity": {
       "description": "Validity period of the invoice",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
     }
   },
   "additionalProperties": false

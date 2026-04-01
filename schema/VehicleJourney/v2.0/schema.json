@@ -38,27 +38,27 @@
     },
     "agent": {
       "description": "The entity responsible for performing the fulfillment",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/FulfillmentAgent"
+      "$ref": "https://schema.beckn.io/FulfillmentAgent/v2.0/schema.json"
     },
     "mode": {
       "description": "Mode of fulfillment",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/FulfillmentMode"
+      "$ref": "https://schema.beckn.io/FulfillmentMode/v2.0/schema.json"
     },
     "state": {
       "description": "Current state of the fulfillment",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/State"
+      "$ref": "https://schema.beckn.io/State/v2.0/schema.json"
     },
     "participants": {
       "description": "Participants entitled to receive this fulfillment",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Participant"
+      "$ref": "https://schema.beckn.io/Participant/v2.0/schema.json"
     },
     "stages": {
       "description": "Stages in the fulfillment lifecycle",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/FulfillmentStage"
+      "$ref": "https://schema.beckn.io/FulfillmentStage/v2.0/schema.json"
     },
     "instructions": {
       "description": "Instructions for fulfillment",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     }
   },
   "additionalProperties": false

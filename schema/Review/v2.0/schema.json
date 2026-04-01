@@ -31,7 +31,7 @@
     },
     "feedback": {
       "description": "Textual feedback or written review accompanying the rating",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     }
   },
   "additionalProperties": false

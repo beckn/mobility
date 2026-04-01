@@ -14,7 +14,7 @@
     },
     "descriptor": {
       "description": "Human-readable label of the feature",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "value": {
       "description": "Value of the feature (e.g. yes, no, unknown)",

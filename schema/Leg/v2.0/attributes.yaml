@@ -19,13 +19,13 @@ components:
       properties:
         mode:
           description: Mode of fulfillment
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/FulfillmentMode
+          $ref: https://schema.beckn.io/FulfillmentMode/v2.0/attributes.yaml#/components/schemas/FulfillmentMode
         origin:
           description: Start location of the leg
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
         destination:
           description: End location of the leg
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
         startTime:
           description: Scheduled or actual start time of the leg
           type: string
@@ -51,17 +51,17 @@ components:
           type: string
         agent:
           description: The entity responsible for performing the fulfillment
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/FulfillmentAgent
+          $ref: https://schema.beckn.io/FulfillmentAgent/v2.0/attributes.yaml#/components/schemas/FulfillmentAgent
         state:
           description: Current state of the fulfillment
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/State
+          $ref: https://schema.beckn.io/State/v2.0/attributes.yaml#/components/schemas/State
         participants:
           description: Participants entitled to receive this fulfillment
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Participant
+          $ref: https://schema.beckn.io/Participant/v2.0/attributes.yaml#/components/schemas/Participant
         stages:
           description: Stages in the fulfillment lifecycle
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/FulfillmentStage
+          $ref: https://schema.beckn.io/FulfillmentStage/v2.0/attributes.yaml#/components/schemas/FulfillmentStage
         instructions:
           description: Instructions for fulfillment
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
       additionalProperties: false

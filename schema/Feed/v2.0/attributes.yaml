@@ -42,7 +42,7 @@ components:
           type: string
         descriptor:
           description: Human-readable description of the catalog
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
         tags:
           description: Tags associated with the catalog
           type: string

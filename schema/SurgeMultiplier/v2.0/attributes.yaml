@@ -35,7 +35,7 @@ components:
           type: string
         price:
           description: Monetary value of this component
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification
+          $ref: https://schema.beckn.io/PriceSpecification/v2.1/attributes.yaml#/components/schemas/PriceSpecification
         tags:
           description: Tags associated with this price component
           type: string

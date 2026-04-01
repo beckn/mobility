@@ -33,7 +33,7 @@ components:
           type: string
         descriptor:
           description: Human-readable description of the policy
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
         cancellationTerms:
           description: Terms and conditions governing cancellation
           type: string

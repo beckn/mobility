@@ -19,10 +19,10 @@ components:
       properties:
         origin:
           description: Origin location for the trip
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
         destination:
           description: Destination location for the trip
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
         departureTime:
           description: Requested departure time
           type: string
@@ -46,7 +46,7 @@ components:
           type: string
         spatial:
           description: Geographic constraints on the search area
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/SpatialConstraint
+          $ref: https://schema.beckn.io/SpatialConstraint/v2.0/attributes.yaml#/components/schemas/SpatialConstraint
         provider:
           description: Identifier of a specific provider to search within
           type: string

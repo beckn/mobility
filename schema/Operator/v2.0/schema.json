@@ -26,23 +26,23 @@
     },
     "descriptor": {
       "description": "Human-readable description of the provider",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "categories": {
       "description": "Service categories offered by the provider",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/CategoryCode"
+      "$ref": "https://schema.beckn.io/CategoryCode/v2.1/schema.json"
     },
     "locations": {
       "description": "Locations where the provider offers services",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+      "$ref": "https://schema.beckn.io/Location/v2.0/schema.json"
     },
     "items": {
       "description": "Items available for discovery from this provider",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Item"
+      "$ref": "https://schema.beckn.io/Item/v2.1/schema.json"
     },
     "fulfillments": {
       "description": "Fulfillment options offered by this provider",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Fulfillment"
+      "$ref": "https://schema.beckn.io/Fulfillment/v2.1/schema.json"
     },
     "ratingsTotal": {
       "description": "Total number of ratings received",
@@ -50,7 +50,7 @@
     },
     "rating": {
       "description": "Aggregate rating of the provider",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Rating"
+      "$ref": "https://schema.beckn.io/Rating/v2.0/schema.json"
     }
   },
   "additionalProperties": false

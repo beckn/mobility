@@ -23,7 +23,7 @@ components:
           type: string
         geometry:
           description: GeoJSON geometry defining the zone boundary
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry
+          $ref: https://schema.beckn.io/GeoJSONGeometry/v2.0/attributes.yaml#/components/schemas/GeoJSONGeometry
         rideAllowed:
           description: Whether riding is permitted within this zone
           type: boolean
@@ -38,13 +38,13 @@ components:
           type: string
         descriptor:
           description: Human-readable description of the location
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
         gps:
           description: GPS coordinates as a latitude,longitude string
           type: string
         address:
           description: Physical address of the location
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Address
+          $ref: https://schema.beckn.io/Address/v2.0/attributes.yaml#/components/schemas/Address
         city:
           description: City name
           type: string
@@ -53,5 +53,5 @@ components:
           type: string
         geojson:
           description: GeoJSON geometry object representing this location
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry
+          $ref: https://schema.beckn.io/GeoJSONGeometry/v2.0/attributes.yaml#/components/schemas/GeoJSONGeometry
       additionalProperties: false

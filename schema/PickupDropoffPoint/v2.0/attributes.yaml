@@ -31,13 +31,13 @@ components:
           type: string
         location:
           description: Geographic location of the stop
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
         type:
           description: Type of stop (start, end, intermediate)
           type: string
         instructions:
           description: Instructions for passengers at this stop
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
         time:
           description: Expected time window at this stop
           $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod

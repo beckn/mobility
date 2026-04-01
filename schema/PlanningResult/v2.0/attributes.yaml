@@ -19,10 +19,10 @@ components:
       properties:
         origin:
           description: Origin location for the planning query
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
         destination:
           description: Destination location for the planning query
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
         options:
           description: Available transport options returned
           $ref: https://schema.beckn.io/RideOption/v2.0/attributes.yaml#/components/schemas/RideOption
@@ -34,7 +34,7 @@ components:
           type: string
         descriptor:
           description: Human-readable description of the catalog
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor
+          $ref: https://schema.beckn.io/core/v2.0/Descriptor/attributes.yaml#components/schemas/Descriptor
         tags:
           description: Tags associated with the catalog
           type: string

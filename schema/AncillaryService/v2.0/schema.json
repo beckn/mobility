@@ -22,15 +22,15 @@
     },
     "descriptor": {
       "description": "Human-readable description of the offer",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "price": {
       "description": "Price specification for this offer",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/PriceSpecification"
+      "$ref": "https://schema.beckn.io/PriceSpecification/v2.1/schema.json"
     },
     "validity": {
       "description": "Validity period of the offer",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/TimePeriod"
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
     },
     "tags": {
       "description": "Tags or labels associated with the offer",

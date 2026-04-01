@@ -39,7 +39,7 @@ components:
           type: string
         ticketIds:
           description: Identifiers of any open support tickets
-          $ref: https://schema.beckn.io/core/v2.0/schema.json#/$defs/SupportTicket
+          $ref: https://schema.beckn.io/SupportTicket/v2.0/attributes.yaml#/components/schemas/SupportTicket
         callbackPhone:
           description: Telephone number for callback support
           type: string

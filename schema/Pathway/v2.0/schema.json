@@ -38,7 +38,7 @@
     },
     "descriptor": {
       "description": "Human-readable description of the location",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Descriptor"
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
     },
     "gps": {
       "description": "GPS coordinates as a latitude,longitude string",
@@ -46,7 +46,7 @@
     },
     "address": {
       "description": "Physical address of the location",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Address"
+      "$ref": "https://schema.beckn.io/Address/v2.0/schema.json"
     },
     "city": {
       "description": "City name",
@@ -58,7 +58,7 @@
     },
     "geojson": {
       "description": "GeoJSON geometry object representing this location",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/GeoJSONGeometry"
+      "$ref": "https://schema.beckn.io/GeoJSONGeometry/v2.0/schema.json"
     }
   },
   "additionalProperties": false

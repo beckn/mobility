@@ -40,11 +40,11 @@
     },
     "origin": {
       "description": "Start location of the leg",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+      "$ref": "https://schema.beckn.io/Location/v2.0/schema.json"
     },
     "destination": {
       "description": "End location of the leg",
-      "$ref": "https://schema.beckn.io/core/v2.0/schema.json#/$defs/Location"
+      "$ref": "https://schema.beckn.io/Location/v2.0/schema.json"
     },
     "startTime": {
       "description": "Scheduled or actual start time of the leg",
