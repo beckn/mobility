@@ -1,0 +1,479 @@
+{
+  "context": {
+    "action": "status",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "<schemaContext[]:uri>"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "contract": {
+      "id": "<id:uuid>",
+      "descriptor": {
+        "code": "<code>",
+        "longDesc": "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display",
+        "shortDesc": "High-performance gaming laptop with RTX graphics",
+        "name": "Premium Gaming Laptop Pro",
+        "thumbnailImage": "<thumbnailImage:uri>",
+        "docs": [
+          {
+            "label": "<label>",
+            "mimeType": "<mimeType>",
+            "standard": "<standard>",
+            "url": "<url:uri>",
+            "security": {
+              "checksum": "<checksum>",
+              "checksumAlgorithm": "SHA256",
+              "signature": "<signature>",
+              "signatureAlgorithm": "<signatureAlgorithm>",
+              "keyId": "<keyId>"
+            }
+          }
+        ],
+        "mediaFile": [
+          {
+            "label": "<label>",
+            "mimeType": "image/png",
+            "uri": "<uri:uri>"
+          }
+        ]
+      },
+      "commitments": [
+        {
+          "id": "<id>",
+          "status": {
+            "descriptor": {
+              "code": "DRAFT",
+              "longDesc": "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display",
+              "shortDesc": "High-performance gaming laptop with RTX graphics",
+              "name": "Premium Gaming Laptop Pro",
+              "thumbnailImage": "<thumbnailImage:uri>",
+              "docs": [
+                {
+                  "label": "<label>",
+                  "mimeType": "<mimeType>",
+                  "standard": "<standard>",
+                  "url": "<url:uri>",
+                  "security": {
+                    "checksum": "<checksum>",
+                    "checksumAlgorithm": "SHA256",
+                    "signature": "<signature>",
+                    "signatureAlgorithm": "<signatureAlgorithm>",
+                    "keyId": "<keyId>"
+                  }
+                }
+              ],
+              "mediaFile": [
+                {
+                  "label": "<label>",
+                  "mimeType": "image/png",
+                  "uri": "<uri:uri>"
+                }
+              ]
+            }
+          },
+          "resources": [
+            {
+              "id": "<id>",
+              "descriptor": {
+                "code": "<code>",
+                "longDesc": "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display",
+                "shortDesc": "High-performance gaming laptop with RTX graphics",
+                "name": "Premium Gaming Laptop Pro",
+                "thumbnailImage": "<thumbnailImage:uri>",
+                "docs": [
+                  {
+                    "label": "<label>",
+                    "mimeType": "<mimeType>",
+                    "standard": "<standard>",
+                    "url": "<url:uri>",
+                    "security": {
+                      "checksum": "<checksum>",
+                      "checksumAlgorithm": "SHA256",
+                      "signature": "<signature>",
+                      "signatureAlgorithm": "<signatureAlgorithm>",
+                      "keyId": "<keyId>"
+                    }
+                  }
+                ],
+                "mediaFile": [
+                  {
+                    "label": "<label>",
+                    "mimeType": "image/png",
+                    "uri": "<uri:uri>"
+                  }
+                ]
+              },
+              "resourceAttributes": {
+                "@context": "<@context>",
+                "@type": "<@type>"
+              }
+            }
+          ],
+          "offer": {
+            "id": "<id>",
+            "descriptor": {
+              "code": "<code>",
+              "longDesc": "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display",
+              "shortDesc": "High-performance gaming laptop with RTX graphics",
+              "name": "Premium Gaming Laptop Pro",
+              "thumbnailImage": "<thumbnailImage:uri>",
+              "docs": [
+                {
+                  "label": "<label>",
+                  "mimeType": "<mimeType>",
+                  "standard": "<standard>",
+                  "url": "<url:uri>",
+                  "security": {
+                    "checksum": "<checksum>",
+                    "checksumAlgorithm": "SHA256",
+                    "signature": "<signature>",
+                    "signatureAlgorithm": "<signatureAlgorithm>",
+                    "keyId": "<keyId>"
+                  }
+                }
+              ],
+              "mediaFile": [
+                {
+                  "label": "<label>",
+                  "mimeType": "image/png",
+                  "uri": "<uri:uri>"
+                }
+              ]
+            },
+            "provider": {
+              "id": "tech-store-001",
+              "descriptor": {
+                "code": "<code>",
+                "longDesc": "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display",
+                "shortDesc": "High-performance gaming laptop with RTX graphics",
+                "name": "Premium Gaming Laptop Pro",
+                "thumbnailImage": "<thumbnailImage:uri>",
+                "docs": [
+                  {
+                    "label": "<label>",
+                    "mimeType": "<mimeType>",
+                    "standard": "<standard>",
+                    "url": "<url:uri>",
+                    "security": {
+                      "checksum": "<checksum>",
+                      "checksumAlgorithm": "SHA256",
+                      "signature": "<signature>",
+                      "signatureAlgorithm": "<signatureAlgorithm>",
+                      "keyId": "<keyId>"
+                    }
+                  }
+                ],
+                "mediaFile": [
+                  {
+                    "label": "<label>",
+                    "mimeType": "image/png",
+                    "uri": "<uri:uri>"
+                  }
+                ]
+              },
+              "availableAt": [
+                {
+                  "geo": {
+                    "bbox": [
+                      0
+                    ],
+                    "coordinates": [
+                      "<coordinates[]>"
+                    ],
+                    "geometries": [
+                      "<recursive:GeoJSONGeometry>"
+                    ],
+                    "type": "Point"
+                  },
+                  "address": {
+                    "addressCountry": "IN",
+                    "addressLocality": "Bengaluru",
+                    "addressRegion": "Karnataka",
+                    "extendedAddress": "Apt 4B",
+                    "postalCode": "560001",
+                    "streetAddress": "123 Tech Street"
+                  }
+                }
+              ],
+              "providerAttributes": {
+                "@context": "<@context>",
+                "@type": "<@type>"
+              }
+            },
+            "resourceIds": [
+              "<resourceIds[]>"
+            ],
+            "addOns": [
+              {
+                "id": "<id>",
+                "descriptor": {
+                  "code": "<code>",
+                  "longDesc": "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display",
+                  "shortDesc": "High-performance gaming laptop with RTX graphics",
+                  "name": "Premium Gaming Laptop Pro",
+                  "thumbnailImage": "<thumbnailImage:uri>",
+                  "docs": [
+                    {
+                      "label": "<label>",
+                      "mimeType": "<mimeType>",
+                      "standard": "<standard>",
+                      "url": "<url:uri>",
+                      "security": {
+                        "checksum": "<checksum>",
+                        "checksumAlgorithm": "SHA256",
+                        "signature": "<signature>",
+                        "signatureAlgorithm": "<signatureAlgorithm>",
+                        "keyId": "<keyId>"
+                      }
+                    }
+                  ],
+                  "mediaFile": [
+                    {
+                      "label": "<label>",
+                      "mimeType": "image/png",
+                      "uri": "<uri:uri>"
+                    }
+                  ]
+                },
+                "resourceAttributes": {
+                  "@context": "<@context>",
+                  "@type": "<@type>"
+                }
+              }
+            ],
+            "considerations": [
+              {
+                "id": "<id>",
+                "status": {
+                  "code": "<code>",
+                  "longDesc": "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display",
+                  "shortDesc": "High-performance gaming laptop with RTX graphics",
+                  "name": "Premium Gaming Laptop Pro",
+                  "thumbnailImage": "<thumbnailImage:uri>",
+                  "docs": [
+                    {
+                      "label": "<label>",
+                      "mimeType": "<mimeType>",
+                      "standard": "<standard>",
+                      "url": "<url:uri>",
+                      "security": {
+                        "checksum": "<checksum>",
+                        "checksumAlgorithm": "SHA256",
+                        "signature": "<signature>",
+                        "signatureAlgorithm": "<signatureAlgorithm>",
+                        "keyId": "<keyId>"
+                      }
+                    }
+                  ],
+                  "mediaFile": [
+                    {
+                      "label": "<label>",
+                      "mimeType": "image/png",
+                      "uri": "<uri:uri>"
+                    }
+                  ]
+                },
+                "considerationAttributes": {
+                  "@context": "<@context>",
+                  "@type": "<@type>"
+                }
+              }
+            ],
+            "validity": {
+              "startDate": "<startDate:date-time>",
+              "endDate": "2025-12-31T23:59:59Z",
+              "startTime": "<startTime:time>",
+              "endTime": "<endTime:time>"
+            },
+            "offerAttributes": {
+              "@context": "<@context>",
+              "@type": "<@type>"
+            }
+          },
+          "commitmentAttributes": {
+            "@context": "<@context>",
+            "@type": "<@type>"
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "<id>",
+          "status": {
+            "code": "<code>",
+            "longDesc": "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display",
+            "shortDesc": "High-performance gaming laptop with RTX graphics",
+            "name": "Premium Gaming Laptop Pro",
+            "thumbnailImage": "<thumbnailImage:uri>",
+            "docs": [
+              {
+                "label": "<label>",
+                "mimeType": "<mimeType>",
+                "standard": "<standard>",
+                "url": "<url:uri>",
+                "security": {
+                  "checksum": "<checksum>",
+                  "checksumAlgorithm": "SHA256",
+                  "signature": "<signature>",
+                  "signatureAlgorithm": "<signatureAlgorithm>",
+                  "keyId": "<keyId>"
+                }
+              }
+            ],
+            "mediaFile": [
+              {
+                "label": "<label>",
+                "mimeType": "image/png",
+                "uri": "<uri:uri>"
+              }
+            ]
+          },
+          "considerationAttributes": {
+            "@context": "<@context>",
+            "@type": "<@type>"
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "<id>",
+          "descriptor": {
+            "code": "<code>",
+            "longDesc": "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display",
+            "shortDesc": "High-performance gaming laptop with RTX graphics",
+            "name": "Premium Gaming Laptop Pro",
+            "thumbnailImage": "<thumbnailImage:uri>",
+            "docs": [
+              {
+                "label": "<label>",
+                "mimeType": "<mimeType>",
+                "standard": "<standard>",
+                "url": "<url:uri>",
+                "security": {
+                  "checksum": "<checksum>",
+                  "checksumAlgorithm": "SHA256",
+                  "signature": "<signature>",
+                  "signatureAlgorithm": "<signatureAlgorithm>",
+                  "keyId": "<keyId>"
+                }
+              }
+            ],
+            "mediaFile": [
+              {
+                "label": "<label>",
+                "mimeType": "image/png",
+                "uri": "<uri:uri>"
+              }
+            ]
+          },
+          "participantAttributes": {
+            "@context": "<@context>",
+            "@type": "<@type>"
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "<id>",
+          "status": {
+            "code": "<code>",
+            "longDesc": "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display",
+            "shortDesc": "High-performance gaming laptop with RTX graphics",
+            "name": "Premium Gaming Laptop Pro",
+            "thumbnailImage": "<thumbnailImage:uri>",
+            "docs": [
+              {
+                "label": "<label>",
+                "mimeType": "<mimeType>",
+                "standard": "<standard>",
+                "url": "<url:uri>",
+                "security": {
+                  "checksum": "<checksum>",
+                  "checksumAlgorithm": "SHA256",
+                  "signature": "<signature>",
+                  "signatureAlgorithm": "<signatureAlgorithm>",
+                  "keyId": "<keyId>"
+                }
+              }
+            ],
+            "mediaFile": [
+              {
+                "label": "<label>",
+                "mimeType": "image/png",
+                "uri": "<uri:uri>"
+              }
+            ]
+          },
+          "commitmentIds": [
+            "<commitmentIds[]>"
+          ],
+          "performanceAttributes": {
+            "@context": "<@context>",
+            "@type": "<@type>"
+          }
+        }
+      ],
+      "settlements": [
+        {
+          "id": "<id>",
+          "considerationId": "<considerationId>",
+          "status": "DRAFT",
+          "settlementAttributes": {
+            "@context": "<@context>",
+            "@type": "<@type>"
+          }
+        }
+      ],
+      "status": {
+        "code": "DRAFT",
+        "longDesc": "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display",
+        "shortDesc": "High-performance gaming laptop with RTX graphics",
+        "name": "Premium Gaming Laptop Pro",
+        "thumbnailImage": "<thumbnailImage:uri>",
+        "docs": [
+          {
+            "label": "<label>",
+            "mimeType": "<mimeType>",
+            "standard": "<standard>",
+            "url": "<url:uri>",
+            "security": {
+              "checksum": "<checksum>",
+              "checksumAlgorithm": "SHA256",
+              "signature": "<signature>",
+              "signatureAlgorithm": "<signatureAlgorithm>",
+              "keyId": "<keyId>"
+            }
+          }
+        ],
+        "mediaFile": [
+          {
+            "label": "<label>",
+            "mimeType": "image/png",
+            "uri": "<uri:uri>"
+          }
+        ]
+      },
+      "contractAttributes": {
+        "@context": "<@context>",
+        "@type": "<@type>"
+      }
+    }
+  }
+}

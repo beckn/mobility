@@ -1,0 +1,33 @@
+{
+  "context": {
+    "action": "catalog/pull",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "<schemaContext[]:uri>"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "subscriptionId": "<subscriptionId:uuid>",
+    "mode": "FULL",
+    "fromDate": "<fromDate:date-time>",
+    "toDate": "<toDate:date-time>",
+    "limit": 20,
+    "offset": 0
+  }
+}

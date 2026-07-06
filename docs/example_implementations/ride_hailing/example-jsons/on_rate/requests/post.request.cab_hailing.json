@@ -1,0 +1,71 @@
+{
+  "context": {
+    "action": "on_rate",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+      "https://schema.beckn.io/RideOption/2.0/context.jsonld",
+      "https://schema.beckn.io/ServiceClass/2.0/context.jsonld",
+      "https://schema.beckn.io/FareEstimate/2.0/context.jsonld",
+      "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld",
+      "https://schema.beckn.io/Driver/2.0/context.jsonld",
+      "https://schema.beckn.io/Rating/2.0/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "ratings": [
+      {
+        "target": {
+          "id": "pn-amsterdam-cabs",
+          "descriptor": {
+            "name": "Amsterdam Cabs"
+          },
+          "targetAttributes": {
+            "@context": "https://schema.beckn.io/Rating/2.0/context.jsonld",
+            "@type": "beckn:Rating",
+            "beckn:ratingValue": 5
+          }
+        },
+        "range": {
+          "min": 1,
+          "max": 5,
+          "value": 5
+        }
+      },
+      {
+        "target": {
+          "id": "res-trip-cab-01",
+          "descriptor": {
+            "name": "The ride"
+          },
+          "targetAttributes": {
+            "@context": "https://schema.beckn.io/Rating/2.0/context.jsonld",
+            "@type": "beckn:Rating",
+            "beckn:ratingValue": 5
+          }
+        },
+        "range": {
+          "min": 1,
+          "max": 5,
+          "value": 5
+        }
+      }
+    ]
+  }
+}

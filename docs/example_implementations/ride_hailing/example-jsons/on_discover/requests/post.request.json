@@ -1,0 +1,261 @@
+{
+  "context": {
+    "action": "on_discover",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "catalogs": [
+      {
+        "bppId": "<bppId>",
+        "bppUri": "<bppUri:uri>",
+        "descriptor": {
+          "code": "<code>",
+          "longDesc": "Catalog of mobility services and products that can move the rider from the requested origin to the destination",
+          "shortDesc": "Mobility catalog",
+          "name": "<catalog name>",
+          "thumbnailImage": "<thumbnailImage:uri>",
+          "docs": [
+            {
+              "label": "<label>",
+              "mimeType": "<mimeType>",
+              "standard": "<standard>",
+              "url": "<url:uri>",
+              "security": {
+                "checksum": "<checksum>",
+                "checksumAlgorithm": "SHA256",
+                "signature": "<signature>",
+                "signatureAlgorithm": "<signatureAlgorithm>",
+                "keyId": "<keyId>"
+              }
+            }
+          ],
+          "mediaFile": [
+            {
+              "label": "<label>",
+              "mimeType": "image/png",
+              "uri": "<uri:uri>"
+            }
+          ]
+        },
+        "id": "<catalogId>",
+        "isActive": true,
+        "resources": [
+          {
+            "id": "<resourceId>",
+            "descriptor": {
+              "code": "<code>",
+              "longDesc": "A way to travel from the origin to the destination, described as a TripRequest",
+              "shortDesc": "Trip from origin to destination",
+              "name": "<resource name>",
+              "thumbnailImage": "<thumbnailImage:uri>"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+              "@type": "TripRequest",
+              "modes": "<modes e.g. CAR | BUS | RAIL | FERRY | BICYCLE | WALK | TRANSIT>",
+              "origin": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    "<lon:number>",
+                    "<lat:number>"
+                  ]
+                },
+                "address": {
+                  "streetAddress": "<streetAddress>",
+                  "addressLocality": "<addressLocality>",
+                  "addressRegion": "<addressRegion>",
+                  "postalCode": "<postalCode>",
+                  "addressCountry": "<addressCountry:ISO-3166-1 alpha-2>"
+                }
+              },
+              "destination": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    "<lon:number>",
+                    "<lat:number>"
+                  ]
+                },
+                "address": {
+                  "streetAddress": "<streetAddress>",
+                  "addressLocality": "<addressLocality>",
+                  "addressRegion": "<addressRegion>",
+                  "postalCode": "<postalCode>",
+                  "addressCountry": "<addressCountry:ISO-3166-1 alpha-2>"
+                }
+              }
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "<offerId>",
+            "descriptor": {
+              "code": "<code>",
+              "longDesc": "Commercial terms under which the linked resource(s) may be committed, e.g. a ride option, fare product, vehicle rental, or driver hire",
+              "shortDesc": "Mobility offer",
+              "name": "<offer name>",
+              "thumbnailImage": "<thumbnailImage:uri>",
+              "docs": [
+                {
+                  "label": "<label>",
+                  "mimeType": "<mimeType>",
+                  "standard": "<standard>",
+                  "url": "<url:uri>",
+                  "security": {
+                    "checksum": "<checksum>",
+                    "checksumAlgorithm": "SHA256",
+                    "signature": "<signature>",
+                    "signatureAlgorithm": "<signatureAlgorithm>",
+                    "keyId": "<keyId>"
+                  }
+                }
+              ],
+              "mediaFile": [
+                {
+                  "label": "<label>",
+                  "mimeType": "image/png",
+                  "uri": "<uri:uri>"
+                }
+              ]
+            },
+            "resourceIds": [
+              "<resourceId>"
+            ],
+            "addOns": [
+              {
+                "id": "<addOnId>",
+                "descriptor": {
+                  "code": "<code>",
+                  "longDesc": "Optional supplementary resource or offer bundled with this offer, e.g. luggage assistance, museum entry, insurance",
+                  "shortDesc": "Optional add-on",
+                  "name": "<add-on name>",
+                  "thumbnailImage": "<thumbnailImage:uri>"
+                },
+                "resourceAttributes": {
+                  "@context": "<@context:uri e.g. https://schema.beckn.io/FareProduct/2.0/context.jsonld>",
+                  "@type": "<@type e.g. FareProduct>"
+                }
+              }
+            ],
+            "considerations": [
+              {
+                "id": "<considerationId>",
+                "status": {
+                  "code": "<code e.g. PRICE_ESTIMATE>",
+                  "longDesc": "Lifecycle state of this consideration in the catalog context",
+                  "shortDesc": "Consideration status",
+                  "name": "<status name>"
+                },
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld",
+                  "@type": "PriceSpecification",
+                  "currency": "<currency:ISO-4217 e.g. EUR>",
+                  "value": "<value:number>",
+                  "components": [
+                    {
+                      "type": "UNIT",
+                      "value": "<value:number>",
+                      "currency": "<currency:ISO-4217>",
+                      "description": "<description>"
+                    }
+                  ]
+                }
+              }
+            ],
+            "validity": {
+              "startDate": "<startDate:date-time>",
+              "endDate": "<endDate:date-time>",
+              "startTime": "<startTime:time>",
+              "endTime": "<endTime:time>"
+            },
+            "offerAttributes": {
+              "@context": "<@context:uri e.g. https://schema.beckn.io/RideOption/2.0/context.jsonld>",
+              "@type": "<@type e.g. RideOption | ServiceClass | FareProduct | Vehicle | Driver | Route>"
+            }
+          }
+        ],
+        "provider": {
+          "id": "<providerId>",
+          "descriptor": {
+            "code": "<code>",
+            "longDesc": "The mobility service provider that operates the resources and offers in this catalog",
+            "shortDesc": "Mobility provider",
+            "name": "<provider name>",
+            "thumbnailImage": "<thumbnailImage:uri>",
+            "docs": [
+              {
+                "label": "<label>",
+                "mimeType": "<mimeType>",
+                "standard": "<standard>",
+                "url": "<url:uri>",
+                "security": {
+                  "checksum": "<checksum>",
+                  "checksumAlgorithm": "SHA256",
+                  "signature": "<signature>",
+                  "signatureAlgorithm": "<signatureAlgorithm>",
+                  "keyId": "<keyId>"
+                }
+              }
+            ],
+            "mediaFile": [
+              {
+                "label": "<label>",
+                "mimeType": "image/png",
+                "uri": "<uri:uri>"
+              }
+            ]
+          },
+          "availableAt": [
+            {
+              "geo": {
+                "type": "Point",
+                "coordinates": [
+                  "<lon:number>",
+                  "<lat:number>"
+                ]
+              },
+              "address": {
+                "streetAddress": "<streetAddress>",
+                "addressLocality": "<addressLocality>",
+                "addressRegion": "<addressRegion>",
+                "postalCode": "<postalCode>",
+                "addressCountry": "<addressCountry:ISO-3166-1 alpha-2>"
+              }
+            }
+          ],
+          "providerAttributes": {
+            "@context": "<@context:uri>",
+            "@type": "<@type>"
+          }
+        },
+        "validity": {
+          "startDate": "<startDate:date-time>",
+          "endDate": "<endDate:date-time>",
+          "startTime": "<startTime:time>",
+          "endTime": "<endTime:time>"
+        }
+      }
+    ]
+  }
+}

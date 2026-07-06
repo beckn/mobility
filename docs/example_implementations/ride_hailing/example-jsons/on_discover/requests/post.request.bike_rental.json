@@ -1,0 +1,153 @@
+{
+  "context": {
+    "action": "on_discover",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+      "https://schema.beckn.io/Vehicle/2.0/context.jsonld",
+      "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-bike_rental",
+        "descriptor": {
+          "name": "Shared bike rental (24h)",
+          "shortDesc": "Self-drive bike"
+        },
+        "provider": {
+          "id": "pn-ovfiets",
+          "descriptor": {
+            "name": "OV-fiets",
+            "shortDesc": "OV-fiets mobility services"
+          },
+          "availableAt": [
+            {
+              "geo": {
+                "type": "Point",
+                "coordinates": [
+                  4.9003,
+                  52.3791
+                ]
+              },
+              "address": {
+                "streetAddress": "Stationsplein",
+                "addressLocality": "Amsterdam",
+                "addressRegion": "North Holland",
+                "addressCountry": "NL",
+                "postalCode": "1012 AB"
+              }
+            }
+          ]
+        },
+        "isActive": true,
+        "resources": [
+          {
+            "id": "res-trip-bike-01",
+            "quantity": {
+              "value": 1,
+              "unit": "day"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+              "@type": "TripRequest",
+              "modes": "",
+              "origin": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.9,
+                    52.38
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1012"
+                }
+              },
+              "destination": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.89,
+                    52.36
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1071"
+                }
+              }
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "off-bike-rental",
+            "descriptor": {
+              "name": "Shared bike rental (24h)",
+              "shortDesc": "Offer"
+            },
+            "resourceIds": [
+              "res-trip-bike-01"
+            ],
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/Vehicle/2.0/context.jsonld",
+              "@type": "Vehicle",
+              "vehicleId": "ovf-city",
+              "make": "Batavus",
+              "model": "City Bike",
+              "color": "blue",
+              "vehicleType": "CITY_BICYCLE"
+            },
+            "considerations": [
+              {
+                "id": "con-bike-rental",
+                "status": {
+                  "code": "PRICE_ESTIMATE",
+                  "name": "Fare estimate"
+                },
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld",
+                  "@type": "PriceSpecification",
+                  "currency": "EUR",
+                  "value": 4.55,
+                  "description": "Rental per 24h"
+                }
+              }
+            ],
+            "validity": {
+              "startDate": "2026-07-06T09:00:00Z",
+              "endDate": "2026-07-06T10:00:00Z"
+            }
+          }
+        ],
+        "validity": {
+          "startDate": "2026-07-06T00:00:00Z",
+          "endDate": "2026-07-06T23:59:59Z"
+        }
+      }
+    ]
+  }
+}

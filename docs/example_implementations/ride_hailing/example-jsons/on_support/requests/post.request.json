@@ -1,0 +1,65 @@
+{
+  "context": {
+    "action": "on_support",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "<schemaContext[]:uri>"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "support": {
+      "orderId": "<orderId>",
+      "descriptor": {
+        "code": "<code>",
+        "longDesc": "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display",
+        "shortDesc": "High-performance gaming laptop with RTX graphics",
+        "name": "Premium Gaming Laptop Pro",
+        "thumbnailImage": "<thumbnailImage:uri>",
+        "docs": [
+          {
+            "label": "<label>",
+            "mimeType": "<mimeType>",
+            "standard": "<standard>",
+            "url": "<url:uri>",
+            "security": {
+              "checksum": "<checksum>",
+              "checksumAlgorithm": "SHA256",
+              "signature": "<signature>",
+              "signatureAlgorithm": "<signatureAlgorithm>",
+              "keyId": "<keyId>"
+            }
+          }
+        ],
+        "mediaFile": [
+          {
+            "label": "<label>",
+            "mimeType": "image/png",
+            "uri": "<uri:uri>"
+          }
+        ]
+      },
+      "channels": [
+        {
+          "@context": "<@context>",
+          "@type": "<@type>"
+        }
+      ]
+    }
+  }
+}

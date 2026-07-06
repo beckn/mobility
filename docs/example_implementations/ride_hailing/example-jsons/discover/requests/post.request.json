@@ -1,0 +1,47 @@
+{
+  "context": {
+    "action": "discover",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "intent": {
+      "textSearch": "ride from Amsterdam Centrum (1012) to Museum Quarter (1071)",
+      "filters": {
+        "type": "jsonpath",
+        "expression": "$[?(@.origin.address.addressLocality == 'Amsterdam' && @.origin.address.postalCode == '1012' && @.origin.address.addressCountry == 'NL' && @.destination.address.addressLocality == 'Amsterdam' && @.destination.address.postalCode == '1071')]"
+      },
+      "spatial": [
+        {
+          "op": "S_DWITHIN",
+          "targets": "$['availableAt'][*]['geo']",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [4.9, 52.38]
+          },
+          "distanceMeters": 2000,
+          "quantifier": "ANY",
+          "srid": "EPSG:4326"
+        }
+      ]
+    }
+  }
+}

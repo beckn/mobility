@@ -1,0 +1,157 @@
+{
+  "context": {
+    "action": "on_discover",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+      "https://schema.beckn.io/Driver/2.0/context.jsonld",
+      "https://schema.beckn.io/Person/2.0/context.jsonld",
+      "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-driver_rental",
+        "descriptor": {
+          "name": "Driver hire for your own car",
+          "shortDesc": "Driver-on-demand"
+        },
+        "provider": {
+          "id": "pn-safedrivers",
+          "descriptor": {
+            "name": "SafeDrivers NL",
+            "shortDesc": "SafeDrivers NL mobility services"
+          },
+          "availableAt": [
+            {
+              "geo": {
+                "type": "Point",
+                "coordinates": [
+                  4.9003,
+                  52.3791
+                ]
+              },
+              "address": {
+                "streetAddress": "Stationsplein",
+                "addressLocality": "Amsterdam",
+                "addressRegion": "North Holland",
+                "addressCountry": "NL",
+                "postalCode": "1012 AB"
+              }
+            }
+          ]
+        },
+        "isActive": true,
+        "resources": [
+          {
+            "id": "res-trip-driver-01",
+            "quantity": {
+              "value": 1,
+              "unit": "trip"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+              "@type": "TripRequest",
+              "modes": "",
+              "origin": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.9,
+                    52.38
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1012"
+                }
+              },
+              "destination": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.89,
+                    52.36
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1071"
+                }
+              }
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "off-driver-hire",
+            "descriptor": {
+              "name": "Driver hire for your own car",
+              "shortDesc": "Offer"
+            },
+            "resourceIds": [
+              "res-trip-driver-01"
+            ],
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/Driver/2.0/context.jsonld",
+              "@type": "Driver",
+              "yearsOfExperience": 8,
+              "contact": "+31 20 555 0142",
+              "person": {
+                "@context": "https://schema.beckn.io/Person/2.0/context.jsonld",
+                "@type": "Person",
+                "id": "person-drv-pool",
+                "name": "Vetted driver"
+              }
+            },
+            "considerations": [
+              {
+                "id": "con-driver-hire",
+                "status": {
+                  "code": "PRICE_ESTIMATE",
+                  "name": "Fare estimate"
+                },
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld",
+                  "@type": "PriceSpecification",
+                  "currency": "EUR",
+                  "value": 19.0,
+                  "description": "Driver fee, up to 30 min (+ VAT)"
+                }
+              }
+            ],
+            "validity": {
+              "startDate": "2026-07-06T09:00:00Z",
+              "endDate": "2026-07-06T10:00:00Z"
+            }
+          }
+        ],
+        "validity": {
+          "startDate": "2026-07-06T00:00:00Z",
+          "endDate": "2026-07-06T23:59:59Z"
+        }
+      }
+    ]
+  }
+}
