@@ -18,7 +18,7 @@
     "schemaContext": [
       "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
       "https://schema.beckn.io/Vehicle/2.0/context.jsonld",
-      "https://schema.beckn.io/Rating/2.0/context.jsonld"
+      "https://schema.beckn.io/Rating/2.1/context.jsonld"
     ],
     "requestDigest": {
       "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
@@ -33,9 +33,9 @@
             "name": "OV-fiets"
           },
           "targetAttributes": {
-            "@context": "https://schema.beckn.io/Rating/2.0/context.jsonld",
-            "@type": "beckn:Rating",
-            "beckn:ratingValue": 5
+            "@context": "https://schema.beckn.io/Rating/2.1/context.jsonld",
+            "@type": "Rating",
+            "ratingValue": 5
           }
         },
         "range": {
@@ -51,9 +51,9 @@
             "name": "The bike"
           },
           "targetAttributes": {
-            "@context": "https://schema.beckn.io/Rating/2.0/context.jsonld",
-            "@type": "beckn:Rating",
-            "beckn:ratingValue": 5
+            "@context": "https://schema.beckn.io/Rating/2.1/context.jsonld",
+            "@type": "Rating",
+            "ratingValue": 5
           }
         },
         "range": {

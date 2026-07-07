@@ -22,8 +22,7 @@
       "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
       "https://schema.beckn.io/PriceComponent/2.2/context.jsonld",
       "https://schema.beckn.io/Passenger/2.0/context.jsonld",
-      "https://schema.beckn.io/Provider/2.0/context.jsonld",
-      "https://schema.beckn.io/SettlementTerm/2.0/context.jsonld"
+      "https://schema.beckn.io/Provider/2.0/context.jsonld"
     ],
     "requestDigest": {
       "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
@@ -158,28 +157,6 @@
               "name": "Alex Rider",
               "telephone": "+31 6 1234 5678"
             }
-          }
-        }
-      ],
-      "settlements": [
-        {
-          "id": "set-con-driver-hire",
-          "considerationId": "con-driver-hire",
-          "status": "DRAFT",
-          "settlementAttributes": {
-            "@context": "https://schema.beckn.io/SettlementTerm/2.0/context.jsonld",
-            "@type": "SettlementTerm",
-            "amount": {
-              "currency": "EUR",
-              "value": 19.0
-            },
-            "settlementStatus": "PENDING",
-            "payTo": {
-              "paymentUrl": "https://pay.example.com/con-driver-hire"
-            },
-            "acceptedPaymentMethods": [
-              "BANK_TRANSFER"
-            ]
           }
         }
       ]

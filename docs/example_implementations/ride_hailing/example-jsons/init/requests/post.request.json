@@ -430,17 +430,6 @@
           }
         }
       ],
-      "settlements": [
-        {
-          "id": "<id>",
-          "considerationId": "<considerationId>",
-          "status": "DRAFT",
-          "settlementAttributes": {
-            "@context": "<@context>",
-            "@type": "<@type>"
-          }
-        }
-      ],
       "status": {
         "code": "DRAFT",
         "longDesc": "Powerful gaming laptop with NVIDIA RTX graphics, fast SSD storage, and high-refresh display",
