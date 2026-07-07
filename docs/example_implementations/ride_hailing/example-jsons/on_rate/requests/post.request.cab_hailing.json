@@ -22,7 +22,7 @@
       "https://schema.beckn.io/FareEstimate/2.0/context.jsonld",
       "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld",
       "https://schema.beckn.io/Driver/2.0/context.jsonld",
-      "https://schema.beckn.io/Rating/2.0/context.jsonld"
+      "https://schema.beckn.io/Rating/2.1/context.jsonld"
     ],
     "requestDigest": {
       "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
@@ -37,9 +37,9 @@
             "name": "Amsterdam Cabs"
           },
           "targetAttributes": {
-            "@context": "https://schema.beckn.io/Rating/2.0/context.jsonld",
-            "@type": "beckn:Rating",
-            "beckn:ratingValue": 5
+            "@context": "https://schema.beckn.io/Rating/2.1/context.jsonld",
+            "@type": "Rating",
+            "ratingValue": 5
           }
         },
         "range": {
@@ -55,9 +55,9 @@
             "name": "The ride"
           },
           "targetAttributes": {
-            "@context": "https://schema.beckn.io/Rating/2.0/context.jsonld",
-            "@type": "beckn:Rating",
-            "beckn:ratingValue": 5
+            "@context": "https://schema.beckn.io/Rating/2.1/context.jsonld",
+            "@type": "Rating",
+            "ratingValue": 5
           }
         },
         "range": {

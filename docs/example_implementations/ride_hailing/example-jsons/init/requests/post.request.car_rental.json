@@ -20,7 +20,6 @@
       "https://schema.beckn.io/Vehicle/2.0/context.jsonld",
       "https://schema.beckn.io/Itinerary/2.0/context.jsonld",
       "https://schema.beckn.io/SystemPricingPlan/2.0/context.jsonld",
-      "https://schema.beckn.io/SettlementTerm/2.0/context.jsonld",
       "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
       "https://schema.beckn.io/PriceComponent/2.2/context.jsonld",
       "https://schema.beckn.io/Passenger/2.0/context.jsonld",
@@ -221,28 +220,6 @@
               "name": "Alex Rider",
               "telephone": "+31 6 1234 5678"
             }
-          }
-        }
-      ],
-      "settlements": [
-        {
-          "id": "set-con-car-rental",
-          "considerationId": "con-car-rental",
-          "status": "DRAFT",
-          "settlementAttributes": {
-            "@context": "https://schema.beckn.io/SettlementTerm/2.0/context.jsonld",
-            "@type": "SettlementTerm",
-            "amount": {
-              "currency": "EUR",
-              "value": 43.7
-            },
-            "settlementStatus": "PENDING",
-            "payTo": {
-              "paymentUrl": "https://pay.example.com/con-car-rental"
-            },
-            "acceptedPaymentMethods": [
-              "BANK_TRANSFER"
-            ]
           }
         }
       ]
