@@ -1,0 +1,163 @@
+appName: "onix-bpp"
+log:
+  level: debug
+  destinations:
+    - type: stdout
+  contextKeys:
+    - transactionId
+    - messageId
+http:
+  port: 8082
+  timeout:
+    read: 30
+    write: 30
+    idle: 30
+pluginManager:
+  root: ./plugins
+  becknConstants:
+    disableRemoteRefresh: true
+
+modules:
+  # ─────────────────────────────────────────────────────────────────
+  # BPP Receiver — accepts action requests from BAPs
+  # Listens at:  http://localhost:8082/bpp/receiver/
+  # bppUri in Postman = https://bpp.example.com/bpp/receiver
+  # ─────────────────────────────────────────────────────────────────
+  - name: bppTxnReceiver
+    path: /bpp/receiver/
+    handler:
+      type: std
+      role: bpp
+      httpClientConfig:
+        maxIdleConns: 1000
+        maxIdleConnsPerHost: 200
+        idleConnTimeout: 300s
+        responseHeaderTimeout: 5s
+      plugins:
+        registry:
+          id: dediregistry
+          config:
+            timeout: 10
+            retry_max: 3
+            retry_wait_min: 100ms
+            retry_wait_max: 500ms
+        keyManager:
+          id: simplekeymanager
+          config:
+            # Testnet sandbox subscriber shared with beckn-onix's generic-devkit,
+            # registered on beckn.one/testnet via the DeDi registry.
+            # Replace with your own registered subscriber ID and keys for production.
+            subscriberId: bpp.example.com
+            keyId: 76EU7ofwRCF1aobQkShARrf1PAUsNpHqWUJoynPu9w45YFKmzqaPmy
+            signingPrivateKey: 393fVJJsfqssJCRAjedKR2cKAjSLrjU3t+bICQ5KzYM=
+            signingPublicKey: CqVy97DW45bcZPPrWIYGe2ldl9C93NFeVciiAEYsvR0=
+            encrPrivateKey: 393fVJJsfqssJCRAjedKR2cKAjSLrjU3t+bICQ5KzYM=
+            encrPublicKey: CqVy97DW45bcZPPrWIYGe2ldl9C93NFeVciiAEYsvR0=
+        cache:
+          id: cache
+          config:
+            addr: redis:6379
+        schemaValidator:
+          id: schemav2validator
+          config:
+            cacheTTL: "3600"
+            extendedSchema_enabled: "true"
+            extendedSchema_cacheTTL: "86400"
+            extendedSchema_maxCacheSize: "100"
+            extendedSchema_downloadTimeout: "30"
+            extendedSchema_allowedDomains: "raw.githubusercontent.com,schema.beckn.io"
+        signValidator:
+          id: signvalidator
+        router:
+          id: router
+          config:
+            routingConfig: ./config/mobility-routing-BPPReceiver.yaml
+        signer:
+          id: signer
+        payloadStore:
+          id: payloadstore
+          config:
+            ttl: "24h"
+            indexTTL: "25h"
+            storeSignature: "true"
+        middleware:
+          - id: reqpreprocessor
+            config:
+              contextKeys: transactionId,messageId
+              role: bpp
+      steps:
+        - validateSign
+        - addRoute
+        - validateSchema
+        - signAck
+
+  # ─────────────────────────────────────────────────────────────────
+  # BPP Caller — forwards on_* callbacks back to the originating BAP
+  # Listens at:  http://localhost:8082/bpp/caller/
+  # Postman bpp_adapter_url = http://localhost:8082/bpp/caller
+  # ─────────────────────────────────────────────────────────────────
+  - name: bppTxnCaller
+    path: /bpp/caller/
+    handler:
+      type: std
+      role: bpp
+      httpClientConfig:
+        maxIdleConns: 1000
+        maxIdleConnsPerHost: 200
+        idleConnTimeout: 300s
+        responseHeaderTimeout: 5s
+      plugins:
+        registry:
+          id: dediregistry
+          config:
+            timeout: 10
+            retry_max: 3
+            retry_wait_min: 100ms
+            retry_wait_max: 500ms
+        keyManager:
+          id: simplekeymanager
+          config:
+            subscriberId: bpp.example.com
+            keyId: 76EU7ofwRCF1aobQkShARrf1PAUsNpHqWUJoynPu9w45YFKmzqaPmy
+            signingPrivateKey: 393fVJJsfqssJCRAjedKR2cKAjSLrjU3t+bICQ5KzYM=
+            signingPublicKey: CqVy97DW45bcZPPrWIYGe2ldl9C93NFeVciiAEYsvR0=
+            encrPrivateKey: 393fVJJsfqssJCRAjedKR2cKAjSLrjU3t+bICQ5KzYM=
+            encrPublicKey: CqVy97DW45bcZPPrWIYGe2ldl9C93NFeVciiAEYsvR0=
+        cache:
+          id: cache
+          config:
+            addr: redis:6379
+        schemaValidator:
+          id: schemav2validator
+          config:
+            cacheTTL: "3600"
+            extendedSchema_enabled: "true"
+            extendedSchema_cacheTTL: "86400"
+            extendedSchema_maxCacheSize: "100"
+            extendedSchema_downloadTimeout: "30"
+            extendedSchema_allowedDomains: "raw.githubusercontent.com,schema.beckn.io"
+        router:
+          id: router
+          config:
+            routingConfig: ./config/mobility-routing-BPPCaller.yaml
+        signer:
+          id: signer
+        signValidator:
+          id: signvalidator
+        payloadStore:
+          id: payloadstore
+          config:
+            ttl: "24h"
+            indexTTL: "25h"
+            storeSignature: "true"
+        middleware:
+          - id: reqpreprocessor
+            config:
+              contextKeys: transactionId,messageId
+              role: bpp
+      steps:
+        - addRoute
+        - storePayload
+        - validateSchema
+        - sign
+        - validateAckSign

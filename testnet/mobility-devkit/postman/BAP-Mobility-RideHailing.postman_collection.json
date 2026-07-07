@@ -1,0 +1,372 @@
+{
+  "info": {
+    "name": "BAP \u2014 Beckn Mobility Ride-Hailing Devkit",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1 \u2014 Discovery",
+      "item": [
+        {
+          "name": "discover",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"action\": \"discover\",\n    \"version\": \"2.0.0\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"networkId\": \"{{networkId}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"try\": false,\n    \"ttl\": \"PT30S\",\n    \"schemaContext\": [\n      \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"intent\": {\n      \"textSearch\": \"ride from Amsterdam Centrum (1012) to Museum Quarter (1071)\",\n      \"filters\": {\n        \"type\": \"jsonpath\",\n        \"expression\": \"$[?(@.origin.address.addressLocality == 'Amsterdam' && @.origin.address.postalCode == '1012' && @.origin.address.addressCountry == 'NL' && @.destination.address.addressLocality == 'Amsterdam' && @.destination.address.postalCode == '1071')]\"\n      },\n      \"spatial\": [\n        {\n          \"op\": \"S_DWITHIN\",\n          \"targets\": \"$['availableAt'][*]['geo']\",\n          \"geometry\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n              4.9,\n              52.38\n            ]\n          },\n          \"distanceMeters\": 2000,\n          \"quantifier\": \"ANY\",\n          \"srid\": \"EPSG:4326\"\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bap_adapter_url}}/discover",
+              "host": [
+                "{{bap_adapter_url}}"
+              ],
+              "path": [
+                "discover"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "2 \u2014 Transaction",
+      "item": [
+        {
+          "name": "select",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"action\": \"select\",\n    \"version\": \"2.0.0\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"networkId\": \"{{networkId}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"try\": false,\n    \"ttl\": \"PT30S\",\n    \"schemaContext\": [\n      \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n      \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n      \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n      \"https://schema.beckn.io/FareEstimate/2.0/context.jsonld\",\n      \"https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Driver/2.0/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"contract\": {\n      \"descriptor\": {\n        \"name\": \"Cab ride: Centraal -> Rijksmuseum\",\n        \"shortDesc\": \"Ride-hailing\"\n      },\n      \"status\": {\n        \"code\": \"DRAFT\",\n        \"name\": \"Draft contract\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"cmt-con-ride-economy\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"DRAFT\",\n              \"name\": \"Draft commitment\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"res-trip-cab-01\",\n              \"quantity\": {\n                \"value\": 1,\n                \"unit\": \"trip\"\n              },\n              \"resourceAttributes\": {\n                \"@context\": \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n                \"@type\": \"TripRequest\",\n                \"modes\": \"\",\n                \"origin\": {\n                  \"geo\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                      4.9003,\n                      52.3791\n                    ]\n                  },\n                  \"address\": {\n                    \"streetAddress\": \"Stationsplein\",\n                    \"addressLocality\": \"Amsterdam\",\n                    \"addressRegion\": \"North Holland\",\n                    \"addressCountry\": \"NL\",\n                    \"postalCode\": \"1012 AB\"\n                  }\n                },\n                \"destination\": {\n                  \"geo\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                      4.8852,\n                      52.36\n                    ]\n                  },\n                  \"address\": {\n                    \"streetAddress\": \"Museumstraat 1\",\n                    \"addressLocality\": \"Amsterdam\",\n                    \"addressRegion\": \"North Holland\",\n                    \"addressCountry\": \"NL\",\n                    \"postalCode\": \"1071 XX\"\n                  }\n                }\n              }\n            }\n          ],\n          \"offer\": {\n            \"id\": \"off-ride-economy\",\n            \"resourceIds\": [\n              \"res-trip-cab-01\"\n            ],\n            \"offerAttributes\": {\n              \"@context\": \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n              \"@type\": \"RideOption\",\n              \"vehicleType\": \"SEDAN\",\n              \"estimatedDuration\": \"PT12M\",\n              \"estimatedDistance\": 3.2,\n              \"serviceClass\": {\n                \"@context\": \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n                \"@type\": \"ServiceClass\",\n                \"serviceClassCode\": \"ECONOMY\",\n                \"features\": [\n                  \"air-conditioning\",\n                  \"4 seats\"\n                ]\n              }\n            }\n          }\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bap_adapter_url}}/select",
+              "host": [
+                "{{bap_adapter_url}}"
+              ],
+              "path": [
+                "select"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "init",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"action\": \"init\",\n    \"version\": \"2.0.0\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"networkId\": \"{{networkId}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"try\": false,\n    \"ttl\": \"PT30S\",\n    \"schemaContext\": [\n      \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n      \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n      \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n      \"https://schema.beckn.io/FareEstimate/2.0/context.jsonld\",\n      \"https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Driver/2.0/context.jsonld\",\n      \"https://schema.beckn.io/PriceSpecification/2.1/context.jsonld\",\n      \"https://schema.beckn.io/PriceComponent/2.1/context.jsonld\",\n      \"https://schema.beckn.io/Passenger/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Person/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Provider/2.0/context.jsonld\",\n      \"https://schema.beckn.io/SettlementTerm/2.0/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"b1a7c1e2-1111-4a2b-8c3d-000000000001\",\n      \"descriptor\": {\n        \"name\": \"Cab ride: Centraal -> Rijksmuseum\",\n        \"shortDesc\": \"Ride-hailing\"\n      },\n      \"status\": {\n        \"code\": \"DRAFT\",\n        \"name\": \"Draft contract\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"cmt-con-ride-economy\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"DRAFT\",\n              \"name\": \"Draft commitment\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"res-trip-cab-01\",\n              \"quantity\": {\n                \"value\": 1,\n                \"unit\": \"trip\"\n              },\n              \"resourceAttributes\": {\n                \"@context\": \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n                \"@type\": \"TripRequest\",\n                \"modes\": \"\",\n                \"origin\": {\n                  \"geo\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                      4.9003,\n                      52.3791\n                    ]\n                  },\n                  \"address\": {\n                    \"streetAddress\": \"Stationsplein\",\n                    \"addressLocality\": \"Amsterdam\",\n                    \"addressRegion\": \"North Holland\",\n                    \"addressCountry\": \"NL\",\n                    \"postalCode\": \"1012 AB\"\n                  }\n                },\n                \"destination\": {\n                  \"geo\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                      4.8852,\n                      52.36\n                    ]\n                  },\n                  \"address\": {\n                    \"streetAddress\": \"Museumstraat 1\",\n                    \"addressLocality\": \"Amsterdam\",\n                    \"addressRegion\": \"North Holland\",\n                    \"addressCountry\": \"NL\",\n                    \"postalCode\": \"1071 XX\"\n                  }\n                }\n              }\n            }\n          ],\n          \"offer\": {\n            \"id\": \"off-ride-economy\",\n            \"resourceIds\": [\n              \"res-trip-cab-01\"\n            ],\n            \"offerAttributes\": {\n              \"@context\": \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n              \"@type\": \"RideOption\",\n              \"vehicleType\": \"SEDAN\",\n              \"estimatedDuration\": \"PT12M\",\n              \"estimatedDistance\": 3.2,\n              \"serviceClass\": {\n                \"@context\": \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n                \"@type\": \"ServiceClass\",\n                \"serviceClassCode\": \"ECONOMY\",\n                \"features\": [\n                  \"air-conditioning\",\n                  \"4 seats\"\n                ]\n              }\n            }\n          }\n        }\n      ],\n      \"consideration\": [\n        {\n          \"id\": \"con-ride-economy\",\n          \"status\": {\n            \"code\": \"PRICE_QUOTED\",\n            \"name\": \"Quoted fare\"\n          },\n          \"considerationAttributes\": {\n            \"@context\": \"https://schema.beckn.io/FareEstimate/2.0/context.jsonld\",\n            \"@type\": \"FareEstimate\",\n            \"estimatedAmount\": 17.42,\n            \"currency\": \"EUR\",\n            \"minimumAmount\": 15.0,\n            \"maximumAmount\": 21.0,\n            \"price\": {\n              \"@context\": \"https://schema.beckn.io/PriceSpecification/2.1/context.jsonld\",\n              \"@type\": \"PriceSpecification\",\n              \"currency\": \"EUR\",\n              \"value\": 17.42,\n              \"components\": [\n                {\n                  \"type\": \"UNIT\",\n                  \"value\": 14.4,\n                  \"currency\": \"EUR\",\n                  \"description\": \"(Base fare + distance) X 1.2x surge pricing\",\n                  \"componentAttributes\": {\n                    \"@context\": \"https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld\",\n                    \"@type\": \"SurgeMultiplier\",\n                    \"multiplierValue\": 1.2,\n                    \"reason\": \"HIGH_DEMAND\",\n                    \"validUntil\": \"2026-07-06T10:00:00Z\",\n                    \"appliedTo\": {\n                      \"@context\": \"https://schema.beckn.io/PriceSpecification/2.1/context.jsonld\",\n                      \"@type\": \"PriceSpecification\",\n                      \"currency\": \"EUR\",\n                      \"value\": 12.0\n                    }\n                  }\n                },\n                {\n                  \"type\": \"TAX\",\n                  \"value\": 3.02,\n                  \"currency\": \"EUR\",\n                  \"description\": \"VAT 21%\"\n                }\n              ]\n            }\n          }\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"consumer-001\",\n          \"descriptor\": {\n            \"name\": \"Rider\"\n          },\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/Passenger/2.0/context.jsonld\",\n            \"@type\": \"Passenger\",\n            \"passengerId\": \"psg-001\",\n            \"passengerType\": \"ADULT\",\n            \"person\": {\n              \"@context\": \"https://schema.beckn.io/Person/2.0/context.jsonld\",\n              \"@type\": \"Person\",\n              \"id\": \"person-001\",\n              \"name\": \"Alex Rider\",\n              \"telephone\": \"+31 6 1234 5678\"\n            }\n          }\n        }\n      ],\n      \"settlements\": [\n        {\n          \"id\": \"set-con-ride-economy\",\n          \"considerationId\": \"con-ride-economy\",\n          \"status\": \"DRAFT\",\n          \"settlementAttributes\": {\n            \"@context\": \"https://schema.beckn.io/SettlementTerm/2.0/context.jsonld\",\n            \"@type\": \"SettlementTerm\",\n            \"amount\": {\n              \"currency\": \"EUR\",\n              \"value\": 17.42\n            },\n            \"settlementStatus\": \"PENDING\",\n            \"payTo\": {\n              \"paymentUrl\": \"https://pay.example.com/con-ride-economy\"\n            },\n            \"acceptedPaymentMethods\": [\n              \"BANK_TRANSFER\"\n            ]\n          }\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bap_adapter_url}}/init",
+              "host": [
+                "{{bap_adapter_url}}"
+              ],
+              "path": [
+                "init"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "confirm",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"action\": \"confirm\",\n    \"version\": \"2.0.0\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"networkId\": \"{{networkId}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"try\": false,\n    \"ttl\": \"PT30S\",\n    \"schemaContext\": [\n      \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n      \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n      \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n      \"https://schema.beckn.io/FareEstimate/2.0/context.jsonld\",\n      \"https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Driver/2.0/context.jsonld\",\n      \"https://schema.beckn.io/PriceSpecification/2.1/context.jsonld\",\n      \"https://schema.beckn.io/PriceComponent/2.1/context.jsonld\",\n      \"https://schema.beckn.io/Passenger/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Person/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Provider/2.0/context.jsonld\",\n      \"https://schema.beckn.io/SettlementTerm/2.0/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"b1a7c1e2-1111-4a2b-8c3d-000000000001\",\n      \"descriptor\": {\n        \"name\": \"Cab ride: Centraal -> Rijksmuseum\",\n        \"shortDesc\": \"Ride-hailing\"\n      },\n      \"status\": {\n        \"code\": \"DRAFT\",\n        \"name\": \"Draft contract\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"cmt-con-ride-economy\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"DRAFT\",\n              \"name\": \"Draft commitment\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"res-trip-cab-01\",\n              \"quantity\": {\n                \"value\": 1,\n                \"unit\": \"trip\"\n              },\n              \"resourceAttributes\": {\n                \"@context\": \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n                \"@type\": \"TripRequest\",\n                \"modes\": \"\",\n                \"origin\": {\n                  \"geo\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                      4.9003,\n                      52.3791\n                    ]\n                  },\n                  \"address\": {\n                    \"streetAddress\": \"Stationsplein\",\n                    \"addressLocality\": \"Amsterdam\",\n                    \"addressRegion\": \"North Holland\",\n                    \"addressCountry\": \"NL\",\n                    \"postalCode\": \"1012 AB\"\n                  }\n                },\n                \"destination\": {\n                  \"geo\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                      4.8852,\n                      52.36\n                    ]\n                  },\n                  \"address\": {\n                    \"streetAddress\": \"Museumstraat 1\",\n                    \"addressLocality\": \"Amsterdam\",\n                    \"addressRegion\": \"North Holland\",\n                    \"addressCountry\": \"NL\",\n                    \"postalCode\": \"1071 XX\"\n                  }\n                }\n              }\n            }\n          ],\n          \"offer\": {\n            \"id\": \"off-ride-economy\",\n            \"resourceIds\": [\n              \"res-trip-cab-01\"\n            ],\n            \"offerAttributes\": {\n              \"@context\": \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n              \"@type\": \"RideOption\",\n              \"vehicleType\": \"SEDAN\",\n              \"estimatedDuration\": \"PT12M\",\n              \"estimatedDistance\": 3.2,\n              \"serviceClass\": {\n                \"@context\": \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n                \"@type\": \"ServiceClass\",\n                \"serviceClassCode\": \"ECONOMY\",\n                \"features\": [\n                  \"air-conditioning\",\n                  \"4 seats\"\n                ]\n              }\n            }\n          }\n        }\n      ],\n      \"consideration\": [\n        {\n          \"id\": \"con-ride-economy\",\n          \"status\": {\n            \"code\": \"PRICE_CONFIRMED\",\n            \"name\": \"Confirmed fare\"\n          },\n          \"considerationAttributes\": {\n            \"@context\": \"https://schema.beckn.io/FareEstimate/2.0/context.jsonld\",\n            \"@type\": \"FareEstimate\",\n            \"estimatedAmount\": 17.42,\n            \"currency\": \"EUR\",\n            \"minimumAmount\": 15.0,\n            \"maximumAmount\": 21.0,\n            \"price\": {\n              \"@context\": \"https://schema.beckn.io/PriceSpecification/2.1/context.jsonld\",\n              \"@type\": \"PriceSpecification\",\n              \"currency\": \"EUR\",\n              \"value\": 17.42,\n              \"components\": [\n                {\n                  \"type\": \"UNIT\",\n                  \"value\": 14.4,\n                  \"currency\": \"EUR\",\n                  \"description\": \"(Base fare + distance) X 1.2x surge pricing\",\n                  \"componentAttributes\": {\n                    \"@context\": \"https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld\",\n                    \"@type\": \"SurgeMultiplier\",\n                    \"multiplierValue\": 1.2,\n                    \"reason\": \"HIGH_DEMAND\",\n                    \"validUntil\": \"2026-07-06T10:00:00Z\",\n                    \"appliedTo\": {\n                      \"@context\": \"https://schema.beckn.io/PriceSpecification/2.1/context.jsonld\",\n                      \"@type\": \"PriceSpecification\",\n                      \"currency\": \"EUR\",\n                      \"value\": 12.0\n                    }\n                  }\n                },\n                {\n                  \"type\": \"TAX\",\n                  \"value\": 3.02,\n                  \"currency\": \"EUR\",\n                  \"description\": \"VAT 21%\"\n                }\n              ]\n            }\n          }\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"consumer-001\",\n          \"descriptor\": {\n            \"name\": \"Rider\"\n          },\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/Passenger/2.0/context.jsonld\",\n            \"@type\": \"Passenger\",\n            \"passengerId\": \"psg-001\",\n            \"passengerType\": \"ADULT\",\n            \"person\": {\n              \"@context\": \"https://schema.beckn.io/Person/2.0/context.jsonld\",\n              \"@type\": \"Person\",\n              \"id\": \"person-001\",\n              \"name\": \"Alex Rider\",\n              \"telephone\": \"+31 6 1234 5678\"\n            }\n          }\n        },\n        {\n          \"id\": \"pn-amsterdam-cabs\",\n          \"descriptor\": {\n            \"name\": \"Amsterdam Cabs\"\n          },\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/Provider/2.0/context.jsonld\",\n            \"@type\": \"Provider\"\n          }\n        }\n      ],\n      \"settlements\": [\n        {\n          \"id\": \"set-con-ride-economy\",\n          \"considerationId\": \"con-ride-economy\",\n          \"status\": \"COMMITTED\",\n          \"settlementAttributes\": {\n            \"@context\": \"https://schema.beckn.io/SettlementTerm/2.0/context.jsonld\",\n            \"@type\": \"SettlementTerm\",\n            \"amount\": {\n              \"currency\": \"EUR\",\n              \"value\": 17.42\n            },\n            \"settlementStatus\": \"PENDING\",\n            \"payTo\": {\n              \"paymentUrl\": \"https://pay.example.com/con-ride-economy\"\n            },\n            \"acceptedPaymentMethods\": [\n              \"BANK_TRANSFER\"\n            ]\n          }\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bap_adapter_url}}/confirm",
+              "host": [
+                "{{bap_adapter_url}}"
+              ],
+              "path": [
+                "confirm"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "3 \u2014 Fulfillment",
+      "item": [
+        {
+          "name": "status",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"action\": \"status\",\n    \"version\": \"2.0.0\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"networkId\": \"{{networkId}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"try\": false,\n    \"ttl\": \"PT30S\",\n    \"schemaContext\": [\n      \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n      \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n      \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n      \"https://schema.beckn.io/FareEstimate/2.0/context.jsonld\",\n      \"https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Driver/2.0/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"b1a7c1e2-1111-4a2b-8c3d-000000000001\",\n      \"descriptor\": {\n        \"name\": \"Cab ride: Centraal -> Rijksmuseum\",\n        \"shortDesc\": \"Ride-hailing\"\n      },\n      \"status\": {\n        \"code\": \"ACTIVE\",\n        \"name\": \"Active contract\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"cmt-con-ride-economy\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"ACTIVE\",\n              \"name\": \"Active commitment\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"res-trip-cab-01\",\n              \"quantity\": {\n                \"value\": 1,\n                \"unit\": \"trip\"\n              },\n              \"resourceAttributes\": {\n                \"@context\": \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n                \"@type\": \"TripRequest\",\n                \"modes\": \"\",\n                \"origin\": {\n                  \"geo\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                      4.9003,\n                      52.3791\n                    ]\n                  },\n                  \"address\": {\n                    \"streetAddress\": \"Stationsplein\",\n                    \"addressLocality\": \"Amsterdam\",\n                    \"addressRegion\": \"North Holland\",\n                    \"addressCountry\": \"NL\",\n                    \"postalCode\": \"1012 AB\"\n                  }\n                },\n                \"destination\": {\n                  \"geo\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                      4.8852,\n                      52.36\n                    ]\n                  },\n                  \"address\": {\n                    \"streetAddress\": \"Museumstraat 1\",\n                    \"addressLocality\": \"Amsterdam\",\n                    \"addressRegion\": \"North Holland\",\n                    \"addressCountry\": \"NL\",\n                    \"postalCode\": \"1071 XX\"\n                  }\n                }\n              }\n            }\n          ],\n          \"offer\": {\n            \"id\": \"off-ride-economy\",\n            \"resourceIds\": [\n              \"res-trip-cab-01\"\n            ],\n            \"offerAttributes\": {\n              \"@context\": \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n              \"@type\": \"RideOption\",\n              \"vehicleType\": \"SEDAN\",\n              \"estimatedDuration\": \"PT12M\",\n              \"estimatedDistance\": 3.2,\n              \"serviceClass\": {\n                \"@context\": \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n                \"@type\": \"ServiceClass\",\n                \"serviceClassCode\": \"ECONOMY\",\n                \"features\": [\n                  \"air-conditioning\",\n                  \"4 seats\"\n                ]\n              }\n            }\n          }\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bap_adapter_url}}/status",
+              "host": [
+                "{{bap_adapter_url}}"
+              ],
+              "path": [
+                "status"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "track",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"action\": \"track\",\n    \"version\": \"2.0.0\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"networkId\": \"{{networkId}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"try\": false,\n    \"ttl\": \"PT30S\",\n    \"schemaContext\": [\n      \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n      \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n      \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n      \"https://schema.beckn.io/FareEstimate/2.0/context.jsonld\",\n      \"https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Driver/2.0/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"tracking\": {\n      \"contract\": {\n        \"id\": \"b1a7c1e2-1111-4a2b-8c3d-000000000001\",\n        \"descriptor\": {\n          \"name\": \"Cab ride: Centraal -> Rijksmuseum\",\n          \"shortDesc\": \"Ride-hailing\"\n        },\n        \"status\": {\n          \"code\": \"ACTIVE\",\n          \"name\": \"Active contract\"\n        },\n        \"commitments\": [\n          {\n            \"id\": \"cmt-con-ride-economy\",\n            \"status\": {\n              \"descriptor\": {\n                \"code\": \"ACTIVE\",\n                \"name\": \"Active commitment\"\n              }\n            },\n            \"resources\": [\n              {\n                \"id\": \"res-trip-cab-01\",\n                \"quantity\": {\n                  \"value\": 1,\n                  \"unit\": \"trip\"\n                },\n                \"resourceAttributes\": {\n                  \"@context\": \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n                  \"@type\": \"TripRequest\",\n                  \"modes\": \"\",\n                  \"origin\": {\n                    \"geo\": {\n                      \"type\": \"Point\",\n                      \"coordinates\": [\n                        4.9003,\n                        52.3791\n                      ]\n                    },\n                    \"address\": {\n                      \"streetAddress\": \"Stationsplein\",\n                      \"addressLocality\": \"Amsterdam\",\n                      \"addressRegion\": \"North Holland\",\n                      \"addressCountry\": \"NL\",\n                      \"postalCode\": \"1012 AB\"\n                    }\n                  },\n                  \"destination\": {\n                    \"geo\": {\n                      \"type\": \"Point\",\n                      \"coordinates\": [\n                        4.8852,\n                        52.36\n                      ]\n                    },\n                    \"address\": {\n                      \"streetAddress\": \"Museumstraat 1\",\n                      \"addressLocality\": \"Amsterdam\",\n                      \"addressRegion\": \"North Holland\",\n                      \"addressCountry\": \"NL\",\n                      \"postalCode\": \"1071 XX\"\n                    }\n                  }\n                }\n              }\n            ],\n            \"offer\": {\n              \"id\": \"off-ride-economy\",\n              \"resourceIds\": [\n                \"res-trip-cab-01\"\n              ],\n              \"offerAttributes\": {\n                \"@context\": \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n                \"@type\": \"RideOption\",\n                \"vehicleType\": \"SEDAN\",\n                \"estimatedDuration\": \"PT12M\",\n                \"estimatedDistance\": 3.2,\n                \"serviceClass\": {\n                  \"@context\": \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n                  \"@type\": \"ServiceClass\",\n                  \"serviceClassCode\": \"ECONOMY\",\n                  \"features\": [\n                    \"air-conditioning\",\n                    \"4 seats\"\n                  ]\n                }\n              }\n            }\n          }\n        ]\n      },\n      \"status\": \"ACTIVE\",\n      \"url\": \"https://track.example.com/<transactionId>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bap_adapter_url}}/track",
+              "host": [
+                "{{bap_adapter_url}}"
+              ],
+              "path": [
+                "track"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"action\": \"update\",\n    \"version\": \"2.0.0\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"networkId\": \"{{networkId}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"try\": true,\n    \"ttl\": \"PT30S\",\n    \"schemaContext\": [\n      \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n      \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n      \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n      \"https://schema.beckn.io/FareEstimate/2.0/context.jsonld\",\n      \"https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Driver/2.0/context.jsonld\",\n      \"https://schema.beckn.io/PriceSpecification/2.1/context.jsonld\",\n      \"https://schema.beckn.io/PriceComponent/2.1/context.jsonld\",\n      \"https://schema.beckn.io/Passenger/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Person/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Provider/2.0/context.jsonld\",\n      \"https://schema.beckn.io/SettlementTerm/2.0/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"b1a7c1e2-1111-4a2b-8c3d-000000000001\",\n      \"descriptor\": {\n        \"name\": \"Cab ride: Centraal -> Rijksmuseum\",\n        \"shortDesc\": \"Ride-hailing\"\n      },\n      \"status\": {\n        \"code\": \"ACTIVE\",\n        \"name\": \"Active contract\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"cmt-con-ride-economy\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"ACTIVE\",\n              \"name\": \"Active commitment\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"res-trip-cab-01\",\n              \"quantity\": {\n                \"value\": 1,\n                \"unit\": \"trip\"\n              },\n              \"resourceAttributes\": {\n                \"@context\": \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n                \"@type\": \"TripRequest\",\n                \"modes\": \"\",\n                \"origin\": {\n                  \"geo\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                      4.9003,\n                      52.3791\n                    ]\n                  },\n                  \"address\": {\n                    \"streetAddress\": \"Stationsplein\",\n                    \"addressLocality\": \"Amsterdam\",\n                    \"addressRegion\": \"North Holland\",\n                    \"addressCountry\": \"NL\",\n                    \"postalCode\": \"1012 AB\"\n                  }\n                },\n                \"destination\": {\n                  \"geo\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                      4.8852,\n                      52.36\n                    ]\n                  },\n                  \"address\": {\n                    \"streetAddress\": \"Museumstraat 1\",\n                    \"addressLocality\": \"Amsterdam\",\n                    \"addressRegion\": \"North Holland\",\n                    \"addressCountry\": \"NL\",\n                    \"postalCode\": \"1071 XX\"\n                  }\n                }\n              }\n            }\n          ],\n          \"offer\": {\n            \"id\": \"off-ride-economy\",\n            \"resourceIds\": [\n              \"res-trip-cab-01\"\n            ],\n            \"offerAttributes\": {\n              \"@context\": \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n              \"@type\": \"RideOption\",\n              \"vehicleType\": \"SEDAN\",\n              \"estimatedDuration\": \"PT12M\",\n              \"estimatedDistance\": 3.2,\n              \"serviceClass\": {\n                \"@context\": \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n                \"@type\": \"ServiceClass\",\n                \"serviceClassCode\": \"ECONOMY\",\n                \"features\": [\n                  \"air-conditioning\",\n                  \"4 seats\"\n                ]\n              }\n            }\n          }\n        }\n      ],\n      \"consideration\": [\n        {\n          \"id\": \"con-ride-economy\",\n          \"status\": {\n            \"code\": \"PRICE_QUOTED\",\n            \"name\": \"Revised fare\"\n          },\n          \"considerationAttributes\": {\n            \"@context\": \"https://schema.beckn.io/PriceSpecification/2.1/context.jsonld\",\n            \"@type\": \"PriceSpecification\",\n            \"currency\": \"EUR\",\n            \"value\": 20.42,\n            \"components\": [\n              {\n                \"type\": \"UNIT\",\n                \"value\": 17.42,\n                \"currency\": \"EUR\",\n                \"description\": \"Original fare\"\n              },\n              {\n                \"type\": \"SURCHARGE\",\n                \"value\": 3.0,\n                \"currency\": \"EUR\",\n                \"description\": \"Added intermediate stop\"\n              }\n            ]\n          }\n        }\n      ],\n      \"participants\": [\n        {\n          \"id\": \"consumer-001\",\n          \"descriptor\": {\n            \"name\": \"Rider\"\n          },\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/Passenger/2.0/context.jsonld\",\n            \"@type\": \"Passenger\",\n            \"passengerId\": \"psg-001\",\n            \"passengerType\": \"ADULT\",\n            \"person\": {\n              \"@context\": \"https://schema.beckn.io/Person/2.0/context.jsonld\",\n              \"@type\": \"Person\",\n              \"id\": \"person-001\",\n              \"name\": \"Alex Rider\",\n              \"telephone\": \"+31 6 1234 5678\"\n            }\n          }\n        },\n        {\n          \"id\": \"pn-amsterdam-cabs\",\n          \"descriptor\": {\n            \"name\": \"Amsterdam Cabs\"\n          },\n          \"participantAttributes\": {\n            \"@context\": \"https://schema.beckn.io/Provider/2.0/context.jsonld\",\n            \"@type\": \"Provider\"\n          }\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bap_adapter_url}}/update",
+              "host": [
+                "{{bap_adapter_url}}"
+              ],
+              "path": [
+                "update"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "cancel",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"action\": \"cancel\",\n    \"version\": \"2.0.0\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"networkId\": \"{{networkId}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"try\": true,\n    \"ttl\": \"PT30S\",\n    \"schemaContext\": [\n      \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n      \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n      \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n      \"https://schema.beckn.io/FareEstimate/2.0/context.jsonld\",\n      \"https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Driver/2.0/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"contract\": {\n      \"id\": \"b1a7c1e2-1111-4a2b-8c3d-000000000001\",\n      \"descriptor\": {\n        \"name\": \"Cab ride: Centraal -> Rijksmuseum\",\n        \"shortDesc\": \"Ride-hailing\"\n      },\n      \"status\": {\n        \"code\": \"ACTIVE\",\n        \"name\": \"Active contract\"\n      },\n      \"commitments\": [\n        {\n          \"id\": \"cmt-con-ride-economy\",\n          \"status\": {\n            \"descriptor\": {\n              \"code\": \"ACTIVE\",\n              \"name\": \"Active commitment\"\n            }\n          },\n          \"resources\": [\n            {\n              \"id\": \"res-trip-cab-01\",\n              \"quantity\": {\n                \"value\": 1,\n                \"unit\": \"trip\"\n              },\n              \"resourceAttributes\": {\n                \"@context\": \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n                \"@type\": \"TripRequest\",\n                \"modes\": \"\",\n                \"origin\": {\n                  \"geo\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                      4.9003,\n                      52.3791\n                    ]\n                  },\n                  \"address\": {\n                    \"streetAddress\": \"Stationsplein\",\n                    \"addressLocality\": \"Amsterdam\",\n                    \"addressRegion\": \"North Holland\",\n                    \"addressCountry\": \"NL\",\n                    \"postalCode\": \"1012 AB\"\n                  }\n                },\n                \"destination\": {\n                  \"geo\": {\n                    \"type\": \"Point\",\n                    \"coordinates\": [\n                      4.8852,\n                      52.36\n                    ]\n                  },\n                  \"address\": {\n                    \"streetAddress\": \"Museumstraat 1\",\n                    \"addressLocality\": \"Amsterdam\",\n                    \"addressRegion\": \"North Holland\",\n                    \"addressCountry\": \"NL\",\n                    \"postalCode\": \"1071 XX\"\n                  }\n                }\n              }\n            }\n          ],\n          \"offer\": {\n            \"id\": \"off-ride-economy\",\n            \"resourceIds\": [\n              \"res-trip-cab-01\"\n            ],\n            \"offerAttributes\": {\n              \"@context\": \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n              \"@type\": \"RideOption\",\n              \"vehicleType\": \"SEDAN\",\n              \"estimatedDuration\": \"PT12M\",\n              \"estimatedDistance\": 3.2,\n              \"serviceClass\": {\n                \"@context\": \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n                \"@type\": \"ServiceClass\",\n                \"serviceClassCode\": \"ECONOMY\",\n                \"features\": [\n                  \"air-conditioning\",\n                  \"4 seats\"\n                ]\n              }\n            }\n          }\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bap_adapter_url}}/cancel",
+              "host": [
+                "{{bap_adapter_url}}"
+              ],
+              "path": [
+                "cancel"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "4 \u2014 Post-Fulfillment",
+      "item": [
+        {
+          "name": "rate",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"action\": \"rate\",\n    \"version\": \"2.0.0\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"networkId\": \"{{networkId}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"try\": false,\n    \"ttl\": \"PT30S\",\n    \"schemaContext\": [\n      \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n      \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n      \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n      \"https://schema.beckn.io/FareEstimate/2.0/context.jsonld\",\n      \"https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Driver/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Rating/2.0/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"ratingInputs\": [\n      {\n        \"target\": {\n          \"id\": \"pn-amsterdam-cabs\",\n          \"descriptor\": {\n            \"name\": \"Amsterdam Cabs\"\n          },\n          \"targetAttributes\": {\n            \"@context\": \"https://schema.beckn.io/Rating/2.0/context.jsonld\",\n            \"@type\": \"beckn:Rating\",\n            \"beckn:ratingValue\": 5\n          }\n        },\n        \"range\": {\n          \"min\": 1,\n          \"max\": 5,\n          \"value\": 5\n        }\n      },\n      {\n        \"target\": {\n          \"id\": \"res-trip-cab-01\",\n          \"descriptor\": {\n            \"name\": \"The ride\"\n          },\n          \"targetAttributes\": {\n            \"@context\": \"https://schema.beckn.io/Rating/2.0/context.jsonld\",\n            \"@type\": \"beckn:Rating\",\n            \"beckn:ratingValue\": 5\n          }\n        },\n        \"range\": {\n          \"min\": 1,\n          \"max\": 5,\n          \"value\": 5\n        }\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bap_adapter_url}}/rate",
+              "host": [
+                "{{bap_adapter_url}}"
+              ],
+              "path": [
+                "rate"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "support",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"context\": {\n    \"action\": \"support\",\n    \"version\": \"2.0.0\",\n    \"bapId\": \"{{bap_id}}\",\n    \"bapUri\": \"{{bap_uri}}\",\n    \"bppId\": \"{{bpp_id}}\",\n    \"bppUri\": \"{{bpp_uri}}\",\n    \"transactionId\": \"{{transaction_id}}\",\n    \"messageId\": \"{{$guid}}\",\n    \"networkId\": \"{{networkId}}\",\n    \"timestamp\": \"{{$isoTimestamp}}\",\n    \"try\": false,\n    \"ttl\": \"PT30S\",\n    \"schemaContext\": [\n      \"https://schema.beckn.io/TripRequest/2.0/context.jsonld\",\n      \"https://schema.beckn.io/RideOption/2.0/context.jsonld\",\n      \"https://schema.beckn.io/ServiceClass/2.0/context.jsonld\",\n      \"https://schema.beckn.io/FareEstimate/2.0/context.jsonld\",\n      \"https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld\",\n      \"https://schema.beckn.io/Driver/2.0/context.jsonld\",\n      \"https://schema.beckn.io/SupportInfo/2.1/context.jsonld\"\n    ]\n  },\n  \"message\": {\n    \"support\": {\n      \"orderId\": \"b1a7c1e2-1111-4a2b-8c3d-000000000001\",\n      \"descriptor\": {\n        \"name\": \"Help with my booking\",\n        \"shortDesc\": \"Rider needs assistance\",\n        \"longDesc\": \"Rider left an item in the vehicle / needs booking help\"\n      },\n      \"channels\": [\n        {\n          \"@context\": \"https://schema.beckn.io/SupportInfo/2.1/context.jsonld\",\n          \"@type\": \"SupportInfo\",\n          \"name\": \"Rider\",\n          \"channels\": [\n            \"CHAT\",\n            \"IN_APP\"\n          ],\n          \"chat\": \"https://support.example.com/chat\"\n        }\n      ]\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{bap_adapter_url}}/support",
+              "host": [
+                "{{bap_adapter_url}}"
+              ],
+              "path": [
+                "support"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "bap_adapter_url",
+      "value": "http://localhost:8081/bap/caller"
+    },
+    {
+      "key": "bap_id",
+      "value": "bap.example.com"
+    },
+    {
+      "key": "public_url",
+      "value": "http://beckn-router:9000"
+    },
+    {
+      "key": "bap_uri",
+      "value": "{{public_url}}/bap/receiver"
+    },
+    {
+      "key": "bpp_id",
+      "value": "bpp.example.com"
+    },
+    {
+      "key": "bpp_uri",
+      "value": "{{public_url}}/bpp/receiver"
+    },
+    {
+      "key": "networkId",
+      "value": "nfh.global/testnet-mobility"
+    },
+    {
+      "key": "transaction_id",
+      "value": "8f2c1e6a-3b4d-4a11-9c22-mobility00001"
+    }
+  ]
+}

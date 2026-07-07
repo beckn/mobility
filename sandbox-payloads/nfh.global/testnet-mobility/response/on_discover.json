@@ -1,0 +1,171 @@
+{
+  "context": {
+    "action": "on_discover",
+    "version": "2.0.0",
+    "bapId": "bap.example.com",
+    "senderId": "bpp.example.com",
+    "bapUri": "http://onix-bap:8081/bap/receiver",
+    "bppId": "bpp.example.com",
+    "bppUri": "http://onix-bpp:8082/bpp/receiver",
+    "receiverId": "bap.example.com",
+    "transactionId": "8f2c1e6a-3b4d-4a11-9c22-mobility00001",
+    "messageId": "msg-on_discover-001",
+    "networkId": "nfh.global/testnet-mobility",
+    "timestamp": "2026-07-07T09:00:00Z",
+    "key": null,
+    "try": false,
+    "ttl": "PT30S",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+      "https://schema.beckn.io/RideOption/2.0/context.jsonld",
+      "https://schema.beckn.io/ServiceClass/2.0/context.jsonld",
+      "https://schema.beckn.io/FareEstimate/2.0/context.jsonld",
+      "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld",
+      "https://schema.beckn.io/Driver/2.0/context.jsonld",
+      "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "BLAKE-512=c2FuZGJveC1kZW1vLWRpZ2VzdC1ub3QtcmVhbA=="
+    }
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-cab_hailing",
+        "descriptor": {
+          "name": "Cab ride: Centraal -> Rijksmuseum",
+          "shortDesc": "Ride-hailing"
+        },
+        "provider": {
+          "id": "pn-amsterdam-cabs",
+          "descriptor": {
+            "name": "Amsterdam Cabs",
+            "shortDesc": "Amsterdam Cabs mobility services"
+          },
+          "availableAt": [
+            {
+              "geo": {
+                "type": "Point",
+                "coordinates": [
+                  4.9003,
+                  52.3791
+                ]
+              },
+              "address": {
+                "streetAddress": "Stationsplein",
+                "addressLocality": "Amsterdam",
+                "addressRegion": "North Holland",
+                "addressCountry": "NL",
+                "postalCode": "1012 AB"
+              }
+            }
+          ]
+        },
+        "isActive": true,
+        "resources": [
+          {
+            "id": "res-trip-cab-01",
+            "quantity": {
+              "value": 1,
+              "unit": "trip"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+              "@type": "TripRequest",
+              "modes": "",
+              "origin": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.9,
+                    52.38
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1012"
+                }
+              },
+              "destination": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.89,
+                    52.36
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1071"
+                }
+              }
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "off-ride-economy",
+            "descriptor": {
+              "name": "Cab ride: Centraal -> Rijksmuseum",
+              "shortDesc": "Offer"
+            },
+            "resourceIds": [
+              "res-trip-cab-01"
+            ],
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/RideOption/2.0/context.jsonld",
+              "@type": "RideOption",
+              "vehicleType": "SEDAN",
+              "estimatedDuration": "PT12M",
+              "estimatedDistance": 3.2,
+              "serviceClass": {
+                "@context": "https://schema.beckn.io/ServiceClass/2.0/context.jsonld",
+                "@type": "ServiceClass",
+                "serviceClassCode": "ECONOMY",
+                "features": [
+                  "air-conditioning",
+                  "4 seats"
+                ]
+              }
+            },
+            "considerations": [
+              {
+                "id": "con-ride-economy",
+                "status": {
+                  "code": "PRICE_ESTIMATE",
+                  "name": "Fare estimate"
+                },
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/FareEstimate/2.0/context.jsonld",
+                  "@type": "FareEstimate",
+                  "estimatedAmount": 17.42,
+                  "currency": "EUR",
+                  "minimumAmount": 15.0,
+                  "maximumAmount": 21.0,
+                  "surgeMultiplier": {
+                    "@context": "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld",
+                    "@type": "SurgeMultiplier",
+                    "multiplierValue": 1.2,
+                    "reason": "HIGH_DEMAND"
+                  }
+                }
+              }
+            ],
+            "validity": {
+              "startDate": "2026-07-06T09:00:00Z",
+              "endDate": "2026-07-06T10:00:00Z"
+            }
+          }
+        ],
+        "validity": {
+          "startDate": "2026-07-06T00:00:00Z",
+          "endDate": "2026-07-06T23:59:59Z"
+        }
+      }
+    ]
+  }
+}
