@@ -1,10 +1,37 @@
-# Beckn Protocol — Mobility Domain Schema Pack
+# Beckn Protocol — Mobility Domain
 
 > Stable, dereferenceable IRIs for the mobility domain — enabling any Beckn-enabled mobility application to achieve semantic interoperability by binding their data models to a shared set of meanings, not just a shared wire format.
 
+## Latest Version
+
+2.0.0
+
+This version is an adaptation of Beckn protocol [core version 2.0.0 LTS](https://github.com/beckn/protocol-specifications-v2/releases/tag/core-v2.0.0-lts). It replaces the earlier, key-based `mobility.yaml` API specification (v0.x, adapted from Beckn core v1.x) with an IRI-based ontology and mobility-tagged schemas published from [beckn/schemas](https://github.com/beckn/schemas), backed by worked example implementations and a local devkit for end-to-end testing.
+
+## Earlier Versions
+
+Prior to 2.0.0, mobility versioning followed its own independent lineage rather than tracking core version-for-version; the table below shows which core version each was adapted from.
+
+| Version | Release Date | Core Version | Author | Comments |
+|---------|--------------|--------------|--------|----------|
+| 0.9.0 | March 20, 2024 | 1.0.0 LTS | Ravi Prakash | Adaptation of core v1.0.0 LTS |
+| 0.8.0 | April 4, 2023 | 0.9.4 | Ravi Prakash | Compatible with LTS version of core |
+| 0.7.0 | November 14, 2022 | 0.9.3 | Ravi Prakash | Re-initialized Mobility Adaptation specification with independent versioning from core |
+
+## Earlier Versions (Deprecated)
+
+| Version | Release Date |
+|---------|--------------|
+| 0.9.2 | August 3, 2021 (Active) |
+| 0.8.2 | August 28, 2020 (Active) |
+| 0.8.0 | August 23, 2020 (deprecated) |
+| 0.7.1 | April 27, 2020 (deprecated) |
+
+---
+
 ## 🚧 Status
 
-**Work in Progress** — This repository is being set up as a Beckn v2 domain schema pack for the mobility sector. Schema YAML files are in progress. Documentation and the global mobility standards landscape analysis are available now.
+**Work in Progress** — Mobility domain schema definitions (YAML/JSON-LD) are authored and published from the separate [beckn/schemas](https://github.com/beckn/schemas) repository, not from this one. This repository holds documentation, the mobility ontology and standards research, worked example payloads for six ride-hailing-adjacent use cases, and a local devkit for exercising the full transaction lifecycle end to end.
 
 ---
 
@@ -22,7 +49,7 @@ This works, but it is **brittle and non-interoperable at the semantic level**. T
 
 ### The Solution: Map to IRIs, Not Keys
 
-This repository solves that problem by providing **stable, dereferenceable IRIs** for every mobility concept — `RideOffer`, `Driver`, `PickupPoint`, `FareEstimate`, and more.
+Beckn solves that problem with **stable, dereferenceable IRIs** for every mobility concept — `RideOption`, `Driver`, `PickupDropoffPoint`, `FareEstimate`, and more — authored with input from this repository's ontology work and published from [beckn/schemas](https://github.com/beckn/schemas).
 
 Instead of writing:
 
@@ -30,7 +57,7 @@ Instead of writing:
 
 You declare:
 
-> *"My `Trip` **is a** `https://schema.beckn.io/mobility/RideOffer`"*
+> *"My `Trip` **is a** `https://schema.beckn.io/RideOption/v2.0`"*
 
 Your internal data model is bound to a **meaning** (an IRI), not a position in a JSON structure. The Beckn API payload then becomes a serialization of that meaning — not the source of truth for it.
 
@@ -41,14 +68,14 @@ Your internal data model
         │
         │  maps to
         ▼
-Beckn Mobility IRIs                 ← this repository
-(schema.beckn.io/mobility/RideOffer,
- schema.beckn.io/mobility/Driver,
- schema.beckn.io/mobility/PickupPoint…)
+Beckn Mobility IRIs                 ← beckn/schemas (informed by this repo's ontology work)
+(schema.beckn.io/RideOption/v2.0,
+ schema.beckn.io/Driver/v2.0,
+ schema.beckn.io/PickupDropoffPoint/v2.0…)
         │
         │  subClassOf / property mappings
         ▼
-Beckn Core IRIs                     ← beckn/core_schema + protocol-specifications-v2
+Beckn Core IRIs                     ← beckn/schemas + protocol-specifications-v2
 (schema.beckn.io/Item,
  schema.beckn.io/Provider,
  schema.beckn.io/Location…)
@@ -66,7 +93,7 @@ Any Beckn-enabled mobility application
 
 ### The Developer Payoff
 
-If **your** ride-hailing platform maps its `Driver` to `beckn-mobility:Driver`, and **another** platform's dispatch system also maps its driver concept to `beckn-mobility:Driver` — you interoperate **semantically**, not just syntactically.
+If **your** ride-hailing platform maps its `Driver` to `beckn:Driver` (`https://schema.beckn.io/Driver/v2.0`), and **another** platform's dispatch system also maps its driver concept to the same IRI — you interoperate **semantically**, not just syntactically.
 
 This means:
 - **Design-time validation**: tooling can verify your data model is correctly aligned with Beckn Mobility IRIs before you deploy
@@ -78,14 +105,15 @@ This means:
 
 ## About
 
-This repository is the **mobility domain schema pack** for [Beckn Protocol v2](https://github.com/beckn/protocol-specifications-v2). It provides:
+This repository is the **mobility working area** for [Beckn Protocol v2](https://github.com/beckn/protocol-specifications-v2) — the ontology design, standards research, worked examples, and local test devkit that inform and validate the mobility-tagged schemas published from [beckn/schemas](https://github.com/beckn/schemas). It provides:
 
-- **Mobility IRIs** — stable, dereferenceable identifiers for every mobility concept: vehicle types, ride offers, fare structures, pickup/drop points, driver profiles, and more
-- **Ontology mappings** — formal alignment of Beckn Mobility IRIs with Beckn Core IRIs and global standards (GTFS, GBFS, NeTEx, schema.org, and others)
-- **Standards landscape analysis** — a comprehensive survey of 19 global mobility standards and their JSON-LD / RDF compatibility, informing how Beckn Mobility IRIs relate to the broader ecosystem
+- **Ontology design** — the conceptual model for mobility entities (vehicles, ride offers, fare structures, pickup/drop points, driver profiles, and more) and how they map onto Beckn Core types and global standards (GTFS, GBFS, NeTEx, schema.org, and others)
+- **Standards landscape analysis** — a comprehensive survey of global mobility standards and their JSON-LD / RDF compatibility, informing how mobility schemas relate to the broader ecosystem
+- **Worked example implementations** — complete, schema-validated request/response payloads across the full transaction lifecycle for six use cases (ride-hailing, bike rental, car rental, driver hire, metro fare, multimodal itinerary) — see [`docs/example_implementations/`](./docs/example_implementations/)
+- **A local devkit** — a runnable BAP/BPP adapter stack for driving the ride-hailing example lifecycle end to end with Postman — see [`testnet/mobility-devkit/`](./testnet/mobility-devkit/)
 - **Documentation** — transaction flows, API usage examples, and ecosystem architecture for mobility networks built on Beckn v2
 
-Schemas from this repository are published at **[schema.beckn.io/mobility](https://schema.beckn.io/mobility)** and are browsable, searchable, and consumable by both human developers and AI agents.
+The actual schema definitions (YAML sources, JSON-LD contexts, RDF vocabularies) are authored and published from **[beckn/schemas](https://github.com/beckn/schemas)**, dereferenceable at **[schema.beckn.io](https://schema.beckn.io)** (e.g. `https://schema.beckn.io/RideOption/v2.0`) and browsable, searchable, and consumable by both human developers and AI agents.
 
 ---
 
@@ -93,25 +121,35 @@ Schemas from this repository are published at **[schema.beckn.io/mobility](https
 
 ```
 mobility/
-├── schema/
-│   └── README.md           # Global mobility standards landscape & JSON-LD alignment research
 ├── docs/
-│   ├── README.md           # Documentation table of contents
-│   ├── 1_Overview.md       # Overview of the mobility adaptation
-│   ├── Mobility_Ontology.md
+│   ├── README.md                                  # Documentation table of contents
+│   ├── 1_Overview.md                               # Overview of the mobility adaptation
+│   ├── Mobility_Ontology.md                        # Ontology design for the mobility domain
+│   ├── Global_Mobility_Standards_Landscape.md      # 19-standard JSON-LD/RDF compatibility survey
 │   ├── API-Flows.md
+│   ├── example_implementations/                    # Worked payload examples, per use case
+│   │   ├── ride_hailing/                           #   discover -> support, 6 transport modes
+│   │   ├── cab_rental/
+│   │   ├── advance_cab_reservation/
+│   │   ├── intercity_bus/
+│   │   ├── metro_ticket_booking/
+│   │   └── public_transit_bus/
 │   └── assets/
 │       └── images/
 │           └── Ecosystem Architecture.png
+├── testnet/
+│   └── mobility-devkit/        # Local BAP/BPP adapter stack for the ride-hailing example
+│                                #   -- see testnet/mobility-devkit/README.md for setup
+├── sandbox-payloads/            # Canned on_* fixtures the devkit's mock BPP serves
 ├── LICENSE.md
-└── README.md               # This file
+└── README.md                    # This file
 ```
 
 ---
 
 ## Global Mobility Standards Landscape
 
-The [`schema/README.md`](./schema/README.md) contains a comprehensive analysis of **19 major global mobility standards**, evaluated for JSON-LD / RDF / OWL compatibility — directly relevant to how Beckn Mobility IRIs are aligned with the broader mobility ecosystem.
+[`docs/Global_Mobility_Standards_Landscape.md`](./docs/Global_Mobility_Standards_Landscape.md) contains a comprehensive analysis of **19 major global mobility standards**, evaluated for JSON-LD / RDF / OWL compatibility — directly relevant to how Beckn Mobility IRIs are aligned with the broader mobility ecosystem. A related, differently-structured catalogue of mobility standards (validation schema / RDF-OWL ontology / persistent IRI / JSON–RDF mapping criteria) is also available at [`docs/3_Mobility_Standards.md`](./docs/3_Mobility_Standards.md).
 
 | Category | Standards Covered |
 |----------|------------------|
@@ -131,26 +169,26 @@ The analysis also includes a **MaaS layer heat map** showing which standards app
 
 ## schema.beckn.io Integration
 
-This repository feeds into [schema.beckn.io](https://schema.beckn.io) — the authoritative Beckn schema registry — as a domain schema source under the `mobility` namespace.
+Mobility-tagged schemas are authored and published from [beckn/schemas](https://github.com/beckn/schemas) — the authoritative Beckn schema registry source — not from this repository. This repository's ontology and standards research inform that authoring process; the worked examples and devkit here validate against the schemas it publishes.
 
-- **Published namespace**: `https://schema.beckn.io/mobility/`
-- **Sync**: GitHub-first; schema changes in this repo flow automatically to the registry
-- **IRI format**: `https://schema.beckn.io/mobility/<Term>` (e.g. `https://schema.beckn.io/mobility/RideOffer`)
+- **Published at**: [schema.beckn.io](https://schema.beckn.io), flat namespace (no `/mobility/` path segment)
+- **IRI format**: `https://schema.beckn.io/<SchemaName>/v<version>` (e.g. `https://schema.beckn.io/RideOption/v2.0`) — mobility schemas are identified by an `x-tags: [mobility, ...]` annotation, not a distinct namespace
+- **Sync**: GitHub-first from `beckn/schemas`; schema changes there flow to the registry
 - **Representations**: Each IRI returns HTML (for developers), YAML (canonical source), JSON-LD, and Turtle/RDF depending on `Accept` header or URL suffix
 
 ---
 
 ## Beckn v2 Foundation
 
-This schema pack is built on top of:
+The mobility work in this repository builds on:
 
 | Repository | Role |
 |-----------|------|
-| [beckn/protocol-specifications-v2](https://github.com/beckn/protocol-specifications-v2) | Beckn v2 protocol envelope — universal `/beckn/{action}` API, core JSON-LD context and vocabulary (v2.0.1 LTS) |
-| [beckn/core_schema](https://github.com/beckn/core_schema) | Domain-agnostic transaction schemas (`RequestAction`, `CallbackAction`, `Ack`, `Order`, `Fulfillment`, etc.) — the Core IRIs that Mobility IRIs map to |
-| [schema.beckn.io](https://schema.beckn.io) | Public schema registry — hosts and serves all Beckn schemas including this domain pack |
+| [beckn/protocol-specifications-v2](https://github.com/beckn/protocol-specifications-v2) | Beckn v2 protocol envelope — universal `/beckn/{action}` API, core JSON-LD context and vocabulary (v2.0.0 LTS) |
+| [beckn/schemas](https://github.com/beckn/schemas) | All Beckn v2.0.0 schema definitions — domain-agnostic transaction schemas (`Contract`, `Commitment`, `Fulfillment`, etc.) alongside mobility-tagged (`x-tags: [mobility, ...]`) schemas such as `RideOption`, `Fare`, `Driver`, `VehicleCategory` |
+| [schema.beckn.io](https://schema.beckn.io) | Public schema registry — hosts and serves every schema from `beckn/schemas` |
 
-Domain schema packs like this one extend the core with vertical-specific types and properties. The base protocol and core schemas remain minimal and stable; mobility semantics evolve independently here.
+Mobility schemas aren't a separately-versioned pack layered on top of core — they live in the same flat `beckn/schemas` repository, distinguished by domain tags rather than a separate namespace.
 
 ---
 
@@ -158,18 +196,30 @@ Domain schema packs like this one extend the core with vertical-specific types a
 
 The [`docs/`](./docs/) folder contains:
 
-1. [Overview](./docs/1_Overview.md) — Schema adaptation for the mobility domain
+1. [Overview](./docs/1_Overview.md) — Overview of the mobility domain adaptation
 2. [API Flows](./docs/API-Flows.md) — Transaction flows for taxi and bus booking
 3. [Mobility Ontology](./docs/Mobility_Ontology.md) — Ontology design for the mobility domain
-4. [Ecosystem Architecture](./docs/assets/images/Ecosystem%20Architecture.png) — Reference mobility ecosystem diagram
+4. [Global Mobility Standards Landscape](./docs/Global_Mobility_Standards_Landscape.md) — 19-standard JSON-LD/RDF/OWL compatibility survey and MaaS-layer heat map
+5. [Ecosystem Architecture](./docs/assets/images/Ecosystem%20Architecture.png) — Reference mobility ecosystem diagram
+6. [Example Implementations](./docs/example_implementations/) — Complete, schema-validated request/response payloads across the full transaction lifecycle (`discover` → `support`) for six use cases: ride-hailing, cab rental, advance cab reservation, intercity bus, metro ticket booking, and public transit bus
+
+---
+
+## Local Testing — Devkit
+
+[`testnet/mobility-devkit/`](./testnet/mobility-devkit/) wires the `ride_hailing` (`cab_hailing`) example to a runnable local BAP/BPP adapter stack, so the full lifecycle can be driven with Postman and observed end to end — not just read as static JSON. It bundles ONIX adapter configs, routing rules, a Caddy reverse proxy with optional ngrok tunnel support, a docker-compose stack, and ready-to-import Postman collections.
+
+Its mock BPP is backed by canned response fixtures under [`sandbox-payloads/`](./sandbox-payloads/), resolved from the `ride_hailing` example content.
+
+See **[testnet/mobility-devkit/README.md](./testnet/mobility-devkit/README.md)** for prerequisites, quick start, configuration reference, and known limitations — it currently covers only the `cab_hailing` use case, and `discover`/`on_discover` have no backing mock (there's no local Discover/CDS service to route to).
 
 ---
 
 ## Contributing
 
-Contributions to this schema pack are welcome. Contributors must follow the contribution guidelines in the `CONTRIBUTION.md` document in this repository.
+Contributions to this repository — ontology work, standards research, example implementations, or devkit improvements — are welcome. Contributors must follow the contribution guidelines in the `CONTRIBUTION.md` document in this repository. Contributions to the mobility schemas themselves belong in [beckn/schemas](https://github.com/beckn/schemas).
 
-Each contribution will be peer-reviewed by the Mobility Working Group members. If approved, the contribution will be merged into the applicable version of the mobility schema pack.
+Each contribution will be peer-reviewed by the Mobility Working Group members before being merged.
 
 To follow discussions related to the mobility specification, visit the [Discussions Forum](https://github.com/beckn/mobility/discussions) on GitHub.
 
@@ -182,7 +232,7 @@ To connect with the Mobility Working Group and the broader Beckn Open Collective
 | Resource | Link |
 |----------|------|
 | Beckn Protocol v2 specification | https://github.com/beckn/protocol-specifications-v2 |
-| Beckn core transaction schema | https://github.com/beckn/core_schema |
+| Beckn schema definitions (core + domain-tagged) | https://github.com/beckn/schemas |
 | Beckn schema registry | https://schema.beckn.io |
 | DeDi protocol (network registry) | https://dedi.global |
 | Beckn website | https://beckn.io |
@@ -190,4 +240,4 @@ To connect with the Mobility Working Group and the broader Beckn Open Collective
 
 ---
 
-*Last updated: February 2026*
+*Last updated: July 2026*

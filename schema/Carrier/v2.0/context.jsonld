@@ -1,6 +1,0 @@
-{
-  "@context": {
-    "beckn": "https://schema.beckn.io/mobility/v2.0/",
-    "Carrier": "beckn:Carrier"
-  }
-}
