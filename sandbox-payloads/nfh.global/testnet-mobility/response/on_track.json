@@ -104,12 +104,7 @@
                 "@context": "https://schema.beckn.io/RideOption/2.0/context.jsonld",
                 "@type": "RideOption",
                 "vehicleType": {
-                  "vehicleCategoryCode": "FOUR_WHEELER",
-                  "descriptor": {
-                    "@context": "https://schema.beckn.io/Descriptor/2.0/context.jsonld",
-                    "@type": "beckn:Descriptor",
-                    "schema:name": "Sedan"
-                  }
+                  "vehicleCategoryCode": "FOUR_WHEELER"
                 },
                 "estimatedDuration": "PT12M",
                 "estimatedDistance": 3.2

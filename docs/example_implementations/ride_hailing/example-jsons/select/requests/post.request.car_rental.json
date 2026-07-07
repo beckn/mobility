@@ -105,12 +105,7 @@
               "year": 2024,
               "color": "white",
               "vehicleType": {
-                "vehicleTypeCode": "CAR",
-                "descriptor": {
-                  "@context": "https://schema.beckn.io/Descriptor/2.0/context.jsonld",
-                  "@type": "beckn:Descriptor",
-                  "schema:name": "Compact Car"
-                }
+                "vehicleTypeCode": "CAR"
               },
               "licensePlate": "12-ABC-3"
             }
