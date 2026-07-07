@@ -106,8 +106,6 @@
               "yearsOfExperience": 8,
               "contact": "+31 20 555 0142",
               "person": {
-                "@context": "https://schema.beckn.io/Person/2.0/context.jsonld",
-                "@type": "Person",
                 "id": "person-drv-pool",
                 "name": "Vetted driver"
               }
@@ -156,8 +154,6 @@
             "passengerId": "psg-001",
             "passengerType": "ADULT",
             "person": {
-              "@context": "https://schema.beckn.io/Person/2.0/context.jsonld",
-              "@type": "Person",
               "id": "person-001",
               "name": "Alex Rider",
               "telephone": "+31 6 1234 5678"
@@ -171,7 +167,11 @@
           },
           "participantAttributes": {
             "@context": "https://schema.beckn.io/Provider/2.0/context.jsonld",
-            "@type": "Provider"
+            "@type": "Provider",
+            "beckn:id": "pn-safedrivers",
+            "beckn:descriptor": {
+              "name": "SafeDrivers NL"
+            }
           }
         }
       ]

@@ -156,7 +156,7 @@
                     "multiplierValue": 1.2,
                     "reason": "HIGH_DEMAND",
                     "validUntil": "2026-07-06T10:00:00Z",
-                    "appliedTo": {
+                    "price": {
                       "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
                       "@type": "PriceSpecification",
                       "currency": "EUR",
@@ -187,8 +187,6 @@
             "passengerId": "psg-001",
             "passengerType": "ADULT",
             "person": {
-              "@context": "https://schema.beckn.io/Person/2.0/context.jsonld",
-              "@type": "Person",
               "id": "person-001",
               "name": "Alex Rider",
               "telephone": "+31 6 1234 5678"

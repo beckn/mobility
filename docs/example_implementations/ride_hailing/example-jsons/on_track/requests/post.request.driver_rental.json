@@ -103,8 +103,6 @@
                 "yearsOfExperience": 8,
                 "contact": "+31 20 555 0142",
                 "person": {
-                  "@context": "https://schema.beckn.io/Person/2.0/context.jsonld",
-                  "@type": "Person",
                   "id": "person-drv-pool",
                   "name": "Vetted driver"
                 }

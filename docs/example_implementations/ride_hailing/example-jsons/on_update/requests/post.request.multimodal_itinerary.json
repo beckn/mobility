@@ -260,8 +260,6 @@
             "passengerId": "psg-001",
             "passengerType": "ADULT",
             "person": {
-              "@context": "https://schema.beckn.io/Person/2.0/context.jsonld",
-              "@type": "Person",
               "id": "person-001",
               "name": "Alex Rider",
               "telephone": "+31 6 1234 5678"
@@ -275,7 +273,11 @@
           },
           "participantAttributes": {
             "@context": "https://schema.beckn.io/Provider/2.0/context.jsonld",
-            "@type": "Provider"
+            "@type": "Provider",
+            "beckn:id": "pn-journeyplanner",
+            "beckn:descriptor": {
+              "name": "Amsterdam Journey Planner"
+            }
           }
         }
       ],

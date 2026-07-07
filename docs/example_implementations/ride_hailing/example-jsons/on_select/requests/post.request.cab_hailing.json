@@ -152,7 +152,7 @@
                     "multiplierValue": 1.2,
                     "reason": "HIGH_DEMAND",
                     "validUntil": "2026-07-06T10:00:00Z",
-                    "appliedTo": {
+                    "price": {
                       "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
                       "@type": "PriceSpecification",
                       "currency": "EUR",
