@@ -119,18 +119,14 @@
             "offerAttributes": {
               "@context": "https://schema.beckn.io/RideOption/2.0/context.jsonld",
               "@type": "RideOption",
-              "vehicleType": "SEDAN",
+              "vehicleType": {
+                "vehicleCategoryCode": "FOUR_WHEELER",
+                "descriptor": {
+                  "name": "Sedan"
+                }
+              },
               "estimatedDuration": "PT12M",
-              "estimatedDistance": 3.2,
-              "serviceClass": {
-                "@context": "https://schema.beckn.io/ServiceClass/2.0/context.jsonld",
-                "@type": "ServiceClass",
-                "serviceClassCode": "ECONOMY",
-                "features": [
-                  "air-conditioning",
-                  "4 seats"
-                ]
-              }
+              "estimatedDistance": 3.2
             },
             "considerations": [
               {

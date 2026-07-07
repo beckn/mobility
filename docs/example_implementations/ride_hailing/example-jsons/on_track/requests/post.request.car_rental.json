@@ -107,7 +107,12 @@
                 "model": "Polo",
                 "year": 2024,
                 "color": "white",
-                "vehicleType": "COMPACT_CAR",
+                "vehicleType": {
+                  "vehicleTypeCode": "CAR",
+                  "descriptor": {
+                    "name": "Compact Car"
+                  }
+                },
                 "licensePlate": "12-ABC-3"
               }
             },

@@ -22,8 +22,8 @@
       "https://schema.beckn.io/FareEstimate/2.0/context.jsonld",
       "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld",
       "https://schema.beckn.io/Driver/2.0/context.jsonld",
-      "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld",
-      "https://schema.beckn.io/PriceComponent/2.1/context.jsonld",
+      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+      "https://schema.beckn.io/PriceComponent/2.2/context.jsonld",
       "https://schema.beckn.io/Passenger/2.0/context.jsonld",
       "https://schema.beckn.io/Person/2.0/context.jsonld",
       "https://schema.beckn.io/Provider/2.0/context.jsonld",
@@ -107,19 +107,24 @@
             "offerAttributes": {
               "@context": "https://schema.beckn.io/RideOption/2.0/context.jsonld",
               "@type": "RideOption",
-              "vehicleType": "SEDAN",
+              "vehicleType": {
+                "vehicleCategoryCode": "FOUR_WHEELER",
+                "descriptor": {
+                  "name": "Sedan"
+                }
+              },
               "estimatedDuration": "PT12M",
-              "estimatedDistance": 3.2,
-              "serviceClass": {
-                "@context": "https://schema.beckn.io/ServiceClass/2.0/context.jsonld",
-                "@type": "ServiceClass",
-                "serviceClassCode": "ECONOMY",
-                "features": [
-                  "air-conditioning",
-                  "4 seats"
-                ]
-              }
+              "estimatedDistance": 3.2
             }
+          },
+          "commitmentAttributes": {
+            "@context": "https://schema.beckn.io/ServiceClass/2.0/context.jsonld",
+            "@type": "ServiceClass",
+            "serviceClassCode": "ECONOMY",
+            "features": [
+              "air-conditioning",
+              "4 seats"
+            ]
           }
         }
       ],
@@ -131,7 +136,7 @@
             "name": "Cancellation charge"
           },
           "considerationAttributes": {
-            "@context": "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld",
+            "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
             "@type": "PriceSpecification",
             "currency": "EUR",
             "value": 17.42,

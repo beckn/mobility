@@ -119,7 +119,12 @@
               "make": "Batavus",
               "model": "City Bike",
               "color": "blue",
-              "vehicleType": "CITY_BICYCLE"
+              "vehicleType": {
+                "vehicleTypeCode": "BICYCLE",
+                "descriptor": {
+                  "name": "City Bicycle"
+                }
+              }
             },
             "considerations": [
               {
