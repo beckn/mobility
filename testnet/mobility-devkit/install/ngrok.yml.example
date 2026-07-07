@@ -1,0 +1,11 @@
+version: "3"
+
+# Get your authtoken at https://dashboard.ngrok.com/authtokens
+# Get your free static domain at https://dashboard.ngrok.com/domains
+agent:
+  authtoken: <paste-your-authtoken-here>
+tunnels:
+  beckn:
+    proto: http
+    addr: 9000
+    #domain: <your-static-domain>.ngrok-free.app

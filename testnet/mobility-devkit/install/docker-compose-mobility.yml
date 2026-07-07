@@ -1,0 +1,144 @@
+services:
+  # ============================================================
+  # beckn-router — Caddy reverse proxy, single entry point for
+  #   both adapters. Exposes port 9000 on the host.
+  #
+  #   /bap/* → onix-bap:8081
+  #   /bpp/* → onix-bpp:8082
+  #
+  # For public-internet callbacks, tunnel port 9000 via ngrok:
+  #   cp ngrok.yml.example ngrok.yml   # fill in authtoken + domain
+  #   ngrok start --all --config ngrok.yml
+  # Then set public_url in your Postman collection to the tunnel URL.
+  # ============================================================
+  beckn-router:
+    image: caddy:alpine
+    container_name: beckn-router
+    ports:
+      - "9000:9000"
+    networks:
+      - beckn_network
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    depends_on:
+      - onix-bap
+      - onix-bpp
+    restart: unless-stopped
+
+  # ============================================================
+  # Redis — shared cache for both adapters
+  # ============================================================
+  redis:
+    image: redis:alpine
+    container_name: redis
+    ports:
+      - "6379:6379"
+    networks:
+      - beckn_network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  # ============================================================
+  # onix-bap — Beckn adapter acting as BAP
+  #   Caller  (outbound): http://localhost:8081/bap/caller/
+  #   Receiver (inbound): http://localhost:8081/bap/receiver/
+  # ============================================================
+  onix-bap:
+    image: fidedocker/onix-adapter
+    container_name: onix-bap
+    platform: linux/amd64
+    networks:
+      - beckn_network
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      REDIS_ADDR: redis:6379
+    volumes:
+      - ../config:/app/config
+    command: ["./server", "--config=/app/config/mobility-bap.yaml"]
+
+  # ============================================================
+  # onix-bpp — Beckn adapter acting as BPP
+  #   Caller  (outbound): http://localhost:8082/bpp/caller/
+  #   Receiver (inbound): http://localhost:8082/bpp/receiver/
+  # ============================================================
+  onix-bpp:
+    image: fidedocker/onix-adapter
+    container_name: onix-bpp
+    platform: linux/amd64
+    networks:
+      - beckn_network
+    ports:
+      - "8082:8082"
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      REDIS_ADDR: redis:6379
+    volumes:
+      - ../config:/app/config
+    command: ["./server", "--config=/app/config/mobility-bpp.yaml"]
+
+  # ============================================================
+  # sandbox-bap — mock BAP application
+  #   Receives on_* callbacks at: http://sandbox-bap:3001/api/bap-webhook
+  #   Health:                     http://localhost:3001/api/health
+  # ============================================================
+  sandbox-bap:
+    container_name: sandbox-bap
+    image: fidedocker/sandbox-2.0:latest
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+    ports:
+      - "3001:3001"
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3001/api/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    networks:
+      - beckn_network
+
+  # ============================================================
+  # sandbox-bpp — mock BPP application
+  #   Receives action requests at: http://sandbox-bpp:3002/api/webhook
+  #   Health:                      http://localhost:3002/api/health
+  #
+  #   Mounted with the resolved cab_hailing on_* fixtures so the demo
+  #   returns realistic ride-hailing responses instead of generic stubs.
+  #   Regenerate via scripts/resolve_sandbox_payloads.py if the source
+  #   example-jsons content changes.
+  # ============================================================
+  sandbox-bpp:
+    container_name: sandbox-bpp
+    image: fidedocker/sandbox-2.0:latest
+    environment:
+      - NODE_ENV=production
+      - PORT=3002
+    ports:
+      - "3002:3002"
+    volumes:
+      - ../../../sandbox-payloads/nfh.global/testnet-mobility/response:/app/dist/webhook/jsons/nfh.global/testnet-mobility/response
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3002/api/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 10s
+    networks:
+      - beckn_network
+
+networks:
+  beckn_network:
+    name: beckn_network
+    driver: bridge
