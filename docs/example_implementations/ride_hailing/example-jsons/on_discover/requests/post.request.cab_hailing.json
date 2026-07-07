@@ -22,7 +22,8 @@
       "https://schema.beckn.io/FareEstimate/2.0/context.jsonld",
       "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld",
       "https://schema.beckn.io/Driver/2.0/context.jsonld",
-      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld"
+      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+      "https://schema.beckn.io/PriceComponent/2.2/context.jsonld"
     ],
     "requestDigest": {
       "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
@@ -139,11 +140,32 @@
                   "currency": "EUR",
                   "minimumAmount": 15.0,
                   "maximumAmount": 21.0,
-                  "surgeMultiplier": {
-                    "@context": "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld",
-                    "@type": "SurgeMultiplier",
-                    "multiplierValue": 1.2,
-                    "reason": "HIGH_DEMAND"
+                  "price": {
+                    "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+                    "@type": "PriceSpecification",
+                    "currency": "EUR",
+                    "value": 17.42,
+                    "components": [
+                      {
+                        "type": "UNIT",
+                        "value": 14.4,
+                        "currency": "EUR",
+                        "description": "(Base fare + distance) X 1.2x surge pricing",
+                        "componentAttributes": {
+                          "@context": "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld",
+                          "@type": "SurgeMultiplier",
+                          "multiplierValue": 1.2,
+                          "reason": "HIGH_DEMAND",
+                          "validUntil": "2026-07-06T10:00:00Z"
+                        }
+                      },
+                      {
+                        "type": "TAX",
+                        "value": 3.02,
+                        "currency": "EUR",
+                        "description": "VAT 21%"
+                      }
+                    ]
                   }
                 }
               }
