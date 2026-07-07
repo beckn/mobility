@@ -110,7 +110,9 @@
               "vehicleType": {
                 "vehicleTypeCode": "CAR",
                 "descriptor": {
-                  "name": "Compact Car"
+                  "@context": "https://schema.beckn.io/Descriptor/2.0/context.jsonld",
+                  "@type": "beckn:Descriptor",
+                  "schema:name": "Compact Car"
                 }
               },
               "licensePlate": "12-ABC-3"
