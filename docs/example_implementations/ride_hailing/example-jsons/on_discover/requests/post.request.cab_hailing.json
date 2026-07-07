@@ -22,7 +22,7 @@
       "https://schema.beckn.io/FareEstimate/2.0/context.jsonld",
       "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld",
       "https://schema.beckn.io/Driver/2.0/context.jsonld",
-      "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld"
+      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld"
     ],
     "requestDigest": {
       "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"

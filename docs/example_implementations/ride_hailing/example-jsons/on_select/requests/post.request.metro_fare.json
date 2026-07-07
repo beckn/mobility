@@ -24,8 +24,8 @@
       "https://schema.beckn.io/RiderCategory/2.0/context.jsonld",
       "https://schema.beckn.io/FareMedium/2.0/context.jsonld",
       "https://schema.beckn.io/Ticket/2.0/context.jsonld",
-      "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld",
-      "https://schema.beckn.io/PriceComponent/2.1/context.jsonld"
+      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+      "https://schema.beckn.io/PriceComponent/2.2/context.jsonld"
     ],
     "requestDigest": {
       "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
@@ -132,7 +132,7 @@
             "fareProductId": "gvb-1h",
             "durationType": "SINGLE_TRIP",
             "price": {
-              "@context": "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld",
+              "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
               "@type": "PriceSpecification",
               "currency": "EUR",
               "value": 3.4,

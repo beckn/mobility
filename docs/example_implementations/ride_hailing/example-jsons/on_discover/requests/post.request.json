@@ -168,7 +168,7 @@
                   "name": "<status name>"
                 },
                 "considerationAttributes": {
-                  "@context": "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld",
+                  "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
                   "@type": "PriceSpecification",
                   "currency": "<currency:ISO-4217 e.g. EUR>",
                   "value": "<value:number>",

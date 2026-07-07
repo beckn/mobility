@@ -21,7 +21,7 @@
       "https://schema.beckn.io/Itinerary/2.0/context.jsonld",
       "https://schema.beckn.io/SystemPricingPlan/2.0/context.jsonld",
       "https://schema.beckn.io/SettlementTerm/2.0/context.jsonld",
-      "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld"
+      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld"
     ],
     "requestDigest": {
       "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
@@ -134,7 +134,7 @@
                   "name": "Fare estimate"
                 },
                 "considerationAttributes": {
-                  "@context": "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld",
+                  "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
                   "@type": "PriceSpecification",
                   "currency": "EUR",
                   "value": 6.0,

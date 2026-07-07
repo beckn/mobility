@@ -24,8 +24,8 @@
       "https://schema.beckn.io/RiderCategory/2.0/context.jsonld",
       "https://schema.beckn.io/FareMedium/2.0/context.jsonld",
       "https://schema.beckn.io/Ticket/2.0/context.jsonld",
-      "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld",
-      "https://schema.beckn.io/PriceComponent/2.1/context.jsonld",
+      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+      "https://schema.beckn.io/PriceComponent/2.2/context.jsonld",
       "https://schema.beckn.io/Passenger/2.0/context.jsonld",
       "https://schema.beckn.io/Person/2.0/context.jsonld",
       "https://schema.beckn.io/Provider/2.0/context.jsonld",
@@ -227,7 +227,7 @@
             "name": "Revised fare"
           },
           "considerationAttributes": {
-            "@context": "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld",
+            "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
             "@type": "PriceSpecification",
             "currency": "EUR",
             "value": 6.4,

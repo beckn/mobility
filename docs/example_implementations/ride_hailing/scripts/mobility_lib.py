@@ -37,8 +37,8 @@ class ctx:
     VEH       = "https://schema.beckn.io/Vehicle/2.0/context.jsonld"
     DRV       = "https://schema.beckn.io/Driver/2.0/context.jsonld"
     ROUTE     = "https://schema.beckn.io/Route/2.0/context.jsonld"
-    PRICE     = "https://schema.beckn.io/PriceSpecification/2.1/context.jsonld"
-    PRICECOMP = "https://schema.beckn.io/PriceComponent/2.1/context.jsonld"
+    PRICE     = "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld"
+    PRICECOMP = "https://schema.beckn.io/PriceComponent/2.2/context.jsonld"
     # Fare-structure vocabularies:
     FAREEST   = "https://schema.beckn.io/FareEstimate/2.0/context.jsonld"
     SURGE     = "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld"
