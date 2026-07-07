@@ -1,20 +1,42 @@
-# Beckn Protocol — Mobility Domain
+# Mobility — NFH Open Networks, Powered by Beckn Protocol
 
 > Stable, dereferenceable IRIs for the mobility domain — enabling any Beckn-enabled mobility application to achieve semantic interoperability by binding their data models to a shared set of meanings, not just a shared wire format.
 
+This work is part of [Networks for Humanity](https://networksforhumanity.org/) (NFH)'s open-network initiatives — see [docs.nfh.global](https://docs.nfh.global) for the broader NFH ecosystem.
+
 ## Contents
 
-- [Latest Version](#latest-version) · [Earlier Versions](#earlier-versions)
 - [Status](#status)
 - [About](#about)
+- [Latest Version](#latest-version) · [Earlier Versions](#earlier-versions)
 - [Repository Structure](#repository-structure)
 - [Documentation](#documentation)
-- [Local Testing — Devkit](#local-testing--devkit)
+- [Local Testing (Devkit)](#local-testing-devkit)
 - [Why This Repository Exists](#why-this-repository-exists)
 - [Global Mobility Standards Landscape](#global-mobility-standards-landscape)
 - [Beckn Ecosystem & Schema Publishing](#beckn-ecosystem--schema-publishing)
 - [Contributing](#contributing)
 - [Related Resources](#related-resources)
+
+---
+
+## Status
+
+**Released v2.0.0** — Mobility domain schema definitions (YAML/JSON-LD) are authored and published from the separate [beckn/schemas](https://github.com/beckn/schemas) repository, not from this one. This repository holds documentation, the mobility ontology and standards research, worked example payloads for six ride-hailing-adjacent use cases, and a local devkit for exercising the full transaction lifecycle end to end.
+
+---
+
+## About
+
+This repository is the **mobility working area** for [Beckn Protocol v2](https://github.com/beckn/protocol-specifications-v2) — the ontology design, standards research, worked examples, and local test devkit that inform and validate the mobility-tagged schemas published from [beckn/schemas](https://github.com/beckn/schemas). It provides:
+
+- **Ontology design** — the conceptual model for mobility entities (vehicles, ride offers, fare structures, pickup/drop points, driver profiles, and more) and how they map onto Beckn Core types and global standards (GTFS, GBFS, NeTEx, schema.org, and others)
+- **Standards landscape analysis** — a comprehensive survey of global mobility standards and their JSON-LD / RDF compatibility, informing how mobility schemas relate to the broader ecosystem
+- **Worked example implementations** — complete, schema-validated request/response payloads across the full transaction lifecycle for six use cases (ride-hailing, bike rental, car rental, driver hire, metro fare, multimodal itinerary) — see [`docs/example_implementations/`](./docs/example_implementations/)
+- **A local devkit** — a runnable BAP/BPP adapter stack for driving the ride-hailing example lifecycle end to end with Postman — see [`testnet/mobility-devkit/`](./testnet/mobility-devkit/)
+- **Documentation** — transaction flows, API usage examples, and ecosystem architecture for mobility networks built on Beckn v2
+
+The actual schema definitions (YAML sources, JSON-LD contexts, RDF vocabularies) are authored and published from **[beckn/schemas](https://github.com/beckn/schemas)**, dereferenceable at **[schema.beckn.io](https://schema.beckn.io)** (e.g. `https://schema.beckn.io/RideOption/v2.0`) and browsable, searchable, and consumable by both human developers and AI agents.
 
 ---
 
@@ -42,26 +64,6 @@ Prior to 2.0.0, mobility versioning followed its own independent lineage rather 
 | 0.8.2 | August 28, 2020 (Active) |
 | 0.8.0 | August 23, 2020 (deprecated) |
 | 0.7.1 | April 27, 2020 (deprecated) |
-
----
-
-## Status
-
-**Released v2.0.0** — Mobility domain schema definitions (YAML/JSON-LD) are authored and published from the separate [beckn/schemas](https://github.com/beckn/schemas) repository, not from this one. This repository holds documentation, the mobility ontology and standards research, worked example payloads for six ride-hailing-adjacent use cases, and a local devkit for exercising the full transaction lifecycle end to end.
-
----
-
-## About
-
-This repository is the **mobility working area** for [Beckn Protocol v2](https://github.com/beckn/protocol-specifications-v2) — the ontology design, standards research, worked examples, and local test devkit that inform and validate the mobility-tagged schemas published from [beckn/schemas](https://github.com/beckn/schemas). It provides:
-
-- **Ontology design** — the conceptual model for mobility entities (vehicles, ride offers, fare structures, pickup/drop points, driver profiles, and more) and how they map onto Beckn Core types and global standards (GTFS, GBFS, NeTEx, schema.org, and others)
-- **Standards landscape analysis** — a comprehensive survey of global mobility standards and their JSON-LD / RDF compatibility, informing how mobility schemas relate to the broader ecosystem
-- **Worked example implementations** — complete, schema-validated request/response payloads across the full transaction lifecycle for six use cases (ride-hailing, bike rental, car rental, driver hire, metro fare, multimodal itinerary) — see [`docs/example_implementations/`](./docs/example_implementations/)
-- **A local devkit** — a runnable BAP/BPP adapter stack for driving the ride-hailing example lifecycle end to end with Postman — see [`testnet/mobility-devkit/`](./testnet/mobility-devkit/)
-- **Documentation** — transaction flows, API usage examples, and ecosystem architecture for mobility networks built on Beckn v2
-
-The actual schema definitions (YAML sources, JSON-LD contexts, RDF vocabularies) are authored and published from **[beckn/schemas](https://github.com/beckn/schemas)**, dereferenceable at **[schema.beckn.io](https://schema.beckn.io)** (e.g. `https://schema.beckn.io/RideOption/v2.0`) and browsable, searchable, and consumable by both human developers and AI agents.
 
 ---
 
@@ -108,7 +110,7 @@ The [`docs/`](./docs/) folder contains:
 
 ---
 
-## Local Testing — Devkit
+## Local Testing (Devkit)
 
 [`testnet/mobility-devkit/`](./testnet/mobility-devkit/) wires the `ride_hailing` (`cab_hailing`) example to a runnable local BAP/BPP adapter stack, so the full lifecycle can be driven with Postman and observed end to end — not just read as static JSON. It bundles ONIX adapter configs, routing rules, a Caddy reverse proxy with optional ngrok tunnel support, a docker-compose stack, and ready-to-import Postman collections.
 
