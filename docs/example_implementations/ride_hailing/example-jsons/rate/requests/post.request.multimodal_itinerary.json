@@ -1,0 +1,55 @@
+{
+  "context": {
+    "action": "rate",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+      "https://schema.beckn.io/FareProduct/2.0/context.jsonld",
+      "https://schema.beckn.io/Route/2.0/context.jsonld",
+      "https://schema.beckn.io/TariffZone/2.0/context.jsonld",
+      "https://schema.beckn.io/FareLegRule/2.0/context.jsonld",
+      "https://schema.beckn.io/RiderCategory/2.0/context.jsonld",
+      "https://schema.beckn.io/FareMedium/2.0/context.jsonld",
+      "https://schema.beckn.io/Ticket/2.0/context.jsonld",
+      "https://schema.beckn.io/Rating/2.1/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "ratingInputs": [
+      {
+        "target": {
+          "id": "pn-journeyplanner",
+          "descriptor": {
+            "name": "Amsterdam Journey Planner"
+          },
+          "targetAttributes": {
+            "@context": "https://schema.beckn.io/Rating/2.1/context.jsonld",
+            "@type": "Rating",
+            "ratingValue": 5
+          }
+        },
+        "range": {
+          "min": 1,
+          "max": 5,
+          "value": 5
+        }
+      }
+    ]
+  }
+}

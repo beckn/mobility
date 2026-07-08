@@ -1,0 +1,33 @@
+# BAP Caller Routing — outbound requests from BAP to BPPs / CDS
+#
+# domain "nfh.global/testnet-mobility" maps to the v2.0.0 context.networkId field.
+#
+# Routed directly to onix-bpp's receiver by fixed URL rather than targetType "bpp"
+# (DeDi registry lookup) — the shared bap.example.com/bpp.example.com testnet
+# credentials are registered under beckn.one/testnet, not this devkit's own
+# networkId, so a registry-resolved route would not resolve here. This keeps the
+# devkit fully self-contained while still exercising both adapters' full pipeline
+# (sign, schema validation, ack) rather than skipping straight to the sandbox mock.
+#
+# Unlike beckn-onix's generic-devkit (which sends `discover` to a live Discover
+# Service URL), this devkit also routes `discover` through onix-bpp, so the full
+# ride-hailing lifecycle can be demonstrated fully offline with no external network
+# dependency. Point this at a real Discover/CDS endpoint once you have one.
+
+routingRules:
+  - domain: "nfh.global/testnet-mobility"
+    version: "2.0.0"
+    targetType: "url"
+    target:
+      url: "http://onix-bpp:8082/bpp/receiver"
+    endpoints:
+      - discover
+      - select
+      - init
+      - confirm
+      - status
+      - track
+      - update
+      - cancel
+      - rate
+      - support

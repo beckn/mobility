@@ -1,0 +1,72 @@
+{
+  "context": {
+    "action": "track",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "tracking": {
+      "contract": {
+        "id": "b1a7c1e2-6666-4a2b-8c3d-000000000006",
+        "commitments": [
+          {
+            "status": {
+              "descriptor": {
+                "code": "ACTIVE",
+                "name": "Active commitment"
+              }
+            },
+            "resources": [
+              {
+                "id": "res-leg-walk-1",
+                "quantity": {
+                  "value": 1,
+                  "unit": "leg"
+                }
+              },
+              {
+                "id": "res-leg-metro-2",
+                "quantity": {
+                  "value": 1,
+                  "unit": "leg"
+                }
+              },
+              {
+                "id": "res-leg-walk-3",
+                "quantity": {
+                  "value": 1,
+                  "unit": "leg"
+                }
+              }
+            ],
+            "offer": {
+              "id": "off-itinerary-walk-metro",
+              "resourceIds": [
+                "res-leg-walk-1",
+                "res-leg-metro-2",
+                "res-leg-walk-3"
+              ]
+            }
+          }
+        ]
+      },
+      "status": "INACTIVE",
+      "url": "https://track.example.com/<transactionId>"
+    }
+  }
+}

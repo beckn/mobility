@@ -1,0 +1,48 @@
+{
+  "context": {
+    "action": "catalog/on_publish",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "<schemaContext[]:uri>"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "results": [
+      {
+        "catalogId": "<catalogId>",
+        "status": "ACCEPTED",
+        "errors": [
+          {
+            "code": "SCH_FIELD_NOT_ALLOWED",
+            "message": "Field 'electronic:invalidField' not found in ElectronicItem schema",
+            "details": {
+              "path": "$.message.order.items[0].quantity.count",
+              "cause": "<recursive:Error>"
+            }
+          }
+        ],
+        "stats": {
+          "itemCount": 0,
+          "providerCount": 0,
+          "categoryCount": 0
+        }
+      }
+    ]
+  }
+}

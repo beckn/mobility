@@ -1,0 +1,231 @@
+{
+  "context": {
+    "action": "on_confirm",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+      "https://schema.beckn.io/Vehicle/2.0/context.jsonld",
+      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+      "https://schema.beckn.io/PriceComponent/2.2/context.jsonld",
+      "https://schema.beckn.io/Passenger/2.0/context.jsonld",
+      "https://schema.beckn.io/Person/2.0/context.jsonld",
+      "https://schema.beckn.io/Provider/2.0/context.jsonld",
+      "https://schema.beckn.io/SettlementTerm/2.0/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "contract": {
+      "id": "b1a7c1e2-3333-4a2b-8c3d-000000000003",
+      "descriptor": {
+        "name": "Shared bike rental (24h)",
+        "shortDesc": "Self-drive bike"
+      },
+      "status": {
+        "code": "ACTIVE",
+        "name": "Active contract"
+      },
+      "commitments": [
+        {
+          "id": "cmt-con-bike-rental",
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE",
+              "name": "Active commitment"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-trip-bike-01",
+              "quantity": {
+                "value": 1,
+                "unit": "day"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+                "@type": "TripRequest",
+                "modes": "",
+                "origin": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      4.9003,
+                      52.3791
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Stationsplein",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "North Holland",
+                    "addressCountry": "NL",
+                    "postalCode": "1012 AB"
+                  }
+                },
+                "destination": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      4.8852,
+                      52.36
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Museumstraat 1",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "North Holland",
+                    "addressCountry": "NL",
+                    "postalCode": "1071 XX"
+                  }
+                }
+              }
+            }
+          ],
+          "offer": {
+            "id": "off-bike-rental",
+            "resourceIds": [
+              "res-trip-bike-01"
+            ],
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/Vehicle/2.0/context.jsonld",
+              "@type": "Vehicle",
+              "vehicleId": "ovf-city",
+              "make": "Batavus",
+              "model": "City Bike",
+              "color": "blue",
+              "vehicleType": {
+                "vehicleTypeCode": "BICYCLE"
+              }
+            }
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "con-bike-rental",
+          "status": {
+            "code": "PRICE_CONFIRMED",
+            "name": "Confirmed fare"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+            "@type": "PriceSpecification",
+            "currency": "EUR",
+            "value": 4.55,
+            "components": [
+              {
+                "type": "UNIT",
+                "value": 4.55,
+                "currency": "EUR",
+                "description": "Rental per 24h"
+              }
+            ]
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "consumer-001",
+          "descriptor": {
+            "name": "Rider"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/Passenger/2.0/context.jsonld",
+            "@type": "Passenger",
+            "passengerId": "psg-001",
+            "passengerType": "ADULT",
+            "person": {
+              "id": "person-001",
+              "name": "Alex Rider",
+              "telephone": "+31 6 1234 5678"
+            }
+          }
+        },
+        {
+          "id": "pn-ovfiets",
+          "descriptor": {
+            "name": "OV-fiets"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/Provider/2.0/context.jsonld",
+            "@type": "Provider",
+            "beckn:id": "pn-ovfiets",
+            "beckn:descriptor": {
+              "name": "OV-fiets"
+            }
+          }
+        }
+      ],
+      "settlements": [
+        {
+          "id": "set-con-bike-rental",
+          "considerationId": "con-bike-rental",
+          "status": "COMPLETE",
+          "settlementAttributes": {
+            "@context": "https://schema.beckn.io/SettlementTerm/2.0/context.jsonld",
+            "@type": "SettlementTerm",
+            "amount": {
+              "currency": "EUR",
+              "value": 4.55
+            },
+            "settlementStatus": "COMPLETE",
+            "payTo": {
+              "paymentUrl": "https://pay.example.com/con-bike-rental"
+            },
+            "acceptedPaymentMethods": [
+              "BANK_TRANSFER"
+            ]
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "perf-con-bike-rental",
+          "status": {
+            "code": "CONFIRMED",
+            "name": "Fulfillment scheduled"
+          },
+          "commitmentIds": [
+            "cmt-con-bike-rental"
+          ],
+          "performanceAttributes": {
+            "@context": "https://schema.beckn.io/Vehicle/2.0/context.jsonld",
+            "@type": "Vehicle",
+            "vehicleId": "ovf-city",
+            "licensePlate": "n/a",
+            "pickupLocation": {
+              "geo": {
+                "type": "Point",
+                "coordinates": [
+                  4.9003,
+                  52.3791
+                ]
+              },
+              "address": {
+                "streetAddress": "De Ruijterkade 34",
+                "addressLocality": "Amsterdam",
+                "addressRegion": "North Holland",
+                "addressCountry": "NL",
+                "postalCode": "1012 AA"
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}

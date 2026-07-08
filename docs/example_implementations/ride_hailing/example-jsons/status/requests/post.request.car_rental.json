@@ -1,0 +1,52 @@
+{
+  "context": {
+    "action": "status",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "contract": {
+      "id": "b1a7c1e2-5555-4a2b-8c3d-000000000005",
+      "commitments": [
+        {
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE",
+              "name": "Active commitment"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-trip-carrental-01",
+              "quantity": {
+                "value": 4,
+                "unit": "hour"
+              }
+            }
+          ],
+          "offer": {
+            "id": "off-car-rental",
+            "resourceIds": [
+              "res-trip-carrental-01"
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

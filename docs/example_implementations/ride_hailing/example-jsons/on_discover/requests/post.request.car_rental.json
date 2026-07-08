@@ -1,0 +1,160 @@
+{
+  "context": {
+    "action": "on_discover",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+      "https://schema.beckn.io/Vehicle/2.0/context.jsonld",
+      "https://schema.beckn.io/Itinerary/2.0/context.jsonld",
+      "https://schema.beckn.io/SystemPricingPlan/2.0/context.jsonld",
+      "https://schema.beckn.io/SettlementTerm/2.0/context.jsonld",
+      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-car_rental",
+        "descriptor": {
+          "name": "Self-drive car rental (4h, ~45 km)",
+          "shortDesc": "Vehicle rental"
+        },
+        "provider": {
+          "id": "pn-amsterdam-carrental",
+          "descriptor": {
+            "name": "Amsterdam Car Rental",
+            "shortDesc": "Amsterdam Car Rental mobility services"
+          },
+          "availableAt": [
+            {
+              "geo": {
+                "type": "Point",
+                "coordinates": [
+                  4.9003,
+                  52.3791
+                ]
+              },
+              "address": {
+                "streetAddress": "Stationsplein",
+                "addressLocality": "Amsterdam",
+                "addressRegion": "North Holland",
+                "addressCountry": "NL",
+                "postalCode": "1012 AB"
+              }
+            }
+          ]
+        },
+        "isActive": true,
+        "resources": [
+          {
+            "id": "res-trip-carrental-01",
+            "quantity": {
+              "value": 4,
+              "unit": "hour"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+              "@type": "TripRequest",
+              "modes": "",
+              "origin": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.9,
+                    52.38
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1012"
+                }
+              },
+              "destination": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.89,
+                    52.36
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1071"
+                }
+              }
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "off-car-rental",
+            "descriptor": {
+              "name": "Self-drive car rental (4h, ~45 km)",
+              "shortDesc": "Offer"
+            },
+            "resourceIds": [
+              "res-trip-carrental-01"
+            ],
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/Vehicle/2.0/context.jsonld",
+              "@type": "Vehicle",
+              "vehicleId": "acr-vw-polo",
+              "make": "Volkswagen",
+              "model": "Polo",
+              "year": 2024,
+              "color": "white",
+              "vehicleType": {
+                "vehicleTypeCode": "CAR"
+              },
+              "licensePlate": "12-ABC-3"
+            },
+            "considerations": [
+              {
+                "id": "con-car-rental",
+                "status": {
+                  "code": "PRICE_ESTIMATE",
+                  "name": "Fare estimate"
+                },
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+                  "@type": "PriceSpecification",
+                  "currency": "EUR",
+                  "value": 6.0,
+                  "description": "From EUR 6.00/hour + EUR 0.25/km; refundable EUR 150 deposit"
+                }
+              }
+            ],
+            "validity": {
+              "startDate": "2026-07-06T09:00:00Z",
+              "endDate": "2026-07-06T10:00:00Z"
+            }
+          }
+        ],
+        "validity": {
+          "startDate": "2026-07-06T00:00:00Z",
+          "endDate": "2026-07-06T23:59:59Z"
+        }
+      }
+    ]
+  }
+}

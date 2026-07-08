@@ -1,0 +1,222 @@
+{
+  "context": {
+    "action": "init",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+      "https://schema.beckn.io/FareProduct/2.0/context.jsonld",
+      "https://schema.beckn.io/Route/2.0/context.jsonld",
+      "https://schema.beckn.io/TariffZone/2.0/context.jsonld",
+      "https://schema.beckn.io/FareLegRule/2.0/context.jsonld",
+      "https://schema.beckn.io/RiderCategory/2.0/context.jsonld",
+      "https://schema.beckn.io/FareMedium/2.0/context.jsonld",
+      "https://schema.beckn.io/Ticket/2.0/context.jsonld",
+      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+      "https://schema.beckn.io/PriceComponent/2.2/context.jsonld",
+      "https://schema.beckn.io/Passenger/2.0/context.jsonld",
+      "https://schema.beckn.io/Person/2.0/context.jsonld",
+      "https://schema.beckn.io/Provider/2.0/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "contract": {
+      "id": "b1a7c1e2-2222-4a2b-8c3d-000000000002",
+      "descriptor": {
+        "name": "Metro single journey: Centraal -> Rijksmuseum",
+        "shortDesc": "Transit fare"
+      },
+      "status": {
+        "code": "DRAFT",
+        "name": "Draft contract"
+      },
+      "commitments": [
+        {
+          "id": "cmt-con-fare-single",
+          "status": {
+            "descriptor": {
+              "code": "DRAFT",
+              "name": "Draft commitment"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-trip-metro-01",
+              "quantity": {
+                "value": 1,
+                "unit": "journey"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+                "@type": "TripRequest",
+                "modes": "",
+                "origin": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      4.9003,
+                      52.3791
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Stationsplein",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "North Holland",
+                    "addressCountry": "NL",
+                    "postalCode": "1012 AB"
+                  }
+                },
+                "destination": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      4.8852,
+                      52.36
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Museumstraat 1",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "North Holland",
+                    "addressCountry": "NL",
+                    "postalCode": "1071 XX"
+                  }
+                },
+                "route": {
+                  "@context": "https://schema.beckn.io/Route/2.0/context.jsonld",
+                  "@type": "Route",
+                  "routeId": "gvb-metro-52",
+                  "shortName": "52",
+                  "routeType": "RAIL"
+                }
+              }
+            }
+          ],
+          "offer": {
+            "id": "off-fare-single",
+            "resourceIds": [
+              "res-trip-metro-01"
+            ],
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/FareProduct/2.0/context.jsonld",
+              "@type": "FareProduct",
+              "fareProductId": "gvb-1h",
+              "durationType": "SINGLE_TRIP",
+              "mediaDuration": "PT1H"
+            }
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "con-fare-single",
+          "status": {
+            "code": "PRICE_QUOTED",
+            "name": "Quoted fare"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/FareProduct/2.0/context.jsonld",
+            "@type": "FareProduct",
+            "fareProductId": "gvb-1h",
+            "durationType": "SINGLE_TRIP",
+            "price": {
+              "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+              "@type": "PriceSpecification",
+              "currency": "EUR",
+              "value": 3.4,
+              "components": [
+                {
+                  "type": "UNIT",
+                  "value": 3.4,
+                  "currency": "EUR",
+                  "description": "Adult single journey, Zone Amsterdam Centrum",
+                  "componentAttributes": {
+                    "@context": "https://schema.beckn.io/FareLegRule/2.0/context.jsonld",
+                    "@type": "FareLegRule",
+                    "fareProductId": "gvb-1h",
+                    "legGroupId": "urban-single",
+                    "fromAreaId": {
+                      "@context": "https://schema.beckn.io/TariffZone/2.0/context.jsonld",
+                      "@type": "TariffZone",
+                      "zoneId": "AMS-CENTRE",
+                      "zoneName": "Amsterdam Centrum",
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                          4.9003,
+                          52.3791
+                        ]
+                      }
+                    },
+                    "toAreaId": {
+                      "@context": "https://schema.beckn.io/TariffZone/2.0/context.jsonld",
+                      "@type": "TariffZone",
+                      "zoneId": "AMS-CENTRE",
+                      "zoneName": "Amsterdam Centrum",
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                          4.8852,
+                          52.36
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "riderCategory": {
+              "@context": "https://schema.beckn.io/RiderCategory/2.0/context.jsonld",
+              "@type": "RiderCategory",
+              "riderCategoryId": "adult",
+              "descriptor": {
+                "name": "Adult"
+              },
+              "proofRequired": "none"
+            },
+            "fareMedium": {
+              "@context": "https://schema.beckn.io/FareMedium/2.0/context.jsonld",
+              "@type": "FareMedium",
+              "mediumType": "MOBILE_APP",
+              "mediumId": "gvb-app-token"
+            }
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "consumer-001",
+          "descriptor": {
+            "name": "Rider"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/Passenger/2.0/context.jsonld",
+            "@type": "Passenger",
+            "passengerId": "psg-001",
+            "passengerType": "ADULT",
+            "person": {
+              "id": "person-001",
+              "name": "Alex Rider",
+              "telephone": "+31 6 1234 5678"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

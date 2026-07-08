@@ -1,0 +1,186 @@
+{
+  "context": {
+    "action": "on_discover",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+      "https://schema.beckn.io/RideOption/2.0/context.jsonld",
+      "https://schema.beckn.io/ServiceClass/2.0/context.jsonld",
+      "https://schema.beckn.io/FareEstimate/2.0/context.jsonld",
+      "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld",
+      "https://schema.beckn.io/Driver/2.0/context.jsonld",
+      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+      "https://schema.beckn.io/PriceComponent/2.2/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-cab_hailing",
+        "descriptor": {
+          "name": "Cab ride: Centraal -> Rijksmuseum",
+          "shortDesc": "Ride-hailing"
+        },
+        "provider": {
+          "id": "pn-amsterdam-cabs",
+          "descriptor": {
+            "name": "Amsterdam Cabs",
+            "shortDesc": "Amsterdam Cabs mobility services"
+          },
+          "availableAt": [
+            {
+              "geo": {
+                "type": "Point",
+                "coordinates": [
+                  4.9003,
+                  52.3791
+                ]
+              },
+              "address": {
+                "streetAddress": "Stationsplein",
+                "addressLocality": "Amsterdam",
+                "addressRegion": "North Holland",
+                "addressCountry": "NL",
+                "postalCode": "1012 AB"
+              }
+            }
+          ]
+        },
+        "isActive": true,
+        "resources": [
+          {
+            "id": "res-trip-cab-01",
+            "quantity": {
+              "value": 1,
+              "unit": "trip"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+              "@type": "TripRequest",
+              "modes": "",
+              "origin": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.9,
+                    52.38
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1012"
+                }
+              },
+              "destination": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.89,
+                    52.36
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1071"
+                }
+              }
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "off-ride-economy",
+            "descriptor": {
+              "name": "Cab ride: Centraal -> Rijksmuseum",
+              "shortDesc": "Offer"
+            },
+            "resourceIds": [
+              "res-trip-cab-01"
+            ],
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/RideOption/2.0/context.jsonld",
+              "@type": "RideOption",
+              "vehicleType": {
+                "vehicleCategoryCode": "FOUR_WHEELER"
+              },
+              "estimatedDuration": "PT12M",
+              "estimatedDistance": 3.2
+            },
+            "considerations": [
+              {
+                "id": "con-ride-economy",
+                "status": {
+                  "code": "PRICE_ESTIMATE",
+                  "name": "Fare estimate"
+                },
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/FareEstimate/2.0/context.jsonld",
+                  "@type": "FareEstimate",
+                  "estimatedAmount": 17.42,
+                  "currency": "EUR",
+                  "minimumAmount": 15.0,
+                  "maximumAmount": 21.0,
+                  "price": {
+                    "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+                    "@type": "PriceSpecification",
+                    "currency": "EUR",
+                    "value": 17.42,
+                    "components": [
+                      {
+                        "type": "UNIT",
+                        "value": 14.4,
+                        "currency": "EUR",
+                        "description": "(Base fare + distance) X 1.2x surge pricing",
+                        "componentAttributes": {
+                          "@context": "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld",
+                          "@type": "SurgeMultiplier",
+                          "multiplierValue": 1.2,
+                          "reason": "HIGH_DEMAND",
+                          "validUntil": "2026-07-06T10:00:00Z"
+                        }
+                      },
+                      {
+                        "type": "TAX",
+                        "value": 3.02,
+                        "currency": "EUR",
+                        "description": "VAT 21%"
+                      }
+                    ]
+                  }
+                }
+              }
+            ],
+            "validity": {
+              "startDate": "2026-07-06T09:00:00Z",
+              "endDate": "2026-07-06T10:00:00Z"
+            }
+          }
+        ],
+        "validity": {
+          "startDate": "2026-07-06T00:00:00Z",
+          "endDate": "2026-07-06T23:59:59Z"
+        }
+      }
+    ]
+  }
+}

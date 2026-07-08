@@ -1,0 +1,56 @@
+{
+  "context": {
+    "action": "track",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "tracking": {
+      "contract": {
+        "id": "b1a7c1e2-4444-4a2b-8c3d-000000000004",
+        "commitments": [
+          {
+            "status": {
+              "descriptor": {
+                "code": "ACTIVE",
+                "name": "Active commitment"
+              }
+            },
+            "resources": [
+              {
+                "id": "res-trip-driver-01",
+                "quantity": {
+                  "value": 1,
+                  "unit": "trip"
+                }
+              }
+            ],
+            "offer": {
+              "id": "off-driver-hire",
+              "resourceIds": [
+                "res-trip-driver-01"
+              ]
+            }
+          }
+        ]
+      },
+      "status": "ACTIVE",
+      "url": "https://track.example.com/<transactionId>"
+    }
+  }
+}

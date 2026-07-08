@@ -1,0 +1,235 @@
+{
+  "context": {
+    "action": "on_status",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+      "https://schema.beckn.io/RideOption/2.0/context.jsonld",
+      "https://schema.beckn.io/ServiceClass/2.0/context.jsonld",
+      "https://schema.beckn.io/FareEstimate/2.0/context.jsonld",
+      "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld",
+      "https://schema.beckn.io/Driver/2.0/context.jsonld",
+      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+      "https://schema.beckn.io/PriceComponent/2.2/context.jsonld",
+      "https://schema.beckn.io/Passenger/2.0/context.jsonld",
+      "https://schema.beckn.io/Person/2.0/context.jsonld",
+      "https://schema.beckn.io/Provider/2.0/context.jsonld",
+      "https://schema.beckn.io/SettlementTerm/2.0/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "contract": {
+      "id": "b1a7c1e2-1111-4a2b-8c3d-000000000001",
+      "descriptor": {
+        "name": "Cab ride: Centraal -> Rijksmuseum",
+        "shortDesc": "Ride-hailing"
+      },
+      "status": {
+        "code": "ACTIVE",
+        "name": "Active contract"
+      },
+      "commitments": [
+        {
+          "id": "cmt-con-ride-economy",
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE",
+              "name": "Active commitment"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-trip-cab-01",
+              "quantity": {
+                "value": 1,
+                "unit": "trip"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+                "@type": "TripRequest",
+                "modes": "",
+                "origin": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      4.9003,
+                      52.3791
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Stationsplein",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "North Holland",
+                    "addressCountry": "NL",
+                    "postalCode": "1012 AB"
+                  }
+                },
+                "destination": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      4.8852,
+                      52.36
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Museumstraat 1",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "North Holland",
+                    "addressCountry": "NL",
+                    "postalCode": "1071 XX"
+                  }
+                }
+              }
+            }
+          ],
+          "offer": {
+            "id": "off-ride-economy",
+            "resourceIds": [
+              "res-trip-cab-01"
+            ],
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/RideOption/2.0/context.jsonld",
+              "@type": "RideOption",
+              "vehicleType": {
+                "vehicleCategoryCode": "FOUR_WHEELER"
+              },
+              "estimatedDuration": "PT12M",
+              "estimatedDistance": 3.2
+            }
+          },
+          "commitmentAttributes": {
+            "@context": "https://schema.beckn.io/ServiceClass/2.0/context.jsonld",
+            "@type": "ServiceClass",
+            "serviceClassCode": "ECONOMY",
+            "features": [
+              "air-conditioning",
+              "4 seats"
+            ]
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "con-ride-economy",
+          "status": {
+            "code": "PRICE_CONFIRMED",
+            "name": "Confirmed fare"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/FareEstimate/2.0/context.jsonld",
+            "@type": "FareEstimate",
+            "estimatedAmount": 17.42,
+            "currency": "EUR",
+            "minimumAmount": 15.0,
+            "maximumAmount": 21.0,
+            "price": {
+              "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+              "@type": "PriceSpecification",
+              "currency": "EUR",
+              "value": 17.42,
+              "components": [
+                {
+                  "type": "UNIT",
+                  "value": 14.4,
+                  "currency": "EUR",
+                  "description": "(Base fare + distance) X 1.2x surge pricing",
+                  "componentAttributes": {
+                    "@context": "https://schema.beckn.io/SurgeMultiplier/2.0/context.jsonld",
+                    "@type": "SurgeMultiplier",
+                    "multiplierValue": 1.2,
+                    "reason": "HIGH_DEMAND",
+                    "validUntil": "2026-07-06T10:00:00Z",
+                    "price": {
+                      "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+                      "@type": "PriceSpecification",
+                      "currency": "EUR",
+                      "value": 12.0
+                    }
+                  }
+                },
+                {
+                  "type": "TAX",
+                  "value": 3.02,
+                  "currency": "EUR",
+                  "description": "VAT 21%"
+                }
+              ]
+            }
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "consumer-001",
+          "descriptor": {
+            "name": "Rider"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/Passenger/2.0/context.jsonld",
+            "@type": "Passenger",
+            "passengerId": "psg-001",
+            "passengerType": "ADULT",
+            "person": {
+              "id": "person-001",
+              "name": "Alex Rider",
+              "telephone": "+31 6 1234 5678"
+            }
+          }
+        },
+        {
+          "id": "pn-amsterdam-cabs",
+          "descriptor": {
+            "name": "Amsterdam Cabs"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/Provider/2.0/context.jsonld",
+            "@type": "Provider",
+            "beckn:id": "pn-amsterdam-cabs",
+            "beckn:descriptor": {
+              "name": "Amsterdam Cabs"
+            }
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "perf-con-ride-economy",
+          "status": {
+            "code": "IN_PROGRESS",
+            "name": "In progress"
+          },
+          "commitmentIds": [
+            "cmt-con-ride-economy"
+          ],
+          "performanceAttributes": {
+            "@context": "https://schema.beckn.io/Driver/2.0/context.jsonld",
+            "@type": "Driver",
+            "yearsOfExperience": 6,
+            "person": {
+              "id": "person-drv-01",
+              "name": "Driver assigned at pickup"
+            },
+            "vehicleNumber": "12-ABC-3"
+          }
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,381 @@
+{
+  "context": {
+    "action": "on_confirm",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+      "https://schema.beckn.io/FareProduct/2.0/context.jsonld",
+      "https://schema.beckn.io/Route/2.0/context.jsonld",
+      "https://schema.beckn.io/TariffZone/2.0/context.jsonld",
+      "https://schema.beckn.io/FareLegRule/2.0/context.jsonld",
+      "https://schema.beckn.io/RiderCategory/2.0/context.jsonld",
+      "https://schema.beckn.io/FareMedium/2.0/context.jsonld",
+      "https://schema.beckn.io/Ticket/2.0/context.jsonld",
+      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+      "https://schema.beckn.io/PriceComponent/2.2/context.jsonld",
+      "https://schema.beckn.io/Passenger/2.0/context.jsonld",
+      "https://schema.beckn.io/Person/2.0/context.jsonld",
+      "https://schema.beckn.io/Provider/2.0/context.jsonld",
+      "https://schema.beckn.io/SettlementTerm/2.0/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "contract": {
+      "id": "b1a7c1e2-6666-4a2b-8c3d-000000000006",
+      "descriptor": {
+        "name": "Walk + Metro itinerary: Centraal -> Rijksmuseum",
+        "shortDesc": "Multimodal transit"
+      },
+      "status": {
+        "code": "ACTIVE",
+        "name": "Active contract"
+      },
+      "commitments": [
+        {
+          "id": "cmt-con-itinerary",
+          "status": {
+            "descriptor": {
+              "code": "ACTIVE",
+              "name": "Active commitment"
+            }
+          },
+          "resources": [
+            {
+              "id": "res-leg-walk-1",
+              "quantity": {
+                "value": 1,
+                "unit": "leg"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+                "@type": "TripRequest",
+                "modes": "",
+                "origin": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      4.9003,
+                      52.3791
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Stationsplein",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "North Holland",
+                    "addressCountry": "NL",
+                    "postalCode": "1012 AB"
+                  }
+                },
+                "destination": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      4.9003,
+                      52.3791
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Centraal Metro Entrance",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "North Holland",
+                    "addressCountry": "NL",
+                    "postalCode": "1012 AB"
+                  }
+                }
+              }
+            },
+            {
+              "id": "res-leg-metro-2",
+              "quantity": {
+                "value": 1,
+                "unit": "leg"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+                "@type": "TripRequest",
+                "modes": "",
+                "origin": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      4.9003,
+                      52.3791
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Centraal Metro",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "North Holland",
+                    "addressCountry": "NL",
+                    "postalCode": "1012 AB"
+                  }
+                },
+                "destination": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      4.8912,
+                      52.3564
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Vijzelgracht Metro",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "North Holland",
+                    "addressCountry": "NL",
+                    "postalCode": "1017 HH"
+                  }
+                },
+                "route": {
+                  "@context": "https://schema.beckn.io/Route/2.0/context.jsonld",
+                  "@type": "Route",
+                  "routeId": "gvb-metro-52",
+                  "shortName": "52",
+                  "routeType": "RAIL"
+                }
+              }
+            },
+            {
+              "id": "res-leg-walk-3",
+              "quantity": {
+                "value": 1,
+                "unit": "leg"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+                "@type": "TripRequest",
+                "modes": "",
+                "origin": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      4.8912,
+                      52.3564
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Vijzelgracht Metro",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "North Holland",
+                    "addressCountry": "NL",
+                    "postalCode": "1017 HH"
+                  }
+                },
+                "destination": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      4.8852,
+                      52.36
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Museumstraat 1",
+                    "addressLocality": "Amsterdam",
+                    "addressRegion": "North Holland",
+                    "addressCountry": "NL",
+                    "postalCode": "1071 XX"
+                  }
+                }
+              }
+            }
+          ],
+          "offer": {
+            "id": "off-itinerary-walk-metro",
+            "resourceIds": [
+              "res-leg-walk-1",
+              "res-leg-metro-2",
+              "res-leg-walk-3"
+            ],
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/FareProduct/2.0/context.jsonld",
+              "@type": "FareProduct",
+              "fareProductId": "gvb-1h",
+              "durationType": "SINGLE_TRIP",
+              "mediaDuration": "PT1H",
+              "totalDuration": "PT19M",
+              "legOrder": [
+                "res-leg-walk-1",
+                "res-leg-metro-2",
+                "res-leg-walk-3"
+              ]
+            }
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "con-itinerary",
+          "status": {
+            "code": "PRICE_CONFIRMED",
+            "name": "Confirmed fare"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/FareProduct/2.0/context.jsonld",
+            "@type": "FareProduct",
+            "fareProductId": "gvb-1h",
+            "durationType": "SINGLE_TRIP",
+            "price": {
+              "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+              "@type": "PriceSpecification",
+              "currency": "EUR",
+              "value": 3.4,
+              "components": [
+                {
+                  "type": "UNIT",
+                  "value": 3.4,
+                  "currency": "EUR",
+                  "description": "Adult single journey, Zone Amsterdam Centrum",
+                  "componentAttributes": {
+                    "@context": "https://schema.beckn.io/FareLegRule/2.0/context.jsonld",
+                    "@type": "FareLegRule",
+                    "fareProductId": "gvb-1h",
+                    "legGroupId": "urban-single",
+                    "fromAreaId": {
+                      "@context": "https://schema.beckn.io/TariffZone/2.0/context.jsonld",
+                      "@type": "TariffZone",
+                      "zoneId": "AMS-CENTRE",
+                      "zoneName": "Amsterdam Centrum",
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                          4.9003,
+                          52.3791
+                        ]
+                      }
+                    },
+                    "toAreaId": {
+                      "@context": "https://schema.beckn.io/TariffZone/2.0/context.jsonld",
+                      "@type": "TariffZone",
+                      "zoneId": "AMS-CENTRE",
+                      "zoneName": "Amsterdam Centrum",
+                      "geometry": {
+                        "type": "Point",
+                        "coordinates": [
+                          4.8852,
+                          52.36
+                        ]
+                      }
+                    }
+                  }
+                }
+              ]
+            },
+            "riderCategory": {
+              "@context": "https://schema.beckn.io/RiderCategory/2.0/context.jsonld",
+              "@type": "RiderCategory",
+              "riderCategoryId": "adult",
+              "descriptor": {
+                "name": "Adult"
+              },
+              "proofRequired": "none"
+            },
+            "fareMedium": {
+              "@context": "https://schema.beckn.io/FareMedium/2.0/context.jsonld",
+              "@type": "FareMedium",
+              "mediumType": "MOBILE_APP",
+              "mediumId": "gvb-app-token"
+            }
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "consumer-001",
+          "descriptor": {
+            "name": "Rider"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/Passenger/2.0/context.jsonld",
+            "@type": "Passenger",
+            "passengerId": "psg-001",
+            "passengerType": "ADULT",
+            "person": {
+              "id": "person-001",
+              "name": "Alex Rider",
+              "telephone": "+31 6 1234 5678"
+            }
+          }
+        },
+        {
+          "id": "pn-journeyplanner",
+          "descriptor": {
+            "name": "Amsterdam Journey Planner"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/Provider/2.0/context.jsonld",
+            "@type": "Provider",
+            "beckn:id": "pn-journeyplanner",
+            "beckn:descriptor": {
+              "name": "Amsterdam Journey Planner"
+            }
+          }
+        }
+      ],
+      "settlements": [
+        {
+          "id": "set-con-itinerary",
+          "considerationId": "con-itinerary",
+          "status": "COMPLETE",
+          "settlementAttributes": {
+            "@context": "https://schema.beckn.io/SettlementTerm/2.0/context.jsonld",
+            "@type": "SettlementTerm",
+            "amount": {
+              "currency": "EUR",
+              "value": 3.4
+            },
+            "settlementStatus": "COMPLETE",
+            "payTo": {
+              "paymentUrl": "https://pay.example.com/con-itinerary"
+            },
+            "acceptedPaymentMethods": [
+              "BANK_TRANSFER"
+            ]
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "perf-con-itinerary",
+          "status": {
+            "code": "CONFIRMED",
+            "name": "Fulfillment scheduled"
+          },
+          "commitmentIds": [
+            "cmt-con-itinerary"
+          ],
+          "performanceAttributes": {
+            "@context": "https://schema.beckn.io/Ticket/2.0/context.jsonld",
+            "@type": "Ticket",
+            "ticketId": "TCK-000123",
+            "ticketType": "SINGLE",
+            "validFrom": "2026-07-06T09:00:00Z",
+            "validUntil": "2026-07-06T10:00:00Z",
+            "fareMedium": {
+              "@context": "https://schema.beckn.io/FareMedium/2.0/context.jsonld",
+              "@type": "FareMedium",
+              "mediumType": "QR_CODE",
+              "mediumId": "QR-TCK-000123"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

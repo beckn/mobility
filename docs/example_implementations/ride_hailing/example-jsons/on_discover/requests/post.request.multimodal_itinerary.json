@@ -1,0 +1,269 @@
+{
+  "context": {
+    "action": "on_discover",
+    "version": "2.0.0",
+    "bapId": "<bapId>",
+    "senderId": "<senderId>",
+    "bapUri": "<bapUri:uri>",
+    "bppId": "<bppId>",
+    "bppUri": "<bppUri:uri>",
+    "receiverId": "<receiverId>",
+    "transactionId": "<transactionId:uuid>",
+    "messageId": "<messageId:uuid>",
+    "networkId": "<networkId>",
+    "timestamp": "<timestamp:date-time>",
+    "key": "<key>",
+    "try": false,
+    "ttl": "<ttl>",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+      "https://schema.beckn.io/FareProduct/2.0/context.jsonld",
+      "https://schema.beckn.io/Route/2.0/context.jsonld",
+      "https://schema.beckn.io/TariffZone/2.0/context.jsonld",
+      "https://schema.beckn.io/FareLegRule/2.0/context.jsonld",
+      "https://schema.beckn.io/RiderCategory/2.0/context.jsonld",
+      "https://schema.beckn.io/FareMedium/2.0/context.jsonld",
+      "https://schema.beckn.io/Ticket/2.0/context.jsonld",
+      "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld"
+    ],
+    "requestDigest": {
+      "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
+    }
+  },
+  "message": {
+    "catalogs": [
+      {
+        "id": "cat-multimodal_itinerary",
+        "descriptor": {
+          "name": "Walk + Metro itinerary: Centraal -> Rijksmuseum",
+          "shortDesc": "Multimodal transit"
+        },
+        "provider": {
+          "id": "pn-journeyplanner",
+          "descriptor": {
+            "name": "Amsterdam Journey Planner",
+            "shortDesc": "Amsterdam Journey Planner mobility services"
+          },
+          "availableAt": [
+            {
+              "geo": {
+                "type": "Point",
+                "coordinates": [
+                  4.9003,
+                  52.3791
+                ]
+              },
+              "address": {
+                "streetAddress": "Stationsplein",
+                "addressLocality": "Amsterdam",
+                "addressRegion": "North Holland",
+                "addressCountry": "NL",
+                "postalCode": "1012 AB"
+              }
+            }
+          ]
+        },
+        "isActive": true,
+        "resources": [
+          {
+            "id": "res-leg-walk-1",
+            "quantity": {
+              "value": 1,
+              "unit": "leg"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+              "@type": "TripRequest",
+              "modes": "",
+              "origin": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.9,
+                    52.38
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1012"
+                }
+              },
+              "destination": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.9,
+                    52.38
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1012"
+                }
+              }
+            }
+          },
+          {
+            "id": "res-leg-metro-2",
+            "quantity": {
+              "value": 1,
+              "unit": "leg"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+              "@type": "TripRequest",
+              "modes": "",
+              "origin": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.9,
+                    52.38
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1012"
+                }
+              },
+              "destination": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.89,
+                    52.36
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1017"
+                }
+              },
+              "route": {
+                "@context": "https://schema.beckn.io/Route/2.0/context.jsonld",
+                "@type": "Route",
+                "routeId": "gvb-metro-52",
+                "shortName": "52",
+                "routeType": "RAIL"
+              }
+            }
+          },
+          {
+            "id": "res-leg-walk-3",
+            "quantity": {
+              "value": 1,
+              "unit": "leg"
+            },
+            "resourceAttributes": {
+              "@context": "https://schema.beckn.io/TripRequest/2.0/context.jsonld",
+              "@type": "TripRequest",
+              "modes": "",
+              "origin": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.89,
+                    52.36
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1017"
+                }
+              },
+              "destination": {
+                "geo": {
+                  "type": "Point",
+                  "coordinates": [
+                    4.89,
+                    52.36
+                  ]
+                },
+                "address": {
+                  "addressLocality": "Amsterdam",
+                  "addressRegion": "North Holland",
+                  "addressCountry": "NL",
+                  "postalCode": "1071"
+                }
+              }
+            }
+          }
+        ],
+        "offers": [
+          {
+            "id": "off-itinerary-walk-metro",
+            "descriptor": {
+              "name": "Walk + Metro itinerary: Centraal -> Rijksmuseum",
+              "shortDesc": "Offer"
+            },
+            "resourceIds": [
+              "res-leg-walk-1",
+              "res-leg-metro-2",
+              "res-leg-walk-3"
+            ],
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/FareProduct/2.0/context.jsonld",
+              "@type": "FareProduct",
+              "fareProductId": "gvb-1h",
+              "durationType": "SINGLE_TRIP",
+              "mediaDuration": "PT1H",
+              "totalDuration": "PT19M",
+              "legOrder": [
+                "res-leg-walk-1",
+                "res-leg-metro-2",
+                "res-leg-walk-3"
+              ]
+            },
+            "considerations": [
+              {
+                "id": "con-itinerary",
+                "status": {
+                  "code": "PRICE_ESTIMATE",
+                  "name": "Fare estimate"
+                },
+                "considerationAttributes": {
+                  "@context": "https://schema.beckn.io/FareProduct/2.0/context.jsonld",
+                  "@type": "FareProduct",
+                  "fareProductId": "gvb-1h",
+                  "durationType": "SINGLE_TRIP",
+                  "riderCategory": {
+                    "@context": "https://schema.beckn.io/RiderCategory/2.0/context.jsonld",
+                    "@type": "RiderCategory",
+                    "riderCategoryId": "adult",
+                    "descriptor": {
+                      "name": "Adult"
+                    }
+                  },
+                  "price": {
+                    "@context": "https://schema.beckn.io/PriceSpecification/2.2/context.jsonld",
+                    "@type": "PriceSpecification",
+                    "currency": "EUR",
+                    "value": 3.4
+                  }
+                }
+              }
+            ],
+            "validity": {
+              "startDate": "2026-07-06T09:00:00Z",
+              "endDate": "2026-07-06T10:00:00Z"
+            }
+          }
+        ],
+        "validity": {
+          "startDate": "2026-07-06T00:00:00Z",
+          "endDate": "2026-07-06T23:59:59Z"
+        }
+      }
+    ]
+  }
+}
