@@ -32,20 +32,6 @@
       "spatial": [
         {
           "op": "S_DWITHIN",
-          "targets": "$['availableAt'][*]['geo']",
-          "geometry": {
-            "type": "Point",
-            "coordinates": [
-              4.9,
-              52.38
-            ]
-          },
-          "distanceMeters": 2000,
-          "quantifier": "ANY",
-          "srid": "EPSG:4326"
-        },
-        {
-          "op": "S_DWITHIN",
           "targets": "$['resources'][*]['resourceAttributes']['origin']['geo']",
           "geometry": {
             "type": "Point",
