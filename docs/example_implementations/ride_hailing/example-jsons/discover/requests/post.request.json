@@ -35,9 +35,40 @@
           "targets": "$['availableAt'][*]['geo']",
           "geometry": {
             "type": "Point",
-            "coordinates": [4.9, 52.38]
+            "coordinates": [
+              4.9,
+              52.38
+            ]
           },
           "distanceMeters": 2000,
+          "quantifier": "ANY",
+          "srid": "EPSG:4326"
+        },
+        {
+          "op": "S_DWITHIN",
+          "targets": "$['resources'][*]['resourceAttributes']['origin']['geo']",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              4.9003,
+              52.3791
+            ]
+          },
+          "distanceMeters": 500,
+          "quantifier": "ANY",
+          "srid": "EPSG:4326"
+        },
+        {
+          "op": "S_DWITHIN",
+          "targets": "$['resources'][*]['resourceAttributes']['destination']['geo']",
+          "geometry": {
+            "type": "Point",
+            "coordinates": [
+              4.8852,
+              52.36
+            ]
+          },
+          "distanceMeters": 500,
           "quantifier": "ANY",
           "srid": "EPSG:4326"
         }
