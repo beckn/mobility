@@ -6,8 +6,7 @@
       "code": "SCH_FIELD_NOT_ALLOWED",
       "message": "Field 'electronic:invalidField' not found in ElectronicItem schema",
       "details": {
-        "path": "$.message.order.items[0].quantity.count",
-        "cause": "<recursive:Error>"
+        "path": "$.message.order.items[0].quantity.count"
       }
     }
   }

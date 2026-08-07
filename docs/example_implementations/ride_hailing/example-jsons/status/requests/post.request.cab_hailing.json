@@ -13,7 +13,6 @@
     "networkId": "<networkId>",
     "timestamp": "<timestamp:date-time>",
     "key": "<key>",
-    "try": false,
     "ttl": "<ttl>",
     "requestDigest": {
       "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"

@@ -13,7 +13,6 @@
     "networkId": "<networkId>",
     "timestamp": "<timestamp:date-time>",
     "key": "<key>",
-    "try": false,
     "ttl": "<ttl>",
     "requestDigest": {
       "digest": "<digest:pattern ^BLAKE-512=[A-Za-z0-9+/]+=*$>"
@@ -86,6 +85,10 @@
                     "uri": "<uri:uri>"
                   }
                 ]
+              },
+              "quantity": {
+                "value": 1,
+                "unit": "unit"
               }
             }
           ],
@@ -154,9 +157,6 @@
               "availableAt": [
                 {
                   "geo": {
-                    "bbox": [
-                      0
-                    ],
                     "coordinates": [
                       "<coordinates[]>"
                     ],

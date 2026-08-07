@@ -128,7 +128,7 @@ services:
     ports:
       - "3002:3002"
     volumes:
-      - ../../../sandbox-payloads/nfh.global/testnet-mobility/response:/app/dist/webhook/jsons/nfh.global/testnet-mobility/response
+      - ../../../sandbox-payloads/nfh.global/testnet-mobility/response:/app/dist/webhook/jsons/nfh.global/testnet/response
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:3002/api/health"]
       interval: 10s
