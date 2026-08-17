@@ -1,0 +1,224 @@
+openapi: 3.1.1
+info:
+  title: SystemPricingPlan
+  version: 2.1.0
+  description: Schema definition for the SystemPricingPlan entity in the Beckn Mobility domain.
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    SystemPricingPlan:
+      x-iri: https://schema.beckn.io/SystemPricingPlan/v2.1
+      type: object
+      title: SystemPricingPlan
+      description: A pricing plan defined by a shared mobility system, describing
+        costs and billing rules for vehicle use. v2.1 adds the full FARE_POLICY tag
+        group fields from V1 ONDC TRV10. All monetary fields that carry arbitrary-precision
+        decimal strings in V1 are typed as string to guarantee lossless round-trip
+        fidelity.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
+      properties:
+        planId:
+          description: Unique identifier for the pricing plan
+          type: string
+        currency:
+          description: ISO 4217 currency code
+          type: string
+        isTaxable:
+          description: Whether tax is applied to this pricing plan
+          type: boolean
+        perMinuteChargingRate:
+          description: Charge per minute of vehicle use
+          type: number
+        perKmChargingRate:
+          description: Charge per kilometre of vehicle use
+          type: number
+        perTripStartingFee:
+          description: Flat fee charged at the start of each trip
+          type: number
+        id:
+          description: Unique identifier for the offer
+          type: string
+        descriptor:
+          description: Human-readable description of the offer
+          $ref: https://schema.beckn.io/Descriptor/v2.0/attributes.yaml#/components/schemas/Descriptor
+        price:
+          description: Price specification for this offer
+          $ref: https://schema.beckn.io/PriceSpecification/v2.1/attributes.yaml#/components/schemas/PriceSpecification
+        validity:
+          description: Validity period of the offer
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        tags:
+          description: V1-compatible tag groups preserved verbatim for lossless V2→V1
+            round-trip. Contains the original FARE_POLICY tag group with all item
+            entries. Typed extension properties above are derived from these tags for
+            V2 native access; the tags array is authoritative for V2→V1 reconstruction.
+          type: array
+          items:
+            type: object
+            properties:
+              descriptor:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  name:
+                    type: string
+              display:
+                type: boolean
+              list:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    descriptor:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        name:
+                          type: string
+                    display:
+                      type: boolean
+                    value:
+                      type: string
+        cancellationCharges:
+          description: Fixed cancellation fee charged to the customer. Maps to V1
+            FARE_POLICY.CANCELLATION_CHARGES.
+          type: string
+        driverMinExtraFee:
+          description: Minimum additional fee the driver can charge beyond the metered
+            fare. Maps to V1 FARE_POLICY.DRIVER_MIN_EXTRA_FEE.
+          type: string
+        driverMaxExtraFee:
+          description: Maximum additional fee the driver can charge beyond the metered
+            fare. Maps to V1 FARE_POLICY.DRIVER_MAX_EXTRA_FEE.
+          type: string
+        petCharges:
+          description: Surcharge applied when a passenger travels with a pet. Maps
+            to V1 FARE_POLICY.PET_CHARGES.
+          type: string
+        nightShiftStartTime:
+          description: Start time of the night shift window in HH:MM:SS format (local
+            time). Maps to V1 FARE_POLICY.NIGHT_SHIFT_START_TIME.
+          type: string
+        nightShiftEndTime:
+          description: End time of the night shift window in HH:MM:SS format (local
+            time). Maps to V1 FARE_POLICY.NIGHT_SHIFT_END_TIME.
+          type: string
+        nightShiftStartTimeInSeconds:
+          description: Night shift start time expressed as seconds from midnight.
+            Maps to V1 FARE_POLICY.NIGHT_SHIFT_START_TIME_IN_SECONDS.
+          type: string
+        nightShiftEndTimeInSeconds:
+          description: Night shift end time expressed as seconds from midnight. Maps
+            to V1 FARE_POLICY.NIGHT_SHIFT_END_TIME_IN_SECONDS.
+          type: string
+        congestionChargePercentage:
+          description: Percentage surcharge applied during traffic congestion periods.
+            Maps to V1 FARE_POLICY.CONGESTION_CHARGE_PERCENTAGE.
+          type: string
+        customerExtraFeeTaxMultiplier:
+          description: Tax multiplier applied to the customer extra fee (e.g. 1.135
+            = 13.5% VAT). Maps to V1 FARE_POLICY.CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER.
+          type: string
+        baseDistance:
+          description: The included distance (in metres) covered by the base fare
+            before per-km charges apply. Maps to V1 FARE_POLICY.BASE_DISTANCE.
+          type: string
+        baseFare:
+          description: Fixed base fare charged at trip start, covering the base distance.
+            Maps to V1 FARE_POLICY.BASE_FARE.
+          type: string
+        deadKilometerFare:
+          description: Fare charged per kilometre the driver travels to reach the
+            pickup point. Maps to V1 FARE_POLICY.DEAD_KILOMETER_FARE.
+          type: string
+        extraPerKmFare:
+          description: Per-kilometre rate charged beyond the base distance. Stored
+            as arbitrary-precision string to preserve V1 decimal representation (e.g.
+            "0.97999999999999998223643160599"). Maps to V1 FARE_POLICY.EXTRA_PER_KM_FARE.
+          type: string
+        extraPerKmStepFare3000Above:
+          description: Per-kilometre step rate applied for distances above 3000 metres.
+            Stored as arbitrary-precision string. Maps to V1
+            FARE_POLICY.EXTRA_PER_KM_STEP_FARE_3000_Above.
+          type: string
+        waitingChargePerMin:
+          description: Charge per minute the driver waits beyond the free waiting
+            window. Stored as arbitrary-precision string (e.g.
+            "0.29999999999999998889776975374"). Maps to V1
+            FARE_POLICY.WAITING_CHARGE_PER_MIN.
+          type: string
+        waitingChargeRatePerMin:
+          description: Rounded waiting charge rate per minute used for display. Maps
+            to V1 FARE_POLICY.WAITING_CHARGE_RATE_PER_MIN.
+          type: string
+        freeWaitingTimeInMinutes:
+          description: Number of minutes the driver waits at no charge before waiting
+            fees begin. Maps to V1 FARE_POLICY.FREE_WAITING_TIME_IN_MINUTES.
+          type: string
+        nightShiftCharge:
+          description: Flat fee or multiplier applied during the night shift window.
+            Maps to V1 FARE_POLICY.NIGHT_SHIFT_CHARGE.
+          type: string
+        nightShiftChargePercentage:
+          description: Percentage surcharge applied during night shift hours. Maps
+            to V1 FARE_POLICY.NIGHT_SHIFT_CHARGE_PERCENTAGE.
+          type: string
+        driverExtraFeeBoundsStepMinFee0Above:
+          description: Minimum driver extra fee bound for the first step (distance
+            >= 0). Maps to V1 FARE_POLICY.DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above.
+          type: string
+        driverExtraFeeBoundsStepMaxFee0Above:
+          description: Maximum driver extra fee bound for the first step (distance
+            >= 0). Maps to V1 FARE_POLICY.DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above.
+          type: string
+        rideFareDiscountApplicableTaxExclusive:
+          description: Discountable portion of the ride fare, excluding tax. Maps
+            to V1 FARE_POLICY.RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE.
+          type: string
+        rideFareDiscountApplicableTax:
+          description: Tax amount on the discountable portion of the ride fare. Maps
+            to V1 FARE_POLICY.RIDE_FARE_DISCOUNT_APPLICABLE_TAX.
+          type: string
+        rideFareNonDiscountApplicableTaxExclusive:
+          description: Non-discountable portion of the ride fare, excluding tax. Maps
+            to V1 FARE_POLICY.RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE.
+          type: string
+        rideFareNonDiscountApplicableTax:
+          description: Tax amount on the non-discountable portion of the ride fare.
+            Maps to V1 FARE_POLICY.RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX.
+          type: string
+        tollFareTaxExclusive:
+          description: Toll charge amount, excluding tax. Maps to V1
+            FARE_POLICY.TOLL_FARE_TAX_EXCLUSIVE.
+          type: string
+        tollFareTax:
+          description: Tax amount on the toll charge. Maps to V1
+            FARE_POLICY.TOLL_FARE_TAX.
+          type: string
+        cancellationFeeTaxExclusive:
+          description: Cancellation fee amount, excluding tax. Maps to V1
+            FARE_POLICY.CANCELLATION_FEE_TAX_EXCLUSIVE.
+          type: string
+        cancellationTax:
+          description: Tax amount on the cancellation fee. Maps to V1
+            FARE_POLICY.CANCELLATION_TAX.
+          type: string
+        parkingChargeTaxExclusive:
+          description: Parking charge amount, excluding tax. Maps to V1
+            FARE_POLICY.PARKING_CHARGE_TAX_EXCLUSIVE.
+          type: string
+        parkingChargeTax:
+          description: Tax amount on the parking charge. Maps to V1
+            FARE_POLICY.PARKING_CHARGE_TAX.
+          type: string
+      additionalProperties: false

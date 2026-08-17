@@ -1,0 +1,56 @@
+openapi: 3.1.0
+info:
+  title: RideOption
+  version: 2.0.0
+  description: Schema definition for the RideOption entity in the Beckn Mobility domain.
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    RideOption:
+      x-iri: https://schema.beckn.io/RideOption/v2.0
+      type: object
+      title: RideOption
+      description: A specific ride-hailing vehicle category and pricing option presented
+        to a passenger in response to a ride request.
+      x-tags:
+        - mobility
+        - ride-hailing
+      properties:
+        vehicleType:
+          description: Category of vehicle for this ride option
+          $ref: https://schema.beckn.io/VehicleCategory/v2.0/attributes.yaml#/components/schemas/VehicleCategory
+        estimatedArrival:
+          description: Estimated vehicle arrival time at the pickup point
+          type: string
+          format: date-time
+        estimatedDuration:
+          description: Estimated trip duration
+          type: string
+          format: duration
+        estimatedDistance:
+          description: Estimated trip distance in kilometres
+          type: number
+        pricingModel:
+          description: Pricing model applicable to this ride option
+          $ref: https://schema.beckn.io/SystemPricingPlan/v2.0/attributes.yaml#/components/schemas/SystemPricingPlan
+        id:
+          description: Unique identifier for the offer
+          type: string
+        descriptor:
+          description: Human-readable description of the offer
+          $ref: https://schema.beckn.io/Descriptor/v2.0/attributes.yaml#/components/schemas/Descriptor
+        price:
+          description: Price specification for this offer
+          $ref: https://schema.beckn.io/PriceSpecification/v2.1/attributes.yaml#/components/schemas/PriceSpecification
+        validity:
+          description: Validity period of the offer
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        tags:
+          description: Tags or labels associated with the offer
+          type: string
+      additionalProperties: false

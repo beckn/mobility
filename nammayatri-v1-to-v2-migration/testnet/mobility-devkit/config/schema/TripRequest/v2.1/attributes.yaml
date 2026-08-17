@@ -1,0 +1,147 @@
+openapi: 3.1.1
+info:
+  title: TripRequest
+  version: 2.1.0
+  description: Schema definition for the TripRequest entity in the Beckn Mobility
+    domain. v2.1 adds V1 ONDC TRV10 BAP-side selection preference fields from item
+    tag groups (CUSTOMER_INFO, PET_ORDER_INFO, BILLING_CATEGORY_INFO, ESTIMATIONS,
+    AUTO_ASSIGN_ENABLED, FORWARD_BATCHING_REQUEST_INFO, DEVICE_ID_INFO,
+    SAFETY_PLUS_INFO, EMAIL_DOMAIN_INFO) and fulfillment vehicle fields, enabling
+    lossless V2→V1 round-trip of select-phase data. The verbatim tags[] array
+    preserves original V1 tag groups.
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    TripRequest:
+      x-iri: https://schema.beckn.io/TripRequest/v2.1
+      type: object
+      title: TripRequest
+      description: A passenger's request for an on-demand transport service between
+        two points. v2.1 adds V1 ONDC TRV10 BAP preference fields for the select
+        phase alongside the v2.0 route fields.
+      x-tags:
+        - mobility
+        - ride-hailing
+      properties:
+        origin:
+          description: Pickup location for the ride. Maps to V1
+            fulfillments[].stops[type=START].location.
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
+        destination:
+          description: Dropoff location for the ride. Maps to V1
+            fulfillments[].stops[type=END].location.
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
+        requestedTime:
+          description: Requested pickup time
+          type: string
+          format: date-time
+        passengerCount:
+          description: Number of passengers
+          type: number
+        vehiclePreference:
+          description: Broad vehicle category requested (e.g. FOUR_WHEELER). Maps
+            to V1 fulfillments[].vehicle.category via VehicleCategory.
+          $ref: https://schema.beckn.io/VehicleCategory/v2.0/attributes.yaml#/components/schemas/VehicleCategory
+        vehicleVariant:
+          description: Specific vehicle body type requested (e.g. SEDAN, HATCHBACK,
+            SUV_PLUS). Maps to V1 fulfillments[].vehicle.variant. More specific
+            than vehiclePreference which captures the broad category.
+          type: string
+        textSearch:
+          description: Free-text search query
+          type: string
+        filters:
+          description: JSONPath filter criteria applied to search results
+          type: string
+        spatial:
+          description: Geographic constraints on the search area
+          $ref: https://schema.beckn.io/SpatialConstraint/v2.0/attributes.yaml#/components/schemas/SpatialConstraint
+        provider:
+          description: Identifier of a specific provider to search within
+          type: string
+        customerDisabilityDisable:
+          description: Whether the customer has declared a disability exemption for
+            this ride. Maps to V1 items[].tags[CUSTOMER_INFO].CUSTOMER_DISABILITY_DISABLE
+            (boolean string "True"/"False").
+          type: boolean
+        isPetRide:
+          description: Whether the customer is travelling with a pet. Maps to V1
+            items[].tags[PET_ORDER_INFO].IS_PET_RIDE (boolean string).
+          type: boolean
+        billingCategory:
+          description: Billing category for this ride (e.g. PERSONAL, BUSINESS).
+            Maps to V1 items[].tags[BILLING_CATEGORY_INFO].BILLING_CATEGORY.
+          type: string
+        isAutoAssignEnabled:
+          description: Whether the BAP requests automatic driver assignment. Maps
+            to V1 items[].tags[AUTO_ASSIGN_ENABLED].IS_AUTO_ASSIGN_ENABLED.
+          type: boolean
+        isForwardBatchEnabled:
+          description: Whether forward batching of the ride request is enabled.
+            Maps to V1
+            items[].tags[FORWARD_BATCHING_REQUEST_INFO].IS_FORWARD_BATCH_ENABLED.
+          type: boolean
+        toUpdateDeviceId:
+          description: Whether the BPP should update the stored device ID for the
+            customer. Maps to V1 items[].tags[DEVICE_ID_INFO].TO_UPDATE_DEVICE_ID.
+          type: boolean
+        preferSafetyPlus:
+          description: Whether the customer prefers a Safety Plus driver. Maps to
+            V1 items[].tags[SAFETY_PLUS_INFO].PREFER_SAFETY_PLUS.
+          type: boolean
+        emailDomain:
+          description: Email domain of the customer's account for corporate ride
+            identification. Maps to V1
+            items[].tags[EMAIL_DOMAIN_INFO].EMAIL_DOMAIN.
+          type: string
+        confirmedPrice:
+          description: Fare amount the BAP is confirming from the on_discover
+            response. Maps to V1 items[].price. Stored for round-trip; canonical
+            price comes from the PN's on_select consideration.
+          type: object
+          properties:
+            currency:
+              type: string
+            value:
+              type: string
+          additionalProperties: false
+        tags:
+          description: V1-compatible tag groups preserved verbatim for lossless
+            V2→V1 round-trip. Contains original item-level tag groups from the V1
+            select payload. Typed properties above are derived from these tags for
+            V2 native access; the tags array is authoritative for V2→V1
+            reconstruction.
+          type: array
+          items:
+            type: object
+            properties:
+              descriptor:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  name:
+                    type: string
+              display:
+                type: boolean
+              list:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    descriptor:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        name:
+                          type: string
+                    display:
+                      type: boolean
+                    value:
+                      type: string

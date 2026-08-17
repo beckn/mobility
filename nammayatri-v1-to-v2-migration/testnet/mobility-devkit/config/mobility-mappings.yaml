@@ -1,0 +1,2759 @@
+mappings:
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # search  (legacy — V1 systems now use discover/on_discover action names)
+  # discover (BAP side: V1 discover → V2 discover; BPP side: V2 discover → V1 discover)
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  search:
+    bapMappings: |
+      $
+    bppMappings: |
+      $
+
+  discover:
+    bapMappings: |
+      (
+        $ctx := $.context;
+        $msg := $.message;
+        {
+          "context": {
+            "version": "2.0.0",
+            "action": "discover",
+            "networkId": $ctx.domain,
+            "bapId": $ctx.bap_id,
+            "bapUri": $ctx.bap_uri,
+            "bppId": $ctx.bpp_id,
+            "bppUri": $ctx.bpp_uri,
+            "transactionId": $ctx.transaction_id,
+            "messageId": $ctx.message_id,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl
+          },
+          "message": {
+            "intent": {
+              "filters": {
+                "type": "jsonpath",
+                "expression": $string($msg.intent)
+              }
+            }
+          }
+        }
+      )
+    bppMappings: |
+      (
+        $ctx    := $.context;
+        $msg    := $.message;
+        $domain := $ctx.networkId;
+        $v1Intent := $eval($msg.intent.filters.expression);
+        {
+          "context": {
+            "version": "2.1.0",
+            "action": "discover",
+            "domain": $domain,
+            "bap_id": $ctx.bapId,
+            "bap_uri": $ctx.bapUri,
+            "bpp_id": $ctx.bppId,
+            "bpp_uri": $ctx.bppUri,
+            "transaction_id": $ctx.transactionId,
+            "message_id": $ctx.messageId,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl
+          },
+          "message": {
+            "intent": $v1Intent
+          }
+        }
+      )
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # on_search  (legacy — V1 systems now use on_discover action name)
+  # on_discover (BPP side: V1 on_discover → V2 on_discover; BAP side: V2 on_discover → V1 on_discover)
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  on_search:
+    bapMappings: |
+      $
+    bppMappings: |
+      $
+
+  on_discover:
+    bapMappings: |
+      (
+        $ctx      := $.context;
+        $catalogs := $.message.catalogs;
+        $domain   := $ctx.networkId;
+
+        $coordsToGps := function($coords) {
+          $string($coords[1]) & ", " & $string($coords[0])
+        };
+
+        $mapCatalog := function($cat) {(
+          $provider := $cat.provider;
+          $provAttrs := $provider.providerAttributes;
+
+          $mapV1CancellationTerm := function($term) {{
+            "fulfillment_state": { "descriptor": { "code": $term.fulfillmentStateCode } },
+            "reason_required": $term.reasonRequired
+          }};
+
+          $mapOfferToItem := function($offer) {(
+            $res   := $cat.resources[id = $offer.resourceIds[0]][0];
+            $oAttr := $offer.offerAttributes;
+            $ca    := $offer.considerations[0].considerationAttributes;
+            $itemVehicleTags := $oAttr.tags[descriptor.code = "VEHICLE_INFO" and display != true];
+            $otherItemTags := $oAttr.tags[descriptor.code != "VEHICLE_INFO"];
+            $itemTags := $append($append($itemVehicleTags, $oAttr.pricingModel.tags), $otherItemTags);
+            $merge([
+              {
+                "id": $offer.id,
+                "descriptor": {
+                  "code": $res.descriptor.code,
+                  "name": $res.descriptor.name,
+                  "short_desc": $res.descriptor.shortDesc
+                },
+                "category_ids": $oAttr.categoryIds,
+                "fulfillment_ids": [$offer.id],
+                "price": $merge([
+                  { "currency": $ca.currency },
+                  $exists($ca.estimatedAmount) ? { "value": $string($ca.estimatedAmount) } : {},
+                  $exists($ca.minimumAmount)   ? { "minimum_value": $string($ca.minimumAmount) } : {},
+                  $exists($ca.maximumAmount)   ? { "maximum_value": $string($ca.maximumAmount) } : {},
+                  $exists($ca.offeredAmount)   ? { "offered_value": $string($ca.offeredAmount) } : {},
+                  $exists($ca.value)           ? { "value": $string($ca.value) } : {},
+                  $exists($ca.minimumValue)    ? { "minimum_value": $ca.minimumValue } : {},
+                  $exists($ca.maximumValue)    ? { "maximum_value": $ca.maximumValue } : {},
+                  $exists($ca.offeredValue)    ? { "offered_value": $ca.offeredValue } : {}
+                ])
+              },
+              $itemTags                ? { "tags": [$itemTags] }                          : {},
+              $oAttr.cancellationTerms ? { "cancellation_terms": [$map($oAttr.cancellationTerms, $mapV1CancellationTerm)] } : {}
+            ])
+          )};
+
+          $mapOfferToFulfillment := function($offer) {(
+            $res   := $cat.resources[id = $offer.resourceIds[0]][0];
+            $oAttr := $offer.offerAttributes;
+            $rAttr := $res.resourceAttributes;
+            $g0    := $rAttr.origin.geo.coordinates;
+            $g1    := $rAttr.destination.geo.coordinates;
+            $vehicleInfoTag := $oAttr.tags[descriptor.code = "VEHICLE_INFO" and display = true][0];
+            $merge([
+              {
+                "id": $offer.id,
+                "type": $oAttr.fulfillmentType,
+                "vehicle": $merge([
+                  $oAttr.vehicle.category ? { "category": $oAttr.vehicle.category } : {},
+                  $oAttr.vehicle.bodyType ? { "variant": $oAttr.vehicle.bodyType } : {},
+                  $oAttr.vehicle.seatingCapacity ? { "capacity": $oAttr.vehicle.seatingCapacity } : {},
+                  $oAttr.vehicleCategory ? { "category": $oAttr.vehicleCategory } : {},
+                  $oAttr.vehicleVariant ? { "variant": $oAttr.vehicleVariant } : {},
+                  $oAttr.seatingCapacity ? { "capacity": $oAttr.seatingCapacity } : {}
+                ]),
+                "stops": [
+                  $merge([
+                    { "id": "0", "type": "START" },
+                    $g0 ? { "location": { "gps": $coordsToGps($g0) } } : {},
+                    $rAttr.requestedTime ? { "time": { "timestamp": $rAttr.requestedTime } } : {}
+                  ]),
+                  $merge([
+                    { "id": "1", "type": "END", "parent_stop_id": "0" },
+                    $g1 ? { "location": { "gps": $coordsToGps($g1) } } : {}
+                  ])
+                ]
+              },
+              $vehicleInfoTag ? {
+                "tags": [$vehicleInfoTag]
+              } : (($exists($oAttr.serviceClass.isAirConditioned) or $exists($oAttr.serviceClass.airConditioningScore) or $exists($oAttr.isAirConditioned) or $exists($oAttr.airConditioningScore)) ? {
+                "tags": [{
+                  "descriptor": { "code": "VEHICLE_INFO", "name": "Vehicle info" },
+                  "display": true,
+                  "list": $filter([
+                    $exists($oAttr.serviceClass.isAirConditioned) or $exists($oAttr.isAirConditioned) ? {
+                      "descriptor": { "code": "IS_AIR_CONDITIONED_VEHICLE", "name": "Is air conditioned vehicle" },
+                      "display": true,
+                      "value": $string($exists($oAttr.serviceClass.isAirConditioned) ? $oAttr.serviceClass.isAirConditioned : $oAttr.isAirConditioned)
+                    } : null,
+                    $exists($oAttr.serviceClass.airConditioningScore) or $exists($oAttr.airConditioningScore) ? {
+                      "descriptor": { "code": "IS_AIR_CONDITIONED", "name": "Is air conditioned" },
+                      "display": true,
+                      "value": $string($exists($oAttr.serviceClass.airConditioningScore) ? $oAttr.serviceClass.airConditioningScore : $oAttr.airConditioningScore)
+                    } : null
+                  ], function($t) { $type($t) != "null" })
+                }]
+              } : {})
+            ])
+          )};
+
+          $catIds := $distinct($cat.offers.offerAttributes.categoryIds[]);
+
+          $merge([
+            {
+              "id": $provider.id,
+              "descriptor": { "name": $provider.descriptor.name },
+              "categories": [$map($catIds, function($cid) {{
+                "id": $cid,
+                "descriptor": { "code": $cid, "name": $cid }
+              }})],
+              "fulfillments": $map($cat.offers, $mapOfferToFulfillment),
+              "items": $map($cat.offers, $mapOfferToItem),
+              "locations": $provider.locations ? $provider.locations : []
+            },
+            $cat.bppId  ? { "bpp_id": $cat.bppId }   : {},
+            $cat.bppUri ? { "bpp_uri": $cat.bppUri } : {},
+            $provAttrs ? {
+              "payments": [{
+                "collected_by": $provAttrs.collectedBy,
+                "status": $provAttrs.paymentStatus,
+                "type": $provAttrs.paymentType,
+                "tags": $provAttrs.tags
+              }]
+            } : {}
+          ])
+        )};
+
+        {
+          "context": {
+            "version": "2.1.0",
+            "action": "on_discover",
+            "domain": $domain,
+            "bap_id":  $ctx.bapId,
+            "bap_uri": $ctx.bapUri,
+            "bpp_id":  $ctx.bppId,
+            "bpp_uri": $ctx.bppUri,
+            "transaction_id": $ctx.transactionId,
+            "message_id": $ctx.messageId,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl
+          },
+          "message": {
+            "catalog": {
+              "descriptor": { "name": $catalogs[0].descriptor.name },
+              "providers": [$map($catalogs, $mapCatalog)]
+            }
+          }
+        }
+      )
+    bppMappings: |
+      (
+        $ctx      := $.context;
+        $catalog  := $.message.catalog;
+        $stCtx    := "https://schema.beckn.io/SettlementTerm/v2.1/context.jsonld";
+        $tripCtx  := "https://schema.beckn.io/TripRequest/v2.2/context.jsonld";
+        $rideCtx  := "https://schema.beckn.io/RideOption/v2.1/context.jsonld";
+        $fareCtx  := "https://schema.beckn.io/FareEstimate/v2.1/context.jsonld";
+
+        $gpsToCoords := function($gps) {(
+          $p := $split($gps, ",");
+          [$number($trim($p[1])), $number($trim($p[0]))]
+        )};
+        $tagVal := function($tags, $group, $code) {
+          $tags[descriptor.code = $group].list[descriptor.code = $code].value
+        };
+        $boolVal := function($v) {
+          $v = true or $v = "true" or $v = "True" or $v = "TRUE"
+        };
+        $mapCancellationTerm := function($term) {{
+          "fulfillmentStateCode": $term.fulfillment_state.descriptor.code,
+          "reasonRequired": $term.reason_required
+        }};
+
+        $parts  := $split($ctx.domain & ":dummy:" & $ctx.location.country.code & ":" & $ctx.location.city.code, ":dummy:");
+        $domain := $parts[0];
+
+        $makeCatalog := function($provider) {(
+          $payment := $provider.payments[0];
+          $stTags  := $payment.tags;
+
+          $mapItemPair := function($item) {(
+            $ful   := $provider.fulfillments[id = $item.fulfillment_ids[0]][0];
+            $s0    := $ful.stops[type = "START"][0];
+            $s1    := $ful.stops[type = "END"][0];
+            $g0    := $s0.location.gps;
+            $g1    := $s1.location.gps;
+            $price := $item.price;
+            $vehicleTags := $ful.tags[descriptor.code = "VEHICLE_INFO"];
+            $vehicleIconUrl := $tagVal($item.tags, "VEHICLE_INFO", "VEHICLE_ICON_URL");
+            $tipOptions := $tagVal($item.tags, "INFO", "TIP_OPTIONS");
+            $blockedSearchRoute := $tagVal($item.tags, "INFO", "IS_BLOCKED_SEARCH_ROUTE");
+            $preferredSearchRoute := $tagVal($item.tags, "INFO", "IS_CUSTOMER_PREFFERED_SEARCH_ROUTE");
+            $featureName := $tagVal($item.tags, "FEATURE_LIST", "FEATURE_NAME");
+            $featureValue := $tagVal($item.tags, "FEATURE_LIST", "FEATURE_VALUE");
+            $fareTags := $item.tags[descriptor.code = "FARE_POLICY"];
+            $fareVal := function($code) { $tagVal($item.tags, "FARE_POLICY", $code) };
+            $offerTags := $append($ful.tags, $item.tags[descriptor.code != "FARE_POLICY"]);
+            $ofAttrs := {
+              "@context": $rideCtx,
+              "@type": "RideOption",
+              "categoryIds": $item.category_ids,
+              "vehicleType": { "vehicleCategoryCode": "FOUR_WHEELER" },
+              "vehicle": $merge([
+                $ful.vehicle.variant ? { "bodyType": $ful.vehicle.variant } : {},
+                $ful.vehicle.capacity ? { "seatingCapacity": $ful.vehicle.capacity } : {},
+                $ful.vehicle.category ? { "category": $ful.vehicle.category } : {},
+                $vehicleIconUrl ? { "iconUrl": $vehicleIconUrl } : {}
+              ]),
+              "serviceClass": $merge([
+                $item.descriptor.code ? { "serviceClassCode": $item.descriptor.code } : {},
+                $exists($vehicleTags.list[descriptor.code = "IS_AIR_CONDITIONED_VEHICLE"].value) ? { "isAirConditioned": $boolVal($vehicleTags.list[descriptor.code = "IS_AIR_CONDITIONED_VEHICLE"].value) } : {},
+                $exists($vehicleTags.list[descriptor.code = "IS_AIR_CONDITIONED"].value) ? { "airConditioningScore": $number($vehicleTags.list[descriptor.code = "IS_AIR_CONDITIONED"].value) } : {}
+              ]),
+              "fulfillmentType": $ful.type,
+              "tipOptions": $tipOptions,
+              "isBlockedSearchRoute": $boolVal($blockedSearchRoute),
+              "isCustomerPreferredSearchRoute": $boolVal($preferredSearchRoute),
+              "featureList": $featureName ? [{
+                "featureName": $featureName,
+                "featureValue": $featureValue
+              }] : undefined,
+              "tags": $offerTags,
+              "cancellationTerms": $map($item.cancellation_terms, $mapCancellationTerm),
+              "pricingModel": $merge([
+                { "currency": $price.currency },
+                $fareVal("CANCELLATION_CHARGES") ? { "cancellationCharges": $fareVal("CANCELLATION_CHARGES") } : {},
+                $fareVal("DRIVER_MIN_EXTRA_FEE") ? { "driverMinExtraFee": $fareVal("DRIVER_MIN_EXTRA_FEE") } : {},
+                $fareVal("DRIVER_MAX_EXTRA_FEE") ? { "driverMaxExtraFee": $fareVal("DRIVER_MAX_EXTRA_FEE") } : {},
+                $fareVal("PET_CHARGES") ? { "petCharges": $fareVal("PET_CHARGES") } : {},
+                $fareVal("NIGHT_SHIFT_START_TIME") ? { "nightShiftStartTime": $fareVal("NIGHT_SHIFT_START_TIME") } : {},
+                $fareVal("NIGHT_SHIFT_END_TIME") ? { "nightShiftEndTime": $fareVal("NIGHT_SHIFT_END_TIME") } : {},
+                $fareVal("NIGHT_SHIFT_START_TIME_IN_SECONDS") ? { "nightShiftStartTimeInSeconds": $fareVal("NIGHT_SHIFT_START_TIME_IN_SECONDS") } : {},
+                $fareVal("NIGHT_SHIFT_END_TIME_IN_SECONDS") ? { "nightShiftEndTimeInSeconds": $fareVal("NIGHT_SHIFT_END_TIME_IN_SECONDS") } : {},
+                $fareVal("CONGESTION_CHARGE_PERCENTAGE") ? { "congestionChargePercentage": $fareVal("CONGESTION_CHARGE_PERCENTAGE") } : {},
+                $fareVal("CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER") ? { "customerExtraFeeTaxMultiplier": $fareVal("CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER") } : {},
+                $fareVal("BASE_DISTANCE") ? { "baseDistance": $fareVal("BASE_DISTANCE") } : {},
+                $fareVal("BASE_FARE") ? { "baseFare": $fareVal("BASE_FARE") } : {},
+                $fareVal("DEAD_KILOMETER_FARE") ? { "deadKilometerFare": $fareVal("DEAD_KILOMETER_FARE") } : {},
+                $fareVal("EXTRA_PER_KM_FARE") ? { "extraPerKmFare": $fareVal("EXTRA_PER_KM_FARE") } : {},
+                $fareVal("EXTRA_PER_KM_STEP_FARE_3000_Above") ? { "extraPerKmStepFare3000Above": $fareVal("EXTRA_PER_KM_STEP_FARE_3000_Above") } : {},
+                $fareVal("WAITING_CHARGE_PER_MIN") ? { "waitingChargePerMin": $fareVal("WAITING_CHARGE_PER_MIN") } : {},
+                $fareVal("WAITING_CHARGE_RATE_PER_MIN") ? { "waitingChargeRatePerMin": $fareVal("WAITING_CHARGE_RATE_PER_MIN") } : {},
+                $fareVal("FREE_WAITING_TIME_IN_MINUTES") ? { "freeWaitingTimeInMinutes": $fareVal("FREE_WAITING_TIME_IN_MINUTES") } : {},
+                $fareVal("NIGHT_SHIFT_CHARGE") ? { "nightShiftCharge": $fareVal("NIGHT_SHIFT_CHARGE") } : {},
+                $fareVal("NIGHT_SHIFT_CHARGE_PERCENTAGE") ? { "nightShiftChargePercentage": $fareVal("NIGHT_SHIFT_CHARGE_PERCENTAGE") } : {},
+                $fareVal("DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above") ? { "driverExtraFeeBoundsStepMinFee0Above": $fareVal("DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above") } : {},
+                $fareVal("DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above") ? { "driverExtraFeeBoundsStepMaxFee0Above": $fareVal("DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above") } : {},
+                $fareVal("RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE") ? { "rideFareDiscountApplicableTaxExclusive": $fareVal("RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE") } : {},
+                $fareVal("RIDE_FARE_DISCOUNT_APPLICABLE_TAX") ? { "rideFareDiscountApplicableTax": $fareVal("RIDE_FARE_DISCOUNT_APPLICABLE_TAX") } : {},
+                $fareVal("RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE") ? { "rideFareNonDiscountApplicableTaxExclusive": $fareVal("RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE") } : {},
+                $fareVal("RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX") ? { "rideFareNonDiscountApplicableTax": $fareVal("RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX") } : {},
+                $fareVal("TOLL_FARE_TAX_EXCLUSIVE") ? { "tollFareTaxExclusive": $fareVal("TOLL_FARE_TAX_EXCLUSIVE") } : {},
+                $fareVal("TOLL_FARE_TAX") ? { "tollFareTax": $fareVal("TOLL_FARE_TAX") } : {},
+                $fareVal("CANCELLATION_FEE_TAX_EXCLUSIVE") ? { "cancellationFeeTaxExclusive": $fareVal("CANCELLATION_FEE_TAX_EXCLUSIVE") } : {},
+                $fareVal("CANCELLATION_TAX") ? { "cancellationTax": $fareVal("CANCELLATION_TAX") } : {},
+                $fareVal("PARKING_CHARGE_TAX_EXCLUSIVE") ? { "parkingChargeTaxExclusive": $fareVal("PARKING_CHARGE_TAX_EXCLUSIVE") } : {},
+                $fareVal("PARKING_CHARGE_TAX") ? { "parkingChargeTax": $fareVal("PARKING_CHARGE_TAX") } : {},
+                $fareTags ? { "tags": [$fareTags] } : {}
+              ])
+            };
+            {
+              "resource": {
+                "id": $item.id,
+                "descriptor": {
+                  "name": $item.descriptor.name,
+                  "code": $item.descriptor.code,
+                  "shortDesc": $item.descriptor.short_desc
+                },
+                "quantity": { "value": 1, "unit": "trip" },
+                "resourceAttributes": {
+                  "@context": $tripCtx,
+                  "@type": "TripRequest",
+                  "requestedTime": $s0.time.timestamp,
+                  "origin": {
+                    "geo": { "type": "Point", "coordinates": $gpsToCoords($g0) }
+                  },
+                  "destination": {
+                    "geo": { "type": "Point", "coordinates": $gpsToCoords($g1) }
+                  }
+                }
+              },
+              "offer": {
+                "id": $item.id,
+                "descriptor": {
+                  "code": $item.descriptor.code,
+                  "name": $item.descriptor.name,
+                  "shortDesc": $item.descriptor.short_desc
+                },
+                "resourceIds": [$item.id],
+                "considerations": [{
+                  "id": "con-" & $item.id,
+                  "status": { "code": "PRICE_ESTIMATE", "name": "Fare estimate" },
+                  "considerationAttributes": $merge([
+                    {
+                      "@context": $fareCtx,
+                      "@type": "FareEstimate",
+                      "currency": $price.currency
+                    },
+                    $price.value         ? { "estimatedAmount": $number($price.value) }       : {},
+                    $price.minimum_value ? { "minimumAmount": $number($price.minimum_value) } : {},
+                    $price.maximum_value ? { "maximumAmount": $number($price.maximum_value) } : {},
+                    $price.offered_value ? { "offeredAmount": $number($price.offered_value) } : {}
+                  ])
+                }],
+                "offerAttributes": $ofAttrs
+              }
+            }
+          )};
+
+          $pairs := $map($provider.items, $mapItemPair);
+
+          {
+            "id": $provider.id,
+            "descriptor": { "name": $provider.descriptor.name },
+            "provider": {
+              "id": $provider.id,
+              "descriptor": { "name": $provider.descriptor.name },
+              "providerAttributes": {
+                "@context": $stCtx,
+                "@type": "SettlementTerm",
+                "collectedBy": $payment.collected_by,
+                "paymentStatus": $payment.status,
+                "paymentType": $payment.type,
+                "buyerFinderFeesPercentage": $payment.tags[descriptor.code = "BUYER_FINDER_FEES"].list[descriptor.code = "BUYER_FINDER_FEES_PERCENTAGE"].value,
+                "settlementWindow": $payment.tags[descriptor.code = "SETTLEMENT_TERMS"].list[descriptor.code = "SETTLEMENT_WINDOW"].value,
+                "delayInterest": $payment.tags[descriptor.code = "SETTLEMENT_TERMS"].list[descriptor.code = "DELAY_INTEREST"].value,
+                "settlementBasis": $payment.tags[descriptor.code = "SETTLEMENT_TERMS"].list[descriptor.code = "SETTLEMENT_BASIS"].value,
+                "mandatoryArbitration": $payment.tags[descriptor.code = "SETTLEMENT_TERMS"].list[descriptor.code = "MANDATORY_ARBITRATION"].value = "TRUE",
+                "courtJurisdiction": $payment.tags[descriptor.code = "SETTLEMENT_TERMS"].list[descriptor.code = "COURT_JURISDICTION"].value,
+                "staticTerms": $payment.tags[descriptor.code = "SETTLEMENT_TERMS"].list[descriptor.code = "STATIC_TERMS"].value,
+                "tags": $payment.tags
+              }
+            },
+            "resources": $pairs.resource,
+            "offers": $pairs.offer
+          }
+        )};
+
+        {
+          "context": {
+            "version": "2.0.0",
+            "action": "on_discover",
+            "networkId": $ctx.domain,
+            "bapId": $ctx.bap_id,
+            "bapUri": $ctx.bap_uri,
+            "bppId": $ctx.bpp_id,
+            "bppUri": $ctx.bpp_uri,
+            "transactionId": $ctx.transaction_id,
+            "messageId": $ctx.message_id,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl
+            ,
+            "schemaContext": [
+              $tripCtx,
+              $rideCtx,
+              $fareCtx,
+              $stCtx
+            ]
+          },
+          "message": {
+            "catalogs": [$map($catalog.providers, $makeCatalog)]
+          }
+        }
+      )
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # select
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  select:
+    bapMappings: |
+      (
+        $ctx  := $.context;
+        $ord  := $.message.order;
+        $ful  := $ord.fulfillments[0];
+        $item := $ord.items[0];
+        $tripCtx := "https://schema.beckn.io/TripRequest/v2.2/context.jsonld";
+        $serviceCtx := "https://schema.beckn.io/ServiceClass/v2.1/context.jsonld";
+        $passCtx := "https://schema.beckn.io/Passenger/v2.1/context.jsonld";
+        $stCtx := "https://schema.beckn.io/SettlementTerm/v2.1/context.jsonld";
+
+        $gpsToCoords := function($gps) {(
+          $p := $split($gps, ",");
+          [$number($trim($p[1])), $number($trim($p[0]))]
+        )};
+        $tagValue := function($tags, $code) { $tags.list[descriptor.code = $code].value[0] };
+        $bool := function($v) { $uppercase($string($v)) = "TRUE" };
+        $locality := function($stop) {(
+          $parts := $split($stop.location.state.name, " ");
+          $parts[1] ? $parts[1] : $stop.location.city.name
+        )};
+
+        $s0  := $ful.stops[type = "START"][0];
+        $s1  := $ful.stops[type = "END"][0];
+        $pay := $ord.payments[0];
+        $payTags := $pay.tags;
+        $variant := $ful.vehicle.variant;
+        $serviceCode := $variant = "SEDAN" ? "COMFY" : $variant;
+        $serviceName := $variant = "SEDAN" ? "Comfort" : $serviceCode;
+        $serviceShort := $variant = "SEDAN" ? "Full size" : $serviceCode;
+
+        {
+          "context": {
+            "version": "2.0.0",
+            "action": "select",
+            "networkId": $ctx.domain,
+            "bapId": $ctx.bap_id,
+            "bapUri": $ctx.bap_uri,
+            "bppId": $ctx.bpp_id,
+            "bppUri": $ctx.bpp_uri,
+            "transactionId": $ctx.transaction_id,
+            "messageId": $ctx.message_id,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl,
+            "schemaContext": [$tripCtx, $serviceCtx, $passCtx, $stCtx]
+          },
+          "message": {
+            "contract": {
+              "status": { "code": "DRAFT" },
+              "commitments": [{
+                "id": "commitment-1",
+                "status": { "descriptor": { "code": "DRAFT" } },
+                "resources": [{
+                  "id": $ful.id,
+                  "descriptor": {
+                    "name": $serviceName,
+                    "code": $serviceCode,
+                    "shortDesc": $serviceShort
+                  },
+                  "quantity": { "value": 1, "unit": "trip" },
+                  "resourceAttributes": {
+                    "@context": $tripCtx,
+                    "@type": "TripRequest",
+                    "origin": {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s0.location.gps) },
+                      "address": {
+                        "streetAddress": $s0.location.city.name,
+                        "addressLocality": $locality($s0),
+                        "addressRegion": $s0.location.state.name,
+                        "addressCountry": $s0.location.country.name,
+                        "postalCode": $s0.location.area_code
+                      }
+                    },
+                    "destination": {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s1.location.gps) },
+                      "address": {
+                        "streetAddress": $s1.location.city.name,
+                        "addressLocality": $locality($s1),
+                        "addressRegion": $s1.location.state.name,
+                        "addressCountry": $s1.location.country.name,
+                        "postalCode": $s1.location.area_code
+                      }
+                    },
+                    "vehicleVariant": $variant,
+                    "fulfillmentType": $ful.type,
+                    "vehicleCategory": $ful.vehicle.category,
+                    "customerDisabilityDisable": $bool($tagValue($item.tags, "CUSTOMER_DISABILITY_DISABLE")),
+                    "isPetRide": $bool($tagValue($item.tags, "IS_PET_RIDE")),
+                    "billingCategory": $tagValue($item.tags, "BILLING_CATEGORY"),
+                    "isAutoAssignEnabled": $bool($tagValue($item.tags, "IS_AUTO_ASSIGN_ENABLED")),
+                    "isForwardBatchEnabled": $bool($tagValue($item.tags, "IS_FORWARD_BATCH_ENABLED")),
+                    "toUpdateDeviceId": $bool($tagValue($item.tags, "TO_UPDATE_DEVICE_ID")),
+                    "preferSafetyPlus": $bool($tagValue($item.tags, "PREFER_SAFETY_PLUS")),
+                    "emailDomain": $tagValue($item.tags, "EMAIL_DOMAIN"),
+                    "confirmedPrice": $item.price,
+                    "stops": $ful.stops,
+                    "tags": $item.tags
+                  }
+                }],
+                "offer": {
+                  "id": $item.id,
+                  "resourceIds": [$ful.id]
+                },
+                "commitmentAttributes": {
+                  "@context": $serviceCtx,
+                  "@type": "ServiceClass",
+                  "serviceClassCode": $serviceCode,
+                  "isAirConditioned": true,
+                  "airConditioningScore": 2.0
+                }
+              }],
+              "participants": [
+                {
+                  "id": "consumer-001",
+                  "participantAttributes": {
+                    "@context": $passCtx,
+                    "@type": "Passenger",
+                    "person": {
+                      "id": $ful.customer.contact.phone,
+                      "telephone": $ful.customer.contact.phone
+                    }
+                  }
+                },
+                { "id": ($ord.provider.id ? $ord.provider.id : $ctx.bpp_id), "role": "PROVIDER" }
+              ],
+              "settlements": $pay ? [{
+                "id": "settlement-1",
+                "status": "DRAFT",
+                "settlementAttributes": {
+                  "@context": $stCtx,
+                  "@type": "SettlementTerm",
+                  "collectedBy": $pay.collected_by,
+                  "paymentStatus": $pay.status,
+                  "paymentType": $pay.type,
+                  "paymentInstrument": $tagValue($payTags, "PAYMENT_INSTRUMENT"),
+                  "settlementAmount": $tagValue($payTags, "SETTLEMENT_AMOUNT"),
+                  "payTo": {
+                    "vpa": $pay.params.bank_account_number,
+                    "branchCode": $pay.params.bank_code
+                  },
+                  "buyerFinderFeesPercentage": $tagValue($payTags, "BUYER_FINDER_FEES_PERCENTAGE"),
+                  "settlementWindow": $tagValue($payTags, "SETTLEMENT_WINDOW"),
+                  "delayInterest": $tagValue($payTags, "DELAY_INTEREST"),
+                  "settlementBasis": $tagValue($payTags, "SETTLEMENT_BASIS"),
+                  "mandatoryArbitration": $bool($tagValue($payTags, "MANDATORY_ARBITRATION")),
+                  "courtJurisdiction": $tagValue($payTags, "COURT_JURISDICTION"),
+                  "staticTerms": $tagValue($payTags, "STATIC_TERMS"),
+                  "tags": $pay.tags
+                }
+              }] : []
+            }
+          }
+        }
+      )
+    bppMappings: |
+      (
+        $ctx      := $.context;
+        $contract := $.message.contract;
+        $domain   := $ctx.networkId;
+        $commit   := $contract.commitments[0];
+        $res      := $commit.resources[0];
+        $rAttr    := $res.resourceAttributes;
+        $pax      := $contract.participants[participantAttributes."@type" = "Passenger"][0];
+        $providerPart := $contract.participants[role = "PROVIDER"][0];
+        $bppPart  := $contract.participants[role = "BPP"][0];
+        $settle   := $contract.settlements[0];
+        $sAttr    := $settle.settlementAttributes;
+
+        {
+          "context": {
+            "version": "2.1.0",
+            "action": "select",
+            "domain": $domain,
+            "bap_id":  $ctx.bapId,
+            "bap_uri": $ctx.bapUri,
+            "bpp_id":  $ctx.bppId,
+            "bpp_uri": $ctx.bppUri,
+            "transaction_id": $ctx.transactionId,
+            "message_id": $ctx.messageId,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl
+          },
+          "message": {
+            "order": {
+              "provider": { "id": ($providerPart.id ? $providerPart.id : ($bppPart.id ? $bppPart.id : $ctx.bppId)) },
+              "items": [{
+                "id": $commit.offer.id,
+                "price": $rAttr.confirmedPrice,
+                "tags": $rAttr.tags
+              }],
+              "fulfillments": [{
+                "id": $res.id,
+                "customer": {
+                  "contact": {
+                    "phone": $pax.participantAttributes.person.telephone
+                  }
+                },
+                "type": $rAttr.fulfillmentType,
+                "vehicle": {
+                  "category": $rAttr.vehicleCategory,
+                  "variant": $rAttr.vehicleVariant
+                },
+                "stops": $rAttr.stops ? $rAttr.stops : []
+              }],
+              "payments": $settle ? [{
+                "collected_by": $sAttr.collectedBy,
+                "params": {
+                  "amount": $sAttr.settlementAmount,
+                  "bank_account_number": $sAttr.payTo.vpa,
+                  "bank_code": $sAttr.payTo.branchCode,
+                  "currency": $rAttr.confirmedPrice.currency
+                },
+                "status": $sAttr.paymentStatus,
+                "tags": $sAttr.tags,
+                "type": $sAttr.paymentType
+              }] : []
+            }
+          }
+        }
+      )
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # on_select
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  on_select:
+    bapMappings: |
+      (
+        $ctx      := $.context;
+        $contract := $.message.contract;
+        $domain   := $ctx.networkId;
+        $commit   := $contract.commitments[0];
+        $res      := $commit.resources[0];
+        $offer    := $commit.offer;
+        $oAttr    := $offer.offerAttributes;
+        $perf     := $contract.performance[0];
+        $pAttr    := $perf.performanceAttributes;
+        $rAttr    := $res.resourceAttributes;
+        $settle   := $contract.settlements[0];
+        $sAttr    := $settle.settlementAttributes;
+        $ca       := $contract.consideration[0].considerationAttributes;
+        $providerPart := $contract.participants[role = "PROVIDER"][0];
+        $bppPart  := $contract.participants[role = "BPP"][0];
+
+        {
+          "context": {
+            "version": "2.1.0",
+            "action": "on_select",
+            "domain": $domain,
+            "bap_id":  $ctx.bapId,
+            "bap_uri": $ctx.bapUri,
+            "bpp_id":  $ctx.bppId,
+            "bpp_uri": $ctx.bppUri,
+            "transaction_id": $ctx.transactionId,
+            "message_id": $ctx.messageId,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl
+          },
+          "message": {
+            "order": {
+              "provider": { "id": ($providerPart.id ? $providerPart.id : ($bppPart.id ? $bppPart.id : $ctx.bppId)) },
+              "items": [$merge([
+                {
+                  "id": $offer.id,
+                  "descriptor": $merge([
+                    $oAttr.descriptor.name     ? { "name": $oAttr.descriptor.name }           : {},
+                    $oAttr.descriptor.code     ? { "code": $oAttr.descriptor.code }           : {},
+                    $oAttr.descriptor.shortDesc ? { "short_desc": $oAttr.descriptor.shortDesc } : {}
+                  ]),
+                  "category_ids": $oAttr.categoryIds,
+                  "fulfillment_ids": $oAttr.fulfillmentIds
+                },
+                $sAttr.settlementAmount ? { "price": {
+                  "currency": $ca.currency,
+                  "value": $sAttr.settlementAmount
+                } } : {},
+                ($oAttr.tags or $oAttr.pricingModel.tags) ? { "tags": $append($oAttr.tags, $oAttr.pricingModel.tags) } : {}
+              ])],
+              "fulfillments": [$merge([
+                {
+                  "id": $perf.id,
+                  "type": $rAttr.fulfillmentType,
+                  "vehicle": {
+                    "category": $pAttr.vehicleCategory,
+                    "variant": $pAttr.vehicleVariant
+                  },
+                  "stops": $rAttr.stops ? $rAttr.stops : []
+                },
+                $pAttr.person ? { "agent": {
+                  "person": $merge([
+                    { "name": $pAttr.person.name },
+                    $pAttr.tags ? { "tags": $pAttr.tags } : {}
+                  ])
+                } } : {}
+              ])],
+              "payments": $settle ? [{
+                "collected_by": $sAttr.collectedBy,
+                "params": {
+                  "amount": $sAttr.settlementAmount,
+                  "currency": $ca.currency
+                },
+                "status": $sAttr.paymentStatus,
+                "tags": $sAttr.tags,
+                "type": $sAttr.paymentType
+              }] : [],
+              "quote": {
+                "breakup": [$map($ca.price.components, function($c) {{
+                  "price": {
+                    "currency": $c.currency,
+                    "value": $string($c.value)
+                  },
+                  "title": $c.description
+                }})],
+                "price": {
+                  "currency": $ca.currency,
+                  "offered_value": $sAttr.settlementAmount,
+                  "value": $sAttr.settlementAmount
+                },
+                "ttl": $ca.validity."schema:duration"
+              }
+            }
+          }
+        }
+      )
+    bppMappings: |
+      (
+        $ctx  := $.context;
+        $ord  := $.message.order;
+        $ful  := $ord.fulfillments[0];
+        $item := $ord.items[0];
+        $tripCtx := "https://schema.beckn.io/TripRequest/v2.2/context.jsonld";
+        $rideCtx := "https://schema.beckn.io/RideOption/v2.1/context.jsonld";
+        $serviceCtx := "https://schema.beckn.io/ServiceClass/v2.1/context.jsonld";
+        $fareCtx := "https://schema.beckn.io/FareEstimate/v2.1/context.jsonld";
+        $priceCtx := "https://schema.beckn.io/PriceSpecification/v2.2/context.jsonld";
+        $pcCtx := "https://schema.beckn.io/PriceComponent/v2.2/context.jsonld";
+        $driverCtx := "https://schema.beckn.io/Driver/v2.1/context.jsonld";
+        $stCtx := "https://schema.beckn.io/SettlementTerm/v2.1/context.jsonld";
+
+        $gpsToCoords := function($gps) {(
+          $p := $split($gps, ",");
+          [$number($trim($p[1])), $number($trim($p[0]))]
+        )};
+        $tagValue := function($tags, $code) { $tags.list[descriptor.code = $code].value[0] };
+        $bool := function($v) { $uppercase($string($v)) = "TRUE" };
+        $locality := function($stop) {(
+          $parts := $split($stop.location.state.name, " ");
+          $parts[1] ? $parts[1] : $stop.location.city.name
+        )};
+        $pcType := function($title) {
+          $substring($title, $length($title) - 4) = "_TAX" ? "TAX" :
+          $contains($title, "TOLL") ? "FEE" :
+          $contains($title, "CANCELLATION") ? "FEE" :
+          $contains($title, "PARKING") ? "FEE" :
+          $contains($title, "VAT") ? "TAX" :
+          "UNIT"
+        };
+
+        $s0 := $ful.stops[type = "START"][0];
+        $s1 := $ful.stops[type = "END"][0];
+        $pay := $ord.payments[0];
+        $fareTags := [$item.tags[descriptor.code = "FARE_POLICY"]];
+        $offerTags := [$item.tags[descriptor.code != "FARE_POLICY"]];
+        $payTags := $pay.tags;
+        $serviceCode := $item.descriptor.code;
+
+        {
+          "context": {
+            "version": "2.0.0",
+            "action": "on_select",
+            "networkId": $ctx.domain,
+            "bapId": $ctx.bap_id,
+            "bapUri": $ctx.bap_uri,
+            "bppId": $ctx.bpp_id,
+            "bppUri": $ctx.bpp_uri,
+            "transactionId": $ctx.transaction_id,
+            "messageId": $ctx.message_id,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl,
+            "schemaContext": [$tripCtx, $rideCtx, $serviceCtx, $fareCtx, $priceCtx, $pcCtx, $driverCtx, $stCtx]
+          },
+          "message": {
+            "contract": {
+              "id": "b1a7c1e2-" & $substring($ctx.transaction_id, 0, 4) & "-4a2b-8c3d-" & $substring($ctx.transaction_id, 0, 13),
+              "descriptor": {
+                "name": $item.descriptor.code & " ride: " & $s0.location.city.name & " → " & $s1.location.city.name,
+                "shortDesc": "Ride-hailing"
+              },
+              "status": { "code": "DRAFT", "name": "Quoted contract" },
+              "commitments": [{
+                "id": "commitment-1",
+                "status": { "descriptor": { "code": "DRAFT", "name": "Price quoted" } },
+                "resources": [{
+                  "id": $item.id,
+                  "descriptor": $merge([
+                    $item.descriptor.name     ? { "name": $item.descriptor.name }           : {},
+                    $item.descriptor.code     ? { "code": $item.descriptor.code }           : {},
+                    $item.descriptor.short_desc ? { "shortDesc": $item.descriptor.short_desc } : {}
+                  ]),
+                  "quantity": { "value": 1, "unit": "trip" },
+                  "resourceAttributes": {
+                    "@context": $tripCtx,
+                    "@type": "TripRequest",
+                    "fulfillmentType": $ful.type,
+                    "vehicleCategory": $ful.vehicle.category,
+                    "origin": $s0 ? {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s0.location.gps) },
+                      "address": {
+                        "streetAddress": $s0.location.city.name,
+                        "addressLocality": $locality($s0),
+                        "addressRegion": $s0.location.state.name,
+                        "addressCountry": $s0.location.country.name,
+                        "postalCode": $s0.location.area_code
+                      }
+                    } : undefined,
+                    "destination": $s1 ? {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s1.location.gps) },
+                      "address": {
+                        "streetAddress": $s1.location.city.name,
+                        "addressLocality": $locality($s1),
+                        "addressRegion": $s1.location.state.name,
+                        "addressCountry": $s1.location.country.name,
+                        "postalCode": $s1.location.area_code
+                      }
+                    } : undefined,
+                    "stops": $ful.stops
+                  }
+                }],
+                "offer": {
+                  "id": $item.id,
+                  "resourceIds": [$item.id],
+                  "offerAttributes": {
+                      "@context": $rideCtx,
+                      "@type": "RideOption",
+                      "fulfillmentType": $ful.type,
+                      "categoryIds": $item.category_ids,
+                      "fulfillmentIds": $item.fulfillment_ids,
+                      "descriptor": {
+                        "@type": "beckn:Descriptor",
+                        "code": $item.descriptor.code,
+                        "name": $item.descriptor.name,
+                        "shortDesc": $item.descriptor.short_desc
+                      },
+                      "vehicleType": { "vehicleCategoryCode": "FOUR_WHEELER" },
+                      "vehicle": {
+                        "bodyType": $item.descriptor.code,
+                        "seatingCapacity": 4,
+                        "category": $ful.vehicle.category
+                      },
+                      "serviceClass": {
+                        "serviceClassCode": $serviceCode,
+                        "isAirConditioned": true,
+                        "airConditioningScore": 2.0
+                      },
+                      "upgradeToVehicleClass": $bool($tagValue($offerTags, "UPGRADE_TO_CAB")),
+                      "etaToNearestDriverMin": $number($tagValue($offerTags, "ETA_TO_NEAREST_DRIVER_MIN")),
+                      "distanceToNearestDriverMeter": $number($tagValue($offerTags, "DISTANCE_TO_NEAREST_DRIVER_METER")),
+                      "pricingModel": {
+                        "currency": $item.price.currency,
+                        "cancellationCharges": $tagValue($fareTags, "CANCELLATION_CHARGES"),
+                        "driverMinExtraFee": $tagValue($fareTags, "DRIVER_MIN_EXTRA_FEE"),
+                        "driverMaxExtraFee": $tagValue($fareTags, "DRIVER_MAX_EXTRA_FEE"),
+                        "petCharges": $tagValue($fareTags, "PET_CHARGES"),
+                        "nightShiftStartTime": $tagValue($fareTags, "NIGHT_SHIFT_START_TIME"),
+                        "nightShiftEndTime": $tagValue($fareTags, "NIGHT_SHIFT_END_TIME"),
+                        "nightShiftStartTimeInSeconds": $tagValue($fareTags, "NIGHT_SHIFT_START_TIME_IN_SECONDS"),
+                        "nightShiftEndTimeInSeconds": $tagValue($fareTags, "NIGHT_SHIFT_END_TIME_IN_SECONDS"),
+                        "congestionChargePercentage": $tagValue($fareTags, "CONGESTION_CHARGE_PERCENTAGE"),
+                        "customerExtraFeeTaxMultiplier": $tagValue($fareTags, "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER"),
+                        "baseDistance": $tagValue($fareTags, "BASE_DISTANCE"),
+                        "baseFare": $tagValue($fareTags, "BASE_FARE"),
+                        "deadKilometerFare": $tagValue($fareTags, "DEAD_KILOMETER_FARE"),
+                        "extraPerKmFare": $tagValue($fareTags, "EXTRA_PER_KM_FARE"),
+                        "extraPerKmStepFare3000Above": $tagValue($fareTags, "EXTRA_PER_KM_STEP_FARE_3000_Above"),
+                        "waitingChargePerMin": $tagValue($fareTags, "WAITING_CHARGE_PER_MIN"),
+                        "waitingChargeRatePerMin": $tagValue($fareTags, "WAITING_CHARGE_RATE_PER_MIN"),
+                        "freeWaitingTimeInMinutes": $tagValue($fareTags, "FREE_WAITING_TIME_IN_MINUTES"),
+                        "nightShiftCharge": $tagValue($fareTags, "NIGHT_SHIFT_CHARGE"),
+                        "nightShiftChargePercentage": $tagValue($fareTags, "NIGHT_SHIFT_CHARGE_PERCENTAGE"),
+                        "driverExtraFeeBoundsStepMinFee0Above": $tagValue($fareTags, "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above"),
+                        "driverExtraFeeBoundsStepMaxFee0Above": $tagValue($fareTags, "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above"),
+                        "tags": $fareTags
+                      },
+                      "tags": $offerTags
+                  }
+                }
+                ,
+                "commitmentAttributes": {
+                  "@context": $serviceCtx,
+                  "@type": "ServiceClass",
+                  "serviceClassCode": $serviceCode,
+                  "isAirConditioned": true,
+                  "airConditioningScore": 2.0
+                }
+              }],
+              "consideration": [{
+                "id": "consideration-1",
+                "status": { "code": "PRICE_QUOTED", "name": "Quoted fare" },
+                "considerationAttributes": {
+                  "@context": $fareCtx,
+                  "@type": "FareEstimate",
+                  "currency": $item.price.currency,
+                  "offeredAmount": $number($item.price.value),
+                  "price": {
+                    "@context": $priceCtx,
+                    "@type": "PriceSpecification",
+                    "currency": $item.price.currency,
+                    "value": $number($item.price.value),
+                    "components": [$map($ord.quote.breakup, function($b) {{
+                      "type": $pcType($b.title),
+                      "value": $number($b.price.value),
+                      "currency": $b.price.currency,
+                      "description": $b.title
+                    }})]
+                  },
+                  "validity": { "schema:duration": $ord.quote.ttl }
+                }
+              }],
+              "performance": [{
+                "id": $ful.id,
+                "status": { "code": "ASSIGNED", "name": "Driver assigned" },
+                "commitmentIds": ["commitment-1"],
+                "performanceAttributes": {
+                  "@context": $driverCtx,
+                  "@type": "Driver",
+                  "person": { "id": $ful.agent.person.name, "name": $ful.agent.person.name },
+                  "rating": $number($tagValue($ful.agent.person.tags, "RATING")),
+                  "vehicleVariant": $ful.vehicle.variant,
+                  "vehicleCategory": $ful.vehicle.category,
+                  "tags": $ful.agent.person.tags
+                }
+              }],
+              "participants": [
+                { "id": ($ord.provider.id ? $ord.provider.id : $ctx.bpp_id), "role": "PROVIDER" }
+              ],
+              "settlements": [{
+                "id": "settlement-1",
+                "status": "DRAFT",
+                "settlementAttributes": {
+                  "@context": $stCtx,
+                  "@type": "SettlementTerm",
+                  "collectedBy": $pay.collected_by,
+                  "paymentStatus": $pay.status,
+                  "paymentType": $pay.type,
+                  "settlementAmount": $tagValue($payTags, "SETTLEMENT_AMOUNT"),
+                  "buyerFinderFeesPercentage": $tagValue($payTags, "BUYER_FINDER_FEES_PERCENTAGE"),
+                  "settlementWindow": $tagValue($payTags, "SETTLEMENT_WINDOW"),
+                  "delayInterest": $tagValue($payTags, "DELAY_INTEREST"),
+                  "settlementBasis": $tagValue($payTags, "SETTLEMENT_BASIS"),
+                  "mandatoryArbitration": $bool($tagValue($payTags, "MANDATORY_ARBITRATION")),
+                  "courtJurisdiction": $tagValue($payTags, "COURT_JURISDICTION"),
+                  "staticTerms": $tagValue($payTags, "STATIC_TERMS"),
+                  "tags": $pay.tags
+                }
+              }]
+            }
+          }
+        }
+      )
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # init
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  init:
+    bapMappings: |
+      (
+        $ctx  := $.context;
+        $ord  := $.message.order;
+        $ful  := $ord.fulfillments[0];
+        $item := $ord.items[0];
+        $bill := $ord.billing;
+        $tripCtx := "https://schema.beckn.io/TripRequest/v2.2/context.jsonld";
+        $rideCtx := "https://schema.beckn.io/RideOption/v2.1/context.jsonld";
+        $serviceCtx := "https://schema.beckn.io/ServiceClass/v2.1/context.jsonld";
+        $passCtx := "https://schema.beckn.io/Passenger/v2.1/context.jsonld";
+        $stCtx   := "https://schema.beckn.io/SettlementTerm/v2.1/context.jsonld";
+        $driverCtx := "https://schema.beckn.io/Driver/v2.1/context.jsonld";
+
+        $gpsToCoords := function($gps) {(
+          $p := $split($gps, ",");
+          [$number($trim($p[1])), $number($trim($p[0]))]
+        )};
+        $tagValue := function($tags, $code) { $tags.list[descriptor.code = $code].value[0] };
+        $bool := function($v) { $uppercase($string($v)) = "TRUE" };
+        $locality := function($stop) {(
+          $parts := $split($stop.location.state.name, " ");
+          $parts[1] ? $parts[1] : $stop.location.city.name
+        )};
+
+        $s0  := $ful.stops[type = "START"][0];
+        $s1  := $ful.stops[type = "END"][0];
+        $pay := $ord.payments[0];
+        $cust := $ful.customer;
+        $payTags := $pay.tags;
+        $serviceCode := $ful.vehicle.variant;
+
+        {
+          "context": {
+            "version": "2.0.0",
+            "action": "init",
+            "networkId": $ctx.domain,
+            "bapId": $ctx.bap_id,
+            "bapUri": $ctx.bap_uri,
+            "bppId": $ctx.bpp_id,
+            "bppUri": $ctx.bpp_uri,
+            "transactionId": $ctx.transaction_id,
+            "messageId": $ctx.message_id,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl,
+            "schemaContext": [$tripCtx, $rideCtx, $serviceCtx, $passCtx, $stCtx, $driverCtx]
+          },
+          "message": {
+            "contract": {
+              "status": { "code": "DRAFT" },
+              "commitments": [{
+                "id": "commitment-1",
+                "status": { "descriptor": { "code": "DRAFT" } },
+                "resources": [{
+                  "id": $item.id,
+                  "descriptor": {
+                    "name": $serviceCode,
+                    "code": $serviceCode,
+                    "shortDesc": $serviceCode
+                  },
+                  "quantity": { "value": 1, "unit": "trip" },
+                  "resourceAttributes": {
+                    "@context": $tripCtx,
+                    "@type": "TripRequest",
+                    "origin": {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s0.location.gps) },
+                      "address": {
+                        "streetAddress": $s0.location.city.name,
+                        "addressLocality": $locality($s0),
+                        "addressRegion": $s0.location.state.name,
+                        "addressCountry": $s0.location.country.name,
+                        "postalCode": $s0.location.area_code
+                      }
+                    },
+                    "destination": {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s1.location.gps) },
+                      "address": {
+                        "streetAddress": $s1.location.city.name,
+                        "addressLocality": $locality($s1),
+                        "addressRegion": $s1.location.state.name,
+                        "addressCountry": $s1.location.country.name,
+                        "postalCode": $s1.location.area_code
+                      }
+                    },
+                    "vehicleVariant": $ful.vehicle.variant,
+                    "vehicleCategory": $ful.vehicle.category,
+                    "fulfillmentType": $ful.type,
+                    "stops": $ful.stops,
+                    "tags": $ful.tags
+                  }
+                }],
+                "offer": {
+                  "id": $item.id,
+                  "resourceIds": [$item.id],
+                  "offerAttributes": {
+                    "@context": $rideCtx,
+                    "@type": "RideOption",
+                    "vehicleType": { "vehicleCategoryCode": "FOUR_WHEELER" },
+                    "vehicle": {
+                      "bodyType": $serviceCode,
+                      "seatingCapacity": 4,
+                      "category": $ful.vehicle.category
+                    },
+                    "serviceClass": {
+                      "serviceClassCode": $serviceCode,
+                      "isAirConditioned": true,
+                      "airConditioningScore": 2.0
+                    },
+                    "fulfillmentIds": $item.fulfillment_ids,
+                    "displayBookingId": $tagValue($item.tags, "DISPLAY_BOOKING_ID"),
+                    "isInsured": $bool($tagValue($item.tags, "IS_INSURED")),
+                    "insuredAmount": $exists($tagValue($item.tags, "INSURED_AMOUNT")) ? $tagValue($item.tags, "INSURED_AMOUNT") : null,
+                    "tags": $item.tags
+                  }
+                },
+                "commitmentAttributes": {
+                  "@context": $serviceCtx,
+                  "@type": "ServiceClass",
+                  "serviceClassCode": $serviceCode,
+                  "isAirConditioned": true,
+                  "airConditioningScore": 2.0
+                }
+              }],
+              "performance": [{
+                "id": $ful.id,
+                "status": { "code": "PENDING" },
+                "commitmentIds": ["commitment-1"],
+                "performanceAttributes": {
+                  "@context": $driverCtx,
+                  "@type": "Driver",
+                  "vehicleCategory": $ful.vehicle.category,
+                  "vehicleVariant": $ful.vehicle.variant,
+                  "customer": {
+                    "contact": { "phone": $cust.contact.phone },
+                    "person": {
+                      "name": $cust.person.name,
+                      "personAttributes": { "gender": $cust.person.gender }
+                    }
+                  }
+                }
+              }],
+              "participants": [
+                $merge([
+                  { "id": "consumer-001", "descriptor": { "name": $cust.person.name } },
+                  ($cust or $bill) ? {
+                    "participantAttributes": {
+                      "@context": $passCtx,
+                      "@type": "Passenger",
+                      "person": {
+                        "id": $cust.person.name,
+                        "name": $cust.person.name,
+                        "telephone": $cust.contact.phone
+                      },
+                      "billingName": $bill.name,
+                      "billingPhone": $bill.phone
+                    }
+                  } : {}
+                ]),
+                { "id": ($ord.provider.id ? $ord.provider.id : $ctx.bpp_id), "role": "PROVIDER" }
+              ],
+              "settlements": $pay ? [{
+                "id": $pay.id ? $pay.id : "6330f490-e317-4cf7-953b-6915fa2ad8e4",
+                "status": "DRAFT",
+                "settlementAttributes": {
+                  "@context": $stCtx,
+                  "@type": "SettlementTerm",
+                  "collectedBy": $pay.collected_by,
+                  "paymentStatus": $pay.status,
+                  "paymentType": $pay.type,
+                  "paymentInstrument": $tagValue($payTags, "PAYMENT_INSTRUMENT"),
+                  "payTo": {
+                    "vpa": $pay.params.bank_account_number,
+                    "branchCode": $pay.params.bank_code
+                  },
+                  "buyerFinderFeesPercentage": $tagValue($payTags, "BUYER_FINDER_FEES_PERCENTAGE"),
+                  "settlementWindow": $tagValue($payTags, "SETTLEMENT_WINDOW"),
+                  "delayInterest": $tagValue($payTags, "DELAY_INTEREST"),
+                  "settlementBasis": $tagValue($payTags, "SETTLEMENT_BASIS"),
+                  "mandatoryArbitration": $bool($tagValue($payTags, "MANDATORY_ARBITRATION")),
+                  "courtJurisdiction": $tagValue($payTags, "COURT_JURISDICTION"),
+                  "staticTerms": $tagValue($payTags, "STATIC_TERMS"),
+                  "tags": $pay.tags
+                }
+              }] : []
+            }
+          }
+        }
+      )
+    bppMappings: |
+      (
+        $ctx      := $.context;
+        $contract := $.message.contract;
+        $domain   := $ctx.networkId;
+        $commit   := $contract.commitments[0];
+        $res      := $commit.resources[0];
+        $rAttr    := $res.resourceAttributes;
+        $perf     := $contract.performance[0];
+        $pAttr    := $perf.performanceAttributes;
+        $pax      := $contract.participants[participantAttributes."@type" = "Passenger"][0];
+        $paxAttr  := $pax.participantAttributes;
+        $providerPart := $contract.participants[role = "PROVIDER"][0];
+        $bppPart  := $contract.participants[role = "BPP"][0];
+        $settle   := $contract.settlements[0];
+        $sAttr    := $settle.settlementAttributes;
+
+        {
+          "context": {
+            "version": "2.1.0",
+            "action": "init",
+            "domain": $domain,
+            "bap_id":  $ctx.bapId,
+            "bap_uri": $ctx.bapUri,
+            "bpp_id":  $ctx.bppId,
+            "bpp_uri": $ctx.bppUri,
+            "transaction_id": $ctx.transactionId,
+            "message_id": $ctx.messageId,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl
+          },
+          "message": {
+            "order": {
+              "created_at": $ca.createdAt,
+              "provider": { "id": ($providerPart.id ? $providerPart.id : ($bppPart.id ? $bppPart.id : $ctx.bppId)) },
+              "items": [{
+                "id": $commit.offer.id,
+                "fulfillment_ids": $commit.offer.offerAttributes.fulfillmentIds,
+                "tags": $commit.offer.offerAttributes.tags
+              }],
+              "fulfillments": [{
+                "id": $perf.id,
+                "type": $rAttr.fulfillmentType,
+                "customer": {
+                  "contact": { "phone": $pAttr.customer.contact.phone },
+                  "person": {
+                    "name": $pAttr.customer.person.name,
+                    "gender": $pAttr.customer.person.personAttributes.gender
+                  }
+                },
+                "stops": $rAttr.stops ? $rAttr.stops : [],
+                "tags": $rAttr.tags,
+                "vehicle": {
+                  "category": $rAttr.vehicleCategory,
+                  "variant": $rAttr.vehicleVariant
+                }
+              }],
+              "billing": $paxAttr ? {
+                "name": $paxAttr.billingName,
+                "phone": $paxAttr.billingPhone
+              } : undefined,
+              "payments": $settle ? [{
+                "collected_by": $sAttr.collectedBy,
+                "params": {
+                  "bank_account_number": $sAttr.payTo.vpa,
+                  "bank_code": $sAttr.payTo.branchCode
+                },
+                "status": $sAttr.paymentStatus,
+                "type": $sAttr.paymentType,
+                "tags": $sAttr.tags
+              }] : [],
+              "updated_at": $ca.updatedAt
+            }
+          }
+        }
+      )
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # on_init
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  on_init:
+    bapMappings: |
+      (
+        $ctx      := $.context;
+        $contract := $.message.contract;
+        $domain   := $ctx.networkId;
+        $commit   := $contract.commitments[0];
+        $res      := $commit.resources[0];
+        $rAttr    := $res.resourceAttributes;
+        $oAttr    := $commit.offer.offerAttributes;
+        $perf     := $contract.performance[0];
+        $pAttr    := $perf.performanceAttributes;
+        $providerPart := $contract.participants[role = "PROVIDER"][0];
+        $bppPart  := $contract.participants[role = "BPP"][0];
+        $settle   := $contract.settlements[0];
+        $sAttr    := $settle.settlementAttributes;
+        $ca       := $contract.consideration[0].considerationAttributes;
+
+        {
+          "context": {
+            "version": "2.1.0",
+            "action": "on_init",
+            "domain": $domain,
+            "bap_id":  $ctx.bapId,
+            "bap_uri": $ctx.bapUri,
+            "bpp_id":  $ctx.bppId,
+            "bpp_uri": $ctx.bppUri,
+            "transaction_id": $ctx.transactionId,
+            "message_id": $ctx.messageId,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl
+          },
+          "message": {
+            "order": {
+              "id": $contract.id,
+              "created_at": $ca.createdAt,
+              "provider": { "id": ($providerPart.id ? $providerPart.id : ($bppPart.id ? $bppPart.id : $ctx.bppId)) },
+              "items": [$merge([
+                {
+                  "id": $commit.offer.id,
+                  "descriptor": $merge([
+                    $commit.offer.descriptor.name     ? { "name": $commit.offer.descriptor.name }           : {},
+                    $commit.offer.descriptor.code     ? { "code": $commit.offer.descriptor.code }           : {},
+                    $commit.offer.descriptor.shortDesc ? { "short_desc": $commit.offer.descriptor.shortDesc } : {}
+                  ]),
+                  "category_ids": $oAttr.categoryIds,
+                  "fulfillment_ids": $oAttr.fulfillmentIds,
+                  "payment_ids": [$settle.id]
+                },
+                $ca.itemPrice ? { "price": {
+                  "currency": $ca.itemPrice.currency,
+                  "offered_value": $ca.itemPrice.offeredValue,
+                  "value": $ca.itemPrice.value
+                } } : {},
+                $oAttr.pricingModel.tags ? { "tags": $oAttr.pricingModel.tags } : {}
+              ])],
+              "fulfillments": [$merge([
+                {
+                  "id": $perf.id,
+                  "type": $rAttr.fulfillmentType,
+                  "vehicle": {
+                    "category": $rAttr.vehicleCategory,
+                    "variant": $rAttr.vehicleVariant
+                  },
+                  "customer": {
+                    "contact": { "phone": $pAttr.customer.contact.phone },
+                    "person": {
+                      "name": $pAttr.customer.person.name,
+                      "gender": $pAttr.customer.person.personAttributes.gender
+                    }
+                  },
+                  "stops": $rAttr.stops ? $rAttr.stops : []
+                },
+                $pAttr.agent ? { "agent": $pAttr.agent } : {}
+              ])],
+              "payments": $settle ? [{
+                "id": $settle.id,
+                "collected_by": $sAttr.collectedBy,
+                "params": {
+                  "amount": $sAttr.settlementAmount,
+                  "bank_account_number": $sAttr.payTo.vpa,
+                  "bank_code": $sAttr.payTo.branchCode,
+                  "currency": $ca.currency
+                },
+                "status": $sAttr.paymentStatus,
+                "type": $sAttr.paymentType,
+                "tags": $sAttr.tags
+              }] : [],
+              "quote": {
+                "breakup": [$map($ca.price.components, function($c) {{
+                  "price": {
+                    "currency": $c.currency,
+                    "offered_value": $string($c.value),
+                    "value": $string($c.value)
+                  },
+                  "title": $c.description
+                }})],
+                "price": {
+                  "currency": $ca.currency,
+                  "offered_value": $sAttr.settlementAmount,
+                  "value": $sAttr.settlementAmount
+                }
+              },
+              "cancellation_terms": [$map($oAttr.cancellationTerms, function($t) {{
+                "fulfillment_state": {
+                  "descriptor": {
+                    "code": $t.fulfillmentStateCode
+                  }
+                },
+                "reason_required": $t.reasonRequired
+              }})],
+              "updated_at": $ca.updatedAt
+            }
+          }
+        }
+      )
+    bppMappings: |
+      (
+        $ctx  := $.context;
+        $ord  := $.message.order;
+        $ful  := $ord.fulfillments[0];
+        $item := $ord.items[0];
+        $bill := $ord.billing;
+        $pay  := $ord.payments[0];
+        $cust := $ful.customer;
+        $tripCtx := "https://schema.beckn.io/TripRequest/v2.2/context.jsonld";
+        $rideCtx := "https://schema.beckn.io/RideOption/v2.1/context.jsonld";
+        $serviceCtx := "https://schema.beckn.io/ServiceClass/v2.1/context.jsonld";
+        $fareCtx := "https://schema.beckn.io/FareEstimate/v2.1/context.jsonld";
+        $priceCtx := "https://schema.beckn.io/PriceSpecification/v2.2/context.jsonld";
+        $pcCtx := "https://schema.beckn.io/PriceComponent/v2.2/context.jsonld";
+        $passCtx := "https://schema.beckn.io/Passenger/v2.1/context.jsonld";
+        $stCtx   := "https://schema.beckn.io/SettlementTerm/v2.1/context.jsonld";
+        $drvCtx  := "https://schema.beckn.io/Driver/v2.1/context.jsonld";
+
+        $gpsToCoords := function($gps) {(
+          $p := $split($gps, ",");
+          [$number($trim($p[1])), $number($trim($p[0]))]
+        )};
+        $tagValue := function($tags, $code) { $tags.list[descriptor.code = $code].value[0] };
+        $bool := function($v) { $uppercase($string($v)) = "TRUE" };
+        $locality := function($stop) {(
+          $parts := $split($stop.location.state.name, " ");
+          $parts[1] ? $parts[1] : $stop.location.city.name
+        )};
+        $pcType := function($title) {
+          $substring($title, $length($title) - 4) = "_TAX" ? "TAX" :
+          $contains($title, "TOLL") ? "FEE" :
+          $contains($title, "CANCELLATION") ? "FEE" :
+          $contains($title, "PARKING") ? "FEE" :
+          $contains($title, "VAT") ? "TAX" :
+          "UNIT"
+        };
+
+        $s0 := $ful.stops[type = "START"][0];
+        $s1 := $ful.stops[type = "END"][0];
+        $fareTags := $item.tags;
+        $payTags := $pay.tags;
+        $serviceCode := $ful.vehicle.variant;
+
+        {
+          "context": {
+            "version": "2.0.0",
+            "action": "on_init",
+            "networkId": $ctx.domain,
+            "bapId": $ctx.bap_id,
+            "bapUri": $ctx.bap_uri,
+            "bppId": $ctx.bpp_id,
+            "bppUri": $ctx.bpp_uri,
+            "transactionId": $ctx.transaction_id,
+            "messageId": $ctx.message_id,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl,
+            "schemaContext": [$tripCtx, $rideCtx, $serviceCtx, $fareCtx, $priceCtx, $pcCtx, $passCtx, $stCtx, $drvCtx]
+          },
+          "message": {
+            "contract": {
+              "id": $ord.id,
+              "descriptor": {
+                "name": $ful.vehicle.variant & " ride: " & $s0.location.city.name & " → " & $s1.location.city.name,
+                "shortDesc": "Ride-hailing"
+              },
+              "status": { "code": "DRAFT", "name": "Contract initialised" },
+              "commitments": [{
+                "id": "commitment-1",
+                "status": { "descriptor": { "code": "DRAFT", "name": "Fare confirmed" } },
+                "resources": [{
+                  "id": $item.id,
+                  "descriptor": {
+                    "name": $item.descriptor.name,
+                    "code": $serviceCode,
+                    "shortDesc": $item.descriptor.short_desc
+                  },
+                  "quantity": { "value": 1, "unit": "trip" },
+                  "resourceAttributes": $merge([
+                    {
+                    "@context": $tripCtx,
+                    "@type": "TripRequest",
+                    "vehicleVariant": $ful.vehicle.variant,
+                    "vehicleCategory": $ful.vehicle.category,
+                    "fulfillmentType": $ful.type,
+                      "stops": [$map($ful.stops, function($st) { $merge([
+                        { "id": $st.id, "location": $st.location, "type": $st.type },
+                        $st.parent_stop_id ? { "parent_stop_id": $st.parent_stop_id } : {},
+                        $st.time ? { "time": $st.time } : {},
+                        $st.instructions ? { "instructions": $st.instructions } : {}
+                      ]) })]
+                    },
+                    $s0 ? { "origin": {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s0.location.gps) },
+                      "address": {
+                        "streetAddress": $s0.location.city.name,
+                        "addressLocality": $locality($s0),
+                        "addressRegion": $s0.location.state.name,
+                        "addressCountry": $s0.location.country.name,
+                        "postalCode": $s0.location.area_code
+                      }
+                    } } : {},
+                    $s1 ? { "destination": {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s1.location.gps) },
+                      "address": {
+                        "streetAddress": $s1.location.city.name,
+                        "addressLocality": $locality($s1),
+                        "addressRegion": $s1.location.state.name,
+                        "addressCountry": $s1.location.country.name,
+                        "postalCode": $s1.location.area_code
+                      }
+                    } } : {},
+                    {}
+                  ])
+                }],
+                "offer": {
+                  "id": $item.id,
+                  "descriptor": {
+                    "code": $item.descriptor.code,
+                    "name": $item.descriptor.name,
+                    "shortDesc": $item.descriptor.short_desc
+                  },
+                  "resourceIds": [$item.id],
+                  "offerAttributes": {
+                    "@context": $rideCtx,
+                    "@type": "RideOption",
+                    "vehicleType": { "vehicleCategoryCode": "FOUR_WHEELER" },
+                    "vehicle": {
+                      "bodyType": $serviceCode,
+                      "seatingCapacity": 4,
+                      "category": $ful.vehicle.category
+                    },
+                    "serviceClass": {
+                      "serviceClassCode": $serviceCode,
+                      "isAirConditioned": true,
+                      "airConditioningScore": 2.0
+                    },
+                    "categoryIds": $item.category_ids,
+                    "fulfillmentIds": $item.fulfillment_ids,
+                    "cancellationTerms": [$map($ord.cancellation_terms, function($t) {{
+                      "fulfillmentStateCode": $t.fulfillment_state.descriptor.code,
+                      "reasonRequired": $t.reason_required
+                    }})],
+                    "pricingModel": {
+                      "currency": $item.price.currency,
+                      "cancellationCharges": $tagValue($fareTags, "CANCELLATION_CHARGES"),
+                      "driverMinExtraFee": $tagValue($fareTags, "DRIVER_MIN_EXTRA_FEE"),
+                      "driverMaxExtraFee": $tagValue($fareTags, "DRIVER_MAX_EXTRA_FEE"),
+                      "petCharges": $tagValue($fareTags, "PET_CHARGES"),
+                      "nightShiftStartTime": $tagValue($fareTags, "NIGHT_SHIFT_START_TIME"),
+                      "nightShiftEndTime": $tagValue($fareTags, "NIGHT_SHIFT_END_TIME"),
+                      "nightShiftStartTimeInSeconds": $tagValue($fareTags, "NIGHT_SHIFT_START_TIME_IN_SECONDS"),
+                      "nightShiftEndTimeInSeconds": $tagValue($fareTags, "NIGHT_SHIFT_END_TIME_IN_SECONDS"),
+                      "congestionChargePercentage": $tagValue($fareTags, "CONGESTION_CHARGE_PERCENTAGE"),
+                      "customerExtraFeeTaxMultiplier": $tagValue($fareTags, "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER"),
+                      "baseDistance": $tagValue($fareTags, "BASE_DISTANCE"),
+                      "baseFare": $tagValue($fareTags, "BASE_FARE"),
+                      "deadKilometerFare": $tagValue($fareTags, "DEAD_KILOMETER_FARE"),
+                      "extraPerKmFare": $tagValue($fareTags, "EXTRA_PER_KM_FARE"),
+                      "extraPerKmStepFare3000Above": $tagValue($fareTags, "EXTRA_PER_KM_STEP_FARE_3000_Above"),
+                      "waitingChargePerMin": $tagValue($fareTags, "WAITING_CHARGE_PER_MIN"),
+                      "waitingChargeRatePerMin": $tagValue($fareTags, "WAITING_CHARGE_RATE_PER_MIN"),
+                      "freeWaitingTimeInMinutes": $tagValue($fareTags, "FREE_WAITING_TIME_IN_MINUTES"),
+                      "nightShiftCharge": $tagValue($fareTags, "NIGHT_SHIFT_CHARGE"),
+                      "nightShiftChargePercentage": $tagValue($fareTags, "NIGHT_SHIFT_CHARGE_PERCENTAGE"),
+                      "driverExtraFeeBoundsStepMinFee0Above": $tagValue($fareTags, "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above"),
+                      "driverExtraFeeBoundsStepMaxFee0Above": $tagValue($fareTags, "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above"),
+                      "tags": $item.tags
+                    }
+                  }
+                },
+                "commitmentAttributes": {
+                  "@context": $serviceCtx,
+                  "@type": "ServiceClass",
+                  "serviceClassCode": $serviceCode,
+                  "isAirConditioned": true,
+                  "airConditioningScore": 2.0
+                }
+              }],
+              "performance": [$merge([
+                {
+                  "id": $ful.id,
+                  "status": { "code": "PENDING" },
+                  "commitmentIds": ["commitment-1"],
+                  "performanceAttributes": {
+                    "@context": $drvCtx,
+                    "@type": "Driver",
+                    "vehicleCategory": $ful.vehicle.category,
+                    "vehicleVariant": $ful.vehicle.variant,
+                    "customer": {
+                      "contact": { "phone": $cust.contact.phone },
+                      "person": {
+                        "name": $cust.person.name,
+                        "personAttributes": { "gender": $cust.person.gender }
+                      }
+                    }
+                  }
+                },
+                $ful.agent ? { "performanceAttributes": { "agent": $ful.agent } } : {}
+              ])],
+              "participants": [
+                $merge([
+                  { "id": "consumer-001", "descriptor": { "name": $cust.person.name } },
+                  $cust ? {
+                    "participantAttributes": {
+                      "@context": $passCtx,
+                      "@type": "Passenger",
+                      "person": {
+                        "id": $cust.person.name,
+                        "name": $cust.person.name,
+                        "telephone": $cust.contact.phone
+                      }
+                    }
+                  } : {}
+                ]),
+                { "id": ($ord.provider.id ? $ord.provider.id : $ctx.bpp_id), "role": "PROVIDER" }
+              ],
+              "settlements": $pay ? [{
+                "id": $pay.id,
+                "considerationId": "consideration-1",
+                "status": "DRAFT",
+                "settlementAttributes": {
+                  "@context": $stCtx,
+                  "@type": "SettlementTerm",
+                  "collectedBy": $pay.collected_by,
+                  "paymentStatus": $pay.status,
+                  "paymentType": $pay.type,
+                  "settlementAmount": $pay.params.amount,
+                  "currency": $pay.params.currency,
+                  "commission": $tagValue($payTags, "COMMISSION"),
+                  "payTo": {
+                    "vpa": $pay.params.bank_account_number,
+                    "branchCode": $pay.params.bank_code
+                  },
+                  "buyerFinderFeesPercentage": $tagValue($payTags, "BUYER_FINDER_FEES_PERCENTAGE"),
+                  "settlementWindow": $tagValue($payTags, "SETTLEMENT_WINDOW"),
+                  "delayInterest": $tagValue($payTags, "DELAY_INTEREST"),
+                  "settlementBasis": $tagValue($payTags, "SETTLEMENT_BASIS"),
+                  "mandatoryArbitration": $bool($tagValue($payTags, "MANDATORY_ARBITRATION")),
+                  "courtJurisdiction": $tagValue($payTags, "COURT_JURISDICTION"),
+                  "staticTerms": $tagValue($payTags, "STATIC_TERMS"),
+                  "tags": $pay.tags
+                }
+              }] : [],
+              "consideration": [{
+                "id": "consideration-1",
+                "status": { "code": "PRICE_CONFIRMED", "name": "Confirmed fare" },
+                "considerationAttributes": {
+                  "@context": $fareCtx,
+                  "@type": "FareEstimate",
+                  "currency": $ord.quote.price.currency,
+                  "offeredAmount": $number($ord.quote.price.value),
+                  "itemPrice": {
+                    "currency": $item.price.currency,
+                    "offeredValue": $item.price.offered_value,
+                    "value": $item.price.value
+                  },
+                  "price": {
+                    "@context": $priceCtx,
+                    "@type": "PriceSpecification",
+                    "currency": $ord.quote.price.currency,
+                    "value": $number($ord.quote.price.value),
+                    "components": [$map($ord.quote.breakup, function($b) {{
+                      "type": $pcType($b.title),
+                      "value": $number($b.price.value),
+                      "currency": $b.price.currency,
+                      "description": $b.title
+                    }})]
+                  },
+                  "createdAt": $ord.created_at,
+                  "updatedAt": $ord.updated_at
+                }
+              }]
+            }
+          }
+        }
+      )
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # confirm
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  confirm:
+    bapMappings: |
+      (
+        $ctx  := $.context;
+        $ord  := $.message.order;
+        $ful  := $ord.fulfillments[0];
+        $item := $ord.items[0];
+        $bill := $ord.billing;
+        $pay  := $ord.payments[0];
+        $cust := $ful.customer;
+        $tripCtx := "https://schema.beckn.io/TripRequest/v2.2/context.jsonld";
+        $fareCtx := "https://schema.beckn.io/FareEstimate/v2.1/context.jsonld";
+        $passCtx := "https://schema.beckn.io/Passenger/v2.1/context.jsonld";
+        $stCtx   := "https://schema.beckn.io/SettlementTerm/v2.1/context.jsonld";
+        $driverCtx := "https://schema.beckn.io/Driver/v2.1/context.jsonld";
+
+        $gpsToCoords := function($gps) {(
+          $p := $split($gps, ",");
+          [$number($trim($p[1])), $number($trim($p[0]))]
+        )};
+        $tagValue := function($tags, $code) { $tags.list[descriptor.code = $code].value[0] };
+        $bool := function($v) { $uppercase($string($v)) = "TRUE" };
+        $locality := function($stop) {(
+          $parts := $split($stop.location.state.name, " ");
+          $parts[1] ? $parts[1] : $stop.location.city.name
+        )};
+
+        $s0 := $ful.stops[type = "START"][0];
+        $s1 := $ful.stops[type = "END"][0];
+        $payTags := $pay.tags;
+
+        {
+          "context": {
+            "version": "2.0.0",
+            "action": "confirm",
+            "networkId": $ctx.domain,
+            "bapId": $ctx.bap_id,
+            "bapUri": $ctx.bap_uri,
+            "bppId": $ctx.bpp_id,
+            "bppUri": $ctx.bpp_uri,
+            "transactionId": $ctx.transaction_id,
+            "messageId": $ctx.message_id,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl,
+            "schemaContext": [$tripCtx, $fareCtx, $passCtx, $stCtx, $driverCtx]
+          },
+          "message": {
+            "contract": {
+              "id": $ord.id,
+              "status": { "code": "ACTIVE" },
+              "commitments": [{
+                "id": "commitment-1",
+                "status": { "descriptor": { "code": "ACTIVE" } },
+                "resources": [{
+                  "id": $item.id,
+                  "descriptor": {
+                    "name": $ful.vehicle.variant,
+                    "code": $ful.vehicle.variant,
+                    "shortDesc": $ful.vehicle.variant
+                  },
+                  "quantity": { "value": 1, "unit": "trip" },
+                  "resourceAttributes": $merge([
+                    {
+                      "@context": $tripCtx,
+                      "@type": "TripRequest",
+                      "vehicleVariant": $ful.vehicle.variant,
+                      "vehicleCategory": $ful.vehicle.category,
+                      "fulfillmentType": $ful.type,
+                      "stops": [$map($ful.stops, function($st) { $merge([
+                        { "id": $st.id, "location": $st.location, "type": $st.type },
+                        $st.parent_stop_id ? { "parent_stop_id": $st.parent_stop_id } : {},
+                        $st.time ? { "time": $st.time } : {},
+                        $st.instructions ? { "instructions": $st.instructions } : {}
+                      ]) })]
+                    },
+                    $s0 ? { "origin": {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s0.location.gps) },
+                      "address": {
+                        "streetAddress": $s0.location.city.name,
+                        "addressLocality": $locality($s0),
+                        "addressRegion": $s0.location.state.name,
+                        "addressCountry": $s0.location.country.name,
+                        "postalCode": $s0.location.area_code
+                      }
+                    } } : {},
+                    $s1 ? { "destination": {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s1.location.gps) },
+                      "address": {
+                        "streetAddress": $s1.location.city.name,
+                        "addressLocality": $locality($s1),
+                        "addressRegion": $s1.location.state.name,
+                        "addressCountry": $s1.location.country.name,
+                        "postalCode": $s1.location.area_code
+                      }
+                    } } : {},
+                    $ful.tags ? { "tags": $ful.tags } : {}
+                  ])
+                }],
+                "offer": {
+                  "id": $item.id,
+                  "resourceIds": [$item.id]
+                }
+              }],
+              "performance": [$merge([
+                {
+                  "id": $ful.id,
+                  "status": { "code": "PENDING" },
+                  "commitmentIds": ["commitment-1"],
+                  "performanceAttributes": {
+                    "@context": $driverCtx,
+                    "@type": "Driver",
+                    "vehicleCategory": $ful.vehicle.category,
+                    "vehicleVariant": $ful.vehicle.variant,
+                    "customer": {
+                      "contact": { "phone": $cust.contact.phone },
+                      "person": {
+                        "name": $cust.person.name,
+                        "gender": $cust.person.gender,
+                        "tags": $cust.person.tags
+                      }
+                    }
+                  }
+                },
+                {}
+              ])],
+              "consideration": [{
+                "id": "consideration-1",
+                "status": { "code": "PRICE_CONFIRMED", "name": "Confirmed fare" },
+                "considerationAttributes": {
+                  "@context": $fareCtx,
+                  "@type": "FareEstimate",
+                  "currency": $ord.quote.price.currency,
+                  "offeredAmount": $number($ord.quote.price.offered_value),
+                  "itemPrice": {
+                    "currency": $ord.quote.price.currency,
+                    "offeredValue": $ord.quote.price.offered_value,
+                    "value": $ord.quote.price.value
+                  }
+                }
+              }],
+              "participants": [
+                $merge([
+                  { "id": "consumer-001", "descriptor": { "name": $cust.person.name } },
+                  {
+                    "participantAttributes": {
+                      "@context": $passCtx,
+                      "@type": "Passenger",
+                      "person": {
+                        "id": $cust.person.name,
+                        "name": $cust.person.name,
+                        "telephone": $cust.contact.phone
+                      },
+                      "billingName": $bill.name,
+                      "billingPhone": $bill.phone
+                    }
+                  }
+                ]),
+                { "id": ($ord.provider.id ? $ord.provider.id : $ctx.bpp_id), "role": "PROVIDER" }
+              ],
+              "settlements": $pay ? [{
+                "id": $pay.id ? $pay.id : "settlement-1",
+                "considerationId": "consideration-1",
+                "status": "COMMITTED",
+                "settlementAttributes": {
+                  "@context": $stCtx,
+                  "@type": "SettlementTerm",
+                  "collectedBy": $pay.collected_by,
+                  "paymentStatus": $pay.status,
+                  "paymentType": $pay.type,
+                  "paymentInstrument": $tagValue($payTags, "PAYMENT_INSTRUMENT"),
+                  "settlementAmount": $pay.params.amount,
+                  "payTo": {
+                    "vpa": $pay.params.bank_account_number,
+                    "branchCode": $pay.params.bank_code
+                  },
+                  "buyerFinderFeesPercentage": $tagValue($payTags, "BUYER_FINDER_FEES_PERCENTAGE"),
+                  "settlementWindow": $tagValue($payTags, "SETTLEMENT_WINDOW"),
+                  "delayInterest": $tagValue($payTags, "DELAY_INTEREST"),
+                  "settlementBasis": $tagValue($payTags, "SETTLEMENT_BASIS"),
+                  "mandatoryArbitration": $bool($tagValue($payTags, "MANDATORY_ARBITRATION")),
+                  "courtJurisdiction": $tagValue($payTags, "COURT_JURISDICTION"),
+                  "staticTerms": $tagValue($payTags, "STATIC_TERMS"),
+                  "tags": $pay.tags
+                }
+              }] : []
+            }
+          }
+        }
+      )
+    bppMappings: |
+      (
+        $ctx      := $.context;
+        $contract := $.message.contract;
+        $domain   := $ctx.networkId;
+        $commit   := $contract.commitments[0];
+        $res      := $commit.resources[0];
+        $rAttr    := $res.resourceAttributes;
+        $perf     := $contract.performance[0];
+        $pAttr    := $perf.performanceAttributes;
+        $pax      := $contract.participants[participantAttributes."@type" = "Passenger"][0];
+        $paxAttr  := $pax.participantAttributes;
+        $providerPart := $contract.participants[role = "PROVIDER"][0];
+        $bppPart  := $contract.participants[role = "BPP"][0];
+        $settle   := $contract.settlements[0];
+        $sAttr    := $settle.settlementAttributes;
+        $ca       := $contract.consideration[0].considerationAttributes;
+
+        {
+          "context": {
+            "version": "2.1.0",
+            "action": "confirm",
+            "domain": $domain,
+            "bap_id":  $ctx.bapId,
+            "bap_uri": $ctx.bapUri,
+            "bpp_id":  $ctx.bppId,
+            "bpp_uri": $ctx.bppUri,
+            "transaction_id": $ctx.transactionId,
+            "message_id": $ctx.messageId,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl
+          },
+          "message": {
+            "order": {
+              "id": $contract.id,
+              "provider": { "id": ($providerPart.id ? $providerPart.id : ($bppPart.id ? $bppPart.id : $ctx.bppId)) },
+              "items": [$merge([
+                {
+                  "id": $commit.offer.id
+                },
+                false ? {} : {}
+              ])],
+              "fulfillments": [$merge([
+                {
+                  "id": $perf.id,
+                  "type": $rAttr.fulfillmentType,
+                  "vehicle": {
+                    "category": $pAttr.vehicleCategory,
+                    "variant": $pAttr.vehicleVariant
+                  },
+                  "customer": {
+                    "contact": { "phone": $pAttr.customer.contact.phone },
+                    "person": {
+                      "name": $pAttr.customer.person.name,
+                      "tags": $pAttr.customer.person.tags
+                    }
+                  },
+                  "stops": $rAttr.stops ? $rAttr.stops : []
+                },
+                $rAttr.tags ? { "tags": $rAttr.tags } : {}
+              ])],
+              "billing": $paxAttr ? {
+                "name": $paxAttr.billingName,
+                "phone": $paxAttr.billingPhone
+              } : undefined,
+              "payments": $settle ? [{
+                "id": $settle.id,
+                "collected_by": $sAttr.collectedBy,
+                "params": {
+                  "amount": $sAttr.settlementAmount,
+                  "bank_account_number": $sAttr.payTo.vpa,
+                  "bank_code": $sAttr.payTo.branchCode,
+                  "currency": $ca.currency
+                },
+                "status": $sAttr.paymentStatus,
+                "type": $sAttr.paymentType,
+                "tags": $sAttr.tags
+              }] : [],
+              "quote": {
+                "price": {
+                  "currency": $ca.currency,
+                  "offered_value": $sAttr.settlementAmount,
+                  "value": $sAttr.settlementAmount
+                }
+              }
+            }
+          }
+        }
+      )
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # on_confirm
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  on_confirm:
+    bapMappings: |
+      (
+        $ctx      := $.context;
+        $contract := $.message.contract;
+        $domain   := $ctx.networkId;
+        $commit   := $contract.commitments[0];
+        $res      := $commit.resources[0];
+        $rAttr    := $res.resourceAttributes;
+        $oAttr    := $commit.offer.offerAttributes;
+        $perf     := $contract.performance[0];
+        $pAttr    := $perf.performanceAttributes;
+        $providerPart := $contract.participants[role = "PROVIDER"][0];
+        $bppPart  := $contract.participants[role = "BPP"][0];
+        $settle   := $contract.settlements[0];
+        $sAttr    := $settle.settlementAttributes;
+        $ca       := $contract.consideration[0].considerationAttributes;
+
+        {
+          "context": {
+            "version": "2.1.0",
+            "action": "on_confirm",
+            "domain": $domain,
+            "bap_id":  $ctx.bapId,
+            "bap_uri": $ctx.bapUri,
+            "bpp_id":  $ctx.bppId,
+            "bpp_uri": $ctx.bppUri,
+            "transaction_id": $ctx.transactionId,
+            "message_id": $ctx.messageId,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl
+          },
+          "message": {
+            "order": {
+              "id": $contract.id,
+              "created_at": $ca.createdAt,
+              "provider": { "id": ($providerPart.id ? $providerPart.id : ($bppPart.id ? $bppPart.id : $ctx.bppId)) },
+              "items": [$merge([
+                {
+                  "id": $res.id,
+                  "descriptor": $merge([
+                    $commit.offer.descriptor.name     ? { "name": $commit.offer.descriptor.name }           : {},
+                    $commit.offer.descriptor.code     ? { "code": $commit.offer.descriptor.code }           : {},
+                    $commit.offer.descriptor.shortDesc ? { "short_desc": $commit.offer.descriptor.shortDesc } : {}
+                  ]),
+                  "category_ids": $oAttr.categoryIds,
+                  "fulfillment_ids": $oAttr.fulfillmentIds,
+                  "payment_ids": $oAttr.paymentIds
+                },
+                $oAttr.itemPrice ? { "price": {
+                  "currency": $oAttr.itemPrice.currency,
+                  "offered_value": $oAttr.itemPrice.offeredValue,
+                  "value": $oAttr.itemPrice.value
+                } } : {},
+                $oAttr.pricingModel.tags ? { "tags": $oAttr.pricingModel.tags } : {}
+              ])],
+              "fulfillments": [{
+                "id": $perf.id,
+                "type": $rAttr.fulfillmentType,
+                "vehicle": $merge([
+                  { "category": $pAttr.vehicleCategory, "variant": $pAttr.vehicleVariant },
+                  $pAttr.vehicle ? $pAttr.vehicle : {}
+                ]),
+                "customer": $pAttr.customer,
+                "stops": $pAttr.stops ? $pAttr.stops : $rAttr.stops,
+                "state": { "descriptor": { "code": $perf.status.code } },
+                "agent": {
+                  "contact": { "phone": $pAttr.contactPhone },
+                  "person": {
+                    "gender": $pAttr.person.personAttributes.gender,
+                    "name": $pAttr.person.name,
+                    "tags": [$pAttr.tags[descriptor.code = "DRIVER_DETAILS"]]
+                  }
+                }
+              }],
+              "payments": $settle ? [{
+                "id": $settle.id,
+                "collected_by": $sAttr.collectedBy,
+                "params": {
+                  "amount": $sAttr.settlementAmount,
+                  "bank_account_number": $sAttr.payTo.vpa,
+                  "bank_code": $sAttr.payTo.branchCode,
+                  "currency": $ca.currency
+                },
+                "status": $sAttr.paymentStatus,
+                "type": $sAttr.paymentType,
+                "tags": $sAttr.tags
+              }] : [],
+              "cancellation_terms": [$map($oAttr.cancellationTerms, function($t) {{
+                "fulfillment_state": { "descriptor": { "code": $t.fulfillmentStateCode } },
+                "reason_required": $t.reasonRequired
+              }})],
+              "quote": {
+                "breakup": [$map($ca.price.components, function($c) {{
+                  "price": {
+                    "currency": $c.currency,
+                    "offered_value": $string($c.value),
+                    "value": $string($c.value)
+                  },
+                  "title": $c.description
+                }})],
+                "price": {
+                  "currency": $ca.currency,
+                  "offered_value": $sAttr.settlementAmount,
+                  "value": $sAttr.settlementAmount
+                }
+              },
+              "status": $contract.status.code,
+              "tags": $sAttr.tags ? $map($sAttr.tags, function($grp) { $grp.descriptor.code = "SETTLEMENT_TERMS" ? $merge([$grp, { "list": $filter($grp.list, function($li) { $li.descriptor.code != "SETTLEMENT_AMOUNT" }) }]) : $grp }) : [],
+              "updated_at": $ca.updatedAt
+            }
+          }
+        }
+      )
+    bppMappings: |
+      (
+        $ctx  := $.context;
+        $ord  := $.message.order;
+        $ful  := $ord.fulfillments[0];
+        $item := $ord.items[0];
+        $bill := $ord.billing;
+        $pay  := $ord.payments[0];
+        $cust := $ful.customer;
+        $agent := $ful.agent;
+        $tripCtx := "https://schema.beckn.io/TripRequest/v2.2/context.jsonld";
+        $rideCtx := "https://schema.beckn.io/RideOption/v2.1/context.jsonld";
+        $fareCtx := "https://schema.beckn.io/FareEstimate/v2.1/context.jsonld";
+        $priceCtx := "https://schema.beckn.io/PriceSpecification/v2.2/context.jsonld";
+        $pcCtx := "https://schema.beckn.io/PriceComponent/v2.2/context.jsonld";
+        $passCtx := "https://schema.beckn.io/Passenger/v2.1/context.jsonld";
+        $stCtx   := "https://schema.beckn.io/SettlementTerm/v2.1/context.jsonld";
+        $drvCtx  := "https://schema.beckn.io/Driver/v2.1/context.jsonld";
+
+        $gpsToCoords := function($gps) {(
+          $p := $split($gps, ",");
+          [$number($trim($p[1])), $number($trim($p[0]))]
+        )};
+        $tagValue := function($tags, $code) { $tags.list[descriptor.code = $code].value[0] };
+        $bool := function($v) { $uppercase($string($v)) = "TRUE" };
+        $locality := function($stop) {(
+          $parts := $split($stop.location.state.name, " ");
+          $parts[1] ? $parts[1] : $stop.location.city.name
+        )};
+        $pcType := function($title) {
+          $substring($title, $length($title) - 4) = "_TAX" ? "TAX" :
+          $contains($title, "TOLL") ? "FEE" :
+          $contains($title, "CANCELLATION") ? "FEE" :
+          $contains($title, "PARKING") ? "FEE" :
+          $contains($title, "VAT") ? "TAX" :
+          "UNIT"
+        };
+
+        $s0 := $ful.stops[type = "START"][0];
+        $s1 := $ful.stops[type = "END"][0];
+        $fareTags := $item.tags;
+        $payTags := $pay.tags;
+        $serviceCode := $item.descriptor.name;
+
+        $toV2Status := function($v1Code) {
+          $v1Code = "RIDE_CONFIRMED" ? "ACTIVE" :
+          $v1Code = "RIDE_COMPLETED" ? "CLOSED" : "ACTIVE"
+        };
+        $v2Status := $toV2Status($ful.state.descriptor.code);
+        $v2SettleStatus := $ful.state.descriptor.code = "RIDE_COMPLETED" ? "COMPLETE" : "COMMITTED";
+
+        {
+          "context": {
+            "version": "2.0.0",
+            "action": "on_confirm",
+            "networkId": $ctx.domain,
+            "bapId": $ctx.bap_id,
+            "bapUri": $ctx.bap_uri,
+            "bppId": $ctx.bpp_id,
+            "bppUri": $ctx.bpp_uri,
+            "transactionId": $ctx.transaction_id,
+            "messageId": $ctx.message_id,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl,
+            "schemaContext": [$tripCtx, $rideCtx, $fareCtx, $priceCtx, $pcCtx, $drvCtx, $passCtx, $stCtx]
+          },
+          "message": {
+            "contract": {
+              "id": $ord.id,
+              "descriptor": {
+                "name": $serviceCode & " ride: " & $s0.location.city.name & " → " & $s1.location.city.name,
+                "shortDesc": "Ride-hailing"
+              },
+              "status": { "code": $v2Status, "name": "Booking confirmed" },
+              "commitments": [{
+                "id": "commitment-1",
+                "status": { "descriptor": { "code": $v2Status, "name": "Booking confirmed" } },
+                "resources": [{
+                  "id": $item.id,
+                  "descriptor": {
+                    "name": $serviceCode,
+                    "code": $serviceCode,
+                    "shortDesc": $item.descriptor.short_desc
+                  },
+                  "quantity": { "value": 1, "unit": "trip" },
+                  "resourceAttributes": $merge([
+                    {
+                      "@context": $tripCtx,
+                      "@type": "TripRequest",
+                      "vehicleVariant": $ful.vehicle.variant,
+                      "vehicleCategory": $ful.vehicle.category,
+                      "fulfillmentType": $ful.type,
+                      "stops": [$map($ful.stops, function($st) { $merge([
+                        { "id": $st.id, "location": $st.location, "type": $st.type },
+                        $st.parent_stop_id ? { "parent_stop_id": $st.parent_stop_id } : {},
+                        $st.time ? { "time": $st.time } : {},
+                        $st.instructions ? { "instructions": $st.instructions } : {}
+                      ]) })]
+                    },
+                    $s0 ? { "origin": {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s0.location.gps) },
+                      "address": {
+                        "streetAddress": $s0.location.city.name,
+                        "addressLocality": $locality($s0),
+                        "addressRegion": $s0.location.state.name,
+                        "addressCountry": $s0.location.country.name,
+                        "postalCode": $s0.location.area_code
+                      }
+                    } } : {},
+                    $s1 ? { "destination": {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s1.location.gps) },
+                      "address": {
+                        "streetAddress": $s1.location.city.name,
+                        "addressLocality": $locality($s1),
+                        "addressRegion": $s1.location.state.name,
+                        "addressCountry": $s1.location.country.name,
+                        "postalCode": $s1.location.area_code
+                      }
+                    } } : {}
+                  ])
+                }],
+                "offer": {
+                  "id": $item.id,
+                  "descriptor": {
+                    "code": $item.descriptor.code,
+                    "name": $item.descriptor.name,
+                    "shortDesc": $item.descriptor.short_desc
+                  },
+                  "resourceIds": [$item.id],
+                  "offerAttributes": {
+                    "@context": $rideCtx,
+                    "@type": "RideOption",
+                    "categoryIds": $item.category_ids,
+                    "fulfillmentIds": $item.fulfillment_ids,
+                    "paymentIds": $item.payment_ids,
+                    "itemPrice": {
+                      "currency": $item.price.currency,
+                      "offeredValue": $item.price.offered_value,
+                      "value": $item.price.value
+                    },
+                    "vehicleType": { "vehicleCategoryCode": "FOUR_WHEELER" },
+                    "vehicle": {
+                      "bodyType": $serviceCode,
+                      "seatingCapacity": 4,
+                      "category": $ful.vehicle.category
+                    },
+                    "serviceClass": {
+                      "serviceClassCode": $serviceCode,
+                      "isAirConditioned": true,
+                      "airConditioningScore": 2.0
+                    },
+                    "cancellationTerms": [$map($ord.cancellation_terms, function($t) {{
+                      "fulfillmentStateCode": $t.fulfillment_state.descriptor.code,
+                      "reasonRequired": $t.reason_required
+                    }})],
+                    "pricingModel": {
+                      "currency": $item.price.currency,
+                      "cancellationCharges": $tagValue($fareTags, "CANCELLATION_CHARGES"),
+                      "driverMinExtraFee": $tagValue($fareTags, "DRIVER_MIN_EXTRA_FEE"),
+                      "driverMaxExtraFee": $tagValue($fareTags, "DRIVER_MAX_EXTRA_FEE"),
+                      "petCharges": $tagValue($fareTags, "PET_CHARGES"),
+                      "nightShiftStartTime": $tagValue($fareTags, "NIGHT_SHIFT_START_TIME"),
+                      "nightShiftEndTime": $tagValue($fareTags, "NIGHT_SHIFT_END_TIME"),
+                      "nightShiftStartTimeInSeconds": $tagValue($fareTags, "NIGHT_SHIFT_START_TIME_IN_SECONDS"),
+                      "nightShiftEndTimeInSeconds": $tagValue($fareTags, "NIGHT_SHIFT_END_TIME_IN_SECONDS"),
+                      "congestionChargePercentage": $tagValue($fareTags, "CONGESTION_CHARGE_PERCENTAGE"),
+                      "customerExtraFeeTaxMultiplier": $tagValue($fareTags, "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER"),
+                      "baseDistance": $tagValue($fareTags, "BASE_DISTANCE"),
+                      "baseFare": $tagValue($fareTags, "BASE_FARE"),
+                      "deadKilometerFare": $tagValue($fareTags, "DEAD_KILOMETER_FARE"),
+                      "extraPerKmFare": $tagValue($fareTags, "EXTRA_PER_KM_FARE"),
+                      "extraPerKmStepFare3000Above": $tagValue($fareTags, "EXTRA_PER_KM_STEP_FARE_3000_Above"),
+                      "waitingChargePerMin": $tagValue($fareTags, "WAITING_CHARGE_PER_MIN"),
+                      "waitingChargeRatePerMin": $tagValue($fareTags, "WAITING_CHARGE_RATE_PER_MIN"),
+                      "freeWaitingTimeInMinutes": $tagValue($fareTags, "FREE_WAITING_TIME_IN_MINUTES"),
+                      "nightShiftCharge": $tagValue($fareTags, "NIGHT_SHIFT_CHARGE"),
+                      "nightShiftChargePercentage": $tagValue($fareTags, "NIGHT_SHIFT_CHARGE_PERCENTAGE"),
+                      "driverExtraFeeBoundsStepMinFee0Above": $tagValue($fareTags, "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above"),
+                      "driverExtraFeeBoundsStepMaxFee0Above": $tagValue($fareTags, "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above"),
+                      "tags": $item.tags
+                    }
+                  }
+                }
+              }],
+              "performance": [$merge([
+                {
+                  "id": $ful.id,
+                  "status": { "code": $ful.state.descriptor.code, "name": $ful.state.descriptor.name },
+                  "commitmentIds": ["commitment-1"],
+                  "performanceAttributes": {
+                    "@context": $drvCtx,
+                    "@type": "Driver",
+                    "person": {
+                      "id": $agent.person.name,
+                      "name": $agent.person.name,
+                      "personAttributes": { "gender": $agent.person.gender }
+                    },
+                    "contactPhone": $agent.contact.phone,
+                    "rating": $number($tagValue($agent.person.tags, "RATING")),
+                    "vehicleCategory": $ful.vehicle.category,
+                    "vehicleVariant": $ful.vehicle.variant,
+                    "vehicle": {
+                      "color": $ful.vehicle.color,
+                      "model": $ful.vehicle.model,
+                      "registration": $ful.vehicle.registration
+                    },
+                    "customer": $cust,
+                    "stops": $ful.stops,
+                    "tags": $agent.person.tags
+                  }
+                }
+              ])],
+              "participants": [
+                $merge([
+                  { "id": "consumer-001", "descriptor": { "name": $cust.person.name } },
+                  $cust ? {
+                    "participantAttributes": {
+                      "@context": $passCtx,
+                      "@type": "Passenger",
+                      "person": { "id": $cust.person.name, "name": $cust.person.name, "telephone": $cust.contact.phone }
+                    }
+                  } : {}
+                ]),
+                { "id": ($ord.provider.id ? $ord.provider.id : $ctx.bpp_id), "role": "PROVIDER" }
+              ],
+              "settlements": $pay ? [{
+                "id": $pay.id,
+                "considerationId": "consideration-1",
+                "status": $v2SettleStatus,
+                "settlementAttributes": {
+                  "@context": $stCtx,
+                  "@type": "SettlementTerm",
+                  "collectedBy": $pay.collected_by,
+                  "paymentStatus": $pay.status,
+                  "paymentType": $pay.type,
+                  "settlementAmount": $pay.params.amount,
+                  "payTo": {
+                    "vpa": $pay.params.bank_account_number,
+                    "branchCode": $pay.params.bank_code
+                  },
+                  "buyerFinderFeesPercentage": $tagValue($payTags, "BUYER_FINDER_FEES_PERCENTAGE"),
+                  "settlementWindow": $tagValue($payTags, "SETTLEMENT_WINDOW"),
+                  "delayInterest": $tagValue($payTags, "DELAY_INTEREST"),
+                  "settlementBasis": $tagValue($payTags, "SETTLEMENT_BASIS"),
+                  "mandatoryArbitration": $bool($tagValue($payTags, "MANDATORY_ARBITRATION")),
+                  "courtJurisdiction": $tagValue($payTags, "COURT_JURISDICTION"),
+                  "staticTerms": $tagValue($payTags, "STATIC_TERMS"),
+                  "tags": $pay.tags
+                }
+              }] : [],
+              "consideration": [{
+                "id": "consideration-1",
+                "status": { "code": "PRICE_CONFIRMED", "name": "Confirmed fare" },
+                "considerationAttributes": {
+                  "@context": $fareCtx,
+                  "@type": "FareEstimate",
+                  "currency": $ord.quote.price.currency,
+                  "offeredAmount": $number($ord.quote.price.value),
+                  "price": {
+                    "@context": $priceCtx,
+                    "@type": "PriceSpecification",
+                    "currency": $ord.quote.price.currency,
+                    "value": $number($ord.quote.price.value),
+                    "components": [$map($ord.quote.breakup, function($b) {{
+                      "type": $pcType($b.title),
+                      "value": $number($b.price.value),
+                      "currency": $b.price.currency,
+                      "description": $b.title
+                    }})]
+                  },
+                  "createdAt": $ord.created_at,
+                  "updatedAt": $ord.updated_at
+                }
+              }]
+            }
+          }
+        }
+      )
+
+  # ─────────────────────────────────────────────────────────────────────────────
+  # on_update  (ride lifecycle events: RIDE_ASSIGNED, RIDE_STARTED, etc.)
+  # ─────────────────────────────────────────────────────────────────────────────
+
+  on_update:
+    bapMappings: |
+      (
+        $ctx      := $.context;
+        $contract := $.message.contract;
+        $domain   := $ctx.networkId;
+        $commit   := $contract.commitments[0];
+        $res      := $commit.resources[0];
+        $rAttr    := $res.resourceAttributes;
+        $oAttr    := $commit.offer.offerAttributes;
+        $perf     := $contract.performance[0];
+        $pAttr    := $perf.performanceAttributes;
+        $providerPart := $contract.participants[role = "PROVIDER"][0];
+        $bppPart  := $contract.participants[role = "BPP"][0];
+        $settle   := $contract.settlements[0];
+        $sAttr    := $settle.settlementAttributes;
+        $ca       := $contract.consideration[0].considerationAttributes;
+
+        {
+          "context": {
+            "version": "2.1.0",
+            "action": "on_update",
+            "domain": $domain,
+            "bap_id":  $ctx.bapId,
+            "bap_uri": $ctx.bapUri,
+            "bpp_id":  $ctx.bppId,
+            "bpp_uri": $ctx.bppUri,
+            "transaction_id": $ctx.transactionId,
+            "message_id": $ctx.messageId,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl
+          },
+          "message": {
+            "order": {
+              "id": $contract.id,
+              "created_at": $ca.createdAt,
+              "provider": { "id": ($providerPart.id ? $providerPart.id : ($bppPart.id ? $bppPart.id : $ctx.bppId)) },
+              "items": [$merge([
+                {
+                  "id": $commit.offer.id,
+                  "descriptor": $merge([
+                    $commit.offer.descriptor.name     ? { "name": $commit.offer.descriptor.name }           : {},
+                    $commit.offer.descriptor.code     ? { "code": $commit.offer.descriptor.code }           : {},
+                    $commit.offer.descriptor.shortDesc ? { "short_desc": $commit.offer.descriptor.shortDesc } : {}
+                  ]),
+                  "category_ids": $oAttr.categoryIds,
+                  "fulfillment_ids": $oAttr.fulfillmentIds,
+                  "payment_ids": $oAttr.paymentIds
+                },
+                $oAttr.itemPrice ? { "price": {
+                  "currency": $oAttr.itemPrice.currency,
+                  "offered_value": $oAttr.itemPrice.offeredValue,
+                  "value": $oAttr.itemPrice.value
+                } } : {},
+                $oAttr.pricingModel.tags ? { "tags": $oAttr.pricingModel.tags } : {}
+              ])],
+              "fulfillments": [{
+                "id": $perf.id,
+                "type": $rAttr.fulfillmentType,
+                "vehicle": $merge([
+                  { "category": $pAttr.vehicleCategory, "variant": $pAttr.vehicleVariant },
+                  $pAttr.vehicle ? $pAttr.vehicle : {}
+                ]),
+                "customer": $pAttr.customer,
+                "stops": $pAttr.stops ? $pAttr.stops : $rAttr.stops,
+                "state": { "descriptor": { "code": $perf.status.code } },
+                "agent": {
+                  "contact": { "phone": $pAttr.contactPhone },
+                  "person": {
+                    "gender": $pAttr.person.personAttributes.gender,
+                    "name": $pAttr.person.name,
+                    "tags": [$pAttr.tags[descriptor.code = "DRIVER_DETAILS"]]
+                  }
+                },
+                "tags": [$pAttr.tags[descriptor.code != "DRIVER_DETAILS"]]
+              }],
+              "payments": $settle ? [{
+                "id": $settle.id,
+                "collected_by": $sAttr.collectedBy,
+                "params": {
+                  "amount": $sAttr.settlementAmount,
+                  "bank_account_number": $sAttr.payTo.vpa,
+                  "bank_code": $sAttr.payTo.branchCode,
+                  "currency": $ca.currency
+                },
+                "status": $sAttr.paymentStatus,
+                "type": $sAttr.paymentType,
+                "tags": $sAttr.tags
+              }] : [],
+              "quote": {
+                "breakup": [$map($ca.price.components, function($c) {{
+                  "price": {
+                    "currency": $c.currency,
+                    "offered_value": $string($c.value),
+                    "value": $string($c.value)
+                  },
+                  "title": $c.description
+                }})],
+                "price": {
+                  "currency": $ca.currency,
+                  "offered_value": $sAttr.settlementAmount,
+                  "value": $sAttr.settlementAmount
+                }
+              },
+              "cancellation_terms": [$map($oAttr.cancellationTerms, function($t) {{
+                "fulfillment_state": { "descriptor": { "code": $t.fulfillmentStateCode } },
+                "reason_required": $t.reasonRequired
+              }})],
+              "status": $contract.status.code,
+              "tags": $sAttr.tags ? $map($sAttr.tags, function($grp) { $grp.descriptor.code = "SETTLEMENT_TERMS" ? $merge([$grp, { "list": $filter($grp.list, function($li) { $li.descriptor.code != "SETTLEMENT_AMOUNT" }) }]) : $grp }) : [],
+              "updated_at": $ca.updatedAt
+            }
+          }
+        }
+      )
+    bppMappings: |
+      (
+        $ctx  := $.context;
+        $ord  := $.message.order;
+        $ful  := $ord.fulfillments[0];
+        $item := $ord.items[0];
+        $pay  := $ord.payments[0];
+        $cust := $ful.customer;
+        $agent := $ful.agent;
+        $tripCtx := "https://schema.beckn.io/TripRequest/v2.2/context.jsonld";
+        $rideCtx := "https://schema.beckn.io/RideOption/v2.1/context.jsonld";
+        $fareCtx := "https://schema.beckn.io/FareEstimate/v2.1/context.jsonld";
+        $priceCtx := "https://schema.beckn.io/PriceSpecification/v2.2/context.jsonld";
+        $pcCtx := "https://schema.beckn.io/PriceComponent/v2.2/context.jsonld";
+        $stCtx   := "https://schema.beckn.io/SettlementTerm/v2.1/context.jsonld";
+        $drvCtx  := "https://schema.beckn.io/Driver/v2.1/context.jsonld";
+
+        $gpsToCoords := function($gps) {(
+          $p := $split($gps, ",");
+          [$number($trim($p[1])), $number($trim($p[0]))]
+        )};
+        $tagValue := function($tags, $code) { $tags.list[descriptor.code = $code].value[0] };
+        $bool := function($v) { $uppercase($string($v)) = "TRUE" };
+        $locality := function($stop) {(
+          $parts := $split($stop.location.state.name, " ");
+          $parts[1] ? $parts[1] : $stop.location.city.name
+        )};
+        $pcType := function($title) {
+          $substring($title, $length($title) - 4) = "_TAX" ? "TAX" :
+          $contains($title, "TOLL") ? "FEE" :
+          $contains($title, "CANCELLATION") ? "FEE" :
+          $contains($title, "PARKING") ? "FEE" :
+          $contains($title, "VAT") ? "TAX" :
+          "UNIT"
+        };
+
+        $s0 := $ful.stops[type = "START"][0];
+        $s1 := $ful.stops[type = "END"][0];
+        $fareTags := $item.tags;
+        $payTags := $pay.tags;
+        $serviceCode := $item.descriptor.name;
+
+        $toV2Status := function($v1Code) {
+          $contains($v1Code, "CANCELLED") ? "CANCELLED" :
+          $contains($v1Code, "COMPLETED") ? "CLOSED" : "ACTIVE"
+        };
+        $v2Status := $toV2Status($ful.state.descriptor.code);
+        $v2SettleStatus := $contains($ful.state.descriptor.code, "COMPLETED") ? "COMPLETE" : "COMMITTED";
+
+        {
+          "context": {
+            "version": "2.0.0",
+            "action": "on_update",
+            "networkId": $ctx.domain,
+            "bapId": $ctx.bap_id,
+            "bapUri": $ctx.bap_uri,
+            "bppId": $ctx.bpp_id,
+            "bppUri": $ctx.bpp_uri,
+            "transactionId": $ctx.transaction_id,
+            "messageId": $ctx.message_id,
+            "timestamp": $ctx.timestamp,
+            "ttl": $ctx.ttl,
+            "schemaContext": [$tripCtx, $rideCtx, $fareCtx, $priceCtx, $pcCtx, $drvCtx, "https://schema.beckn.io/Passenger/v2.1/context.jsonld", $stCtx]
+          },
+          "message": {
+            "contract": {
+              "id": $ord.id,
+              "descriptor": {
+                "name": $serviceCode & " ride: " & $s0.location.city.name & " → " & $s1.location.city.name,
+                "shortDesc": "Ride-hailing"
+              },
+              "status": { "code": $v2Status, "name": "Ride in progress" },
+              "commitments": [{
+                "id": "commitment-1",
+                "status": { "descriptor": { "code": $v2Status, "name": "Ride in progress" } },
+                "resources": [{
+                  "id": $item.id,
+                  "descriptor": {
+                    "name": $serviceCode,
+                    "code": $serviceCode,
+                    "shortDesc": $item.descriptor.short_desc
+                  },
+                  "quantity": { "value": 1, "unit": "trip" },
+                  "resourceAttributes": $merge([
+                    {
+                      "@context": $tripCtx,
+                      "@type": "TripRequest",
+                      "vehicleVariant": $ful.vehicle.variant,
+                      "vehicleCategory": $ful.vehicle.category,
+                      "fulfillmentType": $ful.type,
+                      "stops": [$map($ful.stops, function($st) { $merge([
+                        { "id": $st.id, "location": $st.location, "type": $st.type },
+                        $st.parent_stop_id ? { "parent_stop_id": $st.parent_stop_id } : {},
+                        $st.time ? { "time": $st.time } : {},
+                        $st.instructions ? { "instructions": $st.instructions } : {}
+                      ]) })]
+                    },
+                    $s0 ? { "origin": {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s0.location.gps) },
+                      "address": {
+                        "streetAddress": $s0.location.city.name,
+                        "addressLocality": $locality($s0),
+                        "addressRegion": $s0.location.state.name,
+                        "addressCountry": $s0.location.country.name,
+                        "postalCode": $s0.location.area_code
+                      }
+                    } } : {},
+                    $s1 ? { "destination": {
+                      "geo": { "type": "Point", "coordinates": $gpsToCoords($s1.location.gps) },
+                      "address": {
+                        "streetAddress": $s1.location.city.name,
+                        "addressLocality": $locality($s1),
+                        "addressRegion": $s1.location.state.name,
+                        "addressCountry": $s1.location.country.name,
+                        "postalCode": $s1.location.area_code
+                      }
+                    } } : {}
+                  ])
+                }],
+                "offer": {
+                  "id": $item.id,
+                  "descriptor": {
+                    "code": $item.descriptor.code,
+                    "name": $item.descriptor.name,
+                    "shortDesc": $item.descriptor.short_desc
+                  },
+                  "resourceIds": [$item.id],
+                  "offerAttributes": {
+                    "@context": $rideCtx,
+                    "@type": "RideOption",
+                    "categoryIds": $item.category_ids,
+                    "fulfillmentIds": $item.fulfillment_ids,
+                    "paymentIds": $item.payment_ids,
+                    "itemPrice": {
+                      "currency": $item.price.currency,
+                      "offeredValue": $item.price.offered_value,
+                      "value": $item.price.value
+                    },
+                    "vehicleType": { "vehicleCategoryCode": "FOUR_WHEELER" },
+                    "vehicle": {
+                      "bodyType": $serviceCode,
+                      "seatingCapacity": 4,
+                      "category": $ful.vehicle.category
+                    },
+                    "serviceClass": {
+                      "serviceClassCode": $serviceCode,
+                      "isAirConditioned": true,
+                      "airConditioningScore": 2.0
+                    },
+                    "cancellationTerms": [$map($ord.cancellation_terms, function($t) {{
+                      "fulfillmentStateCode": $t.fulfillment_state.descriptor.code,
+                      "reasonRequired": $t.reason_required
+                    }})],
+                    "pricingModel": {
+                      "currency": $item.price.currency,
+                      "cancellationCharges": $tagValue($fareTags, "CANCELLATION_CHARGES"),
+                      "driverMinExtraFee": $tagValue($fareTags, "DRIVER_MIN_EXTRA_FEE"),
+                      "driverMaxExtraFee": $tagValue($fareTags, "DRIVER_MAX_EXTRA_FEE"),
+                      "petCharges": $tagValue($fareTags, "PET_CHARGES"),
+                      "nightShiftStartTime": $tagValue($fareTags, "NIGHT_SHIFT_START_TIME"),
+                      "nightShiftEndTime": $tagValue($fareTags, "NIGHT_SHIFT_END_TIME"),
+                      "nightShiftStartTimeInSeconds": $tagValue($fareTags, "NIGHT_SHIFT_START_TIME_IN_SECONDS"),
+                      "nightShiftEndTimeInSeconds": $tagValue($fareTags, "NIGHT_SHIFT_END_TIME_IN_SECONDS"),
+                      "congestionChargePercentage": $tagValue($fareTags, "CONGESTION_CHARGE_PERCENTAGE"),
+                      "customerExtraFeeTaxMultiplier": $tagValue($fareTags, "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER"),
+                      "baseDistance": $tagValue($fareTags, "BASE_DISTANCE"),
+                      "baseFare": $tagValue($fareTags, "BASE_FARE"),
+                      "deadKilometerFare": $tagValue($fareTags, "DEAD_KILOMETER_FARE"),
+                      "extraPerKmFare": $tagValue($fareTags, "EXTRA_PER_KM_FARE"),
+                      "extraPerKmStepFare3000Above": $tagValue($fareTags, "EXTRA_PER_KM_STEP_FARE_3000_Above"),
+                      "waitingChargePerMin": $tagValue($fareTags, "WAITING_CHARGE_PER_MIN"),
+                      "waitingChargeRatePerMin": $tagValue($fareTags, "WAITING_CHARGE_RATE_PER_MIN"),
+                      "freeWaitingTimeInMinutes": $tagValue($fareTags, "FREE_WAITING_TIME_IN_MINUTES"),
+                      "nightShiftCharge": $tagValue($fareTags, "NIGHT_SHIFT_CHARGE"),
+                      "nightShiftChargePercentage": $tagValue($fareTags, "NIGHT_SHIFT_CHARGE_PERCENTAGE"),
+                      "driverExtraFeeBoundsStepMinFee0Above": $tagValue($fareTags, "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above"),
+                      "driverExtraFeeBoundsStepMaxFee0Above": $tagValue($fareTags, "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above"),
+                      "tags": $item.tags
+                    }
+                  }
+                }
+              }],
+              "performance": [$merge([
+                {
+                  "id": $ful.id,
+                  "status": { "code": $ful.state.descriptor.code, "name": $ful.state.descriptor.name },
+                  "commitmentIds": ["commitment-1"],
+                  "performanceAttributes": {
+                    "@context": $drvCtx,
+                    "@type": "Driver",
+                    "person": {
+                      "id": $agent.person.name,
+                      "name": $agent.person.name,
+                      "personAttributes": { "gender": $agent.person.gender }
+                    },
+                    "contactPhone": $agent.contact.phone,
+                    "rating": $number($tagValue($agent.person.tags, "RATING")),
+                    "vehicleCategory": $ful.vehicle.category,
+                    "vehicleVariant": $ful.vehicle.variant,
+                    "vehicle": {
+                      "color": $ful.vehicle.color,
+                      "model": $ful.vehicle.model,
+                      "registration": $ful.vehicle.registration
+                    },
+                    "customer": $cust,
+                    "stops": $ful.stops,
+                    "tags": $append($agent.person.tags, $ful.tags)
+                  }
+                }
+              ])],
+              "participants": [
+                {
+                  "id": "consumer-001",
+                  "descriptor": { "name": $cust.person.name },
+                  "participantAttributes": {
+                    "@context": "https://schema.beckn.io/Passenger/v2.1/context.jsonld",
+                    "@type": "Passenger",
+                    "person": { "id": $cust.person.name, "name": $cust.person.name, "telephone": $cust.contact.phone }
+                  }
+                },
+                { "id": ($ord.provider.id ? $ord.provider.id : $ctx.bpp_id), "role": "PROVIDER" }
+              ],
+              "settlements": $pay ? [{
+                "id": $pay.id,
+                "considerationId": "consideration-1",
+                "status": $v2SettleStatus,
+                "settlementAttributes": {
+                  "@context": $stCtx,
+                  "@type": "SettlementTerm",
+                  "collectedBy": $pay.collected_by,
+                  "paymentStatus": $pay.status,
+                  "paymentType": $pay.type,
+                  "settlementAmount": $pay.params.amount,
+                  "payTo": {
+                    "vpa": $pay.params.bank_account_number,
+                    "branchCode": $pay.params.bank_code
+                  },
+                  "buyerFinderFeesPercentage": $tagValue($payTags, "BUYER_FINDER_FEES_PERCENTAGE"),
+                  "settlementWindow": $tagValue($payTags, "SETTLEMENT_WINDOW"),
+                  "delayInterest": $tagValue($payTags, "DELAY_INTEREST"),
+                  "settlementBasis": $tagValue($payTags, "SETTLEMENT_BASIS"),
+                  "mandatoryArbitration": $bool($tagValue($payTags, "MANDATORY_ARBITRATION")),
+                  "courtJurisdiction": $tagValue($payTags, "COURT_JURISDICTION"),
+                  "staticTerms": $tagValue($payTags, "STATIC_TERMS"),
+                  "tags": $pay.tags
+                }
+              }] : [],
+              "consideration": [{
+                "id": "consideration-1",
+                "status": { "code": "PRICE_CONFIRMED", "name": "Confirmed fare" },
+                "considerationAttributes": {
+                  "@context": $fareCtx,
+                  "@type": "FareEstimate",
+                  "currency": $ord.quote.price.currency,
+                  "offeredAmount": $number($ord.quote.price.value),
+                  "price": {
+                    "@context": $priceCtx,
+                    "@type": "PriceSpecification",
+                    "currency": $ord.quote.price.currency,
+                    "value": $number($ord.quote.price.value),
+                    "components": [$map($ord.quote.breakup, function($b) {{
+                      "type": $pcType($b.title),
+                      "value": $number($b.price.value),
+                      "currency": $b.price.currency,
+                      "description": $b.title
+                    }})]
+                  },
+                  "createdAt": $ord.created_at,
+                  "updatedAt": $ord.updated_at
+                }
+              }]
+            }
+          }
+        }
+      )

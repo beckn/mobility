@@ -1,0 +1,446 @@
+{
+  "context": {
+    "action": "init",
+    "version": "2.0.0",
+    "bapId": "api.eu.moving.tech/bap/beckn/v1/b9e1d4f6-7c2a-4e8b-9d3f-5a6b7c8d9e0f",
+    "bapUri": "https://api.eu.moving.tech/bap/beckn/v1/b9e1d4f6-7c2a-4e8b-9d3f-5a6b7c8d9e0f",
+    "bppId": "api.eu.moving.tech/dobpp/beckn/a7f3c8e2-4b5d-4c9a-8f6e-2d1a3b4c5d6e",
+    "bppUri": "https://api.eu.moving.tech/dobpp/beckn/a7f3c8e2-4b5d-4c9a-8f6e-2d1a3b4c5d6e",
+    "networkId": "ONDC:TRV10",
+    "transactionId": "aa9c3077-90cd-46eb-a7b9-28763b34bbc2",
+    "messageId": "2cf56737-3684-4f38-b15b-f089543c9509",
+    "timestamp": "2026-08-07T12:22:20.47Z",
+    "ttl": "PT2M",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/v2.2/context.jsonld",
+      "https://schema.beckn.io/RideOption/v2.1/context.jsonld",
+      "https://schema.beckn.io/ServiceClass/v2.1/context.jsonld",
+      "https://schema.beckn.io/Passenger/v2.1/context.jsonld",
+      "https://schema.beckn.io/SettlementTerm/v2.1/context.jsonld",
+      "https://schema.beckn.io/Driver/v2.1/context.jsonld"
+    ]
+  },
+  "message": {
+    "contract": {
+      "status": {
+        "code": "DRAFT"
+      },
+      "commitments": [
+        {
+          "id": "commitment-1",
+          "status": {
+            "descriptor": {
+              "code": "DRAFT"
+            }
+          },
+          "offer": {
+            "id": "254e80b6-6914-4cdb-a5f7-9971a013b8dc",
+            "resourceIds": [
+              "254e80b6-6914-4cdb-a5f7-9971a013b8dc"
+            ],
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/RideOption/v2.1/context.jsonld",
+              "@type": "RideOption",
+              "vehicleType": {
+                "vehicleCategoryCode": "FOUR_WHEELER"
+              },
+              "vehicle": {
+                "bodyType": "BLACK",
+                "seatingCapacity": 4,
+                "category": "CAB"
+              },
+              "serviceClass": {
+                "serviceClassCode": "BLACK",
+                "isAirConditioned": true,
+                "airConditioningScore": 2.0
+              },
+              "fulfillmentIds": [
+                "7d8f4ca6-a721-4e74-84bf-430b28a55406"
+              ],
+              "displayBookingId": "070826-BF-0000003",
+              "isInsured": false,
+              "insuredAmount": null,
+              "tags": [
+                {
+                  "descriptor": {
+                    "code": "OFFER_INFO",
+                    "name": "Offer info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "DISCOUNT_AMOUNT",
+                        "name": "Discount amount"
+                      },
+                      "display": false
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "BOOKING_INFO",
+                    "name": "Booking info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "DISPLAY_BOOKING_ID",
+                        "name": "Display booking id"
+                      },
+                      "display": false,
+                      "value": "070826-BF-0000003"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "INSURANCE_INFO",
+                    "name": "Insurance info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "IS_INSURED",
+                        "name": "is insured"
+                      },
+                      "display": false,
+                      "value": "False"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "INSURED_AMOUNT",
+                        "name": "insured amount"
+                      },
+                      "display": false
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "FORWARD_BATCHING_REQUEST_INFO",
+                    "name": "Forward batching request info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "IS_FORWARD_BATCH_ENABLED",
+                        "name": "Is forward batch enabled"
+                      },
+                      "display": false,
+                      "value": "Just True"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "resources": [
+            {
+              "id": "254e80b6-6914-4cdb-a5f7-9971a013b8dc",
+              "descriptor": {
+                "name": "BLACK",
+                "code": "BLACK",
+                "shortDesc": "BLACK"
+              },
+              "quantity": {
+                "value": 1,
+                "unit": "trip"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/TripRequest/v2.2/context.jsonld",
+                "@type": "TripRequest",
+                "origin": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      24.931445,
+                      60.167387
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Malminkatu 16",
+                    "addressLocality": "Helsinki",
+                    "addressRegion": "00100 Helsinki",
+                    "addressCountry": "Finland",
+                    "postalCode": "00100"
+                  }
+                },
+                "destination": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      24.943359,
+                      60.166848
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Mannerheimintie 2",
+                    "addressLocality": "Helsinki",
+                    "addressRegion": "00100 Helsinki",
+                    "addressCountry": "Finland",
+                    "postalCode": "00100"
+                  }
+                },
+                "vehicleVariant": "BLACK",
+                "vehicleCategory": "CAB",
+                "fulfillmentType": "DELIVERY",
+                "stops": [
+                  {
+                    "id": "0",
+                    "instructions": {
+                      "long_desc": ""
+                    },
+                    "location": {
+                      "address": "Malminkatu 16, 00100 Helsinki, Finland",
+                      "area_code": "00100",
+                      "city": {
+                        "name": "Malminkatu 16"
+                      },
+                      "country": {
+                        "name": "Finland"
+                      },
+                      "gps": "60.167387, 24.931445",
+                      "state": {
+                        "name": "00100 Helsinki"
+                      }
+                    },
+                    "time": {
+                      "timestamp": "2026-08-07T12:19:51.138845Z"
+                    },
+                    "type": "START"
+                  },
+                  {
+                    "id": "1",
+                    "instructions": {
+                      "long_desc": ""
+                    },
+                    "location": {
+                      "address": "Mannerheimintie 2, 00100 Helsinki, Finland",
+                      "area_code": "00100",
+                      "city": {
+                        "name": "Mannerheimintie 2"
+                      },
+                      "country": {
+                        "name": "Finland"
+                      },
+                      "gps": "60.166848, 24.943359",
+                      "state": {
+                        "name": "00100 Helsinki"
+                      }
+                    },
+                    "parent_stop_id": "0",
+                    "type": "END"
+                  }
+                ],
+                "tags": [
+                  {
+                    "descriptor": {
+                      "code": "ESTIMATIONS",
+                      "name": "Estimations"
+                    },
+                    "display": true,
+                    "list": [
+                      {
+                        "descriptor": {
+                          "code": "MAX_ESTIMATED_DISTANCE",
+                          "name": "Max estimated distance"
+                        },
+                        "display": true,
+                        "value": "1229.00"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          ],
+          "commitmentAttributes": {
+            "@context": "https://schema.beckn.io/ServiceClass/v2.1/context.jsonld",
+            "@type": "ServiceClass",
+            "serviceClassCode": "BLACK",
+            "isAirConditioned": true,
+            "airConditioningScore": 2.0
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "7d8f4ca6-a721-4e74-84bf-430b28a55406",
+          "status": {
+            "code": "PENDING"
+          },
+          "commitmentIds": [
+            "commitment-1"
+          ],
+          "performanceAttributes": {
+            "@context": "https://schema.beckn.io/Driver/v2.1/context.jsonld",
+            "@type": "Driver",
+            "vehicleCategory": "CAB",
+            "vehicleVariant": "BLACK",
+            "customer": {
+              "contact": {
+                "phone": "9457514297"
+              },
+              "person": {
+                "name": "gopal_lynx",
+                "personAttributes": { "gender": "MALE" }
+              }
+            }
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "consumer-001",
+          "descriptor": {
+            "name": "gopal_lynx"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/Passenger/v2.1/context.jsonld",
+            "@type": "Passenger",
+            "person": {
+              "name": "gopal_lynx",
+              "telephone": "9457514297",
+              "id": "gopal_lynx"
+            },
+            "billingName": "gopal_lynx",
+            "billingPhone": "94******97"
+          }
+        },
+        {
+          "id": "api.eu.moving.tech/dobpp/beckn/a7f3c8e2-4b5d-4c9a-8f6e-2d1a3b4c5d6e",
+          "role": "PROVIDER"
+        }
+      ],
+      "settlements": [
+        {
+          "id": "6330f490-e317-4cf7-953b-6915fa2ad8e4",
+          "status": "DRAFT",
+          "settlementAttributes": {
+            "@context": "https://schema.beckn.io/SettlementTerm/v2.1/context.jsonld",
+            "@type": "SettlementTerm",
+            "collectedBy": "BPP",
+            "paymentStatus": "NOT-PAID",
+            "paymentType": "ON-FULFILLMENT",
+            "paymentInstrument": "Cash",
+            "payTo": {
+              "vpa": "xyz@upi",
+              "branchCode": "xyz"
+            },
+            "buyerFinderFeesPercentage": "0",
+            "settlementWindow": "PT1D",
+            "delayInterest": "0",
+            "settlementBasis": "INVOICE_RECIEPT",
+            "mandatoryArbitration": true,
+            "courtJurisdiction": "Helsinki",
+            "staticTerms": "https://api.example-bap.com/booking/terms",
+            "tags": [
+              {
+                "descriptor": {
+                  "code": "BUYER_FINDER_FEES",
+                  "name": "Buyer Finder Fees Information"
+                },
+                "display": false,
+                "list": [
+                  {
+                    "descriptor": {
+                      "code": "BUYER_FINDER_FEES_PERCENTAGE",
+                      "name": "Buyer Finder Fees"
+                    },
+                    "display": false,
+                    "value": "0"
+                  }
+                ]
+              },
+              {
+                "descriptor": {
+                  "code": "SETTLEMENT_TERMS",
+                  "name": "Settlement Terms Information"
+                },
+                "display": false,
+                "list": [
+                  {
+                    "descriptor": {
+                      "code": "PAYMENT_INSTRUMENT",
+                      "name": "Payment instrument"
+                    },
+                    "display": false,
+                    "value": "Cash"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "SETTLEMENT_WINDOW",
+                      "name": "Settlement window"
+                    },
+                    "display": false,
+                    "value": "PT1D"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "DELAY_INTEREST",
+                      "name": "Delay Interest"
+                    },
+                    "display": false,
+                    "value": "0"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "SETTLEMENT_BASIS",
+                      "name": "Settlement Basic"
+                    },
+                    "display": false,
+                    "value": "INVOICE_RECIEPT"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "MANDATORY_ARBITRATION",
+                      "name": "Mandatory Arbitration"
+                    },
+                    "display": false,
+                    "value": "TRUE"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "COURT_JURISDICTION",
+                      "name": "Court Jurisdiction"
+                    },
+                    "display": false,
+                    "value": "Helsinki"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "STATIC_TERMS",
+                      "name": "Static Terms"
+                    },
+                    "display": false,
+                    "value": "https://api.example-bap.com/booking/terms"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "SETTLEMENT_BANK_CODE",
+                      "name": "Settlement bank code"
+                    },
+                    "display": false,
+                    "value": "xyz"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "SETTLEMENT_BANK_ACCOUNT_NUMBER",
+                      "name": "Settlement bank account number"
+                    },
+                    "display": false,
+                    "value": "xyz@upi"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

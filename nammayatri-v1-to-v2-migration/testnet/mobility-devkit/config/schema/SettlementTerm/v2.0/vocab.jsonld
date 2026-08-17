@@ -1,0 +1,90 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "beckn": "https://schema.beckn.io/LinkedData/v2.1/context.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "SettlementTerm": "beckn:SettlementTerm",
+    "@type": "beckn:@type",
+    "acceptedPaymentMethods": "beckn:acceptedPaymentMethods",
+    "accountHolderName": "beckn:accountHolderName",
+    "accountNumber": "beckn:accountNumber",
+    "amount": "beckn:amount",
+    "bankName": "beckn:bankName",
+    "branchCode": "beckn:branchCode",
+    "currency": "beckn:currency",
+    "payTo": "beckn:payTo",
+    "paymentTrigger": "beckn:paymentTrigger",
+    "paymentUrl": "beckn:paymentUrl",
+    "settlementSchedule": "beckn:settlementSchedule",
+    "settlementStatus": "beckn:settlementStatus",
+    "settlementTermAttributes": "beckn:settlementTermAttributes",
+    "value": "beckn:value",
+    "vpa": "beckn:vpa"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:SettlementTerm",
+      "@type": "rdfs:Class",
+      "rdfs:label": "Settlement Term",
+      "rdfs:comment": "Describes the terms of settlement associated with a given transaction. This is not to be confused with the PaymentAction as it describes all the places where the money gets disbursed after reconciliation."
+    },
+    {
+      "@id": "beckn:@context",
+      "@type": "rdf:Property",
+      "rdfs:label": "@context",
+      "rdfs:comment": "TODO: Description Needed - @context"
+    },
+    {
+      "@id": "beckn:@type",
+      "@type": "rdf:Property",
+      "rdfs:label": "@type",
+      "rdfs:comment": "TODO: Description Needed - @type"
+    },
+    {
+      "@id": "beckn:amount",
+      "@type": "rdf:Property",
+      "rdfs:label": "amount",
+      "rdfs:comment": "Amount associated with this settlement action"
+    },
+    {
+      "@id": "beckn:paymentTrigger",
+      "@type": "rdf:Property",
+      "rdfs:label": "payment Trigger",
+      "rdfs:comment": "Describes the event which triggers the payment against this settlement term"
+    },
+    {
+      "@id": "beckn:settlementStatus",
+      "@type": "rdf:Property",
+      "rdfs:label": "settlement Status",
+      "rdfs:comment": "TODO: Description Needed - settlementStatus"
+    },
+    {
+      "@id": "beckn:settlementSchedule",
+      "@type": "rdf:Property",
+      "rdfs:label": "settlement Schedule",
+      "rdfs:comment": "TODO: Description Needed - settlementSchedule"
+    },
+    {
+      "@id": "beckn:payTo",
+      "@type": "rdf:Property",
+      "rdfs:label": "pay To",
+      "rdfs:comment": "Describes the details of the account where the money must be remited. It could be a bank account, a payment gateway, or a virtual payment address (like a UPI ID)"
+    },
+    {
+      "@id": "beckn:acceptedPaymentMethods",
+      "@type": "rdf:Property",
+      "rdfs:label": "accepted Payment Methods",
+      "rdfs:comment": "Describes the methods or mechanisms accepted by the payee (described in the payTo property) for the purpose of this settlement."
+    },
+    {
+      "@id": "beckn:settlementTermAttributes",
+      "@type": "rdf:Property",
+      "rdfs:label": "settlement Term Attributes",
+      "rdfs:comment": "Additional use case specific settlement terms that must be adhered to"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+# BPP Receiver Routing — inbound action requests from BAPs to the BPP sandbox
+#
+# All action requests are forwarded to the sandbox-bpp webhook container, which
+# returns the canned cab_hailing on_* response for that action from
+# sandbox-payloads/nfh.global/testnet-mobility/response/.
+
+routingRules:
+  - domain: "nfh.global/testnet-mobility"
+    version: "2.0.0"
+    targetType: "url"
+    target:
+      url: "http://sandbox-bpp:3002/api/webhook"
+    endpoints:
+      - discover
+      - select
+      - init
+      - confirm
+      - status
+      - track
+      - update
+      - cancel
+      - rate
+      - support

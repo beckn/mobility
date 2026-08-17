@@ -1,0 +1,307 @@
+{
+  "context": {
+    "action": "init",
+    "bap_id": "api.eu.moving.tech/bap/beckn/v1/b9e1d4f6-7c2a-4e8b-9d3f-5a6b7c8d9e0f",
+    "bap_uri": "https://api.eu.moving.tech/bap/beckn/v1/b9e1d4f6-7c2a-4e8b-9d3f-5a6b7c8d9e0f",
+    "bpp_id": "api.eu.moving.tech/dobpp/beckn/a7f3c8e2-4b5d-4c9a-8f6e-2d1a3b4c5d6e",
+    "bpp_uri": "https://api.eu.moving.tech/dobpp/beckn/a7f3c8e2-4b5d-4c9a-8f6e-2d1a3b4c5d6e",
+    "domain": "ONDC:TRV10",
+    "message_id": "2cf56737-3684-4f38-b15b-f089543c9509",
+    "timestamp": "2026-08-07T12:22:20.47Z",
+    "transaction_id": "aa9c3077-90cd-46eb-a7b9-28763b34bbc2",
+    "ttl": "PT2M",
+    "version": "2.1.0"
+  },
+  "message": {
+    "order": {
+      "billing": {
+        "name": "gopal_lynx",
+        "phone": "94******97"
+      },
+      "fulfillments": [
+        {
+          "customer": {
+            "contact": {
+              "phone": "9457514297"
+            },
+            "person": {
+              "gender": "MALE",
+              "name": "gopal_lynx"
+            }
+          },
+          "id": "7d8f4ca6-a721-4e74-84bf-430b28a55406",
+          "stops": [
+            {
+              "id": "0",
+              "instructions": {
+                "long_desc": ""
+              },
+              "location": {
+                "address": "Malminkatu 16, 00100 Helsinki, Finland",
+                "area_code": "00100",
+                "city": {
+                  "name": "Malminkatu 16"
+                },
+                "country": {
+                  "name": "Finland"
+                },
+                "gps": "60.167387, 24.931445",
+                "state": {
+                  "name": "00100 Helsinki"
+                }
+              },
+              "time": {
+                "timestamp": "2026-08-07T12:19:51.138845Z"
+              },
+              "type": "START"
+            },
+            {
+              "id": "1",
+              "instructions": {
+                "long_desc": ""
+              },
+              "location": {
+                "address": "Mannerheimintie 2, 00100 Helsinki, Finland",
+                "area_code": "00100",
+                "city": {
+                  "name": "Mannerheimintie 2"
+                },
+                "country": {
+                  "name": "Finland"
+                },
+                "gps": "60.166848, 24.943359",
+                "state": {
+                  "name": "00100 Helsinki"
+                }
+              },
+              "parent_stop_id": "0",
+              "type": "END"
+            }
+          ],
+          "tags": [
+            {
+              "descriptor": {
+                "code": "ESTIMATIONS",
+                "name": "Estimations"
+              },
+              "display": true,
+              "list": [
+                {
+                  "descriptor": {
+                    "code": "MAX_ESTIMATED_DISTANCE",
+                    "name": "Max estimated distance"
+                  },
+                  "display": true,
+                  "value": "1229.00"
+                }
+              ]
+            }
+          ],
+          "type": "DELIVERY",
+          "vehicle": {
+            "category": "CAB",
+            "variant": "BLACK"
+          }
+        }
+      ],
+      "items": [
+        {
+          "fulfillment_ids": [
+            "7d8f4ca6-a721-4e74-84bf-430b28a55406"
+          ],
+          "id": "254e80b6-6914-4cdb-a5f7-9971a013b8dc",
+          "tags": [
+            {
+              "descriptor": {
+                "code": "OFFER_INFO",
+                "name": "Offer info"
+              },
+              "display": false,
+              "list": [
+                {
+                  "descriptor": {
+                    "code": "DISCOUNT_AMOUNT",
+                    "name": "Discount amount"
+                  },
+                  "display": false
+                }
+              ]
+            },
+            {
+              "descriptor": {
+                "code": "BOOKING_INFO",
+                "name": "Booking info"
+              },
+              "display": false,
+              "list": [
+                {
+                  "descriptor": {
+                    "code": "DISPLAY_BOOKING_ID",
+                    "name": "Display booking id"
+                  },
+                  "display": false,
+                  "value": "070826-BF-0000003"
+                }
+              ]
+            },
+            {
+              "descriptor": {
+                "code": "INSURANCE_INFO",
+                "name": "Insurance info"
+              },
+              "display": false,
+              "list": [
+                {
+                  "descriptor": {
+                    "code": "IS_INSURED",
+                    "name": "is insured"
+                  },
+                  "display": false,
+                  "value": "False"
+                },
+                {
+                  "descriptor": {
+                    "code": "INSURED_AMOUNT",
+                    "name": "insured amount"
+                  },
+                  "display": false
+                }
+              ]
+            },
+            {
+              "descriptor": {
+                "code": "FORWARD_BATCHING_REQUEST_INFO",
+                "name": "Forward batching request info"
+              },
+              "display": false,
+              "list": [
+                {
+                  "descriptor": {
+                    "code": "IS_FORWARD_BATCH_ENABLED",
+                    "name": "Is forward batch enabled"
+                  },
+                  "display": false,
+                  "value": "Just True"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "payments": [
+        {
+          "collected_by": "BPP",
+          "params": {
+            "bank_account_number": "xyz@upi",
+            "bank_code": "xyz"
+          },
+          "status": "NOT-PAID",
+          "tags": [
+            {
+              "descriptor": {
+                "code": "BUYER_FINDER_FEES",
+                "name": "Buyer Finder Fees Information"
+              },
+              "display": false,
+              "list": [
+                {
+                  "descriptor": {
+                    "code": "BUYER_FINDER_FEES_PERCENTAGE",
+                    "name": "Buyer Finder Fees"
+                  },
+                  "display": false,
+                  "value": "0"
+                }
+              ]
+            },
+            {
+              "descriptor": {
+                "code": "SETTLEMENT_TERMS",
+                "name": "Settlement Terms Information"
+              },
+              "display": false,
+              "list": [
+                {
+                  "descriptor": {
+                    "code": "PAYMENT_INSTRUMENT",
+                    "name": "Payment instrument"
+                  },
+                  "display": false,
+                  "value": "Cash"
+                },
+                {
+                  "descriptor": {
+                    "code": "SETTLEMENT_WINDOW",
+                    "name": "Settlement window"
+                  },
+                  "display": false,
+                  "value": "PT1D"
+                },
+                {
+                  "descriptor": {
+                    "code": "DELAY_INTEREST",
+                    "name": "Delay Interest"
+                  },
+                  "display": false,
+                  "value": "0"
+                },
+                {
+                  "descriptor": {
+                    "code": "SETTLEMENT_BASIS",
+                    "name": "Settlement Basic"
+                  },
+                  "display": false,
+                  "value": "INVOICE_RECIEPT"
+                },
+                {
+                  "descriptor": {
+                    "code": "MANDATORY_ARBITRATION",
+                    "name": "Mandatory Arbitration"
+                  },
+                  "display": false,
+                  "value": "TRUE"
+                },
+                {
+                  "descriptor": {
+                    "code": "COURT_JURISDICTION",
+                    "name": "Court Jurisdiction"
+                  },
+                  "display": false,
+                  "value": "Helsinki"
+                },
+                {
+                  "descriptor": {
+                    "code": "STATIC_TERMS",
+                    "name": "Static Terms"
+                  },
+                  "display": false,
+                  "value": "https://api.example-bap.com/booking/terms"
+                },
+                {
+                  "descriptor": {
+                    "code": "SETTLEMENT_BANK_CODE",
+                    "name": "Settlement bank code"
+                  },
+                  "display": false,
+                  "value": "xyz"
+                },
+                {
+                  "descriptor": {
+                    "code": "SETTLEMENT_BANK_ACCOUNT_NUMBER",
+                    "name": "Settlement bank account number"
+                  },
+                  "display": false,
+                  "value": "xyz@upi"
+                }
+              ]
+            }
+          ],
+          "type": "ON-FULFILLMENT"
+        }
+      ],
+      "provider": {
+        "id": "api.eu.moving.tech/dobpp/beckn/a7f3c8e2-4b5d-4c9a-8f6e-2d1a3b4c5d6e"
+      }
+    }
+  }
+}

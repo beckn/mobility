@@ -1,0 +1,2405 @@
+{
+  "context": {
+    "action": "on_discover",
+    "bap_id": "api.eu.moving.tech/bap/beckn/v1/b9e1d4f6-7c2a-4e8b-9d3f-5a6b7c8d9e0f",
+    "bap_uri": "https://api.eu.moving.tech/bap/beckn/v1/b9e1d4f6-7c2a-4e8b-9d3f-5a6b7c8d9e0f",
+    "bpp_id": "api.eu.moving.tech/dobpp/beckn/a7f3c8e2-4b5d-4c9a-8f6e-2d1a3b4c5d6e",
+    "bpp_uri": "https://api.eu.moving.tech/dobpp/beckn/a7f3c8e2-4b5d-4c9a-8f6e-2d1a3b4c5d6e",
+    "domain": "ONDC:TRV10",
+    "message_id": "50ace3a0-b5a0-49f2-84af-129f767cb68f",
+    "timestamp": "2026-08-07T12:19:52.226Z",
+    "transaction_id": "aa9c3077-90cd-46eb-a7b9-28763b34bbc2",
+    "ttl": "PT30M",
+    "version": "2.1.0"
+  },
+  "message": {
+    "catalog": {
+      "descriptor": {
+        "name": "Bridge Finland Partner"
+      },
+      "providers": [
+        {
+          "categories": [
+            {
+              "descriptor": {
+                "code": "ON_DEMAND_TRIP",
+                "name": "ON_DEMAND_TRIP"
+              },
+              "id": "ON_DEMAND_TRIP"
+            }
+          ],
+          "descriptor": {
+            "name": "Bridge Finland Partner"
+          },
+          "fulfillments": [
+            {
+              "id": "5a46f4da-2eb6-4ef6-923c-3d06fa8c1d5b",
+              "stops": [
+                {
+                  "id": "0",
+                  "location": {
+                    "gps": "60.167387, 24.931445"
+                  },
+                  "time": {
+                    "timestamp": "2026-08-07T12:19:51.910103632Z"
+                  },
+                  "type": "START"
+                },
+                {
+                  "id": "1",
+                  "location": {
+                    "gps": "60.166848, 24.943359"
+                  },
+                  "parent_stop_id": "0",
+                  "type": "END"
+                }
+              ],
+              "tags": [
+                {
+                  "descriptor": {
+                    "code": "VEHICLE_INFO",
+                    "name": "Vehicle info"
+                  },
+                  "display": true,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "IS_AIR_CONDITIONED_VEHICLE",
+                        "name": "Is air conditioned vehicle"
+                      },
+                      "display": true,
+                      "value": "True"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_AIR_CONDITIONED",
+                        "name": "Is air conditioned"
+                      },
+                      "display": true,
+                      "value": "2.0"
+                    }
+                  ]
+                }
+              ],
+              "type": "DELIVERY",
+              "vehicle": {
+                "capacity": 4,
+                "category": "CAB",
+                "variant": "SEDAN"
+              }
+            },
+            {
+              "id": "523add84-50f9-4993-87db-33ea46188359",
+              "stops": [
+                {
+                  "id": "0",
+                  "location": {
+                    "gps": "60.167387, 24.931445"
+                  },
+                  "time": {
+                    "timestamp": "2026-08-07T12:19:51.910103632Z"
+                  },
+                  "type": "START"
+                },
+                {
+                  "id": "1",
+                  "location": {
+                    "gps": "60.166848, 24.943359"
+                  },
+                  "parent_stop_id": "0",
+                  "type": "END"
+                }
+              ],
+              "tags": [
+                {
+                  "descriptor": {
+                    "code": "VEHICLE_INFO",
+                    "name": "Vehicle info"
+                  },
+                  "display": true,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "IS_AIR_CONDITIONED_VEHICLE",
+                        "name": "Is air conditioned vehicle"
+                      },
+                      "display": true,
+                      "value": "True"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_AIR_CONDITIONED",
+                        "name": "Is air conditioned"
+                      },
+                      "display": true,
+                      "value": "2.0"
+                    }
+                  ]
+                }
+              ],
+              "type": "DELIVERY",
+              "vehicle": {
+                "capacity": 4,
+                "category": "CAB",
+                "variant": "HATCHBACK"
+              }
+            },
+            {
+              "id": "acd8fb04-7bed-473f-b840-46de827c361f",
+              "stops": [
+                {
+                  "id": "0",
+                  "location": {
+                    "gps": "60.167387, 24.931445"
+                  },
+                  "time": {
+                    "timestamp": "2026-08-07T12:19:51.910103632Z"
+                  },
+                  "type": "START"
+                },
+                {
+                  "id": "1",
+                  "location": {
+                    "gps": "60.166848, 24.943359"
+                  },
+                  "parent_stop_id": "0",
+                  "type": "END"
+                }
+              ],
+              "type": "DELIVERY",
+              "vehicle": {
+                "capacity": 4,
+                "category": "CAB",
+                "variant": "TAXI"
+              }
+            },
+            {
+              "id": "254e80b6-6914-4cdb-a5f7-9971a013b8dc",
+              "stops": [
+                {
+                  "id": "0",
+                  "location": {
+                    "gps": "60.167387, 24.931445"
+                  },
+                  "time": {
+                    "timestamp": "2026-08-07T12:19:51.910103632Z"
+                  },
+                  "type": "START"
+                },
+                {
+                  "id": "1",
+                  "location": {
+                    "gps": "60.166848, 24.943359"
+                  },
+                  "parent_stop_id": "0",
+                  "type": "END"
+                }
+              ],
+              "tags": [
+                {
+                  "descriptor": {
+                    "code": "VEHICLE_INFO",
+                    "name": "Vehicle info"
+                  },
+                  "display": true,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "IS_AIR_CONDITIONED_VEHICLE",
+                        "name": "Is air conditioned vehicle"
+                      },
+                      "display": true,
+                      "value": "True"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_AIR_CONDITIONED",
+                        "name": "Is air conditioned"
+                      },
+                      "display": true,
+                      "value": "2.0"
+                    }
+                  ]
+                }
+              ],
+              "type": "DELIVERY",
+              "vehicle": {
+                "capacity": 4,
+                "category": "CAB",
+                "variant": "BLACK"
+              }
+            },
+            {
+              "id": "44ef6d72-3d2e-4098-8969-76fc88efb7d1",
+              "stops": [
+                {
+                  "id": "0",
+                  "location": {
+                    "gps": "60.167387, 24.931445"
+                  },
+                  "time": {
+                    "timestamp": "2026-08-07T12:19:51.910103632Z"
+                  },
+                  "type": "START"
+                },
+                {
+                  "id": "1",
+                  "location": {
+                    "gps": "60.166848, 24.943359"
+                  },
+                  "parent_stop_id": "0",
+                  "type": "END"
+                }
+              ],
+              "tags": [
+                {
+                  "descriptor": {
+                    "code": "VEHICLE_INFO",
+                    "name": "Vehicle info"
+                  },
+                  "display": true,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "IS_AIR_CONDITIONED_VEHICLE",
+                        "name": "Is air conditioned vehicle"
+                      },
+                      "display": true,
+                      "value": "True"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_AIR_CONDITIONED",
+                        "name": "Is air conditioned"
+                      },
+                      "display": true,
+                      "value": "2.0"
+                    }
+                  ]
+                }
+              ],
+              "type": "DELIVERY",
+              "vehicle": {
+                "capacity": 6,
+                "category": "CAB",
+                "variant": "SUV_PLUS"
+              }
+            }
+          ],
+          "id": "api.eu.moving.tech/dobpp/beckn/a7f3c8e2-4b5d-4c9a-8f6e-2d1a3b4c5d6e",
+          "items": [
+            {
+              "cancellation_terms": [
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_CONFIRMED"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ASSIGNED"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ENROUTE_PICKUP"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ARRIVED_PICKUP"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_STARTED"
+                    }
+                  },
+                  "reason_required": true
+                }
+              ],
+              "category_ids": [
+                "ON_DEMAND_TRIP"
+              ],
+              "descriptor": {
+                "code": "COMFY",
+                "name": "Comfort",
+                "short_desc": "Full size"
+              },
+              "fulfillment_ids": [
+                "5a46f4da-2eb6-4ef6-923c-3d06fa8c1d5b"
+              ],
+              "id": "5a46f4da-2eb6-4ef6-923c-3d06fa8c1d5b",
+              "price": {
+                "currency": "EUR",
+                "maximum_value": "7.82",
+                "minimum_value": "7.82",
+                "offered_value": "7.82",
+                "value": "7.82"
+              },
+              "tags": [
+                {
+                  "descriptor": {
+                    "code": "VEHICLE_INFO",
+                    "name": "Vehicle info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "VEHICLE_ICON_URL",
+                        "name": "Vehicle icon url"
+                      },
+                      "display": false,
+                      "value": "https://raw.githubusercontent.com/witcher-shailesh/github-asset-store/main/uploads/cdn2/1775471380426.png"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "FARE_POLICY",
+                    "name": "Fare policy"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_CHARGES",
+                        "name": "CANCELLATION_CHARGES"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_MIN_EXTRA_FEE",
+                        "name": "DRIVER_MIN_EXTRA_FEE"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_MAX_EXTRA_FEE",
+                        "name": "DRIVER_MAX_EXTRA_FEE"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PET_CHARGES",
+                        "name": "PET_CHARGES"
+                      },
+                      "display": false,
+                      "value": "1.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_START_TIME",
+                        "name": "NIGHT_SHIFT_START_TIME"
+                      },
+                      "display": false,
+                      "value": "01:00:00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_END_TIME",
+                        "name": "NIGHT_SHIFT_END_TIME"
+                      },
+                      "display": false,
+                      "value": "08:00:00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_START_TIME_IN_SECONDS",
+                        "name": "NIGHT_SHIFT_START_TIME_IN_SECONDS"
+                      },
+                      "display": false,
+                      "value": "3600"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_END_TIME_IN_SECONDS",
+                        "name": "NIGHT_SHIFT_END_TIME_IN_SECONDS"
+                      },
+                      "display": false,
+                      "value": "28800"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CONGESTION_CHARGE_PERCENTAGE",
+                        "name": "CONGESTION_CHARGE_PERCENTAGE"
+                      },
+                      "display": false,
+                      "value": "0.00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER",
+                        "name": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER"
+                      },
+                      "display": false,
+                      "value": "1.135"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "BASE_DISTANCE",
+                        "name": "BASE_DISTANCE"
+                      },
+                      "display": false,
+                      "value": "3000"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "BASE_FARE",
+                        "name": "BASE_FARE"
+                      },
+                      "display": false,
+                      "value": "6.89"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DEAD_KILOMETER_FARE",
+                        "name": "DEAD_KILOMETER_FARE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "EXTRA_PER_KM_FARE",
+                        "name": "EXTRA_PER_KM_FARE"
+                      },
+                      "display": false,
+                      "value": "0.97999999999999998223643160599"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "EXTRA_PER_KM_STEP_FARE_3000_Above",
+                        "name": "EXTRA_PER_KM_STEP_FARE_3000_Above"
+                      },
+                      "display": false,
+                      "value": "0.97999999999999998223643160599"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "WAITING_CHARGE_PER_MIN",
+                        "name": "WAITING_CHARGE_PER_MIN"
+                      },
+                      "display": false,
+                      "value": "0.29999999999999998889776975374"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "WAITING_CHARGE_RATE_PER_MIN",
+                        "name": "WAITING_CHARGE_RATE_PER_MIN"
+                      },
+                      "display": false,
+                      "value": "0.3"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "FREE_WAITING_TIME_IN_MINUTES",
+                        "name": "FREE_WAITING_TIME_IN_MINUTES"
+                      },
+                      "display": false,
+                      "value": "3"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_CHARGE",
+                        "name": "NIGHT_SHIFT_CHARGE"
+                      },
+                      "display": false,
+                      "value": "1"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_CHARGE_PERCENTAGE",
+                        "name": "NIGHT_SHIFT_CHARGE_PERCENTAGE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above",
+                        "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above",
+                        "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE",
+                        "name": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "6.89"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX",
+                        "name": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.9301499999999999"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE",
+                        "name": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX",
+                        "name": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "TOLL_FARE_TAX_EXCLUSIVE",
+                        "name": "TOLL_FARE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "TOLL_FARE_TAX",
+                        "name": "TOLL_FARE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_FEE_TAX_EXCLUSIVE",
+                        "name": "CANCELLATION_FEE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_TAX",
+                        "name": "CANCELLATION_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PARKING_CHARGE_TAX_EXCLUSIVE",
+                        "name": "PARKING_CHARGE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PARKING_CHARGE_TAX",
+                        "name": "PARKING_CHARGE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "INFO",
+                    "name": "Info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "TIP_OPTIONS",
+                        "name": "Tip options"
+                      },
+                      "display": false,
+                      "value": "[0,1,2,3,4]"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_BLOCKED_SEARCH_ROUTE",
+                        "name": "Is blocked search route"
+                      },
+                      "display": false,
+                      "value": "False"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_CUSTOMER_PREFFERED_SEARCH_ROUTE",
+                        "name": "Is customer preffered search route"
+                      },
+                      "display": false,
+                      "value": "True"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "FEATURE_LIST",
+                    "name": "Feature List"
+                  },
+                  "display": true,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "FEATURE_NAME",
+                        "name": "Feature Name"
+                      },
+                      "display": true,
+                      "value": "AC"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "FEATURE_VALUE",
+                        "name": "Feature Value"
+                      },
+                      "display": true,
+                      "value": "true"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "cancellation_terms": [
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_CONFIRMED"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ASSIGNED"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ENROUTE_PICKUP"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ARRIVED_PICKUP"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_STARTED"
+                    }
+                  },
+                  "reason_required": true
+                }
+              ],
+              "category_ids": [
+                "ON_DEMAND_TRIP"
+              ],
+              "descriptor": {
+                "code": "ECO",
+                "name": "Electric",
+                "short_desc": "Green"
+              },
+              "fulfillment_ids": [
+                "523add84-50f9-4993-87db-33ea46188359"
+              ],
+              "id": "523add84-50f9-4993-87db-33ea46188359",
+              "price": {
+                "currency": "EUR",
+                "maximum_value": "7.49",
+                "minimum_value": "7.49",
+                "offered_value": "7.49",
+                "value": "7.49"
+              },
+              "tags": [
+                {
+                  "descriptor": {
+                    "code": "VEHICLE_INFO",
+                    "name": "Vehicle info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "VEHICLE_ICON_URL",
+                        "name": "Vehicle icon url"
+                      },
+                      "display": false,
+                      "value": "https://raw.githubusercontent.com/witcher-shailesh/github-asset-store/main/uploads/cdn2/1775471381613.png"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "FARE_POLICY",
+                    "name": "Fare policy"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_CHARGES",
+                        "name": "CANCELLATION_CHARGES"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_MIN_EXTRA_FEE",
+                        "name": "DRIVER_MIN_EXTRA_FEE"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_MAX_EXTRA_FEE",
+                        "name": "DRIVER_MAX_EXTRA_FEE"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PET_CHARGES",
+                        "name": "PET_CHARGES"
+                      },
+                      "display": false,
+                      "value": "1.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_START_TIME",
+                        "name": "NIGHT_SHIFT_START_TIME"
+                      },
+                      "display": false,
+                      "value": "01:00:00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_END_TIME",
+                        "name": "NIGHT_SHIFT_END_TIME"
+                      },
+                      "display": false,
+                      "value": "08:00:00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_START_TIME_IN_SECONDS",
+                        "name": "NIGHT_SHIFT_START_TIME_IN_SECONDS"
+                      },
+                      "display": false,
+                      "value": "3600"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_END_TIME_IN_SECONDS",
+                        "name": "NIGHT_SHIFT_END_TIME_IN_SECONDS"
+                      },
+                      "display": false,
+                      "value": "28800"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CONGESTION_CHARGE_PERCENTAGE",
+                        "name": "CONGESTION_CHARGE_PERCENTAGE"
+                      },
+                      "display": false,
+                      "value": "0.00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER",
+                        "name": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER"
+                      },
+                      "display": false,
+                      "value": "1.135"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "BASE_DISTANCE",
+                        "name": "BASE_DISTANCE"
+                      },
+                      "display": false,
+                      "value": "3000"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "BASE_FARE",
+                        "name": "BASE_FARE"
+                      },
+                      "display": false,
+                      "value": "6.6"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DEAD_KILOMETER_FARE",
+                        "name": "DEAD_KILOMETER_FARE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "EXTRA_PER_KM_FARE",
+                        "name": "EXTRA_PER_KM_FARE"
+                      },
+                      "display": false,
+                      "value": "0.93999999999999994670929481799"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "EXTRA_PER_KM_STEP_FARE_3000_Above",
+                        "name": "EXTRA_PER_KM_STEP_FARE_3000_Above"
+                      },
+                      "display": false,
+                      "value": "0.93999999999999994670929481799"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "WAITING_CHARGE_PER_MIN",
+                        "name": "WAITING_CHARGE_PER_MIN"
+                      },
+                      "display": false,
+                      "value": "0.29999999999999998889776975374"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "WAITING_CHARGE_RATE_PER_MIN",
+                        "name": "WAITING_CHARGE_RATE_PER_MIN"
+                      },
+                      "display": false,
+                      "value": "0.3"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "FREE_WAITING_TIME_IN_MINUTES",
+                        "name": "FREE_WAITING_TIME_IN_MINUTES"
+                      },
+                      "display": false,
+                      "value": "3"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_CHARGE",
+                        "name": "NIGHT_SHIFT_CHARGE"
+                      },
+                      "display": false,
+                      "value": "1"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_CHARGE_PERCENTAGE",
+                        "name": "NIGHT_SHIFT_CHARGE_PERCENTAGE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above",
+                        "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above",
+                        "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE",
+                        "name": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "6.6"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX",
+                        "name": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.8909999999999999"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE",
+                        "name": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX",
+                        "name": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "TOLL_FARE_TAX_EXCLUSIVE",
+                        "name": "TOLL_FARE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "TOLL_FARE_TAX",
+                        "name": "TOLL_FARE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_FEE_TAX_EXCLUSIVE",
+                        "name": "CANCELLATION_FEE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_TAX",
+                        "name": "CANCELLATION_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PARKING_CHARGE_TAX_EXCLUSIVE",
+                        "name": "PARKING_CHARGE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PARKING_CHARGE_TAX",
+                        "name": "PARKING_CHARGE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "INFO",
+                    "name": "Info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "TIP_OPTIONS",
+                        "name": "Tip options"
+                      },
+                      "display": false,
+                      "value": "[0,1,2,3,4]"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_BLOCKED_SEARCH_ROUTE",
+                        "name": "Is blocked search route"
+                      },
+                      "display": false,
+                      "value": "False"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_CUSTOMER_PREFFERED_SEARCH_ROUTE",
+                        "name": "Is customer preffered search route"
+                      },
+                      "display": false,
+                      "value": "True"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "FEATURE_LIST",
+                    "name": "Feature List"
+                  },
+                  "display": true,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "FEATURE_NAME",
+                        "name": "Feature Name"
+                      },
+                      "display": true,
+                      "value": "AC"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "FEATURE_VALUE",
+                        "name": "Feature Value"
+                      },
+                      "display": true,
+                      "value": "true"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "cancellation_terms": [
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_CONFIRMED"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ASSIGNED"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ENROUTE_PICKUP"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ARRIVED_PICKUP"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_STARTED"
+                    }
+                  },
+                  "reason_required": true
+                }
+              ],
+              "category_ids": [
+                "ON_DEMAND_TRIP"
+              ],
+              "descriptor": {
+                "code": "TAXI",
+                "name": "Lynx",
+                "short_desc": "Affordable ride"
+              },
+              "fulfillment_ids": [
+                "acd8fb04-7bed-473f-b840-46de827c361f"
+              ],
+              "id": "acd8fb04-7bed-473f-b840-46de827c361f",
+              "price": {
+                "currency": "EUR",
+                "maximum_value": "6.51",
+                "minimum_value": "6.51",
+                "offered_value": "6.51",
+                "value": "6.51"
+              },
+              "tags": [
+                {
+                  "descriptor": {
+                    "code": "VEHICLE_INFO",
+                    "name": "Vehicle info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "VEHICLE_ICON_URL",
+                        "name": "Vehicle icon url"
+                      },
+                      "display": false,
+                      "value": "https://raw.githubusercontent.com/witcher-shailesh/github-asset-store/main/uploads/cdn2/1775471382831.png"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "FARE_POLICY",
+                    "name": "Fare policy"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_CHARGES",
+                        "name": "CANCELLATION_CHARGES"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_MIN_EXTRA_FEE",
+                        "name": "DRIVER_MIN_EXTRA_FEE"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_MAX_EXTRA_FEE",
+                        "name": "DRIVER_MAX_EXTRA_FEE"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PET_CHARGES",
+                        "name": "PET_CHARGES"
+                      },
+                      "display": false,
+                      "value": "1.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_START_TIME",
+                        "name": "NIGHT_SHIFT_START_TIME"
+                      },
+                      "display": false,
+                      "value": "01:00:00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_END_TIME",
+                        "name": "NIGHT_SHIFT_END_TIME"
+                      },
+                      "display": false,
+                      "value": "08:00:00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_START_TIME_IN_SECONDS",
+                        "name": "NIGHT_SHIFT_START_TIME_IN_SECONDS"
+                      },
+                      "display": false,
+                      "value": "3600"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_END_TIME_IN_SECONDS",
+                        "name": "NIGHT_SHIFT_END_TIME_IN_SECONDS"
+                      },
+                      "display": false,
+                      "value": "28800"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CONGESTION_CHARGE_PERCENTAGE",
+                        "name": "CONGESTION_CHARGE_PERCENTAGE"
+                      },
+                      "display": false,
+                      "value": "0.00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER",
+                        "name": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER"
+                      },
+                      "display": false,
+                      "value": "1.135"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "BASE_DISTANCE",
+                        "name": "BASE_DISTANCE"
+                      },
+                      "display": false,
+                      "value": "3000"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "BASE_FARE",
+                        "name": "BASE_FARE"
+                      },
+                      "display": false,
+                      "value": "5.74"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DEAD_KILOMETER_FARE",
+                        "name": "DEAD_KILOMETER_FARE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "EXTRA_PER_KM_FARE",
+                        "name": "EXTRA_PER_KM_FARE"
+                      },
+                      "display": false,
+                      "value": "0.81999999999999995115018691649"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "EXTRA_PER_KM_STEP_FARE_3000_Above",
+                        "name": "EXTRA_PER_KM_STEP_FARE_3000_Above"
+                      },
+                      "display": false,
+                      "value": "0.81999999999999995115018691649"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "WAITING_CHARGE_PER_MIN",
+                        "name": "WAITING_CHARGE_PER_MIN"
+                      },
+                      "display": false,
+                      "value": "0.29999999999999998889776975374"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "WAITING_CHARGE_RATE_PER_MIN",
+                        "name": "WAITING_CHARGE_RATE_PER_MIN"
+                      },
+                      "display": false,
+                      "value": "0.3"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "FREE_WAITING_TIME_IN_MINUTES",
+                        "name": "FREE_WAITING_TIME_IN_MINUTES"
+                      },
+                      "display": false,
+                      "value": "3"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_CHARGE",
+                        "name": "NIGHT_SHIFT_CHARGE"
+                      },
+                      "display": false,
+                      "value": "1"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_CHARGE_PERCENTAGE",
+                        "name": "NIGHT_SHIFT_CHARGE_PERCENTAGE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above",
+                        "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above",
+                        "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE",
+                        "name": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "5.74"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX",
+                        "name": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.7749"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE",
+                        "name": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX",
+                        "name": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "TOLL_FARE_TAX_EXCLUSIVE",
+                        "name": "TOLL_FARE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "TOLL_FARE_TAX",
+                        "name": "TOLL_FARE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_FEE_TAX_EXCLUSIVE",
+                        "name": "CANCELLATION_FEE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_TAX",
+                        "name": "CANCELLATION_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PARKING_CHARGE_TAX_EXCLUSIVE",
+                        "name": "PARKING_CHARGE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PARKING_CHARGE_TAX",
+                        "name": "PARKING_CHARGE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "INFO",
+                    "name": "Info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "TIP_OPTIONS",
+                        "name": "Tip options"
+                      },
+                      "display": false,
+                      "value": "[0,1,2,3,4]"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_BLOCKED_SEARCH_ROUTE",
+                        "name": "Is blocked search route"
+                      },
+                      "display": false,
+                      "value": "False"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_CUSTOMER_PREFFERED_SEARCH_ROUTE",
+                        "name": "Is customer preffered search route"
+                      },
+                      "display": false,
+                      "value": "True"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "FEATURE_LIST",
+                    "name": "Feature List"
+                  },
+                  "display": true,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "FEATURE_NAME",
+                        "name": "Feature Name"
+                      },
+                      "display": true,
+                      "value": "AC"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "FEATURE_VALUE",
+                        "name": "Feature Value"
+                      },
+                      "display": true,
+                      "value": "true"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "cancellation_terms": [
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_CONFIRMED"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ASSIGNED"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ENROUTE_PICKUP"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ARRIVED_PICKUP"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_STARTED"
+                    }
+                  },
+                  "reason_required": true
+                }
+              ],
+              "category_ids": [
+                "ON_DEMAND_TRIP"
+              ],
+              "descriptor": {
+                "code": "BLACK",
+                "name": "Aura",
+                "short_desc": "Luxury"
+              },
+              "fulfillment_ids": [
+                "254e80b6-6914-4cdb-a5f7-9971a013b8dc"
+              ],
+              "id": "254e80b6-6914-4cdb-a5f7-9971a013b8dc",
+              "price": {
+                "currency": "EUR",
+                "maximum_value": "9.13",
+                "minimum_value": "9.13",
+                "offered_value": "9.13",
+                "value": "9.13"
+              },
+              "tags": [
+                {
+                  "descriptor": {
+                    "code": "VEHICLE_INFO",
+                    "name": "Vehicle info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "VEHICLE_ICON_URL",
+                        "name": "Vehicle icon url"
+                      },
+                      "display": false,
+                      "value": "https://raw.githubusercontent.com/witcher-shailesh/github-asset-store/main/uploads/cdn2/1775471379283.png"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "FARE_POLICY",
+                    "name": "Fare policy"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_CHARGES",
+                        "name": "CANCELLATION_CHARGES"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_MIN_EXTRA_FEE",
+                        "name": "DRIVER_MIN_EXTRA_FEE"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_MAX_EXTRA_FEE",
+                        "name": "DRIVER_MAX_EXTRA_FEE"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PET_CHARGES",
+                        "name": "PET_CHARGES"
+                      },
+                      "display": false,
+                      "value": "1.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_START_TIME",
+                        "name": "NIGHT_SHIFT_START_TIME"
+                      },
+                      "display": false,
+                      "value": "01:00:00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_END_TIME",
+                        "name": "NIGHT_SHIFT_END_TIME"
+                      },
+                      "display": false,
+                      "value": "08:00:00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_START_TIME_IN_SECONDS",
+                        "name": "NIGHT_SHIFT_START_TIME_IN_SECONDS"
+                      },
+                      "display": false,
+                      "value": "3600"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_END_TIME_IN_SECONDS",
+                        "name": "NIGHT_SHIFT_END_TIME_IN_SECONDS"
+                      },
+                      "display": false,
+                      "value": "28800"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CONGESTION_CHARGE_PERCENTAGE",
+                        "name": "CONGESTION_CHARGE_PERCENTAGE"
+                      },
+                      "display": false,
+                      "value": "0.00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER",
+                        "name": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER"
+                      },
+                      "display": false,
+                      "value": "1.135"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "BASE_DISTANCE",
+                        "name": "BASE_DISTANCE"
+                      },
+                      "display": false,
+                      "value": "3000"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "BASE_FARE",
+                        "name": "BASE_FARE"
+                      },
+                      "display": false,
+                      "value": "8.04"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DEAD_KILOMETER_FARE",
+                        "name": "DEAD_KILOMETER_FARE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "EXTRA_PER_KM_FARE",
+                        "name": "EXTRA_PER_KM_FARE"
+                      },
+                      "display": false,
+                      "value": "1.14999999999999991118215802998"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "EXTRA_PER_KM_STEP_FARE_3000_Above",
+                        "name": "EXTRA_PER_KM_STEP_FARE_3000_Above"
+                      },
+                      "display": false,
+                      "value": "1.14999999999999991118215802998"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "WAITING_CHARGE_PER_MIN",
+                        "name": "WAITING_CHARGE_PER_MIN"
+                      },
+                      "display": false,
+                      "value": "0.29999999999999998889776975374"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "WAITING_CHARGE_RATE_PER_MIN",
+                        "name": "WAITING_CHARGE_RATE_PER_MIN"
+                      },
+                      "display": false,
+                      "value": "0.3"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "FREE_WAITING_TIME_IN_MINUTES",
+                        "name": "FREE_WAITING_TIME_IN_MINUTES"
+                      },
+                      "display": false,
+                      "value": "3"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_CHARGE",
+                        "name": "NIGHT_SHIFT_CHARGE"
+                      },
+                      "display": false,
+                      "value": "1"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_CHARGE_PERCENTAGE",
+                        "name": "NIGHT_SHIFT_CHARGE_PERCENTAGE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above",
+                        "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above",
+                        "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE",
+                        "name": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "8.04"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX",
+                        "name": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX"
+                      },
+                      "display": false,
+                      "value": "1.0854"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE",
+                        "name": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX",
+                        "name": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "TOLL_FARE_TAX_EXCLUSIVE",
+                        "name": "TOLL_FARE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "TOLL_FARE_TAX",
+                        "name": "TOLL_FARE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_FEE_TAX_EXCLUSIVE",
+                        "name": "CANCELLATION_FEE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_TAX",
+                        "name": "CANCELLATION_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PARKING_CHARGE_TAX_EXCLUSIVE",
+                        "name": "PARKING_CHARGE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PARKING_CHARGE_TAX",
+                        "name": "PARKING_CHARGE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "INFO",
+                    "name": "Info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "TIP_OPTIONS",
+                        "name": "Tip options"
+                      },
+                      "display": false,
+                      "value": "[0,1,2,3,4]"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_BLOCKED_SEARCH_ROUTE",
+                        "name": "Is blocked search route"
+                      },
+                      "display": false,
+                      "value": "False"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_CUSTOMER_PREFFERED_SEARCH_ROUTE",
+                        "name": "Is customer preffered search route"
+                      },
+                      "display": false,
+                      "value": "True"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "FEATURE_LIST",
+                    "name": "Feature List"
+                  },
+                  "display": true,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "FEATURE_NAME",
+                        "name": "Feature Name"
+                      },
+                      "display": true,
+                      "value": "AC"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "FEATURE_VALUE",
+                        "name": "Feature Value"
+                      },
+                      "display": true,
+                      "value": "true"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "cancellation_terms": [
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_CONFIRMED"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ASSIGNED"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ENROUTE_PICKUP"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_ARRIVED_PICKUP"
+                    }
+                  },
+                  "reason_required": true
+                },
+                {
+                  "fulfillment_state": {
+                    "descriptor": {
+                      "code": "RIDE_STARTED"
+                    }
+                  },
+                  "reason_required": true
+                }
+              ],
+              "category_ids": [
+                "ON_DEMAND_TRIP"
+              ],
+              "descriptor": {
+                "code": "SUV_PLUS",
+                "name": "XL",
+                "short_desc": "Extra space"
+              },
+              "fulfillment_ids": [
+                "44ef6d72-3d2e-4098-8969-76fc88efb7d1"
+              ],
+              "id": "44ef6d72-3d2e-4098-8969-76fc88efb7d1",
+              "price": {
+                "currency": "EUR",
+                "maximum_value": "15.82",
+                "minimum_value": "15.82",
+                "offered_value": "15.82",
+                "value": "15.82"
+              },
+              "tags": [
+                {
+                  "descriptor": {
+                    "code": "VEHICLE_INFO",
+                    "name": "Vehicle info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "VEHICLE_ICON_URL",
+                        "name": "Vehicle icon url"
+                      },
+                      "display": false,
+                      "value": "https://raw.githubusercontent.com/witcher-shailesh/github-asset-store/main/uploads/cdn2/1775471383993.png"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "FARE_POLICY",
+                    "name": "Fare policy"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_CHARGES",
+                        "name": "CANCELLATION_CHARGES"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_MIN_EXTRA_FEE",
+                        "name": "DRIVER_MIN_EXTRA_FEE"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_MAX_EXTRA_FEE",
+                        "name": "DRIVER_MAX_EXTRA_FEE"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PET_CHARGES",
+                        "name": "PET_CHARGES"
+                      },
+                      "display": false,
+                      "value": "1.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_START_TIME",
+                        "name": "NIGHT_SHIFT_START_TIME"
+                      },
+                      "display": false,
+                      "value": "01:00:00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_END_TIME",
+                        "name": "NIGHT_SHIFT_END_TIME"
+                      },
+                      "display": false,
+                      "value": "08:00:00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_START_TIME_IN_SECONDS",
+                        "name": "NIGHT_SHIFT_START_TIME_IN_SECONDS"
+                      },
+                      "display": false,
+                      "value": "3600"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_END_TIME_IN_SECONDS",
+                        "name": "NIGHT_SHIFT_END_TIME_IN_SECONDS"
+                      },
+                      "display": false,
+                      "value": "28800"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CONGESTION_CHARGE_PERCENTAGE",
+                        "name": "CONGESTION_CHARGE_PERCENTAGE"
+                      },
+                      "display": false,
+                      "value": "0.00"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER",
+                        "name": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER"
+                      },
+                      "display": false,
+                      "value": "1.135"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "BASE_DISTANCE",
+                        "name": "BASE_DISTANCE"
+                      },
+                      "display": false,
+                      "value": "3000"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "BASE_FARE",
+                        "name": "BASE_FARE"
+                      },
+                      "display": false,
+                      "value": "13.94"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DEAD_KILOMETER_FARE",
+                        "name": "DEAD_KILOMETER_FARE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "EXTRA_PER_KM_FARE",
+                        "name": "EXTRA_PER_KM_FARE"
+                      },
+                      "display": false,
+                      "value": "1.14999999999999991118215802998"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "EXTRA_PER_KM_STEP_FARE_3000_Above",
+                        "name": "EXTRA_PER_KM_STEP_FARE_3000_Above"
+                      },
+                      "display": false,
+                      "value": "1.14999999999999991118215802998"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "WAITING_CHARGE_PER_MIN",
+                        "name": "WAITING_CHARGE_PER_MIN"
+                      },
+                      "display": false,
+                      "value": "0.29999999999999998889776975374"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "WAITING_CHARGE_RATE_PER_MIN",
+                        "name": "WAITING_CHARGE_RATE_PER_MIN"
+                      },
+                      "display": false,
+                      "value": "0.3"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "FREE_WAITING_TIME_IN_MINUTES",
+                        "name": "FREE_WAITING_TIME_IN_MINUTES"
+                      },
+                      "display": false,
+                      "value": "3"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_CHARGE",
+                        "name": "NIGHT_SHIFT_CHARGE"
+                      },
+                      "display": false,
+                      "value": "1"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "NIGHT_SHIFT_CHARGE_PERCENTAGE",
+                        "name": "NIGHT_SHIFT_CHARGE_PERCENTAGE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above",
+                        "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above",
+                        "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE",
+                        "name": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "13.94"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX",
+                        "name": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX"
+                      },
+                      "display": false,
+                      "value": "1.8819"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE",
+                        "name": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX",
+                        "name": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "TOLL_FARE_TAX_EXCLUSIVE",
+                        "name": "TOLL_FARE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "TOLL_FARE_TAX",
+                        "name": "TOLL_FARE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_FEE_TAX_EXCLUSIVE",
+                        "name": "CANCELLATION_FEE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "CANCELLATION_TAX",
+                        "name": "CANCELLATION_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PARKING_CHARGE_TAX_EXCLUSIVE",
+                        "name": "PARKING_CHARGE_TAX_EXCLUSIVE"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "PARKING_CHARGE_TAX",
+                        "name": "PARKING_CHARGE_TAX"
+                      },
+                      "display": false,
+                      "value": "0.0"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "INFO",
+                    "name": "Info"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "TIP_OPTIONS",
+                        "name": "Tip options"
+                      },
+                      "display": false,
+                      "value": "[0,1,2,3,4]"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_BLOCKED_SEARCH_ROUTE",
+                        "name": "Is blocked search route"
+                      },
+                      "display": false,
+                      "value": "False"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "IS_CUSTOMER_PREFFERED_SEARCH_ROUTE",
+                        "name": "Is customer preffered search route"
+                      },
+                      "display": false,
+                      "value": "True"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "FEATURE_LIST",
+                    "name": "Feature List"
+                  },
+                  "display": true,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "FEATURE_NAME",
+                        "name": "Feature Name"
+                      },
+                      "display": true,
+                      "value": "AC"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "FEATURE_VALUE",
+                        "name": "Feature Value"
+                      },
+                      "display": true,
+                      "value": "true"
+                    }
+                  ]
+                }
+              ]
+            }
+          ],
+          "locations": [],
+          "payments": [
+            {
+              "collected_by": "BPP",
+              "status": "NOT-PAID",
+              "tags": [
+                {
+                  "descriptor": {
+                    "code": "BUYER_FINDER_FEES",
+                    "name": "Buyer Finder Fees Information"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "BUYER_FINDER_FEES_PERCENTAGE",
+                        "name": "Buyer Finder Fees"
+                      },
+                      "display": false,
+                      "value": "0"
+                    }
+                  ]
+                },
+                {
+                  "descriptor": {
+                    "code": "SETTLEMENT_TERMS",
+                    "name": "Settlement Terms Information"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "SETTLEMENT_WINDOW",
+                        "name": "Settlement window"
+                      },
+                      "display": false,
+                      "value": "PT1D"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "DELAY_INTEREST",
+                        "name": "Delay Interest"
+                      },
+                      "display": false,
+                      "value": "0"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "SETTLEMENT_BASIS",
+                        "name": "Settlement Basic"
+                      },
+                      "display": false,
+                      "value": "INVOICE_RECIEPT"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "MANDATORY_ARBITRATION",
+                        "name": "Mandatory Arbitration"
+                      },
+                      "display": false,
+                      "value": "TRUE"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "COURT_JURISDICTION",
+                        "name": "Court Jurisdiction"
+                      },
+                      "display": false,
+                      "value": "Helsinki"
+                    },
+                    {
+                      "descriptor": {
+                        "code": "STATIC_TERMS",
+                        "name": "Static Terms"
+                      },
+                      "display": false,
+                      "value": "https://api.example-bap.com/booking/terms"
+                    }
+                  ]
+                }
+              ],
+              "type": "ON-FULFILLMENT"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

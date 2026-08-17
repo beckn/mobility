@@ -1,0 +1,128 @@
+{
+  "$id": "https://schema.beckn.io/TripRequest/v2.1",
+  "x-iri": "https://schema.beckn.io/TripRequest/v2.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TripRequest",
+  "type": "object",
+  "description": "A passenger's request for an on-demand transport service between two points. v2.1 adds V1 ONDC TRV10 BAP preference fields for the select phase alongside the v2.0 route fields.",
+  "properties": {
+    "origin": {
+      "description": "Pickup location for the ride. Maps to V1 fulfillments[].stops[type=START].location.",
+      "$ref": "https://schema.beckn.io/Location/v2.0/schema.json"
+    },
+    "destination": {
+      "description": "Dropoff location for the ride. Maps to V1 fulfillments[].stops[type=END].location.",
+      "$ref": "https://schema.beckn.io/Location/v2.0/schema.json"
+    },
+    "requestedTime": {
+      "description": "Requested pickup time",
+      "type": "string",
+      "format": "date-time"
+    },
+    "passengerCount": {
+      "description": "Number of passengers",
+      "type": "number"
+    },
+    "vehiclePreference": {
+      "description": "Broad vehicle category requested (e.g. FOUR_WHEELER). Maps to V1 fulfillments[].vehicle.category.",
+      "$ref": "https://schema.beckn.io/VehicleCategory/v2.0/schema.json"
+    },
+    "vehicleVariant": {
+      "description": "Specific vehicle body type requested (e.g. SEDAN, HATCHBACK, SUV_PLUS). Maps to V1 fulfillments[].vehicle.variant.",
+      "type": "string"
+    },
+    "textSearch": {
+      "description": "Free-text search query",
+      "type": "string"
+    },
+    "filters": {
+      "description": "JSONPath filter criteria applied to search results",
+      "type": "string"
+    },
+    "spatial": {
+      "description": "Geographic constraints on the search area",
+      "$ref": "https://schema.beckn.io/SpatialConstraint/v2.0/schema.json"
+    },
+    "provider": {
+      "description": "Identifier of a specific provider to search within",
+      "type": "string"
+    },
+    "customerDisabilityDisable": {
+      "description": "Whether the customer has declared a disability exemption. Maps to V1 items[].tags[CUSTOMER_INFO].CUSTOMER_DISABILITY_DISABLE.",
+      "type": "boolean"
+    },
+    "isPetRide": {
+      "description": "Whether the customer is travelling with a pet. Maps to V1 items[].tags[PET_ORDER_INFO].IS_PET_RIDE.",
+      "type": "boolean"
+    },
+    "billingCategory": {
+      "description": "Billing category for this ride (e.g. PERSONAL, BUSINESS). Maps to V1 items[].tags[BILLING_CATEGORY_INFO].BILLING_CATEGORY.",
+      "type": "string"
+    },
+    "isAutoAssignEnabled": {
+      "description": "Whether the BAP requests automatic driver assignment. Maps to V1 items[].tags[AUTO_ASSIGN_ENABLED].IS_AUTO_ASSIGN_ENABLED.",
+      "type": "boolean"
+    },
+    "isForwardBatchEnabled": {
+      "description": "Whether forward batching of the ride request is enabled. Maps to V1 items[].tags[FORWARD_BATCHING_REQUEST_INFO].IS_FORWARD_BATCH_ENABLED.",
+      "type": "boolean"
+    },
+    "toUpdateDeviceId": {
+      "description": "Whether the BPP should update the stored device ID. Maps to V1 items[].tags[DEVICE_ID_INFO].TO_UPDATE_DEVICE_ID.",
+      "type": "boolean"
+    },
+    "preferSafetyPlus": {
+      "description": "Whether the customer prefers a Safety Plus driver. Maps to V1 items[].tags[SAFETY_PLUS_INFO].PREFER_SAFETY_PLUS.",
+      "type": "boolean"
+    },
+    "emailDomain": {
+      "description": "Email domain of the customer's account for corporate ride identification. Maps to V1 items[].tags[EMAIL_DOMAIN_INFO].EMAIL_DOMAIN.",
+      "type": "string"
+    },
+    "confirmedPrice": {
+      "description": "Fare amount the BAP is confirming from the on_discover response. Maps to V1 items[].price.",
+      "type": "object",
+      "properties": {
+        "currency": { "type": "string" },
+        "value": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "tags": {
+      "description": "V1-compatible tag groups preserved verbatim for lossless V2→V1 round-trip.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "descriptor": {
+            "type": "object",
+            "properties": {
+              "code": { "type": "string" },
+              "name": { "type": "string" }
+            }
+          },
+          "display": { "type": "boolean" },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "descriptor": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "string" },
+                    "name": { "type": "string" }
+                  }
+                },
+                "display": { "type": "boolean" },
+                "value": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "x-tags": ["mobility", "ride-hailing"]
+}

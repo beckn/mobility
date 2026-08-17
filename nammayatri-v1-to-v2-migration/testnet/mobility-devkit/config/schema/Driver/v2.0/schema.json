@@ -1,0 +1,47 @@
+{
+  "$id": "https://schema.beckn.io/Driver/v2.0",
+  "x-iri": "https://schema.beckn.io/Driver/v2.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Driver",
+  "type": "object",
+  "description": "A person who operates a transport vehicle and is responsible for the safe delivery of passengers during a mobility service trip.",
+  "properties": {
+    "licenseNumber": {
+      "description": "Driver's license number",
+      "type": "string"
+    },
+    "vehicleNumber": {
+      "description": "Registration number of the vehicle being driven",
+      "type": "string"
+    },
+    "yearsOfExperience": {
+      "description": "Number of years of professional driving experience",
+      "type": "number"
+    },
+    "id": {
+      "description": "Unique identifier for the fulfillment agent",
+      "type": "string"
+    },
+    "person": {
+      "description": "Personal details of the agent",
+      "$ref": "https://schema.beckn.io/Person/v2.0/schema.json"
+    },
+    "organization": {
+      "description": "Organisation the agent belongs to",
+      "$ref": "https://schema.beckn.io/Organization/v2.0/schema.json"
+    },
+    "contact": {
+      "description": "Contact information for the agent",
+      "type": "string"
+    },
+    "rating": {
+      "description": "Overall rating of the agent",
+      "$ref": "https://schema.beckn.io/Rating/v2.0/schema.json"
+    }
+  },
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "ride-hailing"
+  ]
+}

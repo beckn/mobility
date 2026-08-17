@@ -1,0 +1,229 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:FareEstimate",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "FareEstimate",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "An estimated fare for a requested trip, typically returned in response to a search before the booking is confirmed.",
+        "@language": "en"
+      },
+      "rdfs:seeAlso": {
+        "@id": "beckn:FareBreakup"
+      }
+    },
+    {
+      "@id": "beckn:estimatedAmount",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "estimatedAmount",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Estimated total fare amount",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareEstimate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:currency",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "currency",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "ISO 4217 currency code",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareEstimate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:minimumAmount",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "minimumAmount",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Minimum possible fare",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareEstimate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:maximumAmount",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "maximumAmount",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Maximum possible fare",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareEstimate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:decimal"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Number"
+      }
+    },
+    {
+      "@id": "beckn:fareBreakup",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "fareBreakup",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Itemised breakdown of the estimated fare",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareEstimate"
+      },
+      "rdfs:range": {
+        "@id": "beckn:FareBreakup"
+      },
+      "rdfs:seeAlso": {
+        "@id": "../FareBreakup/v2.0/vocab.jsonld#beckn:FareBreakup"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareEstimate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable description of the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareEstimate"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:price",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "price",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Price specification for this offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareEstimate"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification"
+      }
+    },
+    {
+      "@id": "beckn:validity",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "validity",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Validity period of the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareEstimate"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#TimePeriod"
+      }
+    },
+    {
+      "@id": "beckn:tags",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "tags",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Tags or labels associated with the offer",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:FareEstimate"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "$id": "https://schema.beckn.io/FulfillmentStop/v2.0",
+  "x-iri": "https://schema.beckn.io/FulfillmentStop/v2.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FulfillmentStop",
+  "type": "object",
+  "description": "A specific location associated with a fulfillment (trip or journey) at which passengers board, alight, or transfer between services.",
+  "properties": {
+    "stopType": {
+      "description": "Role of this stop in the fulfillment (START, END, INTERMEDIATE)",
+      "type": "string"
+    },
+    "scheduledTime": {
+      "description": "Scheduled arrival or departure time at this stop",
+      "type": "string",
+      "format": "date-time"
+    },
+    "actualTime": {
+      "description": "Actual arrival or departure time at this stop",
+      "type": "string",
+      "format": "date-time"
+    },
+    "stopRef": {
+      "description": "Reference to the Stop entity for this fulfillment stop",
+      "$ref": "https://schema.beckn.io/Stop/v2.0/schema.json"
+    },
+    "passengerCount": {
+      "description": "Passenger count at this fulfillment stop",
+      "$ref": "https://schema.beckn.io/PassengerCount/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the fulfillment stop",
+      "type": "string"
+    },
+    "location": {
+      "description": "Geographic location of the stop",
+      "$ref": "https://schema.beckn.io/Location/v2.0/schema.json"
+    },
+    "type": {
+      "description": "Type of stop (start, end, intermediate)",
+      "type": "string"
+    },
+    "instructions": {
+      "description": "Instructions for passengers at this stop",
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
+    },
+    "time": {
+      "description": "Expected time window at this stop",
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
+    }
+  },
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "ride-hailing"
+  ]
+}

@@ -1,0 +1,236 @@
+openapi: 3.1.1
+info:
+  title: TripRequest
+  version: 2.2.0
+  description: >-
+    Schema definition for the TripRequest entity in the Beckn Mobility domain.
+    v2.2 extends v2.1 by adding V1 ONDC TRV10 fulfillment-level fields
+    (vehicleCategory, fulfillmentType, stops) that appear from the select phase
+    onward once the BPP assigns a fulfillment to the trip. These fields enable
+    lossless V2→V1 round-trip of V1 fulfillments[].vehicle.category,
+    fulfillments[].type, and fulfillments[].stops[].
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    TripRequest:
+      x-iri: https://schema.beckn.io/TripRequest/v2.2
+      type: object
+      title: TripRequest
+      description: >-
+        A passenger's request for an on-demand transport service between two
+        points. v2.2 extends v2.1 by adding fulfillment-level fields
+        (vehicleCategory, fulfillmentType, stops) that carry V1 fulfillment
+        data from the select phase onward for lossless round-trip.
+      x-tags:
+        - mobility
+        - ride-hailing
+      properties:
+        origin:
+          description: Pickup location for the ride. Maps to V1 fulfillments[].stops[type=START].location.
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
+        destination:
+          description: Dropoff location for the ride. Maps to V1 fulfillments[].stops[type=END].location.
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
+        requestedTime:
+          description: Requested pickup time.
+          type: string
+          format: date-time
+        passengerCount:
+          description: Number of passengers.
+          type: number
+        vehiclePreference:
+          description: >-
+            Broad vehicle category requested (e.g. FOUR_WHEELER). Maps to V1
+            fulfillments[].vehicle.category via VehicleCategory.
+          $ref: https://schema.beckn.io/VehicleCategory/v2.0/attributes.yaml#/components/schemas/VehicleCategory
+        vehicleVariant:
+          description: >-
+            Specific vehicle body type (e.g. SEDAN, BLACK, SUV_PLUS). Maps to
+            V1 fulfillments[].vehicle.variant.
+          type: string
+        vehicleCategory:
+          description: >-
+            Broad vehicle category string as received from V1 (e.g. CAB,
+            AUTO). Maps to V1 fulfillments[].vehicle.category. Verbatim string
+            for round-trip; use vehiclePreference for typed V2-native access.
+          type: string
+        fulfillmentType:
+          description: >-
+            Fulfillment type as received from V1 (e.g. DELIVERY). Maps to
+            V1 fulfillments[].type.
+          type: string
+        stops:
+          description: >-
+            Verbatim V1 fulfillment stop array preserved for lossless V2→V1
+            round-trip. Each element corresponds to a V1
+            fulfillments[].stops[] entry including id, type, location (with
+            gps string, area_code, city/country/state sub-objects), time,
+            instructions, parent_stop_id, and authorization. The structured
+            origin/destination fields are authoritative for V2-native access;
+            this array is authoritative for V2→V1 reconstruction.
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              type:
+                type: string
+              instructions:
+                type: object
+                properties:
+                  long_desc:
+                    type: string
+                additionalProperties: false
+              location:
+                type: object
+                properties:
+                  address:
+                    type: string
+                  area_code:
+                    type: string
+                  city:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                    additionalProperties: false
+                  country:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                    additionalProperties: false
+                  gps:
+                    type: string
+                  state:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                    additionalProperties: false
+                additionalProperties: false
+              time:
+                type: object
+                properties:
+                  timestamp:
+                    type: string
+                    format: date-time
+                additionalProperties: false
+              parent_stop_id:
+                type: string
+              authorization:
+                type: object
+                properties:
+                  status:
+                    type: string
+                  token:
+                    type: string
+                  type:
+                    type: string
+                additionalProperties: false
+            additionalProperties: false
+        textSearch:
+          description: Free-text search query.
+          type: string
+        filters:
+          description: JSONPath filter criteria applied to search results.
+          type: string
+        spatial:
+          description: Geographic constraints on the search area.
+          $ref: https://schema.beckn.io/SpatialConstraint/v2.0/attributes.yaml#/components/schemas/SpatialConstraint
+        provider:
+          description: Identifier of a specific provider to search within.
+          type: string
+        customerDisabilityDisable:
+          description: >-
+            Whether the customer has declared a disability exemption. Maps to
+            V1 items[].tags[CUSTOMER_INFO].CUSTOMER_DISABILITY_DISABLE.
+          type: boolean
+        isPetRide:
+          description: >-
+            Whether the customer is travelling with a pet. Maps to V1
+            items[].tags[PET_ORDER_INFO].IS_PET_RIDE.
+          type: boolean
+        billingCategory:
+          description: >-
+            Billing category (e.g. PERSONAL, BUSINESS). Maps to V1
+            items[].tags[BILLING_CATEGORY_INFO].BILLING_CATEGORY.
+          type: string
+        isAutoAssignEnabled:
+          description: >-
+            Whether the BAP requests automatic driver assignment. Maps to V1
+            items[].tags[AUTO_ASSIGN_ENABLED].IS_AUTO_ASSIGN_ENABLED.
+          type: boolean
+        isForwardBatchEnabled:
+          description: >-
+            Whether forward batching is enabled. Maps to V1
+            items[].tags[FORWARD_BATCHING_REQUEST_INFO].IS_FORWARD_BATCH_ENABLED.
+          type: boolean
+        toUpdateDeviceId:
+          description: >-
+            Whether the BPP should update the stored device ID. Maps to V1
+            items[].tags[DEVICE_ID_INFO].TO_UPDATE_DEVICE_ID.
+          type: boolean
+        preferSafetyPlus:
+          description: >-
+            Whether the customer prefers a Safety Plus driver. Maps to V1
+            items[].tags[SAFETY_PLUS_INFO].PREFER_SAFETY_PLUS.
+          type: boolean
+        emailDomain:
+          description: >-
+            Email domain of the customer's account. Maps to V1
+            items[].tags[EMAIL_DOMAIN_INFO].EMAIL_DOMAIN.
+          type: string
+        confirmedPrice:
+          description: >-
+            Fare amount the BAP is confirming. Maps to V1 items[].price.
+          type: object
+          properties:
+            currency:
+              type: string
+            value:
+              type: string
+          additionalProperties: false
+        tags:
+          description: >-
+            V1-compatible tag groups preserved verbatim for lossless V2→V1
+            round-trip. Contains original item-level and fulfillment-level tag
+            groups. Typed properties above are derived from these tags for V2
+            native access; this array is authoritative for V2→V1
+            reconstruction.
+          type: array
+          items:
+            type: object
+            properties:
+              descriptor:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  name:
+                    type: string
+              display:
+                type: boolean
+              list:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    descriptor:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        name:
+                          type: string
+                    display:
+                      type: boolean
+                    value:
+                      type: string
+      additionalProperties: false

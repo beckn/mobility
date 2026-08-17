@@ -1,0 +1,14 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "Driver": "beckn:Driver",
+    "licenseNumber": "beckn:licenseNumber",
+    "vehicleNumber": "beckn:vehicleNumber",
+    "yearsOfExperience": "beckn:yearsOfExperience",
+    "id": "beckn:id",
+    "person": "beckn:person",
+    "organization": "beckn:organization",
+    "contact": "beckn:contact",
+    "rating": "beckn:rating"
+  }
+}

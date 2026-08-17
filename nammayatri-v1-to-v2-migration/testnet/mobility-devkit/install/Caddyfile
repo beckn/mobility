@@ -1,0 +1,17 @@
+{
+    auto_https off
+}
+
+# beckn-router — single public entry point for both adapters
+# Port 9000 is mapped to the host; ngrok tunnels this one port.
+#
+# /bap/* → onix-bap:8081  (BAP receiver and caller)
+# /bpp/* → onix-bpp:8082  (BPP receiver and caller)
+:9000 {
+    handle /bap/* {
+        reverse_proxy onix-bap:8081
+    }
+    handle /bpp/* {
+        reverse_proxy onix-bpp:8082
+    }
+}

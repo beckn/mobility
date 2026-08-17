@@ -1,0 +1,57 @@
+openapi: 3.1.0
+info:
+  title: TripRequest
+  version: 2.0.0
+  description: Schema definition for the TripRequest entity in the Beckn Mobility
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    TripRequest:
+      x-iri: https://schema.beckn.io/TripRequest/v2.0
+      type: object
+      title: TripRequest
+      description: A request submitted to a journey planning system specifying origin,
+        destination, travel time, and preferences.
+      x-tags:
+        - mobility
+        - ride-hailing
+      properties:
+        origin:
+          description: Origin location for the trip
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
+        destination:
+          description: Destination location for the trip
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
+        departureTime:
+          description: Requested departure time
+          type: string
+          format: date-time
+        arrivalTime:
+          description: Requested arrival time (alternative to departureTime)
+          type: string
+          format: date-time
+        modes:
+          description: Permitted transport modes (e.g. BUS, RAIL, WALK)
+          type: string
+        numItineraries:
+          description: Number of itinerary alternatives requested
+          type: number
+        textSearch:
+          description: Free-text search query expressing what the traveler is looking
+            for
+          type: string
+        filters:
+          description: JSONPath filter criteria applied to the search results
+          type: string
+        spatial:
+          description: Geographic constraints on the search area
+          $ref: https://schema.beckn.io/SpatialConstraint/v2.0/attributes.yaml#/components/schemas/SpatialConstraint
+        provider:
+          description: Identifier of a specific provider to search within
+          type: string
+      additionalProperties: false

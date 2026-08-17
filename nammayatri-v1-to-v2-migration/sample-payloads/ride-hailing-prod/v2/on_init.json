@@ -1,0 +1,716 @@
+{
+  "context": {
+    "action": "on_init",
+    "version": "2.0.0",
+    "bapId": "api.eu.moving.tech/bap/beckn/v1/b9e1d4f6-7c2a-4e8b-9d3f-5a6b7c8d9e0f",
+    "bapUri": "https://api.eu.moving.tech/bap/beckn/v1/b9e1d4f6-7c2a-4e8b-9d3f-5a6b7c8d9e0f",
+    "bppId": "api.eu.moving.tech/dobpp/beckn/a7f3c8e2-4b5d-4c9a-8f6e-2d1a3b4c5d6e",
+    "bppUri": "https://api.eu.moving.tech/dobpp/beckn/a7f3c8e2-4b5d-4c9a-8f6e-2d1a3b4c5d6e",
+    "networkId": "ONDC:TRV10",
+    "transactionId": "aa9c3077-90cd-46eb-a7b9-28763b34bbc2",
+    "messageId": "2cf56737-3684-4f38-b15b-f089543c9509",
+    "timestamp": "2026-08-07T12:22:20.59Z",
+    "ttl": "PT2M",
+    "schemaContext": [
+      "https://schema.beckn.io/TripRequest/v2.2/context.jsonld",
+      "https://schema.beckn.io/RideOption/v2.1/context.jsonld",
+      "https://schema.beckn.io/ServiceClass/v2.1/context.jsonld",
+      "https://schema.beckn.io/FareEstimate/v2.1/context.jsonld",
+      "https://schema.beckn.io/PriceSpecification/v2.2/context.jsonld",
+      "https://schema.beckn.io/PriceComponent/v2.2/context.jsonld",
+      "https://schema.beckn.io/Passenger/v2.1/context.jsonld",
+      "https://schema.beckn.io/SettlementTerm/v2.1/context.jsonld",
+      "https://schema.beckn.io/Driver/v2.1/context.jsonld"
+    ]
+  },
+  "message": {
+    "contract": {
+      "id": "e2fa76ac-b6e7-4ddd-8ce1-e5798ae140be",
+      "descriptor": {
+        "name": "BLACK ride: Malminkatu 16 \u2192 Mannerheimintie 2",
+        "shortDesc": "Ride-hailing"
+      },
+      "status": {
+        "code": "DRAFT",
+        "name": "Contract initialised"
+      },
+      "commitments": [
+        {
+          "id": "commitment-1",
+          "status": {
+            "descriptor": {
+              "code": "DRAFT",
+              "name": "Fare confirmed"
+            }
+          },
+          "resources": [
+            {
+              "id": "254e80b6-6914-4cdb-a5f7-9971a013b8dc",
+              "descriptor": {
+                "name": "BLACK",
+                "code": "BLACK",
+                "shortDesc": "BLACK"
+              },
+              "quantity": {
+                "value": 1,
+                "unit": "trip"
+              },
+              "resourceAttributes": {
+                "@context": "https://schema.beckn.io/TripRequest/v2.2/context.jsonld",
+                "@type": "TripRequest",
+                "origin": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      24.931445,
+                      60.167387
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Malminkatu 16",
+                    "addressLocality": "Helsinki",
+                    "addressRegion": "00100 Helsinki",
+                    "addressCountry": "Finland",
+                    "postalCode": "00100"
+                  }
+                },
+                "destination": {
+                  "geo": {
+                    "type": "Point",
+                    "coordinates": [
+                      24.943359,
+                      60.166848
+                    ]
+                  },
+                  "address": {
+                    "streetAddress": "Mannerheimintie 2",
+                    "addressLocality": "Helsinki",
+                    "addressRegion": "00100 Helsinki",
+                    "addressCountry": "Finland",
+                    "postalCode": "00100"
+                  }
+                },
+                "vehicleVariant": "BLACK",
+                "vehicleCategory": "CAB",
+                "fulfillmentType": "DELIVERY",
+                "stops": [
+                  {
+                    "id": "0",
+                    "location": {
+                      "address": "Malminkatu,, Malminkatu 16, 00100 Helsinki, Finland",
+                      "area_code": "00100",
+                      "city": {
+                        "name": "Malminkatu 16"
+                      },
+                      "country": {
+                        "name": "Finland"
+                      },
+                      "gps": "60.167387, 24.931445",
+                      "state": {
+                        "name": "00100 Helsinki"
+                      }
+                    },
+                    "time": {
+                      "timestamp": "2026-08-07T12:19:51.910103632Z"
+                    },
+                    "type": "START"
+                  },
+                  {
+                    "id": "1",
+                    "location": {
+                      "address": "Mannerheimintie,, Mannerheimintie 2, 00100 Helsinki, Finland",
+                      "area_code": "00100",
+                      "city": {
+                        "name": "Mannerheimintie 2"
+                      },
+                      "country": {
+                        "name": "Finland"
+                      },
+                      "gps": "60.166848, 24.943359",
+                      "state": {
+                        "name": "00100 Helsinki"
+                      }
+                    },
+                    "parent_stop_id": "0",
+                    "type": "END"
+                  }
+                ]
+              }
+            }
+          ],
+          "offer": {
+            "id": "254e80b6-6914-4cdb-a5f7-9971a013b8dc",
+            "descriptor": {
+              "code": "RIDE",
+              "name": "BLACK",
+              "shortDesc": "BLACK"
+            },
+            "resourceIds": [
+              "254e80b6-6914-4cdb-a5f7-9971a013b8dc"
+            ],
+            "offerAttributes": {
+              "@context": "https://schema.beckn.io/RideOption/v2.1/context.jsonld",
+              "@type": "RideOption",
+              "vehicleType": {
+                "vehicleCategoryCode": "FOUR_WHEELER"
+              },
+              "vehicle": {
+                "bodyType": "BLACK",
+                "seatingCapacity": 4,
+                "category": "CAB"
+              },
+              "serviceClass": {
+                "serviceClassCode": "BLACK",
+                "isAirConditioned": true,
+                "airConditioningScore": 2.0
+              },
+              "categoryIds": [
+                "ON_DEMAND_TRIP"
+              ],
+              "fulfillmentIds": [
+                "7d8f4ca6-a721-4e74-84bf-430b28a55406"
+              ],
+              "cancellationTerms": [
+                {
+                  "fulfillmentStateCode": "RIDE_ASSIGNED",
+                  "reasonRequired": false
+                }
+              ],
+              "pricingModel": {
+                "currency": "EUR",
+                "cancellationCharges": "0",
+                "driverMinExtraFee": "0",
+                "driverMaxExtraFee": "0",
+                "petCharges": "1.0",
+                "nightShiftStartTime": "01:00:00",
+                "nightShiftEndTime": "08:00:00",
+                "nightShiftStartTimeInSeconds": "3600",
+                "nightShiftEndTimeInSeconds": "28800",
+                "congestionChargePercentage": "0.00",
+                "customerExtraFeeTaxMultiplier": "1.135",
+                "baseDistance": "3000",
+                "baseFare": "8.04",
+                "deadKilometerFare": "0.0",
+                "extraPerKmFare": "1.14999999999999991118215802998",
+                "extraPerKmStepFare3000Above": "1.14999999999999991118215802998",
+                "waitingChargePerMin": "0.29999999999999998889776975374",
+                "waitingChargeRatePerMin": "0.3",
+                "freeWaitingTimeInMinutes": "3",
+                "nightShiftCharge": "1",
+                "nightShiftChargePercentage": "0.0",
+                "driverExtraFeeBoundsStepMinFee0Above": "0",
+                "driverExtraFeeBoundsStepMaxFee0Above": "0",
+                "tags": [
+                  {
+                    "descriptor": {
+                      "code": "FARE_POLICY",
+                      "name": "Fare policy"
+                    },
+                    "display": false,
+                    "list": [
+                      {
+                        "descriptor": {
+                          "code": "CANCELLATION_CHARGES",
+                          "name": "CANCELLATION_CHARGES"
+                        },
+                        "display": false,
+                        "value": "0"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "DRIVER_MIN_EXTRA_FEE",
+                          "name": "DRIVER_MIN_EXTRA_FEE"
+                        },
+                        "display": false,
+                        "value": "0"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "DRIVER_MAX_EXTRA_FEE",
+                          "name": "DRIVER_MAX_EXTRA_FEE"
+                        },
+                        "display": false,
+                        "value": "0"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "PET_CHARGES",
+                          "name": "PET_CHARGES"
+                        },
+                        "display": false,
+                        "value": "1.0"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "NIGHT_SHIFT_START_TIME",
+                          "name": "NIGHT_SHIFT_START_TIME"
+                        },
+                        "display": false,
+                        "value": "01:00:00"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "NIGHT_SHIFT_END_TIME",
+                          "name": "NIGHT_SHIFT_END_TIME"
+                        },
+                        "display": false,
+                        "value": "08:00:00"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "NIGHT_SHIFT_START_TIME_IN_SECONDS",
+                          "name": "NIGHT_SHIFT_START_TIME_IN_SECONDS"
+                        },
+                        "display": false,
+                        "value": "3600"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "NIGHT_SHIFT_END_TIME_IN_SECONDS",
+                          "name": "NIGHT_SHIFT_END_TIME_IN_SECONDS"
+                        },
+                        "display": false,
+                        "value": "28800"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "CONGESTION_CHARGE_PERCENTAGE",
+                          "name": "CONGESTION_CHARGE_PERCENTAGE"
+                        },
+                        "display": false,
+                        "value": "0.00"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER",
+                          "name": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER"
+                        },
+                        "display": false,
+                        "value": "1.135"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "BASE_DISTANCE",
+                          "name": "BASE_DISTANCE"
+                        },
+                        "display": false,
+                        "value": "3000"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "BASE_FARE",
+                          "name": "BASE_FARE"
+                        },
+                        "display": false,
+                        "value": "8.04"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "DEAD_KILOMETER_FARE",
+                          "name": "DEAD_KILOMETER_FARE"
+                        },
+                        "display": false,
+                        "value": "0.0"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "EXTRA_PER_KM_FARE",
+                          "name": "EXTRA_PER_KM_FARE"
+                        },
+                        "display": false,
+                        "value": "1.14999999999999991118215802998"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "EXTRA_PER_KM_STEP_FARE_3000_Above",
+                          "name": "EXTRA_PER_KM_STEP_FARE_3000_Above"
+                        },
+                        "display": false,
+                        "value": "1.14999999999999991118215802998"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "WAITING_CHARGE_PER_MIN",
+                          "name": "WAITING_CHARGE_PER_MIN"
+                        },
+                        "display": false,
+                        "value": "0.29999999999999998889776975374"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "WAITING_CHARGE_RATE_PER_MIN",
+                          "name": "WAITING_CHARGE_RATE_PER_MIN"
+                        },
+                        "display": false,
+                        "value": "0.3"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "FREE_WAITING_TIME_IN_MINUTES",
+                          "name": "FREE_WAITING_TIME_IN_MINUTES"
+                        },
+                        "display": false,
+                        "value": "3"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "NIGHT_SHIFT_CHARGE",
+                          "name": "NIGHT_SHIFT_CHARGE"
+                        },
+                        "display": false,
+                        "value": "1"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "NIGHT_SHIFT_CHARGE_PERCENTAGE",
+                          "name": "NIGHT_SHIFT_CHARGE_PERCENTAGE"
+                        },
+                        "display": false,
+                        "value": "0.0"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above",
+                          "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above"
+                        },
+                        "display": false,
+                        "value": "0"
+                      },
+                      {
+                        "descriptor": {
+                          "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above",
+                          "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above"
+                        },
+                        "display": false,
+                        "value": "0"
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "commitmentAttributes": {
+            "@context": "https://schema.beckn.io/ServiceClass/v2.1/context.jsonld",
+            "@type": "ServiceClass",
+            "serviceClassCode": "BLACK",
+            "isAirConditioned": true,
+            "airConditioningScore": 2.0
+          }
+        }
+      ],
+      "performance": [
+        {
+          "id": "7d8f4ca6-a721-4e74-84bf-430b28a55406",
+          "status": {
+            "code": "PENDING"
+          },
+          "commitmentIds": [
+            "commitment-1"
+          ],
+          "performanceAttributes": {
+            "@context": "https://schema.beckn.io/Driver/v2.1/context.jsonld",
+            "@type": "Driver",
+            "vehicleCategory": "CAB",
+            "vehicleVariant": "BLACK",
+            "customer": {
+              "contact": {
+                "phone": "9457514297"
+              },
+              "person": {
+                "name": "gopal_lynx",
+                "personAttributes": { "gender": "MALE" }
+              }
+            }
+          }
+        }
+      ],
+      "consideration": [
+        {
+          "id": "consideration-1",
+          "status": {
+            "code": "PRICE_CONFIRMED",
+            "name": "Confirmed fare"
+          },
+          "considerationAttributes": {
+            "@context": "https://schema.beckn.io/FareEstimate/v2.1/context.jsonld",
+            "@type": "FareEstimate",
+            "currency": "EUR",
+            "offeredAmount": 9.125399999999999,
+            "itemPrice": {
+              "currency": "EUR",
+              "offeredValue": "9",
+              "value": "9"
+            },
+            "price": {
+              "@context": "https://schema.beckn.io/PriceSpecification/v2.2/context.jsonld",
+              "@type": "PriceSpecification",
+              "currency": "EUR",
+              "value": 9.125399999999999,
+              "components": [
+                {
+                  "type": "UNIT",
+                  "value": 8.04,
+                  "currency": "EUR",
+                  "description": "BASE_FARE"
+                },
+                {
+                  "type": "TAX",
+                  "value": 1.0854,
+                  "currency": "EUR",
+                  "description": "RIDE_VAT"
+                },
+                {
+                  "type": "FEE",
+                  "value": 0,
+                  "currency": "EUR",
+                  "description": "CANCELLATION_CHARGES"
+                },
+                {
+                  "type": "FEE",
+                  "value": 0,
+                  "currency": "EUR",
+                  "description": "TOLL_VAT"
+                },
+                {
+                  "type": "UNIT",
+                  "value": 0,
+                  "currency": "EUR",
+                  "description": "DEAD_KILOMETER_FARE"
+                },
+                {
+                  "type": "UNIT",
+                  "value": 8.04,
+                  "currency": "EUR",
+                  "description": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+                },
+                {
+                  "type": "TAX",
+                  "value": 1.0854,
+                  "currency": "EUR",
+                  "description": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX"
+                },
+                {
+                  "type": "UNIT",
+                  "value": 0,
+                  "currency": "EUR",
+                  "description": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+                },
+                {
+                  "type": "TAX",
+                  "value": 0,
+                  "currency": "EUR",
+                  "description": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX"
+                },
+                {
+                  "type": "FEE",
+                  "value": 0,
+                  "currency": "EUR",
+                  "description": "TOLL_FARE_TAX_EXCLUSIVE"
+                },
+                {
+                  "type": "TAX",
+                  "value": 0,
+                  "currency": "EUR",
+                  "description": "TOLL_FARE_TAX"
+                },
+                {
+                  "type": "FEE",
+                  "value": 0,
+                  "currency": "EUR",
+                  "description": "CANCELLATION_FEE_TAX_EXCLUSIVE"
+                },
+                {
+                  "type": "TAX",
+                  "value": 0,
+                  "currency": "EUR",
+                  "description": "CANCELLATION_TAX"
+                },
+                {
+                  "type": "FEE",
+                  "value": 0,
+                  "currency": "EUR",
+                  "description": "PARKING_CHARGE_TAX_EXCLUSIVE"
+                },
+                {
+                  "type": "TAX",
+                  "value": 0,
+                  "currency": "EUR",
+                  "description": "PARKING_CHARGE_TAX"
+                }
+              ]
+            },
+            "createdAt": "2026-08-07T12:22:20.561797092Z",
+            "updatedAt": "2026-08-07T12:22:20.561797092Z"
+          }
+        }
+      ],
+      "participants": [
+        {
+          "id": "consumer-001",
+          "descriptor": {
+            "name": "gopal_lynx"
+          },
+          "participantAttributes": {
+            "@context": "https://schema.beckn.io/Passenger/v2.1/context.jsonld",
+            "@type": "Passenger",
+            "person": {
+              "name": "gopal_lynx",
+              "telephone": "9457514297",
+              "id": "gopal_lynx"
+            }
+          }
+        },
+        {
+          "id": "api.eu.moving.tech/dobpp/beckn/a7f3c8e2-4b5d-4c9a-8f6e-2d1a3b4c5d6e",
+          "role": "PROVIDER"
+        }
+      ],
+      "settlements": [
+        {
+          "id": "6330f490-e317-4cf7-953b-6915fa2ad8e4",
+          "considerationId": "consideration-1",
+          "status": "DRAFT",
+          "settlementAttributes": {
+            "@context": "https://schema.beckn.io/SettlementTerm/v2.1/context.jsonld",
+            "@type": "SettlementTerm",
+            "collectedBy": "BPP",
+            "paymentStatus": "NOT-PAID",
+            "paymentType": "ON-FULFILLMENT",
+            "settlementAmount": "9.125399999999999",
+            "currency": "EUR",
+            "commission": "1.36880999999999986016518960241",
+            "payTo": {
+              "vpa": "xyz@upi",
+              "branchCode": "xyz"
+            },
+            "buyerFinderFeesPercentage": "0",
+            "settlementWindow": "PT1D",
+            "delayInterest": "0",
+            "settlementBasis": "INVOICE_RECIEPT",
+            "mandatoryArbitration": true,
+            "courtJurisdiction": "Helsinki",
+            "staticTerms": "https://api.example-bap.com/booking/terms",
+            "tags": [
+              {
+                "descriptor": {
+                  "code": "BUYER_FINDER_FEES",
+                  "name": "Buyer Finder Fees Information"
+                },
+                "display": false,
+                "list": [
+                  {
+                    "descriptor": {
+                      "code": "BUYER_FINDER_FEES_PERCENTAGE",
+                      "name": "Buyer Finder Fees"
+                    },
+                    "display": false,
+                    "value": "0"
+                  }
+                ]
+              },
+              {
+                "descriptor": {
+                  "code": "SETTLEMENT_TERMS",
+                  "name": "Settlement Terms Information"
+                },
+                "display": false,
+                "list": [
+                  {
+                    "descriptor": {
+                      "code": "SETTLEMENT_AMOUNT",
+                      "name": "Settlement amount"
+                    },
+                    "display": false,
+                    "value": "9.125399999999999"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "SETTLEMENT_WINDOW",
+                      "name": "Settlement window"
+                    },
+                    "display": false,
+                    "value": "PT1D"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "DELAY_INTEREST",
+                      "name": "Delay Interest"
+                    },
+                    "display": false,
+                    "value": "0"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "SETTLEMENT_BASIS",
+                      "name": "Settlement Basic"
+                    },
+                    "display": false,
+                    "value": "INVOICE_RECIEPT"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "MANDATORY_ARBITRATION",
+                      "name": "Mandatory Arbitration"
+                    },
+                    "display": false,
+                    "value": "TRUE"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "COURT_JURISDICTION",
+                      "name": "Court Jurisdiction"
+                    },
+                    "display": false,
+                    "value": "Helsinki"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "STATIC_TERMS",
+                      "name": "Static Terms"
+                    },
+                    "display": false,
+                    "value": "https://api.example-bap.com/booking/terms"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "SETTLEMENT_BANK_CODE",
+                      "name": "Settlement bank code"
+                    },
+                    "display": false,
+                    "value": "xyz"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "SETTLEMENT_BANK_ACCOUNT_NUMBER",
+                      "name": "Settlement bank account number"
+                    },
+                    "display": false,
+                    "value": "xyz@upi"
+                  }
+                ]
+              },
+              {
+                "descriptor": {
+                  "code": "SETTLEMENT_DETAILS",
+                  "name": "Settlement details"
+                },
+                "display": false,
+                "list": [
+                  {
+                    "descriptor": {
+                      "code": "COMMISSION",
+                      "name": "Commission"
+                    },
+                    "display": false,
+                    "value": "1.36880999999999986016518960241"
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

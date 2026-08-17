@@ -1,0 +1,23 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.1/",
+    "Vehicle": "beckn:Vehicle",
+    "vehicleId": "beckn:vehicleId",
+    "licensePlate": "beckn:licensePlate",
+    "make": "beckn:make",
+    "model": "beckn:model",
+    "year": "beckn:year",
+    "color": "beckn:color",
+    "vehicleType": "beckn:vehicleType",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "categoryId": "beckn:categoryId",
+    "price": "beckn:price",
+    "quantity": "beckn:quantity",
+    "tags": "beckn:tags",
+    "bodyType": "beckn:bodyType",
+    "seatingCapacity": "beckn:seatingCapacity",
+    "category": "beckn:category",
+    "iconUrl": "beckn:iconUrl"
+  }
+}

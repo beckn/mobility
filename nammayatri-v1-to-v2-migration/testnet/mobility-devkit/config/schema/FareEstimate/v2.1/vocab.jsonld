@@ -1,0 +1,91 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:FareEstimate",
+      "@type": "owl:Class",
+      "rdfs:label": { "@value": "FareEstimate", "@language": "en" },
+      "rdfs:comment": { "@value": "An estimated fare for a requested trip. v2.1 adds offeredAmount, discountAmount, itemPrice, createdAt, updatedAt.", "@language": "en" },
+      "rdfs:subClassOf": { "@id": "https://schema.org/PriceSpecification" }
+    },
+    {
+      "@id": "beckn:estimatedAmount",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "estimatedAmount", "@language": "en" },
+      "rdfs:comment": { "@value": "Estimated total fare amount", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:FareEstimate" },
+      "rdfs:range": { "@id": "xsd:decimal" },
+      "skos:closeMatch": { "@id": "https://schema.org/Number" }
+    },
+    {
+      "@id": "beckn:minimumAmount",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "minimumAmount", "@language": "en" },
+      "rdfs:comment": { "@value": "Minimum possible fare", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:FareEstimate" },
+      "rdfs:range": { "@id": "xsd:decimal" },
+      "skos:closeMatch": { "@id": "https://schema.org/Number" }
+    },
+    {
+      "@id": "beckn:maximumAmount",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "maximumAmount", "@language": "en" },
+      "rdfs:comment": { "@value": "Maximum possible fare", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:FareEstimate" },
+      "rdfs:range": { "@id": "xsd:decimal" },
+      "skos:closeMatch": { "@id": "https://schema.org/Number" }
+    },
+    {
+      "@id": "beckn:offeredAmount",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "offeredAmount", "@language": "en" },
+      "rdfs:comment": { "@value": "The discounted or offered fare presented to the customer. Maps to V1 item.price.offered_value.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:FareEstimate" },
+      "rdfs:range": { "@id": "xsd:decimal" },
+      "skos:closeMatch": { "@id": "https://schema.org/Number" }
+    },
+    {
+      "@id": "beckn:discountAmount",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "discountAmount", "@language": "en" },
+      "rdfs:comment": { "@value": "Discount amount applied to the fare. Maps to V1 items[].tags[OFFER_INFO].DISCOUNT_AMOUNT.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:FareEstimate" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    },
+    {
+      "@id": "beckn:itemPrice",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "itemPrice", "@language": "en" },
+      "rdfs:comment": { "@value": "Per-item price breakdown. Maps to V1 item.price fields.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:FareEstimate" },
+      "rdfs:range": { "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification" }
+    },
+    {
+      "@id": "beckn:createdAt",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "createdAt", "@language": "en" },
+      "rdfs:comment": { "@value": "ISO 8601 timestamp when the order was created. Maps to V1 order.created_at.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:FareEstimate" },
+      "rdfs:range": { "@id": "xsd:dateTime" },
+      "skos:closeMatch": { "@id": "https://schema.org/DateTime" }
+    },
+    {
+      "@id": "beckn:updatedAt",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "updatedAt", "@language": "en" },
+      "rdfs:comment": { "@value": "ISO 8601 timestamp when the order was last updated. Maps to V1 order.updated_at.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:FareEstimate" },
+      "rdfs:range": { "@id": "xsd:dateTime" },
+      "skos:closeMatch": { "@id": "https://schema.org/DateTime" }
+    }
+  ]
+}

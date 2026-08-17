@@ -1,0 +1,181 @@
+openapi: 3.1.1
+info:
+  title: SettlementTerm
+  version: 2.1.0
+  description: Describes the terms of settlement associated with a given transaction.
+    v2.1 adds V1 ONDC TRV10 settlement and payment fields from BUYER_FINDER_FEES,
+    SETTLEMENT_TERMS, and SETTLEMENT_DETAILS tag groups, plus CASH as an accepted
+    payment method.
+  license:
+    name: CC-BY-NC-SA 4.0 International
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    SettlementTerm:
+      x-iri: https://schema.beckn.io/SettlementTerm/v2.1
+      description: Describes the terms of settlement associated with a given transaction.
+        This is not to be confused with the PaymentAction as it describes all the
+        places where the money gets disbursed after reconciliation.
+      title: SettlementTerm
+      type: object
+      properties:
+        amount:
+          description: Amount associated with this settlement action
+          type: object
+          properties:
+            currency:
+              type: string
+              x-jsonld:
+                '@id': schema:priceCurrency
+            value:
+              type: number
+              x-jsonld:
+                '@id': schema:price
+        paymentTrigger:
+          description: Describes the event which triggers the payment against this
+            settlement term
+          $ref: https://schema.beckn.io/PaymentTrigger/v2.0/attributes.yaml#/components/schemas/PaymentTrigger
+        settlementStatus:
+          type: string
+          enum:
+            - PENDING
+            - COMPLETE
+        settlementSchedule:
+          $ref: https://schema.beckn.io/SettlementSchedule/v2.0/attributes.yaml#/components/schemas/SettlementSchedule
+        payTo:
+          description: Describes the details of the account where the money must be
+            remitted. It could be a bank account, a payment gateway, or a virtual
+            payment address.
+          anyOf:
+            - type: object
+              properties:
+                accountHolderName:
+                  type: string
+                accountNumber:
+                  type: string
+                branchCode:
+                  type: string
+                bankName:
+                  type: string
+            - type: object
+              properties:
+                vpa:
+                  type: string
+            - type: object
+              properties:
+                paymentUrl:
+                  type: string
+                  format: uri
+        acceptedPaymentMethods:
+          description: Payment methods accepted for this settlement. v2.1 adds CASH
+            to support V1 PAYMENT_INSTRUMENT "Cash" from ONDC TRV10.
+          type: array
+          items:
+            type: string
+            enum:
+              - CASH_DEPOSIT
+              - BANK_TRANSFER
+              - CASH
+            additionalProperties: true
+        settlementTermAttributes:
+          description: Additional use case specific settlement terms
+          $ref: https://schema.beckn.io/Attributes/v2.0/attributes.yaml#/components/schemas/Attributes
+        collectedBy:
+          description: Party responsible for collecting the payment (BAP or BPP).
+            Maps to V1 payment.collected_by.
+          type: string
+          enum:
+            - BAP
+            - BPP
+        paymentStatus:
+          description: Current payment status. Maps to V1 payment.status (e.g.
+            NOT-PAID, PAID).
+          type: string
+        paymentType:
+          description: When the payment is collected relative to service fulfillment
+            (e.g. ON-FULFILLMENT, PRE-FULFILLMENT, POST-FULFILLMENT). Maps to V1
+            payment.type.
+          type: string
+        paymentInstrument:
+          description: The specific payment instrument used (e.g. Cash, UPI,
+            CARD). Maps to V1 SETTLEMENT_TERMS.PAYMENT_INSTRUMENT. "Cash" requires
+            v2.1 since SettlementTerm v2.0 only allows CASH_DEPOSIT and
+            BANK_TRANSFER in acceptedPaymentMethods.
+          type: string
+        settlementAmount:
+          description: The actual settlement amount for this transaction. Maps to
+            V1 SETTLEMENT_TERMS.SETTLEMENT_AMOUNT.
+          type: string
+        settlementWindow:
+          description: ISO 8601 duration within which settlement must be completed
+            after the trigger event (e.g. PT1D = 1 day). Maps to V1
+            SETTLEMENT_TERMS.SETTLEMENT_WINDOW.
+          type: string
+        delayInterest:
+          description: Interest rate (as a percentage) charged per day for delayed
+            settlement. Maps to V1 SETTLEMENT_TERMS.DELAY_INTEREST.
+          type: string
+        settlementBasis:
+          description: Basis on which settlement is calculated (e.g. INVOICE_RECIEPT,
+            DELIVERY). Maps to V1 SETTLEMENT_TERMS.SETTLEMENT_BASIS.
+          type: string
+        mandatoryArbitration:
+          description: Whether arbitration is mandatory for dispute resolution. Maps
+            to V1 SETTLEMENT_TERMS.MANDATORY_ARBITRATION.
+          type: boolean
+        courtJurisdiction:
+          description: City or jurisdiction of the court governing dispute resolution.
+            Maps to V1 SETTLEMENT_TERMS.COURT_JURISDICTION.
+          type: string
+        staticTerms:
+          description: URL pointing to the static legal terms and conditions document.
+            Maps to V1 SETTLEMENT_TERMS.STATIC_TERMS.
+          type: string
+          format: uri
+        buyerFinderFeesPercentage:
+          description: Percentage fee charged by the BAP for finding the buyer. Maps
+            to V1 BUYER_FINDER_FEES.BUYER_FINDER_FEES_PERCENTAGE.
+          type: string
+        commission:
+          description: Commission amount deducted by the network or BAP, stored as
+            an arbitrary-precision string to preserve V1 decimal representation (e.g.
+            "1.36880999999999986016518960241"). Maps to V1
+            SETTLEMENT_DETAILS.COMMISSION.
+          type: string
+        tags:
+          description: V1-compatible tag groups preserved verbatim for lossless V2→V1
+            round-trip. Contains original BUYER_FINDER_FEES and SETTLEMENT_TERMS tag
+            groups from the V1 payment object.
+          type: array
+          items:
+            type: object
+            properties:
+              descriptor:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  name:
+                    type: string
+              display:
+                type: boolean
+              list:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    descriptor:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        name:
+                          type: string
+                    display:
+                      type: boolean
+                    value:
+                      type: string
+      x-tags:
+        - common

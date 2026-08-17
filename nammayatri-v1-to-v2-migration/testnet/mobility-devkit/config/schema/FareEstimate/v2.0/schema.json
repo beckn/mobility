@@ -1,0 +1,55 @@
+{
+  "$id": "https://schema.beckn.io/FareEstimate/v2.0",
+  "x-iri": "https://schema.beckn.io/FareEstimate/v2.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FareEstimate",
+  "type": "object",
+  "description": "An estimated fare for a requested trip, typically returned in response to a search before the booking is confirmed.",
+  "properties": {
+    "estimatedAmount": {
+      "description": "Estimated total fare amount",
+      "type": "number"
+    },
+    "currency": {
+      "description": "ISO 4217 currency code",
+      "type": "string"
+    },
+    "minimumAmount": {
+      "description": "Minimum possible fare",
+      "type": "number"
+    },
+    "maximumAmount": {
+      "description": "Maximum possible fare",
+      "type": "number"
+    },
+    "fareBreakup": {
+      "description": "Itemised breakdown of the estimated fare",
+      "$ref": "https://schema.beckn.io/FareBreakup/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the offer",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the offer",
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
+    },
+    "price": {
+      "description": "Price specification for this offer",
+      "$ref": "https://schema.beckn.io/PriceSpecification/v2.1/schema.json"
+    },
+    "validity": {
+      "description": "Validity period of the offer",
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
+    },
+    "tags": {
+      "description": "Tags or labels associated with the offer",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "ride-hailing"
+  ]
+}

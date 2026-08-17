@@ -1,0 +1,50 @@
+openapi: 3.1.1
+info:
+  title: ServiceClass
+  version: 2.1.0
+  description: Schema definition for the ServiceClass entity in the Beckn Mobility domain.
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    ServiceClass:
+      x-iri: https://schema.beckn.io/ServiceClass/v2.1
+      type: object
+      title: ServiceClass
+      description: A classification of the level of service offered by a transport
+        service, such as economy, business, or first class.
+      x-tags:
+        - mobility
+        - ride-hailing
+      properties:
+        serviceClassCode:
+          description: Code identifying the service class (e.g. ECONOMY, BUSINESS,
+            FIRST)
+          type: string
+        features:
+          description: List of features and amenities included in this service class
+          type: array
+        id:
+          description: Unique identifier for the category code
+          type: string
+        descriptor:
+          description: Human-readable label for the category
+          $ref: https://schema.beckn.io/Descriptor/v2.0/attributes.yaml#/components/schemas/Descriptor
+        parentCategoryId:
+          description: Identifier of the parent category if hierarchical
+          type: string
+        isAirConditioned:
+          description: Whether vehicles in this service class are air conditioned.
+            Maps to V1 fulfillment.tags[VEHICLE_INFO].IS_AIR_CONDITIONED_VEHICLE
+            (boolean string "True"/"False").
+          type: boolean
+        airConditioningScore:
+          description: Numeric air conditioning quality rating for this service class.
+            Maps to V1 fulfillment.tags[VEHICLE_INFO].IS_AIR_CONDITIONED value (e.g.
+            2.0). A float score distinct from the boolean IS_AIR_CONDITIONED_VEHICLE.
+          type: number
+      additionalProperties: false

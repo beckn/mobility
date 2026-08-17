@@ -1,0 +1,343 @@
+openapi: 3.1.1
+info:
+  title: RideOption
+  version: 2.1.0
+  description: Schema definition for the RideOption entity in the Beckn Mobility domain.
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    RideOptionCancellationTerm:
+      type: object
+      description: A cancellation policy term linked to a specific fulfillment state.
+        Maps to V1 item.cancellation_terms[].
+      properties:
+        fulfillmentStateCode:
+          description: The fulfillment state at which this cancellation term applies
+            (e.g. RIDE_CONFIRMED, RIDE_ASSIGNED, RIDE_ENROUTE_PICKUP,
+            RIDE_ARRIVED_PICKUP, RIDE_STARTED).
+          type: string
+        reasonRequired:
+          description: Whether a reason must be provided when cancelling at this state.
+          type: boolean
+      additionalProperties: false
+
+    RideOptionFeature:
+      type: object
+      description: A named feature and its value for display to the customer. Maps
+        to a V1 FEATURE_LIST tag group entry (FEATURE_NAME + FEATURE_VALUE pair).
+      properties:
+        featureName:
+          description: Display name of the feature (e.g. "AC"). Maps to V1
+            FEATURE_LIST.FEATURE_NAME.
+          type: string
+        featureValue:
+          description: Value of the feature (e.g. "true"). Maps to V1
+            FEATURE_LIST.FEATURE_VALUE.
+          type: string
+      additionalProperties: false
+
+    SystemPricingPlan:
+      type: object
+      title: SystemPricingPlan
+      description: Fare policy and pricing rules for a ride option, inlined from the
+        V1 ONDC TRV10 FARE_POLICY tag group. All monetary fields are typed as string
+        to preserve arbitrary-precision decimal representation for lossless round-trip.
+      properties:
+        planId:
+          description: Unique identifier for the pricing plan
+          type: string
+        currency:
+          description: ISO 4217 currency code
+          type: string
+        isTaxable:
+          description: Whether tax is applied to this pricing plan
+          type: boolean
+        perMinuteChargingRate:
+          description: Charge per minute of vehicle use
+          type: number
+        perKmChargingRate:
+          description: Charge per kilometre of vehicle use
+          type: number
+        perTripStartingFee:
+          description: Flat fee charged at the start of each trip
+          type: number
+        tags:
+          description: V1-compatible tag groups preserved verbatim for lossless V2→V1
+            round-trip. Contains the original FARE_POLICY tag group with all item entries.
+          type: array
+          items:
+            type: object
+            properties:
+              descriptor:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  name:
+                    type: string
+              display:
+                type: boolean
+              list:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    descriptor:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        name:
+                          type: string
+                    display:
+                      type: boolean
+                    value:
+                      type: string
+        cancellationCharges:
+          description: Fixed cancellation fee. Maps to V1 FARE_POLICY.CANCELLATION_CHARGES.
+          type: string
+        driverMinExtraFee:
+          description: Minimum additional fee the driver can charge. Maps to V1 FARE_POLICY.DRIVER_MIN_EXTRA_FEE.
+          type: string
+        driverMaxExtraFee:
+          description: Maximum additional fee the driver can charge. Maps to V1 FARE_POLICY.DRIVER_MAX_EXTRA_FEE.
+          type: string
+        petCharges:
+          description: Surcharge for travelling with a pet. Maps to V1 FARE_POLICY.PET_CHARGES.
+          type: string
+        nightShiftStartTime:
+          description: Start of night shift window (HH:MM:SS). Maps to V1 FARE_POLICY.NIGHT_SHIFT_START_TIME.
+          type: string
+        nightShiftEndTime:
+          description: End of night shift window (HH:MM:SS). Maps to V1 FARE_POLICY.NIGHT_SHIFT_END_TIME.
+          type: string
+        nightShiftStartTimeInSeconds:
+          description: Night shift start as seconds from midnight. Maps to V1 FARE_POLICY.NIGHT_SHIFT_START_TIME_IN_SECONDS.
+          type: string
+        nightShiftEndTimeInSeconds:
+          description: Night shift end as seconds from midnight. Maps to V1 FARE_POLICY.NIGHT_SHIFT_END_TIME_IN_SECONDS.
+          type: string
+        congestionChargePercentage:
+          description: Surcharge percentage during congestion periods. Maps to V1 FARE_POLICY.CONGESTION_CHARGE_PERCENTAGE.
+          type: string
+        customerExtraFeeTaxMultiplier:
+          description: Tax multiplier on customer extra fee (e.g. 1.135 = 13.5% VAT). Maps to V1 FARE_POLICY.CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER.
+          type: string
+        baseDistance:
+          description: Distance (metres) covered by base fare before per-km charges apply. Maps to V1 FARE_POLICY.BASE_DISTANCE.
+          type: string
+        baseFare:
+          description: Fixed fare at trip start covering base distance. Maps to V1 FARE_POLICY.BASE_FARE.
+          type: string
+        deadKilometerFare:
+          description: Fare per km for driver travel to pickup. Maps to V1 FARE_POLICY.DEAD_KILOMETER_FARE.
+          type: string
+        extraPerKmFare:
+          description: Per-km rate beyond base distance. Arbitrary-precision string. Maps to V1 FARE_POLICY.EXTRA_PER_KM_FARE.
+          type: string
+        extraPerKmStepFare3000Above:
+          description: Per-km step rate above 3000m. Arbitrary-precision string. Maps to V1 FARE_POLICY.EXTRA_PER_KM_STEP_FARE_3000_Above.
+          type: string
+        waitingChargePerMin:
+          description: Charge per minute waiting beyond free window. Arbitrary-precision string. Maps to V1 FARE_POLICY.WAITING_CHARGE_PER_MIN.
+          type: string
+        waitingChargeRatePerMin:
+          description: Rounded waiting rate per minute for display. Maps to V1 FARE_POLICY.WAITING_CHARGE_RATE_PER_MIN.
+          type: string
+        freeWaitingTimeInMinutes:
+          description: Minutes of free waiting before charges begin. Maps to V1 FARE_POLICY.FREE_WAITING_TIME_IN_MINUTES.
+          type: string
+        nightShiftCharge:
+          description: Flat fee or multiplier during night shift. Maps to V1 FARE_POLICY.NIGHT_SHIFT_CHARGE.
+          type: string
+        nightShiftChargePercentage:
+          description: Percentage surcharge during night shift. Maps to V1 FARE_POLICY.NIGHT_SHIFT_CHARGE_PERCENTAGE.
+          type: string
+        driverExtraFeeBoundsStepMinFee0Above:
+          description: Min driver extra fee bound for distance >= 0. Maps to V1 FARE_POLICY.DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above.
+          type: string
+        driverExtraFeeBoundsStepMaxFee0Above:
+          description: Max driver extra fee bound for distance >= 0. Maps to V1 FARE_POLICY.DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above.
+          type: string
+        rideFareDiscountApplicableTaxExclusive:
+          description: Discountable fare portion excluding tax. Maps to V1 FARE_POLICY.RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE.
+          type: string
+        rideFareDiscountApplicableTax:
+          description: Tax on the discountable fare portion. Maps to V1 FARE_POLICY.RIDE_FARE_DISCOUNT_APPLICABLE_TAX.
+          type: string
+        rideFareNonDiscountApplicableTaxExclusive:
+          description: Non-discountable fare portion excluding tax. Maps to V1 FARE_POLICY.RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE.
+          type: string
+        rideFareNonDiscountApplicableTax:
+          description: Tax on the non-discountable fare portion. Maps to V1 FARE_POLICY.RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX.
+          type: string
+        tollFareTaxExclusive:
+          description: Toll charge excluding tax. Maps to V1 FARE_POLICY.TOLL_FARE_TAX_EXCLUSIVE.
+          type: string
+        tollFareTax:
+          description: Tax on toll charge. Maps to V1 FARE_POLICY.TOLL_FARE_TAX.
+          type: string
+        cancellationFeeTaxExclusive:
+          description: Cancellation fee excluding tax. Maps to V1 FARE_POLICY.CANCELLATION_FEE_TAX_EXCLUSIVE.
+          type: string
+        cancellationTax:
+          description: Tax on cancellation fee. Maps to V1 FARE_POLICY.CANCELLATION_TAX.
+          type: string
+        parkingChargeTaxExclusive:
+          description: Parking charge excluding tax. Maps to V1 FARE_POLICY.PARKING_CHARGE_TAX_EXCLUSIVE.
+          type: string
+        parkingChargeTax:
+          description: Tax on parking charge. Maps to V1 FARE_POLICY.PARKING_CHARGE_TAX.
+          type: string
+      additionalProperties: false
+
+    RideOption:
+      x-iri: https://schema.beckn.io/RideOption/v2.1
+      type: object
+      title: RideOption
+      description: A specific ride-hailing vehicle category and pricing option presented
+        to a passenger in response to a ride request. v2.1 adds V1 ONDC TRV10 fields
+        from both the fulfillment and item to enable lossless round-trip migration.
+      x-tags:
+        - mobility
+        - ride-hailing
+      properties:
+        vehicleType:
+          description: Category of vehicle for this ride option
+          $ref: https://schema.beckn.io/VehicleCategory/v2.0/attributes.yaml#/components/schemas/VehicleCategory
+        estimatedArrival:
+          description: Estimated vehicle arrival time at the pickup point
+          type: string
+          format: date-time
+        estimatedDuration:
+          description: Estimated trip duration
+          type: string
+          format: duration
+        estimatedDistance:
+          description: Estimated trip distance in kilometres
+          type: number
+        pricingModel:
+          description: Fare policy and pricing rules for this ride option.
+          $ref: '#/components/schemas/SystemPricingPlan'
+        id:
+          description: Unique identifier for the offer
+          type: string
+        descriptor:
+          description: Human-readable description of the offer
+          $ref: https://schema.beckn.io/Descriptor/v2.0/attributes.yaml#/components/schemas/Descriptor
+        price:
+          description: Price specification for this offer
+          $ref: https://schema.beckn.io/PriceSpecification/v2.1/attributes.yaml#/components/schemas/PriceSpecification
+        validity:
+          description: Validity period of the offer
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+        tags:
+          description: V1-compatible tag groups preserved verbatim for lossless V2→V1
+            round-trip. Each entry is a Beckn V1 tag group (descriptor.code, display,
+            list[]). Typed extension properties above are derived from these tags for
+            V2 native access; the tags array is authoritative for V2→V1 reconstruction.
+          type: array
+          items:
+            type: object
+            properties:
+              descriptor:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  name:
+                    type: string
+              display:
+                type: boolean
+              list:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    descriptor:
+                      type: object
+                      properties:
+                        code:
+                          type: string
+                        name:
+                          type: string
+                    display:
+                      type: boolean
+                    value:
+                      type: string
+        vehicle:
+          description: Vehicle attributes for this ride option. Composes Vehicle/v2.1
+            which adds bodyType, seatingCapacity, category and iconUrl to the v2.0
+            base. Maps to V1 fulfillment.vehicle.* and VEHICLE_INFO tag entries.
+          $ref: https://schema.beckn.io/Vehicle/v2.1/attributes.yaml#/components/schemas/Vehicle
+        serviceClass:
+          description: Service class attributes for this ride option. Composes
+            ServiceClass/v2.1 which adds isAirConditioned and airConditioningScore
+            to the v2.0 base. Maps to V1 fulfillment.tags[VEHICLE_INFO] and
+            item.descriptor.code.
+          $ref: https://schema.beckn.io/ServiceClass/v2.1/attributes.yaml#/components/schemas/ServiceClass
+        fulfillmentType:
+          description: Fulfillment delivery type for this ride option (e.g. DELIVERY).
+            Maps to V1 fulfillment.type.
+          type: string
+        tipOptions:
+          description: JSON-encoded array of tip amounts (in local currency) available
+            for the customer to choose from (e.g. "[0,1,2,3,4]"). Maps to V1
+            items[].tags[INFO].TIP_OPTIONS.
+          type: string
+        isBlockedSearchRoute:
+          description: Whether this ride option is currently blocked for the searched
+            route. Maps to V1 items[].tags[INFO].IS_BLOCKED_SEARCH_ROUTE.
+          type: boolean
+        isCustomerPreferredSearchRoute:
+          description: Whether this matches a customer-preferred route stored in the
+            system. Maps to V1 items[].tags[INFO].IS_CUSTOMER_PREFFERED_SEARCH_ROUTE.
+          type: boolean
+        featureList:
+          description: Ordered list of display-visible feature name/value pairs for
+            this ride option (e.g. AC=true). Maps to V1 items[].tags[FEATURE_LIST].
+            Each entry corresponds to one FEATURE_NAME + FEATURE_VALUE pair.
+          type: array
+          items:
+            $ref: '#/components/schemas/RideOptionFeature'
+        cancellationTerms:
+          description: Per-state cancellation policy for this ride option. Maps to
+            V1 item.cancellation_terms[]. Each entry specifies the fulfillment state
+            at which a cancellation reason is required.
+          type: array
+          items:
+            $ref: '#/components/schemas/RideOptionCancellationTerm'
+        upgradeToVehicleClass:
+          description: Whether the customer can upgrade to a higher vehicle class.
+            Maps to V1 items[].tags[GENERAL_INFO].UPGRADE_TO_CAB (boolean string).
+            Populated in on_select response.
+          type: boolean
+        etaToNearestDriverMin:
+          description: Estimated time in minutes until the nearest available driver
+            arrives. Maps to V1 items[].tags[GENERAL_INFO].ETA_TO_NEAREST_DRIVER_MIN.
+            Populated in on_select response.
+          type: integer
+        distanceToNearestDriverMeter:
+          description: Distance in metres to the nearest available driver. Maps to
+            V1 items[].tags[GENERAL_INFO].DISTANCE_TO_NEAREST_DRIVER_METER.
+            Populated in on_select response.
+          type: integer
+        isInsured:
+          description: Whether this ride is covered by insurance. Maps to V1
+            items[].tags[INSURANCE_INFO].IS_INSURED.
+          type: boolean
+        insuredAmount:
+          description: The insurance coverage amount for this ride, if insured. Maps
+            to V1 items[].tags[INSURANCE_INFO].INSURED_AMOUNT. Stored as string to
+            preserve null.
+          type: string
+          nullable: true
+        displayBookingId:
+          description: Human-readable booking reference shown to the customer. Maps
+            to V1 items[].tags[BOOKING_INFO].DISPLAY_BOOKING_ID.
+          type: string

@@ -1,0 +1,68 @@
+{
+  "$id": "https://schema.beckn.io/Vehicle/v2.0",
+  "x-iri": "https://schema.beckn.io/Vehicle/v2.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Vehicle",
+  "type": "object",
+  "description": "A motorized or human-powered mobility asset used to carry passengers or goods between locations.",
+  "properties": {
+    "vehicleId": {
+      "description": "Unique identifier for the vehicle",
+      "type": "string"
+    },
+    "licensePlate": {
+      "description": "Vehicle registration plate number",
+      "type": "string"
+    },
+    "make": {
+      "description": "Manufacturer of the vehicle",
+      "type": "string"
+    },
+    "model": {
+      "description": "Model name of the vehicle",
+      "type": "string"
+    },
+    "year": {
+      "description": "Year of manufacture",
+      "type": "number"
+    },
+    "color": {
+      "description": "Colour of the vehicle",
+      "type": "string"
+    },
+    "vehicleType": {
+      "description": "Type classification of the vehicle",
+      "$ref": "https://schema.beckn.io/VehicleType/v2.0/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the item",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the item",
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
+    },
+    "categoryId": {
+      "description": "Category code classifying the item",
+      "$ref": "https://schema.beckn.io/CategoryCode/v2.1/schema.json"
+    },
+    "price": {
+      "description": "Price specification for this item",
+      "$ref": "https://schema.beckn.io/PriceSpecification/v2.1/schema.json"
+    },
+    "quantity": {
+      "description": "Available quantity of the item",
+      "$ref": "https://schema.beckn.io/Quantity/v2.0/schema.json"
+    },
+    "tags": {
+      "description": "Tags associated with the item",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "schema-org",
+    "ride-hailing"
+  ]
+}

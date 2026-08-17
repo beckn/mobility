@@ -1,0 +1,23 @@
+# BPP Caller Routing — outbound on_* callbacks from BPP back to the originating BAP
+#
+# Routed directly to onix-bap's receiver by fixed URL rather than targetType "bap"
+# (DeDi registry lookup) — see mobility-routing-BAPCaller.yaml for why this devkit
+# avoids registry-resolved routing.
+
+routingRules:
+  - domain: "nfh.global/testnet-mobility"
+    version: "2.0.0"
+    targetType: "url"
+    target:
+      url: "http://onix-bap:8081/bap/receiver"
+    endpoints:
+      - on_discover
+      - on_select
+      - on_init
+      - on_confirm
+      - on_status
+      - on_track
+      - on_update
+      - on_cancel
+      - on_rate
+      - on_support

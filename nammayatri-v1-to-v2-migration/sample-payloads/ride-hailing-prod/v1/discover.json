@@ -1,0 +1,411 @@
+{
+  "context": {
+    "action": "discover",
+    "bap_id": "api.eu.moving.tech/bap/beckn/v1/b9e1d4f6-7c2a-4e8b-9d3f-5a6b7c8d9e0f",
+    "bap_uri": "https://api.eu.moving.tech/bap/beckn/v1/b9e1d4f6-7c2a-4e8b-9d3f-5a6b7c8d9e0f",
+    "domain": "ONDC:TRV10",
+    "message_id": "50ace3a0-b5a0-49f2-84af-129f767cb68f",
+    "timestamp": "2026-08-07T12:19:51.138Z",
+    "transaction_id": "aa9c3077-90cd-46eb-a7b9-28763b34bbc2",
+    "ttl": "PT2M",
+    "version": "2.1.0"
+  },
+  "message": {
+    "intent": {
+      "category": {
+        "descriptor": {
+          "code": "ON_DEMAND_TRIP",
+          "name": "ON_DEMAND_TRIP"
+        },
+        "id": "ON_DEMAND_TRIP"
+      },
+      "fulfillment": {
+        "customer": {
+          "person": {
+            "gender": "MALE",
+            "tags": [
+              {
+                "descriptor": {
+                  "code": "CUSTOMER_INFO",
+                  "name": "Customer info"
+                },
+                "display": false,
+                "list": [
+                  {
+                    "descriptor": {
+                      "code": "CUSTOMER_PHONE_NUMBER",
+                      "name": "Customer phone number"
+                    },
+                    "display": false,
+                    "value": "0.1.0|1|eT0ftnnsbivmQlHhB5zvLdXswe+jKPNjLiFzdwsJsQ2FRh7wbPHN8TbXMGwF0kFnOVvHg1pZijS90HFGtw==:::\"`n\\182\\191\\DLE_@Jh#d\\205\\NAK\\212}B|^at\\230\\253\\249D\\163i\\184\\&3?\\171\\225\\129\""
+                  },
+                  {
+                    "descriptor": {
+                      "code": "RIDER_PREFERRED_OPTION",
+                      "name": "Rider preferred option"
+                    },
+                    "display": false,
+                    "value": "OneWay"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "USER_BACKEND_APP_VERSION",
+                      "name": "User backend app version"
+                    },
+                    "display": false,
+                    "value": "589cde"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "USER_SDK_VERSION",
+                      "name": "User sdk version"
+                    },
+                    "display": false,
+                    "value": "1.0.11"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "USER_BUNDLE_VERSION",
+                      "name": "User bundle version"
+                    },
+                    "display": false,
+                    "value": "0.0.0"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "USER_MODEL_NAME",
+                      "name": "User model name"
+                    },
+                    "display": false,
+                    "value": "I2221"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "USER_OS_VERSION",
+                      "name": "User os version"
+                    },
+                    "display": false,
+                    "value": "16"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "USER_OS_TYPE",
+                      "name": "User os type"
+                    },
+                    "display": false,
+                    "value": "ANDROID"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "CUSTOMER_NAMMA_TAGS",
+                      "name": "Customer namma tags"
+                    },
+                    "display": false,
+                    "value": "[]"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "DASHBOARD_USER",
+                      "name": "Dashboard user"
+                    },
+                    "display": false,
+                    "value": "False"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "CUSTOMER_VEHICLE_CATEGORY",
+                      "name": "Customer vehicle category"
+                    },
+                    "display": false,
+                    "value": "CAB"
+                  },
+                  {
+                    "descriptor": {
+                      "code": "CUSTOMER_LANGUAGE",
+                      "name": "Customer language"
+                    },
+                    "display": false,
+                    "value": "Just ENGLISH"
+                  }
+                ]
+              },
+              {
+                "descriptor": {
+                  "code": "EMAIL_DOMAIN_INFO",
+                  "name": "Email domain info"
+                },
+                "display": false,
+                "list": [
+                  {
+                    "descriptor": {
+                      "code": "EMAIL_DOMAIN",
+                      "name": "Email domain"
+                    },
+                    "display": false,
+                    "value": "nammayatri.in"
+                  }
+                ]
+              }
+            ]
+          }
+        },
+        "stops": [
+          {
+            "id": "0",
+            "instructions": {
+              "long_desc": ""
+            },
+            "location": {
+              "address": "Malminkatu 16, 00100 Helsinki, Finland",
+              "area_code": "00100",
+              "city": {
+                "name": "Malminkatu 16"
+              },
+              "country": {
+                "name": "Finland"
+              },
+              "gps": "60.167387, 24.931445",
+              "state": {
+                "name": "00100 Helsinki"
+              }
+            },
+            "time": {
+              "timestamp": "2026-08-07T12:19:51.138845063Z"
+            },
+            "type": "START"
+          },
+          {
+            "id": "1",
+            "instructions": {
+              "long_desc": ""
+            },
+            "location": {
+              "address": "Mannerheimintie 2, 00100 Helsinki, Finland",
+              "area_code": "00100",
+              "city": {
+                "name": "Mannerheimintie 2"
+              },
+              "country": {
+                "name": "Finland"
+              },
+              "gps": "60.166848, 24.943359",
+              "state": {
+                "name": "00100 Helsinki"
+              }
+            },
+            "parent_stop_id": "0",
+            "type": "END"
+          }
+        ],
+        "tags": [
+          {
+            "descriptor": {
+              "code": "LOCATION_ADDRESS",
+              "name": "Location address"
+            },
+            "display": false,
+            "list": [
+              {
+                "descriptor": {
+                  "code": "PICKUP_ADDRESS",
+                  "name": "Pickup address"
+                },
+                "display": false,
+                "value": "{\"area\":null,\"areaCode\":\"00100\",\"building\":null,\"city\":\"Malminkatu 16\",\"country\":\"Finland\",\"door\":null,\"state\":\"00100 Helsinki\",\"street\":null,\"ward\":null}"
+              },
+              {
+                "descriptor": {
+                  "code": "DROP_ADDRESS",
+                  "name": "Drop address"
+                },
+                "display": false,
+                "value": "{\"area\":null,\"areaCode\":\"00100\",\"building\":null,\"city\":\"Mannerheimintie 2\",\"country\":\"Finland\",\"door\":null,\"state\":\"00100 Helsinki\",\"street\":null,\"ward\":null}"
+              }
+            ]
+          },
+          {
+            "descriptor": {
+              "code": "ROUTE_INFO",
+              "name": "Route Information"
+            },
+            "display": false,
+            "list": [
+              {
+                "descriptor": {
+                  "code": "MULTIPLE_ROUTES",
+                  "name": "Multiple Routes"
+                },
+                "display": false,
+                "value": "[{\"boundingBox\":[60.1683156,24.9436657,60.1651402,24.931457599999998],\"distance\":973,\"distanceWithUnit\":{\"unit\":\"Meter\",\"value\":973},\"duration\":419,\"points\":[{\"lat\":60.16742,\"lon\":24.93146},{\"lat\":60.1674,\"lon\":24.931700000000003},{\"lat\":60.1674,\"lon\":24.932130000000004},{\"lat\":60.16742,\"lon\":24.932280000000006},{\"lat\":60.1675,\"lon\":24.932540000000007},{\"lat\":60.1675,\"lon\":24.93254},{\"lat\":60.168319999999994,\"lon\":24.93496},{\"lat\":60.16832,\"lon\":24.93496},{\"lat\":60.166940000000004,\"lon\":24.93685},{\"lat\":60.166180000000004,\"lon\":24.93798},{\"lat\":60.16514,\"lon\":24.93935},{\"lat\":60.16514,\"lon\":24.93935},{\"lat\":60.16613,\"lon\":24.94228},{\"lat\":60.1665,\"lon\":24.94333},{\"lat\":60.1665,\"lon\":24.94333},{\"lat\":60.16661,\"lon\":24.94367},{\"lat\":60.16683,\"lon\":24.94332}],\"routeToken\":\"Cu4BCnwyehpfChsCFgcsBkbQ-nIC2q0Cl68D8MwGhdMBjQGXBAASGFmlTEdt9zD5w51UdoNwk9-uhK1bpoSJBBoGAC8mAAgBKgYiF1sAanYyAQQ9Ys3rPkW9GBk-SMzcyoLAiY20oQEiF1o4MTFhdUxxSE1YaGs3NFBoOG1Xa1FnEAUaVQpTChgKDQoCCAERAAAAAACAZkAR3SQGgZX7fEASGAgAEAMQBhATEBIQAhgCQgQaAggFSgIIASIbChdaODExYXFqVkc4WGhrNzRQaDhtV2tRZ3ABKAEiFQCCt9ZJybhogTXcsWrL1CyrmEwojhoYCgoNzNHcIxUQPdwOEgoNitDcIxWTPNwO\",\"snappedWaypoints\":[],\"staticDuration\":314,\"trafficSegments\":null},{\"boundingBox\":[60.1675568,24.9436657,60.163443400000006,24.9304241],\"distance\":1229,\"distanceWithUnit\":{\"unit\":\"Meter\",\"value\":1229},\"duration\":451,\"points\":[{\"lat\":60.16742,\"lon\":24.93146},{\"lat\":60.16744,\"lon\":24.931250000000002},{\"lat\":60.16744,\"lon\":24.93125},{\"lat\":60.16751,\"lon\":24.93124},{\"lat\":60.16756,\"lon\":24.93112},{\"lat\":60.16754,\"lon\":24.93098},{\"lat\":60.16747,\"lon\":24.93091},{\"lat\":60.167410000000004,\"lon\":24.930970000000002},{\"lat\":60.16738,\"lon\":24.9311},{\"lat\":60.16667,\"lon\":24.930790000000002},{\"lat\":60.16653,\"lon\":24.93054},{\"lat\":60.16653,\"lon\":24.93054},{\"lat\":60.16649,\"lon\":24.93042},{\"lat\":60.166410000000006,\"lon\":24.93043},{\"lat\":60.166270000000004,\"lon\":24.93054},{\"lat\":60.166070000000005,\"lon\":24.930780000000002},{\"lat\":60.16561000000001,\"lon\":24.93147},{\"lat\":60.163880000000006,\"lon\":24.93392},{\"lat\":60.16344000000001,\"lon\":24.934530000000002},{\"lat\":60.16344,\"lon\":24.93453},{\"lat\":60.16375,\"lon\":24.935419999999997},{\"lat\":60.16435,\"lon\":24.937039999999996},{\"lat\":60.16553,\"lon\":24.940489999999997},{\"lat\":60.166129999999995,\"lon\":24.942279999999997},{\"lat\":60.16649999999999,\"lon\":24.943329999999996},{\"lat\":60.1665,\"lon\":24.94333},{\"lat\":60.16661,\"lon\":24.94367},{\"lat\":60.16683,\"lon\":24.94332}],\"routeToken\":\"Cv4BCosBMogBGm0KHgIWCTgGRtD6cgKQBdcFzyTjtAiw2BC5-waNAZcEABIgWKVMR3xvWZ_qFT73Grl8e-mkzXqDcJPfroStW6aEiQQaCAAHBAsgAQgBKgheZ2UAXAFqdjIBBj1PGQo_Rb0YGT5IrvfI0tK5iN9fIhdaODExYXVUcUhNWGhrNzRQaDhtV2tRZxAFGlUKUwoYCg0KAggBEQAAAAAAgGZAEe-nxks3vX1AEhgIABADEAYQExASEAIYAkIEGgIIBUoCCAEiGwoXWjgxMWFxalZHOFhoazc0UGg4bVdrUWdwASgBIhUAgrfWSZE4z7N0gCx02r28Yj1XBc4aGAoKDczR3CMVED3cDhIKDYrQ3CMVkzzcDg\",\"snappedWaypoints\":[],\"staticDuration\":392,\"trafficSegments\":null},{\"boundingBox\":[60.1697992,24.9436657,60.16650039999999,24.931457599999998],\"distance\":1007,\"distanceWithUnit\":{\"unit\":\"Meter\",\"value\":1007},\"duration\":453,\"points\":[{\"lat\":60.16742,\"lon\":24.93146},{\"lat\":60.1674,\"lon\":24.931700000000003},{\"lat\":60.1674,\"lon\":24.932130000000004},{\"lat\":60.16742,\"lon\":24.932280000000006},{\"lat\":60.1675,\"lon\":24.932540000000007},{\"lat\":60.1675,\"lon\":24.93254},{\"lat\":60.168319999999994,\"lon\":24.93496},{\"lat\":60.16832,\"lon\":24.93496},{\"lat\":60.16848,\"lon\":24.934730000000002},{\"lat\":60.16848,\"lon\":24.93473},{\"lat\":60.1698,\"lon\":24.93838},{\"lat\":60.1698,\"lon\":24.93838},{\"lat\":60.16845,\"lon\":24.94042},{\"lat\":60.16702,\"lon\":24.94255},{\"lat\":60.16668,\"lon\":24.943070000000002},{\"lat\":60.1665,\"lon\":24.943330000000003},{\"lat\":60.1665,\"lon\":24.94333},{\"lat\":60.16661,\"lon\":24.94367},{\"lat\":60.16683,\"lon\":24.94332}],\"routeToken\":\"Cu0BCnsyeRpeChoCFgcsBkbQ-nIC4tAB9gKn9gbE2wmNAZcEABIYWaVMR5JxpNB_h2QMg3CT366ErVumhIkEGgYAFCAMCAEqBiJYHFxqdjIBBD1izes-Rb0YGT5IkYGj3-us7KWsASIXWjgxMWF1UHFITVhoazc0UGg4bVdrUWcQBRpVClMKGAoNCgIIAREAAAAAAIBmQBFI4XoUrnGBQBIYCAAQAxAGEBMQEhACGAJCBBoCCAVKAggBIhsKF1o4MTFhcWpWRzhYaGs3NFBoOG1Xa1FncAEoASIVAIK31klQOQ1MrmYuBd3FnkDFBEi0GhgKCg3M0dwjFRA93A4SCg2K0NwjFZM83A4\",\"snappedWaypoints\":[],\"staticDuration\":356,\"trafficSegments\":null}]"
+              },
+              {
+                "descriptor": {
+                  "code": "WAYPOINTS",
+                  "name": "WAYPOINTS"
+                },
+                "display": false,
+                "value": "[{\"lat\":60.16742,\"lon\":24.93146},{\"lat\":60.1674,\"lon\":24.931700000000003},{\"lat\":60.1674,\"lon\":24.932130000000004},{\"lat\":60.16742,\"lon\":24.932280000000006},{\"lat\":60.1675,\"lon\":24.932540000000007},{\"lat\":60.1675,\"lon\":24.93254},{\"lat\":60.168319999999994,\"lon\":24.93496},{\"lat\":60.16832,\"lon\":24.93496},{\"lat\":60.166940000000004,\"lon\":24.93685},{\"lat\":60.166180000000004,\"lon\":24.93798},{\"lat\":60.16514,\"lon\":24.93935},{\"lat\":60.16514,\"lon\":24.93935},{\"lat\":60.16613,\"lon\":24.94228},{\"lat\":60.1665,\"lon\":24.94333},{\"lat\":60.1665,\"lon\":24.94333},{\"lat\":60.16661,\"lon\":24.94367},{\"lat\":60.16683,\"lon\":24.94332}]"
+              },
+              {
+                "descriptor": {
+                  "code": "ROUND_TRIP",
+                  "name": "Round trip"
+                },
+                "display": false,
+                "value": "False"
+              },
+              {
+                "descriptor": {
+                  "code": "DURATION_INFO_IN_S",
+                  "name": "Duration Information In Seconds"
+                },
+                "display": false,
+                "value": "419"
+              },
+              {
+                "descriptor": {
+                  "code": "DISTANCE_INFO_IN_M",
+                  "name": "Distance Information In Meters"
+                },
+                "display": false,
+                "value": "973"
+              }
+            ]
+          },
+          {
+            "descriptor": {
+              "code": "REALLOCATION_INFO",
+              "name": "Reallocation Information"
+            },
+            "display": false,
+            "list": [
+              {
+                "descriptor": {
+                  "code": "IS_REALLOCATION_ENABLED",
+                  "name": "Is Reallocation Enabled"
+                },
+                "display": false,
+                "value": "True"
+              }
+            ]
+          },
+          {
+            "descriptor": {
+              "code": "SEARCH_REQUEST_INFO",
+              "name": "Search request info"
+            },
+            "display": false,
+            "list": [
+              {
+                "descriptor": {
+                  "code": "IS_MULTIMODAL_SEARCH",
+                  "name": "Is Multimodal Search"
+                },
+                "display": false,
+                "value": "False"
+              }
+            ]
+          },
+          {
+            "descriptor": {
+              "code": "FARE_PARAMETERS_IN_RATECARD_INFO",
+              "name": "Fare Parametes in RateCard information"
+            },
+            "display": false,
+            "list": [
+              {
+                "descriptor": {
+                  "code": "FARE_PARAMETERS_IN_RATECARD",
+                  "name": "Fare Parametes in RateCard information"
+                },
+                "display": false,
+                "value": "False"
+              }
+            ]
+          }
+        ]
+      },
+      "payment": {
+        "collected_by": "BPP",
+        "status": "NOT-PAID",
+        "tags": [
+          {
+            "descriptor": {
+              "code": "BAP_TERMS",
+              "name": "BAP Terms of Engagement"
+            },
+            "display": false,
+            "list": [
+              {
+                "descriptor": {
+                  "code": "BUYER_FINDER_FEES_PERCENTAGE",
+                  "name": "Buyer Finder Fees"
+                },
+                "display": false,
+                "value": "0"
+              }
+            ]
+          },
+          {
+            "descriptor": {
+              "code": "BPP_TERMS",
+              "name": "BPP Terms of Engagement"
+            },
+            "display": false,
+            "list": [
+              {
+                "descriptor": {
+                  "code": "COURT_JURISDICTION",
+                  "name": "Court Jurisdiction"
+                },
+                "display": false,
+                "value": "Helsinki"
+              },
+              {
+                "descriptor": {
+                  "code": "MANDATORY_ARBITRATION",
+                  "name": "Mandatory Arbitration"
+                },
+                "display": false,
+                "value": "TRUE"
+              },
+              {
+                "descriptor": {
+                  "code": "SETTLEMENT_BASIS",
+                  "name": "Settlement Basic"
+                },
+                "display": false,
+                "value": "INVOICE_RECIEPT"
+              },
+              {
+                "descriptor": {
+                  "code": "DELAY_INTEREST",
+                  "name": "Delay Interest"
+                },
+                "display": false,
+                "value": "0"
+              },
+              {
+                "descriptor": {
+                  "code": "STATIC_TERMS",
+                  "name": "Static Terms"
+                },
+                "display": false,
+                "value": "https://api.example-bap.com/booking/terms"
+              },
+              {
+                "descriptor": {
+                  "code": "SETTLEMENT_WINDOW",
+                  "name": "Settlement window"
+                },
+                "display": false,
+                "value": "PT1D"
+              }
+            ]
+          }
+        ],
+        "type": "ON-FULFILLMENT"
+      }
+    }
+  }
+}

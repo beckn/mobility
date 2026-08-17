@@ -1,0 +1,85 @@
+openapi: 3.1.1
+info:
+  title: SettlementTerm
+  version: 2.0.0
+  description: Describes the terms of settlement associated with a given transaction.
+    This is not to be confused with the PaymentAction as it describes all the places
+    where the money gets disbursed after reconciliation.
+  license:
+    name: CC-BY-NC-SA 4.0 International
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    SettlementTerm:
+      x-iri: https://schema.beckn.io/SettlementTerm/v2.0
+      description: Describes the terms of settlement associated with a given transaction.
+        This is not to be confused with the PaymentAction as it describes all the
+        places where the money gets disbursed after reconciliation.
+      title: SettlementTerm
+      type: object
+      properties:
+        amount:
+          description: Amount associated with this settlement action
+          type: object
+          properties:
+            currency:
+              type: string
+              x-jsonld:
+                '@id': schema:priceCurrency
+            value:
+              type: number
+              x-jsonld:
+                '@id': schema:price
+        paymentTrigger:
+          description: Describes the event which triggers the payment against this
+            settlement term
+          $ref: https://schema.beckn.io/PaymentTrigger/v2.0/attributes.yaml#/components/schemas/PaymentTrigger
+        settlementStatus:
+          type: string
+          enum:
+          - PENDING
+          - COMPLETE
+        settlementSchedule:
+          $ref: https://schema.beckn.io/SettlementSchedule/v2.0/attributes.yaml#/components/schemas/SettlementSchedule
+        payTo:
+          description: Describes the details of the account where the money must be
+            remited. It could be a bank account, a payment gateway, or a virtual payment
+            address (like a UPI ID)
+          anyOf:
+          - type: object
+            properties:
+              accountHolderName:
+                type: string
+              accountNumber:
+                type: string
+              branchCode:
+                type: string
+              bankName:
+                type: string
+          - type: object
+            properties:
+              vpa:
+                type: string
+          - type: object
+            properties:
+              paymentUrl:
+                type: string
+                format: uri
+        acceptedPaymentMethods:
+          description: Describes the methods or mechanisms accepted by the payee (described
+            in the payTo property) for the purpose of this settlement.
+          type: array
+          items:
+            type: string
+            enum:
+            - CASH_DEPOSIT
+            - BANK_TRANSFER
+            additionalProperties: true
+        settlementTermAttributes:
+          description: Additional use case specific settlement terms that must be
+            adhered to
+          $ref: https://schema.beckn.io/Attributes/v2.0/attributes.yaml#/components/schemas/Attributes
+      x-tags:
+      - common

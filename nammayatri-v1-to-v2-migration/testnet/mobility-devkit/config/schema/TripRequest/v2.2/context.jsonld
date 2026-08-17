@@ -1,0 +1,29 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.2/",
+    "TripRequest": "beckn:TripRequest",
+    "origin": "beckn:origin",
+    "destination": "beckn:destination",
+    "requestedTime": "beckn:requestedTime",
+    "passengerCount": "beckn:passengerCount",
+    "vehiclePreference": "beckn:vehiclePreference",
+    "vehicleVariant": "beckn:vehicleVariant",
+    "vehicleCategory": "beckn:vehicleCategory",
+    "fulfillmentType": "beckn:fulfillmentType",
+    "stops": "beckn:stops",
+    "textSearch": "beckn:textSearch",
+    "filters": "beckn:filters",
+    "spatial": "beckn:spatial",
+    "provider": "beckn:provider",
+    "customerDisabilityDisable": "beckn:customerDisabilityDisable",
+    "isPetRide": "beckn:isPetRide",
+    "billingCategory": "beckn:billingCategory",
+    "isAutoAssignEnabled": "beckn:isAutoAssignEnabled",
+    "isForwardBatchEnabled": "beckn:isForwardBatchEnabled",
+    "toUpdateDeviceId": "beckn:toUpdateDeviceId",
+    "preferSafetyPlus": "beckn:preferSafetyPlus",
+    "emailDomain": "beckn:emailDomain",
+    "confirmedPrice": "beckn:confirmedPrice",
+    "tags": "beckn:tags"
+  }
+}

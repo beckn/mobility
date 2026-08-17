@@ -1,0 +1,11 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "ServiceClass": "beckn:ServiceClass",
+    "serviceClassCode": "beckn:serviceClassCode",
+    "features": "beckn:features",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "parentCategoryId": "beckn:parentCategoryId"
+  }
+}

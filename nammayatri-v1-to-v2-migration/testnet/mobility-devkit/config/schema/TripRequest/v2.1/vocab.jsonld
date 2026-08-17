@@ -1,0 +1,72 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:TripRequest",
+      "@type": "owl:Class",
+      "rdfs:label": { "@value": "TripRequest", "@language": "en" },
+      "rdfs:comment": { "@value": "A passenger's request for an on-demand transport service. v2.1 adds vehicleVariant, confirmedPrice, tags, and V1 ONDC TRV10 BAP preference fields.", "@language": "en" }
+    },
+    {
+      "@id": "beckn:vehicleVariant",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "vehicleVariant", "@language": "en" },
+      "rdfs:comment": { "@value": "Specific vehicle body type requested. Maps to V1 fulfillments[].vehicle.variant.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:TripRequest" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    },
+    {
+      "@id": "beckn:customerDisabilityDisable",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "customerDisabilityDisable", "@language": "en" },
+      "rdfs:comment": { "@value": "Whether the customer has declared a disability exemption. Maps to V1 items[].tags[CUSTOMER_INFO].CUSTOMER_DISABILITY_DISABLE.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:TripRequest" },
+      "rdfs:range": { "@id": "xsd:boolean" },
+      "skos:closeMatch": { "@id": "https://schema.org/Boolean" }
+    },
+    {
+      "@id": "beckn:isPetRide",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "isPetRide", "@language": "en" },
+      "rdfs:comment": { "@value": "Whether the customer is travelling with a pet. Maps to V1 items[].tags[PET_ORDER_INFO].IS_PET_RIDE.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:TripRequest" },
+      "rdfs:range": { "@id": "xsd:boolean" },
+      "skos:closeMatch": { "@id": "https://schema.org/Boolean" }
+    },
+    {
+      "@id": "beckn:billingCategory",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "billingCategory", "@language": "en" },
+      "rdfs:comment": { "@value": "Billing category for this ride. Maps to V1 items[].tags[BILLING_CATEGORY_INFO].BILLING_CATEGORY.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:TripRequest" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    },
+    {
+      "@id": "beckn:isAutoAssignEnabled",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "isAutoAssignEnabled", "@language": "en" },
+      "rdfs:comment": { "@value": "Whether the BAP requests automatic driver assignment. Maps to V1 items[].tags[AUTO_ASSIGN_ENABLED].IS_AUTO_ASSIGN_ENABLED.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:TripRequest" },
+      "rdfs:range": { "@id": "xsd:boolean" },
+      "skos:closeMatch": { "@id": "https://schema.org/Boolean" }
+    },
+    {
+      "@id": "beckn:confirmedPrice",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "confirmedPrice", "@language": "en" },
+      "rdfs:comment": { "@value": "Fare amount the BAP is confirming from the on_discover response. Maps to V1 items[].price.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:TripRequest" },
+      "rdfs:range": { "@id": "https://schema.beckn.io/core/v2.0/#PriceSpecification" }
+    }
+  ]
+}

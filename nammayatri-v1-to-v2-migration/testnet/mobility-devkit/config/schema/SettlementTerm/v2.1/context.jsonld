@@ -1,0 +1,27 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.1/",
+    "SettlementTerm": "beckn:SettlementTerm",
+    "amount": "beckn:amount",
+    "paymentTrigger": "beckn:paymentTrigger",
+    "settlementStatus": "beckn:settlementStatus",
+    "settlementSchedule": "beckn:settlementSchedule",
+    "payTo": "beckn:payTo",
+    "acceptedPaymentMethods": "beckn:acceptedPaymentMethods",
+    "settlementTermAttributes": "beckn:settlementTermAttributes",
+    "collectedBy": "beckn:collectedBy",
+    "paymentStatus": "beckn:paymentStatus",
+    "paymentType": "beckn:paymentType",
+    "paymentInstrument": "beckn:paymentInstrument",
+    "settlementAmount": "beckn:settlementAmount",
+    "settlementWindow": "beckn:settlementWindow",
+    "delayInterest": "beckn:delayInterest",
+    "settlementBasis": "beckn:settlementBasis",
+    "mandatoryArbitration": "beckn:mandatoryArbitration",
+    "courtJurisdiction": "beckn:courtJurisdiction",
+    "staticTerms": "beckn:staticTerms",
+    "buyerFinderFeesPercentage": "beckn:buyerFinderFeesPercentage",
+    "commission": "beckn:commission",
+    "tags": "beckn:tags"
+  }
+}

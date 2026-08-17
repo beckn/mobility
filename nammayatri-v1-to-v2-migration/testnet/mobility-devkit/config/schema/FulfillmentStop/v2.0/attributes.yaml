@@ -1,0 +1,56 @@
+openapi: 3.1.0
+info:
+  title: FulfillmentStop
+  version: 2.0.0
+  description: Schema definition for the FulfillmentStop entity in the Beckn Mobility
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    FulfillmentStop:
+      x-iri: https://schema.beckn.io/FulfillmentStop/v2.0
+      type: object
+      title: FulfillmentStop
+      description: A specific location associated with a fulfillment (trip or journey)
+        at which passengers board, alight, or transfer between services.
+      x-tags:
+        - mobility
+        - ride-hailing
+      properties:
+        stopType:
+          description: Role of this stop in the fulfillment (START, END, INTERMEDIATE)
+          type: string
+        scheduledTime:
+          description: Scheduled arrival or departure time at this stop
+          type: string
+          format: date-time
+        actualTime:
+          description: Actual arrival or departure time at this stop
+          type: string
+          format: date-time
+        stopRef:
+          description: Reference to the Stop entity for this fulfillment stop
+          $ref: https://schema.beckn.io/Stop/v2.0/attributes.yaml#/components/schemas/Stop
+        passengerCount:
+          description: Passenger count at this fulfillment stop
+          $ref: https://schema.beckn.io/PassengerCount/v2.0/attributes.yaml#/components/schemas/PassengerCount
+        id:
+          description: Unique identifier for the fulfillment stop
+          type: string
+        location:
+          description: Geographic location of the stop
+          $ref: https://schema.beckn.io/Location/v2.0/attributes.yaml#/components/schemas/Location
+        type:
+          description: Type of stop (start, end, intermediate)
+          type: string
+        instructions:
+          description: Instructions for passengers at this stop
+          $ref: https://schema.beckn.io/Descriptor/v2.0/attributes.yaml#/components/schemas/Descriptor
+        time:
+          description: Expected time window at this stop
+          $ref: https://schema.beckn.io/TimePeriod/v2.0/attributes.yaml#/components/schemas/TimePeriod
+      additionalProperties: false

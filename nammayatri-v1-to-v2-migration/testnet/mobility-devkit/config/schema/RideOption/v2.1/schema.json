@@ -1,0 +1,162 @@
+{
+  "$id": "https://schema.beckn.io/RideOption/v2.1",
+  "x-iri": "https://schema.beckn.io/RideOption/v2.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RideOption",
+  "type": "object",
+  "description": "A specific ride-hailing vehicle category and pricing option presented to a passenger in response to a ride request. v2.1 adds V1 ONDC TRV10 fields from both the fulfillment and item to enable lossless round-trip migration.",
+  "$defs": {
+    "RideOptionFeature": {
+      "type": "object",
+      "description": "A named feature and its value for display to the customer.",
+      "properties": {
+        "featureName": { "description": "Display name of the feature (e.g. AC). Maps to V1 FEATURE_LIST.FEATURE_NAME.", "type": "string" },
+        "featureValue": { "description": "Value of the feature (e.g. true). Maps to V1 FEATURE_LIST.FEATURE_VALUE.", "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "RideOptionCancellationTerm": {
+      "type": "object",
+      "description": "A cancellation policy term linked to a specific fulfillment state.",
+      "properties": {
+        "fulfillmentStateCode": { "description": "The fulfillment state at which this cancellation term applies.", "type": "string" },
+        "reasonRequired": { "description": "Whether a reason must be provided when cancelling at this state.", "type": "boolean" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "properties": {
+    "vehicleType": {
+      "description": "Category of vehicle for this ride option",
+      "$ref": "https://schema.beckn.io/VehicleCategory/v2.0/schema.json"
+    },
+    "estimatedArrival": {
+      "description": "Estimated vehicle arrival time at the pickup point",
+      "type": "string",
+      "format": "date-time"
+    },
+    "estimatedDuration": {
+      "description": "Estimated trip duration",
+      "type": "string",
+      "format": "duration"
+    },
+    "estimatedDistance": {
+      "description": "Estimated trip distance in kilometres",
+      "type": "number"
+    },
+    "pricingModel": {
+      "description": "Fare policy and pricing rules for this ride option.",
+      "$ref": "https://schema.beckn.io/SystemPricingPlan/v2.1/schema.json"
+    },
+    "id": {
+      "description": "Unique identifier for the offer",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the offer",
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
+    },
+    "price": {
+      "description": "Price specification for this offer",
+      "$ref": "https://schema.beckn.io/PriceSpecification/v2.1/schema.json"
+    },
+    "validity": {
+      "description": "Validity period of the offer",
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
+    },
+    "tags": {
+      "description": "V1-compatible tag groups preserved verbatim for lossless V2→V1 round-trip.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "descriptor": {
+            "type": "object",
+            "properties": {
+              "code": { "type": "string" },
+              "name": { "type": "string" }
+            }
+          },
+          "display": { "type": "boolean" },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "descriptor": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "string" },
+                    "name": { "type": "string" }
+                  }
+                },
+                "display": { "type": "boolean" },
+                "value": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "vehicle": {
+      "description": "Vehicle attributes for this ride option. Maps to V1 fulfillment.vehicle.* and VEHICLE_INFO tag entries.",
+      "$ref": "https://schema.beckn.io/Vehicle/v2.1/schema.json"
+    },
+    "serviceClass": {
+      "description": "Service class attributes for this ride option. Maps to V1 fulfillment.tags[VEHICLE_INFO] and item.descriptor.code.",
+      "$ref": "https://schema.beckn.io/ServiceClass/v2.1/schema.json"
+    },
+    "fulfillmentType": {
+      "description": "Fulfillment delivery type for this ride option (e.g. DELIVERY). Maps to V1 fulfillment.type.",
+      "type": "string"
+    },
+    "tipOptions": {
+      "description": "JSON-encoded array of tip amounts available for the customer. Maps to V1 items[].tags[INFO].TIP_OPTIONS.",
+      "type": "string"
+    },
+    "isBlockedSearchRoute": {
+      "description": "Whether this ride option is currently blocked for the searched route. Maps to V1 items[].tags[INFO].IS_BLOCKED_SEARCH_ROUTE.",
+      "type": "boolean"
+    },
+    "isCustomerPreferredSearchRoute": {
+      "description": "Whether this matches a customer-preferred route. Maps to V1 items[].tags[INFO].IS_CUSTOMER_PREFFERED_SEARCH_ROUTE.",
+      "type": "boolean"
+    },
+    "featureList": {
+      "description": "Ordered list of display-visible feature name/value pairs. Maps to V1 items[].tags[FEATURE_LIST].",
+      "type": "array",
+      "items": { "$ref": "#/$defs/RideOptionFeature" }
+    },
+    "cancellationTerms": {
+      "description": "Per-state cancellation policy for this ride option. Maps to V1 item.cancellation_terms[].",
+      "type": "array",
+      "items": { "$ref": "#/$defs/RideOptionCancellationTerm" }
+    },
+    "upgradeToVehicleClass": {
+      "description": "Whether the customer can upgrade to a higher vehicle class. Maps to V1 items[].tags[GENERAL_INFO].UPGRADE_TO_CAB.",
+      "type": "boolean"
+    },
+    "etaToNearestDriverMin": {
+      "description": "Estimated time in minutes until the nearest available driver arrives. Maps to V1 items[].tags[GENERAL_INFO].ETA_TO_NEAREST_DRIVER_MIN.",
+      "type": "integer"
+    },
+    "distanceToNearestDriverMeter": {
+      "description": "Distance in metres to the nearest available driver. Maps to V1 items[].tags[GENERAL_INFO].DISTANCE_TO_NEAREST_DRIVER_METER.",
+      "type": "integer"
+    },
+    "isInsured": {
+      "description": "Whether this ride is covered by insurance. Maps to V1 items[].tags[INSURANCE_INFO].IS_INSURED.",
+      "type": "boolean"
+    },
+    "insuredAmount": {
+      "description": "The insurance coverage amount for this ride. Maps to V1 items[].tags[INSURANCE_INFO].INSURED_AMOUNT.",
+      "type": ["string", "null"]
+    },
+    "displayBookingId": {
+      "description": "Human-readable booking reference shown to the customer. Maps to V1 items[].tags[BOOKING_INFO].DISPLAY_BOOKING_ID.",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "x-tags": ["mobility", "ride-hailing"]
+}

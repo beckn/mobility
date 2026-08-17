@@ -1,0 +1,30 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.1/",
+    "RideOption": "beckn:RideOption",
+    "vehicleType": "beckn:vehicleType",
+    "estimatedArrival": "beckn:estimatedArrival",
+    "estimatedDuration": "beckn:estimatedDuration",
+    "estimatedDistance": "beckn:estimatedDistance",
+    "pricingModel": "beckn:pricingModel",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "price": "beckn:price",
+    "validity": "beckn:validity",
+    "tags": "beckn:tags",
+    "vehicle": "beckn:vehicle",
+    "serviceClass": "beckn:serviceClass",
+    "fulfillmentType": "beckn:fulfillmentType",
+    "tipOptions": "beckn:tipOptions",
+    "isBlockedSearchRoute": "beckn:isBlockedSearchRoute",
+    "isCustomerPreferredSearchRoute": "beckn:isCustomerPreferredSearchRoute",
+    "featureList": "beckn:featureList",
+    "cancellationTerms": "beckn:cancellationTerms",
+    "upgradeToVehicleClass": "beckn:upgradeToVehicleClass",
+    "etaToNearestDriverMin": "beckn:etaToNearestDriverMin",
+    "distanceToNearestDriverMeter": "beckn:distanceToNearestDriverMeter",
+    "isInsured": "beckn:isInsured",
+    "insuredAmount": "beckn:insuredAmount",
+    "displayBookingId": "beckn:displayBookingId"
+  }
+}

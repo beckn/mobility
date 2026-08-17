@@ -1,0 +1,60 @@
+{
+  "$id": "https://schema.beckn.io/SystemPricingPlan/v2.0",
+  "x-iri": "https://schema.beckn.io/SystemPricingPlan/v2.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SystemPricingPlan",
+  "type": "object",
+  "description": "A pricing plan defined by a shared mobility system, describing costs and billing rules for vehicle use.",
+  "properties": {
+    "planId": {
+      "description": "Unique identifier for the pricing plan",
+      "type": "string"
+    },
+    "currency": {
+      "description": "ISO 4217 currency code",
+      "type": "string"
+    },
+    "isTaxable": {
+      "description": "Whether tax is applied to this pricing plan",
+      "type": "boolean"
+    },
+    "perMinuteChargingRate": {
+      "description": "Charge per minute of vehicle use",
+      "type": "number"
+    },
+    "perKmChargingRate": {
+      "description": "Charge per kilometre of vehicle use",
+      "type": "number"
+    },
+    "perTripStartingFee": {
+      "description": "Flat fee charged at the start of each trip",
+      "type": "number"
+    },
+    "id": {
+      "description": "Unique identifier for the offer",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the offer",
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
+    },
+    "price": {
+      "description": "Price specification for this offer",
+      "$ref": "https://schema.beckn.io/PriceSpecification/v2.1/schema.json"
+    },
+    "validity": {
+      "description": "Validity period of the offer",
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.1/schema.json"
+    },
+    "tags": {
+      "description": "Tags or labels associated with the offer",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "schema-org",
+    "ride-hailing"
+  ]
+}

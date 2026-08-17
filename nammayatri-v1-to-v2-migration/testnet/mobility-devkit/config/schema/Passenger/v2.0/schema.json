@@ -1,0 +1,44 @@
+{
+  "$id": "https://schema.beckn.io/Passenger/v2.0",
+  "x-iri": "https://schema.beckn.io/Passenger/v2.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Passenger",
+  "type": "object",
+  "description": "A person who travels using a transport service and is identified in a booking or travel document.",
+  "properties": {
+    "passengerId": {
+      "description": "Unique identifier for the passenger in this booking",
+      "type": "string"
+    },
+    "passengerType": {
+      "description": "Classification of passenger (e.g. ADULT, CHILD, SENIOR, STUDENT)",
+      "type": "string"
+    },
+    "specialRequirements": {
+      "description": "Accessibility or special assistance requirements",
+      "type": "string"
+    },
+    "id": {
+      "description": "Unique identifier for the participant",
+      "type": "string"
+    },
+    "person": {
+      "description": "Personal details of the participant",
+      "$ref": "https://schema.beckn.io/Person/v2.0/schema.json"
+    },
+    "organization": {
+      "description": "Organisation the participant belongs to",
+      "$ref": "https://schema.beckn.io/Organization/v2.0/schema.json"
+    },
+    "entitlements": {
+      "description": "Entitlements held by the participant",
+      "$ref": "https://schema.beckn.io/Entitlement/v2.0/schema.json"
+    }
+  },
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "schema-org",
+    "ride-hailing"
+  ]
+}

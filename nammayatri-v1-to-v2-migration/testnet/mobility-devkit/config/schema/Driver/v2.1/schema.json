@@ -1,0 +1,78 @@
+{
+  "$id": "https://schema.beckn.io/Driver/v2.1",
+  "x-iri": "https://schema.beckn.io/Driver/v2.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Driver",
+  "type": "object",
+  "description": "A person who operates a transport vehicle and is responsible for the safe delivery of passengers during a mobility service trip. v2.1 adds a plain numeric rating (DRIVER_DETAILS.RATING) and a verbatim tags[] array for lossless V2→V1 round-trip of the DRIVER_DETAILS tag group.",
+  "properties": {
+    "licenseNumber": {
+      "description": "Driver's license number",
+      "type": "string"
+    },
+    "vehicleNumber": {
+      "description": "Registration number of the vehicle being driven",
+      "type": "string"
+    },
+    "yearsOfExperience": {
+      "description": "Number of years of professional driving experience",
+      "type": "number"
+    },
+    "id": {
+      "description": "Unique identifier for the fulfillment agent",
+      "type": "string"
+    },
+    "person": {
+      "description": "Personal details of the agent",
+      "$ref": "https://schema.beckn.io/Person/v2.0/schema.json"
+    },
+    "organization": {
+      "description": "Organisation the agent belongs to",
+      "$ref": "https://schema.beckn.io/Organization/v2.0/schema.json"
+    },
+    "contact": {
+      "description": "Contact information for the agent",
+      "type": "string"
+    },
+    "rating": {
+      "description": "Numeric driver rating score (e.g. 5.00). Maps to V1 fulfillment.agent.person.tags[DRIVER_DETAILS].RATING.",
+      "type": "number"
+    },
+    "tags": {
+      "description": "V1-compatible tag groups preserved verbatim for lossless V2→V1 round-trip.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "descriptor": {
+            "type": "object",
+            "properties": {
+              "code": { "type": "string" },
+              "name": { "type": "string" }
+            }
+          },
+          "display": { "type": "boolean" },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "descriptor": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "string" },
+                    "name": { "type": "string" }
+                  }
+                },
+                "display": { "type": "boolean" },
+                "value": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": false,
+  "x-tags": ["mobility", "ride-hailing"]
+}

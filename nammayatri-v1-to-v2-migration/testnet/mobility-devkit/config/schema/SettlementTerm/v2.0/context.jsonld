@@ -1,0 +1,28 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "beckn": "https://schema.beckn.io/LinkedData/v2.1/context.jsonld",
+    "SettlementTerm": "beckn:SettlementTerm",
+    "@context": "beckn:@context",
+    "@type": "beckn:@type",
+    "amount": "beckn:amount",
+    "paymentTrigger": "beckn:paymentTrigger",
+    "settlementStatus": "beckn:settlementStatus",
+    "settlementSchedule": "beckn:settlementSchedule",
+    "payTo": "beckn:payTo",
+    "acceptedPaymentMethods": "beckn:acceptedPaymentMethods",
+    "settlementTermAttributes": "beckn:settlementTermAttributes",
+    "accountHolderName": "beckn:accountHolderName",
+    "accountNumber": "beckn:accountNumber",
+    "bankName": "beckn:bankName",
+    "branchCode": "beckn:branchCode",
+    "currency": "beckn:currency",
+    "paymentUrl": "beckn:paymentUrl",
+    "value": "beckn:value",
+    "vpa": "beckn:vpa"
+  }
+}

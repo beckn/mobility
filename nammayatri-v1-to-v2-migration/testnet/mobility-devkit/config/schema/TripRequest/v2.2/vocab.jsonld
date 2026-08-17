@@ -1,0 +1,45 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:TripRequest",
+      "@type": "owl:Class",
+      "rdfs:label": { "@value": "TripRequest", "@language": "en" },
+      "rdfs:comment": { "@value": "A passenger's request for an on-demand transport service. v2.2 extends v2.1 by adding vehicleCategory, fulfillmentType, and stops for lossless V2→V1 round-trip.", "@language": "en" }
+    },
+    {
+      "@id": "beckn:vehicleCategory",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "vehicleCategory", "@language": "en" },
+      "rdfs:comment": { "@value": "Broad vehicle category string as received from V1 (e.g. CAB, AUTO). Maps to V1 fulfillments[].vehicle.category.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:TripRequest" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    },
+    {
+      "@id": "beckn:fulfillmentType",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "fulfillmentType", "@language": "en" },
+      "rdfs:comment": { "@value": "Fulfillment type as received from V1 (e.g. DELIVERY). Maps to V1 fulfillments[].type.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:TripRequest" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    },
+    {
+      "@id": "beckn:stops",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "stops", "@language": "en" },
+      "rdfs:comment": { "@value": "Verbatim V1 fulfillment stop array preserved for lossless V2→V1 round-trip.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:TripRequest" },
+      "rdfs:range": { "@id": "rdf:List" }
+    }
+  ]
+}

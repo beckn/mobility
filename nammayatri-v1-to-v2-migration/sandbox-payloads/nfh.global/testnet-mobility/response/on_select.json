@@ -1,0 +1,541 @@
+{
+  "context": {
+    "action": "on_select",
+    "bap_id": "bap.example.com",
+    "bap_uri": "http://onix-bap:8081/bap/receiver",
+    "bpp_id": "bpp.example.com",
+    "bpp_uri": "http://onix-bpp:8082/bpp/receiver",
+    "domain": "nfh.global/testnet",
+    "message_id": "msg-on_select-001",
+    "timestamp": "2026-07-07T09:12:00Z",
+    "transaction_id": "8f2c1e6a-3b4d-4a11-9c22-mobility00001",
+    "ttl": "PT2M",
+    "version": "2.1.0"
+  },
+  "message": {
+    "order": {
+      "fulfillments": [
+        {
+          "agent": {
+            "person": {
+              "name": "DhruvBG",
+              "tags": [
+                {
+                  "descriptor": {
+                    "code": "DRIVER_DETAILS",
+                    "name": "Driver details"
+                  },
+                  "display": false,
+                  "list": [
+                    {
+                      "descriptor": {
+                        "code": "RATING",
+                        "name": "Rating"
+                      },
+                      "display": false,
+                      "value": "5.00"
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          "id": "7d8f4ca6-a721-4e74-84bf-430b28a55406",
+          "stops": [
+            {
+              "id": "0",
+              "location": {
+                "address": "Malminkatu,, Malminkatu 16, 00100 Helsinki, Finland",
+                "area_code": "00100",
+                "city": {
+                  "name": "Malminkatu 16"
+                },
+                "country": {
+                  "name": "Finland"
+                },
+                "gps": "60.167387, 24.931445",
+                "state": {
+                  "name": "00100 Helsinki"
+                }
+              },
+              "time": {
+                "timestamp": "2026-08-07T12:19:51.910103632Z"
+              },
+              "type": "START"
+            },
+            {
+              "id": "1",
+              "location": {
+                "address": "Mannerheimintie,, Mannerheimintie 2, 00100 Helsinki, Finland",
+                "area_code": "00100",
+                "city": {
+                  "name": "Mannerheimintie 2"
+                },
+                "country": {
+                  "name": "Finland"
+                },
+                "gps": "60.166848, 24.943359",
+                "state": {
+                  "name": "00100 Helsinki"
+                }
+              },
+              "parent_stop_id": "0",
+              "type": "END"
+            }
+          ],
+          "type": "DELIVERY",
+          "vehicle": {
+            "category": "CAB",
+            "variant": "SUV_PLUS"
+          }
+        }
+      ],
+      "items": [
+        {
+          "category_ids": [
+            "ON_DEMAND_TRIP"
+          ],
+          "descriptor": {
+            "code": "BLACK",
+            "name": "Aura",
+            "short_desc": "Luxury"
+          },
+          "fulfillment_ids": [
+            "7d8f4ca6-a721-4e74-84bf-430b28a55406"
+          ],
+          "id": "254e80b6-6914-4cdb-a5f7-9971a013b8dc",
+          "price": {
+            "currency": "EUR",
+            "value": "9.125399999999999"
+          },
+          "tags": [
+            {
+              "descriptor": {
+                "code": "GENERAL_INFO",
+                "name": "General info"
+              },
+              "display": false,
+              "list": [
+                {
+                  "descriptor": {
+                    "code": "UPGRADE_TO_CAB",
+                    "name": "Request upgraded to cab"
+                  },
+                  "display": false,
+                  "value": "False"
+                },
+                {
+                  "descriptor": {
+                    "code": "ETA_TO_NEAREST_DRIVER_MIN",
+                    "name": "Agent Duration to Pickup in Seconds"
+                  },
+                  "display": false,
+                  "value": "0"
+                },
+                {
+                  "descriptor": {
+                    "code": "DISTANCE_TO_NEAREST_DRIVER_METER",
+                    "name": "Distance To Nearest Driver In Meters"
+                  },
+                  "display": false,
+                  "value": "88"
+                }
+              ]
+            },
+            {
+              "descriptor": {
+                "code": "FARE_POLICY",
+                "name": "Fare policy"
+              },
+              "display": false,
+              "list": [
+                {
+                  "descriptor": {
+                    "code": "CANCELLATION_CHARGES",
+                    "name": "CANCELLATION_CHARGES"
+                  },
+                  "display": false,
+                  "value": "0"
+                },
+                {
+                  "descriptor": {
+                    "code": "DRIVER_MIN_EXTRA_FEE",
+                    "name": "DRIVER_MIN_EXTRA_FEE"
+                  },
+                  "display": false,
+                  "value": "0"
+                },
+                {
+                  "descriptor": {
+                    "code": "DRIVER_MAX_EXTRA_FEE",
+                    "name": "DRIVER_MAX_EXTRA_FEE"
+                  },
+                  "display": false,
+                  "value": "0"
+                },
+                {
+                  "descriptor": {
+                    "code": "PET_CHARGES",
+                    "name": "PET_CHARGES"
+                  },
+                  "display": false,
+                  "value": "1.0"
+                },
+                {
+                  "descriptor": {
+                    "code": "NIGHT_SHIFT_START_TIME",
+                    "name": "NIGHT_SHIFT_START_TIME"
+                  },
+                  "display": false,
+                  "value": "01:00:00"
+                },
+                {
+                  "descriptor": {
+                    "code": "NIGHT_SHIFT_END_TIME",
+                    "name": "NIGHT_SHIFT_END_TIME"
+                  },
+                  "display": false,
+                  "value": "08:00:00"
+                },
+                {
+                  "descriptor": {
+                    "code": "NIGHT_SHIFT_START_TIME_IN_SECONDS",
+                    "name": "NIGHT_SHIFT_START_TIME_IN_SECONDS"
+                  },
+                  "display": false,
+                  "value": "3600"
+                },
+                {
+                  "descriptor": {
+                    "code": "NIGHT_SHIFT_END_TIME_IN_SECONDS",
+                    "name": "NIGHT_SHIFT_END_TIME_IN_SECONDS"
+                  },
+                  "display": false,
+                  "value": "28800"
+                },
+                {
+                  "descriptor": {
+                    "code": "CONGESTION_CHARGE_PERCENTAGE",
+                    "name": "CONGESTION_CHARGE_PERCENTAGE"
+                  },
+                  "display": false,
+                  "value": "0.00"
+                },
+                {
+                  "descriptor": {
+                    "code": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER",
+                    "name": "CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER"
+                  },
+                  "display": false,
+                  "value": "1.135"
+                },
+                {
+                  "descriptor": {
+                    "code": "BASE_DISTANCE",
+                    "name": "BASE_DISTANCE"
+                  },
+                  "display": false,
+                  "value": "3000"
+                },
+                {
+                  "descriptor": {
+                    "code": "BASE_FARE",
+                    "name": "BASE_FARE"
+                  },
+                  "display": false,
+                  "value": "8.04"
+                },
+                {
+                  "descriptor": {
+                    "code": "DEAD_KILOMETER_FARE",
+                    "name": "DEAD_KILOMETER_FARE"
+                  },
+                  "display": false,
+                  "value": "0.0"
+                },
+                {
+                  "descriptor": {
+                    "code": "EXTRA_PER_KM_FARE",
+                    "name": "EXTRA_PER_KM_FARE"
+                  },
+                  "display": false,
+                  "value": "1.14999999999999991118215802998"
+                },
+                {
+                  "descriptor": {
+                    "code": "EXTRA_PER_KM_STEP_FARE_3000_Above",
+                    "name": "EXTRA_PER_KM_STEP_FARE_3000_Above"
+                  },
+                  "display": false,
+                  "value": "1.14999999999999991118215802998"
+                },
+                {
+                  "descriptor": {
+                    "code": "WAITING_CHARGE_PER_MIN",
+                    "name": "WAITING_CHARGE_PER_MIN"
+                  },
+                  "display": false,
+                  "value": "0.29999999999999998889776975374"
+                },
+                {
+                  "descriptor": {
+                    "code": "WAITING_CHARGE_RATE_PER_MIN",
+                    "name": "WAITING_CHARGE_RATE_PER_MIN"
+                  },
+                  "display": false,
+                  "value": "0.3"
+                },
+                {
+                  "descriptor": {
+                    "code": "FREE_WAITING_TIME_IN_MINUTES",
+                    "name": "FREE_WAITING_TIME_IN_MINUTES"
+                  },
+                  "display": false,
+                  "value": "3"
+                },
+                {
+                  "descriptor": {
+                    "code": "NIGHT_SHIFT_CHARGE",
+                    "name": "NIGHT_SHIFT_CHARGE"
+                  },
+                  "display": false,
+                  "value": "1"
+                },
+                {
+                  "descriptor": {
+                    "code": "NIGHT_SHIFT_CHARGE_PERCENTAGE",
+                    "name": "NIGHT_SHIFT_CHARGE_PERCENTAGE"
+                  },
+                  "display": false,
+                  "value": "0.0"
+                },
+                {
+                  "descriptor": {
+                    "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above",
+                    "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above"
+                  },
+                  "display": false,
+                  "value": "0"
+                },
+                {
+                  "descriptor": {
+                    "code": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above",
+                    "name": "DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above"
+                  },
+                  "display": false,
+                  "value": "0"
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "payments": [
+        {
+          "collected_by": "BPP",
+          "params": {
+            "amount": "9.125399999999999",
+            "currency": "EUR"
+          },
+          "status": "NOT-PAID",
+          "tags": [
+            {
+              "descriptor": {
+                "code": "BUYER_FINDER_FEES",
+                "name": "Buyer Finder Fees Information"
+              },
+              "display": false,
+              "list": [
+                {
+                  "descriptor": {
+                    "code": "BUYER_FINDER_FEES_PERCENTAGE",
+                    "name": "Buyer Finder Fees"
+                  },
+                  "display": false,
+                  "value": "0"
+                }
+              ]
+            },
+            {
+              "descriptor": {
+                "code": "SETTLEMENT_TERMS",
+                "name": "Settlement Terms Information"
+              },
+              "display": false,
+              "list": [
+                {
+                  "descriptor": {
+                    "code": "SETTLEMENT_AMOUNT",
+                    "name": "Settlement amount"
+                  },
+                  "display": false,
+                  "value": "9.125399999999999"
+                },
+                {
+                  "descriptor": {
+                    "code": "SETTLEMENT_WINDOW",
+                    "name": "Settlement window"
+                  },
+                  "display": false,
+                  "value": "PT1D"
+                },
+                {
+                  "descriptor": {
+                    "code": "DELAY_INTEREST",
+                    "name": "Delay Interest"
+                  },
+                  "display": false,
+                  "value": "0"
+                },
+                {
+                  "descriptor": {
+                    "code": "SETTLEMENT_BASIS",
+                    "name": "Settlement Basic"
+                  },
+                  "display": false,
+                  "value": "INVOICE_RECIEPT"
+                },
+                {
+                  "descriptor": {
+                    "code": "MANDATORY_ARBITRATION",
+                    "name": "Mandatory Arbitration"
+                  },
+                  "display": false,
+                  "value": "TRUE"
+                },
+                {
+                  "descriptor": {
+                    "code": "COURT_JURISDICTION",
+                    "name": "Court Jurisdiction"
+                  },
+                  "display": false,
+                  "value": "Helsinki"
+                },
+                {
+                  "descriptor": {
+                    "code": "STATIC_TERMS",
+                    "name": "Static Terms"
+                  },
+                  "display": false,
+                  "value": "https://api.example-bap.com/booking/terms"
+                }
+              ]
+            }
+          ],
+          "type": "ON-FULFILLMENT"
+        }
+      ],
+      "provider": {
+        "id": "api.eu.moving.tech/dobpp/beckn/a7f3c8e2-4b5d-4c9a-8f6e-2d1a3b4c5d6e"
+      },
+      "quote": {
+        "breakup": [
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "8.04"
+            },
+            "title": "BASE_FARE"
+          },
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "1.0854"
+            },
+            "title": "RIDE_VAT"
+          },
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "0"
+            },
+            "title": "TOLL_VAT"
+          },
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "0"
+            },
+            "title": "DEAD_KILOMETER_FARE"
+          },
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "8.04"
+            },
+            "title": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+          },
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "1.0854"
+            },
+            "title": "RIDE_FARE_DISCOUNT_APPLICABLE_TAX"
+          },
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "0"
+            },
+            "title": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE"
+          },
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "0"
+            },
+            "title": "RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX"
+          },
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "0"
+            },
+            "title": "TOLL_FARE_TAX_EXCLUSIVE"
+          },
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "0"
+            },
+            "title": "TOLL_FARE_TAX"
+          },
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "0"
+            },
+            "title": "CANCELLATION_FEE_TAX_EXCLUSIVE"
+          },
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "0"
+            },
+            "title": "CANCELLATION_TAX"
+          },
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "0"
+            },
+            "title": "PARKING_CHARGE_TAX_EXCLUSIVE"
+          },
+          {
+            "price": {
+              "currency": "EUR",
+              "value": "0"
+            },
+            "title": "PARKING_CHARGE_TAX"
+          }
+        ],
+        "price": {
+          "currency": "EUR",
+          "offered_value": "9.125399999999999",
+          "value": "9.125399999999999"
+        },
+        "ttl": "PT14.985572251S"
+      }
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.1/",
+    "FareEstimate": "beckn:FareEstimate",
+    "estimatedAmount": "beckn:estimatedAmount",
+    "currency": "beckn:currency",
+    "minimumAmount": "beckn:minimumAmount",
+    "maximumAmount": "beckn:maximumAmount",
+    "fareBreakup": "beckn:fareBreakup",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "price": "beckn:price",
+    "validity": "beckn:validity",
+    "tags": "beckn:tags",
+    "offeredAmount": "beckn:offeredAmount",
+    "discountAmount": "beckn:discountAmount",
+    "itemPrice": "beckn:itemPrice",
+    "createdAt": "beckn:createdAt",
+    "updatedAt": "beckn:updatedAt"
+  }
+}

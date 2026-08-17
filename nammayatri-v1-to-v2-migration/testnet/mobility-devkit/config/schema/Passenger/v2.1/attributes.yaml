@@ -1,0 +1,66 @@
+openapi: 3.1.1
+info:
+  title: Passenger
+  version: 2.1.0
+  description: >-
+    Schema definition for the Passenger entity in the Beckn Mobility domain.
+    v2.1 extends v2.0 by adding billingName and billingPhone fields required
+    for V1 ONDC TRV10 init/confirm phase billing data. billingPhone may be
+    partially obfuscated (e.g. "94******97") as returned by the BPP. These
+    fields enable lossless V2→V1 round-trip of V1 billing.name and
+    billing.phone.
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    Passenger:
+      x-iri: https://schema.beckn.io/Passenger/v2.1
+      type: object
+      title: Passenger
+      description: >-
+        A person who travels using a transport service and is identified in a
+        booking or travel document. v2.1 adds billingName and billingPhone
+        fields for V1 ONDC TRV10 billing round-trip.
+      x-tags:
+        - mobility
+        - schema-org
+        - ride-hailing
+      properties:
+        passengerId:
+          description: Unique identifier for the passenger in this booking.
+          type: string
+        passengerType:
+          description: Classification of passenger (e.g. ADULT, CHILD, SENIOR, STUDENT).
+          type: string
+        specialRequirements:
+          description: Accessibility or special assistance requirements.
+          type: string
+        id:
+          description: Unique identifier for the participant.
+          type: string
+        person:
+          description: Personal details of the participant.
+          $ref: https://schema.beckn.io/Person/v2.0/attributes.yaml#/components/schemas/Person
+        organization:
+          description: Organisation the participant belongs to.
+          $ref: https://schema.beckn.io/Organization/v2.0/attributes.yaml#/components/schemas/Organization
+        entitlements:
+          description: Entitlements held by the participant.
+          $ref: https://schema.beckn.io/Entitlement/v2.0/attributes.yaml#/components/schemas/Entitlement
+        billingName:
+          description: >-
+            Billing name for the passenger. Maps to V1 billing.name in the
+            init/confirm order. Used for invoice generation.
+          type: string
+        billingPhone:
+          description: >-
+            Billing phone number, may be partially obfuscated by the BPP
+            (e.g. "94******97"). Maps to V1 billing.phone. The full phone
+            is available in person.telephone for BAP-originated requests;
+            this field carries the BPP-returned (possibly masked) form.
+          type: string
+      additionalProperties: false

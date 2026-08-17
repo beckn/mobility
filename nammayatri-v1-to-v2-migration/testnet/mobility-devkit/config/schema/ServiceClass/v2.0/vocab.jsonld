@@ -1,0 +1,124 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:ServiceClass",
+      "@type": "owl:Class",
+      "rdfs:label": {
+        "@value": "ServiceClass",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "A classification of the level of service offered by a transport service, such as economy, business, or first class.",
+        "@language": "en"
+      }
+    },
+    {
+      "@id": "beckn:serviceClassCode",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "serviceClassCode",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Code identifying the service class (e.g. ECONOMY, BUSINESS, FIRST)",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceClass"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:features",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "features",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "List of features and amenities included in this service class",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceClass"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      }
+    },
+    {
+      "@id": "beckn:id",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "id",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Unique identifier for the category code",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceClass"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    },
+    {
+      "@id": "beckn:descriptor",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "descriptor",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Human-readable label for the category",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceClass"
+      },
+      "rdfs:range": {
+        "@id": "https://schema.beckn.io/core/v2.0/#Descriptor"
+      }
+    },
+    {
+      "@id": "beckn:parentCategoryId",
+      "@type": "rdf:Property",
+      "rdfs:label": {
+        "@value": "parentCategoryId",
+        "@language": "en"
+      },
+      "rdfs:comment": {
+        "@value": "Identifier of the parent category if hierarchical",
+        "@language": "en"
+      },
+      "rdfs:domain": {
+        "@id": "beckn:ServiceClass"
+      },
+      "rdfs:range": {
+        "@id": "xsd:string"
+      },
+      "skos:closeMatch": {
+        "@id": "https://schema.org/Text"
+      }
+    }
+  ]
+}

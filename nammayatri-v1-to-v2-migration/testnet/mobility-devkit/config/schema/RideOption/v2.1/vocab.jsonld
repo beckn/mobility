@@ -1,0 +1,100 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:RideOption",
+      "@type": "owl:Class",
+      "rdfs:label": { "@value": "RideOption", "@language": "en" },
+      "rdfs:comment": { "@value": "A specific ride-hailing vehicle category and pricing option. v2.1 adds vehicle, serviceClass, V1 ONDC TRV10 offer fields, and featureList/cancellationTerms arrays.", "@language": "en" },
+      "rdfs:seeAlso": [
+        { "@id": "beckn:SystemPricingPlan" },
+        { "@id": "beckn:VehicleCategory" }
+      ]
+    },
+    {
+      "@id": "beckn:vehicle",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "vehicle", "@language": "en" },
+      "rdfs:comment": { "@value": "Vehicle attributes for this ride option. Maps to V1 fulfillment.vehicle.* and VEHICLE_INFO tag entries.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:RideOption" },
+      "rdfs:range": { "@id": "beckn:Vehicle" }
+    },
+    {
+      "@id": "beckn:serviceClass",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "serviceClass", "@language": "en" },
+      "rdfs:comment": { "@value": "Service class attributes for this ride option. Maps to V1 fulfillment.tags[VEHICLE_INFO] and item.descriptor.code.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:RideOption" },
+      "rdfs:range": { "@id": "beckn:ServiceClass" }
+    },
+    {
+      "@id": "beckn:featureList",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "featureList", "@language": "en" },
+      "rdfs:comment": { "@value": "Ordered list of display-visible feature name/value pairs. Maps to V1 items[].tags[FEATURE_LIST].", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:RideOption" },
+      "rdfs:range": { "@id": "rdf:List" }
+    },
+    {
+      "@id": "beckn:cancellationTerms",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "cancellationTerms", "@language": "en" },
+      "rdfs:comment": { "@value": "Per-state cancellation policy for this ride option. Maps to V1 item.cancellation_terms[].", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:RideOption" },
+      "rdfs:range": { "@id": "rdf:List" }
+    },
+    {
+      "@id": "beckn:upgradeToVehicleClass",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "upgradeToVehicleClass", "@language": "en" },
+      "rdfs:comment": { "@value": "Whether the customer can upgrade to a higher vehicle class. Maps to V1 items[].tags[GENERAL_INFO].UPGRADE_TO_CAB.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:RideOption" },
+      "rdfs:range": { "@id": "xsd:boolean" },
+      "skos:closeMatch": { "@id": "https://schema.org/Boolean" }
+    },
+    {
+      "@id": "beckn:etaToNearestDriverMin",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "etaToNearestDriverMin", "@language": "en" },
+      "rdfs:comment": { "@value": "Estimated time in minutes until the nearest available driver arrives. Maps to V1 items[].tags[GENERAL_INFO].ETA_TO_NEAREST_DRIVER_MIN.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:RideOption" },
+      "rdfs:range": { "@id": "xsd:integer" },
+      "skos:closeMatch": { "@id": "https://schema.org/Integer" }
+    },
+    {
+      "@id": "beckn:distanceToNearestDriverMeter",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "distanceToNearestDriverMeter", "@language": "en" },
+      "rdfs:comment": { "@value": "Distance in metres to the nearest available driver. Maps to V1 items[].tags[GENERAL_INFO].DISTANCE_TO_NEAREST_DRIVER_METER.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:RideOption" },
+      "rdfs:range": { "@id": "xsd:integer" },
+      "skos:closeMatch": { "@id": "https://schema.org/Integer" }
+    },
+    {
+      "@id": "beckn:isInsured",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "isInsured", "@language": "en" },
+      "rdfs:comment": { "@value": "Whether this ride is covered by insurance. Maps to V1 items[].tags[INSURANCE_INFO].IS_INSURED.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:RideOption" },
+      "rdfs:range": { "@id": "xsd:boolean" },
+      "skos:closeMatch": { "@id": "https://schema.org/Boolean" }
+    },
+    {
+      "@id": "beckn:displayBookingId",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "displayBookingId", "@language": "en" },
+      "rdfs:comment": { "@value": "Human-readable booking reference shown to the customer. Maps to V1 items[].tags[BOOKING_INFO].DISPLAY_BOOKING_ID.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:RideOption" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    }
+  ]
+}

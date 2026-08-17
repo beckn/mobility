@@ -1,0 +1,35 @@
+{
+  "$id": "https://schema.beckn.io/ServiceClass/v2.0",
+  "x-iri": "https://schema.beckn.io/ServiceClass/v2.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ServiceClass",
+  "type": "object",
+  "description": "A classification of the level of service offered by a transport service, such as economy, business, or first class.",
+  "properties": {
+    "serviceClassCode": {
+      "description": "Code identifying the service class (e.g. ECONOMY, BUSINESS, FIRST)",
+      "type": "string"
+    },
+    "features": {
+      "description": "List of features and amenities included in this service class",
+      "type": "array"
+    },
+    "id": {
+      "description": "Unique identifier for the category code",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable label for the category",
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
+    },
+    "parentCategoryId": {
+      "description": "Identifier of the parent category if hierarchical",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "ride-hailing"
+  ]
+}

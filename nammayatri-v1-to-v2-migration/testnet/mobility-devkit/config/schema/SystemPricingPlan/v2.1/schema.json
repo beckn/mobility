@@ -1,0 +1,118 @@
+{
+  "$id": "https://schema.beckn.io/SystemPricingPlan/v2.1",
+  "x-iri": "https://schema.beckn.io/SystemPricingPlan/v2.1",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SystemPricingPlan",
+  "type": "object",
+  "description": "A pricing plan defined by a shared mobility system, describing costs and billing rules for vehicle use. v2.1 adds the full FARE_POLICY tag group fields from V1 ONDC TRV10. All monetary fields that carry arbitrary-precision decimal strings in V1 are typed as string.",
+  "properties": {
+    "planId": {
+      "description": "Unique identifier for the pricing plan",
+      "type": "string"
+    },
+    "currency": {
+      "description": "ISO 4217 currency code",
+      "type": "string"
+    },
+    "isTaxable": {
+      "description": "Whether tax is applied to this pricing plan",
+      "type": "boolean"
+    },
+    "perMinuteChargingRate": {
+      "description": "Charge per minute of vehicle use",
+      "type": "number"
+    },
+    "perKmChargingRate": {
+      "description": "Charge per kilometre of vehicle use",
+      "type": "number"
+    },
+    "perTripStartingFee": {
+      "description": "Flat fee charged at the start of each trip",
+      "type": "number"
+    },
+    "id": {
+      "description": "Unique identifier for the offer",
+      "type": "string"
+    },
+    "descriptor": {
+      "description": "Human-readable description of the offer",
+      "$ref": "https://schema.beckn.io/Descriptor/v2.1/schema.json"
+    },
+    "price": {
+      "description": "Price specification for this offer",
+      "$ref": "https://schema.beckn.io/PriceSpecification/v2.1/schema.json"
+    },
+    "validity": {
+      "description": "Validity period of the offer",
+      "$ref": "https://schema.beckn.io/TimePeriod/v2.0/schema.json"
+    },
+    "tags": {
+      "description": "V1-compatible tag groups preserved verbatim for lossless V2→V1 round-trip.",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "descriptor": {
+            "type": "object",
+            "properties": {
+              "code": { "type": "string" },
+              "name": { "type": "string" }
+            }
+          },
+          "display": { "type": "boolean" },
+          "list": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "descriptor": {
+                  "type": "object",
+                  "properties": {
+                    "code": { "type": "string" },
+                    "name": { "type": "string" }
+                  }
+                },
+                "display": { "type": "boolean" },
+                "value": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "cancellationCharges": { "description": "Fixed cancellation fee. Maps to V1 FARE_POLICY.CANCELLATION_CHARGES.", "type": "string" },
+    "driverMinExtraFee": { "description": "Minimum additional fee the driver can charge. Maps to V1 FARE_POLICY.DRIVER_MIN_EXTRA_FEE.", "type": "string" },
+    "driverMaxExtraFee": { "description": "Maximum additional fee the driver can charge. Maps to V1 FARE_POLICY.DRIVER_MAX_EXTRA_FEE.", "type": "string" },
+    "petCharges": { "description": "Surcharge for travelling with a pet. Maps to V1 FARE_POLICY.PET_CHARGES.", "type": "string" },
+    "nightShiftStartTime": { "description": "Start of night shift window (HH:MM:SS). Maps to V1 FARE_POLICY.NIGHT_SHIFT_START_TIME.", "type": "string" },
+    "nightShiftEndTime": { "description": "End of night shift window (HH:MM:SS). Maps to V1 FARE_POLICY.NIGHT_SHIFT_END_TIME.", "type": "string" },
+    "nightShiftStartTimeInSeconds": { "description": "Night shift start as seconds from midnight. Maps to V1 FARE_POLICY.NIGHT_SHIFT_START_TIME_IN_SECONDS.", "type": "string" },
+    "nightShiftEndTimeInSeconds": { "description": "Night shift end as seconds from midnight. Maps to V1 FARE_POLICY.NIGHT_SHIFT_END_TIME_IN_SECONDS.", "type": "string" },
+    "congestionChargePercentage": { "description": "Surcharge percentage during congestion periods. Maps to V1 FARE_POLICY.CONGESTION_CHARGE_PERCENTAGE.", "type": "string" },
+    "customerExtraFeeTaxMultiplier": { "description": "Tax multiplier on customer extra fee. Maps to V1 FARE_POLICY.CUSTOMER_EXTRA_FEE_TAX_MULTIPLIER.", "type": "string" },
+    "baseDistance": { "description": "Distance (metres) covered by base fare. Maps to V1 FARE_POLICY.BASE_DISTANCE.", "type": "string" },
+    "baseFare": { "description": "Fixed fare at trip start covering base distance. Maps to V1 FARE_POLICY.BASE_FARE.", "type": "string" },
+    "deadKilometerFare": { "description": "Fare per km for driver travel to pickup. Maps to V1 FARE_POLICY.DEAD_KILOMETER_FARE.", "type": "string" },
+    "extraPerKmFare": { "description": "Per-km rate beyond base distance. Maps to V1 FARE_POLICY.EXTRA_PER_KM_FARE.", "type": "string" },
+    "extraPerKmStepFare3000Above": { "description": "Per-km step rate above 3000m. Maps to V1 FARE_POLICY.EXTRA_PER_KM_STEP_FARE_3000_Above.", "type": "string" },
+    "waitingChargePerMin": { "description": "Charge per minute waiting beyond free window. Maps to V1 FARE_POLICY.WAITING_CHARGE_PER_MIN.", "type": "string" },
+    "waitingChargeRatePerMin": { "description": "Rounded waiting rate per minute for display. Maps to V1 FARE_POLICY.WAITING_CHARGE_RATE_PER_MIN.", "type": "string" },
+    "freeWaitingTimeInMinutes": { "description": "Minutes of free waiting before charges begin. Maps to V1 FARE_POLICY.FREE_WAITING_TIME_IN_MINUTES.", "type": "string" },
+    "nightShiftCharge": { "description": "Flat fee or multiplier during night shift. Maps to V1 FARE_POLICY.NIGHT_SHIFT_CHARGE.", "type": "string" },
+    "nightShiftChargePercentage": { "description": "Percentage surcharge during night shift. Maps to V1 FARE_POLICY.NIGHT_SHIFT_CHARGE_PERCENTAGE.", "type": "string" },
+    "driverExtraFeeBoundsStepMinFee0Above": { "description": "Min driver extra fee bound for distance >= 0. Maps to V1 FARE_POLICY.DRIVER_EXTRA_FEE_BOUNDS_STEP_MIN_FEE_0_Above.", "type": "string" },
+    "driverExtraFeeBoundsStepMaxFee0Above": { "description": "Max driver extra fee bound for distance >= 0. Maps to V1 FARE_POLICY.DRIVER_EXTRA_FEE_BOUNDS_STEP_MAX_FEE_0_Above.", "type": "string" },
+    "rideFareDiscountApplicableTaxExclusive": { "description": "Discountable fare portion excluding tax. Maps to V1 FARE_POLICY.RIDE_FARE_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE.", "type": "string" },
+    "rideFareDiscountApplicableTax": { "description": "Tax on the discountable fare portion. Maps to V1 FARE_POLICY.RIDE_FARE_DISCOUNT_APPLICABLE_TAX.", "type": "string" },
+    "rideFareNonDiscountApplicableTaxExclusive": { "description": "Non-discountable fare portion excluding tax. Maps to V1 FARE_POLICY.RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX_EXCLUSIVE.", "type": "string" },
+    "rideFareNonDiscountApplicableTax": { "description": "Tax on the non-discountable fare portion. Maps to V1 FARE_POLICY.RIDE_FARE_NON_DISCOUNT_APPLICABLE_TAX.", "type": "string" },
+    "tollFareTaxExclusive": { "description": "Toll charge excluding tax. Maps to V1 FARE_POLICY.TOLL_FARE_TAX_EXCLUSIVE.", "type": "string" },
+    "tollFareTax": { "description": "Tax on toll charge. Maps to V1 FARE_POLICY.TOLL_FARE_TAX.", "type": "string" },
+    "cancellationFeeTaxExclusive": { "description": "Cancellation fee excluding tax. Maps to V1 FARE_POLICY.CANCELLATION_FEE_TAX_EXCLUSIVE.", "type": "string" },
+    "cancellationTax": { "description": "Tax on cancellation fee. Maps to V1 FARE_POLICY.CANCELLATION_TAX.", "type": "string" },
+    "parkingChargeTaxExclusive": { "description": "Parking charge excluding tax. Maps to V1 FARE_POLICY.PARKING_CHARGE_TAX_EXCLUSIVE.", "type": "string" },
+    "parkingChargeTax": { "description": "Tax on parking charge. Maps to V1 FARE_POLICY.PARKING_CHARGE_TAX.", "type": "string" }
+  },
+  "additionalProperties": false,
+  "x-tags": ["mobility", "schema-org", "ride-hailing"]
+}

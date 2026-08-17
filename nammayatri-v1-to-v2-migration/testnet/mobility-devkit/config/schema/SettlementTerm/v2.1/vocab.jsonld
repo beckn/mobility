@@ -1,0 +1,83 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:SettlementTerm",
+      "@type": "owl:Class",
+      "rdfs:label": { "@value": "SettlementTerm", "@language": "en" },
+      "rdfs:comment": { "@value": "Describes the terms of settlement associated with a given transaction. v2.1 adds V1 ONDC TRV10 payment and settlement tag group fields.", "@language": "en" },
+      "rdfs:seeAlso": { "@id": "https://schema.org/PaymentMethod" }
+    },
+    {
+      "@id": "beckn:collectedBy",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "collectedBy", "@language": "en" },
+      "rdfs:comment": { "@value": "Party responsible for collecting the payment (BAP or BPP). Maps to V1 payment.collected_by.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:SettlementTerm" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    },
+    {
+      "@id": "beckn:paymentStatus",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "paymentStatus", "@language": "en" },
+      "rdfs:comment": { "@value": "Current payment status. Maps to V1 payment.status (e.g. NOT-PAID, PAID).", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:SettlementTerm" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    },
+    {
+      "@id": "beckn:paymentType",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "paymentType", "@language": "en" },
+      "rdfs:comment": { "@value": "When the payment is collected relative to fulfillment. Maps to V1 payment.type.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:SettlementTerm" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    },
+    {
+      "@id": "beckn:paymentInstrument",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "paymentInstrument", "@language": "en" },
+      "rdfs:comment": { "@value": "The specific payment instrument used (e.g. Cash, UPI). Maps to V1 SETTLEMENT_TERMS.PAYMENT_INSTRUMENT.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:SettlementTerm" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    },
+    {
+      "@id": "beckn:settlementAmount",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "settlementAmount", "@language": "en" },
+      "rdfs:comment": { "@value": "The actual settlement amount. Maps to V1 SETTLEMENT_TERMS.SETTLEMENT_AMOUNT.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:SettlementTerm" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    },
+    {
+      "@id": "beckn:buyerFinderFeesPercentage",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "buyerFinderFeesPercentage", "@language": "en" },
+      "rdfs:comment": { "@value": "Percentage fee charged by the BAP for finding the buyer. Maps to V1 BUYER_FINDER_FEES.BUYER_FINDER_FEES_PERCENTAGE.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:SettlementTerm" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    },
+    {
+      "@id": "beckn:commission",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "commission", "@language": "en" },
+      "rdfs:comment": { "@value": "Commission amount deducted by the network or BAP. Maps to V1 SETTLEMENT_DETAILS.COMMISSION.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:SettlementTerm" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    }
+  ]
+}

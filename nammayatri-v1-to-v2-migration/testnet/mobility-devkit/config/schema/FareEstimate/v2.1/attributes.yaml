@@ -1,0 +1,87 @@
+openapi: 3.1.1
+info:
+  title: FareEstimate
+  version: 2.1.0
+  description: Schema definition for the FareEstimate entity in the Beckn Mobility domain.
+  license:
+    name: CC-BY-NC-SA 4.0 International
+    url: https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en
+  contact:
+    name: Beckn Labs
+    url: https://beckn.io
+components:
+  schemas:
+    FareEstimate:
+      x-iri: https://schema.beckn.io/FareEstimate/v2.1
+      type: object
+      title: FareEstimate
+      description: An estimated fare for a requested trip, typically returned in response
+        to a search before the booking is confirmed.
+      x-tags:
+        - mobility
+        - ride-hailing
+      properties:
+        estimatedAmount:
+          description: Estimated total fare amount
+          type: number
+        currency:
+          description: ISO 4217 currency code
+          type: string
+        minimumAmount:
+          description: Minimum possible fare
+          type: number
+        maximumAmount:
+          description: Maximum possible fare
+          type: number
+        fareBreakup:
+          description: Itemised breakdown of the estimated fare
+          $ref: https://schema.beckn.io/FareBreakup/v2.0/attributes.yaml#/components/schemas/FareBreakup
+        id:
+          description: Unique identifier for the offer
+          type: string
+        descriptor:
+          description: Human-readable description of the offer
+          $ref: https://schema.beckn.io/Descriptor/v2.0/attributes.yaml#/components/schemas/Descriptor
+        price:
+          description: Price specification for this offer
+          $ref: https://schema.beckn.io/PriceSpecification/v2.1/attributes.yaml#/components/schemas/PriceSpecification
+        validity:
+          description: Validity period or TTL of the offer
+          type: object
+          properties:
+            'schema:duration':
+              type: string
+              description: ISO 8601 duration string (e.g. PT15S)
+        tags:
+          description: Tags or labels associated with the offer
+          type: string
+        offeredAmount:
+          description: The discounted or offered fare presented to the customer, which
+            may differ from the estimated amount after promotions. Maps to V1
+            item.price.offered_value.
+          type: number
+        discountAmount:
+          description: Discount amount applied to the fare, if any. Maps to V1
+            items[].tags[OFFER_INFO].DISCOUNT_AMOUNT. Stored as string to preserve
+            null and exact decimal representation.
+          type: string
+          nullable: true
+        itemPrice:
+          description: Per-item price breakdown. Maps to V1 item.price fields.
+          type: object
+          properties:
+            currency:
+              type: string
+            offeredValue:
+              type: string
+            value:
+              type: string
+        createdAt:
+          description: ISO 8601 timestamp when the order was created. Carried from V1 order.created_at.
+          type: string
+          format: date-time
+        updatedAt:
+          description: ISO 8601 timestamp when the order was last updated. Carried from V1 order.updated_at.
+          type: string
+          format: date-time
+      additionalProperties: false

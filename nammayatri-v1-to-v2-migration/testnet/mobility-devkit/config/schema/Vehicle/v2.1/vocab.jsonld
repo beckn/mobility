@@ -1,0 +1,59 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/linked-data/latest-context.jsonld",
+    "schema": "https://schema.org/version/latest/schemaorg-current-https.jsonld",
+    "owl": "http://www.w3.org/2002/07/owl#",
+    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "@graph": [
+    {
+      "@id": "beckn:Vehicle",
+      "@type": "owl:Class",
+      "rdfs:label": { "@value": "Vehicle", "@language": "en" },
+      "rdfs:comment": { "@value": "A motorized or human-powered mobility asset. v2.1 adds bodyType, seatingCapacity, category, iconUrl.", "@language": "en" },
+      "rdfs:seeAlso": [
+        { "@id": "https://schema.org/Vehicle" },
+        { "@id": "beckn:VehicleType" }
+      ]
+    },
+    {
+      "@id": "beckn:bodyType",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "bodyType", "@language": "en" },
+      "rdfs:comment": { "@value": "Body style or variant of the vehicle (e.g. SEDAN, HATCHBACK, SUV_PLUS). Maps to V1 fulfillment.vehicle.variant.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:Vehicle" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    },
+    {
+      "@id": "beckn:seatingCapacity",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "seatingCapacity", "@language": "en" },
+      "rdfs:comment": { "@value": "Maximum number of passengers this vehicle can carry. Maps to V1 fulfillment.vehicle.capacity.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:Vehicle" },
+      "rdfs:range": { "@id": "xsd:integer" },
+      "skos:closeMatch": { "@id": "https://schema.org/Integer" }
+    },
+    {
+      "@id": "beckn:category",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "category", "@language": "en" },
+      "rdfs:comment": { "@value": "Broad vehicle category code (e.g. CAB, AUTO). Maps to V1 fulfillment.vehicle.category.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:Vehicle" },
+      "rdfs:range": { "@id": "xsd:string" },
+      "skos:closeMatch": { "@id": "https://schema.org/Text" }
+    },
+    {
+      "@id": "beckn:iconUrl",
+      "@type": "rdf:Property",
+      "rdfs:label": { "@value": "iconUrl", "@language": "en" },
+      "rdfs:comment": { "@value": "URL of an icon image representing this vehicle type. Maps to V1 items[].tags[VEHICLE_INFO].VEHICLE_ICON_URL.", "@language": "en" },
+      "rdfs:domain": { "@id": "beckn:Vehicle" },
+      "rdfs:range": { "@id": "xsd:anyURI" },
+      "skos:closeMatch": { "@id": "https://schema.org/URL" }
+    }
+  ]
+}

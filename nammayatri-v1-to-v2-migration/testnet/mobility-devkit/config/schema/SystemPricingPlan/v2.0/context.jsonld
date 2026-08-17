@@ -1,0 +1,17 @@
+{
+  "@context": {
+    "beckn": "https://schema.beckn.io/mobility/v2.0/",
+    "SystemPricingPlan": "beckn:SystemPricingPlan",
+    "planId": "beckn:planId",
+    "currency": "beckn:currency",
+    "isTaxable": "beckn:isTaxable",
+    "perMinuteChargingRate": "beckn:perMinuteChargingRate",
+    "perKmChargingRate": "beckn:perKmChargingRate",
+    "perTripStartingFee": "beckn:perTripStartingFee",
+    "id": "beckn:id",
+    "descriptor": "beckn:descriptor",
+    "price": "beckn:price",
+    "validity": "beckn:validity",
+    "tags": "beckn:tags"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "$id": "https://schema.beckn.io/TripRequest/v2.0",
+  "x-iri": "https://schema.beckn.io/TripRequest/v2.0",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "TripRequest",
+  "type": "object",
+  "description": "A request submitted to a journey planning system specifying origin, destination, travel time, and preferences.",
+  "properties": {
+    "origin": {
+      "description": "Origin location for the trip",
+      "$ref": "https://schema.beckn.io/Location/v2.0/schema.json"
+    },
+    "destination": {
+      "description": "Destination location for the trip",
+      "$ref": "https://schema.beckn.io/Location/v2.0/schema.json"
+    },
+    "departureTime": {
+      "description": "Requested departure time",
+      "type": "string",
+      "format": "date-time"
+    },
+    "arrivalTime": {
+      "description": "Requested arrival time (alternative to departureTime)",
+      "type": "string",
+      "format": "date-time"
+    },
+    "modes": {
+      "description": "Permitted transport modes (e.g. BUS, RAIL, WALK)",
+      "type": "string"
+    },
+    "numItineraries": {
+      "description": "Number of itinerary alternatives requested",
+      "type": "number"
+    },
+    "textSearch": {
+      "description": "Free-text search query expressing what the traveler is looking for",
+      "type": "string"
+    },
+    "filters": {
+      "description": "JSONPath filter criteria applied to the search results",
+      "type": "string"
+    },
+    "spatial": {
+      "description": "Geographic constraints on the search area",
+      "$ref": "https://schema.beckn.io/SpatialConstraint/v2.0/schema.json"
+    },
+    "provider": {
+      "description": "Identifier of a specific provider to search within",
+      "type": "string"
+    }
+  },
+  "additionalProperties": false,
+  "x-tags": [
+    "mobility",
+    "ride-hailing"
+  ]
+}
